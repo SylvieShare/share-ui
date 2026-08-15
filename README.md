@@ -29,7 +29,8 @@
 [темизация](./docs/theming.md), [публичные компоненты](./docs/components.md),
 [галерея компонентов](./docs/gallery.md),
 [карта миграции](./docs/migration.md),
-[разработка и релизы](./docs/development.md).
+[разработка и релизы](./docs/development.md),
+[сопровождение из consumer-проектов](./MAINTAINING.md).
 
 ## Подключение
 
@@ -54,6 +55,11 @@ import { BaseTile, FormTextInput, useSortable } from '@sylvieshare/share-ui'
 ```
 
 ## Разработка
+
+Задача в DnDShare, HavenShare или TrenchShare разрешает без отдельного
+согласования изменить и выпустить `share-ui`, если это необходимо для общего
+решения. Границы такого разрешения, порядок cross-repository работы и матрица
+проверок описаны в [`MAINTAINING.md`](./MAINTAINING.md).
 
 ```bash
 npm install
