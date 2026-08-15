@@ -21,6 +21,7 @@ export { default as ColorPresetPicker } from './components/floating/ColorPresetP
 export { default as ValueSelect } from './components/floating/ValueSelect.vue'
 export { default as RichContent } from './components/rich-text/RichContent.vue'
 export { default as RichTextEditor } from './components/rich-text/RichTextEditor.vue'
+export { default as AccountMenu } from './components/navigation/AccountMenu.vue'
 export { default as AppShell } from './components/navigation/AppShell.vue'
 export { default as AppSidebar } from './components/navigation/AppSidebar.vue'
 export { default as SidebarBrand } from './components/navigation/SidebarBrand.vue'

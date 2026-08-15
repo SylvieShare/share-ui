@@ -87,6 +87,9 @@ scroll lock. Поэтому Escape, focus restoration и вложенные ок
   component/slot, suffix, submenu state и semantic tone.
 - `ActionMenuSubmenu` (`RowActionSubmenu` alias) — соседний popover на desktop и
   inline-раскрытие на mobile.
+- `AccountMenu` — общий trigger профиля для sidebar: avatar, подпись и chevron;
+  сами действия передаются consumer-ом через default slot и строятся на
+  `ActionMenuItem`. Prop `expanded` переключает rail- и полный варианты.
 - `ValueSelect` — компактный searchable listbox с disabled options, стрелками,
   Home/End, Enter и Escape. Все видимые тексты передаются props.
 - `ColorPresetPicker` — preset/custom/clear picker. Палитра передаётся `colors`,

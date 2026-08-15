@@ -191,6 +191,15 @@ export const RichTextEditor: DefineComponent<{
   labels?: RichTextLabels
 }>
 
+export const AccountMenu: DefineComponent<{
+  label?: string
+  avatarText?: string
+  expanded?: boolean
+  title?: string
+  ariaLabel?: string
+  disabled?: boolean
+}>
+
 export const AppShell: DefineComponent<{
   sidebarMode?: 'column' | 'fixed'
   sidebarVisible?: boolean

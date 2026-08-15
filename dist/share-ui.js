@@ -1961,10 +1961,86 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			html: t.modelValue
 		}, null, 8, ["html"])) : (y(), o("div", Et, w(t.placeholder), 1))]));
 	}
-}, [["__scopeId", "data-v-e5eced16"]]), Ot = {
+}, [["__scopeId", "data-v-e5eced16"]]), Ot = [
+	"aria-label",
+	"aria-expanded",
+	"disabled"
+], kt = {
+	class: "share-account-avatar",
+	"aria-hidden": "true"
+}, At = {
+	key: 0,
+	class: "share-account-label"
+}, jt = {
+	key: 1,
+	class: "share-account-chevron",
+	viewBox: "0 0 16 16",
+	fill: "none",
+	"aria-hidden": "true"
+}, Mt = /*#__PURE__*/ N({
+	__name: "AccountMenu",
+	props: {
+		label: {
+			type: String,
+			default: ""
+		},
+		avatarText: {
+			type: String,
+			default: ""
+		},
+		expanded: {
+			type: Boolean,
+			default: !0
+		},
+		title: {
+			type: String,
+			default: "Account actions"
+		},
+		ariaLabel: {
+			type: String,
+			default: ""
+		},
+		disabled: {
+			type: Boolean,
+			default: !1
+		}
+	},
+	setup(e) {
+		let t = e, n = r(() => (t.avatarText || t.label.trim().charAt(0) || "?").toUpperCase());
+		return (t, r) => (y(), i(Q, {
+			title: e.title,
+			disabled: e.disabled,
+			block: ""
+		}, {
+			trigger: k(({ open: i }) => [s("button", {
+				type: "button",
+				class: h(["share-account-trigger", {
+					"share-account-trigger--expanded": e.expanded,
+					"share-account-trigger--open": i
+				}]),
+				"aria-label": e.ariaLabel || e.label || e.title,
+				"aria-expanded": i,
+				"aria-haspopup": "menu",
+				disabled: e.disabled
+			}, [
+				s("span", kt, [S(t.$slots, "avatar", {}, () => [l(w(n.value), 1)], !0)]),
+				e.expanded ? (y(), o("span", At, w(e.label), 1)) : a("", !0),
+				e.expanded ? (y(), o("svg", jt, [...r[0] ||= [s("path", {
+					d: "m4 6 4 4 4-4",
+					stroke: "currentColor",
+					"stroke-width": "1.7",
+					"stroke-linecap": "round",
+					"stroke-linejoin": "round"
+				}, null, -1)]])) : a("", !0)
+			], 10, Ot)]),
+			default: k(({ close: e }) => [S(t.$slots, "default", { close: e }, void 0, !0)]),
+			_: 3
+		}, 8, ["title", "disabled"]));
+	}
+}, [["__scopeId", "data-v-e71617a9"]]), Nt = {
 	key: 1,
 	class: "share-app-shell__rail"
-}, kt = /*#__PURE__*/ N({
+}, Pt = /*#__PURE__*/ N({
 	__name: "AppShell",
 	props: {
 		sidebarMode: {
@@ -2005,33 +2081,33 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 				default: k(() => [S(t.$slots, "default", {}, void 0, !0)]),
 				_: 3
 			})),
-			t.$slots.rail ? (y(), o("aside", Ot, [S(t.$slots, "rail", {}, void 0, !0)])) : a("", !0),
+			t.$slots.rail ? (y(), o("aside", Nt, [S(t.$slots, "rail", {}, void 0, !0)])) : a("", !0),
 			S(t.$slots, "overlay", {}, void 0, !0)
 		], 6));
 	}
-}, [["__scopeId", "data-v-28e45f5d"]]), At = ["aria-label", "title"], jt = {
+}, [["__scopeId", "data-v-28e45f5d"]]), Ft = ["aria-label", "title"], It = {
 	class: "share-sidebar-toggle__icon sidebar-icon",
 	"aria-hidden": "true"
-}, Mt = {
+}, Lt = {
 	width: "18",
 	height: "18",
 	viewBox: "0 0 18 18",
 	fill: "none"
-}, Nt = {
+}, Rt = {
 	key: 0,
 	d: "m11 6-3 3 3 3",
 	stroke: "currentColor",
 	"stroke-width": "1.5",
 	"stroke-linecap": "round",
 	"stroke-linejoin": "round"
-}, Pt = {
+}, zt = {
 	key: 1,
 	d: "m9 6 3 3-3 3",
 	stroke: "currentColor",
 	"stroke-width": "1.5",
 	"stroke-linecap": "round",
 	"stroke-linejoin": "round"
-}, Ft = { class: "share-sidebar-label sidebar-label" }, It = /*#__PURE__*/ N({
+}, Bt = { class: "share-sidebar-label sidebar-label" }, Vt = /*#__PURE__*/ N({
 	__name: "SidebarToggle",
 	props: {
 		expanded: {
@@ -2053,7 +2129,7 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			class: "share-sidebar-toggle sidebar-toggle",
 			"aria-label": e.expanded ? e.collapseLabel : e.expandLabel,
 			title: e.expanded ? e.collapseLabel : e.expandLabel
-		}, [s("span", jt, [(y(), o("svg", Mt, [
+		}, [s("span", It, [(y(), o("svg", Lt, [
 			n[0] ||= s("rect", {
 				x: "2.25",
 				y: "2.25",
@@ -2068,19 +2144,19 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 				stroke: "currentColor",
 				"stroke-width": "1.5"
 			}, null, -1),
-			e.expanded ? (y(), o("path", Nt)) : (y(), o("path", Pt))
-		]))]), s("span", Ft, w(e.expanded ? e.collapseLabel : e.expandLabel), 1)], 8, At));
+			e.expanded ? (y(), o("path", Rt)) : (y(), o("path", zt))
+		]))]), s("span", Bt, w(e.expanded ? e.collapseLabel : e.expandLabel), 1)], 8, Ft));
 	}
-}, [["__scopeId", "data-v-82e613bd"]]), Lt = {
+}, [["__scopeId", "data-v-82e613bd"]]), Ht = {
 	key: 0,
 	class: "share-sidebar-head"
-}, Rt = ["aria-label"], zt = {
+}, Ut = ["aria-label"], Wt = {
 	key: 1,
 	class: "share-sidebar-tools"
-}, Bt = {
+}, Gt = {
 	key: 2,
 	class: "share-sidebar-account"
-}, Vt = /*#__PURE__*/ N({
+}, Kt = /*#__PURE__*/ N({
 	__name: "AppSidebar",
 	props: {
 		modelValue: {
@@ -2170,7 +2246,7 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			`share-app-sidebar--mobile-${e.mobileMode}`,
 			`share-app-sidebar--breakpoint-${e.mobileBreakpoint}`
 		]]) }, [
-			t.$slots.brand ? (y(), o("div", Lt, [S(t.$slots, "brand", {
+			t.$slots.brand ? (y(), o("div", Ht, [S(t.$slots, "brand", {
 				expanded: f.value,
 				toggle: g
 			}, void 0, !0)])) : a("", !0),
@@ -2180,8 +2256,8 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			}, [S(t.$slots, "default", {
 				expanded: f.value,
 				toggle: g
-			}, void 0, !0)], 8, Rt),
-			e.showToggle || t.$slots.tools ? (y(), o("div", zt, [e.showToggle ? (y(), i(It, {
+			}, void 0, !0)], 8, Ut),
+			e.showToggle || t.$slots.tools ? (y(), o("div", Wt, [e.showToggle ? (y(), i(Vt, {
 				key: 0,
 				expanded: f.value,
 				"expand-label": e.expandLabel,
@@ -2197,13 +2273,13 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 				collapse: m,
 				toggle: g
 			}, void 0, !0)])) : a("", !0),
-			t.$slots.account ? (y(), o("div", Bt, [S(t.$slots, "account", { expanded: f.value }, void 0, !0)])) : a("", !0)
+			t.$slots.account ? (y(), o("div", Gt, [S(t.$slots, "account", { expanded: f.value }, void 0, !0)])) : a("", !0)
 		], 2));
 	}
-}, [["__scopeId", "data-v-2025fec5"]]), Ht = {
+}, [["__scopeId", "data-v-2025fec5"]]), qt = {
 	class: "share-sidebar-brand__icon sidebar-brand-icon",
 	"aria-hidden": "true"
-}, Ut = { class: "share-sidebar-label share-sidebar-brand__label sidebar-label sidebar-brand-label" }, Wt = /*#__PURE__*/ N(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
+}, Jt = { class: "share-sidebar-label share-sidebar-brand__label sidebar-label sidebar-brand-label" }, Yt = /*#__PURE__*/ N(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
 	__name: "SidebarBrand",
 	props: {
 		as: {
@@ -2232,27 +2308,27 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			class: "share-sidebar-brand sidebar-brand",
 			"aria-label": e.ariaLabel || e.label
 		}, t.$attrs), {
-			default: k(() => [s("span", Ht, [S(t.$slots, "icon", {}, () => [e.icon ? (y(), i(C(e.icon), {
+			default: k(() => [s("span", qt, [S(t.$slots, "icon", {}, () => [e.icon ? (y(), i(C(e.icon), {
 				key: 0,
 				size: 22,
 				"stroke-width": 1.8
-			})) : a("", !0)], !0)]), s("span", Ut, [S(t.$slots, "default", {}, () => [l(w(e.label), 1)], !0)])]),
+			})) : a("", !0)], !0)]), s("span", Jt, [S(t.$slots, "default", {}, () => [l(w(e.label), 1)], !0)])]),
 			_: 3
 		}, 16, ["aria-label"]));
 	}
-}), [["__scopeId", "data-v-d1fa564e"]]), Gt = { class: "share-sidebar-group" }, Kt = /*#__PURE__*/ N({
+}), [["__scopeId", "data-v-d1fa564e"]]), Xt = { class: "share-sidebar-group" }, Zt = /*#__PURE__*/ N({
 	__name: "SidebarGroup",
 	props: { label: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (y(), o("div", Gt, [S(t.$slots, "default", {}, () => [l(w(e.label), 1)], !0)]));
+		return (t, n) => (y(), o("div", Xt, [S(t.$slots, "default", {}, () => [l(w(e.label), 1)], !0)]));
 	}
-}, [["__scopeId", "data-v-169df1ac"]]), qt = {
+}, [["__scopeId", "data-v-169df1ac"]]), Qt = {
 	class: "share-sidebar-icon sidebar-icon",
 	"aria-hidden": "true"
-}, Jt = { class: "share-sidebar-label sidebar-label" }, Yt = /*#__PURE__*/ N(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
+}, $t = { class: "share-sidebar-label sidebar-label" }, en = /*#__PURE__*/ N(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
 	__name: "SidebarNavItem",
 	props: {
 		as: {
@@ -2286,11 +2362,11 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			title: e.title || e.label,
 			"aria-current": e.active ? "page" : void 0
 		}, t.$attrs), {
-			default: k(() => [s("span", qt, [S(t.$slots, "icon", {}, () => [e.icon ? (y(), i(C(e.icon), {
+			default: k(() => [s("span", Qt, [S(t.$slots, "icon", {}, () => [e.icon ? (y(), i(C(e.icon), {
 				key: 0,
 				size: 20,
 				"stroke-width": 1.8
-			})) : a("", !0)], !0)]), s("span", Jt, [S(t.$slots, "default", {}, () => [l(w(e.label), 1)], !0)])]),
+			})) : a("", !0)], !0)]), s("span", $t, [S(t.$slots, "default", {}, () => [l(w(e.label), 1)], !0)])]),
 			_: 3
 		}, 16, [
 			"class",
@@ -2298,10 +2374,10 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			"aria-current"
 		]));
 	}
-}), [["__scopeId", "data-v-28979fe2"]]), Xt = {
+}), [["__scopeId", "data-v-28979fe2"]]), tn = {
 	key: 0,
 	class: "share-editor-panel__title"
-}, Zt = /*#__PURE__*/ N({
+}, nn = /*#__PURE__*/ N({
 	__name: "EditorPanel",
 	props: {
 		title: {
@@ -2314,28 +2390,28 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 		}
 	},
 	setup(e) {
-		return (t, n) => (y(), o("div", { class: h(["share-editor-panel", { "share-editor-panel--compact": e.compact }]) }, [e.title || t.$slots.title ? (y(), o("div", Xt, [S(t.$slots, "title", {}, () => [l(w(e.title), 1)], !0)])) : a("", !0), S(t.$slots, "default", {}, void 0, !0)], 2));
+		return (t, n) => (y(), o("div", { class: h(["share-editor-panel", { "share-editor-panel--compact": e.compact }]) }, [e.title || t.$slots.title ? (y(), o("div", tn, [S(t.$slots, "title", {}, () => [l(w(e.title), 1)], !0)])) : a("", !0), S(t.$slots, "default", {}, void 0, !0)], 2));
 	}
-}, [["__scopeId", "data-v-055dcd8d"]]), Qt = { class: "share-editor-section-title" }, $t = { class: "share-editor-section-title__text" }, en = {
+}, [["__scopeId", "data-v-055dcd8d"]]), rn = { class: "share-editor-section-title" }, an = { class: "share-editor-section-title__text" }, on = {
 	key: 0,
 	class: "share-editor-section-title__actions"
-}, tn = /*#__PURE__*/ N({
+}, sn = /*#__PURE__*/ N({
 	__name: "EditorSectionTitle",
 	props: { title: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (y(), o("div", Qt, [s("span", $t, [S(t.$slots, "default", {}, () => [l(w(e.title), 1)], !0)]), t.$slots.actions ? (y(), o("span", en, [S(t.$slots, "actions", {}, void 0, !0)])) : a("", !0)]));
+		return (t, n) => (y(), o("div", rn, [s("span", an, [S(t.$slots, "default", {}, () => [l(w(e.title), 1)], !0)]), t.$slots.actions ? (y(), o("span", on, [S(t.$slots, "actions", {}, void 0, !0)])) : a("", !0)]));
 	}
-}, [["__scopeId", "data-v-03237796"]]), nn = { class: "share-editor-section" }, rn = /*#__PURE__*/ N({
+}, [["__scopeId", "data-v-03237796"]]), cn = { class: "share-editor-section" }, ln = /*#__PURE__*/ N({
 	__name: "EditorSection",
 	props: { title: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (y(), o("section", nn, [e.title || t.$slots.title ? (y(), i(tn, {
+		return (t, n) => (y(), o("section", cn, [e.title || t.$slots.title ? (y(), i(sn, {
 			key: 0,
 			title: e.title
 		}, c({ _: 2 }, [t.$slots.title ? {
@@ -2348,14 +2424,14 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			key: "1"
 		} : void 0]), 1032, ["title"])) : a("", !0), S(t.$slots, "default", {}, void 0, !0)]));
 	}
-}, [["__scopeId", "data-v-6a56d656"]]), an = {}, on = { class: "share-editor-total" };
-function sn(e, t) {
-	return y(), o("div", on, [S(e.$slots, "default", {}, void 0, !0)]);
+}, [["__scopeId", "data-v-6a56d656"]]), un = {}, dn = { class: "share-editor-total" };
+function fn(e, t) {
+	return y(), o("div", dn, [S(e.$slots, "default", {}, void 0, !0)]);
 }
-var cn = /*#__PURE__*/ N(an, [["render", sn], ["__scopeId", "data-v-72dfd940"]]);
+var pn = /*#__PURE__*/ N(un, [["render", fn], ["__scopeId", "data-v-72dfd940"]]);
 //#endregion
 //#region src/composables/useFullscreenViewportHeight.js
-function ln(e = .94) {
+function mn(e = .94) {
 	let t = b(`${Math.round(e * 100)}dvh`);
 	function n() {
 		if (typeof window > "u") return;
@@ -2370,23 +2446,23 @@ function ln(e = .94) {
 }
 //#endregion
 //#region src/internal/overlayStack.js
-var un = [], dn = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])", fn = 0, pn = "";
-function mn(e = Symbol("share-overlay")) {
-	return un.push(e), e;
+var hn = [], gn = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])", _n = 0, vn = "";
+function yn(e = Symbol("share-overlay")) {
+	return hn.push(e), e;
 }
-function hn(e) {
-	let t = un.lastIndexOf(e);
-	t >= 0 && un.splice(t, 1);
+function bn(e) {
+	let t = hn.lastIndexOf(e);
+	t >= 0 && hn.splice(t, 1);
 }
-function gn(e) {
-	return un.at(-1) === e;
+function xn(e) {
+	return hn.at(-1) === e;
 }
-function _n(e) {
+function Sn(e) {
 	e && ([...e.querySelectorAll("a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])")].find((e) => e.getClientRects().length > 0) || e).focus?.({ preventScroll: !0 });
 }
-function vn(e, t) {
+function Cn(e, t) {
 	if (e.key !== "Tab" || !t) return;
-	let n = [...t.querySelectorAll(dn)].filter((e) => e.getClientRects().length > 0);
+	let n = [...t.querySelectorAll(gn)].filter((e) => e.getClientRects().length > 0);
 	if (!n.length) {
 		e.preventDefault(), t.focus?.({ preventScroll: !0 });
 		return;
@@ -2394,41 +2470,41 @@ function vn(e, t) {
 	let r = n[0], i = n.at(-1);
 	e.shiftKey && (document.activeElement === r || !t.contains(document.activeElement)) ? (e.preventDefault(), i.focus()) : !e.shiftKey && (document.activeElement === i || !t.contains(document.activeElement)) && (e.preventDefault(), r.focus());
 }
-function yn(e) {
+function wn(e) {
 	e instanceof HTMLElement && e.isConnected && e.focus({ preventScroll: !0 });
 }
-function bn() {
+function Tn() {
 	if (typeof document > "u") return () => {};
-	fn === 0 && (pn = document.documentElement.style.overflow, document.documentElement.style.overflow = "hidden"), fn += 1;
+	_n === 0 && (vn = document.documentElement.style.overflow, document.documentElement.style.overflow = "hidden"), _n += 1;
 	let e = !1;
 	return () => {
-		e || (e = !0, fn = Math.max(0, fn - 1), fn === 0 && (document.documentElement.style.overflow = pn));
+		e || (e = !0, _n = Math.max(0, _n - 1), _n === 0 && (document.documentElement.style.overflow = vn));
 	};
 }
-var xn = /* @__PURE__ */ new WeakMap();
-function Sn(e, { blur: t = "8px", duration: n = "300ms" } = {}) {
+var En = /* @__PURE__ */ new WeakMap();
+function Dn(e, { blur: t = "8px", duration: n = "300ms" } = {}) {
 	if (!e) return () => {};
-	let r = xn.get(e);
+	let r = En.get(e);
 	r || (r = {
 		count: 0,
 		filter: e.style.filter,
 		transition: e.style.transition
-	}, xn.set(e, r)), r.count += 1, e.style.transition = `filter ${n} ease`, e.style.filter = `blur(${t})`;
+	}, En.set(e, r)), r.count += 1, e.style.transition = `filter ${n} ease`, e.style.filter = `blur(${t})`;
 	let i = !1;
 	return () => {
-		i || (i = !0, r.count = Math.max(0, r.count - 1), !(r.count > 0) && (e.style.filter = r.filter, e.style.transition = r.transition, xn.delete(e)));
+		i || (i = !0, r.count = Math.max(0, r.count - 1), !(r.count > 0) && (e.style.filter = r.filter, e.style.transition = r.transition, En.delete(e)));
 	};
 }
 //#endregion
 //#region src/components/overlay/AppModal.vue
-var Cn = ["aria-label"], wn = {
+var On = ["aria-label"], kn = {
 	key: 0,
 	class: "am-handle"
-}, Tn = ["aria-label"], En = () => window.innerWidth <= 640, Dn = 260, $ = 280, On = "cubic-bezier(0.32, 0.72, 0, 1)", kn = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])";
-function An(e) {
+}, An = ["aria-label"], jn = () => window.innerWidth <= 640, Mn = 260, $ = 280, Nn = "cubic-bezier(0.32, 0.72, 0, 1)", Pn = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])";
+function Fn(e) {
 	e.focus({ preventScroll: !0 });
 }
-var jn = /*#__PURE__*/ N({
+var In = /*#__PURE__*/ N({
 	__name: "AppModal",
 	props: {
 		zIndex: {
@@ -2482,9 +2558,9 @@ var jn = /*#__PURE__*/ N({
 	},
 	emits: ["close", "opened"],
 	setup(e, { expose: n, emit: c }) {
-		let l = e, u = c, d = b(null), f = b(null), p = ln(), x = r(() => typeof l.width == "number" ? `${l.width}px` : l.width || "480px"), C = b(!1), w = b(0), E = b(0), D = b(0), O = !1, k = null, A = !1, j = () => {}, N = Symbol("app-modal"), P = typeof document < "u" ? document.activeElement : null;
+		let l = e, u = c, d = b(null), f = b(null), p = mn(), x = r(() => typeof l.width == "number" ? `${l.width}px` : l.width || "480px"), C = b(!1), w = b(0), E = b(0), D = b(0), O = !1, k = null, A = !1, j = () => {}, N = Symbol("app-modal"), P = typeof document < "u" ? document.activeElement : null;
 		function F(e) {
-			if (!gn(N)) return;
+			if (!xn(N)) return;
 			if (e.key === "Escape") {
 				let t = e.target;
 				if (l.escapeBlursInput && t && (t.matches?.("input, textarea, select") || t.isContentEditable)) {
@@ -2495,7 +2571,7 @@ var jn = /*#__PURE__*/ N({
 				return;
 			}
 			if (e.key !== "Tab") return;
-			let t = [...f.value?.querySelectorAll(kn) || []].filter((e) => e.getClientRects().length > 0);
+			let t = [...f.value?.querySelectorAll(Pn) || []].filter((e) => e.getClientRects().length > 0);
 			if (!t.length) {
 				e.preventDefault(), f.value?.focus();
 				return;
@@ -2505,10 +2581,10 @@ var jn = /*#__PURE__*/ N({
 		}
 		function I() {
 			let e = d.value, t = f.value;
-			!e || !t || (e.style.opacity = "0", e.style.backdropFilter = "blur(0px)", e.style.webkitBackdropFilter = "blur(0px)", En() ? t.style.transform = "translateY(100%)" : (t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), requestAnimationFrame(() => {
+			!e || !t || (e.style.opacity = "0", e.style.backdropFilter = "blur(0px)", e.style.webkitBackdropFilter = "blur(0px)", jn() ? t.style.transform = "translateY(100%)" : (t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), requestAnimationFrame(() => {
 				requestAnimationFrame(() => {
-					let n = "cubic-bezier(0, 0, 0.4, 1)", r = `opacity ${Dn}ms ${n}, backdrop-filter ${Dn}ms ${n}, -webkit-backdrop-filter ${Dn}ms ${n}`;
-					e.style.transition = r, e.style.opacity = "1", e.style.backdropFilter = "blur(6px)", e.style.webkitBackdropFilter = "blur(6px)", En() ? (t.style.transition = `transform ${Dn}ms ${On}`, t.style.transform = "translateY(0)") : (t.style.transition = `transform ${Dn}ms ${On}, opacity ${Dn}ms ${n}`, t.style.transform = "none", t.style.opacity = "1"), setTimeout(() => {
+					let n = "cubic-bezier(0, 0, 0.4, 1)", r = `opacity ${Mn}ms ${n}, backdrop-filter ${Mn}ms ${n}, -webkit-backdrop-filter ${Mn}ms ${n}`;
+					e.style.transition = r, e.style.opacity = "1", e.style.backdropFilter = "blur(6px)", e.style.webkitBackdropFilter = "blur(6px)", jn() ? (t.style.transition = `transform ${Mn}ms ${Nn}`, t.style.transform = "translateY(0)") : (t.style.transition = `transform ${Mn}ms ${Nn}, opacity ${Mn}ms ${n}`, t.style.transform = "none", t.style.opacity = "1"), setTimeout(() => {
 						O || (e.style.transition = "", e.style.backdropFilter = "blur(6px)", e.style.webkitBackdropFilter = "blur(6px)", t.style.transition = "", t.style.transform = "", t.style.opacity = "", u("opened"));
 					}, 310);
 				});
@@ -2523,7 +2599,7 @@ var jn = /*#__PURE__*/ N({
 				return;
 			}
 			let n = `opacity ${$}ms ease, backdrop-filter ${$}ms ease, -webkit-backdrop-filter ${$}ms ease`;
-			e.style.transition = n, e.style.opacity = "0", e.style.backdropFilter = "blur(0px)", e.style.webkitBackdropFilter = "blur(0px)", En() ? (t.style.transition = `transform ${$}ms ${On}`, t.style.transform = "translateY(100%)") : (t.style.transition = `transform ${$}ms ease, opacity ${$}ms ease`, t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), k = setTimeout(() => {
+			e.style.transition = n, e.style.opacity = "0", e.style.backdropFilter = "blur(0px)", e.style.webkitBackdropFilter = "blur(0px)", jn() ? (t.style.transition = `transform ${$}ms ${Nn}`, t.style.transform = "translateY(100%)") : (t.style.transition = `transform ${$}ms ease, opacity ${$}ms ease`, t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), k = setTimeout(() => {
 				O || u("close");
 			}, 300);
 		}
@@ -2557,9 +2633,9 @@ var jn = /*#__PURE__*/ N({
 			if (!C.value) return;
 			C.value = !1;
 			let e = f.value, t = d.value;
-			w.value > 100 ? (e && (e.style.transition = `transform ${$}ms ${On}`, e.style.transform = "translateY(100%)"), t && (t.style.transition = `opacity ${$}ms ease`, t.style.opacity = "0"), k = setTimeout(() => {
+			w.value > 100 ? (e && (e.style.transition = `transform ${$}ms ${Nn}`, e.style.transform = "translateY(100%)"), t && (t.style.transition = `opacity ${$}ms ease`, t.style.opacity = "0"), k = setTimeout(() => {
 				O || u("close");
-			}, 300)) : (e && (e.style.transition = `transform ${$}ms ${On}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), w.value = 0, setTimeout(() => {
+			}, 300)) : (e && (e.style.transition = `transform ${$}ms ${Nn}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), w.value = 0, setTimeout(() => {
 				O || (e && (e.style.transition = "", e.style.transform = ""), t && (t.style.transition = "", t.style.opacity = ""));
 			}, 330));
 		}
@@ -2567,16 +2643,16 @@ var jn = /*#__PURE__*/ N({
 			if (!C.value) return;
 			C.value = !1, w.value = 0;
 			let e = f.value, t = d.value;
-			e && (e.style.transition = `transform ${$}ms ${On}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), setTimeout(() => {
+			e && (e.style.transition = `transform ${$}ms ${Nn}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), setTimeout(() => {
 				O || (e && (e.style.transition = "", e.style.transform = ""), t && (t.style.transition = "", t.style.opacity = ""));
 			}, 330);
 		}
 		return v(() => {
-			mn(N), j = bn(), document.addEventListener("keydown", F), m(() => {
-				I(), f.value?.contains(document.activeElement) || (f.value?.querySelector(kn)?.focus(), f.value?.contains(document.activeElement) || f.value?.focus());
+			yn(N), j = Tn(), document.addEventListener("keydown", F), m(() => {
+				I(), f.value?.contains(document.activeElement) || (f.value?.querySelector(Pn)?.focus(), f.value?.contains(document.activeElement) || f.value?.focus());
 			});
 		}), _(() => {
-			hn(N), j(), document.removeEventListener("keydown", F), clearTimeout(k), O = !0, P instanceof HTMLElement && P.isConnected && An(P);
+			bn(N), j(), document.removeEventListener("keydown", F), clearTimeout(k), O = !0, P instanceof HTMLElement && P.isConnected && Fn(P);
 		}), (n, r) => (y(), i(t, { to: "body" }, [s("div", {
 			ref_key: "overlay",
 			ref: d,
@@ -2604,27 +2680,27 @@ var jn = /*#__PURE__*/ N({
 			onTouchendPassive: V,
 			onTouchcancelPassive: H
 		}, [
-			e.showHandle ? (y(), o("div", wn)) : a("", !0),
+			e.showHandle ? (y(), o("div", kn)) : a("", !0),
 			e.showClose && !e.fullscreen ? (y(), o("button", {
 				key: 1,
 				class: "am-close",
 				type: "button",
 				"aria-label": e.closeLabel,
 				onClick: R
-			}, "✕", 8, Tn)) : a("", !0),
+			}, "✕", 8, An)) : a("", !0),
 			S(n.$slots, "default", {}, void 0, !0)
-		], 34)], 44, Cn)]));
+		], 34)], 44, On)]));
 	}
-}, [["__scopeId", "data-v-ddded319"]]), Mn = { class: "aem-shell" }, Nn = { class: "aem-heading" }, Pn = { class: "aem-title" }, Fn = {
+}, [["__scopeId", "data-v-ddded319"]]), Ln = { class: "aem-shell" }, Rn = { class: "aem-heading" }, zn = { class: "aem-title" }, Bn = {
 	key: 0,
 	class: "aem-subtitle"
-}, In = {
+}, Vn = {
 	key: 0,
 	class: "aem-header-actions"
-}, Ln = ["aria-label"], Rn = {
+}, Hn = ["aria-label"], Un = {
 	key: 0,
 	class: "aem-footer"
-}, zn = /*#__PURE__*/ N({
+}, Wn = /*#__PURE__*/ N({
 	__name: "AppModalFrame",
 	props: {
 		title: {
@@ -2682,7 +2758,7 @@ var jn = /*#__PURE__*/ N({
 		function n() {
 			t.value?.requestClose();
 		}
-		return (r, c) => (y(), i(jn, {
+		return (r, c) => (y(), i(In, {
 			ref_key: "modal",
 			ref: t,
 			flush: "",
@@ -2699,14 +2775,14 @@ var jn = /*#__PURE__*/ N({
 			onClose: c[0] ||= (e) => r.$emit("close"),
 			onOpened: c[1] ||= (e) => r.$emit("opened")
 		}, {
-			default: k(() => [s("section", Mn, [
+			default: k(() => [s("section", Ln, [
 				s("header", { class: h(["aem-header", { "aem-header-with-actions": !!r.$slots["header-actions"] }]) }, [
 					c[3] ||= s("span", {
 						class: "aem-handle",
 						"aria-hidden": "true"
 					}, null, -1),
-					s("div", Nn, [S(r.$slots, "title", {}, () => [s("h2", Pn, w(e.title), 1), e.subtitle ? (y(), o("span", Fn, w(e.subtitle), 1)) : a("", !0)], !0)]),
-					r.$slots["header-actions"] ? (y(), o("div", In, [S(r.$slots, "header-actions", {}, void 0, !0)])) : a("", !0),
+					s("div", Rn, [S(r.$slots, "title", {}, () => [s("h2", zn, w(e.title), 1), e.subtitle ? (y(), o("span", Bn, w(e.subtitle), 1)) : a("", !0)], !0)]),
+					r.$slots["header-actions"] ? (y(), o("div", Vn, [S(r.$slots, "header-actions", {}, void 0, !0)])) : a("", !0),
 					e.showClose ? (y(), o("button", {
 						key: 1,
 						class: "aem-close",
@@ -2724,13 +2800,13 @@ var jn = /*#__PURE__*/ N({
 						stroke: "currentColor",
 						"stroke-width": "1.6",
 						"stroke-linecap": "round"
-					})], -1)]], 8, Ln)) : a("", !0)
+					})], -1)]], 8, Hn)) : a("", !0)
 				], 2),
 				s("div", { class: h(["aem-body", {
 					"aem-body-flush": !e.padded,
 					"aem-body-no-scroll": !e.bodyScroll
 				}]) }, [S(r.$slots, "default", {}, void 0, !0)], 2),
-				r.$slots.footer ? (y(), o("footer", Rn, [S(r.$slots, "footer", {}, void 0, !0)])) : a("", !0)
+				r.$slots.footer ? (y(), o("footer", Un, [S(r.$slots, "footer", {}, void 0, !0)])) : a("", !0)
 			])]),
 			_: 3
 		}, 8, [
@@ -2744,10 +2820,10 @@ var jn = /*#__PURE__*/ N({
 			"close-label"
 		]));
 	}
-}, [["__scopeId", "data-v-0a15c618"]]), Bn = {
+}, [["__scopeId", "data-v-0a15c618"]]), Gn = {
 	key: 0,
 	class: "cd-message"
-}, Vn = { class: "cd-actions" }, Hn = ["disabled"], Un = ["disabled"], Wn = /*#__PURE__*/ N({
+}, Kn = { class: "cd-actions" }, qn = ["disabled"], Jn = ["disabled"], Yn = /*#__PURE__*/ N({
 	__name: "ConfirmDialog",
 	props: {
 		open: {
@@ -2815,7 +2891,7 @@ var jn = /*#__PURE__*/ N({
 		function g() {
 			n.loading || (c("confirm"), p());
 		}
-		return (t, n) => l.value ? (y(), i(zn, {
+		return (t, n) => l.value ? (y(), i(Wn, {
 			key: 0,
 			title: e.title,
 			"z-index": e.zIndex,
@@ -2823,18 +2899,18 @@ var jn = /*#__PURE__*/ N({
 			dismissible: !e.loading,
 			onClose: m
 		}, {
-			footer: k(() => [s("div", Vn, [s("button", {
+			footer: k(() => [s("div", Kn, [s("button", {
 				type: "button",
 				class: "cd-btn-cancel",
 				disabled: e.loading,
 				onClick: m
-			}, w(d.value), 9, Hn), s("button", {
+			}, w(d.value), 9, qn), s("button", {
 				type: "button",
 				class: h(["cd-btn-confirm", `cd-btn--${f.value}`]),
 				disabled: e.loading,
 				onClick: g
-			}, w(e.loading ? e.loadingLabel : u.value), 11, Un)])]),
-			default: k(() => [e.message ? (y(), o("div", Bn, w(e.message), 1)) : a("", !0)]),
+			}, w(e.loading ? e.loadingLabel : u.value), 11, Jn)])]),
+			default: k(() => [e.message ? (y(), o("div", Gn, w(e.message), 1)) : a("", !0)]),
 			_: 1
 		}, 8, [
 			"title",
@@ -2842,7 +2918,7 @@ var jn = /*#__PURE__*/ N({
 			"dismissible"
 		])) : a("", !0);
 	}
-}, [["__scopeId", "data-v-2819b01e"]]), Gn = {
+}, [["__scopeId", "data-v-2819b01e"]]), Xn = {
 	__name: "ModalShell",
 	props: {
 		open: {
@@ -2872,7 +2948,7 @@ var jn = /*#__PURE__*/ N({
 	},
 	emits: ["close", "opened"],
 	setup(e) {
-		return (t, n) => e.open ? (y(), i(jn, {
+		return (t, n) => e.open ? (y(), i(In, {
 			key: 0,
 			width: e.width,
 			"z-index": e.zIndex,
@@ -2897,7 +2973,7 @@ var jn = /*#__PURE__*/ N({
 };
 //#endregion
 //#region src/composables/useContainerMorph.js
-function Kn({ open: e = 420, close: t = 300 } = {}) {
+function Zn({ open: e = 420, close: t = 300 } = {}) {
 	let n = "cubic-bezier(.2, 0, 0, 1)", r = "var(--shadow-lg)", i = [
 		"position",
 		"margin",
@@ -2945,7 +3021,7 @@ function Kn({ open: e = 420, close: t = 300 } = {}) {
 }
 //#endregion
 //#region src/components/overlay/MorphSheet.vue
-var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"], Xn = 320, Zn = 260, Qn = "8px", $n = /*#__PURE__*/ N({
+var Qn = ["aria-label"], $n = { class: "ms-head-content" }, er = ["aria-label"], tr = 320, nr = 260, rr = "8px", ir = /*#__PURE__*/ N({
 	__name: "MorphSheet",
 	props: {
 		mode: {
@@ -3007,7 +3083,7 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 	},
 	emits: ["close", "back"],
 	setup(e, { expose: n, emit: c }) {
-		let l = e, u = c, d = Fe(), f = E(), p = r(() => l.mode === "add"), x = r(() => l.showClose === null ? !!f.head : l.showClose), C = r(() => l.nav ? l.nav.view.value : "detail"), w = r(() => l.nav ? l.nav.detailStyle.value : null), D = r(() => l.nav ? l.nav.subStyle.value : null), k = r(() => !!l.nav && C.value !== "detail"), A = b(null), j = b(null), N = b(null), P = b(null), F = b(null), I = b(null), L = b(!1), R = b(!1), z = b(!1), B = b(!1), V = b(!1), { EASE: H, visible: U, morphing: W, playClose: ee, playOpen: te } = Kn(), ne = () => d.value ? "0px" : "18px", re = r(() => ({
+		let l = e, u = c, d = Fe(), f = E(), p = r(() => l.mode === "add"), x = r(() => l.showClose === null ? !!f.head : l.showClose), C = r(() => l.nav ? l.nav.view.value : "detail"), w = r(() => l.nav ? l.nav.detailStyle.value : null), D = r(() => l.nav ? l.nav.subStyle.value : null), k = r(() => !!l.nav && C.value !== "detail"), A = b(null), j = b(null), N = b(null), P = b(null), F = b(null), I = b(null), L = b(!1), R = b(!1), z = b(!1), B = b(!1), V = b(!1), { EASE: H, visible: U, morphing: W, playClose: ee, playOpen: te } = Zn(), ne = () => d.value ? "0px" : "18px", re = r(() => ({
 			"--ms-w": `${l.width}px`,
 			"--ms-body-w": `${l.width}px`,
 			"--ms-frame": l.frameColor || void 0
@@ -3042,12 +3118,12 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 		}
 		let se = Symbol("morph-sheet"), ce = typeof document < "u" ? document.activeElement : null;
 		function le(e) {
-			if (gn(se)) {
+			if (xn(se)) {
 				if (e.key === "Escape") {
 					ae();
 					return;
 				}
-				vn(e, A.value);
+				Cn(e, A.value);
 			}
 		}
 		function ue(e) {
@@ -3060,7 +3136,7 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 		function G(e) {
 			if (d.value || !P.value || W.value) return;
 			let t = l.nav ? l.nav.pos.value : 0, n = ue(F.value), r = I.value ? ue(I.value) : n, i = n * (1 - t) + r * t, a = Math.min(i, Math.max(120, de()));
-			P.value.style.transition = e ? `height ${Xn}ms ${H}` : "none", P.value.style.height = `${a}px`;
+			P.value.style.transition = e ? `height ${tr}ms ${H}` : "none", P.value.style.height = `${a}px`;
 		}
 		let K = null;
 		function fe() {
@@ -3133,14 +3209,14 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 		}
 		function we() {
 			let e = A.value;
-			e && (e.style.transition = `transform ${Zn}ms ${H}`, e.style.transform = `translateY(${window.innerHeight}px)`), U.value = !1, V.value = !1, je(), Z(!1), setTimeout(() => u("close"), Zn);
+			e && (e.style.transition = `transform ${nr}ms ${H}`, e.style.transform = `translateY(${window.innerHeight}px)`), U.value = !1, V.value = !1, je(), Z(!1), setTimeout(() => u("close"), nr);
 		}
 		let Te = () => {};
 		function Ee() {
 			return typeof l.backgroundTarget == "string" ? document.querySelector(l.backgroundTarget) : l.backgroundTarget instanceof Element ? l.backgroundTarget : null;
 		}
 		function Z(e) {
-			Te(), Te = () => {}, !(!e || d.value || !l.blurBackground) && (Te = Sn(Ee(), { blur: Qn }));
+			Te(), Te = () => {}, !(!e || d.value || !l.blurBackground) && (Te = Dn(Ee(), { blur: rr }));
 		}
 		let De = "", Q = "", Oe = !1;
 		function ke() {
@@ -3156,7 +3232,7 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 			if (!e) return;
 			Oe = !0;
 			let t = Q && Q !== "none" ? `${Q}, ` : "";
-			e.style.transition = `${t}opacity ${Zn}ms ease`, e.style.opacity = "0", requestAnimationFrame(() => {
+			e.style.transition = `${t}opacity ${nr}ms ease`, e.style.opacity = "0", requestAnimationFrame(() => {
 				e.style.opacity = De;
 			}), setTimeout(() => {
 				e.style.opacity = De, e.style.transition = Q, Oe = !1;
@@ -3167,7 +3243,7 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 			W.value || (d.value && P.value ? P.value.style.height = "" : G(!1));
 		}
 		return v(async () => {
-			mn(se), Me = bn(), typeof ResizeObserver < "u" && (K = new ResizeObserver(pe)), await m(), G(!1), fe(), L.value = !0, p.value ? (U.value = !0, requestAnimationFrame(() => {
+			yn(se), Me = Tn(), typeof ResizeObserver < "u" && (K = new ResizeObserver(pe)), await m(), G(!1), fe(), L.value = !0, p.value ? (U.value = !0, requestAnimationFrame(() => {
 				z.value = !0, B.value = !0;
 			})) : (ke(), Ae(!0), te(A.value, l.originRect, {
 				fromRadius: l.originRadius,
@@ -3175,10 +3251,10 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 			}), requestAnimationFrame(() => {
 				B.value = !0;
 			})), Z(!0), setTimeout(() => {
-				V.value = !0, G(!1), _n(A.value);
+				V.value = !0, G(!1), Sn(A.value);
 			}, 20), document.addEventListener("keydown", le), window.addEventListener("resize", Ne);
 		}), _(() => {
-			hn(se), Me(), Z(!1), !p.value && !Oe && Ae(!1), document.removeEventListener("keydown", le), window.removeEventListener("resize", Ne), K?.disconnect(), yn(ce);
+			bn(se), Me(), Z(!1), !p.value && !Oe && Ae(!1), document.removeEventListener("keydown", le), window.removeEventListener("resize", Ne), K?.disconnect(), wn(ce);
 		}), n({
 			close: ae,
 			finishNow: oe
@@ -3212,13 +3288,13 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 				ref_key: "headEl",
 				ref: j,
 				class: "ms-head"
-			}, [s("div", Jn, [S(n.$slots, "head", {}, void 0, !0)]), x.value ? (y(), o("button", {
+			}, [s("div", $n, [S(n.$slots, "head", {}, void 0, !0)]), x.value ? (y(), o("button", {
 				key: 0,
 				class: "ms-x",
 				type: "button",
 				"aria-label": e.closeLabel,
 				onClick: ae
-			}, "✕", 8, Yn)) : a("", !0)], 512)) : a("", !0),
+			}, "✕", 8, er)) : a("", !0)], 512)) : a("", !0),
 			s("div", {
 				ref_key: "bodyEl",
 				ref: P,
@@ -3241,9 +3317,9 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 				ref: N,
 				class: "ms-foot"
 			}, [S(n.$slots, "foot", {}, void 0, !0)], 512)) : a("", !0)
-		], 46, qn)], 2)]));
+		], 46, Qn)], 2)]));
 	}
-}, [["__scopeId", "data-v-e1ec346c"]]), er = { class: "form-actions" }, tr = ["disabled"], nr = ["disabled"], rr = /*#__PURE__*/ N({
+}, [["__scopeId", "data-v-e1ec346c"]]), ar = { class: "form-actions" }, or = ["disabled"], sr = ["disabled"], cr = /*#__PURE__*/ N({
 	__name: "FormActionButtons",
 	props: {
 		submitText: {
@@ -3273,25 +3349,25 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 	},
 	emits: ["cancel", "submit"],
 	setup(e) {
-		return (t, n) => (y(), o("div", er, [s("button", {
+		return (t, n) => (y(), o("div", ar, [s("button", {
 			type: "button",
 			class: "form-actions__cancel",
 			disabled: e.disabled,
 			onClick: n[0] ||= (e) => t.$emit("cancel")
-		}, w(e.cancelText), 9, tr), s("button", {
+		}, w(e.cancelText), 9, or), s("button", {
 			type: "button",
 			class: "form-actions__submit",
 			disabled: e.disabled || e.loading || !e.canSubmit,
 			onClick: n[1] ||= (e) => t.$emit("submit")
-		}, w(e.loading ? e.loadingText : e.submitText), 9, nr)]));
+		}, w(e.loading ? e.loadingText : e.submitText), 9, sr)]));
 	}
-}, [["__scopeId", "data-v-4749c971"]]), ir = [
+}, [["__scopeId", "data-v-4749c971"]]), lr = [
 	"type",
 	"value",
 	"placeholder",
 	"maxlength",
 	"autocomplete"
-], ar = /*#__PURE__*/ N({
+], ur = /*#__PURE__*/ N({
 	__name: "FormTextInput",
 	props: {
 		value: { default: "" },
@@ -3345,15 +3421,15 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 			onInput: n[0] ||= (e) => t.$emit("update:value", e.target.value),
 			onChange: n[1] ||= (e) => t.$emit("change", e.target.value),
 			onKeydown: n[2] ||= j((e) => t.$emit("enter", e), ["enter"])
-		}, null, 42, ir));
+		}, null, 42, lr));
 	}
-}, [["__scopeId", "data-v-e2d6bc8e"]]), or = {
+}, [["__scopeId", "data-v-e2d6bc8e"]]), dr = {
 	key: 0,
 	class: "tpd-message"
-}, sr = {
+}, fr = {
 	key: 1,
 	class: "tpd-label"
-}, cr = /*#__PURE__*/ N({
+}, pr = /*#__PURE__*/ N({
 	__name: "TextPromptDialog",
 	props: {
 		title: {
@@ -3442,7 +3518,7 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 			let e = f.value.trim();
 			e && !n.loading && (s("confirm", e), s("submit", e), p());
 		}
-		return (t, n) => c.value ? (y(), i(zn, {
+		return (t, n) => c.value ? (y(), i(Wn, {
 			key: 0,
 			title: e.title,
 			"z-index": e.zIndex,
@@ -3450,7 +3526,7 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 			dismissible: !e.loading,
 			onClose: h
 		}, {
-			footer: k(() => [u(rr, {
+			footer: k(() => [u(cr, {
 				"submit-text": l.value,
 				"cancel-text": d.value,
 				"loading-text": e.loadingLabel,
@@ -3466,9 +3542,9 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 				"can-submit"
 			])]),
 			default: k(() => [
-				e.message ? (y(), o("div", or, w(e.message), 1)) : a("", !0),
-				e.label ? (y(), o("label", sr, w(e.label), 1)) : a("", !0),
-				u(ar, {
+				e.message ? (y(), o("div", dr, w(e.message), 1)) : a("", !0),
+				e.label ? (y(), o("label", fr, w(e.label), 1)) : a("", !0),
+				u(ur, {
 					value: f.value,
 					placeholder: e.placeholder,
 					maxlength: e.maxlength,
@@ -3488,10 +3564,10 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 			"dismissible"
 		])) : a("", !0);
 	}
-}, [["__scopeId", "data-v-ff9d61bb"]]), lr = { class: "form-field-label" }, ur = {
+}, [["__scopeId", "data-v-ff9d61bb"]]), mr = { class: "form-field-label" }, hr = {
 	key: 0,
 	class: "form-field-hint"
-}, dr = /*#__PURE__*/ N({
+}, gr = /*#__PURE__*/ N({
 	__name: "FormField",
 	props: {
 		label: {
@@ -3508,13 +3584,13 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 		}
 	},
 	setup(e) {
-		return (t, n) => (y(), o("div", { class: h(["form-field", { "form-field--vertical": e.vertical }]) }, [s("span", lr, [l(w(e.label), 1), e.hint ? (y(), o("span", ur, w(e.hint), 1)) : a("", !0)]), S(t.$slots, "default", {}, void 0, !0)], 2));
+		return (t, n) => (y(), o("div", { class: h(["form-field", { "form-field--vertical": e.vertical }]) }, [s("span", mr, [l(w(e.label), 1), e.hint ? (y(), o("span", hr, w(e.hint), 1)) : a("", !0)]), S(t.$slots, "default", {}, void 0, !0)], 2));
 	}
-}, [["__scopeId", "data-v-01093950"]]), fr = { class: "fn-wrap" }, pr = [
+}, [["__scopeId", "data-v-01093950"]]), _r = { class: "fn-wrap" }, vr = [
 	"value",
 	"min",
 	"max"
-], mr = /*#__PURE__*/ N({
+], yr = /*#__PURE__*/ N({
 	__name: "FormNumberInput",
 	props: {
 		value: { default: 0 },
@@ -3533,7 +3609,7 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 		function c(e) {
 			r("change", i((parseInt(n.value) || 0) + e));
 		}
-		return (t, n) => (y(), o("div", fr, [
+		return (t, n) => (y(), o("div", _r, [
 			s("button", {
 				type: "button",
 				class: "fn-btn",
@@ -3547,7 +3623,7 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 				min: e.min,
 				max: e.max,
 				onChange: a
-			}, null, 40, pr),
+			}, null, 40, vr),
 			s("button", {
 				type: "button",
 				class: "fn-btn",
@@ -3556,7 +3632,7 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 			}, "+")
 		]));
 	}
-}, [["__scopeId", "data-v-df9f8db7"]]), hr = ["value"], gr = /*#__PURE__*/ N({
+}, [["__scopeId", "data-v-df9f8db7"]]), br = ["value"], xr = /*#__PURE__*/ N({
 	__name: "FormSelect",
 	props: {
 		value: { default: "" },
@@ -3580,14 +3656,14 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 			class: "form-select",
 			value: e.value,
 			onChange: s
-		}, [S(t.$slots, "default", {}, void 0, !0)], 40, hr));
+		}, [S(t.$slots, "default", {}, void 0, !0)], 40, br));
 	}
-}, [["__scopeId", "data-v-3eb4c36d"]]), _r = [
+}, [["__scopeId", "data-v-3eb4c36d"]]), Sr = [
 	"value",
 	"placeholder",
 	"rows",
 	"maxlength"
-], vr = /*#__PURE__*/ N({
+], Cr = /*#__PURE__*/ N({
 	__name: "FormTextarea",
 	props: {
 		value: { default: "" },
@@ -3610,15 +3686,15 @@ var qn = ["aria-label"], Jn = { class: "ms-head-content" }, Yn = ["aria-label"],
 			rows: e.rows,
 			maxlength: e.maxlength,
 			onInput: n[0] ||= (e) => t.$emit("update:value", e.target.value)
-		}, null, 40, _r));
+		}, null, 40, Sr));
 	}
-}, [["__scopeId", "data-v-31024142"]]), yr = 4;
-function br(e, t, n) {
+}, [["__scopeId", "data-v-31024142"]]), wr = 4;
+function Tr(e, t, n) {
 	if (t < 0) return e.slice();
 	let r = e.slice(), [i] = r.splice(t, 1);
 	return r.splice(Math.min(n, r.length), 0, i), r;
 }
-function xr(e) {
+function Er(e) {
 	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = b(!1), o = b(null), s = b(null), c = b(-1), l = b(null), u = b(-1), d = b(!1), f = null, p = 0, m = 0, h = null, g = 0, v = null;
 	function y(e, t, n, r) {
 		if (e.button !== void 0 && e.button !== 0) return;
@@ -3636,7 +3712,7 @@ function xr(e) {
 		if (!a.value) {
 			if (!h) return;
 			let t = e.clientX - h.x, n = e.clientY - h.y;
-			if (Math.hypot(t, n) < yr) return;
+			if (Math.hypot(t, n) < wr) return;
 			S();
 		}
 		C(e.clientX, e.clientY), w(e.clientX, e.clientY);
@@ -3765,9 +3841,9 @@ function xr(e) {
 }
 //#endregion
 //#region src/composables/useSheetSubpages.js
-var Sr = "cubic-bezier(.2, 0, 0, 1)", Cr = 320;
-function wr() {
-	let e = b("detail"), t = b(0), n = b(!1), i = 1, a = null, o = r(() => n.value ? `transform ${Cr}ms ${Sr}` : "none"), s = r(() => ({
+var Dr = "cubic-bezier(.2, 0, 0, 1)", Or = 320;
+function kr() {
+	let e = b("detail"), t = b(0), n = b(!1), i = 1, a = null, o = r(() => n.value ? `transform ${Or}ms ${Dr}` : "none"), s = r(() => ({
 		transform: `translateX(${(-t.value * 100).toFixed(3)}%)`,
 		transition: o.value
 	})), c = r(() => ({
@@ -3816,4 +3892,4 @@ function wr() {
 	};
 }
 //#endregion
-export { xe as ACTION_MENU_GAP, be as ACTION_MENU_MARGIN, Q as ActionMenu, Q as RowActionMenu, Ne as ActionMenuItem, Ne as RowActionItem, Ue as ActionMenuSubmenu, Ue as RowActionSubmenu, R as AddButton, jn as AppModal, zn as AppModalFrame, kt as AppShell, Vt as AppSidebar, B as AppSlider, Le as BasePopover, F as BaseTile, Ze as ColorPresetPicker, U as CompactCheckbox, Wn as ConfirmDialog, Zt as EditorPanel, rn as EditorSection, tn as EditorSectionTitle, cn as EditorTotal, rr as FormActionButtons, dr as FormField, mr as FormNumberInput, gr as FormSelect, ar as FormTextInput, vr as FormTextarea, Gn as ModalShell, $n as MorphSheet, te as MultiToggle, We as PRESET_COLORS, cr as PromptDialog, cr as TextPromptDialog, Te as ROW_ACTION_GAP, we as ROW_ACTION_MARGIN, re as RemoveButton, ht as RichContent, Dt as RichTextEditor, oe as SectionLabel, Wt as SidebarBrand, Kt as SidebarGroup, Yt as SidebarNavItem, It as SidebarToggle, ue as SlidingTabs, K as ToggleSwitch, rt as ValueSelect, Ce as computeActionMenuPlacement, Ee as computeRowActionPlacement, st as escapeHtml, Ge as isValidHexColor, pt as plainTextToRichHtml, Ke as randomPreset, br as reorderByDrop, An as restoreFocus, ft as sanitizeRichHtml, lt as sanitizeRichTextColor, ct as sanitizeRichTextUrl, Kn as useContainerMorph, ln as useFullscreenViewportHeight, Fe as useIsMobile, Pe as useMediaQuery, wr as useSheetSubpages, xr as useSortable };
+export { xe as ACTION_MENU_GAP, be as ACTION_MENU_MARGIN, Mt as AccountMenu, Q as ActionMenu, Q as RowActionMenu, Ne as ActionMenuItem, Ne as RowActionItem, Ue as ActionMenuSubmenu, Ue as RowActionSubmenu, R as AddButton, In as AppModal, Wn as AppModalFrame, Pt as AppShell, Kt as AppSidebar, B as AppSlider, Le as BasePopover, F as BaseTile, Ze as ColorPresetPicker, U as CompactCheckbox, Yn as ConfirmDialog, nn as EditorPanel, ln as EditorSection, sn as EditorSectionTitle, pn as EditorTotal, cr as FormActionButtons, gr as FormField, yr as FormNumberInput, xr as FormSelect, ur as FormTextInput, Cr as FormTextarea, Xn as ModalShell, ir as MorphSheet, te as MultiToggle, We as PRESET_COLORS, pr as PromptDialog, pr as TextPromptDialog, Te as ROW_ACTION_GAP, we as ROW_ACTION_MARGIN, re as RemoveButton, ht as RichContent, Dt as RichTextEditor, oe as SectionLabel, Yt as SidebarBrand, Zt as SidebarGroup, en as SidebarNavItem, Vt as SidebarToggle, ue as SlidingTabs, K as ToggleSwitch, rt as ValueSelect, Ce as computeActionMenuPlacement, Ee as computeRowActionPlacement, st as escapeHtml, Ge as isValidHexColor, pt as plainTextToRichHtml, Ke as randomPreset, Tr as reorderByDrop, Fn as restoreFocus, ft as sanitizeRichHtml, lt as sanitizeRichTextColor, ct as sanitizeRichTextUrl, Zn as useContainerMorph, mn as useFullscreenViewportHeight, Fe as useIsMobile, Pe as useMediaQuery, kr as useSheetSubpages, Er as useSortable };

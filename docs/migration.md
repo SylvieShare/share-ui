@@ -9,7 +9,7 @@
 | Слой | Публичный контракт `share-ui` | DnD Share | TrenchShare | HavenShare |
 |---|---|---|---|---|
 | Тема и canvas | `styles.css`, tokens, `.share-app-canvas` | подключено, фиолетовый accent | подключено, зелёный accent | подключено, выбираемый accent |
-| Каркас и sidebar | `AppShell`, `AppSidebar`, `Sidebar*` | DnD adapter | router/auth adapter | router/i18n/theme adapter |
+| Каркас и sidebar | `AppShell`, `AppSidebar`, `Sidebar*`, `AccountMenu` | DnD adapter | router/auth adapter | router/i18n/theme adapter |
 | Плитки | `BaseTile` | общий primitive | доступен для поэтапной замены domain tiles | доступен для поэтапной замены domain tiles |
 | Формы | `Form*`, toggles, checkbox, editor primitives | подключено | подключено | подключено через локальные adapters там, где UX отличается |
 | Overlays и morph | `AppModal*`, dialogs, `MorphSheet`, composables | подключено | подключено | подключено |
