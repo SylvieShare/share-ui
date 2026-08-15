@@ -4,6 +4,8 @@ import * as shareUi from '../src/index.js'
 describe('public API', () => {
   it.each([
     'AddButton',
+    'AppModal',
+    'AppModalFrame',
     'AppSlider',
     'CompactCheckbox',
     'EditorPanel',
@@ -11,15 +13,20 @@ describe('public API', () => {
     'EditorSectionTitle',
     'EditorTotal',
     'MultiToggle',
+    'ModalShell',
+    'MorphSheet',
+    'ConfirmDialog',
+    'PromptDialog',
     'RemoveButton',
     'SectionLabel',
     'SlidingTabs',
     'ToggleSwitch',
+    'TextPromptDialog',
   ])('exports %s', name => {
     expect(shareUi[name]).toBeTruthy()
   })
 
-  it.each(['useFullscreenViewportHeight', 'useIsMobile', 'useMediaQuery'])(
+  it.each(['restoreFocus', 'useFullscreenViewportHeight', 'useIsMobile', 'useMediaQuery', 'useSheetSubpages'])(
     'exports %s',
     name => expect(shareUi[name]).toBeTypeOf('function'),
   )

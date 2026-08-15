@@ -61,6 +61,22 @@ permissions или конкретном домене приложения.
 - `useIsMobile(maxWidth = 768)` — согласованный mobile breakpoint;
 - `useFullscreenViewportHeight(scale = 0.94)` — высота с учётом Visual Viewport.
 
+## Overlays
+
+- `AppModal` — низкоуровневое DnD-style окно с Teleport, focus trap,
+  topmost Escape, mobile swipe-down и анимацией.
+- `AppModalFrame` — header/body/footer shell поверх `AppModal`.
+- `ModalShell` — controlled `open`-адаптер для простых окон.
+- `ConfirmDialog` поддерживает controlled `open` и условный mount.
+- `TextPromptDialog` (`PromptDialog` alias) поддерживает события `confirm` и
+  `submit`, чтобы проекты могли мигрировать без промежуточных wrapper-ов.
+- `MorphSheet` — container morph из origin element/rect, add-mode, slots
+  `head/detail/sub/foot`, optional background blur и swipe-навигация.
+- `useSheetSubpages` — controller двухпанельной дорожки MorphSheet.
+
+Все overlay-компоненты используют единый внутренний stack и reference-counted
+scroll lock. Поэтому Escape, focus restoration и вложенные окна не конфликтуют.
+
 ## useSortable / reorderByDrop
 
 `useSortable` управляет pointer lifecycle, ghost, placeholder-представлением и

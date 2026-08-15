@@ -85,6 +85,98 @@ export const EditorSection: DefineComponent<{ title?: string }>
 export const EditorSectionTitle: DefineComponent<{ title?: string }>
 export const EditorTotal: DefineComponent<{}>
 
+export const AppModal: DefineComponent<{
+  zIndex?: number
+  wide?: boolean
+  extraWide?: boolean
+  fullscreen?: boolean
+  showClose?: boolean
+  showHandle?: boolean
+  dismissible?: boolean
+  flush?: boolean
+  width?: number | string
+  ariaLabel?: string
+  closeLabel?: string
+  escapeBlursInput?: boolean
+}>
+
+export const AppModalFrame: DefineComponent<{
+  title?: string
+  subtitle?: string | number
+  wide?: boolean
+  extraWide?: boolean
+  fullscreen?: boolean
+  padded?: boolean
+  bodyScroll?: boolean
+  dismissible?: boolean
+  showClose?: boolean
+  zIndex?: number
+  width?: number | string
+  closeLabel?: string
+}>
+
+export const ModalShell: DefineComponent<{
+  open?: boolean
+  width?: number | string
+  zIndex?: number
+  ariaLabel?: string
+  dismissible?: boolean
+  escapeBlursInput?: boolean
+}>
+
+export const ConfirmDialog: DefineComponent<{
+  open?: boolean | null
+  title: string
+  message?: string
+  confirmLabel?: string
+  cancelLabel?: string
+  confirmText?: string
+  cancelText?: string
+  loadingLabel?: string
+  loading?: boolean
+  variant?: 'danger' | 'warning' | 'success'
+  confirmKind?: 'danger' | 'warning' | 'success' | ''
+  zIndex?: number
+}>
+
+export const TextPromptDialog: DefineComponent<{
+  open?: boolean | null
+  title: string
+  message?: string
+  value?: string
+  initial?: string
+  label?: string
+  placeholder?: string
+  maxlength?: number
+  confirmLabel?: string
+  cancelLabel?: string
+  confirmText?: string
+  cancelText?: string
+  loadingLabel?: string
+  loading?: boolean
+  zIndex?: number
+}>
+export const PromptDialog: typeof TextPromptDialog
+
+export const MorphSheet: DefineComponent<{
+  mode?: 'edit' | 'add'
+  originRect?: ContainerRect | null
+  originEl?: HTMLElement | null
+  originRadius?: string
+  width?: number
+  showBack?: boolean
+  nav?: UseSheetSubpagesResult | null
+  frameColor?: string
+  backgroundTarget?: string | HTMLElement
+  blurBackground?: boolean
+  ariaLabel?: string
+  showFoot?: boolean
+  showClose?: boolean | null
+  closeLabel?: string
+}>
+
+export function restoreFocus(element: { focus: (options?: FocusOptions) => void }): void
+
 export const FormActionButtons: DefineComponent<{
   submitText?: string
   cancelText?: string
@@ -193,3 +285,19 @@ export function useContainerMorph(options?: { open?: number; close?: number }): 
 export function useMediaQuery(query: string): Ref<boolean>
 export function useIsMobile(maxWidth?: number): Ref<boolean>
 export function useFullscreenViewportHeight(scale?: number): Ref<string>
+
+export interface UseSheetSubpagesResult {
+  view: Ref<string>
+  pos: Ref<number>
+  animating: Ref<boolean>
+  detailStyle: ComputedRef<Record<string, string>>
+  subStyle: ComputedRef<Record<string, string>>
+  goSub: (view: string) => void
+  enterSub: () => void
+  backToDetail: () => void
+  dragStart: (width: number) => void
+  dragMove: (distance: number) => void
+  dragEnd: (distance: number, velocity: number) => void
+}
+
+export function useSheetSubpages(): UseSheetSubpagesResult
