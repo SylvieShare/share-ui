@@ -350,7 +350,7 @@ defineExpose({ focus: () => editorEl.value?.focus(), commit: commitEditor })
 
 <style scoped>
 .input-desc { display: flex; flex-direction: column; }
-.desc-toolbar { display: flex; align-items: center; gap: 2px; margin-bottom: 4px; flex-wrap: wrap; }
+.desc-toolbar { display: flex; align-items: center; gap: 2px; margin-bottom: 2px; flex-wrap: wrap; }
 
 .desc-btn {
   display: flex;
@@ -379,12 +379,14 @@ defineExpose({ focus: () => editorEl.value?.focus(), commit: commitEditor })
 .desc-color-icon::after { width: 14px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--danger), var(--warning), var(--success), var(--info)); content: ''; }
 
 .desc-editor {
-  min-height: 88px;
-  padding: 8px 10px;
+  min-width: 0;
+  min-height: 80px;
+  padding: 10px 12px;
+  overflow-wrap: anywhere;
   -webkit-touch-callout: none;
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
+  background: var(--surface-raised);
+  border: none;
+  border-radius: var(--r-md);
   color: var(--text-2);
   font-family: inherit;
   font-size: 14px;
@@ -393,8 +395,7 @@ defineExpose({ focus: () => editorEl.value?.focus(), commit: commitEditor })
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.desc-editor:hover { border-color: var(--border-strong); }
-.desc-editor:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent); }
+.desc-editor:focus { box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent); }
 .desc-editor:empty::before { color: var(--text-muted); content: attr(data-placeholder); pointer-events: none; }
 .desc-editor :deep(h1) { margin: 0 0 8px; color: var(--text-1); font-size: 22px; font-weight: 700; line-height: 1.3; }
 .desc-editor :deep(h2) { margin: 0 0 8px; color: var(--text-1); font-size: 18px; font-weight: 700; line-height: 1.3; }
@@ -406,7 +407,7 @@ defineExpose({ focus: () => editorEl.value?.focus(), commit: commitEditor })
 .desc-editor :deep(li) { margin: 3px 0; }
 .desc-editor :deep(p) { margin: 0 0 6px; }
 .desc-editor :deep(p:last-child) { margin-bottom: 0; }
-.desc-view { padding: 2px 0; color: var(--text-2); font-size: 14px; line-height: 1.42; }
+.desc-view { min-width: 0; padding: 2px 0; overflow-wrap: anywhere; color: var(--text-2); font-size: 14px; line-height: 1.42; }
 .desc-empty { color: var(--text-muted); font-size: 13px; }
 </style>
 

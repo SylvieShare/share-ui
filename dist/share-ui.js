@@ -1961,7 +1961,7 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ M({
 			html: t.modelValue
 		}, null, 8, ["html"])) : (v(), o("div", Et, C(t.placeholder), 1))]));
 	}
-}, [["__scopeId", "data-v-8d4fc0ab"]]), Ot = {
+}, [["__scopeId", "data-v-e5eced16"]]), Ot = {
 	key: 0,
 	class: "share-editor-panel__title"
 }, kt = /*#__PURE__*/ M({
