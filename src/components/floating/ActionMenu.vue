@@ -28,7 +28,7 @@
   </button>
 
   <Teleport to="body">
-    <Transition name="ram-popover">
+    <Transition name="share-popover-action">
       <div
         v-if="isOpen"
         ref="popoverEl"
@@ -126,9 +126,9 @@ function placePopover() {
     maxWidth: `${Math.min(280, availableWidth)}px`,
     maxHeight: `${placement.maxHeight}px`,
     visibility: 'visible',
-    '--ram-origin-x': `${placement.originX}px`,
-    '--ram-origin-y': `${placement.originY}px`,
-    '--ram-enter-y': placement.opensAbove ? '5px' : '-5px',
+    '--share-popover-origin-x': `${placement.originX}px`,
+    '--share-popover-origin-y': `${placement.originY}px`,
+    '--share-popover-enter-y': placement.opensAbove ? '5px' : '-5px',
   }
 }
 
@@ -263,27 +263,8 @@ defineExpose({ open, close, toggle })
   box-shadow: var(--shadow-lg);
   color: var(--text-1);
   font-family: var(--font-ui);
-  transform-origin: var(--ram-origin-x, 100%) var(--ram-origin-y, 0);
   will-change: opacity, transform;
 }
-
-.ram-popover-enter-active {
-  transition: opacity 135ms ease-out, transform 165ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ram-popover-leave-active {
-  pointer-events: none;
-  transition: opacity 90ms ease-in, transform 110ms cubic-bezier(0.4, 0, 1, 1);
-}
-
-.ram-popover-enter-from,
-.ram-popover-leave-to {
-  opacity: 0;
-  transform: translateY(var(--ram-enter-y, -5px)) scale(0.96);
-}
-
-.ram-popover-enter-to,
-.ram-popover-leave-from { opacity: 1; transform: none; }
 
 .ram-label {
   margin: 5px 5px 3px;
@@ -294,6 +275,6 @@ defineExpose({ open, close, toggle })
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ram-popover-enter-active, .ram-popover-leave-active { transition: none; }
+  .ram-popover { will-change: auto; }
 }
 </style>

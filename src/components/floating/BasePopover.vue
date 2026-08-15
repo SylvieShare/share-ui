@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <Transition :name="transition">
+    <Transition :name="resolvedTransition">
       <div
         v-if="open"
         :id="id || undefined"
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import {
   closeActiveActionSubmenu,
   isTopFloating,
@@ -40,6 +40,11 @@ const props = defineProps({
   minWidth: { type: [Number, String], default: 160 },
   zIndex: { type: Number, default: 200 },
   transition: { type: String, default: '' },
+  transitionPreset: {
+    type: String,
+    default: 'none',
+    validator: value => ['none', 'action-menu'].includes(value),
+  },
   popoverClass: { type: [String, Array, Object], default: '' },
   closeOnScroll: { type: Boolean, default: true },
   closeOnResize: { type: Boolean, default: true },
@@ -49,6 +54,11 @@ const props = defineProps({
   related: { type: Boolean, default: false },
 })
 const emit = defineEmits(['update:open'])
+
+const resolvedTransition = computed(() => {
+  if (props.transition) return props.transition
+  return props.transitionPreset === 'action-menu' ? 'share-popover-action' : ''
+})
 
 const token = Symbol('base-popover')
 const popoverEl = ref(null)
@@ -204,5 +214,32 @@ onBeforeUnmount(unbind)
   box-shadow: var(--shadow-lg);
   color: var(--text-1);
   font-family: var(--font-ui);
+}
+</style>
+
+<style>
+.share-popover-action-enter-active {
+  transform-origin: var(--share-popover-origin-x, 50%) var(--share-popover-origin-y, 0);
+  transition: opacity 135ms ease-out, transform 165ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.share-popover-action-leave-active {
+  pointer-events: none;
+  transform-origin: var(--share-popover-origin-x, 50%) var(--share-popover-origin-y, 0);
+  transition: opacity 90ms ease-in, transform 110ms cubic-bezier(0.4, 0, 1, 1);
+}
+
+.share-popover-action-enter-from,
+.share-popover-action-leave-to {
+  opacity: 0;
+  transform: translateY(var(--share-popover-enter-y, -5px)) scale(0.96);
+}
+
+.share-popover-action-enter-to,
+.share-popover-action-leave-from { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .share-popover-action-enter-active,
+  .share-popover-action-leave-active { transition: none; }
 }
 </style>

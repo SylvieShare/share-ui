@@ -81,6 +81,10 @@ scroll lock. Поэтому Escape, focus restoration и вложенные ок
 
 - `BasePopover` — teleported anchored surface с placements `bottom-start`,
   `bottom-end`, `right-start`, viewport clamp, outside-click и topmost Escape.
+  `transitionPreset="action-menu"` включает общий enter/leave motion с
+  `prefers-reduced-motion`; `none` оставляет поверхность без motion. Сырой
+  `transition` остаётся приоритетным escape hatch для специализированного
+  Vue Transition name.
 - `ActionMenu` (`RowActionMenu` alias) — меню действий, которое измеряет себя и
   открывается над trigger, когда снизу не хватает места.
 - `ActionMenuItem` (`RowActionItem` alias) — нейтральная строка меню с icon

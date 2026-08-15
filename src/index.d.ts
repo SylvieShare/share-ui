@@ -93,6 +93,7 @@ export const BasePopover: DefineComponent<{
   minWidth?: number | string
   zIndex?: number
   transition?: string
+  transitionPreset?: 'none' | 'action-menu'
   popoverClass?: string | string[] | Record<string, boolean>
   closeOnScroll?: boolean
   closeOnResize?: boolean

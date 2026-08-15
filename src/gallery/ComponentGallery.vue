@@ -124,10 +124,11 @@
           <BasePopover
             :open="popoverOpen"
             :anchor="popoverAnchor"
+            transition-preset="action-menu"
             aria-label="Пример popover"
             @update:open="popoverOpen = $event"
           >
-            <span class="share-component-gallery__popover-copy">Headless-позиционирование и закрытие снаружи</span>
+            <span class="share-component-gallery__popover-copy">Headless-позиционирование, общий action transition и закрытие снаружи</span>
           </BasePopover>
         </article>
 

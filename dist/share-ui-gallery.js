@@ -1,4 +1,4 @@
-import { $ as e, B as ee, C as te, D as t, E as n, F as r, O as ne, P as re, Q as ie, S as ae, T as oe, U as i, W as se, Z as a, _ as o, a as s, at as c, b as l, c as u, d, et as f, f as p, g as ce, i as m, it as h, n as le, nt as ue, o as de, ot as g, p as fe, r as pe, rt as _, s as v, t as me, tt as he, u as ge, v as _e, x as ve, y as ye, z as be } from "./FormTextarea-CMbaeQvH.js";
+import { $ as e, B as ee, C as te, D as t, E as n, F as r, O as ne, P as re, Q as ie, S as ae, T as oe, U as i, W as se, Z as a, _ as o, a as s, at as c, b as l, c as u, d, et as f, f as p, g as ce, i as m, it as h, n as le, nt as ue, o as de, ot as g, p as fe, r as pe, rt as _, s as v, t as me, tt as he, u as ge, v as _e, x as ve, y as ye, z as be } from "./FormTextarea-B9qOJUye.js";
 import { createBlock as y, createCommentVNode as b, createElementBlock as x, createElementVNode as S, createTextVNode as C, createVNode as w, normalizeClass as T, openBlock as E, reactive as D, ref as O, toDisplayString as k, unref as A, withCtx as j } from "vue";
 //#region src/lib/componentGalleryCatalog.js
 var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheckbox.MultiToggle.RemoveButton.SectionLabel.SlidingTabs.ToggleSwitch.ActionMenu.ActionMenuItem.ActionMenuSubmenu.BasePopover.ColorPresetPicker.ValueSelect.RichContent.RichTextEditor.AccountMenu.AppShell.AppSidebar.SidebarBrand.SidebarGroup.SidebarNavItem.SidebarToggle.EditorPanel.EditorSection.EditorSectionTitle.EditorTotal.AppModal.AppModalFrame.ConfirmDialog.ModalShell.MorphSheet.TextPromptDialog.FormActionButtons.FormField.FormNumberInput.FormSelect.FormTextarea.FormTextInput".split(".")), N = Object.freeze({
@@ -262,10 +262,11 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 					w(ee, {
 						open: W.value,
 						anchor: G.value,
+						"transition-preset": "action-menu",
 						"aria-label": "Пример popover",
 						"onUpdate:open": O[12] ||= (e) => W.value = e
 					}, {
-						default: j(() => [...O[42] ||= [S("span", { class: "share-component-gallery__popover-copy" }, "Headless-позиционирование и закрытие снаружи", -1)]]),
+						default: j(() => [...O[42] ||= [S("span", { class: "share-component-gallery__popover-copy" }, "Headless-позиционирование, общий action transition и закрытие снаружи", -1)]]),
 						_: 1
 					}, 8, ["open", "anchor"])
 				]),
@@ -492,6 +493,6 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 			}, 8, ["origin-el"])) : b("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-d0f56b02"]]);
+}, [["__scopeId", "data-v-58ad019e"]]);
 //#endregion
 export { N as COMPONENT_GALLERY_ALIASES, M as COMPONENT_GALLERY_COMPONENTS, F as ComponentGallery };
