@@ -38,4 +38,11 @@ describe('component gallery coverage', () => {
   it('renders an example for every canonical component', () => {
     expect(COMPONENT_GALLERY_COMPONENTS.filter(name => !galleryMarkers.includes(name))).toEqual([])
   })
+
+  it('keeps the embedded application chrome bounded and reserves expanded sidebar space', () => {
+    expect(gallerySource).toContain('class="share-component-gallery__chrome-shell"')
+    expect(gallerySource).toContain("'share-component-gallery__chrome-shell--expanded': sidebarExpanded")
+    expect(gallerySource).toMatch(/\.share-component-gallery__chrome-shell\s*\{[\s\S]*?height:\s*380px;/)
+    expect(gallerySource).toContain('--share-sidebar-collapsed-w: var(--share-sidebar-expanded-w);')
+  })
 })

@@ -197,11 +197,16 @@
       >
         <h2>Navigation composition</h2>
         <div class="share-component-gallery__chrome">
-          <AppShell content-tag="div" :rail-width="88">
+          <AppShell
+            class="share-component-gallery__chrome-shell"
+            :class="{ 'share-component-gallery__chrome-shell--expanded': sidebarExpanded }"
+            content-tag="div"
+            :rail-width="88"
+          >
             <template #sidebar>
               <AppSidebar v-model="sidebarExpanded" position="sticky" :default-expanded="true" storage-key="">
                 <template #brand>
-                  <SidebarBrand as="button" label="share-ui">
+                  <SidebarBrand as="div" label="share-ui">
                     <template #icon><span>◆</span></template>
                   </SidebarBrand>
                 </template>
@@ -215,9 +220,9 @@
               </AppSidebar>
             </template>
             <div class="share-component-gallery__chrome-content">
-              <SidebarToggle :expanded="sidebarExpanded" @click="sidebarExpanded = !sidebarExpanded" />
-              <strong>AppShell canvas</strong>
-              <span>Фон, точки, sidebar и rail образуют общий каркас.</span>
+              <span class="share-component-gallery__chrome-kicker">content</span>
+              <strong>AppShell + AppSidebar</strong>
+              <span>Фон, точки, раскрываемая навигация и rail образуют общий каркас.</span>
             </div>
             <template #rail><div class="share-component-gallery__rail">rail</div></template>
           </AppShell>
@@ -315,7 +320,6 @@ import AppSidebar from '../components/navigation/AppSidebar.vue'
 import SidebarBrand from '../components/navigation/SidebarBrand.vue'
 import SidebarGroup from '../components/navigation/SidebarGroup.vue'
 import SidebarNavItem from '../components/navigation/SidebarNavItem.vue'
-import SidebarToggle from '../components/navigation/SidebarToggle.vue'
 import EditorPanel from '../components/editor/EditorPanel.vue'
 import EditorSection from '../components/editor/EditorSection.vue'
 import EditorSectionTitle from '../components/editor/EditorSectionTitle.vue'
@@ -499,10 +503,19 @@ function resetForm() {
 .share-component-gallery__popover-copy { display: block; max-width: 250px; padding: 5px; color: var(--text-2); font-size: 13px; line-height: 1.45; }
 
 .share-component-gallery__chrome { overflow: hidden; border: 1px solid var(--border); border-radius: var(--r-md); }
-.share-component-gallery__chrome :deep(.share-app-shell) { min-height: 360px; }
-.share-component-gallery__chrome :deep(.share-app-sidebar) { height: 360px; }
-.share-component-gallery__chrome-content { display: flex; min-width: 0; padding: 28px; flex-direction: column; align-items: flex-start; gap: 12px; }
+.share-component-gallery__chrome-shell {
+  height: 380px;
+  min-height: 0;
+  max-height: 380px;
+  overflow: hidden;
+}
+.share-component-gallery__chrome-shell--expanded {
+  --share-sidebar-collapsed-w: var(--share-sidebar-expanded-w);
+}
+.share-component-gallery__chrome :deep(.share-app-sidebar) { height: 100%; }
+.share-component-gallery__chrome-content { display: flex; min-width: 0; padding: 30px; flex-direction: column; align-items: flex-start; justify-content: center; gap: 10px; }
 .share-component-gallery__chrome-content > span { max-width: 440px; color: var(--text-2); font-size: 13px; }
+.share-component-gallery__chrome-content > .share-component-gallery__chrome-kicker { color: var(--accent-soft); font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .share-component-gallery__rail { display: grid; height: 100%; border-left: 1px solid var(--border); background: var(--surface); color: var(--text-muted); font-size: 11px; place-items: center; writing-mode: vertical-rl; }
 
 .share-component-gallery__overlay-content { display: flex; padding: 24px; flex-direction: column; gap: 10px; }
@@ -517,7 +530,7 @@ function resetForm() {
   .share-component-gallery__form-grid { grid-template-columns: 1fr; }
   .share-component-gallery__card--wide,
   .share-component-gallery__card--bleed { grid-column: auto; }
-  .share-component-gallery__chrome :deep(.share-app-shell) { min-height: 320px; }
+  .share-component-gallery__chrome-shell { height: 320px; max-height: 320px; }
   .share-component-gallery__rail { display: none; }
 }
 

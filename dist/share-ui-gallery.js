@@ -1,5 +1,5 @@
-import { $ as e, B as ee, C as te, D as t, E as n, F as r, O as ne, P as re, Q as ie, S as ae, T as oe, U as i, W as a, Z as o, _ as s, a as c, at as l, b as u, c as d, d as f, et as p, f as m, g as se, i as h, it as g, n as ce, nt as le, o as ue, ot as _, p as de, r as fe, rt as v, s as y, t as pe, tt as me, u as he, v as ge, w as _e, x as ve, y as ye, z as be } from "./FormTextarea-BD-jQnuU.js";
-import { createBlock as b, createCommentVNode as x, createElementBlock as S, createElementVNode as C, createTextVNode as w, createVNode as T, openBlock as E, reactive as D, ref as O, toDisplayString as k, unref as A, withCtx as j } from "vue";
+import { $ as e, B as ee, C as te, D as t, E as n, F as r, O as ne, P as re, Q as ie, S as ae, T as oe, U as i, W as se, Z as a, _ as o, a as s, at as c, b as l, c as u, d, et as f, f as p, g as ce, i as m, it as h, n as le, nt as ue, o as de, ot as g, p as fe, r as pe, rt as _, s as v, t as me, tt as he, u as ge, v as _e, x as ve, y as ye, z as be } from "./FormTextarea-CMbaeQvH.js";
+import { createBlock as y, createCommentVNode as b, createElementBlock as x, createElementVNode as S, createTextVNode as C, createVNode as w, normalizeClass as T, openBlock as E, reactive as D, ref as O, toDisplayString as k, unref as A, withCtx as j } from "vue";
 //#region src/lib/componentGalleryCatalog.js
 var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheckbox.MultiToggle.RemoveButton.SectionLabel.SlidingTabs.ToggleSwitch.ActionMenu.ActionMenuItem.ActionMenuSubmenu.BasePopover.ColorPresetPicker.ValueSelect.RichContent.RichTextEditor.AccountMenu.AppShell.AppSidebar.SidebarBrand.SidebarGroup.SidebarNavItem.SidebarToggle.EditorPanel.EditorSection.EditorSectionTitle.EditorTotal.AppModal.AppModalFrame.ConfirmDialog.ModalShell.MorphSheet.TextPromptDialog.FormActionButtons.FormField.FormNumberInput.FormSelect.FormTextarea.FormTextInput".split(".")), N = Object.freeze({
 	PromptDialog: "TextPromptDialog",
@@ -45,10 +45,10 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 }, et = { class: "share-component-gallery__section" }, tt = {
 	class: "share-component-gallery__card share-component-gallery__card--bleed",
 	"data-share-gallery": "AppShell AppSidebar SidebarBrand SidebarGroup SidebarNavItem SidebarToggle"
-}, nt = { class: "share-component-gallery__chrome" }, rt = { class: "share-component-gallery__chrome-content" }, it = { class: "share-component-gallery__section" }, at = {
+}, nt = { class: "share-component-gallery__chrome" }, rt = { class: "share-component-gallery__section" }, it = {
 	class: "share-component-gallery__card",
 	"data-share-gallery": "AppModal AppModalFrame ModalShell ConfirmDialog TextPromptDialog MorphSheet"
-}, ot = { class: "share-component-gallery__row" }, F = /*#__PURE__*/ _({
+}, at = { class: "share-component-gallery__row" }, F = /*#__PURE__*/ g({
 	__name: "ComponentGallery",
 	props: {
 		title: {
@@ -60,8 +60,8 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 			default: "Единая интерактивная витрина публичных визуальных компонентов в теме текущего приложения."
 		}
 	},
-	setup(_) {
-		let N = M.length, F = O(!0), I = O(!0), L = O("md"), R = O("preview"), z = O(62), B = O("rare"), V = O("#7c5ce2"), H = O("<p><strong>RichContent</strong> показывает очищенный результат редактора.</p>"), U = O(!0), W = O(!1), G = O(null), K = O(!1), q = O(!1), J = O(!1), Y = O(!1), X = O(!1), Z = O(!1), Q = O(null), st = [
+	setup(g) {
+		let N = M.length, F = O(!0), I = O(!0), L = O("md"), R = O("preview"), z = O(62), B = O("rare"), V = O("#7c5ce2"), H = O("<p><strong>RichContent</strong> показывает очищенный результат редактора.</p>"), U = O(!0), W = O(!1), G = O(null), K = O(!1), q = O(!1), J = O(!1), Y = O(!1), X = O(!1), Z = O(!1), Q = O(null), ot = [
 			{
 				value: "sm",
 				label: "S"
@@ -74,13 +74,13 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 				value: "lg",
 				label: "L"
 			}
-		], ct = [{
+		], st = [{
 			key: "preview",
 			title: "Пример"
 		}, {
 			key: "states",
 			title: "Состояния"
-		}], lt = [
+		}], ct = [
 			{
 				value: "common",
 				label: "Обычный"
@@ -99,103 +99,103 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 			type: "base",
 			description: ""
 		});
-		function ut() {
+		function lt() {
 			$.name = "", $.count = 0, $.type = "base", $.description = "";
 		}
-		return (D, O) => (E(), S("div", xe, [
-			C("header", Se, [C("div", null, [
-				C("p", Ce, "share-ui · " + k(A(N)) + " компонентов", 1),
-				C("h1", null, k(_.title), 1),
-				C("p", null, k(_.description), 1)
-			]), O[31] ||= C("span", {
+		return (D, O) => (E(), x("div", xe, [
+			S("header", Se, [S("div", null, [
+				S("p", Ce, "share-ui · " + k(A(N)) + " компонентов", 1),
+				S("h1", null, k(g.title), 1),
+				S("p", null, k(g.description), 1)
+			]), O[30] ||= S("span", {
 				class: "share-component-gallery__accent",
 				"aria-label": "Текущий акцент"
 			}, null, -1)]),
-			C("section", we, [T(e, {
+			S("section", we, [w(e, {
 				title: "Поверхности и действия",
 				border: ""
-			}), C("div", Te, [C("article", P, [O[34] ||= C("h2", null, "BaseTile", -1), C("div", Ee, [T(l, {
+			}), S("div", Te, [S("article", P, [O[33] ||= S("h2", null, "BaseTile", -1), S("div", Ee, [w(c, {
 				strip: "",
 				tint: "",
 				interactive: "",
 				class: "share-component-gallery__tile"
 			}, {
-				default: j(() => [...O[32] ||= [C("strong", null, "Акцентная плитка", -1), C("span", null, "strip · tint · interactive", -1)]]),
+				default: j(() => [...O[31] ||= [S("strong", null, "Акцентная плитка", -1), S("span", null, "strip · tint · interactive", -1)]]),
 				_: 1
-			}), T(l, {
+			}), w(c, {
 				framed: "",
 				class: "share-component-gallery__tile"
 			}, {
-				default: j(() => [...O[33] ||= [C("strong", null, "Рамка", -1), C("span", null, "framed", -1)]]),
+				default: j(() => [...O[32] ||= [S("strong", null, "Рамка", -1), S("span", null, "framed", -1)]]),
 				_: 1
-			})])]), C("article", De, [O[35] ||= C("h2", null, "Кнопки элементов", -1), C("div", Oe, [
-				T(g, { label: "Добавить элемент" }),
-				T(g, {
+			})])]), S("article", De, [O[34] ||= S("h2", null, "Кнопки элементов", -1), S("div", Oe, [
+				w(h, { label: "Добавить элемент" }),
+				w(h, {
 					label: "Добавить",
 					variant: "icon"
 				}),
-				T(p, { label: "Удалить" }),
-				T(p, {
+				w(f, { label: "Удалить" }),
+				w(f, {
 					label: "Удалить",
 					variant: "boxed"
 				})
 			])])])]),
-			C("section", ke, [T(e, {
+			S("section", ke, [w(e, {
 				title: "Переключатели",
 				border: ""
-			}), C("div", Ae, [
-				C("article", je, [O[37] ||= C("h2", null, "Boolean controls", -1), C("div", Me, [T(o, {
+			}), S("div", Ae, [
+				S("article", je, [O[36] ||= S("h2", null, "Boolean controls", -1), S("div", Me, [w(a, {
 					modelValue: F.value,
 					"onUpdate:modelValue": O[0] ||= (e) => F.value = e,
 					label: "Включить механику"
-				}, null, 8, ["modelValue"]), C("label", Ne, [T(le, {
+				}, null, 8, ["modelValue"]), S("label", Ne, [w(ue, {
 					modelValue: I.value,
 					"onUpdate:modelValue": O[1] ||= (e) => I.value = e,
 					label: "Выбрать элемент"
-				}, null, 8, ["modelValue"]), O[36] ||= w(" Выбрать элемент ", -1)])])]),
-				C("article", Pe, [O[38] ||= C("h2", null, "Segmented controls", -1), C("div", Fe, [T(me, {
+				}, null, 8, ["modelValue"]), O[35] ||= C(" Выбрать элемент ", -1)])])]),
+				S("article", Pe, [O[37] ||= S("h2", null, "Segmented controls", -1), S("div", Fe, [w(he, {
 					modelValue: L.value,
 					"onUpdate:modelValue": O[2] ||= (e) => L.value = e,
-					options: st,
+					options: ot,
 					"aria-label": "Размер"
-				}, null, 8, ["modelValue"]), T(ie, {
+				}, null, 8, ["modelValue"]), w(ie, {
 					modelValue: R.value,
 					"onUpdate:modelValue": O[3] ||= (e) => R.value = e,
-					tabs: ct,
+					tabs: st,
 					"aria-label": "Режим просмотра"
 				}, null, 8, ["modelValue"])])]),
-				C("article", Ie, [O[39] ||= C("h2", null, "AppSlider", -1), C("div", Le, [T(v, {
+				S("article", Ie, [O[38] ||= S("h2", null, "AppSlider", -1), S("div", Le, [w(_, {
 					modelValue: z.value,
 					"onUpdate:modelValue": O[4] ||= (e) => z.value = e,
 					min: 0,
 					max: 100,
 					step: 1,
 					label: "Значение"
-				}, null, 8, ["modelValue"]), C("strong", null, k(z.value), 1)])])
+				}, null, 8, ["modelValue"]), S("strong", null, k(z.value), 1)])])
 			])]),
-			C("section", Re, [T(e, {
+			S("section", Re, [w(e, {
 				title: "Формы",
 				border: ""
-			}), C("div", ze, [C("article", Be, [
-				O[41] ||= C("h2", null, "Form primitives", -1),
-				C("div", Ve, [
-					T(h, {
+			}), S("div", ze, [S("article", Be, [
+				O[40] ||= S("h2", null, "Form primitives", -1),
+				S("div", Ve, [
+					w(m, {
 						label: "Название",
 						vertical: "",
 						hint: "обязательное поле"
 					}, {
-						default: j(() => [T(ue, {
+						default: j(() => [w(de, {
 							value: $.name,
 							"onUpdate:value": O[5] ||= (e) => $.name = e,
 							placeholder: "Название элемента"
 						}, null, 8, ["value"])]),
 						_: 1
 					}),
-					T(h, {
+					w(m, {
 						label: "Количество",
 						vertical: ""
 					}, {
-						default: j(() => [T(fe, {
+						default: j(() => [w(pe, {
 							value: $.count,
 							min: 0,
 							max: 20,
@@ -203,24 +203,24 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 						}, null, 8, ["value"])]),
 						_: 1
 					}),
-					T(h, {
+					w(m, {
 						label: "Тип",
 						vertical: ""
 					}, {
-						default: j(() => [T(ce, {
+						default: j(() => [w(le, {
 							value: $.type,
 							"onUpdate:value": O[7] ||= (e) => $.type = e
 						}, {
-							default: j(() => [...O[40] ||= [C("option", { value: "base" }, "Основной", -1), C("option", { value: "extra" }, "Дополнительный", -1)]]),
+							default: j(() => [...O[39] ||= [S("option", { value: "base" }, "Основной", -1), S("option", { value: "extra" }, "Дополнительный", -1)]]),
 							_: 1
 						}, 8, ["value"])]),
 						_: 1
 					}),
-					T(h, {
+					w(m, {
 						label: "Описание",
 						vertical: ""
 					}, {
-						default: j(() => [T(pe, {
+						default: j(() => [w(me, {
 							value: $.description,
 							"onUpdate:value": O[8] ||= (e) => $.description = e,
 							placeholder: "Короткое описание"
@@ -228,113 +228,113 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 						_: 1
 					})
 				]),
-				T(y, {
+				w(v, {
 					"submit-text": "Сохранить",
-					onCancel: ut
+					onCancel: lt
 				})
 			])])]),
-			C("section", He, [T(e, {
+			S("section", He, [w(e, {
 				title: "Выбор значений и floating UI",
 				border: ""
-			}), C("div", Ue, [
-				C("article", We, [O[42] ||= C("h2", null, "Selectors", -1), C("div", Ge, [T(re, {
+			}), S("div", Ue, [
+				S("article", We, [O[41] ||= S("h2", null, "Selectors", -1), S("div", Ge, [w(re, {
 					modelValue: B.value,
 					"onUpdate:modelValue": O[9] ||= (e) => B.value = e,
-					options: lt,
+					options: ct,
 					"aria-label": "Выбрать редкость",
 					searchable: ""
-				}, null, 8, ["modelValue"]), T(r, {
+				}, null, 8, ["modelValue"]), w(r, {
 					modelValue: V.value,
 					"onUpdate:modelValue": O[10] ||= (e) => V.value = e,
 					inline: "",
 					"allow-custom": "",
 					"allow-clear": ""
 				}, null, 8, ["modelValue"])])]),
-				C("article", Ke, [
-					O[44] ||= C("h2", null, "BasePopover", -1),
-					C("button", {
+				S("article", Ke, [
+					O[43] ||= S("h2", null, "BasePopover", -1),
+					S("button", {
 						ref_key: "popoverAnchor",
 						ref: G,
 						type: "button",
 						class: "share-component-gallery__button",
 						onClick: O[11] ||= (e) => W.value = !W.value
 					}, " Открыть popover ", 512),
-					T(ee, {
+					w(ee, {
 						open: W.value,
 						anchor: G.value,
 						"aria-label": "Пример popover",
 						"onUpdate:open": O[12] ||= (e) => W.value = e
 					}, {
-						default: j(() => [...O[43] ||= [C("span", { class: "share-component-gallery__popover-copy" }, "Headless-позиционирование и закрытие снаружи", -1)]]),
+						default: j(() => [...O[42] ||= [S("span", { class: "share-component-gallery__popover-copy" }, "Headless-позиционирование и закрытие снаружи", -1)]]),
 						_: 1
 					}, 8, ["open", "anchor"])
 				]),
-				C("article", qe, [O[50] ||= C("h2", null, "ActionMenu", -1), T(a, { title: "Действия" }, {
+				S("article", qe, [O[49] ||= S("h2", null, "ActionMenu", -1), w(se, { title: "Действия" }, {
 					default: j(() => [
-						T(i, { tone: "accent" }, {
-							default: j(() => [...O[45] ||= [w("Редактировать", -1)]]),
+						w(i, { tone: "accent" }, {
+							default: j(() => [...O[44] ||= [C("Редактировать", -1)]]),
 							_: 1
 						}),
-						T(be, { label: "Перемещение" }, {
-							trigger: j(({ open: e }) => [T(i, {
+						w(be, { label: "Перемещение" }, {
+							trigger: j(({ open: e }) => [w(i, {
 								submenu: "",
 								"submenu-open": e
 							}, {
-								default: j(() => [...O[46] ||= [w("Переместить", -1)]]),
+								default: j(() => [...O[45] ||= [C("Переместить", -1)]]),
 								_: 1
 							}, 8, ["submenu-open"])]),
-							default: j(() => [T(i, null, {
-								default: j(() => [...O[47] ||= [w("В начало", -1)]]),
+							default: j(() => [w(i, null, {
+								default: j(() => [...O[46] ||= [C("В начало", -1)]]),
 								_: 1
-							}), T(i, null, {
-								default: j(() => [...O[48] ||= [w("В конец", -1)]]),
+							}), w(i, null, {
+								default: j(() => [...O[47] ||= [C("В конец", -1)]]),
 								_: 1
 							})]),
 							_: 1
 						}),
-						T(i, { tone: "danger" }, {
-							default: j(() => [...O[49] ||= [w("Удалить", -1)]]),
+						w(i, { tone: "danger" }, {
+							default: j(() => [...O[48] ||= [C("Удалить", -1)]]),
 							_: 1
 						})
 					]),
 					_: 1
 				})]),
-				C("article", Je, [O[53] ||= C("h2", null, "AccountMenu", -1), T(n, {
+				S("article", Je, [O[52] ||= S("h2", null, "AccountMenu", -1), w(n, {
 					label: "Sylvie",
 					"avatar-text": "S",
 					expanded: ""
 				}, {
-					default: j(({ close: e }) => [T(i, { onClick: e }, {
-						default: j(() => [...O[51] ||= [w("Настройки", -1)]]),
+					default: j(({ close: e }) => [w(i, { onClick: e }, {
+						default: j(() => [...O[50] ||= [C("Настройки", -1)]]),
 						_: 1
-					}, 8, ["onClick"]), T(i, {
+					}, 8, ["onClick"]), w(i, {
 						tone: "danger",
 						onClick: e
 					}, {
-						default: j(() => [...O[52] ||= [w("Выйти", -1)]]),
+						default: j(() => [...O[51] ||= [C("Выйти", -1)]]),
 						_: 1
 					}, 8, ["onClick"])]),
 					_: 1
 				})])
 			])]),
-			C("section", Ye, [T(e, {
+			S("section", Ye, [w(e, {
 				title: "Редакторы и rich text",
 				border: ""
-			}), C("div", Xe, [C("article", Ze, [
-				O[54] ||= C("h2", null, "Rich text", -1),
-				T(t, {
+			}), S("div", Xe, [S("article", Ze, [
+				O[53] ||= S("h2", null, "Rich text", -1),
+				w(t, {
 					modelValue: H.value,
 					"onUpdate:modelValue": O[13] ||= (e) => H.value = e,
 					placeholder: "Введите текст…"
 				}, null, 8, ["modelValue"]),
-				C("div", Qe, [T(ne, { html: H.value }, null, 8, ["html"])])
-			]), C("article", $e, [O[57] ||= C("h2", null, "Editor composition", -1), T(l, null, {
-				default: j(() => [T(ye, { title: "Параметры" }, {
-					default: j(() => [T(s, { title: "Основное" }, {
-						default: j(() => [T(ge, { title: "Значение" }, {
-							actions: j(() => [...O[55] ||= [C("span", null, "12", -1)]]),
+				S("div", Qe, [w(ne, { html: H.value }, null, 8, ["html"])])
+			]), S("article", $e, [O[56] ||= S("h2", null, "Editor composition", -1), w(c, null, {
+				default: j(() => [w(ye, { title: "Параметры" }, {
+					default: j(() => [w(o, { title: "Основное" }, {
+						default: j(() => [w(_e, { title: "Значение" }, {
+							actions: j(() => [...O[54] ||= [S("span", null, "12", -1)]]),
 							_: 1
-						}), T(v, {
+						}), w(_, {
 							modelValue: z.value,
 							"onUpdate:modelValue": O[14] ||= (e) => z.value = e,
 							min: 0,
@@ -342,158 +342,156 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 							step: 1
 						}, null, 8, ["modelValue"])]),
 						_: 1
-					}), T(se, null, {
-						default: j(() => [O[56] ||= w("Итого: ", -1), C("strong", null, k(z.value), 1)]),
+					}), w(ce, null, {
+						default: j(() => [O[55] ||= C("Итого: ", -1), S("strong", null, k(z.value), 1)]),
 						_: 1
 					})]),
 					_: 1
 				})]),
 				_: 1
 			})])])]),
-			C("section", et, [T(e, {
+			S("section", et, [w(e, {
 				title: "Каркас приложения",
 				border: ""
-			}), C("article", tt, [O[64] ||= C("h2", null, "Navigation composition", -1), C("div", nt, [T(oe, {
+			}), S("article", tt, [O[62] ||= S("h2", null, "Navigation composition", -1), S("div", nt, [w(oe, {
+				class: T(["share-component-gallery__chrome-shell", { "share-component-gallery__chrome-shell--expanded": U.value }]),
 				"content-tag": "div",
 				"rail-width": 88
 			}, {
-				sidebar: j(() => [T(te, {
+				sidebar: j(() => [w(te, {
 					modelValue: U.value,
 					"onUpdate:modelValue": O[15] ||= (e) => U.value = e,
 					position: "sticky",
 					"default-expanded": !0,
 					"storage-key": ""
 				}, {
-					brand: j(() => [T(ae, {
-						as: "button",
+					brand: j(() => [w(ae, {
+						as: "div",
 						label: "share-ui"
 					}, {
-						icon: j(() => [...O[58] ||= [C("span", null, "◆", -1)]]),
+						icon: j(() => [...O[57] ||= [S("span", null, "◆", -1)]]),
 						_: 1
 					})]),
 					default: j(() => [
-						T(u, {
+						w(l, {
 							as: "button",
 							label: "Главная",
 							active: ""
 						}, {
-							icon: j(() => [...O[59] ||= [C("span", null, "⌂", -1)]]),
+							icon: j(() => [...O[58] ||= [S("span", null, "⌂", -1)]]),
 							_: 1
 						}),
-						T(ve, { label: "Примеры" }),
-						T(u, {
+						w(ve, { label: "Примеры" }),
+						w(l, {
 							as: "button",
 							label: "Компоненты"
 						}, {
-							icon: j(() => [...O[60] ||= [C("span", null, "◇", -1)]]),
+							icon: j(() => [...O[59] ||= [S("span", null, "◇", -1)]]),
 							_: 1
 						})
 					]),
 					_: 1
 				}, 8, ["modelValue"])]),
-				rail: j(() => [...O[63] ||= [C("div", { class: "share-component-gallery__rail" }, "rail", -1)]]),
-				default: j(() => [C("div", rt, [
-					T(_e, {
-						expanded: U.value,
-						onClick: O[16] ||= (e) => U.value = !U.value
-					}, null, 8, ["expanded"]),
-					O[61] ||= C("strong", null, "AppShell canvas", -1),
-					O[62] ||= C("span", null, "Фон, точки, sidebar и rail образуют общий каркас.", -1)
-				])]),
+				rail: j(() => [...O[60] ||= [S("div", { class: "share-component-gallery__rail" }, "rail", -1)]]),
+				default: j(() => [O[61] ||= S("div", { class: "share-component-gallery__chrome-content" }, [
+					S("span", { class: "share-component-gallery__chrome-kicker" }, "content"),
+					S("strong", null, "AppShell + AppSidebar"),
+					S("span", null, "Фон, точки, раскрываемая навигация и rail образуют общий каркас.")
+				], -1)]),
 				_: 1
-			})])])]),
-			C("section", it, [T(e, {
+			}, 8, ["class"])])])]),
+			S("section", rt, [w(e, {
 				title: "Оверлеи и morph",
 				border: ""
-			}), C("article", at, [O[65] ||= C("h2", null, "Интерактивные примеры", -1), C("div", ot, [
-				C("button", {
+			}), S("article", it, [O[63] ||= S("h2", null, "Интерактивные примеры", -1), S("div", at, [
+				S("button", {
 					type: "button",
 					class: "share-component-gallery__button",
-					onClick: O[17] ||= (e) => K.value = !0
+					onClick: O[16] ||= (e) => K.value = !0
 				}, "AppModal"),
-				C("button", {
+				S("button", {
 					type: "button",
 					class: "share-component-gallery__button",
-					onClick: O[18] ||= (e) => q.value = !0
+					onClick: O[17] ||= (e) => q.value = !0
 				}, "AppModalFrame"),
-				C("button", {
+				S("button", {
 					type: "button",
 					class: "share-component-gallery__button",
-					onClick: O[19] ||= (e) => J.value = !0
+					onClick: O[18] ||= (e) => J.value = !0
 				}, "ModalShell"),
-				C("button", {
+				S("button", {
 					type: "button",
 					class: "share-component-gallery__button",
-					onClick: O[20] ||= (e) => Y.value = !0
+					onClick: O[19] ||= (e) => Y.value = !0
 				}, "ConfirmDialog"),
-				C("button", {
+				S("button", {
 					type: "button",
 					class: "share-component-gallery__button",
-					onClick: O[21] ||= (e) => X.value = !0
+					onClick: O[20] ||= (e) => X.value = !0
 				}, "TextPromptDialog"),
-				C("button", {
+				S("button", {
 					ref_key: "morphOrigin",
 					ref: Q,
 					type: "button",
 					class: "share-component-gallery__button",
-					onClick: O[22] ||= (e) => Z.value = !0
+					onClick: O[21] ||= (e) => Z.value = !0
 				}, "MorphSheet", 512)
 			])])]),
-			K.value ? (E(), b(de, {
+			K.value ? (E(), y(fe, {
 				key: 0,
 				"aria-label": "Пример AppModal",
-				onClose: O[23] ||= (e) => K.value = !1
+				onClose: O[22] ||= (e) => K.value = !1
 			}, {
-				default: j(() => [...O[66] ||= [C("div", { class: "share-component-gallery__overlay-content" }, [C("h2", null, "AppModal"), C("p", null, "Низкоуровневый адаптивный overlay.")], -1)]]),
+				default: j(() => [...O[64] ||= [S("div", { class: "share-component-gallery__overlay-content" }, [S("h2", null, "AppModal"), S("p", null, "Низкоуровневый адаптивный overlay.")], -1)]]),
 				_: 1
-			})) : x("", !0),
-			q.value ? (E(), b(m, {
+			})) : b("", !0),
+			q.value ? (E(), y(p, {
 				key: 1,
 				title: "AppModalFrame",
 				subtitle: "header · body · footer",
-				onClose: O[26] ||= (e) => q.value = !1
+				onClose: O[25] ||= (e) => q.value = !1
 			}, {
-				footer: j(() => [T(y, {
-					onCancel: O[24] ||= (e) => q.value = !1,
-					onSubmit: O[25] ||= (e) => q.value = !1
+				footer: j(() => [w(v, {
+					onCancel: O[23] ||= (e) => q.value = !1,
+					onSubmit: O[24] ||= (e) => q.value = !1
 				})]),
-				default: j(() => [O[67] ||= C("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
+				default: j(() => [O[65] ||= S("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
 				_: 1
-			})) : x("", !0),
-			T(he, {
+			})) : b("", !0),
+			w(ge, {
 				open: J.value,
 				"aria-label": "Пример ModalShell",
-				onClose: O[27] ||= (e) => J.value = !1
+				onClose: O[26] ||= (e) => J.value = !1
 			}, {
-				default: j(() => [...O[68] ||= [C("div", { class: "share-component-gallery__overlay-content" }, [C("h2", null, "ModalShell"), C("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
+				default: j(() => [...O[66] ||= [S("div", { class: "share-component-gallery__overlay-content" }, [S("h2", null, "ModalShell"), S("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
 				_: 1
 			}, 8, ["open"]),
-			T(f, {
+			w(d, {
 				open: Y.value,
-				"onUpdate:open": O[28] ||= (e) => Y.value = e,
+				"onUpdate:open": O[27] ||= (e) => Y.value = e,
 				title: "Подтвердить действие?",
 				message: "Проверка визуального состояния опасного действия."
 			}, null, 8, ["open"]),
-			T(c, {
+			w(s, {
 				open: X.value,
-				"onUpdate:open": O[29] ||= (e) => X.value = e,
+				"onUpdate:open": O[28] ||= (e) => X.value = e,
 				title: "Новое название",
 				label: "Название",
 				initial: "Пример"
 			}, null, 8, ["open"]),
-			Z.value ? (E(), b(d, {
+			Z.value ? (E(), y(u, {
 				key: 2,
 				"origin-el": Q.value,
 				"aria-label": "Пример MorphSheet",
 				"show-close": "",
-				onClose: O[30] ||= (e) => Z.value = !1
+				onClose: O[29] ||= (e) => Z.value = !1
 			}, {
-				head: j(() => [...O[69] ||= [C("div", { class: "share-component-gallery__morph-head" }, [C("strong", null, "MorphSheet")], -1)]]),
-				default: j(() => [O[70] ||= C("div", { class: "share-component-gallery__overlay-content" }, [C("p", null, "Контейнер раскрывается из исходной кнопки и возвращается обратно.")], -1)]),
+				head: j(() => [...O[67] ||= [S("div", { class: "share-component-gallery__morph-head" }, [S("strong", null, "MorphSheet")], -1)]]),
+				default: j(() => [O[68] ||= S("div", { class: "share-component-gallery__overlay-content" }, [S("p", null, "Контейнер раскрывается из исходной кнопки и возвращается обратно.")], -1)]),
 				_: 1
-			}, 8, ["origin-el"])) : x("", !0)
+			}, 8, ["origin-el"])) : b("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-5aa53a2b"]]);
+}, [["__scopeId", "data-v-d0f56b02"]]);
 //#endregion
 export { N as COMPONENT_GALLERY_ALIASES, M as COMPONENT_GALLERY_COMPONENTS, F as ComponentGallery };

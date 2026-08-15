@@ -2323,7 +2323,7 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			_: 3
 		}, 16, ["aria-label"]));
 	}
-}), [["__scopeId", "data-v-d1fa564e"]]), Xt = { class: "share-sidebar-group" }, Zt = /*#__PURE__*/ N({
+}), [["__scopeId", "data-v-a9c8581a"]]), Xt = { class: "share-sidebar-group" }, Zt = /*#__PURE__*/ N({
 	__name: "SidebarGroup",
 	props: { label: {
 		type: String,

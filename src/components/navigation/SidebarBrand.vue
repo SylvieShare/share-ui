@@ -34,9 +34,14 @@ defineProps({
   gap: 12px;
   min-width: 0;
   height: 42px;
+  padding: 0;
   overflow: hidden;
+  background: transparent;
+  border: 0;
   border-radius: 9px;
   color: var(--accent);
+  font: inherit;
+  text-align: left;
   text-decoration: none;
   flex: 1;
 }
