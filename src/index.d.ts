@@ -161,6 +161,36 @@ export const ColorPresetPicker: DefineComponent<{
   zIndex?: number
 }>
 
+export const RichContent: DefineComponent<{
+  html?: string
+}>
+
+export interface RichTextLabels {
+  toolbar?: string
+  bold?: string
+  boldShort?: string
+  italic?: string
+  italicShort?: string
+  underline?: string
+  underlineShort?: string
+  paragraph?: string
+  normal?: string
+  heading?: string
+  color?: string
+  colorShort?: string
+  clearColor?: string
+}
+
+export const RichTextEditor: DefineComponent<{
+  modelValue?: string
+  editable?: boolean
+  placeholder?: string
+  ariaLabel?: string
+  colors?: string[]
+  maxHeadingLevel?: number
+  labels?: RichTextLabels
+}>
+
 export const AppModal: DefineComponent<{
   zIndex?: number
   wide?: boolean
@@ -411,3 +441,8 @@ export const computeRowActionPlacement: typeof computeActionMenuPlacement
 export const PRESET_COLORS: string[]
 export function isValidHexColor(value: unknown): boolean
 export function randomPreset(colors?: string[]): string
+export function escapeHtml(value: unknown): string
+export function plainTextToRichHtml(text: unknown): string
+export function sanitizeRichTextUrl(value: unknown): string
+export function sanitizeRichTextColor(value: unknown): string
+export function sanitizeRichHtml(html: unknown): string

@@ -130,6 +130,7 @@ const ColorGrid = defineComponent({
           title: color,
           'aria-label': color,
           'aria-pressed': isActive(color),
+          onMousedown: event => event.preventDefault(),
           onClick: () => pick(color),
         }))),
       props.allowCustom || props.allowClear
@@ -165,7 +166,12 @@ const ColorGrid = defineComponent({
                 })
               : null,
             props.allowClear
-              ? h('button', { type: 'button', class: 'cpp-clear', onClick: clear }, props.clearLabel)
+              ? h('button', {
+                  type: 'button',
+                  class: 'cpp-clear',
+                  onMousedown: event => event.preventDefault(),
+                  onClick: clear,
+                }, props.clearLabel)
               : null,
           ])
         : null,

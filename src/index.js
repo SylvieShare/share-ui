@@ -19,6 +19,8 @@ export { default as RowActionSubmenu } from './components/floating/ActionMenuSub
 export { default as BasePopover } from './components/floating/BasePopover.vue'
 export { default as ColorPresetPicker } from './components/floating/ColorPresetPicker.vue'
 export { default as ValueSelect } from './components/floating/ValueSelect.vue'
+export { default as RichContent } from './components/rich-text/RichContent.vue'
+export { default as RichTextEditor } from './components/rich-text/RichTextEditor.vue'
 export { default as EditorPanel } from './components/editor/EditorPanel.vue'
 export { default as EditorSection } from './components/editor/EditorSection.vue'
 export { default as EditorSectionTitle } from './components/editor/EditorSectionTitle.vue'
@@ -51,3 +53,10 @@ export {
   ROW_ACTION_MARGIN,
 } from './lib/actionMenuPlacement.js'
 export { isValidHexColor, PRESET_COLORS, randomPreset } from './lib/colorPresets.js'
+export {
+  escapeHtml,
+  plainTextToRichHtml,
+  sanitizeRichHtml,
+  sanitizeRichTextColor,
+  sanitizeRichTextUrl,
+} from './lib/richText.js'

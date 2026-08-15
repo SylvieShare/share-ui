@@ -101,6 +101,24 @@ scroll lock. Поэтому Escape, focus restoration и вложенные ок
 Например, DnD Share оставляет локальный `RowActionItem`-adapter, который только
 выбирает Lucide icon и делегирует всю разметку общему `ActionMenuItem`.
 
+## Rich text
+
+- `RichContent` — единственная точка read-only рендера сохранённого rich HTML;
+  перед `v-html` всегда вызывается `sanitizeRichHtml`.
+- `RichTextEditor` — contenteditable-редактор с общей типографикой, headings,
+  inline formatting и color picker. `paste` и `drop` перехватываются и проходят
+  тот же sanitizer до вставки; emit также содержит очищенный HTML.
+
+Sanitizer использует allowlist тегов и атрибутов, удаляет executable/embed
+элементы, event handlers, изображения и произвольные styles. Для ссылок
+разрешены только HTTP(S), mailto, tel и относительные URL; для inline-style —
+только проверенный `color`. Без DOMParser функция возвращает escaped text, то
+есть серверный/тестовый fallback остаётся безопасным.
+
+Visible labels редактора передаются через `labels`; палитра — через `colors`.
+Публичные чистые функции: `sanitizeRichHtml`, `sanitizeRichTextUrl`,
+`sanitizeRichTextColor`, `escapeHtml`, `plainTextToRichHtml`.
+
 ## useSortable / reorderByDrop
 
 `useSortable` управляет pointer lifecycle, ghost, placeholder-представлением и

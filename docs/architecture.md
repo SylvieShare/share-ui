@@ -69,6 +69,9 @@ component/slot, а соответствие доменных action names и и�
 - Headless composable может сообщить результат действия, но не сохраняет его.
 - Глобальные browser-ресурсы (scroll lock, overlay stack, listeners) в будущих
   overlay/floating-компонентах имеют одного владельца и корректный cleanup.
+- Сохранённый пользовательский HTML проходит allowlist sanitizer и при вводе,
+  и перед `v-html`; доверие к тому, что consumer/backend уже очистил строку,
+  не является частью контракта.
 
 ## Совместимость
 

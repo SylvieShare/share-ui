@@ -23,6 +23,8 @@ describe('public API', () => {
     'ConfirmDialog',
     'PromptDialog',
     'RemoveButton',
+    'RichContent',
+    'RichTextEditor',
     'SectionLabel',
     'SlidingTabs',
     'ToggleSwitch',
@@ -38,6 +40,11 @@ describe('public API', () => {
   )
 
   it.each(['computeActionMenuPlacement', 'computeRowActionPlacement', 'isValidHexColor', 'randomPreset'])(
+    'exports %s',
+    name => expect(shareUi[name]).toBeTypeOf('function'),
+  )
+
+  it.each(['escapeHtml', 'plainTextToRichHtml', 'sanitizeRichHtml', 'sanitizeRichTextColor', 'sanitizeRichTextUrl'])(
     'exports %s',
     name => expect(shareUi[name]).toBeTypeOf('function'),
   )
