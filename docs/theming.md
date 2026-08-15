@@ -49,15 +49,19 @@ local storage или профиле пользователя.
 
 ## Canvas
 
-Класс `.share-app-canvas` даёт общий фон с точечной сеткой, основной цвет текста
-и UI-шрифт:
+`AppShell` по умолчанию применяет общий фон с точечной сеткой, основной цвет
+текста и UI-шрифт. Это делает canvas частью общего application chrome:
 
-```html
-<body class="share-app-canvas">
+```vue
+<AppShell><!-- sidebar и content --></AppShell>
 ```
 
-Его можно ставить и на локальный page/canvas container. Печатные и standalone
-экраны явно отменяют `background-image`, если сетка там не нужна.
+Класс `.share-app-canvas` остаётся публичным для приложений, которые пока не
+используют `AppShell`, и для локальных page/canvas containers. Цвет, паттерн,
+шаг и позиция сетки задаются токенами `--app-canvas-bg`,
+`--app-canvas-pattern`, `--app-canvas-dot-size`, `--app-canvas-dot-color` и
+`--app-canvas-position`. Печатные и standalone экраны используют
+`<AppShell :canvas="false">` либо явно отменяют `background-image`.
 
 Пакет задаёт font stacks, но не загружает web fonts и не делает сетевые запросы.
 Consumer сам подключает нужные font assets.

@@ -11,6 +11,7 @@
   --app-canvas-bg: var(--bg);
   --app-canvas-dot-color: color-mix(in srgb, var(--border-strong) 42%, transparent);
   --app-canvas-dot-size: 24px;
+  --app-canvas-position: 0 0;
   --app-canvas-pattern: radial-gradient(circle, var(--app-canvas-dot-color) 1px, transparent 1px);
 
   /* Lines and text */

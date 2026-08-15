@@ -4,7 +4,10 @@
     :class="[
       `share-app-shell--${sidebarMode}`,
       `share-app-shell--breakpoint-${mobileBreakpoint}`,
-      { 'share-app-shell--without-sidebar': !sidebarVisible },
+      {
+        'share-app-shell--without-sidebar': !sidebarVisible,
+        'share-app-canvas': canvas,
+      },
     ]"
     :style="shellStyle"
   >
@@ -34,6 +37,7 @@ const props = defineProps({
   },
   contentTag: { type: String, default: 'main' },
   railWidth: { type: [Number, String], default: 0 },
+  canvas: { type: Boolean, default: true },
 })
 
 const shellStyle = computed(() => ({

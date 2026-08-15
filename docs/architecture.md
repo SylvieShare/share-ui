@@ -20,16 +20,20 @@ composables (headless browser behavior)
 consumer persistence and API calls
 ```
 
-- `src/styles` — семантические app-level токены и opt-in классы раскладки.
+- `src/styles` — семантические app-level токены и общий application canvas.
 - `src/components` — props/emits/slots, разметка и визуальное поведение.
 - `src/composables` — browser lifecycle и чистые преобразования данных.
 - `src/lib` — чистые алгоритмы и нейтральные наборы данных.
 - `src/internal` — владельцы глобальных browser-ресурсов; это не public API.
-- `src/index.js` — единственная публичная JavaScript-точка входа.
+- `src/index.js` — основная публичная JavaScript-точка входа.
 - `src/index.d.ts` — типовой контракт для TypeScript-consumers.
+- `src/gallery.js` — отдельная необязательная точка входа интерактивной
+  витрины; она не экспортируется из основного entry point.
 
 Внутренние файлы не импортируются deep-import'ами. Новый экспорт добавляется
-через `src/index.js`, типы и `docs/components.md` одновременно.
+через `src/index.js`, типы и `docs/components.md` одновременно. Каждый новый
+публичный Vue-компонент также регистрируется и визуально показывается в
+`ComponentGallery`; coverage-test проверяет это правило.
 
 ## Разрешённые зависимости
 

@@ -6,9 +6,12 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: fileURLToPath(new URL('./src/index.js', import.meta.url)),
+      entry: {
+        'share-ui': fileURLToPath(new URL('./src/index.js', import.meta.url)),
+        'share-ui-gallery': fileURLToPath(new URL('./src/gallery.js', import.meta.url)),
+      },
       formats: ['es'],
-      fileName: 'share-ui',
+      fileName: (_format, entryName) => `${entryName}.js`,
       cssFileName: 'share-ui',
     },
     cssCodeSplit: false,

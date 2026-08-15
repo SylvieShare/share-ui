@@ -20,6 +20,12 @@ describe('public API', () => {
     'EditorSection',
     'EditorSectionTitle',
     'EditorTotal',
+    'FormActionButtons',
+    'FormField',
+    'FormNumberInput',
+    'FormSelect',
+    'FormTextarea',
+    'FormTextInput',
     'MultiToggle',
     'ModalShell',
     'MorphSheet',
@@ -37,6 +43,7 @@ describe('public API', () => {
     'ToggleSwitch',
     'TextPromptDialog',
     'ValueSelect',
+    'BaseTile',
   ])('exports %s', name => {
     expect(shareUi[name]).toBeTruthy()
   })

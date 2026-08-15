@@ -126,6 +126,8 @@ Visible labels редактора передаются через `labels`; па
 
 - `AppShell` — layout boundary для sidebar/content/optional rail. Режим `column`
   занимает постоянные 64 px под sidebar, `fixed` даёт такой же content offset.
+  По умолчанию shell также применяет общий `.share-app-canvas`; prop
+  `canvas=false` оставлен для специальных полноэкранных и печатных экранов.
 - `AppSidebar` — DnD-style collapsible sidebar, optional localStorage state,
   fixed/sticky positioning и mobile modes `hide`/`top`.
 - `SidebarBrand`, `SidebarNavItem`, `SidebarGroup`, `SidebarToggle` — визуальные
@@ -158,6 +160,18 @@ DOM-контракт:
 
 Алгоритм сейчас вертикальный. Горизонтальный/grid API не добавляется до
 появления реального второго сценария.
+
+## ComponentGallery
+
+Галерея импортируется из отдельного `@sylvieshare/share-ui/gallery` и показывает
+в теме consumer-приложения каждый публичный визуальный компонент, включая
+интерактивные floating/overlay/morph состояния. Она предназначена для локальной
+разработки, визуальной приёмки и закрытых служебных страниц, а не для публичного
+пользовательского интерфейса.
+
+Каталог имён и тест покрытия не позволяют добавить компонент в основной API,
+не добавив его пример. Aliases (`RowAction*`, `PromptDialog`) считаются тем же
+каноническим компонентом и второй одинаковый пример не требуют.
 
 `reorderByDrop(items, fromIndex, toIndex)` возвращает новый массив и не меняет
 исходный. `toIndex` задаётся в координатах массива с уже удалённым source.

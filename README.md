@@ -23,9 +23,11 @@
 - modal/morph overlays;
 - `useSortable`, `reorderByDrop`, viewport и morph composables;
 - базовые theme-токены и класс `.share-app-canvas` из `styles.css`.
+- отдельную встраиваемую галерею всех публичных визуальных компонентов.
 
 Подробности: [архитектура](./docs/architecture.md),
 [темизация](./docs/theming.md), [публичные компоненты](./docs/components.md),
+[галерея компонентов](./docs/gallery.md),
 [карта миграции](./docs/migration.md),
 [разработка и релизы](./docs/development.md).
 
@@ -58,6 +60,14 @@ npm install
 npm test
 npm run build
 npm run check
+```
+
+`npm run dev` запускает локальную интерактивную галерею. В приложении она
+подключается отдельным entry point, поэтому код витрины не входит в обычный
+импорт библиотеки:
+
+```js
+import { ComponentGallery } from '@sylvieshare/share-ui/gallery'
 ```
 
 `dist/` намеренно хранится в Git: текущие consumers устанавливают готовую

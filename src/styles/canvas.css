@@ -2,6 +2,8 @@
   background-color: var(--app-canvas-bg);
   background-image: var(--app-canvas-pattern);
   background-size: var(--app-canvas-dot-size) var(--app-canvas-dot-size);
+  background-position: var(--app-canvas-position);
+  background-repeat: repeat;
   color: var(--text-1);
   font-family: var(--font-ui);
 }

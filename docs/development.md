@@ -9,8 +9,13 @@ npm run build
 npm run check
 ```
 
+`npm run dev` открывает автономную `ComponentGallery`. Это тот же компонент,
+который consumers могут встроить через `@sylvieshare/share-ui/gallery`, поэтому
+локальная витрина и служебные страницы приложений не расходятся.
+
 `npm run build` проверяет отсутствие прямых UI-цветов вне `tokens.css`, собирает
-ESM в `dist/share-ui.js` и общий CSS в `dist/share-ui.css`, затем проверяет, что
+ESM в `dist/share-ui.js`, отдельную витрину в `dist/share-ui-gallery.js` и общий
+CSS в `dist/share-ui.css`, затем проверяет, что
 контекстные правила дочерних элементов sidebar не превратились в правила его
 корневого элемента. `vue` остаётся external peer dependency и не дублируется в
 consumer bundle.
@@ -68,6 +73,7 @@ consumer `package.json`. Имя пакета, импорты, CSS и SemVer ос
 - реализация;
 - `src/index.js` и `src/index.d.ts`;
 - `docs/components.md` и при необходимости `docs/architecture.md`;
+- `ComponentGallery` и её coverage-каталог для нового визуального компонента;
 - тесты;
 - собранный `dist/`.
 

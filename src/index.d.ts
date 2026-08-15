@@ -206,6 +206,7 @@ export const AppShell: DefineComponent<{
   mobileBreakpoint?: 640 | 768
   contentTag?: string
   railWidth?: number | string
+  canvas?: boolean
 }>
 
 export const AppSidebar: DefineComponent<{
