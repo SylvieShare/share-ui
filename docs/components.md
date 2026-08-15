@@ -119,6 +119,24 @@ Visible labels редактора передаются через `labels`; па
 Публичные чистые функции: `sanitizeRichHtml`, `sanitizeRichTextUrl`,
 `sanitizeRichTextColor`, `escapeHtml`, `plainTextToRichHtml`.
 
+## Application chrome
+
+- `AppShell` — layout boundary для sidebar/content/optional rail. Режим `column`
+  занимает постоянные 64 px под sidebar, `fixed` даёт такой же content offset.
+- `AppSidebar` — DnD-style collapsible sidebar, optional localStorage state,
+  fixed/sticky positioning и mobile modes `hide`/`top`.
+- `SidebarBrand`, `SidebarNavItem`, `SidebarGroup`, `SidebarToggle` — визуальные
+  части панели с единым active marker, icon column и label motion.
+
+Панель не импортирует vue-router и icon library. Consumer передаёт `RouterLink`
+в prop `as`, `to` через attrs, active state, icon component/slot и свои auth,
+search, account и theme controls через slots. Ширины задают токены
+`--share-sidebar-collapsed-w` (64 px) и `--share-sidebar-expanded-w` (224 px).
+
+Breakpoint выбирается из 640/768: DnD Share сохраняет desktop sidebar до 640,
+HavenShare скрывает его при своём bottom-nav до 768, TrenchShare переключает
+его в горизонтальный `top` mode до 768.
+
 ## useSortable / reorderByDrop
 
 `useSortable` управляет pointer lifecycle, ghost, placeholder-представлением и

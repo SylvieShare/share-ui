@@ -191,6 +191,49 @@ export const RichTextEditor: DefineComponent<{
   labels?: RichTextLabels
 }>
 
+export const AppShell: DefineComponent<{
+  sidebarMode?: 'column' | 'fixed'
+  sidebarVisible?: boolean
+  mobileBreakpoint?: 640 | 768
+  contentTag?: string
+  railWidth?: number | string
+}>
+
+export const AppSidebar: DefineComponent<{
+  modelValue?: boolean
+  defaultExpanded?: boolean
+  storageKey?: string
+  position?: 'fixed' | 'sticky'
+  mobileMode?: 'hide' | 'top'
+  mobileBreakpoint?: 640 | 768
+  ariaLabel?: string
+  showToggle?: boolean
+  expandLabel?: string
+  collapseLabel?: string
+}>
+
+export const SidebarBrand: DefineComponent<{
+  as?: string | Component
+  icon?: Component | null
+  label?: string
+  ariaLabel?: string
+}>
+
+export const SidebarNavItem: DefineComponent<{
+  as?: string | Component
+  icon?: Component | null
+  label?: string
+  title?: string
+  active?: boolean
+}>
+
+export const SidebarGroup: DefineComponent<{ label?: string }>
+export const SidebarToggle: DefineComponent<{
+  expanded?: boolean
+  expandLabel?: string
+  collapseLabel?: string
+}>
+
 export const AppModal: DefineComponent<{
   zIndex?: number
   wide?: boolean

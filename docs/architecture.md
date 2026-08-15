@@ -45,6 +45,10 @@ i18n-библиотек и доменных моделей.
 Например, общий header может принимать navigation items, slots и события, но
 не может сам читать route, account store или вызывать logout API.
 
+Application chrome следует этому правилу буквально: `AppSidebar` владеет
+геометрией и transient expanded state, а consumer adapter вычисляет active route,
+передаёт RouterLink/icons и реализует logout/search/account actions.
+
 То же правило применяется к меню действий: `ActionMenuItem` принимает icon
 component/slot, а соответствие доменных action names и иконок остаётся в
 тонком adapter-е приложения. Так библиотека не зависит от конкретного icon set.

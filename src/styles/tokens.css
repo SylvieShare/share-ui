@@ -41,4 +41,8 @@
   --r-pill: 999px;
   --font-ui: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
   --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+
+  /* Shared application chrome */
+  --share-sidebar-collapsed-w: 64px;
+  --share-sidebar-expanded-w: 224px;
 }
