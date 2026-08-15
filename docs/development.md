@@ -41,7 +41,9 @@ integrity скачанного архива.
 
 ## Выпуск Git-версии
 
-Пока registry не настроен, `dist/` является частью release commit:
+Пока registry не настроен, `dist/` является частью release commit. GitHub tag
+archive не запускает `prepack`, поэтому tag без собранного `dist/` установит
+consumer-у старый JavaScript даже при новой версии в `package.json`:
 
 1. изменить `version` в `package.json`;
 2. выполнить `npm run check`;
