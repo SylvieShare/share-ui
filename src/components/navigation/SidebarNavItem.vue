@@ -65,6 +65,7 @@ defineProps({
 .share-sidebar-link.active::before { opacity: 1; }
 .share-sidebar-link.active .share-sidebar-icon { color: var(--accent-soft); }
 .share-sidebar-icon { display: inline-flex; align-items: center; justify-content: center; width: 42px; flex: 0 0 42px; }
+.share-sidebar-icon :deep(svg) { width: 20px; height: 20px; }
 
 @media (max-width: 768px) {
   :global(.share-app-sidebar--mobile-top) .share-sidebar-link {

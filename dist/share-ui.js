@@ -2200,7 +2200,7 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			t.$slots.account ? (y(), o("div", Bt, [S(t.$slots, "account", { expanded: f.value }, void 0, !0)])) : a("", !0)
 		], 2));
 	}
-}, [["__scopeId", "data-v-e6c7bc47"]]), Ht = {
+}, [["__scopeId", "data-v-2025fec5"]]), Ht = {
 	class: "share-sidebar-brand__icon sidebar-brand-icon",
 	"aria-hidden": "true"
 }, Ut = { class: "share-sidebar-label share-sidebar-brand__label sidebar-label sidebar-brand-label" }, Wt = /*#__PURE__*/ N(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
@@ -2298,7 +2298,7 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			"aria-current"
 		]));
 	}
-}), [["__scopeId", "data-v-429e99dc"]]), Xt = {
+}), [["__scopeId", "data-v-345e2aad"]]), Xt = {
 	key: 0,
 	class: "share-editor-panel__title"
 }, Zt = /*#__PURE__*/ N({

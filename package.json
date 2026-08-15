@@ -1,6 +1,6 @@
 {
   "name": "@sylvieshare/share-ui",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Shared Vue 3 design tokens, UI primitives and headless interactions for SylvieShare applications.",
   "type": "module",
   "main": "./dist/share-ui.js",

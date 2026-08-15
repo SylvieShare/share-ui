@@ -214,6 +214,24 @@ defineExpose({ expanded, expand, collapse, toggle })
     border-bottom: 1px solid var(--border);
     box-shadow: none;
   }
+
+  .share-app-sidebar--breakpoint-640.share-app-sidebar--mobile-top .share-sidebar-head {
+    width: auto;
+    height: auto;
+    padding: 0;
+    border: 0;
+  }
+
+  .share-app-sidebar--breakpoint-640.share-app-sidebar--mobile-top .share-sidebar-nav {
+    flex: 1;
+    flex-direction: row;
+    gap: 4px;
+    padding: 0;
+    overflow-x: auto;
+  }
+
+  .share-app-sidebar--breakpoint-640.share-app-sidebar--mobile-top .share-sidebar-tools,
+  .share-app-sidebar--breakpoint-640.share-app-sidebar--mobile-top .share-sidebar-account { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
