@@ -28,7 +28,16 @@ npm install /Users/wrz2/MyProjects/share-ui
 ```
 
 Такую `file:` dependency и абсолютный путь не коммитят. Зафиксированный consumer
-всегда использует Git tag либо package registry.
+использует HTTPS-архив Git tag либо package registry:
+
+```bash
+npm install --save-exact \
+  "https://github.com/SylvieShare/share-ui/archive/refs/tags/v0.1.1.tar.gz"
+```
+
+GitHub shorthand и `git+ssh` здесь не используются: чистые deploy/CI-сборки не
+должны зависеть от локального SSH-ключа. `package-lock.json` фиксирует URL и
+integrity скачанного архива.
 
 ## Выпуск Git-версии
 
@@ -39,7 +48,7 @@ npm install /Users/wrz2/MyProjects/share-ui
 3. проверить изменения исходников, документации и `dist/`;
 4. создать commit и аннотированный tag `vX.Y.Z`;
 5. отправить branch и tag;
-6. обновить точную tag-зависимость в consumers и выполнить их проверки.
+6. обновить точный HTTPS tag URL в consumers и выполнить их проверки.
 
 Тег после публикации не передвигается. Исправление получает новую patch-версию.
 

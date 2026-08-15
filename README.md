@@ -29,10 +29,11 @@
 
 ## Подключение
 
-До публикации в package registry consumers используют неизменяемый Git tag:
+До публикации в package registry consumers используют HTTPS-архив неизменяемого
+Git tag. Такой install не требует SSH-ключа на build machine:
 
 ```bash
-npm install --save-exact "git+https://github.com/SylvieShare/share-ui.git#v0.1.0"
+npm install --save-exact "https://github.com/SylvieShare/share-ui/archive/refs/tags/v0.1.1.tar.gz"
 ```
 
 ```js
