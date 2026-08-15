@@ -67,20 +67,6 @@ defineProps({
 .share-sidebar-icon { display: inline-flex; align-items: center; justify-content: center; width: 42px; flex: 0 0 42px; }
 .share-sidebar-icon :deep(svg) { width: 20px; height: 20px; }
 
-@media (max-width: 768px) {
-  :global(.share-app-sidebar--mobile-top) .share-sidebar-link {
-    width: auto;
-    min-width: 42px;
-    padding-right: 0;
-    flex-shrink: 0;
-  }
-
-  :global(.share-app-sidebar--mobile-top) .share-sidebar-link.active {
-    padding-right: 12px;
-  }
-
-  :global(.share-app-sidebar--mobile-top) .share-sidebar-link::before { display: none; }
-}
 </style>
 
 <style>
@@ -102,6 +88,18 @@ defineProps({
 }
 
 @media (max-width: 768px) {
+  .share-app-sidebar--mobile-top .share-sidebar-link {
+    width: auto;
+    min-width: 42px;
+    padding-right: 0;
+    flex-shrink: 0;
+  }
+
+  .share-app-sidebar--mobile-top .share-sidebar-link.active {
+    padding-right: 12px;
+  }
+
+  .share-app-sidebar--mobile-top .share-sidebar-link::before { display: none; }
   .share-app-sidebar--mobile-top .share-sidebar-label { display: none; }
   .share-app-sidebar--mobile-top .share-sidebar-link.active .share-sidebar-label { display: inline; opacity: 1; transform: none; }
 }

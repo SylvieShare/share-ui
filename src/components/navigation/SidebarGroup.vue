@@ -22,7 +22,10 @@ defineProps({ label: { type: String, default: '' } })
   transition: max-height 0.2s ease, padding 0.2s ease, opacity 0.12s ease;
 }
 
-:global(.share-app-sidebar--expanded) .share-sidebar-group {
+</style>
+
+<style>
+.share-app-sidebar--expanded .share-sidebar-group {
   max-height: 34px;
   padding-top: 14px;
   padding-bottom: 4px;
@@ -30,6 +33,6 @@ defineProps({ label: { type: String, default: '' } })
 }
 
 @media (max-width: 768px) {
-  :global(.share-app-sidebar--mobile-top) .share-sidebar-group { display: none; }
+  .share-app-sidebar--mobile-top .share-sidebar-group { display: none; }
 }
 </style>

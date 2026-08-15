@@ -2240,7 +2240,7 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			_: 3
 		}, 16, ["aria-label"]));
 	}
-}), [["__scopeId", "data-v-793069ce"]]), Gt = { class: "share-sidebar-group" }, Kt = /*#__PURE__*/ N({
+}), [["__scopeId", "data-v-d1fa564e"]]), Gt = { class: "share-sidebar-group" }, Kt = /*#__PURE__*/ N({
 	__name: "SidebarGroup",
 	props: { label: {
 		type: String,
@@ -2249,7 +2249,7 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 	setup(e) {
 		return (t, n) => (y(), o("div", Gt, [S(t.$slots, "default", {}, () => [l(w(e.label), 1)], !0)]));
 	}
-}, [["__scopeId", "data-v-d69f1ba5"]]), qt = {
+}, [["__scopeId", "data-v-169df1ac"]]), qt = {
 	class: "share-sidebar-icon sidebar-icon",
 	"aria-hidden": "true"
 }, Jt = { class: "share-sidebar-label sidebar-label" }, Yt = /*#__PURE__*/ N(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
@@ -2298,7 +2298,7 @@ var mt = ["innerHTML"], ht = /*#__PURE__*/ N({
 			"aria-current"
 		]));
 	}
-}), [["__scopeId", "data-v-345e2aad"]]), Xt = {
+}), [["__scopeId", "data-v-28979fe2"]]), Xt = {
 	key: 0,
 	class: "share-editor-panel__title"
 }, Zt = /*#__PURE__*/ N({

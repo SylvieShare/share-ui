@@ -10,8 +10,10 @@ npm run check
 ```
 
 `npm run build` проверяет отсутствие прямых UI-цветов вне `tokens.css`, собирает
-ESM в `dist/share-ui.js` и общий CSS в `dist/share-ui.css`. `vue` остаётся
-external peer dependency и не дублируется в consumer bundle.
+ESM в `dist/share-ui.js` и общий CSS в `dist/share-ui.css`, затем проверяет, что
+контекстные правила дочерних элементов sidebar не превратились в правила его
+корневого элемента. `vue` остаётся external peer dependency и не дублируется в
+consumer bundle.
 
 Перед релизом полезно проверить содержимое устанавливаемого архива:
 

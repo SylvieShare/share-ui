@@ -44,7 +44,10 @@ defineProps({
 .share-sidebar-brand__icon { display: inline-flex; align-items: center; justify-content: center; width: 42px; flex: 0 0 42px; }
 .share-sidebar-brand__label { font-weight: 700; letter-spacing: 0.03em; }
 
+</style>
+
+<style>
 @media (max-width: 768px) {
-  :global(.share-app-sidebar--mobile-top) .share-sidebar-brand { width: 42px; flex: 0 0 42px; }
+  .share-app-sidebar--mobile-top .share-sidebar-brand { width: 42px; flex: 0 0 42px; }
 }
 </style>

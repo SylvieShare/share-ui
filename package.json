@@ -1,6 +1,6 @@
 {
   "name": "@sylvieshare/share-ui",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Shared Vue 3 design tokens, UI primitives and headless interactions for SylvieShare applications.",
   "type": "module",
   "main": "./dist/share-ui.js",
@@ -25,9 +25,10 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "npm run check:colors && vite build",
+    "build": "npm run check:colors && vite build && npm run check:sidebar-css",
     "test": "vitest run",
     "check:colors": "node scripts/check-colors.mjs",
+    "check:sidebar-css": "node scripts/check-sidebar-css.mjs",
     "check": "npm test && npm run build",
     "prepack": "npm run check"
   },
