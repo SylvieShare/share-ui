@@ -78,6 +78,7 @@ export interface UseSortableResult<T> {
   sourceGroup: Ref<string | null>
   targetGroup: Ref<string | null>
   targetIndex: Ref<number>
+  suppressNextClick: Ref<boolean>
   startDrag: (event: PointerEvent, item: T, groupName: string, index: number) => void
   shouldSuppressClick: () => boolean
   isSource: (item: T) => boolean

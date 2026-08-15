@@ -45,6 +45,10 @@ DOM-контракт:
 - direct item: `data-sortable-key="stable-key"`;
 - handle вызывает `startDrag(event, item, groupName, index)`.
 
+После завершения реального drag `suppressNextClick` остаётся `true` 250 мс;
+эквивалентная проверка доступна через `shouldSuppressClick()`. Это позволяет
+строкам с click-навигацией не открываться после отпускания drag handle.
+
 Алгоритм сейчас вертикальный. Горизонтальный/grid API не добавляется до
 появления реального второго сценария.
 

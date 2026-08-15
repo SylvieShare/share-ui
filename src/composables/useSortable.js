@@ -33,12 +33,14 @@ export function useSortable(config) {
   const sourceIndex = ref(-1)
   const targetGroup = ref(null)
   const targetIndex = ref(-1)
+  const suppressNextClick = ref(false)
 
   let ghostEl = null
   let ghostOffsetX = 0
   let ghostOffsetY = 0
   let pendingStart = null
   let suppressClickUntil = 0
+  let suppressClickTimer = null
 
   function startDrag(e, item, groupName, index) {
     if (e.button !== undefined && e.button !== 0) return
@@ -132,15 +134,14 @@ export function useSortable(config) {
     for (const el of els) {
       const g = el.getAttribute && el.getAttribute('data-sortable-container')
       if (g && groups[g]) {
+        const group = groups[g]
+        if (group.accepts && !group.accepts(sourceItem.value, sourceGroup.value, g)) continue
         containerEl = el
         groupName = g
         break
       }
     }
     if (!groupName) return
-
-    const group = groups[groupName]
-    if (group.accepts && !group.accepts(sourceItem.value, sourceGroup.value, groupName)) return
 
     const sourceKey = sourceItem.value ? String(getKey(sourceItem.value)) : null
     const children = Array.from(containerEl.querySelectorAll(':scope > [data-sortable-key]'))
@@ -192,7 +193,15 @@ export function useSortable(config) {
     targetGroup.value = null
     targetIndex.value = -1
     pendingStart = null
-    if (wasDragging) suppressClickUntil = Date.now() + 250
+    if (wasDragging) {
+      suppressClickUntil = Date.now() + 250
+      suppressNextClick.value = true
+      clearTimeout(suppressClickTimer)
+      suppressClickTimer = setTimeout(() => {
+        suppressNextClick.value = false
+        suppressClickTimer = null
+      }, 250)
+    }
   }
 
   function shouldSuppressClick() {
@@ -220,7 +229,11 @@ export function useSortable(config) {
     return result
   }
 
-  onBeforeUnmount(cleanup)
+  onBeforeUnmount(() => {
+    cleanup()
+    clearTimeout(suppressClickTimer)
+    suppressNextClick.value = false
+  })
 
   return {
     dragging,
@@ -228,6 +241,7 @@ export function useSortable(config) {
     sourceGroup,
     targetGroup,
     targetIndex,
+    suppressNextClick,
     startDrag,
     shouldSuppressClick,
     isSource,
