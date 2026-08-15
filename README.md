@@ -26,6 +26,7 @@
 
 Подробности: [архитектура](./docs/architecture.md),
 [темизация](./docs/theming.md), [публичные компоненты](./docs/components.md),
+[карта миграции](./docs/migration.md),
 [разработка и релизы](./docs/development.md).
 
 ## Подключение
