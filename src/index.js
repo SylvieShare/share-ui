@@ -10,6 +10,15 @@ export { default as RemoveButton } from './components/RemoveButton.vue'
 export { default as SectionLabel } from './components/SectionLabel.vue'
 export { default as SlidingTabs } from './components/SlidingTabs.vue'
 export { default as ToggleSwitch } from './components/ToggleSwitch.vue'
+export { default as ActionMenu } from './components/floating/ActionMenu.vue'
+export { default as RowActionMenu } from './components/floating/ActionMenu.vue'
+export { default as ActionMenuItem } from './components/floating/ActionMenuItem.vue'
+export { default as RowActionItem } from './components/floating/ActionMenuItem.vue'
+export { default as ActionMenuSubmenu } from './components/floating/ActionMenuSubmenu.vue'
+export { default as RowActionSubmenu } from './components/floating/ActionMenuSubmenu.vue'
+export { default as BasePopover } from './components/floating/BasePopover.vue'
+export { default as ColorPresetPicker } from './components/floating/ColorPresetPicker.vue'
+export { default as ValueSelect } from './components/floating/ValueSelect.vue'
 export { default as EditorPanel } from './components/editor/EditorPanel.vue'
 export { default as EditorSection } from './components/editor/EditorSection.vue'
 export { default as EditorSectionTitle } from './components/editor/EditorSectionTitle.vue'
@@ -33,3 +42,12 @@ export { useContainerMorph } from './composables/useContainerMorph.js'
 export { useFullscreenViewportHeight } from './composables/useFullscreenViewportHeight.js'
 export { useIsMobile, useMediaQuery } from './composables/useMediaQuery.js'
 export { useSheetSubpages } from './composables/useSheetSubpages.js'
+export {
+  ACTION_MENU_GAP,
+  ACTION_MENU_MARGIN,
+  computeActionMenuPlacement,
+  computeRowActionPlacement,
+  ROW_ACTION_GAP,
+  ROW_ACTION_MARGIN,
+} from './lib/actionMenuPlacement.js'
+export { isValidHexColor, PRESET_COLORS, randomPreset } from './lib/colorPresets.js'

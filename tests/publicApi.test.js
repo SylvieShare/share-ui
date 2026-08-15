@@ -4,10 +4,15 @@ import * as shareUi from '../src/index.js'
 describe('public API', () => {
   it.each([
     'AddButton',
+    'ActionMenu',
+    'ActionMenuItem',
+    'ActionMenuSubmenu',
     'AppModal',
     'AppModalFrame',
     'AppSlider',
     'CompactCheckbox',
+    'BasePopover',
+    'ColorPresetPicker',
     'EditorPanel',
     'EditorSection',
     'EditorSectionTitle',
@@ -22,11 +27,17 @@ describe('public API', () => {
     'SlidingTabs',
     'ToggleSwitch',
     'TextPromptDialog',
+    'ValueSelect',
   ])('exports %s', name => {
     expect(shareUi[name]).toBeTruthy()
   })
 
   it.each(['restoreFocus', 'useFullscreenViewportHeight', 'useIsMobile', 'useMediaQuery', 'useSheetSubpages'])(
+    'exports %s',
+    name => expect(shareUi[name]).toBeTypeOf('function'),
+  )
+
+  it.each(['computeActionMenuPlacement', 'computeRowActionPlacement', 'isValidHexColor', 'randomPreset'])(
     'exports %s',
     name => expect(shareUi[name]).toBeTypeOf('function'),
   )

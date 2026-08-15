@@ -1,4 +1,4 @@
-import type { ComputedRef, DefineComponent, Ref } from 'vue'
+import type { Component, ComputedRef, DefineComponent, Ref } from 'vue'
 
 export const BaseTile: DefineComponent<{
   color?: string | null
@@ -84,6 +84,82 @@ export const EditorPanel: DefineComponent<{ title?: string; compact?: boolean }>
 export const EditorSection: DefineComponent<{ title?: string }>
 export const EditorSectionTitle: DefineComponent<{ title?: string }>
 export const EditorTotal: DefineComponent<{}>
+
+export const BasePopover: DefineComponent<{
+  open?: boolean
+  anchor?: HTMLElement | Ref<HTMLElement | null> | null
+  placement?: 'bottom-start' | 'bottom-end' | 'right-start'
+  offset?: number
+  minWidth?: number | string
+  zIndex?: number
+  transition?: string
+  popoverClass?: string | string[] | Record<string, boolean>
+  closeOnScroll?: boolean
+  closeOnResize?: boolean
+  related?: boolean
+  role?: string
+  ariaLabel?: string
+  id?: string
+}>
+
+export const ActionMenu: DefineComponent<{
+  title?: string
+  disabled?: boolean
+  block?: boolean
+}>
+export const RowActionMenu: typeof ActionMenu
+
+export const ActionMenuItem: DefineComponent<{
+  icon?: Component | null
+  submenu?: boolean
+  submenuOpen?: boolean
+  tone?: 'default' | 'accent' | 'warning' | 'success' | 'info' | 'danger'
+}>
+export const RowActionItem: typeof ActionMenuItem
+
+export const ActionMenuSubmenu: DefineComponent<{
+  label?: string
+  minWidth?: number
+  disabled?: boolean
+  mobileBreakpoint?: number
+}>
+export const RowActionSubmenu: typeof ActionMenuSubmenu
+
+export interface ValueSelectOption<T = unknown> {
+  value: T
+  label?: string
+  disabled?: boolean
+  key?: string | number
+}
+
+export const ValueSelect: DefineComponent<{
+  modelValue?: unknown
+  options?: Array<ValueSelectOption | string | number>
+  placeholder?: string
+  searchable?: boolean
+  searchThreshold?: number
+  searchPlaceholder?: string
+  searchAriaLabel?: string
+  emptyLabel?: string
+  ariaLabel?: string
+  dropUp?: boolean
+  disabled?: boolean
+}>
+
+export const ColorPresetPicker: DefineComponent<{
+  modelValue?: string
+  colors?: string[]
+  columns?: number
+  allowCustom?: boolean
+  allowClear?: boolean
+  clearValue?: unknown
+  clearLabel?: string
+  customLabel?: string
+  ariaLabel?: string
+  inline?: boolean
+  placement?: 'bottom-start' | 'bottom-end' | 'right-start'
+  zIndex?: number
+}>
 
 export const AppModal: DefineComponent<{
   zIndex?: number
@@ -301,3 +377,37 @@ export interface UseSheetSubpagesResult {
 }
 
 export function useSheetSubpages(): UseSheetSubpagesResult
+
+export interface ActionMenuPlacementInput {
+  triggerRect: Pick<DOMRect, 'left' | 'right' | 'top' | 'bottom'>
+  popoverWidth: number
+  popoverHeight: number
+  viewportWidth: number
+  viewportHeight: number
+  viewportLeft?: number
+  viewportTop?: number
+  originX: number
+  originY: number
+  margin?: number
+  gap?: number
+}
+
+export interface ActionMenuPlacement {
+  left: number
+  top: number
+  maxHeight: number
+  opensAbove: boolean
+  originX: number
+  originY: number
+}
+
+export const ACTION_MENU_MARGIN: number
+export const ACTION_MENU_GAP: number
+export const ROW_ACTION_MARGIN: number
+export const ROW_ACTION_GAP: number
+export function computeActionMenuPlacement(input: ActionMenuPlacementInput): ActionMenuPlacement
+export const computeRowActionPlacement: typeof computeActionMenuPlacement
+
+export const PRESET_COLORS: string[]
+export function isValidHexColor(value: unknown): boolean
+export function randomPreset(colors?: string[]): string

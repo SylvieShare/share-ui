@@ -77,6 +77,30 @@ permissions или конкретном домене приложения.
 Все overlay-компоненты используют единый внутренний stack и reference-counted
 scroll lock. Поэтому Escape, focus restoration и вложенные окна не конфликтуют.
 
+## Floating UI
+
+- `BasePopover` — teleported anchored surface с placements `bottom-start`,
+  `bottom-end`, `right-start`, viewport clamp, outside-click и topmost Escape.
+- `ActionMenu` (`RowActionMenu` alias) — меню действий, которое измеряет себя и
+  открывается над trigger, когда снизу не хватает места.
+- `ActionMenuItem` (`RowActionItem` alias) — нейтральная строка меню с icon
+  component/slot, suffix, submenu state и semantic tone.
+- `ActionMenuSubmenu` (`RowActionSubmenu` alias) — соседний popover на desktop и
+  inline-раскрытие на mobile.
+- `ValueSelect` — компактный searchable listbox с disabled options, стрелками,
+  Home/End, Enter и Escape. Все видимые тексты передаются props.
+- `ColorPresetPicker` — preset/custom/clear picker. Палитра передаётся `colors`,
+  тексты — `clearLabel`, `customLabel`, `ariaLabel`; custom text эмитится только
+  после проверки hex-формата.
+
+`PRESET_COLORS`, `isValidHexColor`, `randomPreset` и чистая функция
+`computeActionMenuPlacement` также публичны. Они позволяют consumer adapter-ам
+использовать те же данные и геометрию без копирования Vue-компонента.
+
+В package-компонентах нет словаря `action -> icon`: это доменная часть consumer.
+Например, DnD Share оставляет локальный `RowActionItem`-adapter, который только
+выбирает Lucide icon и делегирует всю разметку общему `ActionMenuItem`.
+
 ## useSortable / reorderByDrop
 
 `useSortable` управляет pointer lifecycle, ghost, placeholder-представлением и

@@ -23,6 +23,8 @@ consumer persistence and API calls
 - `src/styles` — семантические app-level токены и opt-in классы раскладки.
 - `src/components` — props/emits/slots, разметка и визуальное поведение.
 - `src/composables` — browser lifecycle и чистые преобразования данных.
+- `src/lib` — чистые алгоритмы и нейтральные наборы данных.
+- `src/internal` — владельцы глобальных browser-ресурсов; это не public API.
 - `src/index.js` — единственная публичная JavaScript-точка входа.
 - `src/index.d.ts` — типовой контракт для TypeScript-consumers.
 
@@ -43,6 +45,10 @@ i18n-библиотек и доменных моделей.
 Например, общий header может принимать navigation items, slots и события, но
 не может сам читать route, account store или вызывать logout API.
 
+То же правило применяется к меню действий: `ActionMenuItem` принимает icon
+component/slot, а соответствие доменных action names и иконок остаётся в
+тонком adapter-е приложения. Так библиотека не зависит от конкретного icon set.
+
 ## Критерии включения
 
 Код включается в пакет, если одновременно выполняются условия:
@@ -62,7 +68,7 @@ i18n-библиотек и доменных моделей.
 - Consumer владеет серверными данными, optimistic updates и обработкой ошибок.
 - Headless composable может сообщить результат действия, но не сохраняет его.
 - Глобальные browser-ресурсы (scroll lock, overlay stack, listeners) в будущих
-  overlay-компонентах должны иметь одного владельца и корректный cleanup.
+  overlay/floating-компонентах имеют одного владельца и корректный cleanup.
 
 ## Совместимость
 

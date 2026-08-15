@@ -14,13 +14,14 @@
 не знает про маршруты, Pinia stores, HTTP API, авторизацию, i18n и сущности
 конкретного приложения. Vue — единственная runtime peer dependency.
 
-Первая версия экспортирует:
+Публичный API уже включает:
 
-- `BaseTile`;
+- `BaseTile`, controls и editor primitives;
 - `FormField`, `FormTextInput`, `FormNumberInput`, `FormSelect`, `FormTextarea`,
   `FormActionButtons`;
-- `useSortable`, `reorderByDrop`;
-- `useContainerMorph`;
+- `BasePopover`, action menu, `ValueSelect`, `ColorPresetPicker`;
+- modal/morph overlays;
+- `useSortable`, `reorderByDrop`, viewport и morph composables;
 - базовые theme-токены и класс `.share-app-canvas` из `styles.css`.
 
 Подробности: [архитектура](./docs/architecture.md),
