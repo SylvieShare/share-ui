@@ -1,0 +1,44 @@
+:root {
+  /* Surfaces */
+  --bg: #1b1b1d;
+  --surface: #242427;
+  --surface-raised: #2c2c30;
+  --surface-active: #35353b;
+  --popover-bg: #202024;
+  --scrim: rgb(0 0 0 / 62%);
+
+  /* Shared application canvas */
+  --app-canvas-bg: var(--bg);
+  --app-canvas-dot-color: color-mix(in srgb, var(--border-strong) 42%, transparent);
+  --app-canvas-dot-size: 24px;
+  --app-canvas-pattern: radial-gradient(circle, var(--app-canvas-dot-color) 1px, transparent 1px);
+
+  /* Lines and text */
+  --border: rgb(255 255 255 / 8%);
+  --border-strong: rgb(255 255 255 / 16%);
+  --text-1: #ececed;
+  --text-2: #a6a6ab;
+  --text-muted: #8a8a92;
+  --text-on-accent: #fff;
+
+  /* Product accent: consumers normally override only --accent. */
+  --accent: #7c5ce2;
+  --accent-hover: color-mix(in srgb, var(--accent) 84%, black);
+  --accent-soft: color-mix(in srgb, var(--accent) 54%, white);
+
+  /* Cross-product semantic colors */
+  --danger: #e05555;
+  --success: #4caf6e;
+  --warning: #fcbe24;
+  --info: #5c95e8;
+
+  /* Shape, effects and typography */
+  --shadow-lg: 0 18px 48px rgb(0 0 0 / 42%), 0 0 0 1px rgb(255 255 255 / 5%);
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-pill: 999px;
+  --font-ui: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+}

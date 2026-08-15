@@ -1,0 +1,7 @@
+node_modules/
+coverage/
+.DS_Store
+*.tgz
+
+# dist is committed intentionally: consumers currently install immutable Git tags.
+!dist/

@@ -1,0 +1,7 @@
+.share-app-canvas {
+  background-color: var(--app-canvas-bg);
+  background-image: var(--app-canvas-pattern);
+  background-size: var(--app-canvas-dot-size) var(--app-canvas-dot-size);
+  color: var(--text-1);
+  font-family: var(--font-ui);
+}
