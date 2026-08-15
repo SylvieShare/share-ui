@@ -8,6 +8,83 @@ export const BaseTile: DefineComponent<{
   interactive?: boolean
 }>
 
+export const AddButton: DefineComponent<{
+  label?: string
+  variant?: 'inline' | 'icon'
+  block?: boolean
+  disabled?: boolean
+}>
+
+export const RemoveButton: DefineComponent<{
+  label: string
+  variant?: 'inline' | 'boxed'
+  disabled?: boolean
+}>
+
+export const ToggleSwitch: DefineComponent<{
+  modelValue?: boolean
+  label?: string
+  ariaLabel?: string
+  disabled?: boolean
+}>
+
+export interface ToggleOption<T = unknown> {
+  value: T
+  label: string
+  disabled?: boolean
+}
+
+export const MultiToggle: DefineComponent<{
+  options: ToggleOption[]
+  modelValue?: unknown
+  block?: boolean
+  neutralValue?: unknown
+  disabled?: boolean
+  ariaLabel?: string
+}>
+
+export const CompactCheckbox: DefineComponent<{
+  modelValue?: boolean
+  disabled?: boolean
+  label: string
+}>
+
+export const SectionLabel: DefineComponent<{
+  title?: string
+  border?: boolean
+  align?: 'left' | 'center' | 'right' | ''
+}>
+
+export interface SlidingTab<T = string | number> {
+  key: T
+  title: string
+  icon?: string
+  svg?: string
+  disabled?: boolean
+  id?: string
+  panelId?: string
+}
+
+export const SlidingTabs: DefineComponent<{
+  tabs: SlidingTab[]
+  modelValue?: string | number | null
+  ariaLabel?: string
+}>
+
+export const AppSlider: DefineComponent<{
+  modelValue: number
+  min?: number
+  max?: number
+  step?: number | string
+  disabled?: boolean
+  label?: string
+}>
+
+export const EditorPanel: DefineComponent<{ title?: string; compact?: boolean }>
+export const EditorSection: DefineComponent<{ title?: string }>
+export const EditorSectionTitle: DefineComponent<{ title?: string }>
+export const EditorTotal: DefineComponent<{}>
+
 export const FormActionButtons: DefineComponent<{
   submitText?: string
   cancelText?: string
@@ -113,3 +190,6 @@ export interface UseContainerMorphResult {
 }
 
 export function useContainerMorph(options?: { open?: number; close?: number }): UseContainerMorphResult
+export function useMediaQuery(query: string): Ref<boolean>
+export function useIsMobile(maxWidth?: number): Ref<boolean>
+export function useFullscreenViewportHeight(scale?: number): Ref<string>

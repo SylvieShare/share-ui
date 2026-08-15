@@ -33,6 +33,34 @@ Deep imports из `dist/` или `src/` не являются контракто
 Компоненты не содержат validation rules и переводов приложения. Тексты можно
 передавать props; field-level ошибки выводит consumer рядом с контролом.
 
+## Controls
+
+- `AddButton`: `inline` и `icon` варианты, `block`, `disabled`, слот текста.
+- `RemoveButton`: `inline` и `boxed`; доступное имя обязательно передаётся в `label`.
+- `ToggleSwitch`: boolean `v-model`, optional label/default slot, `disabled`.
+- `MultiToggle`: options `{ value, label, disabled? }`, `block`, `neutralValue`;
+  поддерживает стрелки, Home и End.
+- `CompactCheckbox`: компактный checkbox для строк и таблиц.
+- `SlidingTabs`: tabs `{ key, title, icon?, disabled?, id?, panelId? }`, icon-slot
+  и клавиатурная навигация.
+- `AppSlider`: доступный native range с DnD Share visual style.
+- `SectionLabel`: общий uppercase label, optional border/actions/alignment.
+
+В библиотеке нет пользовательских переводов: visible strings и доступные имена
+передаются consumer через props/slots.
+
+## Editor primitives
+
+`EditorPanel`, `EditorSection`, `EditorSectionTitle` и `EditorTotal` задают общий
+ритм небольших форм внутри modal/morph sheet. Они не знают о block schemas,
+permissions или конкретном домене приложения.
+
+## Viewport composables
+
+- `useMediaQuery(query)` — reactive matchMedia wrapper;
+- `useIsMobile(maxWidth = 768)` — согласованный mobile breakpoint;
+- `useFullscreenViewportHeight(scale = 0.94)` — высота с учётом Visual Viewport.
+
 ## useSortable / reorderByDrop
 
 `useSortable` управляет pointer lifecycle, ghost, placeholder-представлением и
