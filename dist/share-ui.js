@@ -1,14 +1,14 @@
-import { $ as e, A as t, B as n, C as r, D as i, E as a, F as o, G as s, H as c, I as l, J as u, K as d, L as f, M as p, N as m, O as h, P as g, Q as _, R as v, S as y, T as b, U as x, V as S, W as C, X as w, Y as T, Z as E, _ as D, a as O, at as ee, b as te, c as ne, d as re, et as k, f as A, g as j, h as M, i as N, it as P, j as F, k as I, l as L, m as R, n as z, nt as B, o as V, p as H, q as U, r as W, rt as ie, s as G, t as K, tt as q, u as J, v as Y, w as ae, x as oe, y as se, z as X } from "./FormTextarea-B9qOJUye.js";
-import { computed as Z, onBeforeUnmount as Q, ref as $ } from "vue";
+import { $ as e, A as t, B as n, C as r, D as i, E as a, F as o, G as s, H as c, I as l, J as u, K as d, L as f, M as p, N as m, O as h, P as g, Q as _, R as v, S as y, T as b, U as x, V as S, W as C, X as w, Y as T, Z as E, _ as D, a as O, at as ee, b as te, c as ne, d as re, et as k, f as A, g as j, h as M, i as N, it as P, j as F, k as I, l as L, m as R, n as z, nt as B, o as V, ot as H, p as U, q as W, r as ie, rt as G, s as K, t as q, tt as J, u as Y, v as ae, w as oe, x as se, y as ce, z as X } from "./FormTextarea-DheaaOrx.js";
+import { computed as Z, onBeforeUnmount as le, ref as Q } from "vue";
 //#region src/composables/useSortable.js
-var ce = 4;
-function le(e, t, n) {
+var $ = 4;
+function ue(e, t, n) {
 	if (t < 0) return e.slice();
 	let r = e.slice(), [i] = r.splice(t, 1);
 	return r.splice(Math.min(n, r.length), 0, i), r;
 }
-function ue(e) {
-	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = $(!1), o = $(null), s = $(null), c = $(-1), l = $(null), u = $(-1), d = $(!1), f = null, p = 0, m = 0, h = null, g = 0, _ = null;
+function de(e) {
+	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = Q(!1), o = Q(null), s = Q(null), c = Q(-1), l = Q(null), u = Q(-1), d = Q(!1), f = null, p = 0, m = 0, h = null, g = 0, _ = null;
 	function v(e, t, n, r) {
 		if (e.button !== void 0 && e.button !== 0) return;
 		let i = e.currentTarget.closest("[data-sortable-key]");
@@ -25,7 +25,7 @@ function ue(e) {
 		if (!a.value) {
 			if (!h) return;
 			let t = e.clientX - h.x, n = e.clientY - h.y;
-			if (Math.hypot(t, n) < ce) return;
+			if (Math.hypot(t, n) < $) return;
 			b();
 		}
 		x(e.clientX, e.clientY), S(e.clientX, e.clientY);
@@ -137,7 +137,7 @@ function ue(e) {
 		}
 		return c;
 	}
-	return Q(() => {
+	return le(() => {
 		T(), clearTimeout(_), d.value = !1;
 	}), {
 		dragging: a,
@@ -154,9 +154,9 @@ function ue(e) {
 }
 //#endregion
 //#region src/composables/useSheetSubpages.js
-var de = "cubic-bezier(.2, 0, 0, 1)", fe = 320;
-function pe() {
-	let e = $("detail"), t = $(0), n = $(!1), r = 1, i = null, a = Z(() => n.value ? `transform ${fe}ms ${de}` : "none"), o = Z(() => ({
+var fe = "cubic-bezier(.2, 0, 0, 1)", pe = 320;
+function me() {
+	let e = Q("detail"), t = Q(0), n = Q(!1), r = 1, i = null, a = Z(() => n.value ? `transform ${pe}ms ${fe}` : "none"), o = Z(() => ({
 		transform: `translateX(${(-t.value * 100).toFixed(3)}%)`,
 		transition: a.value
 	})), s = Z(() => ({
@@ -205,4 +205,4 @@ function pe() {
 	};
 }
 //#endregion
-export { s as ACTION_MENU_GAP, d as ACTION_MENU_MARGIN, a as AccountMenu, C as ActionMenu, C as RowActionMenu, x as ActionMenuItem, x as RowActionItem, X as ActionMenuSubmenu, X as RowActionSubmenu, P as AddButton, H as AppModal, A as AppModalFrame, b as AppShell, r as AppSidebar, ie as AppSlider, n as BasePopover, ee as BaseTile, o as ColorPresetPicker, B as CompactCheckbox, re as ConfirmDialog, se as EditorPanel, D as EditorSection, Y as EditorSectionTitle, j as EditorTotal, G as FormActionButtons, N as FormField, W as FormNumberInput, z as FormSelect, V as FormTextInput, K as FormTextarea, J as ModalShell, ne as MorphSheet, q as MultiToggle, l as PRESET_COLORS, O as PromptDialog, O as TextPromptDialog, U as ROW_ACTION_GAP, u as ROW_ACTION_MARGIN, k as RemoveButton, h as RichContent, i as RichTextEditor, e as SectionLabel, y as SidebarBrand, oe as SidebarGroup, te as SidebarNavItem, ae as SidebarToggle, _ as SlidingTabs, E as ToggleSwitch, g as ValueSelect, T as computeActionMenuPlacement, w as computeRowActionPlacement, I as escapeHtml, f as isValidHexColor, t as plainTextToRichHtml, v as randomPreset, le as reorderByDrop, R as restoreFocus, F as sanitizeRichHtml, p as sanitizeRichTextColor, m as sanitizeRichTextUrl, L as useContainerMorph, M as useFullscreenViewportHeight, S as useIsMobile, c as useMediaQuery, pe as useSheetSubpages, ue as useSortable };
+export { s as ACTION_MENU_GAP, d as ACTION_MENU_MARGIN, a as AccountMenu, C as ActionMenu, C as RowActionMenu, x as ActionMenuItem, x as RowActionItem, X as ActionMenuSubmenu, X as RowActionSubmenu, ee as AddButton, U as AppModal, A as AppModalFrame, b as AppShell, r as AppSidebar, P as AppSlider, n as BasePopover, H as BaseTile, o as ColorPresetPicker, G as CompactCheckbox, re as ConfirmDialog, ce as EditorPanel, D as EditorSection, ae as EditorSectionTitle, j as EditorTotal, K as FormActionButtons, N as FormField, ie as FormNumberInput, z as FormSelect, V as FormTextInput, q as FormTextarea, Y as ModalShell, ne as MorphSheet, B as MultiToggle, l as PRESET_COLORS, O as PromptDialog, O as TextPromptDialog, W as ROW_ACTION_GAP, u as ROW_ACTION_MARGIN, J as RemoveButton, h as RichContent, i as RichTextEditor, k as SectionLabel, e as SegmentDonutChart, y as SidebarBrand, se as SidebarGroup, te as SidebarNavItem, oe as SidebarToggle, _ as SlidingTabs, E as ToggleSwitch, g as ValueSelect, T as computeActionMenuPlacement, w as computeRowActionPlacement, I as escapeHtml, f as isValidHexColor, t as plainTextToRichHtml, v as randomPreset, ue as reorderByDrop, R as restoreFocus, F as sanitizeRichHtml, p as sanitizeRichTextColor, m as sanitizeRichTextUrl, L as useContainerMorph, M as useFullscreenViewportHeight, S as useIsMobile, c as useMediaQuery, me as useSheetSubpages, de as useSortable };

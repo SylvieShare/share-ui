@@ -17,6 +17,7 @@
 Публичный API уже включает:
 
 - `BaseTile`, controls и editor primitives;
+- `SegmentDonutChart` для нейтральной визуализации состава значения;
 - `FormField`, `FormTextInput`, `FormNumberInput`, `FormSelect`, `FormTextarea`,
   `FormActionButtons`;
 - `BasePopover`, action menu, `ValueSelect`, `ColorPresetPicker`;

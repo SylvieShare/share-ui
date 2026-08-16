@@ -49,6 +49,16 @@ Deep imports из `dist/` или `src/` не являются контракто
 В библиотеке нет пользовательских переводов: visible strings и доступные имена
 передаются consumer через props/slots.
 
+## Data visualization
+
+`SegmentDonutChart` показывает состав общего значения кольцевой диаграммой и
+легендой. Consumer передаёт нейтральные сегменты `{ key?, label?, value, color? }`,
+форматирование через `formatValue` и подпись суммы через `totalLabel`. Компонент
+сам нормализует доли, игнорирует отрицательные значения и использует
+семантическую палитру как fallback. Центральную область можно полностью заменить
+слотом `center`; легенда и проценты независимо выключаются props `showLegend` и
+`showPercent`.
+
 ## Editor primitives
 
 `EditorPanel`, `EditorSection`, `EditorSectionTitle` и `EditorTotal` задают общий

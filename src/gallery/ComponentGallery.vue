@@ -35,6 +35,19 @@
             <RemoveButton label="Удалить" variant="boxed" />
           </div>
         </article>
+
+        <article
+          class="share-component-gallery__card share-component-gallery__card--wide"
+          data-share-gallery="SegmentDonutChart"
+        >
+          <h2>SegmentDonutChart</h2>
+          <SegmentDonutChart
+            :segments="donutSegments"
+            total-label="Всего"
+            aria-label="Распределение места"
+            :format-value="formatDonutValue"
+          />
+        </article>
       </div>
     </section>
 
@@ -305,6 +318,7 @@ import CompactCheckbox from '../components/CompactCheckbox.vue'
 import MultiToggle from '../components/MultiToggle.vue'
 import RemoveButton from '../components/RemoveButton.vue'
 import SectionLabel from '../components/SectionLabel.vue'
+import SegmentDonutChart from '../components/SegmentDonutChart.vue'
 import SlidingTabs from '../components/SlidingTabs.vue'
 import ToggleSwitch from '../components/ToggleSwitch.vue'
 import ActionMenu from '../components/floating/ActionMenu.vue'
@@ -381,7 +395,16 @@ const selectOptions = [
   { value: 'rare', label: 'Редкий' },
   { value: 'legendary', label: 'Легендарный' },
 ]
+const donutSegments = [
+  { key: 'images', label: 'Изображения', value: 268, color: 'var(--accent)' },
+  { key: 'video', label: 'Видео', value: 142, color: 'var(--info)' },
+  { key: 'audio', label: 'Аудио', value: 74, color: 'var(--success)' },
+]
 const form = reactive({ name: 'Новый элемент', count: 3, type: 'base', description: '' })
+
+function formatDonutValue(value) {
+  return `${value} МБ`
+}
 
 function resetForm() {
   form.name = ''

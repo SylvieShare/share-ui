@@ -6,6 +6,7 @@ export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
   'MultiToggle',
   'RemoveButton',
   'SectionLabel',
+  'SegmentDonutChart',
   'SlidingTabs',
   'ToggleSwitch',
   'ActionMenu',

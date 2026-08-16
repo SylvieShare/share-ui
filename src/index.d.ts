@@ -55,6 +55,24 @@ export const SectionLabel: DefineComponent<{
   align?: 'left' | 'center' | 'right' | ''
 }>
 
+export interface SegmentDonutChartSegment {
+  key?: string | number
+  label?: string
+  value: number
+  color?: string
+}
+
+export const SegmentDonutChart: DefineComponent<{
+  segments?: SegmentDonutChartSegment[]
+  totalLabel?: string
+  ariaLabel?: string
+  formatValue?: (value: number) => string
+  size?: number
+  strokeWidth?: number
+  showLegend?: boolean
+  showPercent?: boolean
+}>
+
 export interface SlidingTab<T = string | number> {
   key: T
   title: string

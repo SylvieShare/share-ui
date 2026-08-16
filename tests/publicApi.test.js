@@ -35,6 +35,7 @@ describe('public API', () => {
     'RichContent',
     'RichTextEditor',
     'SectionLabel',
+    'SegmentDonutChart',
     'SidebarBrand',
     'SidebarGroup',
     'SidebarNavItem',
