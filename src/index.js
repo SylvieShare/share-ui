@@ -62,8 +62,12 @@ export {
 } from './lib/actionMenuPlacement.js'
 export { isValidHexColor, PRESET_COLORS, randomPreset } from './lib/colorPresets.js'
 export {
+  createRichNodeHtml,
+  decodeRichNodePayload,
+  encodeRichNodePayload,
   escapeHtml,
   plainTextToRichHtml,
+  readRichNode,
   sanitizeRichHtml,
   sanitizeRichTextColor,
   sanitizeRichTextUrl,

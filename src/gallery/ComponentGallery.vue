@@ -177,9 +177,19 @@
       <div class="share-component-gallery__grid">
         <article class="share-component-gallery__card" data-share-gallery="RichContent RichTextEditor">
           <h2>Rich text</h2>
-          <RichTextEditor v-model="richValue" placeholder="Введите текст…" />
+          <RichTextEditor ref="richEditor" v-model="richValue" placeholder="Введите текст…">
+            <template #toolbar="{ insertRichNode }">
+              <button
+                type="button"
+                class="share-component-gallery__button share-component-gallery__button--compact"
+                @mousedown.prevent="insertRichNode({ kind: 'mention', payload: { id: 42 }, label: '@example' })"
+              >@</button>
+            </template>
+          </RichTextEditor>
           <div class="share-component-gallery__preview">
-            <RichContent :html="richValue" />
+            <RichContent :html="richValue">
+              <template #node="{ node }"><strong class="share-component-gallery__rich-node">{{ node.label }}</strong></template>
+            </RichContent>
           </div>
         </article>
 
@@ -369,7 +379,7 @@ const tabValue = ref('preview')
 const sliderValue = ref(62)
 const selectValue = ref('rare')
 const colorValue = ref('#7c5ce2')
-const richValue = ref('<p><strong>RichContent</strong> показывает очищенный результат редактора.</p>')
+const richValue = ref('<p><strong>RichContent</strong> показывает очищенный результат и <span data-rich-node="mention" data-rich-payload="%7B%22id%22%3A42%7D" contenteditable="false">@example</span>.</p>')
 const sidebarExpanded = ref(true)
 const popoverOpen = ref(false)
 const popoverAnchor = ref(null)
@@ -524,6 +534,8 @@ function resetForm() {
 
 .share-component-gallery__button:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface-raised)); }
 .share-component-gallery__button:active { transform: scale(.97); }
+.share-component-gallery__button--compact { min-width: 26px; min-height: 26px; padding: 4px; }
+.share-component-gallery__rich-node { display: inline-flex; padding: 1px 5px; border: 1px solid var(--accent); border-radius: var(--r-xs); color: var(--accent); }
 .share-component-gallery__popover-copy { display: block; max-width: 250px; padding: 5px; color: var(--text-2); font-size: 13px; line-height: 1.45; }
 
 .share-component-gallery__chrome { overflow: hidden; border: 1px solid var(--border); border-radius: var(--r-md); }

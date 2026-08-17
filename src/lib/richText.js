@@ -6,6 +6,8 @@ const ALLOWED_TAGS = new Set([
 
 const DROP_WITH_CONTENT = new Set(['embed', 'iframe', 'math', 'object', 'script', 'style', 'svg', 'template'])
 const SAFE_PROTOCOLS = new Set(['http:', 'https:', 'mailto:', 'tel:'])
+const RICH_NODE_KIND_RE = /^[a-z][a-z0-9-]{0,39}$/
+const MAX_RICH_NODE_PAYLOAD_LENGTH = 4096
 
 export function escapeHtml(value) {
   return String(value ?? '')
@@ -42,6 +44,46 @@ export function sanitizeRichTextColor(value) {
   return candidate
 }
 
+export function encodeRichNodePayload(value) {
+  try {
+    const encoded = encodeURIComponent(JSON.stringify(value ?? {}))
+    return encoded.length <= MAX_RICH_NODE_PAYLOAD_LENGTH ? encoded : ''
+  } catch {
+    return ''
+  }
+}
+
+export function decodeRichNodePayload(value) {
+  const source = String(value || '')
+  if (!source || source.length > MAX_RICH_NODE_PAYLOAD_LENGTH) return null
+  try {
+    const decoded = JSON.parse(decodeURIComponent(source))
+    return decoded && typeof decoded === 'object' && !Array.isArray(decoded) ? decoded : null
+  } catch {
+    try {
+      const decoded = JSON.parse(source)
+      return decoded && typeof decoded === 'object' && !Array.isArray(decoded) ? decoded : null
+    } catch {
+      return null
+    }
+  }
+}
+
+export function createRichNodeHtml(kind, payload, label) {
+  const safeKind = String(kind || '').trim().toLowerCase()
+  const safePayload = encodeRichNodePayload(payload)
+  if (!RICH_NODE_KIND_RE.test(safeKind) || !safePayload) return ''
+  return `<span data-rich-node="${safeKind}" data-rich-payload="${escapeHtml(safePayload)}" contenteditable="false">${escapeHtml(label || safeKind)}</span>`
+}
+
+export function readRichNode(element) {
+  if (!element?.getAttribute) return null
+  const kind = String(element.getAttribute('data-rich-node') || '').trim().toLowerCase()
+  const payload = decodeRichNodePayload(element.getAttribute('data-rich-payload'))
+  if (!RICH_NODE_KIND_RE.test(kind) || payload == null) return null
+  return { kind, payload, label: element.textContent || kind }
+}
+
 function copySafeAttributes(source, target) {
   const title = source.getAttribute('title')
   if (title) target.setAttribute('title', title)
@@ -59,6 +101,15 @@ function copySafeAttributes(source, target) {
     if (targetValue === '_blank') {
       target.setAttribute('target', '_blank')
       target.setAttribute('rel', 'noopener noreferrer')
+    }
+  }
+
+  if (target.tagName === 'SPAN') {
+    const node = readRichNode(source)
+    if (node) {
+      target.setAttribute('data-rich-node', node.kind)
+      target.setAttribute('data-rich-payload', encodeRichNodePayload(node.payload))
+      target.setAttribute('contenteditable', 'false')
     }
   }
 
@@ -87,7 +138,11 @@ function appendSanitized(source, target, documentRef) {
 
   const safeElement = documentRef.createElement(tag)
   copySafeAttributes(source, safeElement)
-  for (const child of [...source.childNodes]) appendSanitized(child, safeElement, documentRef)
+  if (safeElement.hasAttribute('data-rich-node')) {
+    safeElement.textContent = source.textContent || safeElement.getAttribute('data-rich-node')
+  } else {
+    for (const child of [...source.childNodes]) appendSanitized(child, safeElement, documentRef)
+  }
   target.appendChild(safeElement)
 }
 

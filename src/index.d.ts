@@ -184,6 +184,12 @@ export const RichContent: DefineComponent<{
   html?: string
 }>
 
+export interface RichNode<T extends Record<string, unknown> = Record<string, unknown>> {
+  kind: string
+  payload: T
+  label: string
+}
+
 export interface RichTextLabels {
   toolbar?: string
   bold?: string
@@ -198,6 +204,14 @@ export interface RichTextLabels {
   color?: string
   colorShort?: string
   clearColor?: string
+  link?: string
+  linkText?: string
+  linkTextPlaceholder?: string
+  linkUrl?: string
+  linkInvalid?: string
+  saveLink?: string
+  removeLink?: string
+  cancel?: string
 }
 
 export const RichTextEditor: DefineComponent<{
@@ -519,3 +533,7 @@ export function plainTextToRichHtml(text: unknown): string
 export function sanitizeRichTextUrl(value: unknown): string
 export function sanitizeRichTextColor(value: unknown): string
 export function sanitizeRichHtml(html: unknown): string
+export function encodeRichNodePayload(value: unknown): string
+export function decodeRichNodePayload(value: unknown): Record<string, unknown> | null
+export function createRichNodeHtml(kind: string, payload: unknown, label?: string): string
+export function readRichNode(element: Element | null | undefined): RichNode | null

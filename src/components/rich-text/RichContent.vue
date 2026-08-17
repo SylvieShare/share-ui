@@ -1,16 +1,56 @@
-<template>
-  <div class="rc" v-html="rendered" />
-</template>
+<script>
+import { computed, h } from 'vue'
+import { readRichNode, sanitizeRichHtml } from '../../lib/richText.js'
 
-<script setup>
-import { computed } from 'vue'
-import { sanitizeRichHtml } from '../../lib/richText.js'
+function safeAttributes(element) {
+  const attrs = {}
+  for (const attribute of [...element.attributes]) {
+    if (attribute.name === 'class') continue
+    attrs[attribute.name] = attribute.value
+  }
+  return attrs
+}
 
-const props = defineProps({
-  html: { type: String, default: '' },
-})
+function renderDomNode(node, slots, key) {
+  if (node.nodeType === Node.TEXT_NODE) return node.nodeValue || ''
+  if (node.nodeType !== Node.ELEMENT_NODE) return null
 
-const rendered = computed(() => sanitizeRichHtml(props.html))
+  const richNode = readRichNode(node)
+  if (richNode) {
+    const fallback = () => h('span', {
+      class: 'rc-node',
+      'data-rich-node': richNode.kind,
+      title: richNode.label,
+    }, richNode.label)
+    return h('span', { class: 'rc-node-host', key }, slots.node?.({ node: richNode, fallback }) || fallback())
+  }
+
+  const children = [...node.childNodes]
+    .map((child, index) => renderDomNode(child, slots, `${key}.${index}`))
+    .filter(child => child != null)
+  return h(node.tagName.toLowerCase(), { ...safeAttributes(node), key }, children)
+}
+
+export default {
+  name: 'RichContent',
+  inheritAttrs: false,
+  props: {
+    html: { type: String, default: '' },
+  },
+  setup(props, { slots, attrs }) {
+    const rendered = computed(() => sanitizeRichHtml(props.html))
+    return () => {
+      if (typeof DOMParser === 'undefined') {
+        return h('div', { ...attrs, class: ['rc', attrs.class], innerHTML: rendered.value })
+      }
+      const parsed = new DOMParser().parseFromString(rendered.value, 'text/html')
+      const children = [...parsed.body.childNodes]
+        .map((node, index) => renderDomNode(node, slots, String(index)))
+        .filter(node => node != null)
+      return h('div', { ...attrs, class: ['rc', attrs.class] }, children)
+    }
+  },
+}
 </script>
 
 <style scoped>
@@ -20,6 +60,20 @@ const rendered = computed(() => sanitizeRichHtml(props.html))
   font: inherit;
   line-height: 1.45;
   word-break: normal;
+}
+
+.rc-node-host { display: inline; }
+.rc-node {
+  display: inline-flex;
+  align-items: baseline;
+  max-width: 100%;
+  padding: 1px 5px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xs);
+  background: var(--surface-raised);
+  color: var(--text-2);
+  font: inherit;
+  white-space: normal;
 }
 
 .rc :deep(p) { margin: 0 0 6px; }

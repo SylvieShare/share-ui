@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import {
+  createRichNodeHtml,
+  decodeRichNodePayload,
+  encodeRichNodePayload,
   escapeHtml,
   plainTextToRichHtml,
   sanitizeRichHtml,
@@ -30,5 +33,14 @@ describe('rich text safety helpers', () => {
 
   it('has a safe escaped fallback when DOMParser is unavailable', () => {
     expect(sanitizeRichHtml('<img src=x onerror=alert(1)>')).toBe('&lt;img src=x onerror=alert(1)&gt;')
+  })
+
+  it('encodes neutral inline nodes without trusting their label or payload', () => {
+    const payload = { id: 42, query: 'one two' }
+    expect(decodeRichNodePayload(encodeRichNodePayload(payload))).toEqual(payload)
+    expect(createRichNodeHtml('mention', payload, '<Admin>')).toContain('data-rich-node="mention"')
+    expect(createRichNodeHtml('mention', payload, '<Admin>')).toContain('&lt;Admin&gt;')
+    expect(createRichNodeHtml('Bad kind', payload, 'No')).toBe('')
+    expect(decodeRichNodePayload('%not-json')).toBeNull()
   })
 })

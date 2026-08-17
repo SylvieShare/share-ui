@@ -122,20 +122,30 @@ scroll lock. Поэтому Escape, focus restoration и вложенные ок
 ## Rich text
 
 - `RichContent` — единственная точка read-only рендера сохранённого rich HTML;
-  перед `v-html` всегда вызывается `sanitizeRichHtml`.
+  перед построением DOM всегда вызывается `sanitizeRichHtml`. Атомарные inline-
+  узлы передаются consumer-у через scoped slot `node` как
+  `{ kind, payload, label }`; без слота показывается нейтральный chip.
 - `RichTextEditor` — contenteditable-редактор с общей типографикой, headings,
-  inline formatting и color picker. `paste` и `drop` перехватываются и проходят
-  тот же sanitizer до вставки; emit также содержит очищенный HTML.
+  inline formatting, color picker и нативными ссылками. Slot `toolbar` получает
+  `insertRichNode`, `updateRichNode`, `removeRichNode` и `editor`, поэтому
+  приложение добавляет собственные кнопки без fork редактора. Клик по уже
+  вставленному узлу эмитит `node-select` с DOM element и разобранным узлом.
+  `paste` и `drop` перехватываются и проходят тот же sanitizer до вставки; emit
+  также содержит очищенный HTML.
 
 Sanitizer использует allowlist тегов и атрибутов, удаляет executable/embed
 элементы, event handlers, изображения и произвольные styles. Для ссылок
 разрешены только HTTP(S), mailto, tel и относительные URL; для inline-style —
-только проверенный `color`. Без DOMParser функция возвращает escaped text, то
+только проверенный `color`. Нейтральный узел хранится как атомарный
+`span[data-rich-node][data-rich-payload]`; kind ограничен безопасным slug,
+payload — небольшим JSON object, label — plain text. Без DOMParser функция возвращает escaped text, то
 есть серверный/тестовый fallback остаётся безопасным.
 
 Visible labels редактора передаются через `labels`; палитра — через `colors`.
 Публичные чистые функции: `sanitizeRichHtml`, `sanitizeRichTextUrl`,
-`sanitizeRichTextColor`, `escapeHtml`, `plainTextToRichHtml`.
+`sanitizeRichTextColor`, `escapeHtml`, `plainTextToRichHtml`,
+`createRichNodeHtml`, `readRichNode`, `encodeRichNodePayload` и
+`decodeRichNodePayload`.
 
 ## Application chrome
 

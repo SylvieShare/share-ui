@@ -83,8 +83,11 @@ preset, поэтому consumer не зависит от CSS, случайно �
 - Глобальные browser-ресурсы (scroll lock, overlay stack, listeners) в будущих
   overlay/floating-компонентах имеют одного владельца и корректный cleanup.
 - Сохранённый пользовательский HTML проходит allowlist sanitizer и при вводе,
-  и перед `v-html`; доверие к тому, что consumer/backend уже очистил строку,
+  и перед построением read-only DOM; доверие к тому, что consumer/backend уже очистил строку,
   не является частью контракта.
+- Предметные inline-ссылки хранятся нейтральными атомарными rich nodes. Библиотека
+  владеет кодированием, sanitizing, selection и slot-механикой, consumer —
+  словарём `kind`, загрузкой payload и действиями клика/hover.
 
 ## Совместимость
 

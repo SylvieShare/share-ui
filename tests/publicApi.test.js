@@ -59,7 +59,7 @@ describe('public API', () => {
     name => expect(shareUi[name]).toBeTypeOf('function'),
   )
 
-  it.each(['escapeHtml', 'plainTextToRichHtml', 'sanitizeRichHtml', 'sanitizeRichTextColor', 'sanitizeRichTextUrl'])(
+  it.each(['createRichNodeHtml', 'decodeRichNodePayload', 'encodeRichNodePayload', 'escapeHtml', 'plainTextToRichHtml', 'readRichNode', 'sanitizeRichHtml', 'sanitizeRichTextColor', 'sanitizeRichTextUrl'])(
     'exports %s',
     name => expect(shareUi[name]).toBeTypeOf('function'),
   )
