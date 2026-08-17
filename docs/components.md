@@ -81,7 +81,8 @@ permissions или конкретном домене приложения.
 - `TextPromptDialog` (`PromptDialog` alias) поддерживает события `confirm` и
   `submit`, чтобы проекты могли мигрировать без промежуточных wrapper-ов.
 - `MorphSheet` — container morph из origin element/rect, add-mode, slots
-  `head/detail/sub/foot`, optional background blur и swipe-навигация.
+  `head/detail/sub/foot`, optional background blur, настраиваемый `zIndex` для
+  вложенных overlay-сценариев и swipe-навигация.
 - `useSheetSubpages` — controller двухпанельной дорожки MorphSheet.
 
 Все overlay-компоненты используют единый внутренний stack и reference-counted

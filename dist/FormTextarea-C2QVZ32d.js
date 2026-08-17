@@ -3183,6 +3183,10 @@ var or = ["aria-label"], sr = { class: "ms-head-content" }, cr = ["aria-label"],
 			type: Boolean,
 			default: !0
 		},
+		zIndex: {
+			type: Number,
+			default: 1e3
+		},
 		ariaLabel: {
 			type: String,
 			default: ""
@@ -3379,6 +3383,7 @@ var or = ["aria-label"], sr = { class: "ms-head-content" }, cr = ["aria-label"],
 			finishNow: oe
 		}), (n, r) => (y(), i(t, { to: "body" }, [s("div", {
 			class: h(["ms-overlay", { visible: T(U) }]),
+			style: g(e.zIndex === 1e3 ? null : { zIndex: e.zIndex }),
 			onClick: N(ae, ["self"])
 		}, [s("div", {
 			ref_key: "panelEl",
@@ -3436,9 +3441,9 @@ var or = ["aria-label"], sr = { class: "ms-head-content" }, cr = ["aria-label"],
 				ref: M,
 				class: "ms-foot"
 			}, [S(n.$slots, "foot", {}, void 0, !0)], 512)) : a("", !0)
-		], 46, or)], 2)]));
+		], 46, or)], 6)]));
 	}
-}, [["__scopeId", "data-v-e1ec346c"]]), pr = { class: "form-actions" }, mr = ["disabled"], hr = ["disabled"], gr = /*#__PURE__*/ P({
+}, [["__scopeId", "data-v-bab5d7c5"]]), pr = { class: "form-actions" }, mr = ["disabled"], hr = ["disabled"], gr = /*#__PURE__*/ P({
 	__name: "FormActionButtons",
 	props: {
 		submitText: {

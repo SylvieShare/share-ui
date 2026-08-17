@@ -33,6 +33,7 @@ const props = defineProps({
   frameColor: { type: String, default: '' },     // when set, the panel itself takes a gradient + colored border
   backgroundTarget: { type: [String, Object], default: '#app' },
   blurBackground: { type: Boolean, default: true },
+  zIndex: { type: Number, default: 1000 },
   ariaLabel: { type: String, default: '' },
   showFoot: { type: Boolean, default: false },
   showClose: { type: Boolean, default: null },
@@ -336,7 +337,7 @@ defineExpose({ close, finishNow })
        both reparent our `position: fixed` and kill `backdrop-filter`. Morph coords are viewport-based,
        so teleporting only makes them more correct. -->
   <teleport to="body">
-    <div class="ms-overlay" :class="{ visible }" @click.self="close">
+    <div class="ms-overlay" :class="{ visible }" :style="zIndex !== 1000 ? { zIndex } : null" @click.self="close">
     <div
       ref="panelEl" class="ms-sheet" :class="{ shown, closing, entered, padded, 'add-sheet': isAdd, 'ms-framed': frameColor }" :style="sheetStyle"
       role="dialog" aria-modal="true" :aria-label="ariaLabel || undefined" tabindex="-1"

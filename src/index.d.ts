@@ -347,6 +347,7 @@ export const MorphSheet: DefineComponent<{
   frameColor?: string
   backgroundTarget?: string | HTMLElement
   blurBackground?: boolean
+  zIndex?: number
   ariaLabel?: string
   showFoot?: boolean
   showClose?: boolean | null
