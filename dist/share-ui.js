@@ -2,12 +2,15 @@ import { $ as e, A as t, B as n, C as r, D as i, E as a, F as o, G as s, H as c,
 import { computed as Z, onBeforeUnmount as pe, ref as Q } from "vue";
 //#region src/composables/useSortable.js
 var $ = 4;
-function me(e, t, n) {
+function me(e, t = null) {
+	return Array.from(e.querySelectorAll("[data-sortable-key]")).filter((t) => t.closest("[data-sortable-container]") === e).filter((e) => e.getAttribute("data-sortable-key") !== t);
+}
+function he(e, t, n) {
 	if (t < 0) return e.slice();
 	let r = e.slice(), [i] = r.splice(t, 1);
 	return r.splice(Math.min(n, r.length), 0, i), r;
 }
-function he(e) {
+function ge(e) {
 	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = Q(!1), o = Q(null), s = Q(null), c = Q(-1), l = Q(null), u = Q(-1), d = Q(!1), f = null, p = 0, m = 0, h = null, g = 0, _ = null;
 	function v(e, t, n, r) {
 		if (e.button !== void 0 && e.button !== 0) return;
@@ -73,7 +76,7 @@ function he(e) {
 			}
 		}
 		if (!d) return;
-		let f = s.value ? String(n(s.value)) : null, p = Array.from(c.querySelectorAll(":scope > [data-sortable-key]")).filter((e) => e.getAttribute("data-sortable-key") !== f), m = p.length;
+		let f = s.value ? String(n(s.value)) : null, p = me(c, f), m = p.length;
 		for (let e = 0; e < p.length; e++) {
 			let t = p[e].getBoundingClientRect();
 			if (r < t.top + t.height / 2) {
@@ -154,9 +157,9 @@ function he(e) {
 }
 //#endregion
 //#region src/composables/useSheetSubpages.js
-var ge = "cubic-bezier(.2, 0, 0, 1)", _e = 320;
-function ve() {
-	let e = Q("detail"), t = Q(0), n = Q(!1), r = 1, i = null, a = Z(() => n.value ? `transform ${_e}ms ${ge}` : "none"), o = Z(() => ({
+var _e = "cubic-bezier(.2, 0, 0, 1)", ve = 320;
+function ye() {
+	let e = Q("detail"), t = Q(0), n = Q(!1), r = 1, i = null, a = Z(() => n.value ? `transform ${ve}ms ${_e}` : "none"), o = Z(() => ({
 		transform: `translateX(${(-t.value * 100).toFixed(3)}%)`,
 		transition: a.value
 	})), s = Z(() => ({
@@ -205,4 +208,4 @@ function ve() {
 	};
 }
 //#endregion
-export { T as ACTION_MENU_GAP, w as ACTION_MENU_MARGIN, a as AccountMenu, u as ActionMenu, u as RowActionMenu, q as ActionMenuItem, q as RowActionItem, x as ActionMenuSubmenu, x as RowActionSubmenu, B as AddButton, K as AppModal, M as AppModalFrame, b as AppShell, r as AppSidebar, ne as AppSlider, C as BasePopover, se as BaseTile, fe as ColorPresetPicker, X as CompactCheckbox, A as ConfirmDialog, de as EditorPanel, D as EditorSection, ce as EditorSectionTitle, N as EditorTotal, re as FormActionButtons, F as FormField, J as FormNumberInput, H as FormSelect, W as FormTextInput, ie as FormTextarea, oe as ModalShell, te as MorphSheet, G as MultiToggle, n as PRESET_COLORS, O as PromptDialog, O as TextPromptDialog, E as ROW_ACTION_GAP, _ as ROW_ACTION_MARGIN, k as RemoveButton, h as RichContent, i as RichTextEditor, I as SectionLabel, Y as SegmentDonutChart, y as SidebarBrand, ue as SidebarGroup, ee as SidebarNavItem, le as SidebarToggle, U as SlidingTabs, ae as ToggleSwitch, v as ValueSelect, e as computeActionMenuPlacement, j as computeRowActionPlacement, R as createRichNodeHtml, t as decodeRichNodePayload, L as encodeRichNodePayload, p as escapeHtml, S as isValidHexColor, m as plainTextToRichHtml, c as randomPreset, g as readRichNode, me as reorderByDrop, V as restoreFocus, o as sanitizeRichHtml, l as sanitizeRichTextColor, f as sanitizeRichTextUrl, z as useContainerMorph, P as useFullscreenViewportHeight, s as useIsMobile, d as useMediaQuery, ve as useSheetSubpages, he as useSortable };
+export { T as ACTION_MENU_GAP, w as ACTION_MENU_MARGIN, a as AccountMenu, u as ActionMenu, u as RowActionMenu, q as ActionMenuItem, q as RowActionItem, x as ActionMenuSubmenu, x as RowActionSubmenu, B as AddButton, K as AppModal, M as AppModalFrame, b as AppShell, r as AppSidebar, ne as AppSlider, C as BasePopover, se as BaseTile, fe as ColorPresetPicker, X as CompactCheckbox, A as ConfirmDialog, de as EditorPanel, D as EditorSection, ce as EditorSectionTitle, N as EditorTotal, re as FormActionButtons, F as FormField, J as FormNumberInput, H as FormSelect, W as FormTextInput, ie as FormTextarea, oe as ModalShell, te as MorphSheet, G as MultiToggle, n as PRESET_COLORS, O as PromptDialog, O as TextPromptDialog, E as ROW_ACTION_GAP, _ as ROW_ACTION_MARGIN, k as RemoveButton, h as RichContent, i as RichTextEditor, I as SectionLabel, Y as SegmentDonutChart, y as SidebarBrand, ue as SidebarGroup, ee as SidebarNavItem, le as SidebarToggle, U as SlidingTabs, ae as ToggleSwitch, v as ValueSelect, e as computeActionMenuPlacement, j as computeRowActionPlacement, R as createRichNodeHtml, t as decodeRichNodePayload, L as encodeRichNodePayload, p as escapeHtml, S as isValidHexColor, m as plainTextToRichHtml, c as randomPreset, g as readRichNode, he as reorderByDrop, V as restoreFocus, o as sanitizeRichHtml, l as sanitizeRichTextColor, f as sanitizeRichTextUrl, z as useContainerMorph, P as useFullscreenViewportHeight, s as useIsMobile, d as useMediaQuery, ye as useSheetSubpages, ge as useSortable };

@@ -2,6 +2,12 @@ import { onBeforeUnmount, ref } from 'vue'
 
 const DRAG_THRESHOLD = 4
 
+export function sortableItemElements(containerEl, sourceKey = null) {
+  return Array.from(containerEl.querySelectorAll('[data-sortable-key]'))
+    .filter(el => el.closest('[data-sortable-container]') === containerEl)
+    .filter(el => el.getAttribute('data-sortable-key') !== sourceKey)
+}
+
 // Reorder helper for `onDrop`. `toIndex` is already in source-removed coordinates (see updateTarget /
 // displayItems), so the moved item is spliced back at exactly `toIndex` — no off-by-one adjustment.
 export function reorderByDrop(array, fromIndex, toIndex) {
@@ -144,8 +150,7 @@ export function useSortable(config) {
     if (!groupName) return
 
     const sourceKey = sourceItem.value ? String(getKey(sourceItem.value)) : null
-    const children = Array.from(containerEl.querySelectorAll(':scope > [data-sortable-key]'))
-      .filter(el => el.getAttribute('data-sortable-key') !== sourceKey)
+    const children = sortableItemElements(containerEl, sourceKey)
 
     let idx = children.length
     for (let i = 0; i < children.length; i++) {

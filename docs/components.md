@@ -176,7 +176,8 @@ HavenShare скрывает его при своём bottom-nav до 768, Trench
 DOM-контракт:
 
 - container: `data-sortable-container="group-name"`;
-- direct item: `data-sortable-key="stable-key"`;
+- item or its descendant inside a neutral UI wrapper:
+  `data-sortable-key="stable-key"`; nested sortable containers are ignored;
 - handle вызывает `startDrag(event, item, groupName, index)`.
 
 После завершения реального drag `suppressNextClick` остаётся `true` 250 мс;

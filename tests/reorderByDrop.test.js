@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { reorderByDrop } from '../src/composables/useSortable.js'
+import { reorderByDrop, sortableItemElements } from '../src/composables/useSortable.js'
 
 describe('reorderByDrop', () => {
   it('moves an item forward in source-removed coordinates', () => {
@@ -22,3 +22,33 @@ describe('reorderByDrop', () => {
     expect(result).not.toBe(source)
   })
 })
+
+describe('sortableItemElements', () => {
+  it('finds sortable rows inside direct UI wrappers', () => {
+    const container = {}
+    const direct = item('direct', container)
+    const wrapped = item('wrapped', container)
+    const nestedContainer = {}
+    const nested = item('nested', nestedContainer)
+    container.querySelectorAll = () => [direct, wrapped, nested]
+
+    expect(sortableItemElements(container).map(el => el.key)).toEqual(['direct', 'wrapped'])
+  })
+
+  it('excludes the dragged source row', () => {
+    const container = {}
+    const source = item('source', container)
+    const target = item('target', container)
+    container.querySelectorAll = () => [source, target]
+
+    expect(sortableItemElements(container, 'source')).toEqual([target])
+  })
+})
+
+function item(key, container) {
+  return {
+    key,
+    closest: () => container,
+    getAttribute: name => name === 'data-sortable-key' ? key : null,
+  }
+}
