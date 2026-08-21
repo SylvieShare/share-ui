@@ -128,7 +128,10 @@ scroll lock. Поэтому Escape, focus restoration и вложенные ок
 - `RichTextEditor` — contenteditable-редактор с общей типографикой, headings,
   inline formatting, color picker и нативными ссылками. Slot `toolbar` получает
   `insertRichNode`, `updateRichNode`, `removeRichNode` и `editor`, поэтому
-  приложение добавляет собственные кнопки без fork редактора. Клик по уже
+  приложение добавляет собственные кнопки без fork редактора. Метод
+  `editor.openLinkEditor(anchor?)` открывает тот же нативный редактор ссылок из
+  consumer-кнопки; prop `showLinkButton=false` скрывает встроенную кнопку, когда
+  consumer объединяет её со своей адаптивной группой toolbar. Клик по уже
   вставленному узлу эмитит `node-select` с DOM element и разобранным узлом.
   `paste` и `drop` перехватываются и проходят тот же sanitizer до вставки; emit
   также содержит очищенный HTML.

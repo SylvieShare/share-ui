@@ -61,6 +61,7 @@
         <div class="desc-sep" />
 
         <button
+          v-if="showLinkButton"
           ref="linkTrigger"
           type="button"
           class="desc-btn"
@@ -188,6 +189,7 @@ const props = defineProps({
     validator: value => value >= 1 && value <= 6,
   },
   labels: { type: Object, default: () => ({}) },
+  showLinkButton: { type: Boolean, default: true },
 })
 const emit = defineEmits(['update:modelValue', 'focus', 'blur', 'node-select'])
 
@@ -200,11 +202,12 @@ const linkTrigger = ref(null)
 const linkUrlInput = ref(null)
 const linkOpen = ref(false)
 const editingLink = ref(null)
+const customLinkAnchor = ref(null)
 const editingNode = ref(null)
 const savedRange = ref(null)
 const linkError = ref(false)
 const linkForm = reactive({ text: '', url: '' })
-const linkAnchor = computed(() => editingLink.value || linkTrigger.value)
+const linkAnchor = computed(() => editingLink.value || customLinkAnchor.value || linkTrigger.value)
 
 function emptyEditorHtml(value) {
   const sanitized = sanitizeRichHtml(value)
@@ -307,9 +310,10 @@ function placeCaretAfter(element) {
   savedRange.value = range.cloneRange()
 }
 
-function openLinkEditor(element = null) {
+function showLinkEditor(element, anchor) {
   rememberSelection()
   editingLink.value = element
+  customLinkAnchor.value = anchor
   linkError.value = false
   linkForm.text = element?.textContent || selectedText()
   linkForm.url = element?.getAttribute?.('href') || ''
@@ -317,10 +321,19 @@ function openLinkEditor(element = null) {
   nextTick(() => linkUrlInput.value?.focus())
 }
 
+function openLinkEditor(anchor = null) {
+  showLinkEditor(null, anchor)
+}
+
+function editLink(element) {
+  showLinkEditor(element, null)
+}
+
 function closeLinkEditor(value = false) {
   if (value === true) return
   linkOpen.value = false
   editingLink.value = null
+  customLinkAnchor.value = null
   linkError.value = false
 }
 
@@ -367,7 +380,7 @@ function onEditorClick(event) {
   const link = event.target.closest?.('a')
   if (link && editorEl.value?.contains(link)) {
     event.preventDefault()
-    openLinkEditor(link)
+    editLink(link)
     return
   }
   const element = event.target.closest?.('[data-rich-node]')
@@ -380,6 +393,7 @@ function onEditorClick(event) {
 const editorApi = {
   focus: () => editorEl.value?.focus(),
   rememberSelection,
+  openLinkEditor,
   insertRichNode,
   updateRichNode,
   removeRichNode,
@@ -586,6 +600,7 @@ defineExpose({
   focus: () => editorEl.value?.focus(),
   commit: commitEditor,
   rememberSelection,
+  openLinkEditor,
   insertRichNode,
   updateRichNode,
   removeRichNode,
@@ -594,7 +609,7 @@ defineExpose({
 
 <style scoped>
 .input-desc { display: flex; flex-direction: column; }
-.desc-toolbar { display: flex; align-items: center; gap: 2px; margin-bottom: 2px; flex-wrap: wrap; }
+.desc-toolbar { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
 
 .desc-btn {
   display: flex;

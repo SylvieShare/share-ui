@@ -177,8 +177,13 @@
       <div class="share-component-gallery__grid">
         <article class="share-component-gallery__card" data-share-gallery="RichContent RichTextEditor">
           <h2>Rich text</h2>
-          <RichTextEditor ref="richEditor" v-model="richValue" placeholder="Введите текст…">
-            <template #toolbar="{ insertRichNode }">
+          <RichTextEditor ref="richEditor" v-model="richValue" placeholder="Введите текст…" :show-link-button="false">
+            <template #toolbar="{ editor, insertRichNode }">
+              <button
+                type="button"
+                class="share-component-gallery__button share-component-gallery__button--compact"
+                @mousedown.prevent="editor.openLinkEditor($event.currentTarget)"
+              >↗</button>
               <button
                 type="button"
                 class="share-component-gallery__button share-component-gallery__button--compact"

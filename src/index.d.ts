@@ -222,6 +222,7 @@ export const RichTextEditor: DefineComponent<{
   colors?: string[]
   maxHeadingLevel?: number
   labels?: RichTextLabels
+  showLinkButton?: boolean
 }>
 
 export const AccountMenu: DefineComponent<{
