@@ -33,6 +33,9 @@
             <AddButton label="Добавить" variant="icon" />
             <RemoveButton label="Удалить" />
             <RemoveButton label="Удалить" variant="boxed" />
+            <RemoveButton label="Удалить запись" icon="trash" />
+            <RemoveButton label="Удалить запись" icon="trash" variant="boxed" />
+            <RemoveButton label="Удаление недоступно" icon="trash" disabled />
           </div>
         </article>
 

@@ -18,6 +18,7 @@ export const AddButton: DefineComponent<{
 export const RemoveButton: DefineComponent<{
   label: string
   variant?: 'inline' | 'boxed'
+  icon?: 'cross' | 'trash'
   disabled?: boolean
 }>
 

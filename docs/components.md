@@ -37,6 +37,9 @@ Deep imports из `dist/` или `src/` не являются контракто
 
 - `AddButton`: `inline` и `icon` варианты, `block`, `disabled`, слот текста.
 - `RemoveButton`: `inline` и `boxed`; доступное имя обязательно передаётся в `label`.
+  `icon="trash"` показывает корзину для удаления записей, `icon="cross"`
+  (по умолчанию) — крестик для снятия выбора. Оба варианта поддерживают `disabled`
+  и передают исходное событие через `click`; подтверждение остаётся у consumer.
 - `ToggleSwitch`: boolean `v-model`, optional label/default slot, `disabled`.
 - `MultiToggle`: options `{ value, label, disabled? }`, `block`, `neutralValue`;
   поддерживает стрелки, Home и End.

@@ -7,13 +7,17 @@
     :aria-label="label"
     @click="$emit('click', $event)"
   >
-    <span class="share-remove-button__cross" aria-hidden="true" />
+    <svg v-if="icon === 'trash'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 6h18M9 6V4h6v2M5 6l1 14h12l1-14M10 10v6M14 10v6" />
+    </svg>
+    <span v-else class="share-remove-button__cross" aria-hidden="true" />
   </button>
 </template>
 
 <script setup>
 defineProps({
   variant: { type: String, default: 'inline' },
+  icon: { type: String, default: 'cross' },
   label: { type: String, required: true },
   disabled: { type: Boolean, default: false },
 })

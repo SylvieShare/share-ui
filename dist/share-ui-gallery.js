@@ -1,4 +1,4 @@
-import { C as e, D as t, E as ee, J as te, O as n, R as r, S as i, T as a, U as ne, W as re, _ as ie, a as ae, at as o, b as s, c as oe, ct as c, d as l, dt as u, f as d, g as f, i as p, it as m, lt as h, n as se, nt as ce, o as le, ot as ue, p as de, q as g, r as fe, rt as pe, s as _, st as me, t as he, tt as ge, u as _e, ut as v, v as ve, x as ye, y as be, z as xe } from "./FormTextarea-3fN9Wty2.js";
+import { C as e, D as t, E as ee, J as te, O as n, R as r, S as i, T as a, U as ne, W as re, _ as ie, a as ae, at as o, b as s, c as oe, ct as c, d as l, dt as u, f as d, g as f, i as p, it as m, lt as h, n as se, nt as ce, o as le, ot as ue, p as de, q as g, r as fe, rt as pe, s as _, st as me, t as he, tt as ge, u as _e, ut as v, v as ve, x as ye, y as be, z as xe } from "./FormTextarea-jxOgcKfq.js";
 import { createBlock as y, createCommentVNode as b, createElementBlock as Se, createElementVNode as x, createTextVNode as S, createVNode as C, normalizeClass as w, openBlock as T, reactive as E, ref as D, toDisplayString as O, unref as k, withCtx as A, withModifiers as j } from "vue";
 //#region src/lib/componentGalleryCatalog.js
 var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheckbox.MultiToggle.RemoveButton.SectionLabel.SegmentDonutChart.SlidingTabs.ToggleSwitch.ActionMenu.ActionMenuItem.ActionMenuSubmenu.BasePopover.ColorPresetPicker.ValueSelect.RichContent.RichTextEditor.AccountMenu.AppShell.AppSidebar.SidebarBrand.SidebarGroup.SidebarNavItem.SidebarToggle.EditorPanel.EditorSection.EditorSectionTitle.EditorTotal.AppModal.AppModalFrame.ConfirmDialog.ModalShell.MorphSheet.TextPromptDialog.FormActionButtons.FormField.FormNumberInput.FormSelect.FormTextarea.FormTextInput".split(".")), N = Object.freeze({
@@ -165,6 +165,20 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 					C(o, {
 						label: "Удалить",
 						variant: "boxed"
+					}),
+					C(o, {
+						label: "Удалить запись",
+						icon: "trash"
+					}),
+					C(o, {
+						label: "Удалить запись",
+						icon: "trash",
+						variant: "boxed"
+					}),
+					C(o, {
+						label: "Удаление недоступно",
+						icon: "trash",
+						disabled: ""
 					})
 				])]),
 				x("article", je, [D[35] ||= x("h2", null, "SegmentDonutChart", -1), C(pe, {
@@ -547,6 +561,6 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.AddButton.AppSlider.CompactCheck
 			}, 8, ["origin-el"])) : b("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-248eced1"]]);
+}, [["__scopeId", "data-v-f619ac9a"]]);
 //#endregion
 export { N as COMPONENT_GALLERY_ALIASES, M as COMPONENT_GALLERY_COMPONENTS, F as ComponentGallery };
