@@ -26,6 +26,11 @@
           </div>
         </article>
 
+        <article class="share-component-gallery__card" data-share-gallery="InlineEdit">
+          <h2>InlineEdit</h2>
+          <InlineEdit model-value="Название записи" label="Название" confirm-label="Подтвердить" cancel-label="Отменить" />
+          <InlineEdit model-value="draft" label="Статус" :options="[{value: 'draft', label: 'Черновик'}, {value: 'ready', label: 'Готово'}]" display-value="Черновик" />
+        </article>
         <article class="share-component-gallery__card" data-share-gallery="SectionList">
           <h2>SectionList</h2>
           <SectionList title="Записи">
@@ -342,6 +347,7 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
+import InlineEdit from '../components/InlineEdit.vue'
 import SectionList from '../components/SectionList.vue'
 import BaseTile from '../components/BaseTile.vue'
 import AddButton from '../components/AddButton.vue'

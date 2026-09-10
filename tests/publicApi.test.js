@@ -26,6 +26,7 @@ describe('public API', () => {
     'FormSelect',
     'FormTextarea',
     'FormTextInput',
+    'InlineEdit',
     'MultiToggle',
     'ModalShell',
     'MorphSheet',

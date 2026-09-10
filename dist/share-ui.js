@@ -1,17 +1,17 @@
-import { $ as e, A as t, B as n, C as r, D as i, E as a, F as o, G as s, H as c, I as l, J as u, K as d, L as f, M as p, N as m, O as h, P as g, Q as _, R as v, S as y, T as b, U as x, V as S, W as C, X as w, Y as T, Z as E, _ as D, a as O, at as k, b as ee, c as te, ct as ne, d as A, dt as j, et as M, f as N, g as P, h as F, i as I, it as L, j as R, k as z, l as B, lt as V, m as H, n as U, nt as W, o as G, ot as K, p as q, q as J, r as Y, rt as re, s as X, st as ie, t as ae, tt as oe, u as se, ut as ce, v as le, w as ue, x as de, y as fe, z as pe } from "./FormTextarea-DfLz-IQJ.js";
-import { computed as Z, onBeforeUnmount as me, ref as Q } from "vue";
+import { $ as e, A as t, B as n, C as r, D as i, E as a, F as o, G as s, H as c, I as l, J as u, K as d, L as f, M as p, N as m, O as h, P as g, Q as _, R as v, S as y, T as b, U as x, V as S, W as C, X as w, Y as T, Z as E, _ as D, a as O, at as k, b as ee, c as te, ct as ne, d as A, dt as j, et as M, f as N, ft as P, g as F, h as I, i as L, it as R, j as z, k as B, l as V, lt as H, m as U, n as W, nt as G, o as K, ot as q, p as J, q as Y, r as re, rt as X, s as ie, st as ae, t as oe, tt as se, u as ce, ut as le, v as ue, w as de, x as fe, y as pe, z as me } from "./InlineEdit-DXcHt4O2.js";
+import { computed as Z, onBeforeUnmount as Q, ref as $ } from "vue";
 //#region src/composables/useSortable.js
 var he = 4;
 function ge(e, t = null) {
 	return Array.from(e.querySelectorAll("[data-sortable-key]")).filter((t) => t.closest("[data-sortable-container]") === e).filter((e) => e.getAttribute("data-sortable-key") !== t);
 }
-function $(e, t, n) {
+function _e(e, t, n) {
 	if (t < 0) return e.slice();
 	let r = e.slice(), [i] = r.splice(t, 1);
 	return r.splice(Math.min(n, r.length), 0, i), r;
 }
-function _e(e) {
-	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = Q(!1), o = Q(null), s = Q(null), c = Q(-1), l = Q(null), u = Q(-1), d = Q(!1), f = null, p = 0, m = 0, h = null, g = 0, _ = null;
+function ve(e) {
+	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = $(!1), o = $(null), s = $(null), c = $(-1), l = $(null), u = $(-1), d = $(!1), f = null, p = 0, m = 0, h = null, g = 0, _ = null;
 	function v(e, t, n, r) {
 		if (e.button !== void 0 && e.button !== 0) return;
 		let i = e.currentTarget.closest("[data-sortable-key]");
@@ -140,7 +140,7 @@ function _e(e) {
 		}
 		return c;
 	}
-	return me(() => {
+	return Q(() => {
 		T(), clearTimeout(_), d.value = !1;
 	}), {
 		dragging: a,
@@ -157,9 +157,9 @@ function _e(e) {
 }
 //#endregion
 //#region src/composables/useSheetSubpages.js
-var ve = "cubic-bezier(.2, 0, 0, 1)", ye = 320;
-function be() {
-	let e = Q("detail"), t = Q(0), n = Q(!1), r = 1, i = null, a = Z(() => n.value ? `transform ${ye}ms ${ve}` : "none"), o = Z(() => ({
+var ye = "cubic-bezier(.2, 0, 0, 1)", be = 320;
+function xe() {
+	let e = $("detail"), t = $(0), n = $(!1), r = 1, i = null, a = Z(() => n.value ? `transform ${be}ms ${ye}` : "none"), o = Z(() => ({
 		transform: `translateX(${(-t.value * 100).toFixed(3)}%)`,
 		transition: a.value
 	})), s = Z(() => ({
@@ -208,4 +208,4 @@ function be() {
 	};
 }
 //#endregion
-export { T as ACTION_MENU_GAP, w as ACTION_MENU_MARGIN, a as AccountMenu, u as ActionMenu, u as RowActionMenu, J as ActionMenuItem, J as RowActionItem, x as ActionMenuSubmenu, x as RowActionSubmenu, V as AddButton, q as AppModal, N as AppModalFrame, b as AppShell, r as AppSidebar, ne as AppSlider, C as BasePopover, j as BaseTile, pe as ColorPresetPicker, ie as CompactCheckbox, A as ConfirmDialog, fe as EditorPanel, D as EditorSection, le as EditorSectionTitle, P as EditorTotal, X as FormActionButtons, I as FormField, Y as FormNumberInput, U as FormSelect, G as FormTextInput, ae as FormTextarea, se as ModalShell, te as MorphSheet, K as MultiToggle, n as PRESET_COLORS, O as PromptDialog, O as TextPromptDialog, E as ROW_ACTION_GAP, _ as ROW_ACTION_MARGIN, k as RemoveButton, h as RichContent, i as RichTextEditor, L as SectionLabel, ce as SectionList, re as SegmentDonutChart, y as SidebarBrand, de as SidebarGroup, ee as SidebarNavItem, ue as SidebarToggle, W as SlidingTabs, oe as ToggleSwitch, v as ValueSelect, e as computeActionMenuPlacement, M as computeRowActionPlacement, z as createRichNodeHtml, t as decodeRichNodePayload, R as encodeRichNodePayload, p as escapeHtml, S as isValidHexColor, m as plainTextToRichHtml, c as randomPreset, g as readRichNode, $ as reorderByDrop, H as restoreFocus, o as sanitizeRichHtml, l as sanitizeRichTextColor, f as sanitizeRichTextUrl, B as useContainerMorph, F as useFullscreenViewportHeight, s as useIsMobile, d as useMediaQuery, be as useSheetSubpages, _e as useSortable };
+export { w as ACTION_MENU_GAP, E as ACTION_MENU_MARGIN, i as AccountMenu, T as ActionMenu, T as RowActionMenu, u as ActionMenuItem, u as RowActionItem, C as ActionMenuSubmenu, C as RowActionSubmenu, le as AddButton, U as AppModal, J as AppModalFrame, a as AppShell, de as AppSidebar, H as AppSlider, s as BasePopover, P as BaseTile, n as ColorPresetPicker, ne as CompactCheckbox, N as ConfirmDialog, ee as EditorPanel, ue as EditorSection, pe as EditorSectionTitle, D as EditorTotal, te as FormActionButtons, O as FormField, L as FormNumberInput, re as FormSelect, ie as FormTextInput, W as FormTextarea, oe as InlineEdit, A as ModalShell, V as MorphSheet, ae as MultiToggle, S as PRESET_COLORS, K as PromptDialog, K as TextPromptDialog, _ as ROW_ACTION_GAP, e as ROW_ACTION_MARGIN, q as RemoveButton, B as RichContent, h as RichTextEditor, k as SectionLabel, j as SectionList, R as SegmentDonutChart, r as SidebarBrand, y as SidebarGroup, fe as SidebarNavItem, b as SidebarToggle, X as SlidingTabs, G as ToggleSwitch, me as ValueSelect, M as computeActionMenuPlacement, se as computeRowActionPlacement, t as createRichNodeHtml, z as decodeRichNodePayload, p as encodeRichNodePayload, m as escapeHtml, c as isValidHexColor, g as plainTextToRichHtml, x as randomPreset, o as readRichNode, _e as reorderByDrop, I as restoreFocus, l as sanitizeRichHtml, f as sanitizeRichTextColor, v as sanitizeRichTextUrl, ce as useContainerMorph, F as useFullscreenViewportHeight, d as useIsMobile, Y as useMediaQuery, xe as useSheetSubpages, ve as useSortable };

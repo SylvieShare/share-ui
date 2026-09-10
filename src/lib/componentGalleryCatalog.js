@@ -41,6 +41,7 @@ export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
   'FormSelect',
   'FormTextarea',
   'FormTextInput',
+  'InlineEdit',
 ])
 
 // Aliases are compatibility names for components already represented by their canonical export.

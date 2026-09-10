@@ -73,3 +73,5 @@ export {
   sanitizeRichTextColor,
   sanitizeRichTextUrl,
 } from './lib/richText.js'
+
+export { default as InlineEdit } from './components/InlineEdit.vue'

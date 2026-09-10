@@ -547,3 +547,21 @@ export function encodeRichNodePayload(value: unknown): string
 export function decodeRichNodePayload(value: unknown): Record<string, unknown> | null
 export function createRichNodeHtml(kind: string, payload: unknown, label?: string): string
 export function readRichNode(element: Element | null | undefined): RichNode | null
+
+export const InlineEdit: DefineComponent<{
+  modelValue?: string | number | null
+  displayValue?: string | number | null
+  label: string
+  placeholder?: string
+  options?: Array<{ value: string | number | null; label: string; disabled?: boolean }> | null
+  maxlength?: number
+  required?: boolean
+  editable?: boolean
+  disabled?: boolean
+  forceOpen?: boolean
+  persist?: (value: string | number | null) => boolean | void | Promise<boolean | void>
+  editLabel?: string
+  confirmLabel?: string
+  cancelLabel?: string
+  errorLabel?: string
+}>
