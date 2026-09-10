@@ -4182,14 +4182,17 @@ var jr = ["aria-label"], Mr = { class: "ms-head-content" }, Nr = ["aria-label"],
 		}, null, 40, ti));
 	}
 }, [["__scopeId", "data-v-31024142"]]), ri = {
+	class: "share-inline-edit__measure",
+	"aria-hidden": "true"
+}, ii = {
 	key: 0,
 	class: "share-inline-edit__view"
-}, ii = { class: "share-inline-edit__value" }, ai = ["aria-label", "disabled"], oi = ["onKeydown"], si = [
+}, ai = { class: "share-inline-edit__value" }, oi = ["aria-label", "disabled"], si = ["onKeydown"], ci = [
 	"value",
 	"aria-label",
 	"disabled",
 	"aria-invalid"
-], ci = ["value", "disabled"], li = [
+], li = ["value", "disabled"], ui = [
 	"value",
 	"aria-label",
 	"placeholder",
@@ -4197,14 +4200,14 @@ var jr = ["aria-label"], Mr = { class: "ms-head-content" }, Nr = ["aria-label"],
 	"required",
 	"disabled",
 	"aria-invalid"
-], ui = {
+], di = {
 	key: 2,
 	class: "share-inline-edit__actions"
-}, di = ["aria-label", "disabled"], fi = ["aria-label", "disabled"], pi = {
+}, fi = ["aria-label", "disabled"], pi = ["aria-label", "disabled"], mi = {
 	key: 2,
 	class: "share-inline-edit__error",
 	role: "alert"
-}, mi = /*#__PURE__*/ R({
+}, hi = /*#__PURE__*/ R({
 	__name: "InlineEdit",
 	props: {
 		modelValue: { default: "" },
@@ -4259,25 +4262,28 @@ var jr = ["aria-label"], Mr = { class: "ms-head-content" }, Nr = ["aria-label"],
 		"cancel"
 	],
 	setup(t, { emit: n }) {
-		let r = t, a = n, l = w(!1), d = w(!1), f = w(""), p = w(r.modelValue), m = w(null), h = w(null), v = i(() => r.forceOpen || l.value);
+		let r = t, a = n, l = w(!1), d = w(!1), f = w(""), p = w(r.modelValue), m = w(null), h = w(null), v = i(() => r.forceOpen || l.value), y = (e) => r.options?.find((t) => String(t.value) === String(e))?.label, b = i(() => r.displayValue ?? y(r.modelValue) ?? (r.modelValue === "" || r.modelValue == null ? r.placeholder : r.modelValue)), x = i(() => {
+			let e = v.value ? y(p.value) ?? p.value : b.value;
+			return e === "" || e == null ? r.placeholder || "\xA0" : String(e);
+		});
 		N(() => r.modelValue, (e) => {
 			l.value || (p.value = e);
 		}), N(() => r.forceOpen, () => {
 			l.value = !1, p.value = r.modelValue, f.value = "";
 		});
-		async function y() {
+		async function C() {
 			r.disabled || (p.value = r.modelValue, f.value = "", l.value = !0, await g(), m.value?.focus(), m.value?.select?.());
 		}
-		function b(e) {
+		function D(e) {
 			p.value = r.options ? r.options.find((t) => String(t.value) === e)?.value ?? e : e, r.forceOpen && a("update:modelValue", p.value);
 		}
-		function x() {
+		function k() {
 			d.value || r.forceOpen || (l.value = !1, p.value = r.modelValue, f.value = "", a("cancel"), g(() => h.value?.focus()));
 		}
-		function C(e) {
-			e.isComposing || r.forceOpen || (e.preventDefault(), D());
+		function A(e) {
+			e.isComposing || r.forceOpen || (e.preventDefault(), j());
 		}
-		async function D() {
+		async function j() {
 			if (!(d.value || r.disabled || r.required && !String(p.value ?? "").trim())) {
 				d.value = !0, f.value = "";
 				try {
@@ -4290,86 +4296,90 @@ var jr = ["aria-label"], Mr = { class: "ms-head-content" }, Nr = ["aria-label"],
 				}
 			}
 		}
-		return (n, r) => (S(), s("span", { class: _(["share-inline-edit", { "share-inline-edit--open": v.value }]) }, [v.value ? (S(), s("span", {
-			key: 1,
-			class: "share-inline-edit__editor",
-			onKeydown: [I(L(x, ["stop", "prevent"]), ["esc"]), I(C, ["enter"])]
-		}, [t.options ? (S(), s("select", {
-			key: 0,
-			ref_key: "input",
-			ref: m,
-			value: p.value,
-			"aria-label": t.label,
-			disabled: t.disabled || d.value,
-			"aria-invalid": !!f.value,
-			onChange: r[0] ||= (e) => b(e.target.value)
-		}, [(S(!0), s(e, null, T(t.options, (e) => (S(), s("option", {
-			key: String(e.value),
-			value: e.value,
-			disabled: e.disabled
-		}, O(e.label), 9, ci))), 128))], 40, si)) : (S(), s("input", {
-			key: 1,
-			ref_key: "input",
-			ref: m,
-			value: p.value,
-			"aria-label": t.label,
-			placeholder: t.placeholder,
-			maxlength: t.maxlength || void 0,
-			required: t.required,
-			disabled: t.disabled || d.value,
-			"aria-invalid": !!f.value,
-			onInput: r[1] ||= (e) => b(e.target.value)
-		}, null, 40, li)), t.forceOpen ? o("", !0) : (S(), s("span", ui, [c("button", {
-			type: "button",
-			"aria-label": t.confirmLabel,
-			disabled: t.disabled || d.value || t.required && !String(p.value ?? "").trim(),
-			onClick: D
-		}, [...r[3] ||= [c("svg", {
-			width: "15",
-			height: "15",
-			viewBox: "0 0 20 20",
-			fill: "none",
-			"aria-hidden": "true"
-		}, [c("path", {
-			d: "m4 10 4 4 8-8",
-			stroke: "currentColor",
-			"stroke-width": "1.8"
-		})], -1)]], 8, di), c("button", {
-			type: "button",
-			"aria-label": t.cancelLabel,
-			disabled: d.value,
-			onClick: x
-		}, [...r[4] ||= [c("svg", {
-			width: "15",
-			height: "15",
-			viewBox: "0 0 20 20",
-			fill: "none",
-			"aria-hidden": "true"
-		}, [c("path", {
-			d: "m5 5 10 10M15 5 5 15",
-			stroke: "currentColor",
-			"stroke-width": "1.8"
-		})], -1)]], 8, fi)]))], 40, oi)) : (S(), s("span", ri, [c("span", ii, [E(n.$slots, "default", { value: t.modelValue }, () => [u(O(t.displayValue ?? t.modelValue ?? t.placeholder), 1)], !0)]), t.editable ? (S(), s("button", {
-			key: 0,
-			ref_key: "editButton",
-			ref: h,
-			type: "button",
-			"aria-label": t.editLabel || t.label,
-			disabled: t.disabled,
-			onClick: y
-		}, [...r[2] ||= [c("svg", {
-			width: "14",
-			height: "14",
-			viewBox: "0 0 24 24",
-			fill: "none",
-			"aria-hidden": "true"
-		}, [c("path", {
-			d: "m16 3 5 5M3 21l5-1L21 7a2.8 2.8 0 0 0-4-4L4 16z",
-			stroke: "currentColor",
-			"stroke-width": "1.7",
-			"stroke-linejoin": "round"
-		})], -1)]], 8, ai)) : o("", !0)])), f.value ? (S(), s("span", pi, O(f.value), 1)) : o("", !0)], 2));
+		return (n, r) => (S(), s("span", { class: _(["share-inline-edit", { "share-inline-edit--open": v.value }]) }, [
+			c("span", ri, O(x.value), 1),
+			v.value ? (S(), s("span", {
+				key: 1,
+				class: "share-inline-edit__editor",
+				onKeydown: [I(L(k, ["stop", "prevent"]), ["esc"]), I(A, ["enter"])]
+			}, [t.options ? (S(), s("select", {
+				key: 0,
+				ref_key: "input",
+				ref: m,
+				value: p.value,
+				"aria-label": t.label,
+				disabled: t.disabled || d.value,
+				"aria-invalid": !!f.value,
+				onChange: r[0] ||= (e) => D(e.target.value)
+			}, [(S(!0), s(e, null, T(t.options, (e) => (S(), s("option", {
+				key: String(e.value),
+				value: e.value,
+				disabled: e.disabled
+			}, O(e.label), 9, li))), 128))], 40, ci)) : (S(), s("input", {
+				key: 1,
+				ref_key: "input",
+				ref: m,
+				value: p.value,
+				"aria-label": t.label,
+				placeholder: t.placeholder,
+				maxlength: t.maxlength || void 0,
+				required: t.required,
+				disabled: t.disabled || d.value,
+				"aria-invalid": !!f.value,
+				onInput: r[1] ||= (e) => D(e.target.value)
+			}, null, 40, ui)), t.forceOpen ? o("", !0) : (S(), s("span", di, [c("button", {
+				type: "button",
+				"aria-label": t.confirmLabel,
+				disabled: t.disabled || d.value || t.required && !String(p.value ?? "").trim(),
+				onClick: j
+			}, [...r[3] ||= [c("svg", {
+				width: "15",
+				height: "15",
+				viewBox: "0 0 20 20",
+				fill: "none",
+				"aria-hidden": "true"
+			}, [c("path", {
+				d: "m4 10 4 4 8-8",
+				stroke: "currentColor",
+				"stroke-width": "1.8"
+			})], -1)]], 8, fi), c("button", {
+				type: "button",
+				"aria-label": t.cancelLabel,
+				disabled: d.value,
+				onClick: k
+			}, [...r[4] ||= [c("svg", {
+				width: "15",
+				height: "15",
+				viewBox: "0 0 20 20",
+				fill: "none",
+				"aria-hidden": "true"
+			}, [c("path", {
+				d: "m5 5 10 10M15 5 5 15",
+				stroke: "currentColor",
+				"stroke-width": "1.8"
+			})], -1)]], 8, pi)]))], 40, si)) : (S(), s("span", ii, [c("span", ai, [E(n.$slots, "default", { value: t.modelValue }, () => [u(O(b.value), 1)], !0)]), t.editable ? (S(), s("button", {
+				key: 0,
+				ref_key: "editButton",
+				ref: h,
+				type: "button",
+				"aria-label": t.editLabel || t.label,
+				disabled: t.disabled,
+				onClick: C
+			}, [...r[2] ||= [c("svg", {
+				width: "14",
+				height: "14",
+				viewBox: "0 0 24 24",
+				fill: "none",
+				"aria-hidden": "true"
+			}, [c("path", {
+				d: "m16 3 5 5M3 21l5-1L21 7a2.8 2.8 0 0 0-4-4L4 16z",
+				stroke: "currentColor",
+				"stroke-width": "1.7",
+				"stroke-linejoin": "round"
+			})], -1)]], 8, oi)) : o("", !0)])),
+			f.value ? (S(), s("span", mi, O(f.value), 1)) : o("", !0)
+		], 2));
 	}
-}, [["__scopeId", "data-v-faaa279e"]]);
+}, [["__scopeId", "data-v-55cecd7d"]]);
 //#endregion
-export { Ve as $, Nt as A, gt as B, kn as C, fn as D, mn as E, Pt as F, nt as G, ut as H, Lt as I, Qe as J, et as K, At as L, jt as M, Ot as N, sn as O, Rt as P, He as Q, kt as R, jn as S, xn as T, dt as U, lt as V, ct as W, Re as X, Ke as Y, Le as Z, Kn as _, Yr as a, ge as at, In as b, Vr as c, ce as ct, kr as d, ee as dt, Be as et, Or as f, B as ft, qn as g, mr as h, Qr as i, xe as it, Mt as j, Vt as k, Lr as l, ae as lt, hr as m, ni as n, De as nt, Kr as o, pe as ot, Cr as p, R as pt, $e as q, ei as r, we as rt, Ur as s, de as st, mi as t, Ue as tt, Ar as u, re as ut, Hn as v, En as w, Pn as x, Bn as y, St as z };
+export { Ve as $, Nt as A, gt as B, kn as C, fn as D, mn as E, Pt as F, nt as G, ut as H, Lt as I, Qe as J, et as K, At as L, jt as M, Ot as N, sn as O, Rt as P, He as Q, kt as R, jn as S, xn as T, dt as U, lt as V, ct as W, Re as X, Ke as Y, Le as Z, Kn as _, Yr as a, ge as at, In as b, Vr as c, ce as ct, kr as d, ee as dt, Be as et, Or as f, B as ft, qn as g, mr as h, Qr as i, xe as it, Mt as j, Vt as k, Lr as l, ae as lt, hr as m, ni as n, De as nt, Kr as o, pe as ot, Cr as p, R as pt, $e as q, ei as r, we as rt, Ur as s, de as st, hi as t, Ue as tt, Ar as u, re as ut, Hn as v, En as w, Pn as x, Bn as y, St as z };

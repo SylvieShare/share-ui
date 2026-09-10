@@ -66,6 +66,30 @@ describe('InlineEdit interactions', () => {
     await form.label('Confirm').props.onClick(); await flush()
     expect(form.update).toHaveBeenCalledWith(2); form.unmount()
   })
+  it('sizes from the current draft, including whitespace, and restores the label on cancel', async () => {
+    const form = mount({ modelValue: 'Short' })
+    const measure = () => form.all(el => el.props.class === 'share-inline-edit__measure')[0]
+    expect(measure().text).toBe('Short')
+    await form.label('Name').props.onClick(); await flush()
+    form.label('Name').props.onInput({ target: { value: 'A much longer name  ' } }); await flush()
+    expect(measure().text).toBe('A much longer name  ')
+    form.label('Cancel').props.onClick(); await flush()
+    expect(measure().text).toBe('Short'); form.unmount()
+  })
+  it('sizes an empty creation field by its placeholder without changing its value', async () => {
+    const form = mount({ modelValue: '', forceOpen: true, placeholder: 'New record' })
+    expect(form.all(el => el.props.class === 'share-inline-edit__measure')[0].text).toBe('New record')
+    expect(form.label('Name').props.value).toBe('')
+    expect(form.label('Name').props.placeholder).toBe('New record')
+    expect(form.update).not.toHaveBeenCalled(); form.unmount()
+  })
+  it('measures the selected enum label instead of its identifier or longest option', async () => {
+    const form = mount({ modelValue: 1, options: [{ value: 1, label: 'Short' }, { value: 2, label: 'Longer selected label' }] })
+    await form.label('Name').props.onClick(); await flush()
+    expect(form.all(el => el.props.class === 'share-inline-edit__measure')[0].text).toBe('Short')
+    form.label('Name').props.onChange({ target: { value: '2' } }); await flush()
+    expect(form.all(el => el.props.class === 'share-inline-edit__measure')[0].text).toBe('Longer selected label'); form.unmount()
+  })
   it('passes changes immediately in a full form', async () => {
     const form = mount({ forceOpen: true })
     form.label('Name').props.onInput({ target: { value: 'Full draft' } }); await flush()

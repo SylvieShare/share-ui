@@ -1,7 +1,8 @@
 <template>
   <span class="share-inline-edit" :class="{ 'share-inline-edit--open': open }">
+    <span class="share-inline-edit__measure" aria-hidden="true">{{ sizingText }}</span>
     <span v-if="!open" class="share-inline-edit__view">
-      <span class="share-inline-edit__value"><slot :value="modelValue">{{ displayValue ?? modelValue ?? placeholder }}</slot></span>
+      <span class="share-inline-edit__value"><slot :value="modelValue">{{ viewText }}</slot></span>
       <button v-if="editable" ref="editButton" type="button" :aria-label="editLabel || label" :disabled="disabled" @click="start">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m16 3 5 5M3 21l5-1L21 7a2.8 2.8 0 0 0-4-4L4 16z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" /></svg>
       </button>
@@ -38,6 +39,12 @@ const emit = defineEmits(['update:modelValue', 'confirm', 'cancel'])
 const active = ref(false), busy = ref(false), error = ref(''), draft = ref(props.modelValue)
 const input = ref(null), editButton = ref(null)
 const open = computed(() => props.forceOpen || active.value)
+const optionLabel = value => props.options?.find(option => String(option.value) === String(value))?.label
+const viewText = computed(() => props.displayValue ?? optionLabel(props.modelValue) ?? (props.modelValue === '' || props.modelValue == null ? props.placeholder : props.modelValue))
+const sizingText = computed(() => {
+  const value = open.value ? optionLabel(draft.value) ?? draft.value : viewText.value
+  return value === '' || value == null ? props.placeholder || ' ' : String(value)
+})
 watch(() => props.modelValue, value => { if (!active.value) draft.value = value })
 watch(() => props.forceOpen, () => { active.value = false; draft.value = props.modelValue; error.value = '' })
 async function start() {
@@ -70,15 +77,15 @@ async function confirm() {
 }
 </script>
 <style scoped>
-.share-inline-edit { position: relative; display: inline-flex; width: 100%; min-width: 0; height: var(--inline-edit-height, 32px); vertical-align: middle; font: inherit; }
-.share-inline-edit__view, .share-inline-edit__editor { display: flex; align-items: center; width: 100%; min-width: 0; height: 100%; box-sizing: border-box; }
+.share-inline-edit { position: relative; display: inline-block; width: max-content; min-width: min(100%, var(--inline-edit-min-width, 120px)); max-width: 100%; height: var(--inline-edit-height, 32px); vertical-align: middle; font: inherit; }
+.share-inline-edit__measure { display: block; box-sizing: border-box; height: 100%; padding: 0 61px 0 7px; visibility: hidden; overflow: hidden; white-space: pre; pointer-events: none; }
+.share-inline-edit__view, .share-inline-edit__editor { position: absolute; inset: 0; display: flex; align-items: center; width: 100%; min-width: 0; height: 100%; box-sizing: border-box; }
 .share-inline-edit__view { gap: 6px; }
 .share-inline-edit__value { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .share-inline-edit button { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 26px; height: 26px; padding: 0; border: 0; border-radius: var(--r-sm); background: transparent; color: var(--text-muted); cursor: pointer; }
 .share-inline-edit button:hover { color: var(--accent); }
 .share-inline-edit button:focus-visible { outline: 2px solid var(--accent); }
 .share-inline-edit button:disabled { opacity: .45; cursor: default; }
-.share-inline-edit__editor { position: relative; }
 .share-inline-edit input, .share-inline-edit select { box-sizing: border-box; width: 100%; min-width: 0; height: 100%; padding: 0 60px 0 6px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); color: var(--text-1); font: inherit; outline: none; }
 .share-inline-edit select { appearance: none; }
 .share-inline-edit input:focus, .share-inline-edit select:focus { border-color: var(--accent); }

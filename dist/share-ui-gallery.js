@@ -1,4 +1,4 @@
-import { B as e, C as t, D as n, E as ee, G as te, J as r, O as ne, S as re, W as ie, Y as ae, _ as oe, a as i, at as a, b as o, c as s, ct as c, d as l, dt as u, f as se, ft as d, i as ce, it as le, k as ue, l as de, lt as f, m as fe, n as pe, nt as me, o as he, ot as p, p as ge, pt as m, r as _e, rt as ve, s as ye, st as h, t as g, ut as _, v as be, w as xe, x as v, y as Se, z as Ce } from "./InlineEdit-DXcHt4O2.js";
+import { B as e, C as t, D as n, E as ee, G as te, J as r, O as ne, S as re, W as ie, Y as ae, _ as oe, a as i, at as a, b as se, c as o, ct as s, d as c, dt as l, f as u, ft as d, i as ce, it as le, k as ue, l as de, lt as f, m as fe, n as pe, nt as me, o as he, ot as p, p as ge, pt as m, r as _e, rt as ve, s as ye, st as h, t as g, ut as _, v as be, w as xe, x as v, y as Se, z as Ce } from "./InlineEdit-BepCFacP.js";
 import { createBlock as y, createCommentVNode as b, createElementBlock as we, createElementVNode as x, createTextVNode as S, createVNode as C, normalizeClass as w, openBlock as T, reactive as E, ref as D, toDisplayString as O, unref as k, withCtx as A, withModifiers as j } from "vue";
 //#region src/lib/componentGalleryCatalog.js
 var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.CompactCheckbox.MultiToggle.RemoveButton.SectionLabel.SegmentDonutChart.SlidingTabs.ToggleSwitch.ActionMenu.ActionMenuItem.ActionMenuSubmenu.BasePopover.ColorPresetPicker.ValueSelect.RichContent.RichTextEditor.AccountMenu.AppShell.AppSidebar.SidebarBrand.SidebarGroup.SidebarNavItem.SidebarToggle.EditorPanel.EditorSection.EditorSectionTitle.EditorTotal.AppModal.AppModalFrame.ConfirmDialog.ModalShell.MorphSheet.TextPromptDialog.FormActionButtons.FormField.FormNumberInput.FormSelect.FormTextarea.FormTextInput.InlineEdit".split(".")), N = Object.freeze({
@@ -33,7 +33,7 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.
 }, Ge = { class: "share-component-gallery__slider" }, Ke = { class: "share-component-gallery__section" }, qe = { class: "share-component-gallery__grid" }, Je = {
 	class: "share-component-gallery__card share-component-gallery__card--wide",
 	"data-share-gallery": "FormField FormTextInput FormNumberInput FormSelect FormTextarea FormActionButtons"
-}, P = { class: "share-component-gallery__form-grid" }, Ye = { class: "share-component-gallery__section" }, Xe = { class: "share-component-gallery__grid" }, Ze = {
+}, Ye = { class: "share-component-gallery__form-grid" }, P = { class: "share-component-gallery__section" }, Xe = { class: "share-component-gallery__grid" }, Ze = {
 	class: "share-component-gallery__card",
 	"data-share-gallery": "ValueSelect ColorPresetPicker"
 }, Qe = { class: "share-component-gallery__stack" }, $e = {
@@ -170,6 +170,12 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.
 						"cancel-label": "Отменить"
 					}),
 					C(g, {
+						"model-value": "",
+						label: "Новое название",
+						placeholder: "Название записи",
+						"force-open": ""
+					}),
+					C(g, {
 						"model-value": "draft",
 						label: "Статус",
 						options: [{
@@ -184,12 +190,12 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.
 				]),
 				x("article", Ne, [
 					D[38] ||= x("h2", null, "SectionList", -1),
-					C(u, { title: "Записи" }, {
+					C(l, { title: "Записи" }, {
 						footer: A(() => [C(_, { label: "Добавить запись" })]),
 						default: A(() => [D[35] ||= x("div", { style: { padding: "12px 0" } }, "Первая запись", -1), D[36] ||= x("div", { style: { padding: "12px 0" } }, "Вторая запись", -1)]),
 						_: 1
 					}),
-					C(u, {
+					C(l, {
 						title: "Встроенная группа",
 						embedded: "",
 						compact: ""
@@ -239,7 +245,7 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.
 					modelValue: F.value,
 					"onUpdate:modelValue": D[0] ||= (e) => F.value = e,
 					label: "Включить механику"
-				}, null, 8, ["modelValue"]), x("label", Ve, [C(c, {
+				}, null, 8, ["modelValue"]), x("label", Ve, [C(s, {
 					modelValue: I.value,
 					"onUpdate:modelValue": D[1] ||= (e) => I.value = e,
 					label: "Выбрать элемент"
@@ -269,7 +275,7 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.
 				border: ""
 			}), x("div", qe, [x("article", Je, [
 				D[46] ||= x("h2", null, "Form primitives", -1),
-				x("div", P, [
+				x("div", Ye, [
 					C(i, {
 						label: "Название",
 						vertical: "",
@@ -319,12 +325,12 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.
 						_: 1
 					})
 				]),
-				C(s, {
+				C(o, {
 					"submit-text": "Сохранить",
 					onCancel: xt
 				})
 			])])]),
-			x("section", Ye, [C(a, {
+			x("section", P, [C(a, {
 				title: "Выбор значений и floating UI",
 				border: ""
 			}), x("div", Xe, [
@@ -441,7 +447,7 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.
 					_: 1
 				}, 8, ["html"])])
 			]), x("article", lt, [D[62] ||= x("h2", null, "Editor composition", -1), C(d, null, {
-				default: A(() => [C(o, { title: "Параметры" }, {
+				default: A(() => [C(se, { title: "Параметры" }, {
 					default: A(() => [C(be, { title: "Основное" }, {
 						default: A(() => [C(Se, { title: "Значение" }, {
 							actions: A(() => [...D[60] ||= [x("span", null, "12", -1)]]),
@@ -563,14 +569,14 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.
 				subtitle: "header · body · footer",
 				onClose: D[25] ||= (e) => q.value = !1
 			}, {
-				footer: A(() => [C(s, {
+				footer: A(() => [C(o, {
 					onCancel: D[23] ||= (e) => q.value = !1,
 					onSubmit: D[24] ||= (e) => q.value = !1
 				})]),
 				default: A(() => [D[71] ||= x("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
 				_: 1
 			})) : b("", !0),
-			C(l, {
+			C(c, {
 				open: J.value,
 				"aria-label": "Пример ModalShell",
 				onClose: D[26] ||= (e) => J.value = !1
@@ -578,7 +584,7 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.
 				default: A(() => [...D[72] ||= [x("div", { class: "share-component-gallery__overlay-content" }, [x("h2", null, "ModalShell"), x("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
 				_: 1
 			}, 8, ["open"]),
-			C(se, {
+			C(u, {
 				open: Y.value,
 				"onUpdate:open": D[27] ||= (e) => Y.value = e,
 				title: "Подтвердить действие?",
@@ -604,6 +610,6 @@ var M = Object.freeze(/* @__PURE__ */ "BaseTile.SectionList.AddButton.AppSlider.
 			}, 8, ["origin-el"])) : b("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-37a48c7c"]]);
+}, [["__scopeId", "data-v-eb32c5ab"]]);
 //#endregion
 export { N as COMPONENT_GALLERY_ALIASES, M as COMPONENT_GALLERY_COMPONENTS, F as ComponentGallery };

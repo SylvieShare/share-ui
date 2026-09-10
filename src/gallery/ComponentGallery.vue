@@ -29,6 +29,7 @@
         <article class="share-component-gallery__card" data-share-gallery="InlineEdit">
           <h2>InlineEdit</h2>
           <InlineEdit model-value="Название записи" label="Название" confirm-label="Подтвердить" cancel-label="Отменить" />
+          <InlineEdit model-value="" label="Новое название" placeholder="Название записи" force-open />
           <InlineEdit model-value="draft" label="Статус" :options="[{value: 'draft', label: 'Черновик'}, {value: 'ready', label: 'Готово'}]" display-value="Черновик" />
         </article>
         <article class="share-component-gallery__card" data-share-gallery="SectionList">
