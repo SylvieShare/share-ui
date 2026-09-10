@@ -26,6 +26,19 @@
           </div>
         </article>
 
+        <article class="share-component-gallery__card" data-share-gallery="LoadingIndicator SkeletonBlock">
+          <h2>Загрузка</h2>
+          <div class="share-component-gallery__row">
+            <LoadingIndicator label="Загрузка" size="sm" />
+            <LoadingIndicator label="Загрузка данных" show-label />
+            <LoadingIndicator label="Подготовка содержимого" size="lg" show-label />
+          </div>
+          <div class="share-component-gallery__row">
+            <SkeletonBlock width="36px" height="36px" round />
+            <SkeletonBlock width="60%" />
+          </div>
+        </article>
+
         <article class="share-component-gallery__card" data-share-gallery="InlineEdit">
           <h2>InlineEdit</h2>
           <InlineEdit model-value="Название записи" label="Название" confirm-label="Подтвердить" cancel-label="Отменить" />
@@ -347,6 +360,8 @@
 </template>
 
 <script setup>
+import LoadingIndicator from '../components/LoadingIndicator.vue'
+import SkeletonBlock from '../components/SkeletonBlock.vue'
 import { reactive, ref } from 'vue'
 import InlineEdit from '../components/InlineEdit.vue'
 import SectionList from '../components/SectionList.vue'

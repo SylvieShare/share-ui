@@ -565,3 +565,6 @@ export const InlineEdit: DefineComponent<{
   cancelLabel?: string
   errorLabel?: string
 }>
+
+export const LoadingIndicator: DefineComponent<{ label: string; size?: 'sm' | 'md' | 'lg'; showLabel?: boolean }>
+export const SkeletonBlock: DefineComponent<{ width?: string; height?: string; round?: boolean }>
