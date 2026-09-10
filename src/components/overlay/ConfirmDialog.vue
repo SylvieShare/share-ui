@@ -7,16 +7,20 @@
         <button
           type="button"
           class="cd-btn-confirm"
+          :aria-busy="loading"
           :class="`cd-btn--${resolvedVariant}`"
           :disabled="loading"
           @click="confirm"
-        >{{ loading ? loadingLabel : resolvedConfirmLabel }}</button>
+        >
+      <LoadingIndicator v-if="loading" :label="loadingLabel" size="xs" class="button-loading" aria-hidden="true" />
+      {{ loading ? loadingLabel : resolvedConfirmLabel }}</button>
       </div>
     </template>
   </AppModalFrame>
 </template>
 
 <script setup>
+import LoadingIndicator from '../LoadingIndicator.vue'
 import { computed } from 'vue'
 import AppModalFrame from './AppModalFrame.vue'
 
@@ -45,6 +49,7 @@ function confirm() { if (props.loading) return; emit('confirm'); closeControlled
 </script>
 
 <style scoped>
+.button-loading { color: inherit; vertical-align: middle; margin-right: 7px; }
 .cd-message {
   font-size: 13px;
   color: var(--text-2);

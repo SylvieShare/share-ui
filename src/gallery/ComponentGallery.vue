@@ -26,8 +26,11 @@
           </div>
         </article>
 
-        <article class="share-component-gallery__card" data-share-gallery="LoadingIndicator SkeletonBlock">
+        <article class="share-component-gallery__card" data-share-gallery="LoadingIndicator SkeletonBlock LoadingState">
           <h2>Загрузка</h2>
+          <LoadingState label="Открываем раздел…" />
+          <LoadingState label="Загружаем ещё…" compact />
+          <LoadingIndicator label="Сохранение…" size="xs" inline show-label />
           <div class="share-component-gallery__row">
             <LoadingIndicator label="Загрузка" size="sm" />
             <LoadingIndicator label="Загрузка данных" show-label />
@@ -360,6 +363,7 @@
 </template>
 
 <script setup>
+import LoadingState from '../components/LoadingState.vue'
 import LoadingIndicator from '../components/LoadingIndicator.vue'
 import SkeletonBlock from '../components/SkeletonBlock.vue'
 import { reactive, ref } from 'vue'

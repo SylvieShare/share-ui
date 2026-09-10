@@ -1,5 +1,5 @@
 <template>
-  <div class="share-loading" :class="`share-loading--${size}`" role="status" :aria-label="label">
+  <span class="share-loading" :class="{ 'share-loading--inline': inline }" :style="{ '--loading-size': resolvedSize }" role="status" :aria-label="label">
     <svg class="share-loading__art" viewBox="0 0 100 100" fill="none" aria-hidden="true">
       <circle class="share-loading__track" cx="50" cy="50" r="38" />
       <g class="share-loading__orbit">
@@ -13,22 +13,26 @@
       <path class="share-loading__facet" d="M50 33V67M38 50H62" />
     </svg>
     <span v-if="showLabel" class="share-loading__label" aria-hidden="true">{{ label }}</span>
-  </div>
+  </span>
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   label: { type: String, required: true },
-  size: { type: String, default: 'md', validator: value => ['sm', 'md', 'lg'].includes(value) },
+  size: { type: [String, Number], default: 'md', validator: value => (typeof value === 'number' && value > 0) || ['xs', 'sm', 'md', 'lg'].includes(value) },
+  inline: { type: Boolean, default: false },
   showLabel: { type: Boolean, default: false },
 })
+const resolvedSize = computed(() => `${typeof props.size === 'number' ? props.size : { xs: 16, sm: 32, md: 72, lg: 104 }[props.size] || 72}px`)
 </script>
 
 <style scoped>
-.share-loading { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--accent); }
-.share-loading__art { width: 72px; height: 72px; overflow: visible; }
-.share-loading--sm .share-loading__art { width: 32px; height: 32px; }
-.share-loading--lg .share-loading__art { width: 104px; height: 104px; }
+.share-loading { display: inline-flex; flex-shrink: 0; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--accent); }
+.share-loading__art { width: var(--loading-size); height: var(--loading-size); overflow: visible; }
+.share-loading--inline { flex-direction: row; gap: 8px; vertical-align: middle; }
+.share-loading--inline .share-loading__label { font: inherit; letter-spacing: inherit; color: inherit; }
 .share-loading__track { stroke: color-mix(in srgb, currentColor 14%, transparent); stroke-width: 1; }
 .share-loading__arc { stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
 .share-loading__spark { fill: currentColor; }

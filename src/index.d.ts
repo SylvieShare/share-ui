@@ -566,5 +566,7 @@ export const InlineEdit: DefineComponent<{
   errorLabel?: string
 }>
 
-export const LoadingIndicator: DefineComponent<{ label: string; size?: 'sm' | 'md' | 'lg'; showLabel?: boolean }>
+export const LoadingIndicator: DefineComponent<{ label: string; size?: 'xs' | 'sm' | 'md' | 'lg' | number; inline?: boolean; showLabel?: boolean }>
 export const SkeletonBlock: DefineComponent<{ width?: string; height?: string; round?: boolean }>
+
+export const LoadingState: DefineComponent<{ label: string; compact?: boolean; fill?: boolean }>

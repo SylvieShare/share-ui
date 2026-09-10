@@ -78,3 +78,5 @@ export { default as InlineEdit } from './components/InlineEdit.vue'
 
 export { default as LoadingIndicator } from './components/LoadingIndicator.vue'
 export { default as SkeletonBlock } from './components/SkeletonBlock.vue'
+
+export { default as LoadingState } from './components/LoadingState.vue'

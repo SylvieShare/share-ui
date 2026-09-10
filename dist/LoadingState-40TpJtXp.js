@@ -3308,10 +3308,54 @@ var gr = /*#__PURE__*/ z({
 			"close-label"
 		]));
 	}
-}, [["__scopeId", "data-v-0a15c618"]]), Tr = {
+}, [["__scopeId", "data-v-0a15c618"]]), Tr = ["aria-label"], Er = {
+	key: 0,
+	class: "share-loading__label",
+	"aria-hidden": "true"
+}, Dr = /*#__PURE__*/ z({
+	__name: "LoadingIndicator",
+	props: {
+		label: {
+			type: String,
+			required: !0
+		},
+		size: {
+			type: [String, Number],
+			default: "md",
+			validator: (e) => typeof e == "number" && e > 0 || [
+				"xs",
+				"sm",
+				"md",
+				"lg"
+			].includes(e)
+		},
+		inline: {
+			type: Boolean,
+			default: !1
+		},
+		showLabel: {
+			type: Boolean,
+			default: !1
+		}
+	},
+	setup(e) {
+		let t = e, n = i(() => `${typeof t.size == "number" ? t.size : {
+			xs: 16,
+			sm: 32,
+			md: 72,
+			lg: 104
+		}[t.size] || 72}px`);
+		return (t, r) => (C(), s("span", {
+			class: v(["share-loading", { "share-loading--inline": e.inline }]),
+			style: b({ "--loading-size": n.value }),
+			role: "status",
+			"aria-label": e.label
+		}, [r[0] ||= u("<svg class=\"share-loading__art\" viewBox=\"0 0 100 100\" fill=\"none\" aria-hidden=\"true\" data-v-5d7759a5><circle class=\"share-loading__track\" cx=\"50\" cy=\"50\" r=\"38\" data-v-5d7759a5></circle><g class=\"share-loading__orbit\" data-v-5d7759a5><circle class=\"share-loading__arc\" cx=\"50\" cy=\"50\" r=\"38\" stroke-dasharray=\"52 187\" data-v-5d7759a5></circle><circle class=\"share-loading__spark\" cx=\"50\" cy=\"12\" r=\"2.5\" data-v-5d7759a5></circle></g><g class=\"share-loading__orbit share-loading__orbit--inner\" data-v-5d7759a5><circle class=\"share-loading__arc\" cx=\"50\" cy=\"50\" r=\"28\" stroke-dasharray=\"25 63\" data-v-5d7759a5></circle></g><path class=\"share-loading__core\" d=\"M50 33 62 50 50 67 38 50Z\" data-v-5d7759a5></path><path class=\"share-loading__facet\" d=\"M50 33V67M38 50H62\" data-v-5d7759a5></path></svg>", 1), e.showLabel ? (C(), s("span", Er, k(e.label), 1)) : o("", !0)], 14, Tr));
+	}
+}, [["__scopeId", "data-v-5d7759a5"]]), Or = {
 	key: 0,
 	class: "cd-message"
-}, Er = { class: "cd-actions" }, Dr = ["disabled"], Or = ["disabled"], kr = /*#__PURE__*/ z({
+}, kr = { class: "cd-actions" }, Ar = ["disabled"], jr = ["aria-busy", "disabled"], Mr = /*#__PURE__*/ z({
 	__name: "ConfirmDialog",
 	props: {
 		open: {
@@ -3369,15 +3413,15 @@ var gr = /*#__PURE__*/ z({
 		"cancel"
 	],
 	setup(e, { emit: t }) {
-		let n = e, r = t, l = i(() => n.open === null || n.open), u = i(() => n.confirmText || n.confirmLabel), d = i(() => n.cancelText || n.cancelLabel), f = i(() => n.confirmKind || n.variant);
-		function p() {
+		let n = e, r = t, l = i(() => n.open === null || n.open), u = i(() => n.confirmText || n.confirmLabel), f = i(() => n.cancelText || n.cancelLabel), p = i(() => n.confirmKind || n.variant);
+		function m() {
 			n.open !== null && r("update:open", !1);
 		}
-		function m() {
-			n.loading || (r("cancel"), p());
-		}
 		function h() {
-			n.loading || (r("confirm"), p());
+			n.loading || (r("cancel"), m());
+		}
+		function g() {
+			n.loading || (r("confirm"), m());
 		}
 		return (t, n) => l.value ? (C(), a(wr, {
 			key: 0,
@@ -3385,20 +3429,27 @@ var gr = /*#__PURE__*/ z({
 			"z-index": e.zIndex,
 			"show-close": !1,
 			dismissible: !e.loading,
-			onClose: m
+			onClose: h
 		}, {
-			footer: F(() => [c("div", Er, [c("button", {
+			footer: F(() => [c("div", kr, [c("button", {
 				type: "button",
 				class: "cd-btn-cancel",
 				disabled: e.loading,
-				onClick: m
-			}, k(d.value), 9, Dr), c("button", {
-				type: "button",
-				class: v(["cd-btn-confirm", `cd-btn--${f.value}`]),
-				disabled: e.loading,
 				onClick: h
-			}, k(e.loading ? e.loadingLabel : u.value), 11, Or)])]),
-			default: F(() => [e.message ? (C(), s("div", Tr, k(e.message), 1)) : o("", !0)]),
+			}, k(f.value), 9, Ar), c("button", {
+				type: "button",
+				class: v(["cd-btn-confirm", `cd-btn--${p.value}`]),
+				"aria-busy": e.loading,
+				disabled: e.loading,
+				onClick: g
+			}, [e.loading ? (C(), a(Dr, {
+				key: 0,
+				label: e.loadingLabel,
+				size: "xs",
+				class: "button-loading",
+				"aria-hidden": "true"
+			}, null, 8, ["label"])) : o("", !0), d(" " + k(e.loading ? e.loadingLabel : u.value), 1)], 10, jr)])]),
+			default: F(() => [e.message ? (C(), s("div", Or, k(e.message), 1)) : o("", !0)]),
 			_: 1
 		}, 8, [
 			"title",
@@ -3406,7 +3457,7 @@ var gr = /*#__PURE__*/ z({
 			"dismissible"
 		])) : o("", !0);
 	}
-}, [["__scopeId", "data-v-2819b01e"]]), Ar = {
+}, [["__scopeId", "data-v-db9d39ae"]]), Nr = {
 	__name: "ModalShell",
 	props: {
 		open: {
@@ -3461,7 +3512,7 @@ var gr = /*#__PURE__*/ z({
 };
 //#endregion
 //#region src/composables/useContainerMorph.js
-function jr({ open: e = 420, close: t = 300 } = {}) {
+function Pr({ open: e = 420, close: t = 300 } = {}) {
 	let n = "cubic-bezier(.2, 0, 0, 1)", r = "var(--shadow-lg)", i = [
 		"position",
 		"margin",
@@ -3509,7 +3560,7 @@ function jr({ open: e = 420, close: t = 300 } = {}) {
 }
 //#endregion
 //#region src/components/overlay/MorphSheet.vue
-var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"], Fr = 320, Ir = 260, Lr = "8px", Rr = /*#__PURE__*/ z({
+var Fr = ["aria-label"], Ir = { class: "ms-head-content" }, Lr = ["aria-label"], Rr = 320, zr = 260, Br = "8px", Vr = /*#__PURE__*/ z({
 	__name: "MorphSheet",
 	props: {
 		mode: {
@@ -3575,7 +3626,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 	},
 	emits: ["close", "back"],
 	setup(e, { expose: n, emit: r }) {
-		let l = e, u = r, d = tt(), f = M(), p = i(() => l.mode === "add"), m = i(() => l.showClose === null ? !!f.head : l.showClose), h = i(() => l.nav ? l.nav.view.value : "detail"), g = i(() => l.nav ? l.nav.detailStyle.value : null), y = i(() => l.nav ? l.nav.subStyle.value : null), w = i(() => !!l.nav && h.value !== "detail"), E = T(null), O = T(null), k = T(null), j = T(null), N = T(null), F = T(null), I = T(!1), L = T(!1), z = T(!1), B = T(!1), V = T(!1), { EASE: H, visible: U, morphing: W, playClose: ee, playOpen: te } = jr(), ne = () => d.value ? "0px" : "18px", re = i(() => ({
+		let l = e, u = r, d = tt(), f = M(), p = i(() => l.mode === "add"), m = i(() => l.showClose === null ? !!f.head : l.showClose), h = i(() => l.nav ? l.nav.view.value : "detail"), g = i(() => l.nav ? l.nav.detailStyle.value : null), y = i(() => l.nav ? l.nav.subStyle.value : null), w = i(() => !!l.nav && h.value !== "detail"), E = T(null), O = T(null), k = T(null), j = T(null), N = T(null), F = T(null), I = T(!1), L = T(!1), z = T(!1), B = T(!1), V = T(!1), { EASE: H, visible: U, morphing: W, playClose: ee, playOpen: te } = Pr(), ne = () => d.value ? "0px" : "18px", re = i(() => ({
 			"--ms-w": `${l.width}px`,
 			"--ms-body-w": `${l.width}px`,
 			"--ms-frame": l.frameColor || void 0
@@ -3628,7 +3679,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 		function G(e) {
 			if (d.value || !j.value || W.value) return;
 			let t = l.nav ? l.nav.pos.value : 0, n = ue(N.value), r = F.value ? ue(F.value) : n, i = n * (1 - t) + r * t, a = Math.min(i, Math.max(120, de()));
-			j.value.style.transition = e ? `height ${Fr}ms ${H}` : "none", j.value.style.height = `${a}px`;
+			j.value.style.transition = e ? `height ${Rr}ms ${H}` : "none", j.value.style.height = `${a}px`;
 		}
 		let K = null;
 		function fe() {
@@ -3701,14 +3752,14 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 		}
 		function Te() {
 			let e = E.value;
-			e && (e.style.transition = `transform ${Ir}ms ${H}`, e.style.transform = `translateY(${window.innerHeight}px)`), U.value = !1, V.value = !1, je(), Oe(!1), setTimeout(() => u("close"), Ir);
+			e && (e.style.transition = `transform ${zr}ms ${H}`, e.style.transform = `translateY(${window.innerHeight}px)`), U.value = !1, V.value = !1, je(), Oe(!1), setTimeout(() => u("close"), zr);
 		}
 		let Ee = () => {};
 		function De() {
 			return typeof l.backgroundTarget == "string" ? document.querySelector(l.backgroundTarget) : l.backgroundTarget instanceof Element ? l.backgroundTarget : null;
 		}
 		function Oe(e) {
-			Ee(), Ee = () => {}, !(!e || d.value || !l.blurBackground) && (Ee = sr(De(), { blur: Lr }));
+			Ee(), Ee = () => {}, !(!e || d.value || !l.blurBackground) && (Ee = sr(De(), { blur: Br }));
 		}
 		let X = "", Z = "", Q = !1;
 		function ke() {
@@ -3724,7 +3775,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 			if (!e) return;
 			Q = !0;
 			let t = Z && Z !== "none" ? `${Z}, ` : "";
-			e.style.transition = `${t}opacity ${Ir}ms ease`, e.style.opacity = "0", requestAnimationFrame(() => {
+			e.style.transition = `${t}opacity ${zr}ms ease`, e.style.opacity = "0", requestAnimationFrame(() => {
 				e.style.opacity = X;
 			}), setTimeout(() => {
 				e.style.opacity = X, e.style.transition = Z, Q = !1;
@@ -3781,13 +3832,13 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 				ref_key: "headEl",
 				ref: O,
 				class: "ms-head"
-			}, [c("div", Nr, [D(n.$slots, "head", {}, void 0, !0)]), m.value ? (C(), s("button", {
+			}, [c("div", Ir, [D(n.$slots, "head", {}, void 0, !0)]), m.value ? (C(), s("button", {
 				key: 0,
 				class: "ms-x",
 				type: "button",
 				"aria-label": e.closeLabel,
 				onClick: ae
-			}, "✕", 8, Pr)) : o("", !0)], 512)) : o("", !0),
+			}, "✕", 8, Lr)) : o("", !0)], 512)) : o("", !0),
 			c("div", {
 				ref_key: "bodyEl",
 				ref: j,
@@ -3810,9 +3861,9 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 				ref: k,
 				class: "ms-foot"
 			}, [D(n.$slots, "foot", {}, void 0, !0)], 512)) : o("", !0)
-		], 46, Mr)], 6)]));
+		], 46, Fr)], 6)]));
 	}
-}, [["__scopeId", "data-v-bab5d7c5"]]), zr = { class: "form-actions" }, Br = ["disabled"], Vr = ["disabled"], Hr = /*#__PURE__*/ z({
+}, [["__scopeId", "data-v-bab5d7c5"]]), Hr = { class: "form-actions" }, Ur = ["disabled"], Wr = ["aria-busy", "disabled"], Gr = /*#__PURE__*/ z({
 	__name: "FormActionButtons",
 	props: {
 		submitText: {
@@ -3842,25 +3893,32 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 	},
 	emits: ["cancel", "submit"],
 	setup(e) {
-		return (t, n) => (C(), s("div", zr, [c("button", {
+		return (t, n) => (C(), s("div", Hr, [c("button", {
 			type: "button",
 			class: "form-actions__cancel",
 			disabled: e.disabled,
 			onClick: n[0] ||= (e) => t.$emit("cancel")
-		}, k(e.cancelText), 9, Br), c("button", {
+		}, k(e.cancelText), 9, Ur), c("button", {
 			type: "button",
 			class: "form-actions__submit",
+			"aria-busy": e.loading,
 			disabled: e.disabled || e.loading || !e.canSubmit,
 			onClick: n[1] ||= (e) => t.$emit("submit")
-		}, k(e.loading ? e.loadingText : e.submitText), 9, Vr)]));
+		}, [e.loading ? (C(), a(Dr, {
+			key: 0,
+			label: e.loadingText,
+			size: "xs",
+			class: "button-loading",
+			"aria-hidden": "true"
+		}, null, 8, ["label"])) : o("", !0), d(" " + k(e.loading ? e.loadingText : e.submitText), 1)], 8, Wr)]));
 	}
-}, [["__scopeId", "data-v-4749c971"]]), Ur = [
+}, [["__scopeId", "data-v-aa869fab"]]), Kr = [
 	"type",
 	"value",
 	"placeholder",
 	"maxlength",
 	"autocomplete"
-], Wr = /*#__PURE__*/ z({
+], qr = /*#__PURE__*/ z({
 	__name: "FormTextInput",
 	props: {
 		value: { default: "" },
@@ -3914,15 +3972,15 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 			onInput: n[0] ||= (e) => t.$emit("update:value", e.target.value),
 			onChange: n[1] ||= (e) => t.$emit("change", e.target.value),
 			onKeydown: n[2] ||= L((e) => t.$emit("enter", e), ["enter"])
-		}, null, 42, Ur));
+		}, null, 42, Kr));
 	}
-}, [["__scopeId", "data-v-e2d6bc8e"]]), Gr = {
+}, [["__scopeId", "data-v-e2d6bc8e"]]), Jr = {
 	key: 0,
 	class: "tpd-message"
-}, Kr = {
+}, Yr = {
 	key: 1,
 	class: "tpd-label"
-}, qr = /*#__PURE__*/ z({
+}, Xr = /*#__PURE__*/ z({
 	__name: "TextPromptDialog",
 	props: {
 		title: {
@@ -4019,7 +4077,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 			dismissible: !e.loading,
 			onClose: m
 		}, {
-			footer: F(() => [f(Hr, {
+			footer: F(() => [f(Gr, {
 				"submit-text": l.value,
 				"cancel-text": u.value,
 				"loading-text": e.loadingLabel,
@@ -4035,9 +4093,9 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 				"can-submit"
 			])]),
 			default: F(() => [
-				e.message ? (C(), s("div", Gr, k(e.message), 1)) : o("", !0),
-				e.label ? (C(), s("label", Kr, k(e.label), 1)) : o("", !0),
-				f(Wr, {
+				e.message ? (C(), s("div", Jr, k(e.message), 1)) : o("", !0),
+				e.label ? (C(), s("label", Yr, k(e.label), 1)) : o("", !0),
+				f(qr, {
 					value: d.value,
 					placeholder: e.placeholder,
 					maxlength: e.maxlength,
@@ -4057,10 +4115,10 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 			"dismissible"
 		])) : o("", !0);
 	}
-}, [["__scopeId", "data-v-ff9d61bb"]]), Jr = { class: "form-field-label" }, Yr = {
+}, [["__scopeId", "data-v-ff9d61bb"]]), Zr = { class: "form-field-label" }, Qr = {
 	key: 0,
 	class: "form-field-hint"
-}, Xr = /*#__PURE__*/ z({
+}, $r = /*#__PURE__*/ z({
 	__name: "FormField",
 	props: {
 		label: {
@@ -4077,13 +4135,13 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 		}
 	},
 	setup(e) {
-		return (t, n) => (C(), s("div", { class: v(["form-field", { "form-field--vertical": e.vertical }]) }, [c("span", Jr, [d(k(e.label), 1), e.hint ? (C(), s("span", Yr, k(e.hint), 1)) : o("", !0)]), D(t.$slots, "default", {}, void 0, !0)], 2));
+		return (t, n) => (C(), s("div", { class: v(["form-field", { "form-field--vertical": e.vertical }]) }, [c("span", Zr, [d(k(e.label), 1), e.hint ? (C(), s("span", Qr, k(e.hint), 1)) : o("", !0)]), D(t.$slots, "default", {}, void 0, !0)], 2));
 	}
-}, [["__scopeId", "data-v-01093950"]]), Zr = { class: "fn-wrap" }, Qr = [
+}, [["__scopeId", "data-v-01093950"]]), ei = { class: "fn-wrap" }, ti = [
 	"value",
 	"min",
 	"max"
-], $r = /*#__PURE__*/ z({
+], ni = /*#__PURE__*/ z({
 	__name: "FormNumberInput",
 	props: {
 		value: { default: 0 },
@@ -4102,7 +4160,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 		function o(e) {
 			r("change", i((parseInt(n.value) || 0) + e));
 		}
-		return (t, n) => (C(), s("div", Zr, [
+		return (t, n) => (C(), s("div", ei, [
 			c("button", {
 				type: "button",
 				class: "fn-btn",
@@ -4116,7 +4174,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 				min: e.min,
 				max: e.max,
 				onChange: a
-			}, null, 40, Qr),
+			}, null, 40, ti),
 			c("button", {
 				type: "button",
 				class: "fn-btn",
@@ -4125,7 +4183,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 			}, "+")
 		]));
 	}
-}, [["__scopeId", "data-v-df9f8db7"]]), ei = ["value"], ti = /*#__PURE__*/ z({
+}, [["__scopeId", "data-v-df9f8db7"]]), ri = ["value"], ii = /*#__PURE__*/ z({
 	__name: "FormSelect",
 	props: {
 		value: { default: "" },
@@ -4149,14 +4207,14 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 			class: "form-select",
 			value: e.value,
 			onChange: o
-		}, [D(t.$slots, "default", {}, void 0, !0)], 40, ei));
+		}, [D(t.$slots, "default", {}, void 0, !0)], 40, ri));
 	}
-}, [["__scopeId", "data-v-3eb4c36d"]]), ni = [
+}, [["__scopeId", "data-v-3eb4c36d"]]), ai = [
 	"value",
 	"placeholder",
 	"rows",
 	"maxlength"
-], ri = /*#__PURE__*/ z({
+], oi = /*#__PURE__*/ z({
 	__name: "FormTextarea",
 	props: {
 		value: { default: "" },
@@ -4179,20 +4237,20 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 			rows: e.rows,
 			maxlength: e.maxlength,
 			onInput: n[0] ||= (e) => t.$emit("update:value", e.target.value)
-		}, null, 40, ni));
+		}, null, 40, ai));
 	}
-}, [["__scopeId", "data-v-31024142"]]), ii = {
+}, [["__scopeId", "data-v-31024142"]]), si = {
 	class: "share-inline-edit__measure",
 	"aria-hidden": "true"
-}, ai = {
+}, ci = {
 	key: 0,
 	class: "share-inline-edit__view"
-}, oi = { class: "share-inline-edit__value" }, si = ["aria-label", "disabled"], ci = ["onKeydown"], li = [
+}, li = { class: "share-inline-edit__value" }, ui = ["aria-label", "disabled"], di = ["onKeydown"], fi = [
 	"value",
 	"aria-label",
 	"disabled",
 	"aria-invalid"
-], ui = ["value", "disabled"], di = [
+], pi = ["value", "disabled"], mi = [
 	"value",
 	"aria-label",
 	"placeholder",
@@ -4200,14 +4258,14 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 	"required",
 	"disabled",
 	"aria-invalid"
-], fi = {
+], hi = {
 	key: 2,
 	class: "share-inline-edit__actions"
-}, pi = ["aria-label", "disabled"], mi = ["aria-label", "disabled"], hi = {
+}, gi = ["aria-label", "disabled"], _i = ["aria-label", "disabled"], vi = {
 	key: 2,
 	class: "share-inline-edit__error",
 	role: "alert"
-}, gi = /*#__PURE__*/ z({
+}, yi = /*#__PURE__*/ z({
 	__name: "InlineEdit",
 	props: {
 		modelValue: { default: "" },
@@ -4297,7 +4355,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 			}
 		}
 		return (n, r) => (C(), s("span", { class: v(["share-inline-edit", { "share-inline-edit--open": g.value }]) }, [
-			c("span", ii, k(x.value), 1),
+			c("span", si, k(x.value), 1),
 			g.value ? (C(), s("span", {
 				key: 1,
 				class: "share-inline-edit__editor",
@@ -4315,7 +4373,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 				key: String(e.value),
 				value: e.value,
 				disabled: e.disabled
-			}, k(e.label), 9, ui))), 128))], 40, li)) : (C(), s("input", {
+			}, k(e.label), 9, pi))), 128))], 40, fi)) : (C(), s("input", {
 				key: 1,
 				ref_key: "input",
 				ref: m,
@@ -4327,7 +4385,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 				disabled: t.disabled || u.value,
 				"aria-invalid": !!f.value,
 				onInput: r[1] ||= (e) => w(e.target.value)
-			}, null, 40, di)), t.forceOpen ? o("", !0) : (C(), s("span", fi, [c("button", {
+			}, null, 40, mi)), t.forceOpen ? o("", !0) : (C(), s("span", hi, [c("button", {
 				type: "button",
 				"aria-label": t.confirmLabel,
 				disabled: t.disabled || u.value || t.required && !String(p.value ?? "").trim(),
@@ -4342,7 +4400,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 				d: "m4 10 4 4 8-8",
 				stroke: "currentColor",
 				"stroke-width": "1.8"
-			})], -1)]], 8, pi), c("button", {
+			})], -1)]], 8, gi), c("button", {
 				type: "button",
 				"aria-label": t.cancelLabel,
 				disabled: u.value,
@@ -4357,7 +4415,7 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 				d: "m5 5 10 10M15 5 5 15",
 				stroke: "currentColor",
 				"stroke-width": "1.8"
-			})], -1)]], 8, mi)]))], 40, ci)) : (C(), s("span", ai, [c("span", oi, [D(n.$slots, "default", { value: t.modelValue }, () => [d(k(b.value), 1)], !0)]), t.editable ? (C(), s("button", {
+			})], -1)]], 8, _i)]))], 40, di)) : (C(), s("span", ci, [c("span", li, [D(n.$slots, "default", { value: t.modelValue }, () => [d(k(b.value), 1)], !0)]), t.editable ? (C(), s("button", {
 				key: 0,
 				ref_key: "editButton",
 				ref: h,
@@ -4376,43 +4434,11 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 				stroke: "currentColor",
 				"stroke-width": "1.7",
 				"stroke-linejoin": "round"
-			})], -1)]], 8, si)) : o("", !0)])),
-			f.value ? (C(), s("span", hi, k(f.value), 1)) : o("", !0)
+			})], -1)]], 8, ui)) : o("", !0)])),
+			f.value ? (C(), s("span", vi, k(f.value), 1)) : o("", !0)
 		], 2));
 	}
-}, [["__scopeId", "data-v-55cecd7d"]]), _i = ["aria-label"], vi = {
-	key: 0,
-	class: "share-loading__label",
-	"aria-hidden": "true"
-}, yi = /*#__PURE__*/ z({
-	__name: "LoadingIndicator",
-	props: {
-		label: {
-			type: String,
-			required: !0
-		},
-		size: {
-			type: String,
-			default: "md",
-			validator: (e) => [
-				"sm",
-				"md",
-				"lg"
-			].includes(e)
-		},
-		showLabel: {
-			type: Boolean,
-			default: !1
-		}
-	},
-	setup(e) {
-		return (t, n) => (C(), s("div", {
-			class: v(["share-loading", `share-loading--${e.size}`]),
-			role: "status",
-			"aria-label": e.label
-		}, [n[0] ||= u("<svg class=\"share-loading__art\" viewBox=\"0 0 100 100\" fill=\"none\" aria-hidden=\"true\" data-v-9c9d9b08><circle class=\"share-loading__track\" cx=\"50\" cy=\"50\" r=\"38\" data-v-9c9d9b08></circle><g class=\"share-loading__orbit\" data-v-9c9d9b08><circle class=\"share-loading__arc\" cx=\"50\" cy=\"50\" r=\"38\" stroke-dasharray=\"52 187\" data-v-9c9d9b08></circle><circle class=\"share-loading__spark\" cx=\"50\" cy=\"12\" r=\"2.5\" data-v-9c9d9b08></circle></g><g class=\"share-loading__orbit share-loading__orbit--inner\" data-v-9c9d9b08><circle class=\"share-loading__arc\" cx=\"50\" cy=\"50\" r=\"28\" stroke-dasharray=\"25 63\" data-v-9c9d9b08></circle></g><path class=\"share-loading__core\" d=\"M50 33 62 50 50 67 38 50Z\" data-v-9c9d9b08></path><path class=\"share-loading__facet\" d=\"M50 33V67M38 50H62\" data-v-9c9d9b08></path></svg>", 1), e.showLabel ? (C(), s("span", vi, k(e.label), 1)) : o("", !0)], 10, _i));
-	}
-}, [["__scopeId", "data-v-9c9d9b08"]]), bi = /*#__PURE__*/ z({
+}, [["__scopeId", "data-v-55cecd7d"]]), bi = /*#__PURE__*/ z({
 	__name: "SkeletonBlock",
 	props: {
 		width: {
@@ -4438,6 +4464,40 @@ var Mr = ["aria-label"], Nr = { class: "ms-head-content" }, Pr = ["aria-label"],
 			"aria-hidden": "true"
 		}, null, 6));
 	}
-}, [["__scopeId", "data-v-ab086de7"]]);
+}, [["__scopeId", "data-v-ab086de7"]]), xi = /*#__PURE__*/ z({
+	__name: "LoadingState",
+	props: {
+		label: {
+			type: String,
+			required: !0
+		},
+		compact: {
+			type: Boolean,
+			default: !1
+		},
+		fill: {
+			type: Boolean,
+			default: !1
+		}
+	},
+	setup(e) {
+		return (t, n) => (C(), s("div", {
+			class: v(["share-loading-state", {
+				"share-loading-state--compact": e.compact,
+				"share-loading-state--fill": e.fill
+			}]),
+			"aria-busy": "true"
+		}, [f(Dr, {
+			label: e.label,
+			size: e.compact ? "sm" : "md",
+			inline: e.compact,
+			"show-label": ""
+		}, null, 8, [
+			"label",
+			"size",
+			"inline"
+		])], 2));
+	}
+}, [["__scopeId", "data-v-d9e04af1"]]);
 //#endregion
-export { Re as $, cn as A, At as B, Fn as C, Sn as D, Dn as E, kt as F, ft as G, _t as H, zt as I, tt as J, lt as K, Ft as L, Pt as M, Nt as N, hn as O, Mt as P, ze as Q, Rt as R, Ln as S, An as T, ut as U, Ct as V, dt as W, $e as X, et as Y, qe as Z, hr as _, ti as a, Te as at, Un as b, qr as c, me as ct, Rr as d, oe as dt, Ue as et, jr as f, ie as ft, gr as g, wr as h, z as ht, ri as i, Oe as it, Ht as j, pn as k, Wr as l, G as lt, kr as m, V as mt, yi as n, Ve as nt, $r as o, Y as ot, Ar as p, te as pt, rt as q, gi as r, We as rt, Xr as s, _e as st, bi as t, He as tt, Hr as u, le as ut, Jn as v, Mn as w, Vn as x, qn as y, jt as z };
+export { ze as $, pn as A, jt as B, Ln as C, Dn as D, An as E, Mt as F, dt as G, Ct as H, kt as I, rt as J, ft as K, zt as L, Ht as M, Pt as N, Sn as O, Nt as P, qe as Q, Ft as R, Vn as S, Mn as T, _t as U, At as V, ut as W, et as X, tt as Y, $e as Z, gr as _, ii as a, Oe as at, qn as b, Xr as c, _e as ct, Vr as d, le as dt, Re as et, Pr as f, oe as ft, wr as g, z as gt, Dr as h, V as ht, oi as i, We as it, cn as j, hn as k, qr as l, me as lt, Mr as m, te as mt, bi as n, He as nt, ni as o, Te as ot, Nr as p, ie as pt, lt as q, yi as r, Ve as rt, $r as s, Y as st, xi as t, Ue as tt, Gr as u, G as ut, hr as v, Fn as w, Un as x, Jn as y, Rt as z };

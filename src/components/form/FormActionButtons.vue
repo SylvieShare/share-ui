@@ -9,13 +9,17 @@
     <button
       type="button"
       class="form-actions__submit"
+      :aria-busy="loading"
       :disabled="disabled || loading || !canSubmit"
       @click="$emit('submit')"
-    >{{ loading ? loadingText : submitText }}</button>
+    >
+      <LoadingIndicator v-if="loading" :label="loadingText" size="xs" class="button-loading" aria-hidden="true" />
+      {{ loading ? loadingText : submitText }}</button>
   </div>
 </template>
 
 <script setup>
+import LoadingIndicator from '../LoadingIndicator.vue'
 defineProps({
   submitText:  { type: String, default: 'Сохранить' },
   cancelText:  { type: String, default: 'Отмена' },
@@ -28,6 +32,7 @@ defineEmits(['cancel', 'submit'])
 </script>
 
 <style scoped>
+.button-loading { color: inherit; vertical-align: middle; margin-right: 7px; }
 .form-actions {
   display: flex;
   gap: 10px;
