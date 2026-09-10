@@ -26,6 +26,19 @@
           </div>
         </article>
 
+        <article class="share-component-gallery__card" data-share-gallery="SectionList">
+          <h2>SectionList</h2>
+          <SectionList title="Записи">
+            <div style="padding: 12px 0">Первая запись</div>
+            <div style="padding: 12px 0">Вторая запись</div>
+            <template #footer><AddButton label="Добавить запись" /></template>
+          </SectionList>
+          <SectionList title="Встроенная группа" embedded compact>
+            <div style="padding: 8px 0">Компактная запись</div>
+            <div style="padding: 8px 0">Ещё одна запись</div>
+          </SectionList>
+        </article>
+
         <article class="share-component-gallery__card" data-share-gallery="AddButton RemoveButton">
           <h2>Кнопки элементов</h2>
           <div class="share-component-gallery__row">
@@ -329,6 +342,7 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
+import SectionList from '../components/SectionList.vue'
 import BaseTile from '../components/BaseTile.vue'
 import AddButton from '../components/AddButton.vue'
 import AppSlider from '../components/AppSlider.vue'

@@ -1,5 +1,13 @@
 import type { Component, ComputedRef, DefineComponent, Ref } from 'vue'
 
+export const SectionList: DefineComponent<{
+  title?: string
+  embedded?: boolean
+  compact?: boolean
+  transitionName?: string
+  listAttrs?: Record<string, unknown>
+}>
+
 export const BaseTile: DefineComponent<{
   color?: string | null
   strip?: boolean

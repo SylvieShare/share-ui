@@ -1,5 +1,6 @@
 export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
   'BaseTile',
+  'SectionList',
   'AddButton',
   'AppSlider',
   'CompactCheckbox',

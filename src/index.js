@@ -1,6 +1,7 @@
 import './styles/tokens.css'
 import './styles/canvas.css'
 
+export { default as SectionList } from './components/SectionList.vue'
 export { default as BaseTile } from './components/BaseTile.vue'
 export { default as AddButton } from './components/AddButton.vue'
 export { default as AppSlider } from './components/AppSlider.vue'
