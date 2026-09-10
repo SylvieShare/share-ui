@@ -1,16 +1,8 @@
 <template>
   <span class="share-loading" :class="{ 'share-loading--inline': inline }" :style="{ '--loading-size': resolvedSize }" role="status" :aria-label="label">
-    <svg class="share-loading__art" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-      <circle class="share-loading__track" cx="50" cy="50" r="38" />
-      <g class="share-loading__orbit">
-        <circle class="share-loading__arc" cx="50" cy="50" r="38" stroke-dasharray="52 187" />
-        <circle class="share-loading__spark" cx="50" cy="12" r="2.5" />
-      </g>
-      <g class="share-loading__orbit share-loading__orbit--inner">
-        <circle class="share-loading__arc" cx="50" cy="50" r="28" stroke-dasharray="25 63" />
-      </g>
-      <path class="share-loading__core" d="M50 33 62 50 50 67 38 50Z" />
-      <path class="share-loading__facet" d="M50 33V67M38 50H62" />
+    <svg class="share-loading__art" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle class="share-loading__track" cx="12" cy="12" r="9" vector-effect="non-scaling-stroke" />
+      <circle class="share-loading__arc" cx="12" cy="12" r="9" stroke-dasharray="16 41" vector-effect="non-scaling-stroke" />
     </svg>
     <span v-if="showLabel" class="share-loading__label" aria-hidden="true">{{ label }}</span>
   </span>
@@ -33,17 +25,11 @@ const resolvedSize = computed(() => `${typeof props.size === 'number' ? props.si
 .share-loading__art { width: var(--loading-size); height: var(--loading-size); overflow: visible; }
 .share-loading--inline { flex-direction: row; gap: 8px; vertical-align: middle; }
 .share-loading--inline .share-loading__label { font: inherit; letter-spacing: inherit; color: inherit; }
-.share-loading__track { stroke: color-mix(in srgb, currentColor 14%, transparent); stroke-width: 1; }
-.share-loading__arc { stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
-.share-loading__spark { fill: currentColor; }
-.share-loading__orbit { transform-origin: 50px 50px; animation: share-loading-orbit 3.6s linear infinite; }
-.share-loading__orbit--inner { animation-duration: 5.4s; animation-direction: reverse; opacity: .45; }
-.share-loading__core { fill: color-mix(in srgb, currentColor 14%, transparent); stroke: currentColor; stroke-width: 1.2; animation: share-loading-breathe 2.4s ease-in-out infinite; }
-.share-loading__facet { stroke: currentColor; stroke-width: .7; opacity: .4; }
+.share-loading__track { stroke: color-mix(in srgb, currentColor 16%, transparent); stroke-width: 2; }
+.share-loading__arc { stroke: currentColor; stroke-width: 2; stroke-linecap: round; transform-origin: 12px 12px; animation: share-loading-spin 1s linear infinite; }
 .share-loading__label { color: var(--text-muted); font-size: 12px; line-height: 1.5; letter-spacing: .04em; text-align: center; }
-@keyframes share-loading-orbit { to { transform: rotate(360deg); } }
-@keyframes share-loading-breathe { 50% { opacity: .5; } }
+@keyframes share-loading-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) {
-  .share-loading__orbit, .share-loading__core { animation: none; }
+  .share-loading__arc { animation: none; }
 }
 </style>
