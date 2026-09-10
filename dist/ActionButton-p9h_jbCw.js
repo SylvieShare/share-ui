@@ -4516,6 +4516,46 @@ var Pr = ["aria-label"], Fr = { class: "ms-head-content" }, Ir = ["aria-label"],
 			"inline"
 		])], 2));
 	}
-}, [["__scopeId", "data-v-d9e04af1"]]);
+}, [["__scopeId", "data-v-d9e04af1"]]), xi = [
+	"type",
+	"disabled",
+	"aria-busy"
+], Si = /*#__PURE__*/ R({
+	__name: "ActionButton",
+	props: {
+		variant: {
+			type: String,
+			default: "primary",
+			validator: (e) => [
+				"primary",
+				"secondary",
+				"quiet"
+			].includes(e)
+		},
+		type: {
+			type: String,
+			default: "button"
+		},
+		disabled: Boolean,
+		loading: Boolean,
+		loadingLabel: {
+			type: String,
+			default: ""
+		}
+	},
+	setup(e) {
+		return (t, n) => (S(), s("button", {
+			class: _(["share-action-button", `share-action-button--${e.variant}`]),
+			type: e.type,
+			disabled: e.disabled || e.loading,
+			"aria-busy": e.loading || void 0
+		}, [e.loading ? (S(), a(Er, {
+			key: 0,
+			label: e.loadingLabel,
+			size: "xs",
+			"aria-hidden": "true"
+		}, null, 8, ["label"])) : E(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [E(t.$slots, "default", {}, void 0, !0)])], 10, xi));
+	}
+}, [["__scopeId", "data-v-3d4fbaa0"]]);
 //#endregion
-export { Re as $, fn as A, At as B, In as C, En as D, kn as E, jt as F, ut as G, St as H, Ot as I, nt as J, dt as K, Rt as L, Vt as M, Nt as N, xn as O, Mt as P, Ke as Q, Pt as R, Bn as S, jn as T, gt as U, kt as V, lt as W, $e as X, et as Y, Qe as Z, hr as _, ri as a, De as at, Kn as b, Yr as c, ge as ct, Br as d, ce as dt, Le as et, Nr as f, ae as ft, Cr as g, R as gt, Er as h, B as ht, ai as i, Ue as it, sn as j, mn as k, Kr as l, pe as lt, jr as m, ee as mt, yi as n, Ve as nt, ti as o, we as ot, Mr as p, re as pt, ct as q, vi as r, Be as rt, Qr as s, xe as st, bi as t, He as tt, Wr as u, de as ut, mr as v, Pn as w, Hn as x, qn as y, Lt as z };
+export { Ke as $, mn as A, Lt as B, Bn as C, kn as D, jn as E, Mt as F, lt as G, kt as H, jt as I, ct as J, ut as K, Ot as L, sn as M, Vt as N, En as O, Nt as P, Qe as Q, Rt as R, Hn as S, Pn as T, St as U, At as V, gt as W, et as X, nt as Y, $e as Z, Cr as _, R as _t, ai as a, Ue as at, qn as b, Qr as c, xe as ct, Wr as d, de as dt, Re as et, Br as f, ce as ft, Er as g, B as gt, jr as h, ee as ht, vi as i, Be as it, fn as j, xn as k, Yr as l, ge as lt, Mr as m, re as mt, bi as n, He as nt, ri as o, De as ot, Nr as p, ae as pt, dt as q, yi as r, Ve as rt, ti as s, we as st, Si as t, Le as tt, Kr as u, pe as ut, hr as v, In as w, Kn as x, mr as y, Pt as z };

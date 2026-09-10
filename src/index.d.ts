@@ -570,3 +570,5 @@ export const LoadingIndicator: DefineComponent<{ label: string; size?: 'xs' | 's
 export const SkeletonBlock: DefineComponent<{ width?: string; height?: string; round?: boolean }>
 
 export const LoadingState: DefineComponent<{ label: string; compact?: boolean; fill?: boolean }>
+
+export const ActionButton: DefineComponent<{ variant?: 'primary' | 'secondary' | 'quiet'; type?: 'button' | 'submit' | 'reset'; disabled?: boolean; loading?: boolean; loadingLabel?: string }>

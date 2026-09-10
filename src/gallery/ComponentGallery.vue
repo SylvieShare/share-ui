@@ -61,9 +61,14 @@
           </SectionList>
         </article>
 
-        <article class="share-component-gallery__card" data-share-gallery="AddButton RemoveButton">
+        <article class="share-component-gallery__card" data-share-gallery="AddButton RemoveButton ActionButton">
           <h2>Кнопки элементов</h2>
           <div class="share-component-gallery__row">
+            <ActionButton>Основное действие</ActionButton>
+            <ActionButton variant="secondary">Вторичное</ActionButton>
+            <ActionButton variant="quiet">Тихое</ActionButton>
+            <ActionButton disabled>Недоступно</ActionButton>
+            <ActionButton loading loading-label="Загрузка">Загрузка</ActionButton>
             <AddButton label="Добавить элемент" />
             <AddButton label="Добавить" variant="icon" />
             <RemoveButton label="Удалить" />
@@ -370,6 +375,7 @@ import { reactive, ref } from 'vue'
 import InlineEdit from '../components/InlineEdit.vue'
 import SectionList from '../components/SectionList.vue'
 import BaseTile from '../components/BaseTile.vue'
+import ActionButton from '../components/ActionButton.vue'
 import AddButton from '../components/AddButton.vue'
 import AppSlider from '../components/AppSlider.vue'
 import CompactCheckbox from '../components/CompactCheckbox.vue'
