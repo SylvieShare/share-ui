@@ -572,3 +572,39 @@ export const SkeletonBlock: DefineComponent<{ width?: string; height?: string; r
 export const LoadingState: DefineComponent<{ label: string; compact?: boolean; fill?: boolean }>
 
 export const ActionButton: DefineComponent<{ variant?: 'primary' | 'secondary' | 'quiet'; type?: 'button' | 'submit' | 'reset'; disabled?: boolean; loading?: boolean; loadingLabel?: string }>
+
+export interface GuidedTourStep {
+  id: string
+  title: string
+  body: string
+  target?: () => HTMLElement | null | undefined
+  enter?: (context: { signal: AbortSignal; onCleanup: (fn: () => void) => void }) => void | Promise<void>
+}
+export interface GuidedTourController {
+  active: Ref<boolean>
+  busy: Ref<boolean>
+  error: Ref<unknown>
+  index: Ref<number>
+  steps: Ref<GuidedTourStep[]>
+  step: ComputedRef<GuidedTourStep | null>
+  target: Ref<HTMLElement | null>
+  start: (steps: GuidedTourStep[]) => Promise<void>
+  stop: () => void
+  next: () => Promise<void>
+  previous: () => Promise<void>
+  dismiss: () => Promise<void>
+  retry: () => Promise<void> | undefined
+}
+export function useGuidedTour(options?: {
+  onFinish?: (reason: 'completed' | 'dismissed') => Promise<void>
+}): GuidedTourController
+export const GuidedTour: DefineComponent<{
+  tour: import('vue').UnwrapRef<GuidedTourController>
+  mobile?: boolean
+  zIndex?: number
+  labels?: {
+    progress: (current: number, total: number) => string
+    next: string; previous: string; finish: string; dismiss: string
+    retry: string; close: string; loading: string; error: string
+  }
+}>

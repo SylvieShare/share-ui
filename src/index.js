@@ -82,3 +82,6 @@ export { default as SkeletonBlock } from './components/SkeletonBlock.vue'
 export { default as LoadingState } from './components/LoadingState.vue'
 
 export { default as ActionButton } from './components/ActionButton.vue'
+
+export { default as GuidedTour } from './components/tutorial/GuidedTour.vue'
+export { useGuidedTour } from './composables/useGuidedTour.js'

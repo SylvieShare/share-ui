@@ -98,3 +98,5 @@ preset, поэтому consumer не зависит от CSS, случайно �
 До `1.0.0` API может меняться, но каждая версия фиксируется Git tag и consumers
 обновляются явно. Удаление prop/event/export или токена считается breaking
 change. Изменение общих визуальных defaults также описывается в release commit.
+
+Обучение разделено на нейтральные `GuidedTour`/`useGuidedTour` (временное UI-состояние, подсветка, навигация, focus и отмена) и consumer-сценарии/хранение. Подробности — в `components.md`.

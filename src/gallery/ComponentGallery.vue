@@ -9,6 +9,10 @@
       <span class="share-component-gallery__accent" aria-label="Текущий акцент" />
     </header>
 
+    <section class="share-component-gallery__section" data-share-gallery="GuidedTour">
+      <h2>GuidedTour</h2>
+      <TourGalleryExample />
+    </section>
     <section class="share-component-gallery__section">
       <SectionLabel title="Поверхности и действия" border />
       <div class="share-component-gallery__grid">
@@ -368,6 +372,7 @@
 </template>
 
 <script setup>
+import TourGalleryExample from './TourGalleryExample.vue'
 import LoadingState from '../components/LoadingState.vue'
 import LoadingIndicator from '../components/LoadingIndicator.vue'
 import SkeletonBlock from '../components/SkeletonBlock.vue'

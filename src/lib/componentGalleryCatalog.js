@@ -1,4 +1,5 @@
 export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
+  'GuidedTour',
   'LoadingIndicator',
   'LoadingState',
   'SkeletonBlock',
