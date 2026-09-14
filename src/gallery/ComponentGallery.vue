@@ -32,6 +32,7 @@
               <template #aside><span>{{ morphTileEdits }}</span></template>
               <span>Единый заголовок и действие справа</span>
             </MorphTile>
+            <MorphTile compact-header title="Компактный заголовок" show-edit edit-label="Редактировать"><span>Малая плитка</span></MorphTile>
             <MorphTile title="Только просмотр"><span>Без карандаша</span></MorphTile>
             <MorphTile><span>Без заголовка</span></MorphTile>
             <MorphTile embedded title="Раскрытая грань" show-edit edit-fade edit-label="Редактировать"><span>Без второй поверхности</span></MorphTile>

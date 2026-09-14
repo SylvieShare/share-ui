@@ -612,6 +612,7 @@ export const GuidedTour: DefineComponent<{
 
 export const TileAccentStrip: DefineComponent<{ color?: string | null }>
 export interface MorphTileHeaderProps {
+  compactHeader?: boolean
   title?: string
   showEdit?: boolean
   editLabel?: string

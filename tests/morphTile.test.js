@@ -27,3 +27,10 @@ it('composes an optional standalone strip without adding one to BaseTile', async
   expect(await render(BaseTile, {}, () => 'Body')).not.toContain('tile-accent-strip')
   expect(await render(BaseTile, {}, () => h(TileAccentStrip))).toContain('aria-hidden="true"')
 })
+
+it('passes the compact header option through surfaces and embedded faces', async () => {
+  for (const embedded of [false, true]) {
+    expect(await render(MorphTile, { embedded, compactHeader: true, title: 'Small' })).toContain('morph-tile-header--compact')
+    expect(await render(MorphTile, { embedded, title: 'Regular' })).not.toContain('morph-tile-header--compact')
+  }
+})
