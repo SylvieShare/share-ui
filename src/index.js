@@ -88,3 +88,12 @@ export { default as ActionButton } from './components/ActionButton.vue'
 
 export { default as GuidedTour } from './components/tutorial/GuidedTour.vue'
 export { useGuidedTour } from './composables/useGuidedTour.js'
+
+export { default as StatBar } from './components/StatBar.vue'
+export { default as IconPicker } from './components/IconPicker.vue'
+export { default as DetailSection } from './components/DetailSection.vue'
+export { default as ContentRow } from './components/ContentRow.vue'
+export { default as OptionList } from './components/floating/OptionList.vue'
+export { default as SearchMultiSelect } from './components/floating/SearchMultiSelect.vue'
+export { default as FloatingTooltip } from './components/floating/FloatingTooltip.vue'
+export { useVirtualList } from './composables/useVirtualList.js'

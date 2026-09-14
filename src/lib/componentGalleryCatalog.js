@@ -1,4 +1,12 @@
 export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
+  'StatBar',
+  'IconPicker',
+  'DetailSection',
+  'ContentRow',
+  'OptionList',
+  'SearchMultiSelect',
+  'FloatingTooltip',
+
   'GuidedTour',
   'LoadingIndicator',
   'LoadingState',

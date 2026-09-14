@@ -1,6 +1,7 @@
 <template>
   <div
     v-if="$slots.trigger"
+    v-bind="triggerAttrs"
     ref="triggerEl"
     class="ram-custom-trigger"
     :class="{ 'ram-custom-trigger--block': block }"
@@ -10,6 +11,7 @@
   </div>
   <button
     v-else
+    v-bind="triggerAttrs"
     ref="triggerEl"
     type="button"
     class="ram-trigger"
@@ -56,6 +58,7 @@ import {
 import { ACTION_MENU_MARGIN, computeActionMenuPlacement } from '../../lib/actionMenuPlacement.js'
 
 const props = defineProps({
+  triggerAttrs: { type: Object, default: () => ({}) },
   title: { type: String, default: 'Actions' },
   disabled: { type: Boolean, default: false },
   block: { type: Boolean, default: false },

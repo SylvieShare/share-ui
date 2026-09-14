@@ -59,3 +59,6 @@ stories и отдельную интеграцию тем. Встраиваем�
 реальном consumer theme. Если позже понадобятся visual regression, controls и
 документирование props, Storybook можно подключить как оболочку над теми же
 примерами, не заменяя галерею.
+
+
+Раздел примитивов списков показывает StatBar с основной/временной долей, выбор иконки, сворачиваемый DetailSection, интерактивный ContentRow, OptionList, SearchMultiSelect и FloatingTooltip. Все семь компонентов включены в coverage-каталог.

@@ -1,17 +1,17 @@
-import { $ as e, A as t, B as n, C as r, D as i, E as a, F as o, G as s, H as c, I as l, J as u, K as d, L as f, M as p, N as m, O as h, P as g, Q as _, R as v, S as y, T as b, U as x, V as S, W as C, X as w, Y as T, Z as E, _ as D, _t as O, a as ee, at as k, b as te, bt as ne, c as re, ct as ie, d as A, dt as j, et as M, f as N, ft as P, g as F, gt as I, h as L, ht as R, i as z, it as B, j as V, k as H, l as U, lt as W, m as G, mt as K, n as q, nt as J, o as Y, ot as ae, p as oe, pt as se, q as ce, r as le, rt as ue, s as de, st as fe, t as pe, tt as X, u as me, ut as he, v as ge, vt as _e, w as ve, x as ye, xt as be, y as xe, yt as Se, z as Z } from "./useGuidedTour-DM46f7Ol.js";
-import { computed as Q, onBeforeUnmount as Ce, ref as $ } from "vue";
+import { $ as e, A as t, B as n, C as r, Ct as i, D as a, Dt as o, E as s, Et as c, F as l, G as u, H as d, I as f, J as p, K as m, L as h, M as g, N as _, O as v, Ot as y, P as b, Q as x, R as S, S as C, St as w, T, Tt as E, U as D, V as O, W as k, X as A, Y as ee, Z as te, _ as ne, _t as re, a as ie, at as ae, b as oe, bt as se, c as ce, ct as j, d as M, dt as N, et as P, f as F, ft as I, g as L, gt as R, h as z, ht as B, i as V, it as H, j as U, k as W, l as G, lt as le, m as ue, mt as de, n as fe, nt as pe, o as me, ot as he, p as ge, pt as _e, q as ve, r as ye, rt as K, s as be, st as q, t as xe, tt as Se, u as Ce, ut as we, v as J, vt as Te, w as Ee, wt as De, x as Oe, xt as ke, y as Ae, yt as je, z as Me } from "./FloatingTooltip-DqHCJ5bD.js";
+import { computed as Y, nextTick as X, onBeforeUnmount as Ne, onScopeDispose as Pe, ref as Z, shallowRef as Fe, toValue as Q, watch as $ } from "vue";
 //#region src/composables/useSortable.js
-var we = 4;
-function Te(e, t = null) {
+var Ie = 4;
+function Le(e, t = null) {
 	return Array.from(e.querySelectorAll("[data-sortable-key]")).filter((t) => t.closest("[data-sortable-container]") === e).filter((e) => e.getAttribute("data-sortable-key") !== t);
 }
-function Ee(e, t, n) {
+function Re(e, t, n) {
 	if (t < 0) return e.slice();
 	let r = e.slice(), [i] = r.splice(t, 1);
 	return r.splice(Math.min(n, r.length), 0, i), r;
 }
-function De(e) {
-	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = $(!1), o = $(null), s = $(null), c = $(-1), l = $(null), u = $(-1), d = $(!1), f = null, p = 0, m = 0, h = null, g = 0, _ = null;
+function ze(e) {
+	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = Z(!1), o = Z(null), s = Z(null), c = Z(-1), l = Z(null), u = Z(-1), d = Z(!1), f = null, p = 0, m = 0, h = null, g = 0, _ = null;
 	function v(e, t, n, r) {
 		if (e.button !== void 0 && e.button !== 0) return;
 		let i = e.currentTarget.closest("[data-sortable-key]");
@@ -28,7 +28,7 @@ function De(e) {
 		if (!a.value) {
 			if (!h) return;
 			let t = e.clientX - h.x, n = e.clientY - h.y;
-			if (Math.hypot(t, n) < we) return;
+			if (Math.hypot(t, n) < Ie) return;
 			b();
 		}
 		x(e.clientX, e.clientY), S(e.clientX, e.clientY);
@@ -76,7 +76,7 @@ function De(e) {
 			}
 		}
 		if (!d) return;
-		let f = s.value ? String(n(s.value)) : null, p = Te(c, f), m = p.length;
+		let f = s.value ? String(n(s.value)) : null, p = Le(c, f), m = p.length;
 		for (let e = 0; e < p.length; e++) {
 			let t = p[e].getBoundingClientRect();
 			if (r < t.top + t.height / 2) {
@@ -140,7 +140,7 @@ function De(e) {
 		}
 		return c;
 	}
-	return Ce(() => {
+	return Ne(() => {
 		T(), clearTimeout(_), d.value = !1;
 	}), {
 		dragging: a,
@@ -157,12 +157,12 @@ function De(e) {
 }
 //#endregion
 //#region src/composables/useSheetSubpages.js
-var Oe = "cubic-bezier(.2, 0, 0, 1)", ke = 320;
-function Ae() {
-	let e = $("detail"), t = $(0), n = $(!1), r = 1, i = null, a = Q(() => n.value ? `transform ${ke}ms ${Oe}` : "none"), o = Q(() => ({
+var Be = "cubic-bezier(.2, 0, 0, 1)", Ve = 320;
+function He() {
+	let e = Z("detail"), t = Z(0), n = Z(!1), r = 1, i = null, a = Y(() => n.value ? `transform ${Ve}ms ${Be}` : "none"), o = Y(() => ({
 		transform: `translateX(${(-t.value * 100).toFixed(3)}%)`,
 		transition: a.value
-	})), s = Q(() => ({
+	})), s = Y(() => ({
 		transform: `translateX(${((1 - t.value) * 100).toFixed(3)}%)`,
 		transition: a.value
 	}));
@@ -208,4 +208,103 @@ function Ae() {
 	};
 }
 //#endregion
-export { J as ACTION_MENU_GAP, ue as ACTION_MENU_MARGIN, m as AccountMenu, le as ActionButton, X as ActionMenu, X as RowActionMenu, M as ActionMenuItem, M as RowActionItem, w as ActionMenuSubmenu, w as RowActionSubmenu, I as AddButton, te as AppModal, xe as AppModalFrame, p as AppShell, t as AppSidebar, R as AppSlider, E as BasePopover, be as BaseTile, d as ColorPresetPicker, K as CompactCheckbox, D as ConfirmDialog, a as EditorPanel, ve as EditorSection, b as EditorSectionTitle, r as EditorTotal, oe as FormActionButtons, me as FormField, U as FormNumberInput, re as FormSelect, N as FormTextInput, de as FormTextarea, q as GuidedTour, Y as InlineEdit, ge as LoadingIndicator, z as LoadingState, F as ModalShell, G as MorphSheet, Se as MorphTile, ne as MorphTileHeader, se as MultiToggle, ce as PRESET_COLORS, A as PromptDialog, A as TextPromptDialog, B as ROW_ACTION_GAP, k as ROW_ACTION_MARGIN, P as RemoveButton, o as RichContent, g as RichTextEditor, j as SectionLabel, O as SectionList, he as SegmentDonutChart, H as SidebarBrand, h as SidebarGroup, i as SidebarNavItem, V as SidebarToggle, ee as SkeletonBlock, W as SlidingTabs, _e as TileAccentStrip, ie as ToggleSwitch, s as ValueSelect, ae as computeActionMenuPlacement, fe as computeRowActionPlacement, l as createRichNodeHtml, f as decodeRichNodePayload, v as encodeRichNodePayload, Z as escapeHtml, u as isValidHexColor, n as plainTextToRichHtml, T as randomPreset, S as readRichNode, Ee as reorderByDrop, ye as restoreFocus, c as sanitizeRichHtml, x as sanitizeRichTextColor, C as sanitizeRichTextUrl, L as useContainerMorph, y as useFullscreenViewportHeight, pe as useGuidedTour, _ as useIsMobile, e as useMediaQuery, Ae as useSheetSubpages, De as useSortable };
+//#region src/lib/virtualListLayout.js
+function Ue(e, t, n, r) {
+	let i = [0];
+	for (let a of e) i.push(i.at(-1) + (r.get(t(a)) || Math.max(1, n(a))));
+	return i;
+}
+function We(e, t, n, r = 6) {
+	let i = e.length - 1;
+	if (!i) return {
+		start: 0,
+		end: 0
+	};
+	let a = (t) => {
+		let n = 0, r = i;
+		for (; n < r;) {
+			let i = n + r >>> 1;
+			e[i + 1] <= t ? n = i + 1 : r = i;
+		}
+		return Math.min(n, i - 1);
+	}, o = Math.max(0, Math.min(t, e[i] - n));
+	return {
+		start: Math.max(0, a(o) - r),
+		end: Math.min(i, a(o + n) + r + 1)
+	};
+}
+//#endregion
+//#region src/composables/useVirtualList.js
+function Ge(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overscan: a = 6 } = {}) {
+	let o = Fe(/* @__PURE__ */ new Map()), s = Z(0), c = Z(0), l = Z(null), u = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new WeakMap(), f = Y(() => Q(e) || []), p = Y(() => Ue(f.value, n, r, o.value)), m = Y(() => new Map(f.value.map((e, t) => [n(e), t]))), h = Y(() => f.value.length > i), g = Y(() => h.value ? We(p.value, s.value, c.value || 600, a) : {
+		start: 0,
+		end: f.value.length
+	}), _ = Y(() => {
+		let { start: e, end: t } = g.value, r = Array.from({ length: t - e }, (t, n) => e + n), i = m.value.get(l.value);
+		i != null && (i < e || i >= t) && r.push(i), r.sort((e, t) => e - t);
+		let a = 0;
+		return r.map((e) => {
+			let t = f.value[e], r = p.value[e] - a;
+			return a = p.value[e + 1], {
+				item: t,
+				key: n(t),
+				index: e,
+				gap: r
+			};
+		});
+	}), v = Y(() => p.value.at(-1) - (_.value.length ? p.value[_.value.at(-1).index + 1] : 0)), y, b, x, S, C;
+	function w() {
+		if (!x) return;
+		let e = x.clientWidth;
+		C != null && e > 0 && e !== C && (o.value = /* @__PURE__ */ new Map()), e > 0 && (C = e), c.value = x.clientHeight, s.value = Math.max(0, x.scrollTop - (parseFloat(getComputedStyle(x).paddingTop) || 0));
+	}
+	function T() {
+		S ??= requestAnimationFrame(() => {
+			S = null, w();
+		});
+	}
+	function E(e) {
+		l.value = null;
+		for (let [t, n] of u) if (n.contains(e.target)) {
+			l.value = t;
+			break;
+		}
+	}
+	function D(e) {
+		x?.contains(e.relatedTarget) || (l.value = null);
+	}
+	function O(e, t) {
+		let n = t?.$el || t, r = u.get(e);
+		r !== n && (r && (y?.unobserve(r), u.delete(e)), n?.nodeType === 1 && (u.set(e, n), d.set(n, e), y?.observe(n)));
+	}
+	typeof ResizeObserver < "u" && (y = new ResizeObserver((e) => {
+		let t = new Map(o.value), n = !1;
+		for (let { target: r } of e) {
+			let e = r.getBoundingClientRect();
+			if (!e.height) continue;
+			let i = getComputedStyle(r), a = e.height + (parseFloat(i.marginTop) || 0) + (parseFloat(i.marginBottom) || 0), o = d.get(r);
+			o != null && Math.abs((t.get(o) || 0) - a) > .5 && (t.set(o, a), n = !0);
+		}
+		n && (o.value = t);
+	}), b = new ResizeObserver(w));
+	function k() {
+		x?.removeEventListener("scroll", T), x?.removeEventListener("focusin", E), x?.removeEventListener("focusout", D), b?.disconnect();
+	}
+	return $(t, (e) => {
+		k(), x = e, e?.addEventListener("scroll", T, { passive: !0 }), e?.addEventListener("focusin", E), e?.addEventListener("focusout", D), e && b?.observe(e), X(w);
+	}, {
+		immediate: !0,
+		flush: "post"
+	}), $(m, (e) => {
+		o.value = new Map([...o.value].filter(([t]) => e.has(t))), e.has(l.value) || (l.value = null), X(w);
+	}), Pe(() => {
+		k(), y?.disconnect(), S != null && cancelAnimationFrame(S);
+	}), {
+		visibleItems: _,
+		paddingAfter: v,
+		setItemRef: O,
+		totalSize: Y(() => p.value.at(-1))
+	};
+}
+//#endregion
+export { le as ACTION_MENU_GAP, we as ACTION_MENU_MARGIN, n as AccountMenu, Ce as ActionButton, j as ActionMenu, j as RowActionMenu, q as ActionMenuItem, q as RowActionItem, K as ActionMenuSubmenu, K as RowActionSubmenu, i as AddButton, a as AppModal, s as AppModalFrame, Me as AppShell, h as AppSidebar, w as AppSlider, H as BasePopover, y as BaseTile, e as ColorPresetPicker, ke as CompactCheckbox, Ee as ConfirmDialog, V as ContentRow, ie as DetailSection, _ as EditorPanel, U as EditorSection, g as EditorSectionTitle, t as EditorTotal, xe as FloatingTooltip, oe as FormActionButtons, ne as FormField, L as FormNumberInput, z as FormSelect, Ae as FormTextInput, ue as FormTextarea, G as GuidedTour, me as IconPicker, ge as InlineEdit, T as LoadingIndicator, M as LoadingState, r as ModalShell, Oe as MorphSheet, c as MorphTile, o as MorphTileHeader, se as MultiToggle, ye as OptionList, P as PRESET_COLORS, J as PromptDialog, J as TextPromptDialog, N as ROW_ACTION_GAP, I as ROW_ACTION_MARGIN, je as RemoveButton, d as RichContent, O as RichTextEditor, fe as SearchMultiSelect, Te as SectionLabel, De as SectionList, re as SegmentDonutChart, f as SidebarBrand, l as SidebarGroup, b as SidebarNavItem, S as SidebarToggle, F as SkeletonBlock, R as SlidingTabs, be as StatBar, E as TileAccentStrip, B as ToggleSwitch, x as ValueSelect, _e as computeActionMenuPlacement, de as computeRowActionPlacement, D as createRichNodeHtml, k as decodeRichNodePayload, u as encodeRichNodePayload, m as escapeHtml, Se as isValidHexColor, ve as plainTextToRichHtml, pe as randomPreset, p as readRichNode, Re as reorderByDrop, v as restoreFocus, ee as sanitizeRichHtml, A as sanitizeRichTextColor, te as sanitizeRichTextUrl, C as useContainerMorph, W as useFullscreenViewportHeight, ce as useGuidedTour, ae as useIsMobile, he as useMediaQuery, He as useSheetSubpages, ze as useSortable, Ge as useVirtualList };

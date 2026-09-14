@@ -340,3 +340,22 @@ Consumer обязан разрешать только безопасные UI-д
 
 `BasePopover` отслеживает размер содержимого через `ResizeObserver`, чтобы
 асинхронная загрузка списков сохраняла позицию в пределах viewport.
+
+
+## Списки, компактные данные и подсказки (0.23)
+
+- `StatBar`: `percent`, `tempPercent`, `color`, `tempColor`, `size`, `decorated`, `label`. Значения ограничиваются диапазоном 0–100; `role=meter` описывает основную долю. Подходит для здоровья и прогресса уровня.
+- `IconPicker`: `modelValue`, массив `options: { value, label, icon, disabled? }[]`, обязательный `label`. Событие `update:modelValue`, доступные кнопки с `aria-pressed`; consumer поставляет набор иконок. Применяется к счётчикам и настройке категорий.
+- `DetailSection`: `label`, `tone=accent|danger`, `collapsible`, `modelValue`, `defaultOpen`. Слоты `icon` и default. Управляемое раскрытие через `update:modelValue`, связь кнопки с содержимым через `aria-controls`. Для разделов характеристик и справочной информации.
+- `ContentRow`: одна корневая строка, `title`, `alternateLabel`, `marker`, `markerLabel`, `subtitle`, `nameCenter`, `showChevron`, `interactive`, `selected`. Слоты `icon`, `metric`, `subtitle`, `name-extras`, `trailing`; `activate` по клику, Enter и Space. Интерактивный вариант владеет рамкой строки, consumer — её положением в списке. Применяется к справочникам, каталогам и поиску.
+- `OptionList`: `id`, `label`, `options: { value, label, disabled? }[]`, `activeIndex`, `emptyLabel`; события `select(option)`, `active(index)`, `hover({ option, event })`, `leave`. Слоты `option`, `empty`, `footer`. Роли listbox/option, прокрутка; фокус и клавиатурный ввод принадлежат controller. В option-слоте можно добавить отдельное действие, остановив его click.
+- `SearchMultiSelect`: `modelValue` — массив значений, `options` как у OptionList, `limit` (0 без лимита), `label`, `placeholder`, `emptyLabel`, `removeLabel`, `createLabel`, `allowCreate`, `creating`, `disabled`, `zIndex`. События `update:modelValue` и `create(text)`. Ввод, выбранные теги и BasePopover; стрелки/Enter выбирают, Escape/Tab закрывают. Создание и загрузка опций выполняются consumer. Подходит для тегов и выбора нескольких навыков.
+- `FloatingTooltip`: `anchor` (DOM-элемент) либо `x`, `top`/`bottom`, `width`, `minWidth`, `maxWidth`, `zIndex`. Слот default; Teleport, анимация появления с reduced motion, ограничение viewport, пересчёт при resize/scroll и изменение размеров содержимого. Добавляет собственный id в `aria-describedby` якоря и удаляет его при закрытии. Подсказка неинтерактивна и не перехватывает focus/Escape у модального окна. Consumer определяет hover/touch-условия и содержание.
+
+`ActionMenu.triggerAttrs` передаёт дополнительные DOM-атрибуты/стили корневому trigger без внешней обёртки.
+
+### useVirtualList
+
+`useVirtualList(items, container, { key, estimateSize, threshold = 80, overscan = 6 })` принимает ref/getter строк и ref прокручиваемого DOM-контейнера. `key(item)` обязателен; `estimateSize(item)` возвращает предполагаемую высоту (по умолчанию 70px). Контейнер должен иметь ограниченную высоту. Строки могут быть разной высоты: ResizeObserver учитывает размеры и вертикальные margins.
+
+Возвращает `visibleItems` (`{ item, key, index, gap }`), `paddingAfter`, `totalSize`, `setItemRef(key, elementOrComponent)`. Consumer размещает gap перед соответствующей строкой и завершающий spacer, передаёт ref реального корня строки. Заголовки групп входят в общий массив. Данные, фильтры, группировка и пагинация принадлежат consumer; composable ограничивает только DOM. Строка с фокусом остаётся смонтированной при прокрутке, listeners/observers освобождаются при unmount.

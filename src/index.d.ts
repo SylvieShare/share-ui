@@ -130,6 +130,7 @@ export const BasePopover: DefineComponent<{
 }>
 
 export const ActionMenu: DefineComponent<{
+  triggerAttrs?: Record<string, unknown>
   title?: string
   disabled?: boolean
   block?: boolean
@@ -628,3 +629,34 @@ export const MorphTile: DefineComponent<MorphTileHeaderProps & {
   framed?: boolean
   interactive?: boolean
 }>
+
+export const StatBar: DefineComponent<{
+  percent?: number; tempPercent?: number; color?: string; tempColor?: string
+  size?: 'small' | 'medium' | 'large'; decorated?: boolean; label?: string
+}>
+export interface IconPickerOption { value: string | number; label?: string; icon?: Component; disabled?: boolean }
+export const IconPicker: DefineComponent<{ modelValue?: string | number; options?: IconPickerOption[]; label: string; disabled?: boolean }>
+export const DetailSection: DefineComponent<{ label: string; collapsible?: boolean; defaultOpen?: boolean; modelValue?: boolean; tone?: 'accent' | 'danger' }>
+export const ContentRow: DefineComponent<{
+  title: string; alternateLabel?: string; marker?: string; markerLabel?: string; subtitle?: string
+  nameCenter?: boolean; showChevron?: boolean; interactive?: boolean; selected?: boolean
+}>
+export interface SearchOption { value: string | number; label: string; disabled?: boolean; [key: string]: unknown }
+export const OptionList: DefineComponent<{ id?: string; label?: string; options?: SearchOption[]; activeIndex?: number; emptyLabel?: string }>
+export const SearchMultiSelect: DefineComponent<{
+  modelValue?: Array<string | number>; options?: SearchOption[]; limit?: number; label: string
+  placeholder?: string; emptyLabel?: string; removeLabel?: string; createLabel?: string
+  allowCreate?: boolean; creating?: boolean; disabled?: boolean; zIndex?: number
+}>
+export const FloatingTooltip: DefineComponent<{
+  anchor?: HTMLElement | null; x?: number; top?: number | null; bottom?: number | null
+  width?: number | null; maxWidth?: number; minWidth?: number; offset?: number; zIndex?: number
+  tooltipClass?: string | string[] | Record<string, boolean>
+}>
+export function useVirtualList<T>(items: Ref<T[]> | (() => T[]), container: Ref<HTMLElement | null>, options: {
+  key: (item: T) => string | number; estimateSize?: (item: T) => number; threshold?: number; overscan?: number
+}): {
+  visibleItems: ComputedRef<Array<{ item: T; key: string | number; index: number; gap: number }>>
+  paddingAfter: ComputedRef<number>; totalSize: ComputedRef<number>
+  setItemRef: (key: string | number, element: HTMLElement | { $el: HTMLElement } | null) => void
+}

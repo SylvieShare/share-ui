@@ -9,6 +9,7 @@
       <span class="share-component-gallery__accent" aria-label="Текущий акцент" />
     </header>
 
+    <section class="share-component-gallery__section" data-share-gallery="StatBar IconPicker DetailSection ContentRow OptionList SearchMultiSelect FloatingTooltip"><PerformanceGalleryExample /></section>
     <section class="share-component-gallery__section" data-share-gallery="GuidedTour">
       <h2>GuidedTour</h2>
       <TourGalleryExample />
@@ -386,6 +387,7 @@ import TourGalleryExample from './TourGalleryExample.vue'
 import LoadingState from '../components/LoadingState.vue'
 import LoadingIndicator from '../components/LoadingIndicator.vue'
 import SkeletonBlock from '../components/SkeletonBlock.vue'
+import PerformanceGalleryExample from './PerformanceGalleryExample.vue'
 import { reactive, ref } from 'vue'
 import InlineEdit from '../components/InlineEdit.vue'
 import SectionList from '../components/SectionList.vue'
