@@ -10,7 +10,6 @@ export const SectionList: DefineComponent<{
 
 export const BaseTile: DefineComponent<{
   color?: string | null
-  strip?: boolean
   tint?: boolean
   framed?: boolean
   interactive?: boolean
@@ -571,7 +570,9 @@ export const SkeletonBlock: DefineComponent<{ width?: string; height?: string; r
 
 export const LoadingState: DefineComponent<{ label: string; compact?: boolean; fill?: boolean }>
 
-export const ActionButton: DefineComponent<{ variant?: 'primary' | 'secondary' | 'quiet'; type?: 'button' | 'submit' | 'reset'; disabled?: boolean; loading?: boolean; loadingLabel?: string }>
+export const ActionButton: DefineComponent<{
+  iconOnly?: boolean
+  variant?: 'primary' | 'secondary' | 'quiet'; type?: 'button' | 'submit' | 'reset'; disabled?: boolean; loading?: boolean; loadingLabel?: string }>
 
 export interface GuidedTourStep {
   id: string
@@ -607,4 +608,22 @@ export const GuidedTour: DefineComponent<{
     next: string; previous: string; finish: string; dismiss: string
     retry: string; close: string; loading: string; error: string
   }
+}>
+
+export const TileAccentStrip: DefineComponent<{ color?: string | null }>
+export interface MorphTileHeaderProps {
+  title?: string
+  showEdit?: boolean
+  editLabel?: string
+  editFade?: boolean
+  clickableTitle?: boolean
+}
+export const MorphTileHeader: DefineComponent<MorphTileHeaderProps>
+export const MorphTile: DefineComponent<MorphTileHeaderProps & {
+  embedded?: boolean
+  padding?: string
+  color?: string | null
+  tint?: boolean
+  framed?: boolean
+  interactive?: boolean
 }>

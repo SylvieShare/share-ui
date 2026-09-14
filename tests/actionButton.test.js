@@ -9,3 +9,9 @@ it('defaults to a non-submitting button and disables a busy operation', async ()
   expect(html).toContain('aria-busy="true"')
   expect(html).toContain('Run')
 })
+
+it('supports an accessible icon-only quiet action', async () => {
+  const html = await renderToString(createSSRApp({ render: () => h(ActionButton, { iconOnly: true, variant: 'quiet', 'aria-label': 'Players' }, { icon: () => h('svg') }) }))
+  expect(html).toContain('share-action-button--icon-only')
+  expect(html).toContain('aria-label="Players"')
+})

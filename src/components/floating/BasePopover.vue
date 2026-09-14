@@ -63,6 +63,7 @@ const resolvedTransition = computed(() => {
 const token = Symbol('base-popover')
 const popoverEl = ref(null)
 const positionStyle = ref(null)
+let sizeObserver = null
 
 function resolveAnchor() {
   const anchor = props.anchor
@@ -164,6 +165,10 @@ function onKeydown(event) {
 }
 
 function bind() {
+  if (typeof ResizeObserver !== 'undefined' && popoverEl.value) {
+    sizeObserver = new ResizeObserver(compute)
+    sizeObserver.observe(popoverEl.value)
+  }
   registerFloating(token)
   document.addEventListener('pointerdown', onDocumentPointerDown, true)
   document.addEventListener('keydown', onKeydown)
@@ -174,6 +179,8 @@ function bind() {
 }
 
 function unbind() {
+  sizeObserver?.disconnect()
+  sizeObserver = null
   unregisterFloating(token)
   document.removeEventListener('pointerdown', onDocumentPointerDown, true)
   document.removeEventListener('keydown', onKeydown)

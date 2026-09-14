@@ -5,7 +5,6 @@
     :style="{ '--tile-color': resolvedColor }"
     @click="$emit('click', $event)"
   >
-    <span v-if="strip" class="base-tile-strip" />
     <slot />
   </div>
 </template>
@@ -14,10 +13,8 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  // Accent color for the tile (drives the optional strip and hover tint).
+  // Accent color for tint and frame.
   color: { type: String, default: null },
-  // Show a colored vertical strip on the left edge.
-  strip: { type: Boolean, default: false },
   // Faint always-on background tint in the tile color (a light accent).
   tint: { type: Boolean, default: false },
   // Gradient fill + colored border in the tile color (e.g. the HP block).
@@ -77,17 +74,6 @@ const resolvedColor = computed(() => props.color || 'var(--accent)')
 }
 .base-tile--framed.base-tile--interactive:hover::before {
   border-color: color-mix(in srgb, var(--tile-color) 55%, var(--border));
-}
-
-.base-tile-strip {
-  position: absolute;
-  /* start after the corner curve and end before it, so the strip doesn't ride over the rounding */
-  top: var(--r-lg);
-  bottom: var(--r-lg);
-  left: 0;
-  width: 3px;
-  border-radius: 0 2px 2px 0;
-  background: var(--tile-color);
 }
 
 </style>

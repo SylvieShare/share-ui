@@ -4,19 +4,12 @@ var B = (e, t) => {
 	let n = e.__vccOpts || e;
 	for (let [e, r] of t) n[e] = r;
 	return n;
-}, V = {
-	key: 0,
-	class: "base-tile-strip"
-}, H = /*#__PURE__*/ B({
+}, V = /*#__PURE__*/ B({
 	__name: "BaseTile",
 	props: {
 		color: {
 			type: String,
 			default: null
-		},
-		strip: {
-			type: Boolean,
-			default: !1
 		},
 		tint: {
 			type: Boolean,
@@ -42,18 +35,178 @@ var B = (e, t) => {
 			}]),
 			style: y({ "--tile-color": n.value }),
 			onClick: r[0] ||= (e) => t.$emit("click", e)
-		}, [e.strip ? (C(), s("span", V)) : o("", !0), D(t.$slots, "default", {}, void 0, !0)], 6));
+		}, [D(t.$slots, "default", {}, void 0, !0)], 6));
 	}
-}, [["__scopeId", "data-v-81d15c1d"]]), U = {
+}, [["__scopeId", "data-v-ef7591de"]]), H = { class: "morph-tile-header" }, U = { class: "morph-tile-title" }, W = ["aria-label", "disabled"], ee = /*#__PURE__*/ B({
+	__name: "MorphTileHeader",
+	props: {
+		title: {
+			type: String,
+			default: ""
+		},
+		showEdit: Boolean,
+		editFade: Boolean,
+		clickableTitle: {
+			type: Boolean,
+			default: !0
+		},
+		editLabel: {
+			type: String,
+			default: ""
+		}
+	},
+	emits: ["edit"],
+	setup(e) {
+		return (t, n) => (C(), s("div", H, [(C(), a(O(e.showEdit && e.clickableTitle ? "button" : "div"), {
+			class: _(["morph-tile-heading", { "morph-tile-heading--editable": e.showEdit && e.clickableTitle }]),
+			type: e.showEdit && e.clickableTitle ? "button" : void 0,
+			disabled: e.showEdit && e.clickableTitle && e.editFade || void 0,
+			"aria-label": e.showEdit && e.clickableTitle ? `${e.editLabel}: ${e.title}` : void 0,
+			onClick: n[1] ||= z((n) => e.showEdit && e.clickableTitle && !e.editFade && t.$emit("edit", n), ["stop"])
+		}, {
+			default: I(() => [c("span", U, [D(t.$slots, "default", {}, () => [u(A(e.title), 1)], !0)]), e.showEdit && e.clickableTitle ? (C(), s("svg", {
+				key: 0,
+				class: _(["morph-tile-pencil", { "morph-tile-pencil--hidden": e.editFade }]),
+				viewBox: "0 0 24 24",
+				width: "14",
+				height: "14",
+				fill: "none",
+				stroke: "currentColor",
+				"stroke-width": "2",
+				"stroke-linecap": "round",
+				"stroke-linejoin": "round",
+				"aria-hidden": "true"
+			}, [...n[3] ||= [c("path", { d: "M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" }, null, -1)]], 2)) : e.showEdit ? (C(), s("button", {
+				key: 1,
+				class: "morph-tile-edit",
+				type: "button",
+				"aria-label": `${e.editLabel}: ${e.title}`,
+				disabled: e.editFade,
+				onClick: n[0] ||= z((e) => t.$emit("edit", e), ["stop"])
+			}, [(C(), s("svg", {
+				class: _(["morph-tile-pencil", { "morph-tile-pencil--hidden": e.editFade }]),
+				viewBox: "0 0 24 24",
+				width: "14",
+				height: "14",
+				fill: "none",
+				stroke: "currentColor",
+				"stroke-width": "2",
+				"stroke-linecap": "round",
+				"stroke-linejoin": "round",
+				"aria-hidden": "true"
+			}, [...n[4] ||= [c("path", { d: "M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" }, null, -1)]], 2))], 8, W)) : o("", !0)]),
+			_: 3
+		}, 8, [
+			"class",
+			"type",
+			"disabled",
+			"aria-label"
+		])), t.$slots.aside ? (C(), s("div", {
+			key: 0,
+			class: "morph-tile-aside",
+			onClick: n[2] ||= z(() => {}, ["stop"])
+		}, [D(t.$slots, "aside", {}, void 0, !0)])) : o("", !0)]));
+	}
+}, [["__scopeId", "data-v-c90f62ad"]]), te = /*#__PURE__*/ B({
+	__name: "MorphTile",
+	props: {
+		title: {
+			type: String,
+			default: ""
+		},
+		showEdit: Boolean,
+		editLabel: {
+			type: String,
+			default: ""
+		},
+		editFade: Boolean,
+		clickableTitle: {
+			type: Boolean,
+			default: !0
+		},
+		embedded: Boolean,
+		padding: {
+			type: String,
+			default: "12px"
+		},
+		color: {
+			type: String,
+			default: null
+		},
+		tint: Boolean,
+		framed: Boolean,
+		interactive: Boolean
+	},
+	emits: ["click", "edit"],
+	setup(e) {
+		return (t, n) => (C(), a(O(e.embedded ? "div" : V), {
+			class: "morph-tile",
+			color: e.embedded ? void 0 : e.color,
+			tint: e.embedded ? void 0 : e.tint,
+			framed: e.embedded ? void 0 : e.framed,
+			interactive: e.embedded ? void 0 : e.interactive,
+			style: y({ "--morph-tile-padding": e.padding }),
+			onClick: n[1] ||= (e) => t.$emit("click", e)
+		}, {
+			default: I(() => [
+				D(t.$slots, "decoration", {}, void 0, !0),
+				e.title || t.$slots.title || t.$slots.aside ? (C(), a(ee, {
+					key: 0,
+					title: e.title,
+					"show-edit": e.showEdit,
+					"edit-label": e.editLabel,
+					"edit-fade": e.editFade,
+					"clickable-title": e.clickableTitle,
+					onEdit: n[0] ||= (e) => t.$emit("edit", e)
+				}, l({ _: 2 }, [t.$slots.title ? {
+					name: "default",
+					fn: I(() => [D(t.$slots, "title", {}, void 0, !0)]),
+					key: "0"
+				} : void 0, t.$slots.aside ? {
+					name: "aside",
+					fn: I(() => [D(t.$slots, "aside", {}, void 0, !0)]),
+					key: "1"
+				} : void 0]), 1032, [
+					"title",
+					"show-edit",
+					"edit-label",
+					"edit-fade",
+					"clickable-title"
+				])) : o("", !0),
+				D(t.$slots, "default", {}, void 0, !0)
+			]),
+			_: 3
+		}, 8, [
+			"color",
+			"tint",
+			"framed",
+			"interactive",
+			"style"
+		]));
+	}
+}, [["__scopeId", "data-v-6845f12c"]]), ne = /*#__PURE__*/ B({
+	__name: "TileAccentStrip",
+	props: { color: {
+		type: String,
+		default: null
+	} },
+	setup(e) {
+		return (t, n) => (C(), s("span", {
+			class: "tile-accent-strip",
+			style: y({ background: e.color || "var(--tile-color, var(--accent))" }),
+			"aria-hidden": "true"
+		}, null, 4));
+	}
+}, [["__scopeId", "data-v-7ba6c4f0"]]), re = {
 	key: 0,
 	class: "share-section-list__header"
-}, W = {
+}, G = {
 	key: 0,
 	class: "share-section-list__icon"
-}, ee = { class: "share-section-list__title" }, te = {
+}, ie = { class: "share-section-list__title" }, ae = {
 	key: 1,
 	class: "share-section-list__footer"
-}, ne = /*#__PURE__*/ B({
+}, oe = /*#__PURE__*/ B({
 	__name: "SectionList",
 	props: {
 		title: {
@@ -78,7 +231,7 @@ var B = (e, t) => {
 		}
 	},
 	setup(e) {
-		return (t, n) => (C(), a(O(e.embedded ? "section" : H), {
+		return (t, n) => (C(), a(O(e.embedded ? "section" : V), {
 			class: _(["share-section-list", {
 				"share-section-list--embedded": e.embedded,
 				"share-section-list--compact": e.compact
@@ -86,9 +239,9 @@ var B = (e, t) => {
 			"aria-label": e.title || void 0
 		}, {
 			default: I(() => [
-				e.title || t.$slots.header || t.$slots.aside ? (C(), s("header", U, [D(t.$slots, "header", {}, () => [
-					t.$slots.icon ? (C(), s("span", W, [D(t.$slots, "icon")])) : o("", !0),
-					c("span", ee, A(e.title), 1),
+				e.title || t.$slots.header || t.$slots.aside ? (C(), s("header", re, [D(t.$slots, "header", {}, () => [
+					t.$slots.icon ? (C(), s("span", G, [D(t.$slots, "icon")])) : o("", !0),
+					c("span", ie, A(e.title), 1),
 					n[0] ||= c("span", {
 						class: "share-section-list__line",
 						"aria-hidden": "true"
@@ -103,19 +256,19 @@ var B = (e, t) => {
 					default: I(() => [D(t.$slots, "default")]),
 					_: 3
 				}, 16, ["tag", "name"]))]),
-				t.$slots.footer ? (C(), s("footer", te, [D(t.$slots, "footer")])) : o("", !0)
+				t.$slots.footer ? (C(), s("footer", ae, [D(t.$slots, "footer")])) : o("", !0)
 			]),
 			_: 3
 		}, 8, ["class", "aria-label"]));
 	}
-}, [["__scopeId", "data-v-3f9dfbae"]]), re = [
+}, [["__scopeId", "data-v-3f9dfbae"]]), se = [
 	"disabled",
 	"aria-label",
 	"title"
-], ie = {
+], ce = {
 	key: 0,
 	class: "share-add-button__text"
-}, ae = /*#__PURE__*/ B({
+}, le = /*#__PURE__*/ B({
 	__name: "AddButton",
 	props: {
 		label: {
@@ -147,16 +300,16 @@ var B = (e, t) => {
 		}, [n[1] ||= c("span", {
 			class: "share-add-button__plus",
 			"aria-hidden": "true"
-		}, "+", -1), e.variant === "icon" ? o("", !0) : (C(), s("span", ie, [D(t.$slots, "default", {}, () => [u(A(e.label), 1)], !0)]))], 10, re));
+		}, "+", -1), e.variant === "icon" ? o("", !0) : (C(), s("span", ce, [D(t.$slots, "default", {}, () => [u(A(e.label), 1)], !0)]))], 10, se));
 	}
-}, [["__scopeId", "data-v-2e1149d1"]]), oe = [
+}, [["__scopeId", "data-v-2e1149d1"]]), ue = [
 	"value",
 	"min",
 	"max",
 	"step",
 	"disabled",
 	"aria-label"
-], se = /*#__PURE__*/ B({
+], K = /*#__PURE__*/ B({
 	__name: "AppSlider",
 	props: {
 		modelValue: {
@@ -211,19 +364,19 @@ var B = (e, t) => {
 			style: y(o.value),
 			onInput: l,
 			onChange: u
-		}, null, 44, oe));
+		}, null, 44, ue));
 	}
-}, [["__scopeId", "data-v-a4387b22"]]), ce = [
+}, [["__scopeId", "data-v-a4387b22"]]), q = [
 	"disabled",
 	"aria-label",
 	"aria-checked"
-], le = {
+], de = {
 	key: 0,
 	class: "share-compact-checkbox__tick",
 	viewBox: "0 0 12 12",
 	fill: "none",
 	"aria-hidden": "true"
-}, ue = /*#__PURE__*/ B({
+}, fe = /*#__PURE__*/ B({
 	__name: "CompactCheckbox",
 	props: {
 		modelValue: {
@@ -254,21 +407,21 @@ var B = (e, t) => {
 			role: "checkbox",
 			onClick: z(i, ["stop"]),
 			onPointerdown: n[0] ||= z(() => {}, ["stop"])
-		}, [e.modelValue ? (C(), s("svg", le, [...n[1] ||= [c("path", {
+		}, [e.modelValue ? (C(), s("svg", de, [...n[1] ||= [c("path", {
 			d: "M2.5 6.2l2.4 2.4 4.6-5",
 			stroke: "currentColor",
 			"stroke-width": "2",
 			"stroke-linecap": "round",
 			"stroke-linejoin": "round"
-		}, null, -1)]])) : o("", !0)], 42, ce));
+		}, null, -1)]])) : o("", !0)], 42, q));
 	}
-}, [["__scopeId", "data-v-caeb1891"]]), de = ["aria-label"], G = [
+}, [["__scopeId", "data-v-caeb1891"]]), pe = ["aria-label"], me = [
 	"aria-checked",
 	"tabindex",
 	"disabled",
 	"onClick",
 	"onKeydown"
-], K = /*#__PURE__*/ B({
+], he = /*#__PURE__*/ B({
 	__name: "MultiToggle",
 	props: {
 		options: {
@@ -389,9 +542,9 @@ var B = (e, t) => {
 			disabled: t.disabled || e.disabled,
 			onClick: (t) => v(e.value),
 			onKeydown: (e) => D(e, n)
-		}, A(e.label), 43, G))), 128))], 10, de));
+		}, A(e.label), 43, me))), 128))], 10, pe));
 	}
-}, [["__scopeId", "data-v-a0098670"]]), fe = ["disabled", "aria-label"], pe = {
+}, [["__scopeId", "data-v-a0098670"]]), ge = ["disabled", "aria-label"], J = {
 	key: 0,
 	width: "16",
 	height: "16",
@@ -402,11 +555,11 @@ var B = (e, t) => {
 	"stroke-linecap": "round",
 	"stroke-linejoin": "round",
 	"aria-hidden": "true"
-}, me = {
+}, Y = {
 	key: 1,
 	class: "share-remove-button__cross",
 	"aria-hidden": "true"
-}, he = /*#__PURE__*/ B({
+}, _e = /*#__PURE__*/ B({
 	__name: "RemoveButton",
 	props: {
 		variant: {
@@ -434,12 +587,12 @@ var B = (e, t) => {
 			disabled: e.disabled,
 			"aria-label": e.label,
 			onClick: n[0] ||= (e) => t.$emit("click", e)
-		}, [e.icon === "trash" ? (C(), s("svg", pe, [...n[1] ||= [c("path", { d: "M3 6h18M9 6V4h6v2M5 6l1 14h12l1-14M10 10v6M14 10v6" }, null, -1)]])) : (C(), s("span", me))], 10, fe));
+		}, [e.icon === "trash" ? (C(), s("svg", J, [...n[1] ||= [c("path", { d: "M3 6h18M9 6V4h6v2M5 6l1 14h12l1-14M10 10v6M14 10v6" }, null, -1)]])) : (C(), s("span", Y))], 10, ge));
 	}
-}, [["__scopeId", "data-v-b1091570"]]), ge = { class: "share-section-label__text" }, _e = {
+}, [["__scopeId", "data-v-b1091570"]]), ve = { class: "share-section-label__text" }, ye = {
 	key: 0,
 	class: "share-section-label__actions"
-}, q = /*#__PURE__*/ B({
+}, be = /*#__PURE__*/ B({
 	__name: "SectionLabel",
 	props: {
 		title: {
@@ -467,21 +620,21 @@ var B = (e, t) => {
 		return (t, r) => (C(), s("div", {
 			class: _(["share-section-label", { "share-section-label--border": e.border }]),
 			style: y(n.value)
-		}, [c("span", ge, [D(t.$slots, "default", {}, () => [u(A(e.title), 1)], !0)]), t.$slots.actions ? (C(), s("span", _e, [D(t.$slots, "actions", {}, void 0, !0)])) : o("", !0)], 6));
+		}, [c("span", ve, [D(t.$slots, "default", {}, () => [u(A(e.title), 1)], !0)]), t.$slots.actions ? (C(), s("span", ye, [D(t.$slots, "actions", {}, void 0, !0)])) : o("", !0)], 6));
 	}
-}, [["__scopeId", "data-v-56c925a7"]]), J = ["aria-label"], ve = {
+}, [["__scopeId", "data-v-56c925a7"]]), X = ["aria-label"], xe = {
 	viewBox: "0 0 120 120",
 	role: "img",
 	"aria-hidden": "true"
-}, ye = [
+}, Se = [
 	"stroke",
 	"stroke-width",
 	"stroke-dasharray",
 	"stroke-dashoffset"
-], be = { class: "segment-donut__center" }, xe = {
+], Ce = { class: "segment-donut__center" }, we = {
 	key: 0,
 	class: "segment-donut__legend"
-}, Y = { key: 0 }, Se = /*#__PURE__*/ B({
+}, Te = { key: 0 }, Ee = /*#__PURE__*/ B({
 	__name: "SegmentDonutChart",
 	props: {
 		segments: {
@@ -549,7 +702,7 @@ var B = (e, t) => {
 		}, [c("div", {
 			class: "segment-donut__visual",
 			style: y({ "--segment-donut-size": `${t.size}px` })
-		}, [(C(), s("svg", ve, [r[0] ||= c("circle", {
+		}, [(C(), s("svg", xe, [r[0] ||= c("circle", {
 			class: "segment-donut__track",
 			cx: "60",
 			cy: "60",
@@ -566,17 +719,17 @@ var B = (e, t) => {
 			"stroke-width": t.strokeWidth,
 			"stroke-dasharray": `${e.percent} ${100 - e.percent}`,
 			"stroke-dashoffset": -e.offset
-		}, null, 8, ye))), 128))])), c("div", be, [D(n.$slots, "center", { total: l.value }, () => [c("strong", null, A(t.formatValue(l.value)), 1), c("span", null, A(t.totalLabel), 1)], !0)])], 4), t.showLegend ? (C(), s("ul", xe, [(C(!0), s(e, null, E(u.value, (e) => (C(), s("li", { key: e.key }, [
+		}, null, 8, Se))), 128))])), c("div", Ce, [D(n.$slots, "center", { total: l.value }, () => [c("strong", null, A(t.formatValue(l.value)), 1), c("span", null, A(t.totalLabel), 1)], !0)])], 4), t.showLegend ? (C(), s("ul", we, [(C(!0), s(e, null, E(u.value, (e) => (C(), s("li", { key: e.key }, [
 			c("i", {
 				style: y({ "--segment-color": e.color }),
 				"aria-hidden": "true"
 			}, null, 4),
 			c("span", null, A(e.label), 1),
 			c("strong", null, A(t.formatValue(e.value)), 1),
-			t.showPercent ? (C(), s("small", Y, A(e.percent.toLocaleString(void 0, { maximumFractionDigits: 1 })) + "%", 1)) : o("", !0)
-		]))), 128))])) : o("", !0)], 8, J));
+			t.showPercent ? (C(), s("small", Te, A(e.percent.toLocaleString(void 0, { maximumFractionDigits: 1 })) + "%", 1)) : o("", !0)
+		]))), 128))])) : o("", !0)], 8, X));
 	}
-}, [["__scopeId", "data-v-6c69c95e"]]), Ce = ["aria-label"], we = [
+}, [["__scopeId", "data-v-6c69c95e"]]), De = ["aria-label"], Oe = [
 	"id",
 	"aria-selected",
 	"aria-controls",
@@ -584,7 +737,7 @@ var B = (e, t) => {
 	"disabled",
 	"onClick",
 	"onKeydown"
-], Te = ["src"], Ee = /*#__PURE__*/ B({
+], Z = ["src"], ke = /*#__PURE__*/ B({
 	__name: "SlidingTabs",
 	props: {
 		tabs: {
@@ -676,20 +829,20 @@ var B = (e, t) => {
 			src: e.icon || e.svg,
 			alt: "",
 			"aria-hidden": "true"
-		}, null, 8, Te)) : o("", !0)], !0), c("span", null, A(e.title), 1)], 42, we))), 128)), c("span", {
+		}, null, 8, Z)) : o("", !0)], !0), c("span", null, A(e.title), 1)], 42, Oe))), 128)), c("span", {
 			class: "share-sliding-tabs__underline",
 			style: y(p.value),
 			"aria-hidden": "true"
-		}, null, 4)], 8, Ce));
+		}, null, 4)], 8, De));
 	}
-}, [["__scopeId", "data-v-28aae1df"]]), De = [
+}, [["__scopeId", "data-v-28aae1df"]]), Ae = [
 	"aria-checked",
 	"aria-label",
 	"disabled"
-], Oe = {
+], je = {
 	key: 0,
 	class: "share-toggle-switch__text"
-}, ke = /*#__PURE__*/ B({
+}, Me = /*#__PURE__*/ B({
 	__name: "ToggleSwitch",
 	props: {
 		modelValue: {
@@ -726,68 +879,68 @@ var B = (e, t) => {
 		}, [n[0] ||= c("span", {
 			class: "share-toggle-switch__track",
 			"aria-hidden": "true"
-		}, [c("span", { class: "share-toggle-switch__thumb" })], -1), e.label || t.$slots.default ? (C(), s("span", Oe, [D(t.$slots, "default", {}, () => [u(A(e.label), 1)], !0)])) : o("", !0)], 10, De));
+		}, [c("span", { class: "share-toggle-switch__thumb" })], -1), e.label || t.$slots.default ? (C(), s("span", je, [D(t.$slots, "default", {}, () => [u(A(e.label), 1)], !0)])) : o("", !0)], 10, Ae));
 	}
-}, [["__scopeId", "data-v-828a23d7"]]), X = [], Z = null, Q = null;
-function Ae(e) {
-	let t = X.lastIndexOf(e);
-	t >= 0 && X.splice(t, 1);
+}, [["__scopeId", "data-v-828a23d7"]]), Ne = [], Pe = null, Q = null;
+function Fe(e) {
+	let t = Ne.lastIndexOf(e);
+	t >= 0 && Ne.splice(t, 1);
 }
-function je(e) {
-	Ae(e), X.push(e);
+function Ie(e) {
+	Fe(e), Ne.push(e);
 }
-function Me(e) {
-	Ae(e);
+function Le(e) {
+	Fe(e);
 }
-function Ne(e) {
-	return X.at(-1) === e;
+function Re(e) {
+	return Ne.at(-1) === e;
 }
-function Pe(e, t) {
-	Z?.token !== e && Z?.close(), Z = {
+function ze(e, t) {
+	Pe?.token !== e && Pe?.close(), Pe = {
 		token: e,
 		close: t
-	}, je(e);
+	}, Ie(e);
 }
-function Fe(e) {
-	Z?.token === e && (Z = null), Me(e);
+function Be(e) {
+	Pe?.token === e && (Pe = null), Le(e);
 }
-function Ie(e, t) {
+function Ve(e, t) {
 	Q?.token !== e && Q?.close(), Q = {
 		token: e,
 		close: t
 	};
 }
-function Le(e) {
+function He(e) {
 	Q?.token === e && (Q = null);
 }
-function Re() {
+function Ue() {
 	if (!Q) return !1;
 	let e = Q;
 	return Q = null, e.close(), !0;
 }
 //#endregion
 //#region src/lib/actionMenuPlacement.js
-var ze = 8, Be = 6;
-function Ve(e, t, n) {
+var We = 8, Ge = 6;
+function Ke(e, t, n) {
 	return Math.min(Math.max(e, t), Math.max(t, n));
 }
-function He({ triggerRect: e, popoverWidth: t, popoverHeight: n, viewportWidth: r, viewportHeight: i, viewportLeft: a = 0, viewportTop: o = 0, originX: s, originY: c, margin: l = 8, gap: u = 6 }) {
-	let d = a + l, f = o + l, p = a + r - l, m = o + i - l, h = Math.min(t, Math.max(0, p - d)), g = Ve(e.right - h, d, p - h), _ = Math.max(0, m - e.bottom - u), v = Math.max(0, e.top - u - f), y = _ < n && v > _, b = y ? v : _, x = Math.min(n, b), S = Ve(y ? e.top - u - x : e.bottom + u, f, m - x);
+function qe({ triggerRect: e, popoverWidth: t, popoverHeight: n, viewportWidth: r, viewportHeight: i, viewportLeft: a = 0, viewportTop: o = 0, originX: s, originY: c, margin: l = 8, gap: u = 6 }) {
+	let d = a + l, f = o + l, p = a + r - l, m = o + i - l, h = Math.min(t, Math.max(0, p - d)), g = Ke(e.right - h, d, p - h), _ = Math.max(0, m - e.bottom - u), v = Math.max(0, e.top - u - f), y = _ < n && v > _, b = y ? v : _, x = Math.min(n, b), S = Ke(y ? e.top - u - x : e.bottom + u, f, m - x);
 	return {
 		left: g,
 		top: S,
 		maxHeight: b,
 		opensAbove: y,
-		originX: Ve(s - g, 0, h),
-		originY: Ve(c - S, 0, x)
+		originX: Ke(s - g, 0, h),
+		originY: Ke(c - S, 0, x)
 	};
 }
-var Ue = 8, We = 6, Ge = He, Ke = [
+var Je = 8, Ye = 6, Xe = qe, Ze = [
 	"title",
 	"aria-label",
 	"aria-expanded",
 	"disabled"
-], qe = ["aria-label"], Je = /*#__PURE__*/ B({
+], Qe = ["aria-label"], $e = /*#__PURE__*/ B({
 	__name: "ActionMenu",
 	props: {
 		title: {
@@ -834,7 +987,7 @@ var Ue = 8, We = 6, Ge = He, Ke = [
 			if (!h.value || !e || !t) return;
 			let n = w(), r = Math.max(0, n.viewportWidth - 16);
 			t.style.minWidth = `${Math.min(200, r)}px`, t.style.maxWidth = `${Math.min(280, r)}px`;
-			let i = e.getBoundingClientRect(), a = He({
+			let i = e.getBoundingClientRect(), a = qe({
 				triggerRect: i,
 				popoverWidth: t.getBoundingClientRect().width,
 				popoverHeight: t.scrollHeight,
@@ -865,10 +1018,10 @@ var Ue = 8, We = 6, Ge = He, Ke = [
 			document.removeEventListener("pointerdown", P, !0), document.removeEventListener("keydown", L), window.removeEventListener("resize", O), window.removeEventListener("scroll", F, !0), window.visualViewport?.removeEventListener("resize", O), window.visualViewport?.removeEventListener("scroll", O);
 		}
 		function j(e) {
-			l.disabled || h.value || (m.value = S(e), Pe(u, M), h.value = !0, k(), g(O));
+			l.disabled || h.value || (m.value = S(e), ze(u, M), h.value = !0, k(), g(O));
 		}
 		function M() {
-			h.value && (Re(), h.value = !1, Fe(u), x != null && cancelAnimationFrame(x), x = null, A());
+			h.value && (Ue(), h.value = !1, Be(u), x != null && cancelAnimationFrame(x), x = null, A());
 		}
 		function N(e) {
 			l.disabled || (h.value ? M() : j(e));
@@ -880,7 +1033,7 @@ var Ue = 8, We = 6, Ge = He, Ke = [
 			p.value?.contains?.(e.target) || e.target?.closest?.("[data-share-popover-related]") || M();
 		}
 		function L(e) {
-			e.key === "Escape" && (Re() || Ne(u) && M());
+			e.key === "Escape" && (Ue() || Re(u) && M());
 		}
 		return b(M), i({
 			open: j,
@@ -929,7 +1082,7 @@ var Ue = 8, We = 6, Ge = He, Ke = [
 				r: "1.2",
 				fill: "currentColor"
 			})
-		], -1)]], 8, Ke)), (C(), a(t, { to: "body" }, [d(n, { name: "share-popover-action" }, {
+		], -1)]], 8, Ze)), (C(), a(t, { to: "body" }, [d(n, { name: "share-popover-action" }, {
 			default: I(() => [h.value ? (C(), s("div", {
 				key: 0,
 				ref_key: "popoverEl",
@@ -940,23 +1093,23 @@ var Ue = 8, We = 6, Ge = He, Ke = [
 				"aria-label": r.title,
 				onClick: l[0] ||= z(() => {}, ["stop"]),
 				onPointerdown: l[1] ||= z(() => {}, ["stop"])
-			}, [D(i.$slots, "default", { close: M }, void 0, !0)], 44, qe)) : o("", !0)]),
+			}, [D(i.$slots, "default", { close: M }, void 0, !0)], 44, Qe)) : o("", !0)]),
 			_: 3
 		})]))], 64));
 	}
-}, [["__scopeId", "data-v-e5053f4e"]]), Ye = ["aria-haspopup", "aria-expanded"], Xe = {
+}, [["__scopeId", "data-v-e5053f4e"]]), et = ["aria-haspopup", "aria-expanded"], tt = {
 	class: "ram-item__icon",
 	"aria-hidden": "true"
-}, Ze = {
+}, nt = {
 	key: 1,
 	width: "17",
 	height: "17",
 	viewBox: "0 0 17 17",
 	fill: "none"
-}, Qe = { class: "ram-item__content" }, $e = {
+}, rt = { class: "ram-item__content" }, it = {
 	key: 0,
 	class: "ram-item__suffix"
-}, et = /*#__PURE__*/ B({
+}, at = /*#__PURE__*/ B({
 	__name: "ActionMenuItem",
 	props: {
 		icon: {
@@ -992,11 +1145,11 @@ var Ue = 8, We = 6, Ge = He, Ke = [
 			"aria-haspopup": e.submenu ? "menu" : void 0,
 			"aria-expanded": e.submenu ? e.submenuOpen : void 0
 		}, [
-			c("span", Xe, [D(t.$slots, "icon", {}, () => [e.icon ? (C(), a(O(e.icon), {
+			c("span", tt, [D(t.$slots, "icon", {}, () => [e.icon ? (C(), a(O(e.icon), {
 				key: 0,
 				size: 17,
 				"stroke-width": 1.9
-			})) : (C(), s("svg", Ze, [...n[0] ||= [
+			})) : (C(), s("svg", nt, [...n[0] ||= [
 				c("circle", {
 					cx: "4",
 					cy: "8.5",
@@ -1016,8 +1169,8 @@ var Ue = 8, We = 6, Ge = He, Ke = [
 					fill: "currentColor"
 				}, null, -1)
 			]]))], !0)]),
-			c("span", Qe, [D(t.$slots, "default", {}, void 0, !0)]),
-			t.$slots.suffix || e.submenu ? (C(), s("span", $e, [D(t.$slots, "suffix", {}, void 0, !0), e.submenu ? (C(), s("svg", {
+			c("span", rt, [D(t.$slots, "default", {}, void 0, !0)]),
+			t.$slots.suffix || e.submenu ? (C(), s("span", it, [D(t.$slots, "suffix", {}, void 0, !0), e.submenu ? (C(), s("svg", {
 				key: 0,
 				class: _(["ram-item__submenu-chevron", { "ram-item__submenu-chevron--open": e.submenuOpen }]),
 				width: "15",
@@ -1032,12 +1185,12 @@ var Ue = 8, We = 6, Ge = He, Ke = [
 				"stroke-linecap": "round",
 				"stroke-linejoin": "round"
 			}, null, -1)]], 2)) : o("", !0)])) : o("", !0)
-		], 10, Ye));
+		], 10, et));
 	}
 }, [["__scopeId", "data-v-5fc35d86"]]);
 //#endregion
 //#region src/composables/useMediaQuery.js
-function tt(e) {
+function ot(e) {
 	let t = T(typeof window < "u" && !!window.matchMedia?.(e).matches), n = null;
 	function r(e) {
 		t.value = e.matches;
@@ -1046,17 +1199,17 @@ function tt(e) {
 		window.matchMedia && (n = window.matchMedia(e), t.value = n.matches, n.addEventListener?.("change", r));
 	}), b(() => n?.removeEventListener?.("change", r)), t;
 }
-function nt(e = 768) {
-	return tt(`(max-width: ${e}px)`);
+function st(e = 768) {
+	return ot(`(max-width: ${e}px)`);
 }
 //#endregion
 //#region src/components/floating/BasePopover.vue
-var rt = [
+var ct = [
 	"id",
 	"role",
 	"aria-label",
 	"data-share-popover-related"
-], it = /*#__PURE__*/ B({
+], lt = /*#__PURE__*/ B({
 	__name: "BasePopover",
 	props: {
 		open: {
@@ -1132,15 +1285,15 @@ var rt = [
 	},
 	emits: ["update:open"],
 	setup(e, { emit: r }) {
-		let c = e, l = r, u = i(() => c.transition ? c.transition : c.transitionPreset === "action-menu" ? "share-popover-action" : ""), f = Symbol("base-popover"), p = T(null), m = T(null);
-		function h() {
+		let c = e, l = r, u = i(() => c.transition ? c.transition : c.transitionPreset === "action-menu" ? "share-popover-action" : ""), f = Symbol("base-popover"), p = T(null), m = T(null), h = null;
+		function v() {
 			let e = c.anchor;
 			return e ? typeof e.getBoundingClientRect == "function" ? e : e.value ?? e : null;
 		}
-		function v(e) {
+		function x(e) {
 			return typeof e == "number" ? `${e}px` : e;
 		}
-		function x() {
+		function S() {
 			let e = window.visualViewport;
 			return {
 				left: e?.offsetLeft || 0,
@@ -1149,12 +1302,12 @@ var rt = [
 				height: e?.height || window.innerHeight
 			};
 		}
-		function S() {
-			let e = h();
+		function w() {
+			let e = v();
 			if (!e) return;
-			let t = e.getBoundingClientRect(), n = x(), r = typeof c.minWidth == "number" ? c.minWidth : 0, i = Math.max(r, p.value?.offsetWidth || 0), a = p.value?.offsetHeight || 0, o = n.left + 8, s = n.left + n.width - 8, l = n.top + 8, u = n.top + n.height - 8, d = {
+			let t = e.getBoundingClientRect(), n = S(), r = typeof c.minWidth == "number" ? c.minWidth : 0, i = Math.max(r, p.value?.offsetWidth || 0), a = p.value?.offsetHeight || 0, o = n.left + 8, s = n.left + n.width - 8, l = n.top + 8, u = n.top + n.height - 8, d = {
 				position: "fixed",
-				minWidth: v(c.minWidth),
+				minWidth: x(c.minWidth),
 				zIndex: c.zIndex
 			};
 			if (c.placement === "right-start") {
@@ -1166,44 +1319,44 @@ var rt = [
 			}
 			m.value = d;
 		}
-		function w() {
+		function E() {
 			l("update:open", !1);
 		}
-		function E(e) {
+		function O(e) {
 			return !!e?.closest?.("[data-share-popover-related]");
 		}
-		function O(e) {
-			p.value?.contains(e.target) || E(e.target) || h()?.contains?.(e.target) || w();
-		}
 		function k(e) {
+			p.value?.contains(e.target) || O(e.target) || v()?.contains?.(e.target) || E();
+		}
+		function A(e) {
 			if (!c.closeOnScroll) {
-				S();
+				w();
 				return;
 			}
-			p.value?.contains(e.target) || E(e.target) || w();
+			p.value?.contains(e.target) || O(e.target) || E();
 		}
-		function A() {
-			c.closeOnResize ? w() : S();
+		function j() {
+			c.closeOnResize ? E() : w();
 		}
-		function j(e) {
-			e.key === "Escape" && (Re() || Ne(f) && w());
-		}
-		function M() {
-			je(f), document.addEventListener("pointerdown", O, !0), document.addEventListener("keydown", j), window.addEventListener("resize", A), window.addEventListener("scroll", k, !0), window.visualViewport?.addEventListener("resize", A), window.visualViewport?.addEventListener("scroll", S);
+		function M(e) {
+			e.key === "Escape" && (Ue() || Re(f) && E());
 		}
 		function N() {
-			Me(f), document.removeEventListener("pointerdown", O, !0), document.removeEventListener("keydown", j), window.removeEventListener("resize", A), window.removeEventListener("scroll", k, !0), window.visualViewport?.removeEventListener("resize", A), window.visualViewport?.removeEventListener("scroll", S);
+			typeof ResizeObserver < "u" && p.value && (h = new ResizeObserver(w), h.observe(p.value)), Ie(f), document.addEventListener("pointerdown", k, !0), document.addEventListener("keydown", M), window.addEventListener("resize", j), window.addEventListener("scroll", A, !0), window.visualViewport?.addEventListener("resize", j), window.visualViewport?.addEventListener("scroll", w);
+		}
+		function P() {
+			h?.disconnect(), h = null, Le(f), document.removeEventListener("pointerdown", k, !0), document.removeEventListener("keydown", M), window.removeEventListener("resize", j), window.removeEventListener("scroll", A, !0), window.visualViewport?.removeEventListener("resize", j), window.visualViewport?.removeEventListener("scroll", w);
 		}
 		return F(() => c.open, async (e) => {
-			N(), e && (S(), await g(), c.open && (S(), M()));
+			P(), e && (w(), await g(), c.open && (w(), N()));
 		}, { immediate: !0 }), F(() => [
 			c.anchor,
 			c.placement,
 			c.offset,
 			c.minWidth
 		], () => {
-			c.open && g(S);
-		}), b(N), (r, i) => (C(), a(t, { to: "body" }, [d(n, { name: u.value }, {
+			c.open && g(w);
+		}), b(P), (r, i) => (C(), a(t, { to: "body" }, [d(n, { name: u.value }, {
 			default: I(() => [e.open ? (C(), s("div", {
 				key: 0,
 				id: e.id || void 0,
@@ -1220,17 +1373,17 @@ var rt = [
 				"data-share-popover-related": e.related ? "" : void 0,
 				onClick: i[0] ||= z(() => {}, ["stop"]),
 				onPointerdown: i[1] ||= z(() => {}, ["stop"])
-			}, [D(r.$slots, "default", { close: w }, void 0, !0)], 46, rt)) : o("", !0)]),
+			}, [D(r.$slots, "default", { close: E }, void 0, !0)], 46, ct)) : o("", !0)]),
 			_: 3
 		}, 8, ["name"])]));
 	}
-}, [["__scopeId", "data-v-256a13ae"]]), at = { class: "ras-root" }, ot = { class: "ras-panel" }, st = {
+}, [["__scopeId", "data-v-37a042dc"]]), ut = { class: "ras-root" }, dt = { class: "ras-panel" }, ft = {
 	key: 0,
 	class: "ras-label"
-}, ct = { class: "ras-panel ras-panel--popover" }, lt = {
+}, pt = { class: "ras-panel ras-panel--popover" }, mt = {
 	key: 0,
 	class: "ras-label"
-}, ut = /*#__PURE__*/ B({
+}, ht = /*#__PURE__*/ B({
 	__name: "ActionMenuSubmenu",
 	props: {
 		label: {
@@ -1251,15 +1404,15 @@ var rt = [
 		}
 	},
 	setup(e, { expose: t }) {
-		let r = e, i = Symbol("action-submenu"), l = T(null), u = nt(r.mobileBreakpoint), f = T(!1);
+		let r = e, i = Symbol("action-submenu"), l = T(null), u = st(r.mobileBreakpoint), f = T(!1);
 		function p() {
-			r.disabled || f.value || (Ie(i, h), f.value = !0);
+			r.disabled || f.value || (Ve(i, h), f.value = !0);
 		}
 		function m() {
 			r.disabled || (f.value ? h() : p());
 		}
 		function h() {
-			f.value && (f.value = !1, Le(i));
+			f.value && (f.value = !1, He(i));
 		}
 		function g(e) {
 			e || h();
@@ -1268,7 +1421,7 @@ var rt = [
 			open: p,
 			close: h,
 			toggle: m
-		}), (t, r) => (C(), s("div", at, [
+		}), (t, r) => (C(), s("div", ut, [
 			c("div", {
 				ref_key: "triggerEl",
 				ref: l,
@@ -1285,10 +1438,10 @@ var rt = [
 					"data-share-popover-related": "",
 					onClick: r[0] ||= z(() => {}, ["stop"]),
 					onPointerdown: r[1] ||= z(() => {}, ["stop"])
-				}, [c("div", ot, [e.label ? (C(), s("div", st, A(e.label), 1)) : o("", !0), D(t.$slots, "default", { close: h }, void 0, !0)])], 32)) : o("", !0)]),
+				}, [c("div", dt, [e.label ? (C(), s("div", ft, A(e.label), 1)) : o("", !0), D(t.$slots, "default", { close: h }, void 0, !0)])], 32)) : o("", !0)]),
 				_: 3
 			}),
-			j(u) ? o("", !0) : (C(), a(it, {
+			j(u) ? o("", !0) : (C(), a(lt, {
 				key: 0,
 				open: f.value,
 				anchor: l.value,
@@ -1300,7 +1453,7 @@ var rt = [
 				related: "",
 				"onUpdate:open": g
 			}, {
-				default: I(() => [c("div", ct, [e.label ? (C(), s("div", lt, A(e.label), 1)) : o("", !0), D(t.$slots, "default", { close: h }, void 0, !0)])]),
+				default: I(() => [c("div", pt, [e.label ? (C(), s("div", mt, A(e.label), 1)) : o("", !0), D(t.$slots, "default", { close: h }, void 0, !0)])]),
 				_: 3
 			}, 8, [
 				"open",
@@ -1309,7 +1462,7 @@ var rt = [
 			]))
 		]));
 	}
-}, [["__scopeId", "data-v-a4a95dc2"]]), dt = [
+}, [["__scopeId", "data-v-a4a95dc2"]]), gt = [
 	"#ef4444",
 	"#f97316",
 	"#f59e0b",
@@ -1335,15 +1488,15 @@ var rt = [
 	"#c084fc",
 	"#94a3b8"
 ];
-function ft(e) {
+function _t(e) {
 	return /^#(?:[0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(String(e || "").trim());
 }
-function pt(e = dt) {
+function vt(e = gt) {
 	return e[Math.floor(Math.random() * e.length)];
 }
 //#endregion
 //#region src/components/floating/ColorPresetPicker.vue
-var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cpp-body" }, _t = "#888888", vt = /*#__PURE__*/ B({
+var yt = ["aria-label"], bt = ["aria-label", "aria-expanded"], xt = { class: "cpp-body" }, St = "#888888", Ct = /*#__PURE__*/ B({
 	__name: "ColorPresetPicker",
 	props: {
 		modelValue: {
@@ -1352,7 +1505,7 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 		},
 		colors: {
 			type: Array,
-			default: () => dt
+			default: () => gt
 		},
 		columns: {
 			type: Number,
@@ -1394,7 +1547,7 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 	},
 	emits: ["update:modelValue", "invalid"],
 	setup(e, { emit: t }) {
-		let n = e, r = t, a = T(null), o = T(!1), l = T("cpppop-cancel"), u = T(n.modelValue || ""), p = i(() => /^#[0-9a-f]{6}$/i.test(n.modelValue || "") ? n.modelValue : _t), h = i(() => !!u.value && !ft(u.value));
+		let n = e, r = t, a = T(null), o = T(!1), l = T("cpppop-cancel"), u = T(n.modelValue || ""), p = i(() => /^#[0-9a-f]{6}$/i.test(n.modelValue || "") ? n.modelValue : St), h = i(() => !!u.value && !_t(u.value));
 		function g(e) {
 			return String(n.modelValue || "").toLowerCase() === String(e).toLowerCase();
 		}
@@ -1415,7 +1568,7 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 		}
 		function E() {
 			let e = u.value.trim();
-			if (!ft(e)) {
+			if (!_t(e)) {
 				r("invalid", e);
 				return;
 			}
@@ -1488,7 +1641,7 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 			key: 0,
 			class: "cpp-body cpp-body--inline",
 			"aria-label": e.ariaLabel
-		}, [d(j(A))], 8, mt)) : (C(), s("span", {
+		}, [d(j(A))], 8, yt)) : (C(), s("span", {
 			key: 1,
 			ref_key: "anchorEl",
 			ref: a,
@@ -1505,7 +1658,7 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 			"aria-expanded": o.value,
 			"aria-haspopup": "dialog",
 			onClick: x
-		}, null, 14, ht)], !0), d(it, {
+		}, null, 14, bt)], !0), d(lt, {
 			open: o.value,
 			anchor: a.value,
 			placement: e.placement,
@@ -1516,7 +1669,7 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 			"aria-label": e.ariaLabel,
 			"onUpdate:open": S
 		}, {
-			default: I(() => [c("div", gt, [d(j(A))])]),
+			default: I(() => [c("div", xt, [d(j(A))])]),
 			_: 1
 		}, 8, [
 			"open",
@@ -1527,25 +1680,25 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 			"aria-label"
 		])], 512));
 	}
-}, [["__scopeId", "data-v-1b7035e4"]]), yt = [
+}, [["__scopeId", "data-v-1b7035e4"]]), wt = [
 	"aria-label",
 	"aria-expanded",
 	"aria-activedescendant",
 	"disabled"
-], bt = ["aria-label"], xt = [
+], Tt = ["aria-label"], Et = [
 	"placeholder",
 	"aria-label",
 	"aria-activedescendant"
-], St = [
+], Dt = [
 	"id",
 	"aria-selected",
 	"disabled",
 	"onMouseenter",
 	"onClick"
-], Ct = {
+], Ot = {
 	key: 1,
 	class: "vs-empty"
-}, wt = /*#__PURE__*/ B({
+}, kt = /*#__PURE__*/ B({
 	__name: "ValueSelect",
 	props: {
 		modelValue: { default: null },
@@ -1711,7 +1864,7 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 		}, [c("span", null, A(S.value || t.placeholder), 1), r[1] ||= c("span", {
 			class: "vs-arrow",
 			"aria-hidden": "true"
-		}, "▾", -1)], 42, yt), h.value ? (C(), s("div", {
+		}, "▾", -1)], 42, wt), h.value ? (C(), s("div", {
 			key: 0,
 			id: d,
 			class: _(["vs-drop", { "vs-drop-up": t.dropUp }]),
@@ -1731,7 +1884,7 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 				"aria-activedescendant": y.value >= 0 ? k(y.value) : void 0,
 				autocomplete: "off",
 				onKeydown: ee
-			}, null, 40, xt)), [[P, v.value]]) : o("", !0),
+			}, null, 40, Et)), [[P, v.value]]) : o("", !0),
 			(C(!0), s(e, null, E(w.value, (e, t) => (C(), s("button", {
 				id: k(t),
 				key: e.key,
@@ -1742,11 +1895,11 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 				disabled: e.disabled,
 				onMouseenter: (e) => N(t),
 				onClick: (t) => V(e)
-			}, A(e.label), 43, St))), 128)),
-			w.value.length === 0 ? (C(), s("div", Ct, A(t.emptyLabel), 1)) : o("", !0)
-		], 10, bt)) : o("", !0)], 2));
+			}, A(e.label), 43, Dt))), 128)),
+			w.value.length === 0 ? (C(), s("div", Ot, A(t.emptyLabel), 1)) : o("", !0)
+		], 10, Tt)) : o("", !0)], 2));
 	}
-}, [["__scopeId", "data-v-764969f5"]]), Tt = /* @__PURE__ */ new Set(/* @__PURE__ */ "a.b.blockquote.br.code.em.h1.h2.h3.h4.h5.h6.li.ol.p.pre.s.span.strike.strong.table.tbody.td.th.thead.tr.u.ul".split(".")), Et = /* @__PURE__ */ new Set([
+}, [["__scopeId", "data-v-764969f5"]]), At = /* @__PURE__ */ new Set(/* @__PURE__ */ "a.b.blockquote.br.code.em.h1.h2.h3.h4.h5.h6.li.ol.p.pre.s.span.strike.strong.table.tbody.td.th.thead.tr.u.ul".split(".")), jt = /* @__PURE__ */ new Set([
 	"embed",
 	"iframe",
 	"math",
@@ -1755,27 +1908,27 @@ var mt = ["aria-label"], ht = ["aria-label", "aria-expanded"], gt = { class: "cp
 	"style",
 	"svg",
 	"template"
-]), Dt = /* @__PURE__ */ new Set([
+]), Mt = /* @__PURE__ */ new Set([
 	"http:",
 	"https:",
 	"mailto:",
 	"tel:"
-]), Ot = /^[a-z][a-z0-9-]{0,39}$/, kt = 4096;
-function At(e) {
+]), Nt = /^[a-z][a-z0-9-]{0,39}$/, Pt = 4096;
+function Ft(e) {
 	return String(e ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\"", "&quot;").replaceAll("'", "&#039;");
 }
-function jt(e) {
+function It(e) {
 	let t = String(e || "").trim();
 	if (!t || /[\u0000-\u001f\u007f]/.test(t)) return "";
 	if (/^(?:#|\?|\.?\.\/|\/)/.test(t)) return t;
 	try {
 		let e = new URL(t, "https://share-ui.invalid");
-		return Dt.has(e.protocol) ? t : "";
+		return Mt.has(e.protocol) ? t : "";
 	} catch {
 		return "";
 	}
 }
-function Mt(e) {
+function Lt(e) {
 	let t = String(e || "").trim();
 	if (/^#(?:[0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(t) || /^var\(--[a-z0-9-]+\)$/i.test(t)) return t;
 	let n = t.match(/^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})(?:\s*,\s*(0|1|0?\.\d+))?\s*\)$/i);
@@ -1783,17 +1936,17 @@ function Mt(e) {
 	let r = n[4] == null ? null : Number(n[4]);
 	return r != null && (r < 0 || r > 1) ? "" : t;
 }
-function Nt(e) {
+function Rt(e) {
 	try {
 		let t = encodeURIComponent(JSON.stringify(e ?? {}));
-		return t.length <= kt ? t : "";
+		return t.length <= Pt ? t : "";
 	} catch {
 		return "";
 	}
 }
-function Pt(e) {
+function zt(e) {
 	let t = String(e || "");
-	if (!t || t.length > kt) return null;
+	if (!t || t.length > Pt) return null;
 	try {
 		let e = JSON.parse(decodeURIComponent(t));
 		return e && typeof e == "object" && !Array.isArray(e) ? e : null;
@@ -1806,20 +1959,20 @@ function Pt(e) {
 		}
 	}
 }
-function Ft(e, t, n) {
-	let r = String(e || "").trim().toLowerCase(), i = Nt(t);
-	return !Ot.test(r) || !i ? "" : `<span data-rich-node="${r}" data-rich-payload="${At(i)}" contenteditable="false">${At(n || r)}</span>`;
+function Bt(e, t, n) {
+	let r = String(e || "").trim().toLowerCase(), i = Rt(t);
+	return !Nt.test(r) || !i ? "" : `<span data-rich-node="${r}" data-rich-payload="${Ft(i)}" contenteditable="false">${Ft(n || r)}</span>`;
 }
-function It(e) {
+function Vt(e) {
 	if (!e?.getAttribute) return null;
-	let t = String(e.getAttribute("data-rich-node") || "").trim().toLowerCase(), n = Pt(e.getAttribute("data-rich-payload"));
-	return !Ot.test(t) || n == null ? null : {
+	let t = String(e.getAttribute("data-rich-node") || "").trim().toLowerCase(), n = zt(e.getAttribute("data-rich-payload"));
+	return !Nt.test(t) || n == null ? null : {
 		kind: t,
 		payload: n,
 		label: e.textContent || t
 	};
 }
-function Lt(e, t) {
+function Ht(e, t) {
 	let n = e.getAttribute("title");
 	n && t.setAttribute("title", n);
 	let r = e.getAttribute("dir");
@@ -1828,59 +1981,59 @@ function Lt(e, t) {
 		"rtl",
 		"auto"
 	].includes(r) && t.setAttribute("dir", r);
-	let i = Mt(e.style?.getPropertyValue("color"));
+	let i = Lt(e.style?.getPropertyValue("color"));
 	if (i && t.style.setProperty("color", i), t.tagName === "A") {
-		let n = jt(e.getAttribute("href"));
+		let n = It(e.getAttribute("href"));
 		n && t.setAttribute("href", n), e.getAttribute("target") === "_blank" && (t.setAttribute("target", "_blank"), t.setAttribute("rel", "noopener noreferrer"));
 	}
 	if (t.tagName === "SPAN") {
-		let n = It(e);
-		n && (t.setAttribute("data-rich-node", n.kind), t.setAttribute("data-rich-payload", Nt(n.payload)), t.setAttribute("contenteditable", "false"));
+		let n = Vt(e);
+		n && (t.setAttribute("data-rich-node", n.kind), t.setAttribute("data-rich-payload", Rt(n.payload)), t.setAttribute("contenteditable", "false"));
 	}
 	if (t.tagName === "TD" || t.tagName === "TH") for (let n of ["colspan", "rowspan"]) {
 		let r = Number.parseInt(e.getAttribute(n), 10);
 		r >= 1 && r <= 100 && t.setAttribute(n, String(r));
 	}
 }
-function Rt(e, t, n) {
+function Ut(e, t, n) {
 	if (e.nodeType === 3) {
 		t.appendChild(n.createTextNode(e.nodeValue || ""));
 		return;
 	}
 	if (e.nodeType !== 1) return;
 	let r = e.tagName.toLowerCase();
-	if (Et.has(r)) return;
-	if (!Tt.has(r)) {
-		for (let r of [...e.childNodes]) Rt(r, t, n);
+	if (jt.has(r)) return;
+	if (!At.has(r)) {
+		for (let r of [...e.childNodes]) Ut(r, t, n);
 		return;
 	}
 	let i = n.createElement(r);
-	if (Lt(e, i), i.hasAttribute("data-rich-node")) i.textContent = e.textContent || i.getAttribute("data-rich-node");
-	else for (let t of [...e.childNodes]) Rt(t, i, n);
+	if (Ht(e, i), i.hasAttribute("data-rich-node")) i.textContent = e.textContent || i.getAttribute("data-rich-node");
+	else for (let t of [...e.childNodes]) Ut(t, i, n);
 	t.appendChild(i);
 }
-function zt(e) {
+function Wt(e) {
 	let t = String(e || "");
 	if (!t) return "";
-	if (typeof DOMParser > "u") return At(t);
+	if (typeof DOMParser > "u") return Ft(t);
 	let n = new DOMParser().parseFromString(t, "text/html"), r = n.createElement("div");
-	for (let e of [...n.body.childNodes]) Rt(e, r, n);
+	for (let e of [...n.body.childNodes]) Ut(e, r, n);
 	return r.innerHTML;
 }
-function Bt(e) {
-	return At(e).replace(/\r\n?|\n/g, "<br>");
+function Gt(e) {
+	return Ft(e).replace(/\r\n?|\n/g, "<br>");
 }
 //#endregion
 //#region src/components/rich-text/RichContent.vue
-function Vt(e) {
+function Kt(e) {
 	let t = {};
 	for (let n of [...e.attributes]) n.name !== "class" && (t[n.name] = n.value);
 	return t;
 }
-function Ht(e, t, n) {
+function qt(e, t, n) {
 	if (e.nodeType === Node.TEXT_NODE) return e.nodeValue || "";
 	if (e.nodeType !== Node.ELEMENT_NODE) return null;
-	let r = It(e);
+	let r = Vt(e);
 	if (r) {
 		let e = () => m("span", {
 			class: "rc-node",
@@ -1895,13 +2048,13 @@ function Ht(e, t, n) {
 			fallback: e
 		}) || e());
 	}
-	let i = [...e.childNodes].map((e, r) => Ht(e, t, `${n}.${r}`)).filter((e) => e != null);
+	let i = [...e.childNodes].map((e, r) => qt(e, t, `${n}.${r}`)).filter((e) => e != null);
 	return m(e.tagName.toLowerCase(), {
-		...Vt(e),
+		...Kt(e),
 		key: n
 	}, i);
 }
-var Ut = /*#__PURE__*/ B({
+var Jt = /*#__PURE__*/ B({
 	name: "RichContent",
 	inheritAttrs: !1,
 	props: { html: {
@@ -1909,34 +2062,34 @@ var Ut = /*#__PURE__*/ B({
 		default: ""
 	} },
 	setup(e, { slots: t, attrs: n }) {
-		let r = i(() => zt(e.html));
+		let r = i(() => Wt(e.html));
 		return () => {
 			if (typeof DOMParser > "u") return m("div", {
 				...n,
 				class: ["rc", n.class],
 				innerHTML: r.value
 			});
-			let e = [...new DOMParser().parseFromString(r.value, "text/html").body.childNodes].map((e, n) => Ht(e, t, String(n))).filter((e) => e != null);
+			let e = [...new DOMParser().parseFromString(r.value, "text/html").body.childNodes].map((e, n) => qt(e, t, String(n))).filter((e) => e != null);
 			return m("div", {
 				...n,
 				class: ["rc", n.class]
 			}, e);
 		};
 	}
-}, [["__scopeId", "data-v-db98d003"]]), Wt = { class: "input-desc" }, Gt = ["aria-label"], Kt = ["title"], qt = ["title"], Jt = ["title"], Yt = ["aria-expanded"], Xt = ["onMousedown"], Zt = ["title", "onMousedown"], Qt = { class: "desc-color-icon" }, $t = [
+}, [["__scopeId", "data-v-db98d003"]]), Yt = { class: "input-desc" }, Xt = ["aria-label"], Zt = ["title"], Qt = ["title"], $t = ["title"], en = ["aria-expanded"], tn = ["onMousedown"], nn = ["title", "onMousedown"], rn = { class: "desc-color-icon" }, an = [
 	"title",
 	"aria-label",
 	"aria-expanded"
-], en = { class: "desc-link-field" }, tn = ["placeholder"], nn = { class: "desc-link-field" }, rn = {
+], on = { class: "desc-link-field" }, sn = ["placeholder"], cn = { class: "desc-link-field" }, ln = {
 	key: 0,
 	class: "desc-link-error"
-}, an = { class: "desc-link-actions" }, on = {
+}, un = { class: "desc-link-actions" }, dn = {
 	type: "submit",
 	class: "desc-link-save"
-}, sn = ["data-placeholder", "aria-label"], cn = {
+}, fn = ["data-placeholder", "aria-label"], pn = {
 	key: 2,
 	class: "desc-empty"
-}, ln = /*#__PURE__*/ B({
+}, mn = /*#__PURE__*/ B({
 	__name: "RichTextEditor",
 	props: {
 		modelValue: {
@@ -1957,7 +2110,7 @@ var Ut = /*#__PURE__*/ B({
 		},
 		colors: {
 			type: Array,
-			default: () => dt
+			default: () => gt
 		},
 		maxHeadingLevel: {
 			type: Number,
@@ -2010,7 +2163,7 @@ var Ut = /*#__PURE__*/ B({
 			url: ""
 		}), ee = i(() => R.value || B.value || j.value);
 		function te(e) {
-			return zt(e) || "<p><br></p>";
+			return Wt(e) || "<p><br></p>";
 		}
 		function ne(e) {
 			!m.editable || !k.value || document.activeElement !== k.value && (k.value.innerHTML = te(e));
@@ -2023,62 +2176,62 @@ var Ut = /*#__PURE__*/ B({
 		function re(e) {
 			return !!(e && k.value?.contains(e.commonAncestorContainer));
 		}
-		function ie() {
+		function G() {
 			let e = window.getSelection();
 			if (!e?.rangeCount) return;
 			let t = e.getRangeAt(0);
 			re(t) && (H.value = t.cloneRange());
 		}
-		function ae() {
+		function ie() {
 			k.value?.focus();
 			let e = window.getSelection();
 			return !e || !re(H.value) ? !1 : (e.removeAllRanges(), e.addRange(H.value), !0);
 		}
-		function oe() {
+		function ae() {
 			return re(H.value) ? H.value.toString().trim() : "";
 		}
-		function se(e) {
-			let t = Ft(e?.kind, e?.payload, e?.label);
+		function oe(e) {
+			let t = Bt(e?.kind, e?.payload, e?.label);
 			if (!t || !k.value) return null;
-			ae(), document.execCommand("insertHTML", !1, t), Y();
+			ie(), document.execCommand("insertHTML", !1, t), X();
 			let n = k.value.querySelectorAll("[data-rich-node]"), r = n[n.length - 1] || null;
-			return r && (V.value = r, de(r)), r;
+			return r && (V.value = r, ue(r)), r;
 		}
-		function ce(e) {
+		function se(e) {
 			return e?.nodeType === Node.ELEMENT_NODE && e.matches?.("[data-rich-node]") ? e : e?.element?.matches?.("[data-rich-node]") ? e.element : V.value?.isConnected ? V.value : null;
 		}
-		function le(e, t) {
-			let n = ce(e), r = Ft(t?.kind, t?.payload, t?.label);
+		function ce(e, t) {
+			let n = se(e), r = Bt(t?.kind, t?.payload, t?.label);
 			if (!n || !r) return null;
 			let i = document.createElement("template");
 			i.innerHTML = r;
 			let a = i.content.firstElementChild;
-			return n.replaceWith(a), V.value = a, Y(), a;
+			return n.replaceWith(a), V.value = a, X(), a;
 		}
-		function ue(e) {
-			let t = ce(e);
+		function le(e) {
+			let t = se(e);
 			if (!t) return !1;
 			let n = t.nextSibling || t.parentNode;
-			return t.remove(), V.value = null, n?.nodeType === Node.ELEMENT_NODE && Te(n), Y(), !0;
+			return t.remove(), V.value = null, n?.nodeType === Node.ELEMENT_NODE && we(n), X(), !0;
 		}
-		function de(e) {
+		function ue(e) {
 			let t = document.createRange(), n = window.getSelection();
 			t.setStartAfter(e), t.collapse(!0), n.removeAllRanges(), n.addRange(t), H.value = t.cloneRange();
 		}
-		function G(e, t) {
-			ie(), R.value = e, B.value = t, U.value = !1, W.text = e?.textContent || oe(), W.url = e?.getAttribute?.("href") || "", N.value = !0, g(() => M.value?.focus());
+		function K(e, t) {
+			G(), R.value = e, B.value = t, U.value = !1, W.text = e?.textContent || ae(), W.url = e?.getAttribute?.("href") || "", N.value = !0, g(() => M.value?.focus());
 		}
-		function K(e = null) {
-			G(null, e);
+		function q(e = null) {
+			K(null, e);
 		}
-		function fe(e) {
-			G(e, null);
+		function de(e) {
+			K(e, null);
 		}
-		function pe(e = !1) {
+		function fe(e = !1) {
 			e !== !0 && (N.value = !1, R.value = null, B.value = null, U.value = !1);
 		}
-		function me() {
-			let e = jt(W.url);
+		function pe() {
+			let e = It(W.url);
 			if (!e) {
 				U.value = !0;
 				return;
@@ -2086,95 +2239,95 @@ var Ut = /*#__PURE__*/ B({
 			let t = W.text.trim() || e;
 			if (R.value?.isConnected) R.value.setAttribute("href", e), R.value.textContent = t;
 			else {
-				ae();
+				ie();
 				let n = window.getSelection();
 				if (n?.rangeCount && !n.getRangeAt(0).collapsed && t === n.toString().trim()) document.execCommand("createLink", !1, e);
 				else {
 					let r = document.createElement("a");
 					r.href = e, r.textContent = t;
 					let i = n?.rangeCount ? n.getRangeAt(0) : null;
-					i && re(i) && (i.deleteContents(), i.insertNode(r), de(r));
+					i && re(i) && (i.deleteContents(), i.insertNode(r), ue(r));
 				}
 			}
-			pe(!1), Y();
+			fe(!1), X();
 		}
-		function he() {
+		function me() {
 			let e = R.value;
-			if (!e?.isConnected) return pe(!1);
-			e.replaceWith(...e.childNodes), pe(!1), Y();
+			if (!e?.isConnected) return fe(!1);
+			e.replaceWith(...e.childNodes), fe(!1), X();
 		}
-		function ge(e) {
+		function he(e) {
 			let t = e.target.closest?.("a");
 			if (t && k.value?.contains(t)) {
-				e.preventDefault(), fe(t);
+				e.preventDefault(), de(t);
 				return;
 			}
 			let n = e.target.closest?.("[data-rich-node]");
 			!n || !k.value?.contains(n) || (e.preventDefault(), V.value = n, h("node-select", {
 				element: n,
-				node: It(n)
+				node: Vt(n)
 			}));
 		}
-		let _e = {
+		let ge = {
 			focus: () => k.value?.focus(),
-			rememberSelection: ie,
-			openLinkEditor: K,
-			insertRichNode: se,
-			updateRichNode: le,
-			removeRichNode: ue
+			rememberSelection: G,
+			openLinkEditor: q,
+			insertRichNode: oe,
+			updateRichNode: ce,
+			removeRichNode: le
 		};
-		function q(e) {
+		function J(e) {
 			return y.value.heading.replace("{level}", String(e));
 		}
-		function J(e) {
-			k.value?.focus(), document.execCommand("styleWithCSS", !1, !1), document.execCommand(e, !1, null), g(Y);
+		function Y(e) {
+			k.value?.focus(), document.execCommand("styleWithCSS", !1, !1), document.execCommand(e, !1, null), g(X);
+		}
+		function _e(e) {
+			k.value?.focus(), document.execCommand("formatBlock", !1, e), S.value = !1, g(X);
 		}
 		function ve(e) {
-			k.value?.focus(), document.execCommand("formatBlock", !1, e), S.value = !1, g(Y);
-		}
-		function ye(e) {
 			if (k.value?.focus(), document.execCommand("styleWithCSS", !1, !0), e) {
-				document.execCommand("foreColor", !1, e), Y();
+				document.execCommand("foreColor", !1, e), X();
 				return;
 			}
 			document.execCommand("removeFormat", !1, null), g(() => {
 				k.value && (k.value.querySelectorAll("span").forEach((e) => {
 					e.style.removeProperty("font-family"), e.style.cssText.trim() || e.replaceWith(...e.childNodes);
-				}), Y());
+				}), X());
 			});
 		}
-		function be() {
+		function ye() {
 			if (k.value) {
-				Ee();
+				Te();
 				for (let e of [...k.value.children]) {
 					if (e.tagName !== "DIV") continue;
 					let t = document.createElement("p");
 					t.innerHTML = e.innerHTML, e.replaceWith(t);
 				}
-				Y();
+				X();
 			}
 		}
-		function xe() {
+		function be() {
 			if (!k.value) return "";
-			Se(k.value);
-			let e = zt(k.value.innerHTML);
+			xe(k.value);
+			let e = Wt(k.value.innerHTML);
 			return e === "<p><br></p>" || e === "<br>" ? "" : e;
 		}
-		function Y() {
-			h("update:modelValue", xe());
+		function X() {
+			h("update:modelValue", be());
 		}
-		function Se(e) {
-			e.querySelectorAll("strong").forEach((e) => Ce(e, "b")), e.querySelectorAll("i").forEach((e) => Ce(e, "em")), e.querySelectorAll("span").forEach((e) => {
+		function xe(e) {
+			e.querySelectorAll("strong").forEach((e) => Se(e, "b")), e.querySelectorAll("i").forEach((e) => Se(e, "em")), e.querySelectorAll("span").forEach((e) => {
 				let t = e.style.fontWeight, n = e.style.fontStyle, r = e.style.textDecorationLine || e.style.textDecoration, i = null;
-				t === "bold" || Number(t) >= 600 ? (e.style.removeProperty("font-weight"), i = "b") : n === "italic" ? (e.style.removeProperty("font-style"), i = "em") : String(r).includes("underline") && (e.style.removeProperty("text-decoration"), e.style.removeProperty("text-decoration-line"), i = "u"), i && Ce(e, i);
+				t === "bold" || Number(t) >= 600 ? (e.style.removeProperty("font-weight"), i = "b") : n === "italic" ? (e.style.removeProperty("font-style"), i = "em") : String(r).includes("underline") && (e.style.removeProperty("text-decoration"), e.style.removeProperty("text-decoration-line"), i = "u"), i && Se(e, i);
 			});
 		}
-		function Ce(e, t) {
+		function Se(e, t) {
 			let n = document.createElement(t);
 			for (let t of [...e.attributes]) (t.name !== "style" || e.style.cssText.trim()) && n.setAttribute(t.name, t.value);
 			return n.append(...e.childNodes), e.replaceWith(n), n;
 		}
-		function we(e) {
+		function Ce(e) {
 			let t = e.nodeType === Node.TEXT_NODE ? e.parentNode : e;
 			for (; t && t !== k.value;) {
 				if ([
@@ -2191,48 +2344,48 @@ var Ut = /*#__PURE__*/ B({
 			}
 			return null;
 		}
-		function Te(e) {
+		function we(e) {
 			let t = document.createRange(), n = window.getSelection();
 			t.selectNodeContents(e), t.collapse(!0), n.removeAllRanges(), n.addRange(t);
 		}
-		function Ee() {
+		function Te() {
 			let e = window.getSelection();
 			if (!e || e.rangeCount === 0 || !k.value?.contains(e.anchorNode)) return;
-			let t = we(e.anchorNode);
+			let t = Ce(e.anchorNode);
 			if (!t || t.tagName === "LI") return;
 			let n = t.textContent || "";
-			(n === "- " || n === " - ") && De(t);
+			(n === "- " || n === " - ") && Ee(t);
 		}
-		function De(e) {
+		function Ee(e) {
 			let t = document.createElement("li");
 			t.innerHTML = "<br>";
 			let n = document.createElement("ul");
-			n.appendChild(t), e.replaceWith(n), Te(t);
+			n.appendChild(t), e.replaceWith(n), we(t);
 		}
-		function Oe() {
+		function De() {
 			let e = window.getSelection();
 			if (!e || e.rangeCount === 0 || !k.value?.contains(e.anchorNode)) return !1;
-			let t = we(e.anchorNode);
+			let t = Ce(e.anchorNode);
 			if (!t || t.tagName === "LI") return !1;
 			let n = (t.textContent || "").replace(/\u00a0/g, " ");
-			return n !== "-" && n !== " -" ? !1 : (De(t), !0);
+			return n !== "-" && n !== " -" ? !1 : (Ee(t), !0);
 		}
-		function ke(e) {
+		function Oe(e) {
 			if (e.key === " ") {
-				Oe() && (e.preventDefault(), Y());
+				De() && (e.preventDefault(), X());
 				return;
 			}
-			e.key === "Enter" && (e.preventDefault(), document.execCommand(e.shiftKey ? "insertLineBreak" : "insertParagraph"), Y());
-		}
-		function X(e) {
-			k.value?.focus(), document.execCommand("insertHTML", !1, e), Y();
+			e.key === "Enter" && (e.preventDefault(), document.execCommand(e.shiftKey ? "insertLineBreak" : "insertParagraph"), X());
 		}
 		function Z(e) {
+			k.value?.focus(), document.execCommand("insertHTML", !1, e), X();
+		}
+		function ke(e) {
 			e.preventDefault();
 			let t = e.clipboardData?.getData("text/html"), n = e.clipboardData?.getData("text/plain") || "";
-			X(t ? zt(t) : Bt(n));
+			Z(t ? Wt(t) : Gt(n));
 		}
-		function Q(e) {
+		function Ae(e) {
 			let t = document.caretPositionFromPoint?.(e.clientX, e.clientY), n = document.caretRangeFromPoint?.(e.clientX, e.clientY), r = document.createRange();
 			if (t) r.setStart(t.offsetNode, t.offset);
 			else if (n) r.setStart(n.startContainer, n.startOffset);
@@ -2241,23 +2394,23 @@ var Ut = /*#__PURE__*/ B({
 			let i = window.getSelection();
 			i.removeAllRanges(), i.addRange(r);
 		}
-		function Ae(e) {
-			e.preventDefault(), Q(e);
-			let t = e.dataTransfer?.getData("text/html"), n = e.dataTransfer?.getData("text/plain") || "";
-			X(t ? zt(t) : Bt(n));
-		}
 		function je(e) {
-			Y(), h("blur", e);
+			e.preventDefault(), Ae(e);
+			let t = e.dataTransfer?.getData("text/html"), n = e.dataTransfer?.getData("text/plain") || "";
+			Z(t ? Wt(t) : Gt(n));
+		}
+		function Me(e) {
+			X(), h("blur", e);
 		}
 		return n({
 			focus: () => k.value?.focus(),
-			commit: Y,
-			rememberSelection: ie,
-			openLinkEditor: K,
-			insertRichNode: se,
-			updateRichNode: le,
-			removeRichNode: ue
-		}), (n, r) => (C(), s("div", Wt, [t.editable ? (C(), s(e, { key: 0 }, [
+			commit: X,
+			rememberSelection: G,
+			openLinkEditor: q,
+			insertRichNode: oe,
+			updateRichNode: ce,
+			removeRichNode: le
+		}), (n, r) => (C(), s("div", Yt, [t.editable ? (C(), s(e, { key: 0 }, [
 			c("div", {
 				class: "desc-toolbar",
 				role: "toolbar",
@@ -2267,20 +2420,20 @@ var Ut = /*#__PURE__*/ B({
 					type: "button",
 					class: "desc-btn",
 					title: y.value.bold,
-					onMousedown: r[0] ||= z((e) => J("bold"), ["prevent"])
-				}, [c("b", null, A(y.value.boldShort), 1)], 40, Kt),
+					onMousedown: r[0] ||= z((e) => Y("bold"), ["prevent"])
+				}, [c("b", null, A(y.value.boldShort), 1)], 40, Zt),
 				c("button", {
 					type: "button",
 					class: "desc-btn",
 					title: y.value.italic,
-					onMousedown: r[1] ||= z((e) => J("italic"), ["prevent"])
-				}, [c("i", null, A(y.value.italicShort), 1)], 40, qt),
+					onMousedown: r[1] ||= z((e) => Y("italic"), ["prevent"])
+				}, [c("i", null, A(y.value.italicShort), 1)], 40, Qt),
 				c("button", {
 					type: "button",
 					class: "desc-btn",
 					title: y.value.underline,
-					onMousedown: r[2] ||= z((e) => J("underline"), ["prevent"])
-				}, [c("u", null, A(y.value.underlineShort), 1)], 40, Jt),
+					onMousedown: r[2] ||= z((e) => Y("underline"), ["prevent"])
+				}, [c("u", null, A(y.value.underlineShort), 1)], 40, $t),
 				r[13] ||= c("div", { class: "desc-sep" }, null, -1),
 				c("button", {
 					ref_key: "headingTrigger",
@@ -2293,8 +2446,8 @@ var Ut = /*#__PURE__*/ B({
 				}, [u(A(y.value.paragraph) + " ", 1), r[11] ||= c("span", {
 					class: "desc-caret",
 					"aria-hidden": "true"
-				}, "▾", -1)], 40, Yt),
-				d(it, {
+				}, "▾", -1)], 40, en),
+				d(lt, {
 					open: S.value,
 					anchor: O.value,
 					"min-width": 160,
@@ -2307,14 +2460,14 @@ var Ut = /*#__PURE__*/ B({
 						type: "button",
 						class: "desc-drop-item drop-p",
 						role: "menuitem",
-						onMousedown: r[4] ||= z((e) => ve("p"), ["prevent"])
+						onMousedown: r[4] ||= z((e) => _e("p"), ["prevent"])
 					}, A(y.value.normal), 33), (C(!0), s(e, null, E(b.value, (e) => (C(), s("button", {
 						key: e,
 						type: "button",
 						class: _(["desc-drop-item", `drop-h${e}`]),
 						role: "menuitem",
-						onMousedown: z((t) => ve(`h${e}`), ["prevent"])
-					}, A(q(e)), 43, Xt))), 128))]),
+						onMousedown: z((t) => _e(`h${e}`), ["prevent"])
+					}, A(J(e)), 43, tn))), 128))]),
 					_: 1
 				}, 8, [
 					"open",
@@ -2322,13 +2475,13 @@ var Ut = /*#__PURE__*/ B({
 					"aria-label"
 				]),
 				r[14] ||= c("div", { class: "desc-sep" }, null, -1),
-				d(vt, {
+				d(Ct, {
 					"allow-clear": "",
 					colors: t.colors,
 					"model-value": "",
 					"clear-label": y.value.clearColor,
 					"aria-label": y.value.color,
-					"onUpdate:modelValue": ye
+					"onUpdate:modelValue": ve
 				}, {
 					trigger: I(({ toggle: e }) => [c("button", {
 						type: "button",
@@ -2337,7 +2490,7 @@ var Ut = /*#__PURE__*/ B({
 						onMousedown: z((t) => {
 							S.value = !1, e();
 						}, ["prevent"])
-					}, [c("span", Qt, A(y.value.colorShort), 1)], 40, Zt)]),
+					}, [c("span", rn, A(y.value.colorShort), 1)], 40, nn)]),
 					_: 1
 				}, 8, [
 					"colors",
@@ -2355,34 +2508,34 @@ var Ut = /*#__PURE__*/ B({
 					"aria-label": y.value.link,
 					"aria-expanded": N.value,
 					"aria-haspopup": "dialog",
-					onMousedown: r[6] ||= z((e) => K(), ["prevent"])
-				}, [...r[12] ||= [c("span", { "aria-hidden": "true" }, "↗", -1)]], 42, $t)) : o("", !0),
+					onMousedown: r[6] ||= z((e) => q(), ["prevent"])
+				}, [...r[12] ||= [c("span", { "aria-hidden": "true" }, "↗", -1)]], 42, an)) : o("", !0),
 				D(n.$slots, "toolbar", {
-					editor: _e,
-					insertRichNode: se,
-					updateRichNode: le,
-					removeRichNode: ue
+					editor: ge,
+					insertRichNode: oe,
+					updateRichNode: ce,
+					removeRichNode: le
 				}, void 0, !0)
-			], 8, Gt),
-			d(it, {
+			], 8, Xt),
+			d(lt, {
 				open: N.value,
 				anchor: ee.value,
 				"min-width": 260,
 				"z-index": 4500,
 				role: "dialog",
 				"aria-label": y.value.link,
-				"onUpdate:open": pe
+				"onUpdate:open": fe
 			}, {
 				default: I(() => [c("form", {
 					class: "desc-link-form",
-					onSubmit: z(me, ["prevent"])
+					onSubmit: z(pe, ["prevent"])
 				}, [
-					c("label", en, [c("span", null, A(y.value.linkText), 1), L(c("input", {
+					c("label", on, [c("span", null, A(y.value.linkText), 1), L(c("input", {
 						"onUpdate:modelValue": r[7] ||= (e) => W.text = e,
 						type: "text",
 						placeholder: y.value.linkTextPlaceholder
-					}, null, 8, tn), [[P, W.text]])]),
-					c("label", nn, [c("span", null, A(y.value.linkUrl), 1), L(c("input", {
+					}, null, 8, sn), [[P, W.text]])]),
+					c("label", cn, [c("span", null, A(y.value.linkUrl), 1), L(c("input", {
 						ref_key: "linkUrlInput",
 						ref: M,
 						"onUpdate:modelValue": r[8] ||= (e) => W.url = e,
@@ -2390,20 +2543,20 @@ var Ut = /*#__PURE__*/ B({
 						inputmode: "url",
 						placeholder: "https://…"
 					}, null, 512), [[P, W.url]])]),
-					U.value ? (C(), s("span", rn, A(y.value.linkInvalid), 1)) : o("", !0),
-					c("div", an, [
+					U.value ? (C(), s("span", ln, A(y.value.linkInvalid), 1)) : o("", !0),
+					c("div", un, [
 						R.value ? (C(), s("button", {
 							key: 0,
 							type: "button",
 							class: "desc-link-remove",
-							onClick: he
+							onClick: me
 						}, A(y.value.removeLink), 1)) : o("", !0),
 						c("button", {
 							type: "button",
 							class: "desc-link-cancel",
-							onClick: r[9] ||= (e) => pe(!1)
+							onClick: r[9] ||= (e) => fe(!1)
 						}, A(y.value.cancel), 1),
-						c("button", on, A(y.value.saveLink), 1)
+						c("button", dn, A(y.value.saveLink), 1)
 					])
 				], 32)]),
 				_: 1
@@ -2422,17 +2575,17 @@ var Ut = /*#__PURE__*/ B({
 				autocorrect: "off",
 				"data-placeholder": t.placeholder,
 				"aria-label": t.ariaLabel || t.placeholder,
-				onInput: be,
-				onKeydown: ke,
-				onKeyup: ie,
-				onMouseup: ie,
-				onClick: ge,
-				onPaste: Z,
-				onDrop: Ae,
+				onInput: ye,
+				onKeydown: Oe,
+				onKeyup: G,
+				onMouseup: G,
+				onClick: he,
+				onPaste: ke,
+				onDrop: je,
 				onFocus: r[10] ||= (e) => n.$emit("focus", e),
-				onBlur: je
-			}, null, 40, sn)
-		], 64)) : t.modelValue ? (C(), a(Ut, {
+				onBlur: Me
+			}, null, 40, fn)
+		], 64)) : t.modelValue ? (C(), a(Jt, {
 			key: 1,
 			class: "desc-view",
 			html: t.modelValue
@@ -2440,25 +2593,25 @@ var Ut = /*#__PURE__*/ B({
 			name: "node",
 			fn: I((e) => [D(n.$slots, "node", v(p(e)), void 0, !0)]),
 			key: "0"
-		} : void 0]), 1032, ["html"])) : (C(), s("div", cn, A(t.placeholder), 1))]));
+		} : void 0]), 1032, ["html"])) : (C(), s("div", pn, A(t.placeholder), 1))]));
 	}
-}, [["__scopeId", "data-v-feac13b3"]]), un = [
+}, [["__scopeId", "data-v-feac13b3"]]), hn = [
 	"aria-label",
 	"aria-expanded",
 	"disabled"
-], dn = {
+], gn = {
 	class: "share-account-avatar",
 	"aria-hidden": "true"
-}, fn = {
+}, _n = {
 	key: 0,
 	class: "share-account-label"
-}, pn = {
+}, vn = {
 	key: 1,
 	class: "share-account-chevron",
 	viewBox: "0 0 16 16",
 	fill: "none",
 	"aria-hidden": "true"
-}, mn = /*#__PURE__*/ B({
+}, yn = /*#__PURE__*/ B({
 	__name: "AccountMenu",
 	props: {
 		label: {
@@ -2488,7 +2641,7 @@ var Ut = /*#__PURE__*/ B({
 	},
 	setup(e) {
 		let t = e, n = i(() => (t.avatarText || t.label.trim().charAt(0) || "?").toUpperCase());
-		return (t, r) => (C(), a(Je, {
+		return (t, r) => (C(), a($e, {
 			title: e.title,
 			disabled: e.disabled,
 			block: ""
@@ -2504,24 +2657,24 @@ var Ut = /*#__PURE__*/ B({
 				"aria-haspopup": "menu",
 				disabled: e.disabled
 			}, [
-				c("span", dn, [D(t.$slots, "avatar", {}, () => [u(A(n.value), 1)], !0)]),
-				e.expanded ? (C(), s("span", fn, A(e.label), 1)) : o("", !0),
-				e.expanded ? (C(), s("svg", pn, [...r[0] ||= [c("path", {
+				c("span", gn, [D(t.$slots, "avatar", {}, () => [u(A(n.value), 1)], !0)]),
+				e.expanded ? (C(), s("span", _n, A(e.label), 1)) : o("", !0),
+				e.expanded ? (C(), s("svg", vn, [...r[0] ||= [c("path", {
 					d: "m4 6 4 4 4-4",
 					stroke: "currentColor",
 					"stroke-width": "1.7",
 					"stroke-linecap": "round",
 					"stroke-linejoin": "round"
 				}, null, -1)]])) : o("", !0)
-			], 10, un)]),
+			], 10, hn)]),
 			default: I(({ close: e }) => [D(t.$slots, "default", { close: e }, void 0, !0)]),
 			_: 3
 		}, 8, ["title", "disabled"]));
 	}
-}, [["__scopeId", "data-v-e71617a9"]]), hn = {
+}, [["__scopeId", "data-v-e71617a9"]]), bn = {
 	key: 1,
 	class: "share-app-shell__rail"
-}, gn = /*#__PURE__*/ B({
+}, xn = /*#__PURE__*/ B({
 	__name: "AppShell",
 	props: {
 		sidebarMode: {
@@ -2569,33 +2722,33 @@ var Ut = /*#__PURE__*/ B({
 				default: I(() => [D(t.$slots, "default", {}, void 0, !0)]),
 				_: 3
 			})),
-			t.$slots.rail ? (C(), s("aside", hn, [D(t.$slots, "rail", {}, void 0, !0)])) : o("", !0),
+			t.$slots.rail ? (C(), s("aside", bn, [D(t.$slots, "rail", {}, void 0, !0)])) : o("", !0),
 			D(t.$slots, "overlay", {}, void 0, !0)
 		], 6));
 	}
-}, [["__scopeId", "data-v-db4502d8"]]), _n = ["aria-label", "title"], vn = {
+}, [["__scopeId", "data-v-db4502d8"]]), Sn = ["aria-label", "title"], Cn = {
 	class: "share-sidebar-toggle__icon sidebar-icon",
 	"aria-hidden": "true"
-}, yn = {
+}, wn = {
 	width: "18",
 	height: "18",
 	viewBox: "0 0 18 18",
 	fill: "none"
-}, bn = {
+}, Tn = {
 	key: 0,
 	d: "m11 6-3 3 3 3",
 	stroke: "currentColor",
 	"stroke-width": "1.5",
 	"stroke-linecap": "round",
 	"stroke-linejoin": "round"
-}, xn = {
+}, En = {
 	key: 1,
 	d: "m9 6 3 3-3 3",
 	stroke: "currentColor",
 	"stroke-width": "1.5",
 	"stroke-linecap": "round",
 	"stroke-linejoin": "round"
-}, Sn = { class: "share-sidebar-label sidebar-label" }, Cn = /*#__PURE__*/ B({
+}, Dn = { class: "share-sidebar-label sidebar-label" }, On = /*#__PURE__*/ B({
 	__name: "SidebarToggle",
 	props: {
 		expanded: {
@@ -2617,7 +2770,7 @@ var Ut = /*#__PURE__*/ B({
 			class: "share-sidebar-toggle sidebar-toggle",
 			"aria-label": e.expanded ? e.collapseLabel : e.expandLabel,
 			title: e.expanded ? e.collapseLabel : e.expandLabel
-		}, [c("span", vn, [(C(), s("svg", yn, [
+		}, [c("span", Cn, [(C(), s("svg", wn, [
 			n[0] ||= c("rect", {
 				x: "2.25",
 				y: "2.25",
@@ -2632,19 +2785,19 @@ var Ut = /*#__PURE__*/ B({
 				stroke: "currentColor",
 				"stroke-width": "1.5"
 			}, null, -1),
-			e.expanded ? (C(), s("path", bn)) : (C(), s("path", xn))
-		]))]), c("span", Sn, A(e.expanded ? e.collapseLabel : e.expandLabel), 1)], 8, _n));
+			e.expanded ? (C(), s("path", Tn)) : (C(), s("path", En))
+		]))]), c("span", Dn, A(e.expanded ? e.collapseLabel : e.expandLabel), 1)], 8, Sn));
 	}
-}, [["__scopeId", "data-v-82e613bd"]]), wn = {
+}, [["__scopeId", "data-v-82e613bd"]]), kn = {
 	key: 0,
 	class: "share-sidebar-head"
-}, Tn = ["aria-label"], En = {
+}, An = ["aria-label"], jn = {
 	key: 1,
 	class: "share-sidebar-tools"
-}, Dn = {
+}, Mn = {
 	key: 2,
 	class: "share-sidebar-account"
-}, On = /*#__PURE__*/ B({
+}, Nn = /*#__PURE__*/ B({
 	__name: "AppSidebar",
 	props: {
 		modelValue: {
@@ -2734,7 +2887,7 @@ var Ut = /*#__PURE__*/ B({
 			`share-app-sidebar--mobile-${e.mobileMode}`,
 			`share-app-sidebar--breakpoint-${e.mobileBreakpoint}`
 		]]) }, [
-			t.$slots.brand ? (C(), s("div", wn, [D(t.$slots, "brand", {
+			t.$slots.brand ? (C(), s("div", kn, [D(t.$slots, "brand", {
 				expanded: f.value,
 				toggle: h
 			}, void 0, !0)])) : o("", !0),
@@ -2744,8 +2897,8 @@ var Ut = /*#__PURE__*/ B({
 			}, [D(t.$slots, "default", {
 				expanded: f.value,
 				toggle: h
-			}, void 0, !0)], 8, Tn),
-			e.showToggle || t.$slots.tools ? (C(), s("div", En, [e.showToggle ? (C(), a(Cn, {
+			}, void 0, !0)], 8, An),
+			e.showToggle || t.$slots.tools ? (C(), s("div", jn, [e.showToggle ? (C(), a(On, {
 				key: 0,
 				expanded: f.value,
 				"expand-label": e.expandLabel,
@@ -2761,13 +2914,13 @@ var Ut = /*#__PURE__*/ B({
 				collapse: m,
 				toggle: h
 			}, void 0, !0)])) : o("", !0),
-			t.$slots.account ? (C(), s("div", Dn, [D(t.$slots, "account", { expanded: f.value }, void 0, !0)])) : o("", !0)
+			t.$slots.account ? (C(), s("div", Mn, [D(t.$slots, "account", { expanded: f.value }, void 0, !0)])) : o("", !0)
 		], 2));
 	}
-}, [["__scopeId", "data-v-2025fec5"]]), kn = {
+}, [["__scopeId", "data-v-2025fec5"]]), Pn = {
 	class: "share-sidebar-brand__icon sidebar-brand-icon",
 	"aria-hidden": "true"
-}, An = { class: "share-sidebar-label share-sidebar-brand__label sidebar-label sidebar-brand-label" }, jn = /*#__PURE__*/ B(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
+}, Fn = { class: "share-sidebar-label share-sidebar-brand__label sidebar-label sidebar-brand-label" }, In = /*#__PURE__*/ B(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
 	__name: "SidebarBrand",
 	props: {
 		as: {
@@ -2796,27 +2949,27 @@ var Ut = /*#__PURE__*/ B({
 			class: "share-sidebar-brand sidebar-brand",
 			"aria-label": e.ariaLabel || e.label
 		}, t.$attrs), {
-			default: I(() => [c("span", kn, [D(t.$slots, "icon", {}, () => [e.icon ? (C(), a(O(e.icon), {
+			default: I(() => [c("span", Pn, [D(t.$slots, "icon", {}, () => [e.icon ? (C(), a(O(e.icon), {
 				key: 0,
 				size: 22,
 				"stroke-width": 1.8
-			})) : o("", !0)], !0)]), c("span", An, [D(t.$slots, "default", {}, () => [u(A(e.label), 1)], !0)])]),
+			})) : o("", !0)], !0)]), c("span", Fn, [D(t.$slots, "default", {}, () => [u(A(e.label), 1)], !0)])]),
 			_: 3
 		}, 16, ["aria-label"]));
 	}
-}), [["__scopeId", "data-v-a9c8581a"]]), Mn = { class: "share-sidebar-group" }, Nn = /*#__PURE__*/ B({
+}), [["__scopeId", "data-v-a9c8581a"]]), Ln = { class: "share-sidebar-group" }, Rn = /*#__PURE__*/ B({
 	__name: "SidebarGroup",
 	props: { label: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (C(), s("div", Mn, [D(t.$slots, "default", {}, () => [u(A(e.label), 1)], !0)]));
+		return (t, n) => (C(), s("div", Ln, [D(t.$slots, "default", {}, () => [u(A(e.label), 1)], !0)]));
 	}
-}, [["__scopeId", "data-v-169df1ac"]]), Pn = {
+}, [["__scopeId", "data-v-169df1ac"]]), zn = {
 	class: "share-sidebar-icon sidebar-icon",
 	"aria-hidden": "true"
-}, Fn = { class: "share-sidebar-label sidebar-label" }, In = /*#__PURE__*/ B(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
+}, Bn = { class: "share-sidebar-label sidebar-label" }, Vn = /*#__PURE__*/ B(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
 	__name: "SidebarNavItem",
 	props: {
 		as: {
@@ -2850,11 +3003,11 @@ var Ut = /*#__PURE__*/ B({
 			title: e.title || e.label,
 			"aria-current": e.active ? "page" : void 0
 		}, t.$attrs), {
-			default: I(() => [c("span", Pn, [D(t.$slots, "icon", {}, () => [e.icon ? (C(), a(O(e.icon), {
+			default: I(() => [c("span", zn, [D(t.$slots, "icon", {}, () => [e.icon ? (C(), a(O(e.icon), {
 				key: 0,
 				size: 20,
 				"stroke-width": 1.8
-			})) : o("", !0)], !0)]), c("span", Fn, [D(t.$slots, "default", {}, () => [u(A(e.label), 1)], !0)])]),
+			})) : o("", !0)], !0)]), c("span", Bn, [D(t.$slots, "default", {}, () => [u(A(e.label), 1)], !0)])]),
 			_: 3
 		}, 16, [
 			"class",
@@ -2862,10 +3015,10 @@ var Ut = /*#__PURE__*/ B({
 			"aria-current"
 		]));
 	}
-}), [["__scopeId", "data-v-28979fe2"]]), Ln = {
+}), [["__scopeId", "data-v-28979fe2"]]), Hn = {
 	key: 0,
 	class: "share-editor-panel__title"
-}, Rn = /*#__PURE__*/ B({
+}, Un = /*#__PURE__*/ B({
 	__name: "EditorPanel",
 	props: {
 		title: {
@@ -2878,28 +3031,28 @@ var Ut = /*#__PURE__*/ B({
 		}
 	},
 	setup(e) {
-		return (t, n) => (C(), s("div", { class: _(["share-editor-panel", { "share-editor-panel--compact": e.compact }]) }, [e.title || t.$slots.title ? (C(), s("div", Ln, [D(t.$slots, "title", {}, () => [u(A(e.title), 1)], !0)])) : o("", !0), D(t.$slots, "default", {}, void 0, !0)], 2));
+		return (t, n) => (C(), s("div", { class: _(["share-editor-panel", { "share-editor-panel--compact": e.compact }]) }, [e.title || t.$slots.title ? (C(), s("div", Hn, [D(t.$slots, "title", {}, () => [u(A(e.title), 1)], !0)])) : o("", !0), D(t.$slots, "default", {}, void 0, !0)], 2));
 	}
-}, [["__scopeId", "data-v-055dcd8d"]]), zn = { class: "share-editor-section-title" }, Bn = { class: "share-editor-section-title__text" }, Vn = {
+}, [["__scopeId", "data-v-055dcd8d"]]), Wn = { class: "share-editor-section-title" }, Gn = { class: "share-editor-section-title__text" }, Kn = {
 	key: 0,
 	class: "share-editor-section-title__actions"
-}, Hn = /*#__PURE__*/ B({
+}, qn = /*#__PURE__*/ B({
 	__name: "EditorSectionTitle",
 	props: { title: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (C(), s("div", zn, [c("span", Bn, [D(t.$slots, "default", {}, () => [u(A(e.title), 1)], !0)]), t.$slots.actions ? (C(), s("span", Vn, [D(t.$slots, "actions", {}, void 0, !0)])) : o("", !0)]));
+		return (t, n) => (C(), s("div", Wn, [c("span", Gn, [D(t.$slots, "default", {}, () => [u(A(e.title), 1)], !0)]), t.$slots.actions ? (C(), s("span", Kn, [D(t.$slots, "actions", {}, void 0, !0)])) : o("", !0)]));
 	}
-}, [["__scopeId", "data-v-03237796"]]), Un = { class: "share-editor-section" }, Wn = /*#__PURE__*/ B({
+}, [["__scopeId", "data-v-03237796"]]), Jn = { class: "share-editor-section" }, Yn = /*#__PURE__*/ B({
 	__name: "EditorSection",
 	props: { title: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (C(), s("section", Un, [e.title || t.$slots.title ? (C(), a(Hn, {
+		return (t, n) => (C(), s("section", Jn, [e.title || t.$slots.title ? (C(), a(qn, {
 			key: 0,
 			title: e.title
 		}, l({ _: 2 }, [t.$slots.title ? {
@@ -2912,14 +3065,14 @@ var Ut = /*#__PURE__*/ B({
 			key: "1"
 		} : void 0]), 1032, ["title"])) : o("", !0), D(t.$slots, "default", {}, void 0, !0)]));
 	}
-}, [["__scopeId", "data-v-6a56d656"]]), Gn = {}, Kn = { class: "share-editor-total" };
-function qn(e, t) {
-	return C(), s("div", Kn, [D(e.$slots, "default", {}, void 0, !0)]);
+}, [["__scopeId", "data-v-6a56d656"]]), Xn = {}, Zn = { class: "share-editor-total" };
+function Qn(e, t) {
+	return C(), s("div", Zn, [D(e.$slots, "default", {}, void 0, !0)]);
 }
-var Jn = /*#__PURE__*/ B(Gn, [["render", qn], ["__scopeId", "data-v-72dfd940"]]);
+var $n = /*#__PURE__*/ B(Xn, [["render", Qn], ["__scopeId", "data-v-72dfd940"]]);
 //#endregion
 //#region src/composables/useFullscreenViewportHeight.js
-function Yn(e = .94) {
+function er(e = .94) {
 	let t = T(`${Math.round(e * 100)}dvh`);
 	function n() {
 		if (typeof window > "u") return;
@@ -2934,23 +3087,23 @@ function Yn(e = .94) {
 }
 //#endregion
 //#region src/internal/overlayStack.js
-var Xn = [], Zn = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])", Qn = 0, $n = "";
-function er(e = Symbol("share-overlay")) {
-	return Xn.push(e), e;
+var tr = [], nr = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])", rr = 0, ir = "";
+function ar(e = Symbol("share-overlay")) {
+	return tr.push(e), e;
 }
-function tr(e) {
-	let t = Xn.lastIndexOf(e);
-	t >= 0 && Xn.splice(t, 1);
+function or(e) {
+	let t = tr.lastIndexOf(e);
+	t >= 0 && tr.splice(t, 1);
 }
-function nr(e) {
-	return Xn.at(-1) === e;
+function sr(e) {
+	return tr.at(-1) === e;
 }
-function rr(e) {
+function cr(e) {
 	e && ([...e.querySelectorAll("a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])")].find((e) => e.getClientRects().length > 0) || e).focus?.({ preventScroll: !0 });
 }
-function ir(e, t) {
+function lr(e, t) {
 	if (e.key !== "Tab" || !t) return;
-	let n = [...t.querySelectorAll(Zn)].filter((e) => e.getClientRects().length > 0);
+	let n = [...t.querySelectorAll(nr)].filter((e) => e.getClientRects().length > 0);
 	if (!n.length) {
 		e.preventDefault(), t.focus?.({ preventScroll: !0 });
 		return;
@@ -2958,41 +3111,41 @@ function ir(e, t) {
 	let r = n[0], i = n.at(-1);
 	e.shiftKey && (document.activeElement === r || !t.contains(document.activeElement)) ? (e.preventDefault(), i.focus()) : !e.shiftKey && (document.activeElement === i || !t.contains(document.activeElement)) && (e.preventDefault(), r.focus());
 }
-function ar(e) {
+function ur(e) {
 	e instanceof HTMLElement && e.isConnected && e.focus({ preventScroll: !0 });
 }
-function or() {
+function dr() {
 	if (typeof document > "u") return () => {};
-	Qn === 0 && ($n = document.documentElement.style.overflow, document.documentElement.style.overflow = "hidden"), Qn += 1;
+	rr === 0 && (ir = document.documentElement.style.overflow, document.documentElement.style.overflow = "hidden"), rr += 1;
 	let e = !1;
 	return () => {
-		e || (e = !0, Qn = Math.max(0, Qn - 1), Qn === 0 && (document.documentElement.style.overflow = $n));
+		e || (e = !0, rr = Math.max(0, rr - 1), rr === 0 && (document.documentElement.style.overflow = ir));
 	};
 }
-var sr = /* @__PURE__ */ new WeakMap();
-function cr(e, { blur: t = "8px", duration: n = "300ms" } = {}) {
+var fr = /* @__PURE__ */ new WeakMap();
+function pr(e, { blur: t = "8px", duration: n = "300ms" } = {}) {
 	if (!e) return () => {};
-	let r = sr.get(e);
+	let r = fr.get(e);
 	r || (r = {
 		count: 0,
 		filter: e.style.filter,
 		transition: e.style.transition
-	}, sr.set(e, r)), r.count += 1, e.style.transition = `filter ${n} ease`, e.style.filter = `blur(${t})`;
+	}, fr.set(e, r)), r.count += 1, e.style.transition = `filter ${n} ease`, e.style.filter = `blur(${t})`;
 	let i = !1;
 	return () => {
-		i || (i = !0, r.count = Math.max(0, r.count - 1), !(r.count > 0) && (e.style.filter = r.filter, e.style.transition = r.transition, sr.delete(e)));
+		i || (i = !0, r.count = Math.max(0, r.count - 1), !(r.count > 0) && (e.style.filter = r.filter, e.style.transition = r.transition, fr.delete(e)));
 	};
 }
 //#endregion
 //#region src/components/overlay/AppModal.vue
-var lr = ["aria-label"], ur = {
+var mr = ["aria-label"], hr = {
 	key: 0,
 	class: "am-handle"
-}, dr = ["aria-label"], fr = () => window.innerWidth <= 640, pr = 260, $ = 280, mr = "cubic-bezier(0.32, 0.72, 0, 1)", hr = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])";
-function gr(e) {
+}, gr = ["aria-label"], _r = () => window.innerWidth <= 640, vr = 260, $ = 280, yr = "cubic-bezier(0.32, 0.72, 0, 1)", br = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])";
+function xr(e) {
 	e.focus({ preventScroll: !0 });
 }
-var _r = /*#__PURE__*/ B({
+var Sr = /*#__PURE__*/ B({
 	__name: "AppModal",
 	props: {
 		zIndex: {
@@ -3046,9 +3199,9 @@ var _r = /*#__PURE__*/ B({
 	},
 	emits: ["close", "opened"],
 	setup(e, { expose: n, emit: r }) {
-		let l = e, u = r, d = T(null), f = T(null), p = Yn(), m = i(() => typeof l.width == "number" ? `${l.width}px` : l.width || "480px"), h = T(!1), v = T(0), S = T(0), w = T(0), E = !1, O = null, k = !1, A = () => {}, M = Symbol("app-modal"), N = typeof document < "u" ? document.activeElement : null;
+		let l = e, u = r, d = T(null), f = T(null), p = er(), m = i(() => typeof l.width == "number" ? `${l.width}px` : l.width || "480px"), h = T(!1), v = T(0), S = T(0), w = T(0), E = !1, O = null, k = !1, A = () => {}, M = Symbol("app-modal"), N = typeof document < "u" ? document.activeElement : null;
 		function P(e) {
-			if (!nr(M)) return;
+			if (!sr(M)) return;
 			if (e.key === "Escape") {
 				let t = e.target;
 				if (l.escapeBlursInput && t && (t.matches?.("input, textarea, select") || t.isContentEditable)) {
@@ -3059,7 +3212,7 @@ var _r = /*#__PURE__*/ B({
 				return;
 			}
 			if (e.key !== "Tab") return;
-			let t = [...f.value?.querySelectorAll(hr) || []].filter((e) => e.getClientRects().length > 0);
+			let t = [...f.value?.querySelectorAll(br) || []].filter((e) => e.getClientRects().length > 0);
 			if (!t.length) {
 				e.preventDefault(), f.value?.focus();
 				return;
@@ -3069,10 +3222,10 @@ var _r = /*#__PURE__*/ B({
 		}
 		function F() {
 			let e = d.value, t = f.value;
-			!e || !t || (e.style.opacity = "0", e.style.backdropFilter = "blur(0px)", e.style.webkitBackdropFilter = "blur(0px)", fr() ? t.style.transform = "translateY(100%)" : (t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), requestAnimationFrame(() => {
+			!e || !t || (e.style.opacity = "0", e.style.backdropFilter = "blur(0px)", e.style.webkitBackdropFilter = "blur(0px)", _r() ? t.style.transform = "translateY(100%)" : (t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), requestAnimationFrame(() => {
 				requestAnimationFrame(() => {
-					let n = "cubic-bezier(0, 0, 0.4, 1)", r = `opacity ${pr}ms ${n}, backdrop-filter ${pr}ms ${n}, -webkit-backdrop-filter ${pr}ms ${n}`;
-					e.style.transition = r, e.style.opacity = "1", e.style.backdropFilter = "blur(6px)", e.style.webkitBackdropFilter = "blur(6px)", fr() ? (t.style.transition = `transform ${pr}ms ${mr}`, t.style.transform = "translateY(0)") : (t.style.transition = `transform ${pr}ms ${mr}, opacity ${pr}ms ${n}`, t.style.transform = "none", t.style.opacity = "1"), setTimeout(() => {
+					let n = "cubic-bezier(0, 0, 0.4, 1)", r = `opacity ${vr}ms ${n}, backdrop-filter ${vr}ms ${n}, -webkit-backdrop-filter ${vr}ms ${n}`;
+					e.style.transition = r, e.style.opacity = "1", e.style.backdropFilter = "blur(6px)", e.style.webkitBackdropFilter = "blur(6px)", _r() ? (t.style.transition = `transform ${vr}ms ${yr}`, t.style.transform = "translateY(0)") : (t.style.transition = `transform ${vr}ms ${yr}, opacity ${vr}ms ${n}`, t.style.transform = "none", t.style.opacity = "1"), setTimeout(() => {
 						E || (e.style.transition = "", e.style.backdropFilter = "blur(6px)", e.style.webkitBackdropFilter = "blur(6px)", t.style.transition = "", t.style.transform = "", t.style.opacity = "", u("opened"));
 					}, 310);
 				});
@@ -3087,7 +3240,7 @@ var _r = /*#__PURE__*/ B({
 				return;
 			}
 			let n = `opacity ${$}ms ease, backdrop-filter ${$}ms ease, -webkit-backdrop-filter ${$}ms ease`;
-			e.style.transition = n, e.style.opacity = "0", e.style.backdropFilter = "blur(0px)", e.style.webkitBackdropFilter = "blur(0px)", fr() ? (t.style.transition = `transform ${$}ms ${mr}`, t.style.transform = "translateY(100%)") : (t.style.transition = `transform ${$}ms ease, opacity ${$}ms ease`, t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), O = setTimeout(() => {
+			e.style.transition = n, e.style.opacity = "0", e.style.backdropFilter = "blur(0px)", e.style.webkitBackdropFilter = "blur(0px)", _r() ? (t.style.transition = `transform ${$}ms ${yr}`, t.style.transform = "translateY(100%)") : (t.style.transition = `transform ${$}ms ease, opacity ${$}ms ease`, t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), O = setTimeout(() => {
 				E || u("close");
 			}, 300);
 		}
@@ -3121,9 +3274,9 @@ var _r = /*#__PURE__*/ B({
 			if (!h.value) return;
 			h.value = !1;
 			let e = f.value, t = d.value;
-			v.value > 100 ? (e && (e.style.transition = `transform ${$}ms ${mr}`, e.style.transform = "translateY(100%)"), t && (t.style.transition = `opacity ${$}ms ease`, t.style.opacity = "0"), O = setTimeout(() => {
+			v.value > 100 ? (e && (e.style.transition = `transform ${$}ms ${yr}`, e.style.transform = "translateY(100%)"), t && (t.style.transition = `opacity ${$}ms ease`, t.style.opacity = "0"), O = setTimeout(() => {
 				E || u("close");
-			}, 300)) : (e && (e.style.transition = `transform ${$}ms ${mr}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), v.value = 0, setTimeout(() => {
+			}, 300)) : (e && (e.style.transition = `transform ${$}ms ${yr}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), v.value = 0, setTimeout(() => {
 				E || (e && (e.style.transition = "", e.style.transform = ""), t && (t.style.transition = "", t.style.opacity = ""));
 			}, 330));
 		}
@@ -3131,16 +3284,16 @@ var _r = /*#__PURE__*/ B({
 			if (!h.value) return;
 			h.value = !1, v.value = 0;
 			let e = f.value, t = d.value;
-			e && (e.style.transition = `transform ${$}ms ${mr}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), setTimeout(() => {
+			e && (e.style.transition = `transform ${$}ms ${yr}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), setTimeout(() => {
 				E || (e && (e.style.transition = "", e.style.transform = ""), t && (t.style.transition = "", t.style.opacity = ""));
 			}, 330);
 		}
 		return x(() => {
-			er(M), A = or(), document.addEventListener("keydown", P), g(() => {
-				F(), f.value?.contains(document.activeElement) || (f.value?.querySelector(hr)?.focus(), f.value?.contains(document.activeElement) || f.value?.focus());
+			ar(M), A = dr(), document.addEventListener("keydown", P), g(() => {
+				F(), f.value?.contains(document.activeElement) || (f.value?.querySelector(br)?.focus(), f.value?.contains(document.activeElement) || f.value?.focus());
 			});
 		}), b(() => {
-			tr(M), A(), document.removeEventListener("keydown", P), clearTimeout(O), E = !0, N instanceof HTMLElement && N.isConnected && gr(N);
+			or(M), A(), document.removeEventListener("keydown", P), clearTimeout(O), E = !0, N instanceof HTMLElement && N.isConnected && xr(N);
 		}), (n, r) => (C(), a(t, { to: "body" }, [c("div", {
 			ref_key: "overlay",
 			ref: d,
@@ -3168,27 +3321,27 @@ var _r = /*#__PURE__*/ B({
 			onTouchendPassive: V,
 			onTouchcancelPassive: H
 		}, [
-			e.showHandle ? (C(), s("div", ur)) : o("", !0),
+			e.showHandle ? (C(), s("div", hr)) : o("", !0),
 			e.showClose && !e.fullscreen ? (C(), s("button", {
 				key: 1,
 				class: "am-close",
 				type: "button",
 				"aria-label": e.closeLabel,
 				onClick: L
-			}, "✕", 8, dr)) : o("", !0),
+			}, "✕", 8, gr)) : o("", !0),
 			D(n.$slots, "default", {}, void 0, !0)
-		], 34)], 44, lr)]));
+		], 34)], 44, mr)]));
 	}
-}, [["__scopeId", "data-v-ddded319"]]), vr = { class: "aem-shell" }, yr = { class: "aem-heading" }, br = { class: "aem-title" }, xr = {
+}, [["__scopeId", "data-v-ddded319"]]), Cr = { class: "aem-shell" }, wr = { class: "aem-heading" }, Tr = { class: "aem-title" }, Er = {
 	key: 0,
 	class: "aem-subtitle"
-}, Sr = {
+}, Dr = {
 	key: 0,
 	class: "aem-header-actions"
-}, Cr = ["aria-label"], wr = {
+}, Or = ["aria-label"], kr = {
 	key: 0,
 	class: "aem-footer"
-}, Tr = /*#__PURE__*/ B({
+}, Ar = /*#__PURE__*/ B({
 	__name: "AppModalFrame",
 	props: {
 		title: {
@@ -3246,7 +3399,7 @@ var _r = /*#__PURE__*/ B({
 		function n() {
 			t.value?.requestClose();
 		}
-		return (r, i) => (C(), a(_r, {
+		return (r, i) => (C(), a(Sr, {
 			ref_key: "modal",
 			ref: t,
 			flush: "",
@@ -3263,14 +3416,14 @@ var _r = /*#__PURE__*/ B({
 			onClose: i[0] ||= (e) => r.$emit("close"),
 			onOpened: i[1] ||= (e) => r.$emit("opened")
 		}, {
-			default: I(() => [c("section", vr, [
+			default: I(() => [c("section", Cr, [
 				c("header", { class: _(["aem-header", { "aem-header-with-actions": !!r.$slots["header-actions"] }]) }, [
 					i[3] ||= c("span", {
 						class: "aem-handle",
 						"aria-hidden": "true"
 					}, null, -1),
-					c("div", yr, [D(r.$slots, "title", {}, () => [c("h2", br, A(e.title), 1), e.subtitle ? (C(), s("span", xr, A(e.subtitle), 1)) : o("", !0)], !0)]),
-					r.$slots["header-actions"] ? (C(), s("div", Sr, [D(r.$slots, "header-actions", {}, void 0, !0)])) : o("", !0),
+					c("div", wr, [D(r.$slots, "title", {}, () => [c("h2", Tr, A(e.title), 1), e.subtitle ? (C(), s("span", Er, A(e.subtitle), 1)) : o("", !0)], !0)]),
+					r.$slots["header-actions"] ? (C(), s("div", Dr, [D(r.$slots, "header-actions", {}, void 0, !0)])) : o("", !0),
 					e.showClose ? (C(), s("button", {
 						key: 1,
 						class: "aem-close",
@@ -3288,13 +3441,13 @@ var _r = /*#__PURE__*/ B({
 						stroke: "currentColor",
 						"stroke-width": "1.6",
 						"stroke-linecap": "round"
-					})], -1)]], 8, Cr)) : o("", !0)
+					})], -1)]], 8, Or)) : o("", !0)
 				], 2),
 				c("div", { class: _(["aem-body", {
 					"aem-body-flush": !e.padded,
 					"aem-body-no-scroll": !e.bodyScroll
 				}]) }, [D(r.$slots, "default", {}, void 0, !0)], 2),
-				r.$slots.footer ? (C(), s("footer", wr, [D(r.$slots, "footer", {}, void 0, !0)])) : o("", !0)
+				r.$slots.footer ? (C(), s("footer", kr, [D(r.$slots, "footer", {}, void 0, !0)])) : o("", !0)
 			])]),
 			_: 3
 		}, 8, [
@@ -3308,11 +3461,11 @@ var _r = /*#__PURE__*/ B({
 			"close-label"
 		]));
 	}
-}, [["__scopeId", "data-v-0a15c618"]]), Er = ["aria-label"], Dr = {
+}, [["__scopeId", "data-v-0a15c618"]]), jr = ["aria-label"], Mr = {
 	key: 0,
 	class: "share-loading__label",
 	"aria-hidden": "true"
-}, Or = /*#__PURE__*/ B({
+}, Nr = /*#__PURE__*/ B({
 	__name: "LoadingIndicator",
 	props: {
 		label: {
@@ -3368,12 +3521,12 @@ var _r = /*#__PURE__*/ B({
 			r: "9",
 			"stroke-dasharray": "16 41",
 			"vector-effect": "non-scaling-stroke"
-		})], -1), e.showLabel ? (C(), s("span", Dr, A(e.label), 1)) : o("", !0)], 14, Er));
+		})], -1), e.showLabel ? (C(), s("span", Mr, A(e.label), 1)) : o("", !0)], 14, jr));
 	}
-}, [["__scopeId", "data-v-d616d1a7"]]), kr = {
+}, [["__scopeId", "data-v-d616d1a7"]]), Pr = {
 	key: 0,
 	class: "cd-message"
-}, Ar = { class: "cd-actions" }, jr = ["disabled"], Mr = ["aria-busy", "disabled"], Nr = /*#__PURE__*/ B({
+}, Fr = { class: "cd-actions" }, Ir = ["disabled"], Lr = ["aria-busy", "disabled"], Rr = /*#__PURE__*/ B({
 	__name: "ConfirmDialog",
 	props: {
 		open: {
@@ -3441,7 +3594,7 @@ var _r = /*#__PURE__*/ B({
 		function g() {
 			n.loading || (r("confirm"), m());
 		}
-		return (t, n) => l.value ? (C(), a(Tr, {
+		return (t, n) => l.value ? (C(), a(Ar, {
 			key: 0,
 			title: e.title,
 			"z-index": e.zIndex,
@@ -3449,25 +3602,25 @@ var _r = /*#__PURE__*/ B({
 			dismissible: !e.loading,
 			onClose: h
 		}, {
-			footer: I(() => [c("div", Ar, [c("button", {
+			footer: I(() => [c("div", Fr, [c("button", {
 				type: "button",
 				class: "cd-btn-cancel",
 				disabled: e.loading,
 				onClick: h
-			}, A(f.value), 9, jr), c("button", {
+			}, A(f.value), 9, Ir), c("button", {
 				type: "button",
 				class: _(["cd-btn-confirm", `cd-btn--${p.value}`]),
 				"aria-busy": e.loading,
 				disabled: e.loading,
 				onClick: g
-			}, [e.loading ? (C(), a(Or, {
+			}, [e.loading ? (C(), a(Nr, {
 				key: 0,
 				label: e.loadingLabel,
 				size: "xs",
 				class: "button-loading",
 				"aria-hidden": "true"
-			}, null, 8, ["label"])) : o("", !0), u(" " + A(e.loading ? e.loadingLabel : d.value), 1)], 10, Mr)])]),
-			default: I(() => [e.message ? (C(), s("div", kr, A(e.message), 1)) : o("", !0)]),
+			}, null, 8, ["label"])) : o("", !0), u(" " + A(e.loading ? e.loadingLabel : d.value), 1)], 10, Lr)])]),
+			default: I(() => [e.message ? (C(), s("div", Pr, A(e.message), 1)) : o("", !0)]),
 			_: 1
 		}, 8, [
 			"title",
@@ -3475,7 +3628,7 @@ var _r = /*#__PURE__*/ B({
 			"dismissible"
 		])) : o("", !0);
 	}
-}, [["__scopeId", "data-v-db9d39ae"]]), Pr = {
+}, [["__scopeId", "data-v-db9d39ae"]]), zr = {
 	__name: "ModalShell",
 	props: {
 		open: {
@@ -3505,7 +3658,7 @@ var _r = /*#__PURE__*/ B({
 	},
 	emits: ["close", "opened"],
 	setup(e) {
-		return (t, n) => e.open ? (C(), a(_r, {
+		return (t, n) => e.open ? (C(), a(Sr, {
 			key: 0,
 			width: e.width,
 			"z-index": e.zIndex,
@@ -3530,7 +3683,7 @@ var _r = /*#__PURE__*/ B({
 };
 //#endregion
 //#region src/composables/useContainerMorph.js
-function Fr({ open: e = 420, close: t = 300 } = {}) {
+function Br({ open: e = 420, close: t = 300 } = {}) {
 	let n = "cubic-bezier(.2, 0, 0, 1)", r = "var(--shadow-lg)", i = [
 		"position",
 		"margin",
@@ -3578,7 +3731,7 @@ function Fr({ open: e = 420, close: t = 300 } = {}) {
 }
 //#endregion
 //#region src/components/overlay/MorphSheet.vue
-var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"], zr = 320, Br = 260, Vr = "8px", Hr = /*#__PURE__*/ B({
+var Vr = ["aria-label"], Hr = { class: "ms-head-content" }, Ur = ["aria-label"], Wr = 320, Gr = 260, Kr = "8px", qr = /*#__PURE__*/ B({
 	__name: "MorphSheet",
 	props: {
 		mode: {
@@ -3644,12 +3797,12 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 	},
 	emits: ["close", "back"],
 	setup(e, { expose: n, emit: r }) {
-		let l = e, u = r, d = nt(), f = N(), p = i(() => l.mode === "add"), m = i(() => l.showClose === null ? !!f.head : l.showClose), h = i(() => l.nav ? l.nav.view.value : "detail"), v = i(() => l.nav ? l.nav.detailStyle.value : null), S = i(() => l.nav ? l.nav.subStyle.value : null), w = i(() => !!l.nav && h.value !== "detail"), E = T(null), O = T(null), k = T(null), A = T(null), M = T(null), P = T(null), I = T(!1), L = T(!1), R = T(!1), B = T(!1), V = T(!1), { EASE: H, visible: U, morphing: W, playClose: ee, playOpen: te } = Fr(), ne = () => d.value ? "0px" : "18px", re = i(() => ({
+		let l = e, u = r, d = st(), f = N(), p = i(() => l.mode === "add"), m = i(() => l.showClose === null ? !!f.head : l.showClose), h = i(() => l.nav ? l.nav.view.value : "detail"), v = i(() => l.nav ? l.nav.detailStyle.value : null), S = i(() => l.nav ? l.nav.subStyle.value : null), w = i(() => !!l.nav && h.value !== "detail"), E = T(null), O = T(null), k = T(null), A = T(null), M = T(null), P = T(null), I = T(!1), L = T(!1), R = T(!1), B = T(!1), V = T(!1), { EASE: H, visible: U, morphing: W, playClose: ee, playOpen: te } = Br(), ne = () => d.value ? "0px" : "18px", re = i(() => ({
 			"--ms-w": `${l.width}px`,
 			"--ms-body-w": `${l.width}px`,
 			"--ms-frame": l.frameColor || void 0
 		}));
-		function ie() {
+		function G() {
 			let e = l.originEl;
 			if (!e) return l.originRect;
 			let t = e.getBoundingClientRect();
@@ -3660,63 +3813,63 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				height: t.height
 			};
 		}
-		function ae() {
+		function ie() {
 			if (l.nav && h.value !== "detail") {
 				l.nav.backToDetail(), u("back");
 				return;
 			}
-			if (V.value = !1, Oe(!1), p.value) {
+			if (V.value = !1, De(!1), p.value) {
 				R.value = !1, U.value = !1, setTimeout(() => u("close"), 320);
 				return;
 			}
-			ee(E.value, ie(), {
+			ee(E.value, G(), {
 				fromRadius: ne(),
 				toRadius: l.originRadius
 			}, () => u("close"));
 		}
-		function oe() {
-			L.value = !0, V.value = !1, U.value = !1, Oe(!1), setTimeout(() => u("close"), 220);
+		function ae() {
+			L.value = !0, V.value = !1, U.value = !1, De(!1), setTimeout(() => u("close"), 220);
 		}
-		let se = Symbol("morph-sheet"), ce = typeof document < "u" ? document.activeElement : null;
-		function le(e) {
-			if (nr(se)) {
+		let oe = Symbol("morph-sheet"), se = typeof document < "u" ? document.activeElement : null;
+		function ce(e) {
+			if (sr(oe)) {
 				if (e.key === "Escape") {
-					ae();
+					ie();
 					return;
 				}
-				ir(e, E.value);
+				lr(e, E.value);
 			}
 		}
-		function ue(e) {
+		function le(e) {
 			let t = e?.firstElementChild;
 			return t ? t.scrollHeight : e?.scrollHeight || 0;
 		}
-		function de() {
+		function ue() {
 			return Math.floor(window.innerHeight * .9) - (O.value?.offsetHeight || 0) - (k.value?.offsetHeight || 0);
 		}
-		function G(e) {
+		function K(e) {
 			if (d.value || !A.value || W.value) return;
-			let t = l.nav ? l.nav.pos.value : 0, n = ue(M.value), r = P.value ? ue(P.value) : n, i = n * (1 - t) + r * t, a = Math.min(i, Math.max(120, de()));
-			A.value.style.transition = e ? `height ${zr}ms ${H}` : "none", A.value.style.height = `${a}px`;
+			let t = l.nav ? l.nav.pos.value : 0, n = le(M.value), r = P.value ? le(P.value) : n, i = n * (1 - t) + r * t, a = Math.min(i, Math.max(120, ue()));
+			A.value.style.transition = e ? `height ${Wr}ms ${H}` : "none", A.value.style.height = `${a}px`;
 		}
-		let K = null;
-		function fe() {
-			K && (K.disconnect(), [M.value?.firstElementChild, P.value?.firstElementChild].forEach((e) => {
-				e && K.observe(e);
+		let q = null;
+		function de() {
+			q && (q.disconnect(), [M.value?.firstElementChild, P.value?.firstElementChild].forEach((e) => {
+				e && q.observe(e);
 			}));
 		}
-		function pe() {
-			W.value || l.nav && l.nav.animating.value || he || G(!1);
+		function fe() {
+			W.value || l.nav && l.nav.animating.value || me || K(!1);
 		}
-		l.nav && (F(() => l.nav.pos.value, () => G(l.nav.animating.value)), F(() => l.nav.view.value, (e, t) => g(() => {
-			fe(), e !== "detail" && t === "detail" && P.value && (P.value.offsetWidth, l.nav.enterSub()), l.nav.animating.value || G(!1);
+		l.nav && (F(() => l.nav.pos.value, () => K(l.nav.animating.value)), F(() => l.nav.view.value, (e, t) => g(() => {
+			de(), e !== "detail" && t === "detail" && P.value && (P.value.offsetWidth, l.nav.enterSub()), l.nav.animating.value || K(!1);
 		})));
-		let me = T(0), he = !1, ge = 0, _e = 0, q = null, J = 0, ve = null, ye = 0, be = 0, xe = 0;
-		function Y(e) {
-			!d.value || W.value || (ge = e.touches[0].clientX, _e = e.touches[0].clientY, ve = e.target, q = null);
+		let pe = T(0), me = !1, he = 0, ge = 0, J = null, Y = 0, _e = null, ve = 0, ye = 0, be = 0;
+		function X(e) {
+			!d.value || W.value || (he = e.touches[0].clientX, ge = e.touches[0].clientY, _e = e.target, J = null);
 		}
-		function Se() {
-			let e = ve;
+		function xe() {
+			let e = _e;
 			for (; e && e !== E.value;) {
 				if (e.scrollHeight > e.clientHeight + 1) {
 					let t = getComputedStyle(e).overflowY;
@@ -3726,103 +3879,103 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			}
 			return !0;
 		}
-		function Ce(e) {
-			if (!d.value || W.value || q === "scroll") return;
-			let t = e.touches[0].clientX - ge, n = e.touches[0].clientY - _e;
-			if (q === null) {
+		function Se(e) {
+			if (!d.value || W.value || J === "scroll") return;
+			let t = e.touches[0].clientX - he, n = e.touches[0].clientY - ge;
+			if (J === null) {
 				if (l.showBack && l.nav && t > 8 && Math.abs(t) > Math.abs(n)) {
-					q = "back", he = !0, J = t, ye = e.touches[0].clientX, be = e.timeStamp, xe = 0, l.nav.dragStart(A.value?.clientWidth || window.innerWidth);
+					J = "back", me = !0, Y = t, ve = e.touches[0].clientX, ye = e.timeStamp, be = 0, l.nav.dragStart(A.value?.clientWidth || window.innerWidth);
 					return;
 				}
-				if (n > 6 && Se() && Math.abs(n) >= Math.abs(t)) q = "drag";
+				if (n > 6 && xe() && Math.abs(n) >= Math.abs(t)) J = "drag";
 				else if (Math.abs(n) > 6 || Math.abs(t) > 6) {
-					q = "scroll";
+					J = "scroll";
 					return;
 				} else return;
 			}
-			if (q === "back") {
-				J = Math.max(0, t), e.cancelable && e.preventDefault();
+			if (J === "back") {
+				Y = Math.max(0, t), e.cancelable && e.preventDefault();
 				let n = e.touches[0].clientX, r = e.timeStamp;
-				r > be && (xe = (n - ye) / (r - be)), ye = n, be = r, l.nav.dragMove(J);
+				r > ye && (be = (n - ve) / (r - ye)), ve = n, ye = r, l.nav.dragMove(Y);
 				return;
 			}
-			if (q !== "drag") return;
-			e.cancelable && e.preventDefault(), me.value = Math.max(0, n);
+			if (J !== "drag") return;
+			e.cancelable && e.preventDefault(), pe.value = Math.max(0, n);
 			let r = E.value;
-			r && (r.style.transition = "none", r.style.transform = `translateY(${me.value}px)`);
+			r && (r.style.transition = "none", r.style.transform = `translateY(${pe.value}px)`);
+		}
+		function Ce() {
+			if (J === "back") {
+				me = !1, J = null, l.nav.dragEnd(Y, be), Y = 0, be = 0;
+				return;
+			}
+			if (J !== "drag") {
+				J = null;
+				return;
+			}
+			J = null;
+			let e = E.value;
+			if (pe.value > 120) {
+				we();
+				return;
+			}
+			pe.value = 0, e && (e.style.transition = `transform .26s ${H}`, e.style.transform = "translateY(0)");
 		}
 		function we() {
-			if (q === "back") {
-				he = !1, q = null, l.nav.dragEnd(J, xe), J = 0, xe = 0;
-				return;
-			}
-			if (q !== "drag") {
-				q = null;
-				return;
-			}
-			q = null;
 			let e = E.value;
-			if (me.value > 120) {
-				Te();
-				return;
-			}
-			me.value = 0, e && (e.style.transition = `transform .26s ${H}`, e.style.transform = "translateY(0)");
+			e && (e.style.transition = `transform ${Gr}ms ${H}`, e.style.transform = `translateY(${window.innerHeight}px)`), U.value = !1, V.value = !1, Me(), De(!1), setTimeout(() => u("close"), Gr);
 		}
-		function Te() {
-			let e = E.value;
-			e && (e.style.transition = `transform ${Br}ms ${H}`, e.style.transform = `translateY(${window.innerHeight}px)`), U.value = !1, V.value = !1, je(), Oe(!1), setTimeout(() => u("close"), Br);
-		}
-		let Ee = () => {};
-		function De() {
+		let Te = () => {};
+		function Ee() {
 			return typeof l.backgroundTarget == "string" ? document.querySelector(l.backgroundTarget) : l.backgroundTarget instanceof Element ? l.backgroundTarget : null;
 		}
-		function Oe(e) {
-			Ee(), Ee = () => {}, !(!e || d.value || !l.blurBackground) && (Ee = cr(De(), { blur: Vr }));
+		function De(e) {
+			Te(), Te = () => {}, !(!e || d.value || !l.blurBackground) && (Te = pr(Ee(), { blur: Kr }));
 		}
-		let ke = "", X = "", Z = !1;
-		function Q() {
+		let Oe = "", Z = "", ke = !1;
+		function Ae() {
 			let e = l.originEl;
-			e && (ke = e.style.opacity, X = e.style.transition);
+			e && (Oe = e.style.opacity, Z = e.style.transition);
 		}
-		function Ae(e) {
+		function je(e) {
 			let t = l.originEl;
-			t && (t.style.opacity = e ? "0" : ke);
+			t && (t.style.opacity = e ? "0" : Oe);
 		}
-		function je() {
+		function Me() {
 			let e = l.originEl;
 			if (!e) return;
-			Z = !0;
-			let t = X && X !== "none" ? `${X}, ` : "";
-			e.style.transition = `${t}opacity ${Br}ms ease`, e.style.opacity = "0", requestAnimationFrame(() => {
-				e.style.opacity = ke;
+			ke = !0;
+			let t = Z && Z !== "none" ? `${Z}, ` : "";
+			e.style.transition = `${t}opacity ${Gr}ms ease`, e.style.opacity = "0", requestAnimationFrame(() => {
+				e.style.opacity = Oe;
 			}), setTimeout(() => {
-				e.style.opacity = ke, e.style.transition = X, Z = !1;
+				e.style.opacity = Oe, e.style.transition = Z, ke = !1;
 			}, 280);
 		}
-		let Me = () => {};
-		function Ne() {
-			W.value || (d.value && A.value ? A.value.style.height = "" : G(!1));
+		let Ne = () => {};
+		function Pe() {
+			W.value || (d.value && A.value ? A.value.style.height = "" : K(!1));
 		}
 		return x(async () => {
-			er(se), Me = or(), typeof ResizeObserver < "u" && (K = new ResizeObserver(pe)), await g(), G(!1), fe(), I.value = !0, p.value ? (U.value = !0, requestAnimationFrame(() => {
+			ar(oe), Ne = dr(), typeof ResizeObserver < "u" && (q = new ResizeObserver(fe)), await g(), K(!1), de(), I.value = !0, p.value ? (U.value = !0, requestAnimationFrame(() => {
 				R.value = !0, B.value = !0;
-			})) : (Q(), Ae(!0), te(E.value, l.originRect, {
+			})) : (Ae(), je(!0), te(E.value, l.originRect, {
 				fromRadius: l.originRadius,
 				toRadius: ne()
 			}), requestAnimationFrame(() => {
 				B.value = !0;
-			})), Oe(!0), setTimeout(() => {
-				V.value = !0, G(!1), rr(E.value);
-			}, 20), document.addEventListener("keydown", le), window.addEventListener("resize", Ne);
+			})), De(!0), setTimeout(() => {
+				V.value = !0, K(!1), cr(E.value);
+			}, 20), document.addEventListener("keydown", ce), window.addEventListener("resize", Pe);
 		}), b(() => {
-			tr(se), Me(), Oe(!1), !p.value && !Z && Ae(!1), document.removeEventListener("keydown", le), window.removeEventListener("resize", Ne), K?.disconnect(), ar(ce);
+			or(oe), Ne(), De(!1), !p.value && !ke && je(!1), document.removeEventListener("keydown", ce), window.removeEventListener("resize", Pe), q?.disconnect(), ur(se);
 		}), n({
-			close: ae,
-			finishNow: oe
+			close: ie,
+			finishNow: ae
 		}), (n, r) => (C(), a(t, { to: "body" }, [c("div", {
 			class: _(["ms-overlay", { visible: j(U) }]),
 			style: y(e.zIndex === 1e3 ? null : { zIndex: e.zIndex }),
-			onClick: z(ae, ["self"])
+			onClick: z(ie, ["self"])
 		}, [c("div", {
 			ref_key: "panelEl",
 			ref: E,
@@ -3839,10 +3992,10 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			"aria-modal": "true",
 			"aria-label": e.ariaLabel || void 0,
 			tabindex: "-1",
-			onTouchstartPassive: Y,
-			onTouchmove: Ce,
-			onTouchend: we,
-			onTouchcancel: we
+			onTouchstartPassive: X,
+			onTouchmove: Se,
+			onTouchend: Ce,
+			onTouchcancel: Ce
 		}, [
 			r[0] ||= c("div", { class: "ms-grab" }, null, -1),
 			n.$slots.head ? (C(), s("div", {
@@ -3850,13 +4003,13 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				ref_key: "headEl",
 				ref: O,
 				class: "ms-head"
-			}, [c("div", Lr, [D(n.$slots, "head", {}, void 0, !0)]), m.value ? (C(), s("button", {
+			}, [c("div", Hr, [D(n.$slots, "head", {}, void 0, !0)]), m.value ? (C(), s("button", {
 				key: 0,
 				class: "ms-x",
 				type: "button",
 				"aria-label": e.closeLabel,
-				onClick: ae
-			}, "✕", 8, Rr)) : o("", !0)], 512)) : o("", !0),
+				onClick: ie
+			}, "✕", 8, Ur)) : o("", !0)], 512)) : o("", !0),
 			c("div", {
 				ref_key: "bodyEl",
 				ref: A,
@@ -3879,9 +4032,9 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				ref: k,
 				class: "ms-foot"
 			}, [D(n.$slots, "foot", {}, void 0, !0)], 512)) : o("", !0)
-		], 46, Ir)], 6)]));
+		], 46, Vr)], 6)]));
 	}
-}, [["__scopeId", "data-v-bab5d7c5"]]), Ur = { class: "form-actions" }, Wr = ["disabled"], Gr = ["aria-busy", "disabled"], Kr = /*#__PURE__*/ B({
+}, [["__scopeId", "data-v-bab5d7c5"]]), Jr = { class: "form-actions" }, Yr = ["disabled"], Xr = ["aria-busy", "disabled"], Zr = /*#__PURE__*/ B({
 	__name: "FormActionButtons",
 	props: {
 		submitText: {
@@ -3911,32 +4064,32 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 	},
 	emits: ["cancel", "submit"],
 	setup(e) {
-		return (t, n) => (C(), s("div", Ur, [c("button", {
+		return (t, n) => (C(), s("div", Jr, [c("button", {
 			type: "button",
 			class: "form-actions__cancel",
 			disabled: e.disabled,
 			onClick: n[0] ||= (e) => t.$emit("cancel")
-		}, A(e.cancelText), 9, Wr), c("button", {
+		}, A(e.cancelText), 9, Yr), c("button", {
 			type: "button",
 			class: "form-actions__submit",
 			"aria-busy": e.loading,
 			disabled: e.disabled || e.loading || !e.canSubmit,
 			onClick: n[1] ||= (e) => t.$emit("submit")
-		}, [e.loading ? (C(), a(Or, {
+		}, [e.loading ? (C(), a(Nr, {
 			key: 0,
 			label: e.loadingText,
 			size: "xs",
 			class: "button-loading",
 			"aria-hidden": "true"
-		}, null, 8, ["label"])) : o("", !0), u(" " + A(e.loading ? e.loadingText : e.submitText), 1)], 8, Gr)]));
+		}, null, 8, ["label"])) : o("", !0), u(" " + A(e.loading ? e.loadingText : e.submitText), 1)], 8, Xr)]));
 	}
-}, [["__scopeId", "data-v-aa869fab"]]), qr = [
+}, [["__scopeId", "data-v-aa869fab"]]), Qr = [
 	"type",
 	"value",
 	"placeholder",
 	"maxlength",
 	"autocomplete"
-], Jr = /*#__PURE__*/ B({
+], $r = /*#__PURE__*/ B({
 	__name: "FormTextInput",
 	props: {
 		value: { default: "" },
@@ -3990,15 +4143,15 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			onInput: n[0] ||= (e) => t.$emit("update:value", e.target.value),
 			onChange: n[1] ||= (e) => t.$emit("change", e.target.value),
 			onKeydown: n[2] ||= R((e) => t.$emit("enter", e), ["enter"])
-		}, null, 42, qr));
+		}, null, 42, Qr));
 	}
-}, [["__scopeId", "data-v-e2d6bc8e"]]), Yr = {
+}, [["__scopeId", "data-v-e2d6bc8e"]]), ei = {
 	key: 0,
 	class: "tpd-message"
-}, Xr = {
+}, ti = {
 	key: 1,
 	class: "tpd-label"
-}, Zr = /*#__PURE__*/ B({
+}, ni = /*#__PURE__*/ B({
 	__name: "TextPromptDialog",
 	props: {
 		title: {
@@ -4087,7 +4240,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			let e = f.value.trim();
 			e && !n.loading && (r("confirm", e), r("submit", e), p());
 		}
-		return (t, n) => c.value ? (C(), a(Tr, {
+		return (t, n) => c.value ? (C(), a(Ar, {
 			key: 0,
 			title: e.title,
 			"z-index": e.zIndex,
@@ -4095,7 +4248,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			dismissible: !e.loading,
 			onClose: m
 		}, {
-			footer: I(() => [d(Kr, {
+			footer: I(() => [d(Zr, {
 				"submit-text": l.value,
 				"cancel-text": u.value,
 				"loading-text": e.loadingLabel,
@@ -4111,9 +4264,9 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				"can-submit"
 			])]),
 			default: I(() => [
-				e.message ? (C(), s("div", Yr, A(e.message), 1)) : o("", !0),
-				e.label ? (C(), s("label", Xr, A(e.label), 1)) : o("", !0),
-				d(Jr, {
+				e.message ? (C(), s("div", ei, A(e.message), 1)) : o("", !0),
+				e.label ? (C(), s("label", ti, A(e.label), 1)) : o("", !0),
+				d($r, {
 					value: f.value,
 					placeholder: e.placeholder,
 					maxlength: e.maxlength,
@@ -4133,10 +4286,10 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			"dismissible"
 		])) : o("", !0);
 	}
-}, [["__scopeId", "data-v-ff9d61bb"]]), Qr = { class: "form-field-label" }, $r = {
+}, [["__scopeId", "data-v-ff9d61bb"]]), ri = { class: "form-field-label" }, ii = {
 	key: 0,
 	class: "form-field-hint"
-}, ei = /*#__PURE__*/ B({
+}, ai = /*#__PURE__*/ B({
 	__name: "FormField",
 	props: {
 		label: {
@@ -4153,13 +4306,13 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 		}
 	},
 	setup(e) {
-		return (t, n) => (C(), s("div", { class: _(["form-field", { "form-field--vertical": e.vertical }]) }, [c("span", Qr, [u(A(e.label), 1), e.hint ? (C(), s("span", $r, A(e.hint), 1)) : o("", !0)]), D(t.$slots, "default", {}, void 0, !0)], 2));
+		return (t, n) => (C(), s("div", { class: _(["form-field", { "form-field--vertical": e.vertical }]) }, [c("span", ri, [u(A(e.label), 1), e.hint ? (C(), s("span", ii, A(e.hint), 1)) : o("", !0)]), D(t.$slots, "default", {}, void 0, !0)], 2));
 	}
-}, [["__scopeId", "data-v-01093950"]]), ti = { class: "fn-wrap" }, ni = [
+}, [["__scopeId", "data-v-01093950"]]), oi = { class: "fn-wrap" }, si = [
 	"value",
 	"min",
 	"max"
-], ri = /*#__PURE__*/ B({
+], ci = /*#__PURE__*/ B({
 	__name: "FormNumberInput",
 	props: {
 		value: { default: 0 },
@@ -4178,7 +4331,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 		function o(e) {
 			r("change", i((parseInt(n.value) || 0) + e));
 		}
-		return (t, n) => (C(), s("div", ti, [
+		return (t, n) => (C(), s("div", oi, [
 			c("button", {
 				type: "button",
 				class: "fn-btn",
@@ -4192,7 +4345,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				min: e.min,
 				max: e.max,
 				onChange: a
-			}, null, 40, ni),
+			}, null, 40, si),
 			c("button", {
 				type: "button",
 				class: "fn-btn",
@@ -4201,7 +4354,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			}, "+")
 		]));
 	}
-}, [["__scopeId", "data-v-df9f8db7"]]), ii = ["value"], ai = /*#__PURE__*/ B({
+}, [["__scopeId", "data-v-df9f8db7"]]), li = ["value"], ui = /*#__PURE__*/ B({
 	__name: "FormSelect",
 	props: {
 		value: { default: "" },
@@ -4225,14 +4378,14 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			class: "form-select",
 			value: e.value,
 			onChange: o
-		}, [D(t.$slots, "default", {}, void 0, !0)], 40, ii));
+		}, [D(t.$slots, "default", {}, void 0, !0)], 40, li));
 	}
-}, [["__scopeId", "data-v-3eb4c36d"]]), oi = [
+}, [["__scopeId", "data-v-3eb4c36d"]]), di = [
 	"value",
 	"placeholder",
 	"rows",
 	"maxlength"
-], si = /*#__PURE__*/ B({
+], fi = /*#__PURE__*/ B({
 	__name: "FormTextarea",
 	props: {
 		value: { default: "" },
@@ -4255,20 +4408,20 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			rows: e.rows,
 			maxlength: e.maxlength,
 			onInput: n[0] ||= (e) => t.$emit("update:value", e.target.value)
-		}, null, 40, oi));
+		}, null, 40, di));
 	}
-}, [["__scopeId", "data-v-31024142"]]), ci = {
+}, [["__scopeId", "data-v-31024142"]]), pi = {
 	class: "share-inline-edit__measure",
 	"aria-hidden": "true"
-}, li = {
+}, mi = {
 	key: 0,
 	class: "share-inline-edit__view"
-}, ui = { class: "share-inline-edit__value" }, di = ["aria-label", "disabled"], fi = ["onKeydown"], pi = [
+}, hi = { class: "share-inline-edit__value" }, gi = ["aria-label", "disabled"], _i = ["onKeydown"], vi = [
 	"value",
 	"aria-label",
 	"disabled",
 	"aria-invalid"
-], mi = ["value", "disabled"], hi = [
+], yi = ["value", "disabled"], bi = [
 	"value",
 	"aria-label",
 	"placeholder",
@@ -4276,14 +4429,14 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 	"required",
 	"disabled",
 	"aria-invalid"
-], gi = {
+], xi = {
 	key: 2,
 	class: "share-inline-edit__actions"
-}, _i = ["aria-label", "disabled"], vi = ["aria-label", "disabled"], yi = {
+}, Si = ["aria-label", "disabled"], Ci = ["aria-label", "disabled"], wi = {
 	key: 2,
 	class: "share-inline-edit__error",
 	role: "alert"
-}, bi = /*#__PURE__*/ B({
+}, Ti = /*#__PURE__*/ B({
 	__name: "InlineEdit",
 	props: {
 		modelValue: { default: "" },
@@ -4373,7 +4526,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			}
 		}
 		return (n, r) => (C(), s("span", { class: _(["share-inline-edit", { "share-inline-edit--open": v.value }]) }, [
-			c("span", ci, A(x.value), 1),
+			c("span", pi, A(x.value), 1),
 			v.value ? (C(), s("span", {
 				key: 1,
 				class: "share-inline-edit__editor",
@@ -4391,7 +4544,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				key: String(e.value),
 				value: e.value,
 				disabled: e.disabled
-			}, A(e.label), 9, mi))), 128))], 40, pi)) : (C(), s("input", {
+			}, A(e.label), 9, yi))), 128))], 40, vi)) : (C(), s("input", {
 				key: 1,
 				ref_key: "input",
 				ref: m,
@@ -4403,7 +4556,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				disabled: t.disabled || d.value,
 				"aria-invalid": !!f.value,
 				onInput: r[1] ||= (e) => w(e.target.value)
-			}, null, 40, hi)), t.forceOpen ? o("", !0) : (C(), s("span", gi, [c("button", {
+			}, null, 40, bi)), t.forceOpen ? o("", !0) : (C(), s("span", xi, [c("button", {
 				type: "button",
 				"aria-label": t.confirmLabel,
 				disabled: t.disabled || d.value || t.required && !String(p.value ?? "").trim(),
@@ -4418,7 +4571,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				d: "m4 10 4 4 8-8",
 				stroke: "currentColor",
 				"stroke-width": "1.8"
-			})], -1)]], 8, _i), c("button", {
+			})], -1)]], 8, Si), c("button", {
 				type: "button",
 				"aria-label": t.cancelLabel,
 				disabled: d.value,
@@ -4433,7 +4586,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				d: "m5 5 10 10M15 5 5 15",
 				stroke: "currentColor",
 				"stroke-width": "1.8"
-			})], -1)]], 8, vi)]))], 40, fi)) : (C(), s("span", li, [c("span", ui, [D(n.$slots, "default", { value: t.modelValue }, () => [u(A(b.value), 1)], !0)]), t.editable ? (C(), s("button", {
+			})], -1)]], 8, Ci)]))], 40, _i)) : (C(), s("span", mi, [c("span", hi, [D(n.$slots, "default", { value: t.modelValue }, () => [u(A(b.value), 1)], !0)]), t.editable ? (C(), s("button", {
 				key: 0,
 				ref_key: "editButton",
 				ref: h,
@@ -4452,11 +4605,11 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				stroke: "currentColor",
 				"stroke-width": "1.7",
 				"stroke-linejoin": "round"
-			})], -1)]], 8, di)) : o("", !0)])),
-			f.value ? (C(), s("span", yi, A(f.value), 1)) : o("", !0)
+			})], -1)]], 8, gi)) : o("", !0)])),
+			f.value ? (C(), s("span", wi, A(f.value), 1)) : o("", !0)
 		], 2));
 	}
-}, [["__scopeId", "data-v-55cecd7d"]]), xi = /*#__PURE__*/ B({
+}, [["__scopeId", "data-v-55cecd7d"]]), Ei = /*#__PURE__*/ B({
 	__name: "SkeletonBlock",
 	props: {
 		width: {
@@ -4482,7 +4635,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			"aria-hidden": "true"
 		}, null, 6));
 	}
-}, [["__scopeId", "data-v-ab086de7"]]), Si = /*#__PURE__*/ B({
+}, [["__scopeId", "data-v-ab086de7"]]), Di = /*#__PURE__*/ B({
 	__name: "LoadingState",
 	props: {
 		label: {
@@ -4505,7 +4658,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 				"share-loading-state--fill": e.fill
 			}]),
 			"aria-busy": "true"
-		}, [d(Or, {
+		}, [d(Nr, {
 			label: e.label,
 			size: e.compact ? "sm" : "md",
 			inline: e.compact,
@@ -4516,11 +4669,11 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			"inline"
 		])], 2));
 	}
-}, [["__scopeId", "data-v-d9e04af1"]]), Ci = [
+}, [["__scopeId", "data-v-d9e04af1"]]), Oi = [
 	"type",
 	"disabled",
 	"aria-busy"
-], wi = /*#__PURE__*/ B({
+], ki = /*#__PURE__*/ B({
 	__name: "ActionButton",
 	props: {
 		variant: {
@@ -4536,6 +4689,7 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 			type: String,
 			default: "button"
 		},
+		iconOnly: Boolean,
 		disabled: Boolean,
 		loading: Boolean,
 		loadingLabel: {
@@ -4545,27 +4699,27 @@ var Ir = ["aria-label"], Lr = { class: "ms-head-content" }, Rr = ["aria-label"],
 	},
 	setup(e) {
 		return (t, n) => (C(), s("button", {
-			class: _(["share-action-button", `share-action-button--${e.variant}`]),
+			class: _(["share-action-button", [`share-action-button--${e.variant}`, { "share-action-button--icon-only": e.iconOnly }]]),
 			type: e.type,
 			disabled: e.disabled || e.loading,
 			"aria-busy": e.loading || void 0
-		}, [e.loading ? (C(), a(Or, {
+		}, [e.loading ? (C(), a(Nr, {
 			key: 0,
 			label: e.loadingLabel,
 			size: "xs",
 			"aria-hidden": "true"
-		}, null, 8, ["label"])) : D(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [D(t.$slots, "default", {}, void 0, !0)])], 10, Ci));
+		}, null, 8, ["label"])) : D(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [D(t.$slots, "default", {}, void 0, !0)])], 10, Oi));
 	}
-}, [["__scopeId", "data-v-3d4fbaa0"]]), Ti = (e) => `${Math.round(e)}px`, Ei = (e, t, n, r) => ({
-	left: Ti(e),
-	top: Ti(t),
-	width: Ti(Math.max(0, n)),
-	height: Ti(Math.max(0, r))
-}), Di = (e, t, n) => Math.max(t, Math.min(e, n));
-function Oi(e, t, n, r = !1) {
+}, [["__scopeId", "data-v-b5f6ecb8"]]), Ai = (e) => `${Math.round(e)}px`, ji = (e, t, n, r) => ({
+	left: Ai(e),
+	top: Ai(t),
+	width: Ai(Math.max(0, n)),
+	height: Ai(Math.max(0, r))
+}), Mi = (e, t, n) => Math.max(t, Math.min(e, n));
+function Ni(e, t, n, r = !1) {
 	let { width: i, height: a, left: o = 0, top: s = 0 } = t, c = o + i, l = s + a, u = Math.min(n.width, i - 24), d = Math.min(n.height, a - 24), f = null;
 	if (e && e.width > 0 && e.height > 0) {
-		let t = Di(e.left - 5, o, c), n = Di(e.top - 5, s, l), r = Di(e.right + 5, o, c), i = Di(e.bottom + 5, s, l);
+		let t = Mi(e.left - 5, o, c), n = Mi(e.top - 5, s, l), r = Mi(e.right + 5, o, c), i = Mi(e.bottom + 5, s, l);
 		r > t && i > n && (f = {
 			left: t,
 			top: n,
@@ -4576,31 +4730,31 @@ function Oi(e, t, n, r = !1) {
 		});
 	}
 	let p = f ? [
-		Ei(o, s, i, f.top - s),
-		Ei(o, f.bottom, i, l - f.bottom),
-		Ei(o, f.top, f.left - o, f.height),
-		Ei(f.right, f.top, c - f.right, f.height)
-	] : [Ei(o, s, i, a)], m = o + (i - u) / 2, h = s + (a - d) / 2;
-	return f && (m = Di(f.left, o + 12, c - u - 12), h = f.bottom + 14 + d <= l - 12 ? f.bottom + 14 : f.top - d - 14, h < s + 12 && f.right + u + 14 <= c - 12 && (m = f.right + 14, h = f.top), h = Di(h, s + 12, l - d - 12)), r && (m = o + (i - u) / 2, h = f && f.top > s + a / 2 ? s + 12 : l - d - 12), {
+		ji(o, s, i, f.top - s),
+		ji(o, f.bottom, i, l - f.bottom),
+		ji(o, f.top, f.left - o, f.height),
+		ji(f.right, f.top, c - f.right, f.height)
+	] : [ji(o, s, i, a)], m = o + (i - u) / 2, h = s + (a - d) / 2;
+	return f && (m = Mi(f.left, o + 12, c - u - 12), h = f.bottom + 14 + d <= l - 12 ? f.bottom + 14 : f.top - d - 14, h < s + 12 && f.right + u + 14 <= c - 12 && (m = f.right + 14, h = f.top), h = Mi(h, s + 12, l - d - 12)), r && (m = o + (i - u) / 2, h = f && f.top > s + a / 2 ? s + 12 : l - d - 12), {
 		rect: f,
 		masks: p,
-		spotlight: f ? Ei(f.left, f.top, f.width, f.height) : {},
+		spotlight: f ? ji(f.left, f.top, f.width, f.height) : {},
 		card: {
-			left: Ti(m),
-			top: Ti(h),
-			maxHeight: Ti(a - 24)
+			left: Ai(m),
+			top: Ai(h),
+			maxHeight: Ai(a - 24)
 		}
 	};
 }
 //#endregion
 //#region src/components/tutorial/GuidedTour.vue
-var ki = ["aria-label"], Ai = {
+var Pi = ["aria-label"], Fi = {
 	"aria-live": "polite",
 	"aria-atomic": "true"
-}, ji = {
+}, Ii = {
 	key: 0,
 	role: "alert"
-}, Mi = /*#__PURE__*/ B({
+}, Li = /*#__PURE__*/ B({
 	__name: "GuidedTour",
 	props: {
 		tour: {
@@ -4628,7 +4782,7 @@ var ki = ["aria-label"], Ai = {
 		}
 	},
 	setup(n) {
-		let r = n, l = T(null), f = T(Oi(null, {
+		let r = n, l = T(null), f = T(Ni(null, {
 			width: 1,
 			height: 1
 		}, {
@@ -4638,7 +4792,7 @@ var ki = ["aria-label"], Ai = {
 		function D() {
 			if (!r.tour.active) return;
 			let e = window.visualViewport;
-			f.value = Oi(r.tour.target?.getBoundingClientRect(), {
+			f.value = Ni(r.tour.target?.getBoundingClientRect(), {
 				width: e?.width || window.innerWidth,
 				height: e?.height || window.innerHeight,
 				left: e?.offsetLeft || 0,
@@ -4649,22 +4803,22 @@ var ki = ["aria-label"], Ai = {
 			}, r.mobile), x = requestAnimationFrame(D);
 		}
 		function O(e) {
-			e.stopImmediatePropagation(), e.key === "Escape" ? (e.preventDefault(), r.tour.error ? r.tour.stop() : r.tour.dismiss()) : ir(e, l.value);
+			e.stopImmediatePropagation(), e.key === "Escape" ? (e.preventDefault(), r.tour.error ? r.tour.stop() : r.tour.dismiss()) : lr(e, l.value);
 		}
 		function k(e) {
-			l.value?.contains(e.target) || rr(l.value);
+			l.value?.contains(e.target) || cr(l.value);
 		}
 		function j() {
-			cancelAnimationFrame(x), tr(v), w && (w = !1, window.removeEventListener("keydown", O, !0), document.removeEventListener("focusin", k, !0), ar(S));
+			cancelAnimationFrame(x), or(v), w && (w = !1, window.removeEventListener("keydown", O, !0), document.removeEventListener("focusin", k, !0), ur(S));
 		}
 		return F(() => r.tour.active, async (e) => {
 			if (!e) {
 				j();
 				return;
 			}
-			S = document.activeElement, w = !0, er(v), window.addEventListener("keydown", O, !0), document.addEventListener("focusin", k, !0), await g(), r.tour.active && (rr(l.value), D());
+			S = document.activeElement, w = !0, ar(v), window.addEventListener("keydown", O, !0), document.addEventListener("focusin", k, !0), await g(), r.tour.active && (cr(l.value), D());
 		}, { immediate: !0 }), F(() => r.tour.index, async () => {
-			await g(), r.tour.active && rr(l.value);
+			await g(), r.tour.active && cr(l.value);
 		}), b(j), (r, i) => (C(), a(t, { to: "body" }, [n.tour.active ? (C(), s("div", {
 			key: 0,
 			class: "guided-tour",
@@ -4693,21 +4847,21 @@ var ki = ["aria-label"], Ai = {
 				"aria-label": n.tour.step?.title,
 				tabindex: "-1"
 			}, [
-				c("div", Ai, [
+				c("div", Fi, [
 					c("small", null, A(n.labels.progress(n.tour.index + 1, n.tour.steps.length)), 1),
 					c("h2", null, A(n.tour.step?.title), 1),
 					c("p", null, A(n.tour.step?.body), 1)
 				]),
-				n.tour.error ? (C(), s("p", ji, A(n.labels.error), 1)) : o("", !0),
+				n.tour.error ? (C(), s("p", Ii, A(n.labels.error), 1)) : o("", !0),
 				c("footer", null, [
-					d(wi, {
+					d(ki, {
 						variant: "quiet",
 						onClick: i[0] ||= (e) => n.tour.error ? n.tour.stop() : n.tour.dismiss()
 					}, {
 						default: I(() => [u(A(n.tour.error ? n.labels.close : n.labels.dismiss), 1)]),
 						_: 1
 					}),
-					n.tour.index > 0 ? (C(), a(wi, {
+					n.tour.index > 0 ? (C(), a(ki, {
 						key: 0,
 						variant: "secondary",
 						disabled: n.tour.busy,
@@ -4716,14 +4870,14 @@ var ki = ["aria-label"], Ai = {
 						default: I(() => [u(A(n.labels.previous), 1)]),
 						_: 1
 					}, 8, ["disabled", "onClick"])) : o("", !0),
-					n.tour.error ? (C(), a(wi, {
+					n.tour.error ? (C(), a(ki, {
 						key: 1,
 						disabled: n.tour.busy,
 						onClick: n.tour.retry
 					}, {
 						default: I(() => [u(A(n.labels.retry), 1)]),
 						_: 1
-					}, 8, ["disabled", "onClick"])) : (C(), a(wi, {
+					}, 8, ["disabled", "onClick"])) : (C(), a(ki, {
 						key: 2,
 						loading: n.tour.busy,
 						"loading-label": n.labels.loading,
@@ -4737,13 +4891,13 @@ var ki = ["aria-label"], Ai = {
 						"onClick"
 					]))
 				])
-			], 12, ki)
+			], 12, Pi)
 		], 36)) : o("", !0)]));
 	}
 }, [["__scopeId", "data-v-85145755"]]);
 //#endregion
 //#region src/composables/useGuidedTour.js
-function Ni({ onFinish: e = async () => {} } = {}) {
+function Ri({ onFinish: e = async () => {} } = {}) {
 	let t = T(!1), n = T(!1), r = k(null), a = T(0), o = k([]), s = k(null), c = i(() => o.value[a.value] || null), l = null, u = [], d = null, f = !1, p = 0;
 	function m() {
 		l?.abort(), l = null;
@@ -4834,4 +4988,4 @@ function Ni({ onFinish: e = async () => {} } = {}) {
 	};
 }
 //#endregion
-export { tt as $, On as A, Bt as B, Jn as C, In as D, Rn as E, Ut as F, wt as G, zt as H, Ft as I, ft as J, vt as K, Pt as L, gn as M, mn as N, Nn as O, ln as P, nt as Q, Nt as R, Yn as S, Hn as T, Mt as U, It as V, jt as W, ut as X, pt as Y, it as Z, Nr as _, ne as _t, xi as a, Ue as at, _r as b, ai as c, ke as ct, Zr as d, q as dt, et, Jr as f, he as ft, Pr as g, ae as gt, Fr as h, se as ht, Si as i, We as it, Cn as j, jn as k, ri as l, Ee as lt, Hr as m, ue as mt, Mi as n, Be as nt, bi as o, He as ot, Kr as p, K as pt, dt as q, wi as r, ze as rt, si as s, Ge as st, Ni as t, Je as tt, ei as u, Se as ut, Or as v, H as vt, Wn as w, gr as x, Tr as y, B as yt, At as z };
+export { ot as $, Nn as A, Gt as B, $n as C, Vn as D, Un as E, Jt as F, kt as G, Wt as H, Bt as I, _t as J, Ct as K, zt as L, xn as M, yn as N, Rn as O, mn as P, st as Q, Rt as R, er as S, B as St, qn as T, Lt as U, Vt as V, It as W, ht as X, vt as Y, lt as Z, Rr as _, oe as _t, Ei as a, Je as at, Sr as b, ee as bt, ui as c, Me as ct, ni as d, be as dt, at as et, $r as f, _e as ft, zr as g, le as gt, Br as h, K as ht, Di as i, Ye as it, On as j, In as k, ci as l, ke as lt, qr as m, fe as mt, Li as n, Ge as nt, Ti as o, qe as ot, Zr as p, he as pt, gt as q, ki as r, We as rt, fi as s, Xe as st, Ri as t, $e as tt, ai as u, Ee as ut, Nr as v, ne as vt, Yn as w, xr as x, V as xt, Ar as y, te as yt, Ft as z };

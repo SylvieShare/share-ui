@@ -1,5 +1,5 @@
 <template>
-  <button class="share-action-button" :class="`share-action-button--${variant}`" :type="type" :disabled="disabled || loading" :aria-busy="loading || undefined">
+  <button class="share-action-button" :class="[`share-action-button--${variant}`, { 'share-action-button--icon-only': iconOnly }]" :type="type" :disabled="disabled || loading" :aria-busy="loading || undefined">
     <LoadingIndicator v-if="loading" :label="loadingLabel" size="xs" aria-hidden="true" />
     <slot v-else name="icon" />
     <span><slot /></span>
@@ -10,6 +10,7 @@ import LoadingIndicator from './LoadingIndicator.vue'
 defineProps({
   variant: { type: String, default: 'primary', validator: value => ['primary', 'secondary', 'quiet'].includes(value) },
   type: { type: String, default: 'button' },
+  iconOnly: Boolean,
   disabled: Boolean,
   loading: Boolean,
   loadingLabel: { type: String, default: '' },
@@ -24,4 +25,6 @@ defineProps({
 .share-action-button--secondary:hover:not(:disabled), .share-action-button--quiet:hover:not(:disabled) { background: var(--surface-raised); color: var(--text-1); }
 .share-action-button:disabled { opacity: .45; cursor: not-allowed; }
 .share-action-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.share-action-button--icon-only { width: 48px; height: 48px; padding: 0; gap: 0; flex-shrink: 0; }
+.share-action-button--icon-only :deep(svg) { flex-shrink: 0; }
 </style>

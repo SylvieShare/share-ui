@@ -16,17 +16,26 @@
     <section class="share-component-gallery__section">
       <SectionLabel title="Поверхности и действия" border />
       <div class="share-component-gallery__grid">
-        <article class="share-component-gallery__card" data-share-gallery="BaseTile SectionLabel">
+        <article class="share-component-gallery__card" data-share-gallery="BaseTile TileAccentStrip MorphTile MorphTileHeader SectionLabel">
           <h2>BaseTile</h2>
+          <ActionButton icon-only variant="quiet" aria-label="Действие без рамки"><template #icon>✦</template></ActionButton>
           <div class="share-component-gallery__tile-row">
-            <BaseTile strip tint interactive class="share-component-gallery__tile">
-              <strong>Акцентная плитка</strong>
-              <span>strip · tint · interactive</span>
+            <BaseTile tint interactive class="share-component-gallery__tile">
+              <TileAccentStrip /><strong>Акцентная плитка</strong>
+              <span>TileAccentStrip · tint · interactive</span>
             </BaseTile>
             <BaseTile framed class="share-component-gallery__tile">
               <strong>Рамка</strong>
               <span>framed</span>
             </BaseTile>
+            <MorphTile title="Редактируемая плитка" show-edit edit-label="Редактировать" @edit="morphTileEdits++">
+              <template #aside><span>{{ morphTileEdits }}</span></template>
+              <span>Единый заголовок и действие справа</span>
+            </MorphTile>
+            <MorphTile title="Только просмотр"><span>Без карандаша</span></MorphTile>
+            <MorphTile><span>Без заголовка</span></MorphTile>
+            <MorphTile embedded title="Раскрытая грань" show-edit edit-fade edit-label="Редактировать"><span>Без второй поверхности</span></MorphTile>
+            <MorphTileHeader title="Общий заголовок" />
           </div>
         </article>
 
@@ -380,6 +389,9 @@ import { reactive, ref } from 'vue'
 import InlineEdit from '../components/InlineEdit.vue'
 import SectionList from '../components/SectionList.vue'
 import BaseTile from '../components/BaseTile.vue'
+import TileAccentStrip from '../components/TileAccentStrip.vue'
+import MorphTile from '../components/MorphTile.vue'
+import MorphTileHeader from '../components/MorphTileHeader.vue'
 import ActionButton from '../components/ActionButton.vue'
 import AddButton from '../components/AddButton.vue'
 import AppSlider from '../components/AppSlider.vue'
@@ -447,6 +459,7 @@ const frameOpen = ref(false)
 const shellOpen = ref(false)
 const confirmOpen = ref(false)
 const promptOpen = ref(false)
+const morphTileEdits = ref(0)
 const morphOpen = ref(false)
 const morphOrigin = ref(null)
 

@@ -46,6 +46,9 @@ describe('public API', () => {
     'TextPromptDialog',
     'ValueSelect',
     'BaseTile',
+    'MorphTile',
+    'MorphTileHeader',
+    'TileAccentStrip',
   ])('exports %s', name => {
     expect(shareUi[name]).toBeTruthy()
   })
