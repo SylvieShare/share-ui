@@ -3,6 +3,7 @@
     type="button"
     class="share-compact-checkbox"
     :class="{ 'share-compact-checkbox--checked': modelValue }"
+    :style="{ '--checkbox-size': `${size}px` }"
     :disabled="disabled"
     :aria-label="label"
     :aria-checked="modelValue"
@@ -19,6 +20,7 @@
 <script setup>
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
+  size: { type: Number, default: 18 },
   disabled: { type: Boolean, default: false },
   label: { type: String, required: true },
 })
@@ -33,8 +35,8 @@ function toggle() { if (!props.disabled) emit('update:modelValue', !props.modelV
   align-items: center;
   justify-content: center;
   box-sizing: content-box;
-  width: 18px;
-  height: 18px;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
   flex: none;
   margin: -9px;
   padding: 9px;
@@ -48,8 +50,8 @@ function toggle() { if (!props.disabled) emit('update:modelValue', !props.modelV
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 18px;
-  height: 18px;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
   transform: translate(-50%, -50%);
   border: 1.5px solid var(--border-strong);
   border-radius: 5px;
@@ -64,5 +66,5 @@ function toggle() { if (!props.disabled) emit('update:modelValue', !props.modelV
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 .share-compact-checkbox:disabled { opacity: .35; cursor: not-allowed; }
-.share-compact-checkbox__tick { position: relative; z-index: 1; width: 11px; height: 11px; }
+.share-compact-checkbox__tick { position: relative; z-index: 1; width: calc(var(--checkbox-size) * .62); height: calc(var(--checkbox-size) * .62); }
 </style>

@@ -72,7 +72,7 @@ Consumer не переопределяет типографику заголов
 - `ToggleSwitch`: boolean `v-model`, optional label/default slot, `disabled`.
 - `MultiToggle`: options `{ value, label, disabled? }`, `block`, `neutralValue`;
   поддерживает стрелки, Home и End.
-- `CompactCheckbox`: компактный checkbox для строк и таблиц.
+- `CompactCheckbox`: компактный checkbox для строк и таблиц. `size` задаёт размер квадрата в px (по умолчанию 18); галочка масштабируется пропорционально, дополнительная область нажатия сохраняется. В галерее представлены размеры 18 и 24.
 - `SlidingTabs`: tabs `{ key, title, icon?, disabled?, id?, panelId? }`, icon-slot
   и клавиатурная навигация.
 - `AppSlider`: доступный native range с DnD Share visual style.

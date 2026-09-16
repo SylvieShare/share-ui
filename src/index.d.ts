@@ -52,6 +52,7 @@ export const MultiToggle: DefineComponent<{
 }>
 
 export const CompactCheckbox: DefineComponent<{
+  size?: number
   modelValue?: boolean
   disabled?: boolean
   label: string

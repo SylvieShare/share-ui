@@ -120,6 +120,10 @@
               <CompactCheckbox v-model="checkboxValue" label="Выбрать элемент" />
               Выбрать элемент
             </label>
+            <label class="share-component-gallery__checkbox-row">
+              <CompactCheckbox v-model="checkboxValue" :size="24" label="Крупный выбор" />
+              Крупный выбор (24px)
+            </label>
           </div>
         </article>
 

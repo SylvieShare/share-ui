@@ -387,6 +387,10 @@ var H = (e, t) => {
 			type: Boolean,
 			default: !1
 		},
+		size: {
+			type: Number,
+			default: 18
+		},
 		disabled: {
 			type: Boolean,
 			default: !1
@@ -405,6 +409,7 @@ var H = (e, t) => {
 		return (t, n) => (C(), s("button", {
 			type: "button",
 			class: _(["share-compact-checkbox", { "share-compact-checkbox--checked": e.modelValue }]),
+			style: y({ "--checkbox-size": `${e.size}px` }),
 			disabled: e.disabled,
 			"aria-label": e.label,
 			"aria-checked": e.modelValue,
@@ -417,9 +422,9 @@ var H = (e, t) => {
 			"stroke-width": "2",
 			"stroke-linecap": "round",
 			"stroke-linejoin": "round"
-		}, null, -1)]])) : o("", !0)], 42, de));
+		}, null, -1)]])) : o("", !0)], 46, de));
 	}
-}, [["__scopeId", "data-v-caeb1891"]]), me = ["aria-label"], he = [
+}, [["__scopeId", "data-v-6c7265ce"]]), me = ["aria-label"], he = [
 	"aria-checked",
 	"tabindex",
 	"disabled",
