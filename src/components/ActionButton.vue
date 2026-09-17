@@ -8,7 +8,7 @@
 <script setup>
 import LoadingIndicator from './LoadingIndicator.vue'
 defineProps({
-  variant: { type: String, default: 'primary', validator: value => ['primary', 'secondary', 'quiet'].includes(value) },
+  variant: { type: String, default: 'primary', validator: value => ['primary', 'secondary', 'quiet', 'dashed'].includes(value) },
   type: { type: String, default: 'button' },
   iconOnly: Boolean,
   disabled: Boolean,
@@ -21,8 +21,9 @@ defineProps({
 .share-action-button--primary { background: var(--accent); color: var(--text-on-accent); }
 .share-action-button--primary:hover:not(:disabled) { background: var(--accent-hover); }
 .share-action-button--secondary { background: transparent; border-color: var(--border-strong); color: var(--text-2); }
+.share-action-button--dashed { background: transparent; border: 1px dashed var(--border-strong); color: var(--text-2); }
 .share-action-button--quiet { background: transparent; color: var(--text-2); }
-.share-action-button--secondary:hover:not(:disabled), .share-action-button--quiet:hover:not(:disabled) { background: var(--surface-raised); color: var(--text-1); }
+.share-action-button--dashed:hover:not(:disabled), .share-action-button--secondary:hover:not(:disabled), .share-action-button--quiet:hover:not(:disabled) { background: var(--surface-raised); color: var(--text-1); }
 .share-action-button:disabled { opacity: .45; cursor: not-allowed; }
 .share-action-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .share-action-button--icon-only { width: 48px; height: 48px; padding: 0; gap: 0; flex-shrink: 0; }

@@ -574,7 +574,7 @@ export const LoadingState: DefineComponent<{ label: string; compact?: boolean; f
 
 export const ActionButton: DefineComponent<{
   iconOnly?: boolean
-  variant?: 'primary' | 'secondary' | 'quiet'; type?: 'button' | 'submit' | 'reset'; disabled?: boolean; loading?: boolean; loadingLabel?: string }>
+  variant?: 'primary' | 'secondary' | 'quiet' | 'dashed'; type?: 'button' | 'submit' | 'reset'; disabled?: boolean; loading?: boolean; loadingLabel?: string }>
 
 export interface GuidedTourStep {
   id: string

@@ -4693,7 +4693,8 @@ var Hr = ["aria-label"], Ur = { class: "ms-head-content" }, Wr = ["aria-label"],
 			validator: (e) => [
 				"primary",
 				"secondary",
-				"quiet"
+				"quiet",
+				"dashed"
 			].includes(e)
 		},
 		type: {
@@ -4721,7 +4722,7 @@ var Hr = ["aria-label"], Ur = { class: "ms-head-content" }, Wr = ["aria-label"],
 			"aria-hidden": "true"
 		}, null, 8, ["label"])) : D(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [D(t.$slots, "default", {}, void 0, !0)])], 10, ki));
 	}
-}, [["__scopeId", "data-v-b5f6ecb8"]]), ji = (e) => `${Math.round(e)}px`, Mi = (e, t, n, r) => ({
+}, [["__scopeId", "data-v-9193544a"]]), ji = (e) => `${Math.round(e)}px`, Mi = (e, t, n, r) => ({
 	left: ji(e),
 	top: ji(t),
 	width: ji(Math.max(0, n)),
