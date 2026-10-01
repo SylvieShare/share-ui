@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
+import ActionMenu from '../src/components/floating/ActionMenu.vue'
 import BasePopover from '../src/components/floating/BasePopover.vue'
 
 const baseSource = readFileSync(fileURLToPath(new URL('../src/components/floating/BasePopover.vue', import.meta.url)), 'utf8')
@@ -15,6 +16,12 @@ describe('BasePopover transitions', () => {
     expect(baseSource).toContain('.share-popover-action-enter-active')
     expect(baseSource).toContain('--share-popover-origin-x')
     expect(baseSource).toContain('@media (prefers-reduced-motion: reduce)')
+  })
+
+  it('can mark a teleported action menu as related to its parent popover', () => {
+    expect(ActionMenu.props.related.default).toBe(false)
+    expect(actionSource).toContain(':data-share-popover-related="related ?')
+    expect(baseSource).toContain('[data-share-popover-related]')
   })
 
   it('lets ActionMenu consume the preset without owning duplicate transition CSS', () => {

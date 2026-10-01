@@ -8,6 +8,24 @@ export function sortableItemElements(containerEl, sourceKey = null) {
     .filter(el => el.getAttribute('data-sortable-key') !== sourceKey)
 }
 
+// Grid cells keep stable coordinates, including empty cells. List coordinates exclude source.
+export function sortableTargetIndex(container, x, y, sourceKey, layout = 'list') {
+  if (layout === 'grid') {
+    const cells = Array.from(container.querySelectorAll('[data-sortable-slot]'))
+      .filter(el => el.closest('[data-sortable-container]') === container)
+    const cell = cells.find(el => {
+      const r = el.getBoundingClientRect()
+      return x >= r.left && x < r.right && y >= r.top && y < r.bottom
+    })
+    if (!cell) return -1
+    const index = Number(cell.getAttribute('data-sortable-slot'))
+    return Number.isInteger(index) && index >= 0 ? index : -1
+  }
+  const children = sortableItemElements(container, sourceKey)
+  const index = children.findIndex(el => y < el.getBoundingClientRect().top + el.getBoundingClientRect().height / 2)
+  return index < 0 ? children.length : index
+}
+
 // Reorder helper for `onDrop`. `toIndex` is already in source-removed coordinates (see updateTarget /
 // displayItems), so the moved item is spliced back at exactly `toIndex` — no off-by-one adjustment.
 export function reorderByDrop(array, fromIndex, toIndex) {
@@ -24,7 +42,7 @@ export function reorderByDrop(array, fromIndex, toIndex) {
  * position), and visual flags for source/placeholder styling.
  *
  * config: {
- *   groups: { [name]: { items: Ref<Array>, accepts?: (item, fromGroup, toGroup) => bool } },
+ *   groups: { [name]: { items: Ref<Array>, layout?: 'list'|'grid', accepts?: (item, fromGroup, toGroup) => bool } },
  *   getKey: (item) => string|number,
  *   onDrop: ({ item, fromGroup, fromIndex, toGroup, toIndex }) => void,
  *   canDropAt?: ({ item, fromGroup, toGroup, toIndex }) => bool,
@@ -58,7 +76,7 @@ export function useSortable(config) {
     document.addEventListener('pointermove', onPointerMove)
     document.addEventListener('pointerup', onPointerEnd)
     document.addEventListener('pointercancel', onPointerEnd)
-    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('keydown', onKeyDown, true)
     e.preventDefault()
   }
 
@@ -147,17 +165,13 @@ export function useSortable(config) {
         break
       }
     }
+    targetGroup.value = null
+    targetIndex.value = -1
     if (!groupName) return
 
     const sourceKey = sourceItem.value ? String(getKey(sourceItem.value)) : null
-    const children = sortableItemElements(containerEl, sourceKey)
-
-    let idx = children.length
-    for (let i = 0; i < children.length; i++) {
-      const r = children[i].getBoundingClientRect()
-      const middle = r.top + r.height / 2
-      if (y < middle) { idx = i; break }
-    }
+    const idx = sortableTargetIndex(containerEl, x, y, sourceKey, groups[groupName].layout)
+    if (idx < 0) return
 
     if (canDropAt && !canDropAt({ item: sourceItem.value, fromGroup: sourceGroup.value, toGroup: groupName, toIndex: idx })) return
 
@@ -165,7 +179,8 @@ export function useSortable(config) {
     targetIndex.value = idx
   }
 
-  function onPointerEnd() {
+  function onPointerEnd(event) {
+    if (event?.type === 'pointercancel') { cleanup(); return }
     if (!dragging.value) { cleanup(); return }
     const result = {
       item: sourceItem.value,
@@ -180,7 +195,11 @@ export function useSortable(config) {
   }
 
   function onKeyDown(e) {
-    if (e.key === 'Escape') cleanup()
+    if (e.key === 'Escape') {
+      e.preventDefault()
+      e.stopPropagation()
+      cleanup()
+    }
   }
 
   function cleanup() {
@@ -188,7 +207,7 @@ export function useSortable(config) {
     document.removeEventListener('pointermove', onPointerMove)
     document.removeEventListener('pointerup', onPointerEnd)
     document.removeEventListener('pointercancel', onPointerEnd)
-    window.removeEventListener('keydown', onKeyDown)
+    window.removeEventListener('keydown', onKeyDown, true)
     if (ghostEl) { ghostEl.remove(); ghostEl = null }
     document.body.classList.remove('sortable-dragging')
     dragging.value = false
@@ -221,6 +240,7 @@ export function useSortable(config) {
     const group = groups[groupName]
     if (!group) return []
     const items = group.items.value
+    if (group.layout === 'grid') return items
     if (!dragging.value) return items
     let result = items
     if (sourceGroup.value === groupName) {

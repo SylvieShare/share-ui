@@ -131,6 +131,7 @@ export const BasePopover: DefineComponent<{
 }>
 
 export const ActionMenu: DefineComponent<{
+  related?: boolean
   triggerAttrs?: Record<string, unknown>
   title?: string
   disabled?: boolean
@@ -427,6 +428,8 @@ export const FormTextInput: DefineComponent<{
 
 export interface SortableGroup<T> {
   items: Ref<T[]>
+  /** Exact data-sortable-slot hit testing; items stay in place during drag. */
+  layout?: 'list' | 'grid'
   accepts?: (item: T, fromGroup: string, toGroup: string) => boolean
 }
 

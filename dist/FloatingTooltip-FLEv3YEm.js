@@ -949,12 +949,16 @@ var Ye = 8, Xe = 6, Ze = Je, Qe = [
 	"aria-label",
 	"aria-expanded",
 	"disabled"
-], $e = ["aria-label"], et = /*#__PURE__*/ H({
+], $e = ["data-share-popover-related", "aria-label"], et = /*#__PURE__*/ H({
 	__name: "ActionMenu",
 	props: {
 		triggerAttrs: {
 			type: Object,
 			default: () => ({})
+		},
+		related: {
+			type: Boolean,
+			default: !1
 		},
 		title: {
 			type: String,
@@ -1099,6 +1103,7 @@ var Ye = 8, Xe = 6, Ze = Je, Qe = [
 				ref_key: "popoverEl",
 				ref: p,
 				class: "ram-popover",
+				"data-share-popover-related": r.related ? "" : void 0,
 				style: y(m.value),
 				role: "menu",
 				"aria-label": r.title,
@@ -1108,7 +1113,7 @@ var Ye = 8, Xe = 6, Ze = Je, Qe = [
 			_: 3
 		})]))], 64));
 	}
-}, [["__scopeId", "data-v-6061ade1"]]), tt = ["aria-haspopup", "aria-expanded"], nt = {
+}, [["__scopeId", "data-v-178856e0"]]), tt = ["aria-haspopup", "aria-expanded"], nt = {
 	class: "ram-item__icon",
 	"aria-hidden": "true"
 }, rt = {

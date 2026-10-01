@@ -219,8 +219,14 @@ DOM-контракт:
 эквивалентная проверка доступна через `shouldSuppressClick()`. Это позволяет
 строкам с click-навигацией не открываться после отпускания drag handle.
 
-Алгоритм сейчас вертикальный. Горизонтальный/grid API не добавляется до
-появления реального второго сценария.
+Группы по умолчанию используют вертикальную сортировку (`layout: 'list'`).
+Для сетки задаётся `layout: 'grid'`: каждая занятая и свободная ячейка имеет
+`data-sortable-slot="0"` (целый индекс от нуля). Hit testing учитывает обе
+координаты и ближайший контейнер; промежутки между ячейками и выход за пределы
+контейнера отменяют цель. `toIndex` — точный индекс ячейки, включая занятую;
+`displayItems` сетки сохраняет исходный массив без preview-перестановки. Consumer
+сам выполняет перенос или обмен и сохраняет позиции. Списки и сетки могут
+находиться в одном sortable. Escape и pointercancel отменяют перенос.
 
 ## ComponentGallery
 
@@ -351,6 +357,9 @@ Consumer обязан разрешать только безопасные UI-д
 - `OptionList`: `id`, `label`, `options: { value, label, disabled? }[]`, `activeIndex`, `emptyLabel`; события `select(option)`, `active(index)`, `hover({ option, event })`, `leave`. Слоты `option`, `empty`, `footer`. Роли listbox/option, прокрутка; фокус и клавиатурный ввод принадлежат controller. В option-слоте можно добавить отдельное действие, остановив его click.
 - `SearchMultiSelect`: `modelValue` — массив значений, `options` как у OptionList, `limit` (0 без лимита), `label`, `placeholder`, `emptyLabel`, `removeLabel`, `createLabel`, `allowCreate`, `creating`, `disabled`, `zIndex`. События `update:modelValue` и `create(text)`. Ввод, выбранные теги и BasePopover; стрелки/Enter выбирают, Escape/Tab закрывают. Создание и загрузка опций выполняются consumer. Подходит для тегов и выбора нескольких навыков.
 - `FloatingTooltip`: `anchor` (DOM-элемент) либо `x`, `top`/`bottom`, `width`, `minWidth`, `maxWidth`, `zIndex`. Слот default; Teleport, анимация появления с reduced motion, ограничение viewport, пересчёт при resize/scroll и изменение размеров содержимого. Добавляет собственный id в `aria-describedby` якоря и удаляет его при закрытии. Подсказка неинтерактивна и не перехватывает focus/Escape у модального окна. Consumer определяет hover/touch-условия и содержание.
+
+`ActionMenu.related=true` отмечает телепортированное меню как часть родительского
+поповера: взаимодействие с ним не закрывает `BasePopover`.
 
 `ActionMenu.triggerAttrs` передаёт дополнительные DOM-атрибуты/стили корневому trigger без внешней обёртки.
 

@@ -1,16 +1,29 @@
-import { $ as e, A as t, B as n, C as r, Ct as i, D as a, Dt as o, E as s, Et as c, F as l, G as u, H as d, I as f, J as p, K as m, L as h, M as g, N as _, O as v, Ot as y, P as b, Q as x, R as S, S as C, St as w, T, Tt as E, U as D, V as O, W as k, X as A, Y as ee, Z as te, _ as ne, _t as re, a as ie, at as ae, b as oe, bt as se, c as ce, ct as j, d as M, dt as N, et as P, f as F, ft as I, g as L, gt as R, h as z, ht as B, i as V, it as H, j as U, k as W, l as G, lt as le, m as ue, mt as de, n as fe, nt as pe, o as me, ot as he, p as ge, pt as _e, q as ve, r as ye, rt as K, s as be, st as q, t as xe, tt as Se, u as Ce, ut as we, v as J, vt as Te, w as Ee, wt as De, x as Oe, xt as ke, y as Ae, yt as je, z as Me } from "./FloatingTooltip-DYUOziSj.js";
+import { $ as e, A as t, B as n, C as r, Ct as i, D as a, Dt as o, E as s, Et as c, F as l, G as u, H as d, I as f, J as p, K as m, L as h, M as g, N as _, O as v, Ot as y, P as b, Q as x, R as S, S as C, St as w, T, Tt as E, U as D, V as O, W as k, X as A, Y as ee, Z as te, _ as ne, _t as re, a as ie, at as ae, b as oe, bt as se, c as ce, ct as j, d as M, dt as N, et as P, f as F, ft as I, g as L, gt as R, h as z, ht as B, i as V, it as H, j as U, k as W, l as G, lt as le, m as ue, mt as de, n as fe, nt as pe, o as me, ot as he, p as ge, pt as _e, q as ve, r as ye, rt as K, s as be, st as q, t as xe, tt as Se, u as Ce, ut as we, v as J, vt as Te, w as Ee, wt as De, x as Oe, xt as ke, y as Ae, yt as je, z as Me } from "./FloatingTooltip-FLEv3YEm.js";
 import { computed as Y, nextTick as X, onBeforeUnmount as Ne, onScopeDispose as Pe, ref as Z, shallowRef as Fe, toValue as Q, watch as $ } from "vue";
 //#region src/composables/useSortable.js
 var Ie = 4;
 function Le(e, t = null) {
 	return Array.from(e.querySelectorAll("[data-sortable-key]")).filter((t) => t.closest("[data-sortable-container]") === e).filter((e) => e.getAttribute("data-sortable-key") !== t);
 }
-function Re(e, t, n) {
+function Re(e, t, n, r, i = "list") {
+	if (i === "grid") {
+		let r = Array.from(e.querySelectorAll("[data-sortable-slot]")).filter((t) => t.closest("[data-sortable-container]") === e).find((e) => {
+			let r = e.getBoundingClientRect();
+			return t >= r.left && t < r.right && n >= r.top && n < r.bottom;
+		});
+		if (!r) return -1;
+		let i = Number(r.getAttribute("data-sortable-slot"));
+		return Number.isInteger(i) && i >= 0 ? i : -1;
+	}
+	let a = Le(e, r), o = a.findIndex((e) => n < e.getBoundingClientRect().top + e.getBoundingClientRect().height / 2);
+	return o < 0 ? a.length : o;
+}
+function ze(e, t, n) {
 	if (t < 0) return e.slice();
 	let r = e.slice(), [i] = r.splice(t, 1);
 	return r.splice(Math.min(n, r.length), 0, i), r;
 }
-function ze(e) {
+function Be(e) {
 	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = Z(!1), o = Z(null), s = Z(null), c = Z(-1), l = Z(null), u = Z(-1), d = Z(!1), f = null, p = 0, m = 0, h = null, g = 0, _ = null;
 	function v(e, t, n, r) {
 		if (e.button !== void 0 && e.button !== 0) return;
@@ -22,7 +35,7 @@ function ze(e) {
 			group: n,
 			index: r,
 			sourceEl: i
-		}, document.addEventListener("pointermove", y), document.addEventListener("pointerup", C), document.addEventListener("pointercancel", C), window.addEventListener("keydown", w), e.preventDefault());
+		}, document.addEventListener("pointermove", y), document.addEventListener("pointerup", C), document.addEventListener("pointercancel", C), window.addEventListener("keydown", w, !0), e.preventDefault());
 	}
 	function y(e) {
 		if (!a.value) {
@@ -75,42 +88,39 @@ function ze(e) {
 				break;
 			}
 		}
-		if (!d) return;
-		let f = s.value ? String(n(s.value)) : null, p = Le(c, f), m = p.length;
-		for (let e = 0; e < p.length; e++) {
-			let t = p[e].getBoundingClientRect();
-			if (r < t.top + t.height / 2) {
-				m = e;
-				break;
-			}
-		}
-		i && !i({
+		if (l.value = null, u.value = -1, !d) return;
+		let f = s.value ? String(n(s.value)) : null, p = Re(c, e, r, f, t[d].layout);
+		p < 0 || i && !i({
 			item: s.value,
 			fromGroup: o.value,
 			toGroup: d,
-			toIndex: m
-		}) || (l.value = d, u.value = m);
+			toIndex: p
+		}) || (l.value = d, u.value = p);
 	}
-	function C() {
+	function C(e) {
+		if (e?.type === "pointercancel") {
+			T();
+			return;
+		}
 		if (!a.value) {
 			T();
 			return;
 		}
-		let e = {
+		let t = {
 			item: s.value,
 			fromGroup: o.value,
 			fromIndex: c.value,
 			toGroup: l.value,
 			toIndex: u.value
 		};
-		T(), e.toGroup != null && r?.(e);
+		T(), t.toGroup != null && r?.(t);
 	}
 	function w(e) {
-		e.key === "Escape" && T();
+		e.key === "Escape" && (e.preventDefault(), e.stopPropagation(), T());
 	}
 	function T() {
 		let e = a.value;
-		document.removeEventListener("pointermove", y), document.removeEventListener("pointerup", C), document.removeEventListener("pointercancel", C), window.removeEventListener("keydown", w), f &&= (f.remove(), null), document.body.classList.remove("sortable-dragging"), a.value = !1, o.value = null, s.value = null, c.value = -1, l.value = null, u.value = -1, h = null, e && (g = Date.now() + 250, d.value = !0, clearTimeout(_), _ = setTimeout(() => {
+		document.removeEventListener("pointermove", y), document.removeEventListener("pointerup", C), document.removeEventListener("pointercancel", C), window.removeEventListener("keydown", w, !0), f &&= (f.remove(), null), document.body.classList.remove("sortable-dragging"), a.value = !1, o.value = null, s.value = null, c.value = -1, l.value = null, u.value = -1, h = null, e && (g = Date.now() + 250, d.value = !0, clearTimeout(_), _ = setTimeout(() => {
 			d.value = !1, _ = null;
 		}, 250));
 	}
@@ -124,7 +134,7 @@ function ze(e) {
 		let r = t[e];
 		if (!r) return [];
 		let i = r.items.value;
-		if (!a.value) return i;
+		if (r.layout === "grid" || !a.value) return i;
 		let c = i;
 		if (o.value === e) {
 			let e = n(s.value);
@@ -157,9 +167,9 @@ function ze(e) {
 }
 //#endregion
 //#region src/composables/useSheetSubpages.js
-var Be = "cubic-bezier(.2, 0, 0, 1)", Ve = 320;
-function He() {
-	let e = Z("detail"), t = Z(0), n = Z(!1), r = 1, i = null, a = Y(() => n.value ? `transform ${Ve}ms ${Be}` : "none"), o = Y(() => ({
+var Ve = "cubic-bezier(.2, 0, 0, 1)", He = 320;
+function Ue() {
+	let e = Z("detail"), t = Z(0), n = Z(!1), r = 1, i = null, a = Y(() => n.value ? `transform ${He}ms ${Ve}` : "none"), o = Y(() => ({
 		transform: `translateX(${(-t.value * 100).toFixed(3)}%)`,
 		transition: a.value
 	})), s = Y(() => ({
@@ -209,12 +219,12 @@ function He() {
 }
 //#endregion
 //#region src/lib/virtualListLayout.js
-function Ue(e, t, n, r) {
+function We(e, t, n, r) {
 	let i = [0];
 	for (let a of e) i.push(i.at(-1) + (r.get(t(a)) || Math.max(1, n(a))));
 	return i;
 }
-function We(e, t, n, r = 6) {
+function Ge(e, t, n, r = 6) {
 	let i = e.length - 1;
 	if (!i) return {
 		start: 0,
@@ -235,8 +245,8 @@ function We(e, t, n, r = 6) {
 }
 //#endregion
 //#region src/composables/useVirtualList.js
-function Ge(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overscan: a = 6 } = {}) {
-	let o = Fe(/* @__PURE__ */ new Map()), s = Z(0), c = Z(0), l = Z(null), u = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new WeakMap(), f = Y(() => Q(e) || []), p = Y(() => Ue(f.value, n, r, o.value)), m = Y(() => new Map(f.value.map((e, t) => [n(e), t]))), h = Y(() => f.value.length > i), g = Y(() => h.value ? We(p.value, s.value, c.value || 600, a) : {
+function Ke(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overscan: a = 6 } = {}) {
+	let o = Fe(/* @__PURE__ */ new Map()), s = Z(0), c = Z(0), l = Z(null), u = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new WeakMap(), f = Y(() => Q(e) || []), p = Y(() => We(f.value, n, r, o.value)), m = Y(() => new Map(f.value.map((e, t) => [n(e), t]))), h = Y(() => f.value.length > i), g = Y(() => h.value ? Ge(p.value, s.value, c.value || 600, a) : {
 		start: 0,
 		end: f.value.length
 	}), _ = Y(() => {
@@ -307,4 +317,4 @@ function Ge(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overs
 	};
 }
 //#endregion
-export { le as ACTION_MENU_GAP, we as ACTION_MENU_MARGIN, n as AccountMenu, Ce as ActionButton, j as ActionMenu, j as RowActionMenu, q as ActionMenuItem, q as RowActionItem, K as ActionMenuSubmenu, K as RowActionSubmenu, i as AddButton, a as AppModal, s as AppModalFrame, Me as AppShell, h as AppSidebar, w as AppSlider, H as BasePopover, y as BaseTile, e as ColorPresetPicker, ke as CompactCheckbox, Ee as ConfirmDialog, V as ContentRow, ie as DetailSection, _ as EditorPanel, U as EditorSection, g as EditorSectionTitle, t as EditorTotal, xe as FloatingTooltip, oe as FormActionButtons, ne as FormField, L as FormNumberInput, z as FormSelect, Ae as FormTextInput, ue as FormTextarea, G as GuidedTour, me as IconPicker, ge as InlineEdit, T as LoadingIndicator, M as LoadingState, r as ModalShell, Oe as MorphSheet, c as MorphTile, o as MorphTileHeader, se as MultiToggle, ye as OptionList, P as PRESET_COLORS, J as PromptDialog, J as TextPromptDialog, N as ROW_ACTION_GAP, I as ROW_ACTION_MARGIN, je as RemoveButton, d as RichContent, O as RichTextEditor, fe as SearchMultiSelect, Te as SectionLabel, De as SectionList, re as SegmentDonutChart, f as SidebarBrand, l as SidebarGroup, b as SidebarNavItem, S as SidebarToggle, F as SkeletonBlock, R as SlidingTabs, be as StatBar, E as TileAccentStrip, B as ToggleSwitch, x as ValueSelect, _e as computeActionMenuPlacement, de as computeRowActionPlacement, D as createRichNodeHtml, k as decodeRichNodePayload, u as encodeRichNodePayload, m as escapeHtml, Se as isValidHexColor, ve as plainTextToRichHtml, pe as randomPreset, p as readRichNode, Re as reorderByDrop, v as restoreFocus, ee as sanitizeRichHtml, A as sanitizeRichTextColor, te as sanitizeRichTextUrl, C as useContainerMorph, W as useFullscreenViewportHeight, ce as useGuidedTour, ae as useIsMobile, he as useMediaQuery, He as useSheetSubpages, ze as useSortable, Ge as useVirtualList };
+export { le as ACTION_MENU_GAP, we as ACTION_MENU_MARGIN, n as AccountMenu, Ce as ActionButton, j as ActionMenu, j as RowActionMenu, q as ActionMenuItem, q as RowActionItem, K as ActionMenuSubmenu, K as RowActionSubmenu, i as AddButton, a as AppModal, s as AppModalFrame, Me as AppShell, h as AppSidebar, w as AppSlider, H as BasePopover, y as BaseTile, e as ColorPresetPicker, ke as CompactCheckbox, Ee as ConfirmDialog, V as ContentRow, ie as DetailSection, _ as EditorPanel, U as EditorSection, g as EditorSectionTitle, t as EditorTotal, xe as FloatingTooltip, oe as FormActionButtons, ne as FormField, L as FormNumberInput, z as FormSelect, Ae as FormTextInput, ue as FormTextarea, G as GuidedTour, me as IconPicker, ge as InlineEdit, T as LoadingIndicator, M as LoadingState, r as ModalShell, Oe as MorphSheet, c as MorphTile, o as MorphTileHeader, se as MultiToggle, ye as OptionList, P as PRESET_COLORS, J as PromptDialog, J as TextPromptDialog, N as ROW_ACTION_GAP, I as ROW_ACTION_MARGIN, je as RemoveButton, d as RichContent, O as RichTextEditor, fe as SearchMultiSelect, Te as SectionLabel, De as SectionList, re as SegmentDonutChart, f as SidebarBrand, l as SidebarGroup, b as SidebarNavItem, S as SidebarToggle, F as SkeletonBlock, R as SlidingTabs, be as StatBar, E as TileAccentStrip, B as ToggleSwitch, x as ValueSelect, _e as computeActionMenuPlacement, de as computeRowActionPlacement, D as createRichNodeHtml, k as decodeRichNodePayload, u as encodeRichNodePayload, m as escapeHtml, Se as isValidHexColor, ve as plainTextToRichHtml, pe as randomPreset, p as readRichNode, ze as reorderByDrop, v as restoreFocus, ee as sanitizeRichHtml, A as sanitizeRichTextColor, te as sanitizeRichTextUrl, C as useContainerMorph, W as useFullscreenViewportHeight, ce as useGuidedTour, ae as useIsMobile, he as useMediaQuery, Ue as useSheetSubpages, Be as useSortable, Ke as useVirtualList };

@@ -35,6 +35,7 @@
         v-if="isOpen"
         ref="popoverEl"
         class="ram-popover"
+        :data-share-popover-related="related ? '' : undefined"
         :style="popoverStyle"
         role="menu"
         :aria-label="title"
@@ -59,6 +60,7 @@ import { ACTION_MENU_MARGIN, computeActionMenuPlacement } from '../../lib/action
 
 const props = defineProps({
   triggerAttrs: { type: Object, default: () => ({}) },
+  related: { type: Boolean, default: false },
   title: { type: String, default: 'Actions' },
   disabled: { type: Boolean, default: false },
   block: { type: Boolean, default: false },

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { reorderByDrop, sortableItemElements } from '../src/composables/useSortable.js'
+import { reorderByDrop, sortableItemElements, sortableTargetIndex } from '../src/composables/useSortable.js'
 
 describe('reorderByDrop', () => {
   it('moves an item forward in source-removed coordinates', () => {
@@ -52,3 +52,27 @@ function item(key, container) {
     getAttribute: name => name === 'data-sortable-key' ? key : null,
   }
 }
+
+
+describe('sortable grid targets', () => {
+  function grid() {
+    const container = {}
+    const cell = (index, left, top, owner = container) => ({
+      closest: () => owner,
+      getAttribute: () => String(index),
+      getBoundingClientRect: () => ({ left, top, right: left + 60, bottom: top + 60 }),
+    })
+    container.querySelectorAll = () => [cell(0, 0, 0), cell(1, 68, 0), cell(4, 0, 68), cell(7, 68, 68, {})]
+    return container
+  }
+  it('uses both coordinates and exact slots, including the source and empty cells', () => {
+    expect(sortableTargetIndex(grid(), 20, 20, 'source', 'grid')).toBe(0)
+    expect(sortableTargetIndex(grid(), 80, 20, 'source', 'grid')).toBe(1)
+    expect(sortableTargetIndex(grid(), 20, 80, 'source', 'grid')).toBe(4)
+  })
+  it('rejects gutters, outside points and nested grid cells', () => {
+    expect(sortableTargetIndex(grid(), 64, 20, null, 'grid')).toBe(-1)
+    expect(sortableTargetIndex(grid(), -1, 20, null, 'grid')).toBe(-1)
+    expect(sortableTargetIndex(grid(), 80, 80, null, 'grid')).toBe(-1)
+  })
+})

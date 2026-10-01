@@ -1,4 +1,4 @@
-import { $ as e, A as t, B as n, C as r, Ct as i, D as a, Dt as o, E as s, Et as c, F as l, H as ee, I as te, L as ne, M as re, N as ie, Ot as u, P as d, Q as ae, St as oe, T as f, Tt as se, V as ce, _ as p, _t as le, a as m, at as h, b as ue, bt as de, c as g, ct as fe, d as pe, f as _, g as me, gt as he, h as ge, ht as _e, i as v, it as ve, j as ye, kt as y, l as b, m as be, n as x, o as S, p as C, r as w, rt as xe, s as T, st as E, t as D, u as O, v as Se, vt as k, w as Ce, wt as A, x as we, xt as j, y as Te, yt as M, z as Ee } from "./FloatingTooltip-DYUOziSj.js";
+import { $ as e, A as t, B as n, C as r, Ct as i, D as a, Dt as o, E as s, Et as c, F as l, H as ee, I as te, L as ne, M as re, N as ie, Ot as u, P as d, Q as ae, St as oe, T as f, Tt as se, V as ce, _ as p, _t as le, a as m, at as h, b as ue, bt as de, c as g, ct as fe, d as pe, f as _, g as me, gt as he, h as ge, ht as _e, i as v, it as ve, j as ye, kt as y, l as b, m as be, n as x, o as S, p as C, r as w, rt as xe, s as T, st as E, t as D, u as O, v as Se, vt as k, w as Ce, wt as A, x as we, xt as j, y as Te, yt as M, z as Ee } from "./FloatingTooltip-FLEv3YEm.js";
 import { Fragment as N, createBlock as P, createCommentVNode as F, createElementBlock as I, createElementVNode as L, createTextVNode as R, createVNode as z, h as B, normalizeClass as De, openBlock as V, reactive as H, ref as U, toDisplayString as W, unref as G, withCtx as K, withModifiers as Oe } from "vue";
 //#region src/gallery/TourGalleryExample.vue
 var ke = {
@@ -659,7 +659,10 @@ var ke = {
 						_: 1
 					}, 8, ["open", "anchor"])
 				]),
-				L("article", mt, [U[73] ||= L("h2", null, "ActionMenu", -1), z(fe, { title: "Действия" }, {
+				L("article", mt, [U[73] ||= L("h2", null, "ActionMenu", -1), z(fe, {
+					title: "Действия",
+					related: ""
+				}, {
 					default: K(() => [
 						z(E, { tone: "accent" }, {
 							default: K(() => [...U[68] ||= [R("Редактировать", -1)]]),
@@ -902,6 +905,6 @@ var ke = {
 			}, 8, ["origin-el"])) : F("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-982af0ca"]]);
+}, [["__scopeId", "data-v-db82f123"]]);
 //#endregion
 export { q as COMPONENT_GALLERY_ALIASES, je as COMPONENT_GALLERY_COMPONENTS, J as ComponentGallery };
