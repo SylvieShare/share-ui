@@ -303,6 +303,7 @@
         data-share-gallery="AppShell AppSidebar SidebarBrand SidebarGroup SidebarNavItem SidebarToggle"
       >
         <h2>Navigation composition</h2>
+        <ToggleSwitch v-model="sidebarElevated" label="Приподнятая панель" />
         <div class="share-component-gallery__chrome">
           <AppShell
             class="share-component-gallery__chrome-shell"
@@ -311,7 +312,7 @@
             :rail-width="88"
           >
             <template #sidebar>
-              <AppSidebar v-model="sidebarExpanded" position="sticky" :default-expanded="true" storage-key="">
+              <AppSidebar v-model="sidebarExpanded" :elevated="sidebarElevated" position="sticky" :default-expanded="true" storage-key="">
                 <template #brand>
                   <SidebarBrand as="div" label="share-ui">
                     <template #icon><span>◆</span></template>
@@ -476,6 +477,7 @@ const selectValue = ref('rare')
 const colorValue = ref('#7c5ce2')
 const richValue = ref('<p><strong>RichContent</strong> показывает очищенный результат и <span data-rich-node="mention" data-rich-payload="%7B%22id%22%3A42%7D" contenteditable="false">@example</span>.</p>')
 const sidebarExpanded = ref(true)
+const sidebarElevated = ref(true)
 const popoverOpen = ref(false)
 const popoverAnchor = ref(null)
 const actionMenuAnchor = ref(null)

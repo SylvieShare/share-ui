@@ -195,7 +195,10 @@ Visible labels редактора передаются через `labels`; па
   По умолчанию shell также применяет общий `.share-app-canvas`; prop
   `canvas=false` оставлен для специальных полноэкранных и печатных экранов.
 - `AppSidebar` — DnD-style collapsible sidebar, optional localStorage state,
-  fixed/sticky positioning и mobile modes `hide`/`top`.
+  fixed/sticky positioning и mobile modes `hide`/`top`. Opt-in `elevated=true`
+  отделяет панель от canvas через `--surface`, `--border-strong` и короткую
+  направленную тень в раскрытом и свёрнутом состоянии; mobile `top` направляет
+  тень вниз. По умолчанию сохраняются `--bg` и прежняя expanded-тень.
 - `SidebarBrand`, `SidebarNavItem`, `SidebarGroup`, `SidebarToggle` — визуальные
   части панели с единым active marker, icon column и label motion.
 

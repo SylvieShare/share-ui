@@ -258,6 +258,7 @@ export const AppShell: DefineComponent<{
 export const AppSidebar: DefineComponent<{
   modelValue?: boolean
   defaultExpanded?: boolean
+  elevated?: boolean
   storageKey?: string
   position?: 'fixed' | 'sticky'
   mobileMode?: 'hide' | 'top'

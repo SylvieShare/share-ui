@@ -3,6 +3,7 @@
     class="share-app-sidebar app-sidebar"
     :class="[
       expanded && 'share-app-sidebar--expanded app-sidebar--expanded',
+      elevated && 'share-app-sidebar--elevated',
       `share-app-sidebar--${position}`,
       `share-app-sidebar--mobile-${mobileMode}`,
       `share-app-sidebar--breakpoint-${mobileBreakpoint}`,
@@ -40,6 +41,7 @@ import SidebarToggle from './SidebarToggle.vue'
 const props = defineProps({
   modelValue: { type: Boolean, default: undefined },
   defaultExpanded: { type: Boolean, default: false },
+  elevated: { type: Boolean, default: false },
   storageKey: { type: String, default: '' },
   position: {
     type: String,
@@ -122,6 +124,12 @@ defineExpose({ expanded, expand, collapse, toggle })
   box-shadow: var(--shadow-lg);
 }
 
+.share-app-sidebar--elevated {
+  background: var(--surface);
+  border-right-color: var(--border-strong);
+  box-shadow: 4px 0 12px color-mix(in srgb, var(--scrim) 45%, transparent);
+}
+
 .share-sidebar-head {
   display: flex;
   align-items: center;
@@ -176,6 +184,11 @@ defineExpose({ expanded, expand, collapse, toggle })
     box-shadow: none;
   }
 
+  .share-app-sidebar--breakpoint-768.share-app-sidebar--mobile-top.share-app-sidebar--elevated {
+    border-bottom-color: var(--border-strong);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--scrim) 45%, transparent);
+  }
+
   .share-app-sidebar--breakpoint-768.share-app-sidebar--mobile-top .share-sidebar-head {
     width: auto;
     height: auto;
@@ -213,6 +226,11 @@ defineExpose({ expanded, expand, collapse, toggle })
     border-right: 0;
     border-bottom: 1px solid var(--border);
     box-shadow: none;
+  }
+
+  .share-app-sidebar--breakpoint-640.share-app-sidebar--mobile-top.share-app-sidebar--elevated {
+    border-bottom-color: var(--border-strong);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--scrim) 45%, transparent);
   }
 
   .share-app-sidebar--breakpoint-640.share-app-sidebar--mobile-top .share-sidebar-head {

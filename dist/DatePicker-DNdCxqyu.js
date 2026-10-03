@@ -2831,6 +2831,10 @@ var Yt = /*#__PURE__*/ H({
 			type: Boolean,
 			default: !1
 		},
+		elevated: {
+			type: Boolean,
+			default: !1
+		},
 		storageKey: {
 			type: String,
 			default: ""
@@ -2906,6 +2910,7 @@ var Yt = /*#__PURE__*/ H({
 			toggle: h
 		}), (t, n) => (C(), s("aside", { class: _(["share-app-sidebar app-sidebar", [
 			f.value && "share-app-sidebar--expanded app-sidebar--expanded",
+			e.elevated && "share-app-sidebar--elevated",
 			`share-app-sidebar--${e.position}`,
 			`share-app-sidebar--mobile-${e.mobileMode}`,
 			`share-app-sidebar--breakpoint-${e.mobileBreakpoint}`
@@ -2940,7 +2945,7 @@ var Yt = /*#__PURE__*/ H({
 			t.$slots.account ? (C(), s("div", Nn, [D(t.$slots, "account", { expanded: f.value }, void 0, !0)])) : o("", !0)
 		], 2));
 	}
-}, [["__scopeId", "data-v-2025fec5"]]), Fn = {
+}, [["__scopeId", "data-v-70b969e0"]]), Fn = {
 	class: "share-sidebar-brand__icon sidebar-brand-icon",
 	"aria-hidden": "true"
 }, In = { class: "share-sidebar-label share-sidebar-brand__label sidebar-label sidebar-brand-label" }, Ln = /*#__PURE__*/ H(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
