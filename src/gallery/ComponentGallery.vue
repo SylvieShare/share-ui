@@ -63,6 +63,20 @@
           <InlineEdit model-value="" label="Новое название" placeholder="Название записи" force-open />
           <InlineEdit model-value="draft" label="Статус" :options="[{value: 'draft', label: 'Черновик'}, {value: 'ready', label: 'Готово'}]" display-value="Черновик" />
         </article>
+        <article class="share-component-gallery__card" data-share-gallery="TimelineGroup">
+          <h2>TimelineGroup</h2>
+          <SectionLabel title="История" line><template #actions><span>2</span></template></SectionLabel>
+          <TimelineGroup rail-width="100px" compact-rail-width="64px" :gap="16" :compact-gap="10" sticky>
+            <template #identity><strong>Участник</strong></template>
+            <strong>Запись события</strong><p>Содержимое справа от цветной линии.</p>
+          </TimelineGroup>
+          <TimelineGroup color="var(--success)">
+            <template #identity><span aria-hidden="true">✓</span></template>
+            <strong>Компактная запись</strong><p>Короткая иконка и полный текст.</p>
+            <template #footer><FormField label="Редактор на всю ширину" vertical><FormTextInput value="Черновик" /></FormField></template>
+          </TimelineGroup>
+        </article>
+
         <article class="share-component-gallery__card" data-share-gallery="SectionList">
           <h2>SectionList</h2>
           <SectionList title="Записи">
@@ -422,6 +436,7 @@ import AppSlider from '../components/AppSlider.vue'
 import CompactCheckbox from '../components/CompactCheckbox.vue'
 import MultiToggle from '../components/MultiToggle.vue'
 import RemoveButton from '../components/RemoveButton.vue'
+import TimelineGroup from '../components/TimelineGroup.vue'
 import SectionLabel from '../components/SectionLabel.vue'
 import SegmentDonutChart from '../components/SegmentDonutChart.vue'
 import SlidingTabs from '../components/SlidingTabs.vue'

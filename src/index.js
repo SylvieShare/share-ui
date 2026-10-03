@@ -99,3 +99,5 @@ export { default as FloatingTooltip } from './components/floating/FloatingToolti
 export { useVirtualList } from './composables/useVirtualList.js'
 
 export { default as DatePicker } from './components/form/DatePicker.vue'
+
+export { default as TimelineGroup } from './components/TimelineGroup.vue'

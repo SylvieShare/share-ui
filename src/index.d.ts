@@ -62,6 +62,7 @@ export const SectionLabel: DefineComponent<{
   title?: string
   border?: boolean
   align?: 'left' | 'center' | 'right' | ''
+  line?: boolean
 }>
 
 export interface SegmentDonutChartSegment {
@@ -684,4 +685,15 @@ export const DatePicker: DefineComponent<{
   clearLabel?: string
   allowClear?: boolean
   zIndex?: number
+}>
+
+export const TimelineGroup: DefineComponent<{
+  color?: string
+  railWidth?: string
+  compactRailWidth?: string
+  gap?: number
+  compactGap?: number
+  paddingBlock?: number
+  sticky?: boolean
+  separated?: boolean
 }>
