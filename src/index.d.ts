@@ -664,3 +664,22 @@ export function useVirtualList<T>(items: Ref<T[]> | (() => T[]), container: Ref<
   paddingAfter: ComputedRef<number>; totalSize: ComputedRef<number>
   setItemRef: (key: string | number, element: HTMLElement | { $el: HTMLElement } | null) => void
 }
+
+export const DatePicker: DefineComponent<{
+  modelValue?: string
+  locale?: string
+  weekStartsOn?: number
+  disabled?: boolean
+  min?: string
+  max?: string
+  placeholder?: string
+  ariaLabel?: string
+  previousLabel?: string
+  nextLabel?: string
+  monthLabel?: string
+  yearLabel?: string
+  todayLabel?: string
+  clearLabel?: string
+  allowClear?: boolean
+  zIndex?: number
+}>

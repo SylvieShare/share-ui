@@ -5630,4 +5630,318 @@ var Bi = ["aria-label", "aria-valuenow"], Vi = {
 	}
 }, [["__scopeId", "data-v-ddef3f8f"]]);
 //#endregion
-export { wt as $, er as A, bn as B, Br as C, ue as Ct, Cr as D, te as Dt, jr as E, ne as Et, zn as F, zt as G, Yt as H, Ln as I, Ht as J, It as K, Pn as L, Jn as M, Wn as N, Sr as O, U as Ot, Hn as P, At as Q, kn as R, Vr as S, q as St, Pr as T, re as Tt, Vt as U, hn as V, Bt as W, Rt as X, Gt as Y, Lt as Z, oi as _, De as _t, Zi as a, ct as at, Qr as b, ge as bt, zi as c, et as ct, Oi as d, Xe as dt, _t as et, Di as f, Ye as ft, li as g, Ae as gt, di as h, Ne as ht, ca as i, ut as it, Xn as j, tr as k, H as kt, Ri as l, Ke as lt, pi as m, Ze as mt, ha as n, yt as nt, Gi as o, st as ot, Ei as p, Je as pt, Kt as q, fa as r, gt as rt, Hi as s, ot as st, _a as t, vt as tt, Ai as u, Ge as ut, ri as v, X as vt, zr as w, se as wt, Jr as x, pe as xt, ei as y, ve as yt, Sn as z };
+//#region src/lib/calendar.js
+function va(e) {
+	if (!/^\d{4}-\d{2}-\d{2}$/.test(e || "")) return null;
+	let [t, n, r] = e.split("-").map(Number), i = /* @__PURE__ */ new Date(0);
+	return i.setFullYear(t, n - 1, r), i.setHours(12, 0, 0, 0), t > 0 && i.getFullYear() === t && i.getMonth() === n - 1 && i.getDate() === r ? i : null;
+}
+function ya(e) {
+	return `${String(e.getFullYear()).padStart(4, "0")}-${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")}`;
+}
+function ba(e, t = "", n = "") {
+	return !!(!va(e) || t && e < t || n && e > n);
+}
+function xa(e, t = 0, n = 0) {
+	let r = va(e);
+	if (!r) return e;
+	let i = r.getDate();
+	r.setDate(1), r.setMonth(r.getMonth() + n);
+	let a = new Date(r);
+	a.setMonth(a.getMonth() + 1, 0);
+	let o = a.getDate();
+	return r.setDate(Math.min(i, o) + t), ya(r);
+}
+function Sa(e, t, n = 1) {
+	let r = /* @__PURE__ */ new Date(0);
+	r.setFullYear(e, t, 1), r.setHours(12, 0, 0, 0);
+	let i = (r.getDay() - n + 7) % 7;
+	return Array.from({ length: 42 }, (e, n) => {
+		let a = new Date(r);
+		return a.setDate(n - i + 1), {
+			value: ya(a),
+			day: a.getDate(),
+			outside: a.getMonth() !== t
+		};
+	});
+}
+//#endregion
+//#region src/components/form/DatePicker.vue
+var Ca = { class: "share-date-picker" }, wa = [
+	"disabled",
+	"aria-label",
+	"aria-expanded"
+], Ta = { class: "share-date-picker__heading" }, Ea = ["aria-label"], Da = ["value"], Oa = ["value"], ka = ["aria-label"], Aa = ["aria-label"], ja = {
+	class: "share-date-picker__week",
+	role: "row"
+}, Ma = ["aria-selected"], Na = [
+	"data-date",
+	"tabindex",
+	"disabled",
+	"aria-label",
+	"aria-current",
+	"onClick",
+	"onKeydown"
+], Pa = { class: "share-date-picker__footer" }, Fa = ["disabled"], Ia = /*#__PURE__*/ H({
+	__name: "DatePicker",
+	props: {
+		modelValue: {
+			type: String,
+			default: ""
+		},
+		locale: {
+			type: String,
+			default: "en-US"
+		},
+		weekStartsOn: {
+			type: Number,
+			default: 1
+		},
+		disabled: Boolean,
+		min: {
+			type: String,
+			default: ""
+		},
+		max: {
+			type: String,
+			default: ""
+		},
+		placeholder: {
+			type: String,
+			default: "Choose a date"
+		},
+		ariaLabel: {
+			type: String,
+			default: "Choose a date"
+		},
+		previousLabel: {
+			type: String,
+			default: "Previous month"
+		},
+		nextLabel: {
+			type: String,
+			default: "Next month"
+		},
+		monthLabel: {
+			type: String,
+			default: "Month"
+		},
+		yearLabel: {
+			type: String,
+			default: "Year"
+		},
+		todayLabel: {
+			type: String,
+			default: "Today"
+		},
+		clearLabel: {
+			type: String,
+			default: "Clear"
+		},
+		allowClear: Boolean,
+		zIndex: {
+			type: Number,
+			default: 4e3
+		}
+	},
+	emits: ["update:modelValue"],
+	setup(t, { emit: n }) {
+		let r = t, a = n, l = T(null), u = T(null), f = T(!1), p = ya(/* @__PURE__ */ new Date()), m = i(() => va(r.modelValue)), h = T(r.modelValue || p), v = T((/* @__PURE__ */ new Date()).getFullYear()), y = T((/* @__PURE__ */ new Date()).getMonth()), b = i(() => Array.from({ length: 12 }, (e, t) => new Intl.DateTimeFormat(r.locale, { month: "long" }).format(new Date(2024, t, 1)))), x = i(() => Array.from({ length: 201 }, (e, t) => v.value - 100 + t).filter((e) => e >= 1 && e <= 9999)), S = i(() => Array.from({ length: 7 }, (e, t) => new Intl.DateTimeFormat(r.locale, { weekday: "short" }).format(new Date(2024, 0, 7 + (r.weekStartsOn + t) % 7)))), w = i(() => {
+			let e = Sa(v.value, y.value, r.weekStartsOn);
+			return Array.from({ length: 6 }, (t, n) => e.slice(n * 7, n * 7 + 7));
+		});
+		function D(e, t = !1) {
+			return new Intl.DateTimeFormat(r.locale, {
+				day: "numeric",
+				month: "long",
+				year: "numeric",
+				...t ? { weekday: "long" } : {}
+			}).format(e);
+		}
+		function O(e) {
+			return ba(e, r.min, r.max);
+		}
+		function k(e) {
+			let t = va(e) || /* @__PURE__ */ new Date();
+			v.value = t.getFullYear(), y.value = t.getMonth(), h.value = ya(t);
+		}
+		async function M() {
+			await g(), u.value?.querySelector(`[data-date="${h.value}"]`)?.focus({ preventScroll: !0 });
+		}
+		function N(e) {
+			f.value = e, e || l.value?.focus();
+		}
+		async function P() {
+			if (r.disabled) return;
+			if (f.value) {
+				N(!1);
+				return;
+			}
+			let e = m.value ? r.modelValue : p;
+			r.min && e < r.min && (e = r.min), r.max && e > r.max && (e = r.max), k(e), f.value = !0, await M();
+		}
+		function F(e) {
+			r.disabled || e && O(e) || (a("update:modelValue", e), N(!1));
+		}
+		function I(e) {
+			let t = xa(h.value, 0, e);
+			va(t) && k(t);
+		}
+		function z(e) {
+			I(e - y.value);
+		}
+		function B(e) {
+			I((e - v.value) * 12);
+		}
+		function V(e, t) {
+			let n = {
+				ArrowLeft: -1,
+				ArrowRight: 1,
+				ArrowUp: -7,
+				ArrowDown: 7
+			}, i;
+			if (e.key in n) i = xa(t, n[e.key]);
+			else if (e.key === "PageUp" || e.key === "PageDown") i = xa(t, 0, (e.key === "PageUp" ? -1 : 1) * (e.shiftKey ? 12 : 1));
+			else if (e.key === "Home" || e.key === "End") {
+				let n = (va(t).getDay() - r.weekStartsOn + 7) % 7;
+				i = xa(t, e.key === "Home" ? -n : 6 - n);
+			} else return;
+			e.preventDefault(), O(i) || (k(i), M());
+		}
+		function H(e) {
+			if (e.key !== "Tab") return;
+			let t = [...u.value.querySelectorAll("button:not(:disabled), select:not(:disabled)")].filter((e) => e.tabIndex >= 0), n = t[0], r = t.at(-1);
+			e.shiftKey && e.target === n ? (e.preventDefault(), r?.focus()) : !e.shiftKey && e.target === r && (e.preventDefault(), n?.focus());
+		}
+		function U(e) {
+			e.key === "Escape" && (e.stopPropagation(), e.preventDefault(), N(!1)), e.key === "Tab" && (e.stopPropagation(), H(e));
+		}
+		return L(() => r.disabled, (e) => {
+			e && (f.value = !1);
+		}), L(() => r.modelValue, (e) => {
+			f.value && k(e);
+		}), (n, r) => (C(), s("span", Ca, [c("button", {
+			ref_key: "anchor",
+			ref: l,
+			type: "button",
+			class: "share-date-picker__trigger",
+			disabled: t.disabled,
+			"aria-label": t.ariaLabel,
+			"aria-expanded": f.value,
+			"aria-haspopup": "dialog",
+			onClick: P
+		}, [r[6] ||= c("svg", {
+			viewBox: "0 0 24 24",
+			width: "19",
+			height: "19",
+			fill: "none",
+			stroke: "currentColor",
+			"stroke-width": "1.7",
+			"aria-hidden": "true"
+		}, [c("rect", {
+			x: "3",
+			y: "5",
+			width: "18",
+			height: "16",
+			rx: "3"
+		}), c("path", { d: "M7 3v4m10-4v4M3 11h18m-13 4h3m3 0h2" })], -1), c("span", { class: _({ "share-date-picker__placeholder": !m.value }) }, A(m.value ? D(m.value) : t.placeholder), 3)], 8, wa), d(ut, {
+			open: f.value,
+			anchor: l.value,
+			"min-width": 0,
+			"z-index": t.zIndex,
+			role: "dialog",
+			"aria-label": t.ariaLabel,
+			"transition-preset": "action-menu",
+			"close-on-scroll": !1,
+			"onUpdate:open": N
+		}, {
+			default: R(() => [c("div", {
+				ref_key: "calendar",
+				ref: u,
+				class: "share-date-picker__calendar",
+				onKeydown: U
+			}, [
+				c("div", Ta, [
+					c("button", {
+						type: "button",
+						"aria-label": t.previousLabel,
+						onClick: r[0] ||= (e) => I(-1)
+					}, "‹", 8, Ea),
+					d(di, {
+						value: y.value,
+						"aria-label": t.monthLabel,
+						"onUpdate:value": r[1] ||= (e) => z(Number(e))
+					}, {
+						default: R(() => [(C(!0), s(e, null, E(b.value, (e, t) => (C(), s("option", {
+							key: t,
+							value: t
+						}, A(e), 9, Da))), 128))]),
+						_: 1
+					}, 8, ["value", "aria-label"]),
+					d(di, {
+						value: v.value,
+						"aria-label": t.yearLabel,
+						"onUpdate:value": r[2] ||= (e) => B(Number(e))
+					}, {
+						default: R(() => [(C(!0), s(e, null, E(x.value, (e) => (C(), s("option", {
+							key: e,
+							value: e
+						}, A(e), 9, Oa))), 128))]),
+						_: 1
+					}, 8, ["value", "aria-label"]),
+					c("button", {
+						type: "button",
+						"aria-label": t.nextLabel,
+						onClick: r[3] ||= (e) => I(1)
+					}, "›", 8, ka)
+				]),
+				c("div", {
+					role: "grid",
+					"aria-label": `${b.value[y.value]} ${v.value}`
+				}, [c("div", ja, [(C(!0), s(e, null, E(S.value, (e) => (C(), s("span", {
+					key: e,
+					role: "columnheader"
+				}, A(e), 1))), 128))]), (C(!0), s(e, null, E(w.value, (n, r) => (C(), s("div", {
+					key: r,
+					class: "share-date-picker__week",
+					role: "row"
+				}, [(C(!0), s(e, null, E(n, (e) => (C(), s("span", {
+					key: e.value,
+					role: "gridcell",
+					"aria-selected": e.value === t.modelValue
+				}, [c("button", {
+					type: "button",
+					"data-date": e.value,
+					tabindex: e.value === h.value ? 0 : -1,
+					disabled: O(e.value),
+					"aria-label": D(j(va)(e.value), !0),
+					"aria-current": e.value === j(p) ? "date" : void 0,
+					class: _({
+						outside: e.outside,
+						selected: e.value === t.modelValue,
+						today: e.value === j(p)
+					}),
+					onClick: (t) => F(e.value),
+					onKeydown: (t) => V(t, e.value)
+				}, A(e.day), 43, Na)], 8, Ma))), 128))]))), 128))], 8, Aa),
+				c("div", Pa, [c("button", {
+					type: "button",
+					disabled: O(j(p)),
+					onClick: r[4] ||= (e) => F(j(p))
+				}, A(t.todayLabel), 9, Fa), t.allowClear ? (C(), s("button", {
+					key: 0,
+					type: "button",
+					onClick: r[5] ||= (e) => F("")
+				}, A(t.clearLabel), 1)) : o("", !0)])
+			], 544)]),
+			_: 1
+		}, 8, [
+			"open",
+			"anchor",
+			"z-index",
+			"aria-label"
+		])]));
+	}
+}, [["__scopeId", "data-v-5f6d99b2"]]);
+//#endregion
+export { At as $, tr as A, H as At, Sn as B, Vr as C, q as Ct, jr as D, ne as Dt, Pr as E, re as Et, Hn as F, Bt as G, hn as H, zn as I, Kt as J, zt as K, Ln as L, Xn as M, Jn as N, Cr as O, te as Ot, Wn as P, Lt as Q, Pn as R, Jr as S, pe as St, zr as T, se as Tt, Yt as U, bn as V, Vt as W, Gt as X, Ht as Y, Rt as Z, li as _, Ae as _t, ca as a, ut as at, ei as b, ve as bt, Hi as c, ot as ct, Ai as d, Ge as dt, wt as et, Oi as f, Xe as ft, di as g, Ne as gt, pi as h, Ze as ht, fa as i, gt as it, er as j, Sr as k, U as kt, zi as l, et as lt, Ei as m, Je as mt, _a as n, vt as nt, Zi as o, ct as ot, Di as p, Ye as pt, It as q, ha as r, yt as rt, Gi as s, st, Ia as t, _t as tt, Ri as u, Ke as ut, oi as v, De as vt, Br as w, ue as wt, Qr as x, ge as xt, ri as y, X as yt, kn as z };

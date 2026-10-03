@@ -52,6 +52,7 @@ export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
   'MorphSheet',
   'TextPromptDialog',
   'FormActionButtons',
+  'DatePicker',
   'FormField',
   'FormNumberInput',
   'FormSelect',

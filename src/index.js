@@ -97,3 +97,5 @@ export { default as OptionList } from './components/floating/OptionList.vue'
 export { default as SearchMultiSelect } from './components/floating/SearchMultiSelect.vue'
 export { default as FloatingTooltip } from './components/floating/FloatingTooltip.vue'
 export { useVirtualList } from './composables/useVirtualList.js'
+
+export { default as DatePicker } from './components/form/DatePicker.vue'

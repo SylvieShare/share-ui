@@ -151,12 +151,16 @@
       <div class="share-component-gallery__grid">
         <article
           class="share-component-gallery__card share-component-gallery__card--wide"
-          data-share-gallery="FormField FormTextInput FormNumberInput FormSelect FormTextarea FormActionButtons"
+          data-share-gallery="DatePicker FormField FormTextInput FormNumberInput FormSelect FormTextarea FormActionButtons"
         >
           <h2>Form primitives</h2>
           <div class="share-component-gallery__form-grid">
             <FormField label="Название" vertical hint="обязательное поле">
               <FormTextInput v-model:value="form.name" placeholder="Название элемента" />
+            </FormField>
+            <FormField label="Дата" vertical>
+              <DatePicker v-model="form.date" locale="ru-RU" placeholder="Выберите дату" aria-label="Выбрать дату" today-label="Сегодня" previous-label="Предыдущий месяц" next-label="Следующий месяц" month-label="Месяц" year-label="Год" clear-label="Очистить" allow-clear />
+              <DatePicker disabled placeholder="Недоступная дата" />
             </FormField>
             <FormField label="Количество" vertical>
               <FormNumberInput :value="form.count" :min="0" :max="20" @change="form.count = $event" />
@@ -439,6 +443,7 @@ import FormField from '../components/form/FormField.vue'
 import FormNumberInput from '../components/form/FormNumberInput.vue'
 import FormSelect from '../components/form/FormSelect.vue'
 import FormTextarea from '../components/form/FormTextarea.vue'
+import DatePicker from '../components/form/DatePicker.vue'
 import FormTextInput from '../components/form/FormTextInput.vue'
 import { COMPONENT_GALLERY_COMPONENTS } from '../lib/componentGalleryCatalog.js'
 
@@ -490,7 +495,7 @@ const donutSegments = [
   { key: 'video', label: 'Видео', value: 142, color: 'var(--info)' },
   { key: 'audio', label: 'Аудио', value: 74, color: 'var(--success)' },
 ]
-const form = reactive({ name: 'Новый элемент', count: 3, type: 'base', description: '' })
+const form = reactive({ date: '', name: 'Новый элемент', count: 3, type: 'base', description: '' })
 
 function formatDonutValue(value) {
   return `${value} МБ`
