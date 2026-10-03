@@ -956,6 +956,10 @@ var Ye = 8, Xe = 6, Ze = Je, Qe = [
 			type: Object,
 			default: () => ({})
 		},
+		anchor: {
+			type: Object,
+			default: null
+		},
 		related: {
 			type: Boolean,
 			default: !1
@@ -975,8 +979,11 @@ var Ye = 8, Xe = 6, Ze = Je, Qe = [
 	},
 	setup(r, { expose: i }) {
 		let l = r, u = Symbol("action-menu"), f = T(null), p = T(null), m = T(null), _ = T(!1), v = null, x = null;
-		function S(e) {
-			let t = f.value;
+		function S() {
+			return l.anchor ?? f.value;
+		}
+		function w(e) {
+			let t = S();
 			if (!t) return null;
 			let n = t.getBoundingClientRect(), r = e?.detail > 0;
 			return v = {
@@ -989,7 +996,7 @@ var Ye = 8, Xe = 6, Ze = Je, Qe = [
 				visibility: "hidden"
 			};
 		}
-		function w() {
+		function E() {
 			let e = window.visualViewport;
 			return {
 				viewportWidth: e?.width || window.innerWidth,
@@ -998,69 +1005,69 @@ var Ye = 8, Xe = 6, Ze = Je, Qe = [
 				viewportTop: e?.offsetTop || 0
 			};
 		}
-		function E() {
+		function O() {
 			x = null;
-			let e = f.value, t = p.value;
+			let e = S(), t = p.value;
 			if (!_.value || !e || !t) return;
-			let n = w(), r = Math.max(0, n.viewportWidth - 16);
+			let n = E(), r = Math.max(0, n.viewportWidth - 16);
 			t.style.minWidth = `${Math.min(200, r)}px`, t.style.maxWidth = `${Math.min(280, r)}px`;
-			let i = e.getBoundingClientRect(), a = Je({
+			let i = e.getBoundingClientRect(), a = t.offsetWidth, o = Je({
 				triggerRect: i,
-				popoverWidth: t.getBoundingClientRect().width,
-				popoverHeight: t.scrollHeight,
+				popoverWidth: a,
+				popoverHeight: t.scrollHeight + t.offsetHeight - t.clientHeight,
 				originX: v?.x ?? i.left + i.width / 2,
 				originY: v?.y ?? i.bottom,
 				...n
 			});
 			m.value = {
 				position: "fixed",
-				top: `${a.top}px`,
-				left: `${a.left}px`,
+				top: `${o.top}px`,
+				left: `${o.left}px`,
 				minWidth: `${Math.min(200, r)}px`,
 				maxWidth: `${Math.min(280, r)}px`,
-				maxHeight: `${a.maxHeight}px`,
+				maxHeight: `${o.maxHeight}px`,
 				visibility: "visible",
-				"--share-popover-origin-x": `${a.originX}px`,
-				"--share-popover-origin-y": `${a.originY}px`,
-				"--share-popover-enter-y": a.opensAbove ? "5px" : "-5px"
+				"--share-popover-origin-x": `${o.originX}px`,
+				"--share-popover-origin-y": `${o.originY}px`,
+				"--share-popover-enter-y": o.opensAbove ? "5px" : "-5px"
 			};
 		}
-		function O() {
-			x != null && cancelAnimationFrame(x), x = requestAnimationFrame(E);
-		}
 		function k() {
-			document.addEventListener("pointerdown", P, !0), document.addEventListener("keydown", I), window.addEventListener("resize", O), window.addEventListener("scroll", F, !0), window.visualViewport?.addEventListener("resize", O), window.visualViewport?.addEventListener("scroll", O);
+			x != null && cancelAnimationFrame(x), x = requestAnimationFrame(O);
 		}
 		function A() {
-			document.removeEventListener("pointerdown", P, !0), document.removeEventListener("keydown", I), window.removeEventListener("resize", O), window.removeEventListener("scroll", F, !0), window.visualViewport?.removeEventListener("resize", O), window.visualViewport?.removeEventListener("scroll", O);
+			document.addEventListener("pointerdown", F, !0), document.addEventListener("keydown", L), window.addEventListener("resize", k), window.addEventListener("scroll", I, !0), window.visualViewport?.addEventListener("resize", k), window.visualViewport?.addEventListener("scroll", k);
 		}
-		function j(e) {
-			l.disabled || _.value || (m.value = S(e), Be(u, M), _.value = !0, k(), g(O));
+		function j() {
+			document.removeEventListener("pointerdown", F, !0), document.removeEventListener("keydown", L), window.removeEventListener("resize", k), window.removeEventListener("scroll", I, !0), window.visualViewport?.removeEventListener("resize", k), window.visualViewport?.removeEventListener("scroll", k);
 		}
-		function M() {
-			_.value && (We(), _.value = !1, Ve(u), x != null && cancelAnimationFrame(x), x = null, A());
+		function M(e) {
+			l.disabled || _.value || (m.value = w(e), Be(u, N), _.value = !0, A(), g(k));
 		}
-		function N(e) {
-			l.disabled || (_.value ? M() : j(e));
+		function N() {
+			_.value && (We(), _.value = !1, Ve(u), x != null && cancelAnimationFrame(x), x = null, j());
 		}
 		function P(e) {
-			e.target?.closest?.(".ram-popover, [data-share-popover-related]") || f.value?.contains?.(e.target) || M();
+			l.disabled || (_.value ? N() : M(e));
 		}
 		function F(e) {
-			p.value?.contains?.(e.target) || e.target?.closest?.("[data-share-popover-related]") || M();
+			e.target?.closest?.(".ram-popover, [data-share-popover-related]") || f.value?.contains?.(e.target) || S()?.contains?.(e.target) || N();
 		}
 		function I(e) {
-			e.key === "Escape" && (We() || ze(u) && M());
+			p.value?.contains?.(e.target) || e.target?.closest?.("[data-share-popover-related]") || N();
 		}
-		return b(M), i({
-			open: j,
-			close: M,
-			toggle: N
+		function L(e) {
+			e.key === "Escape" && (We() || ze(u) && N());
+		}
+		return b(N), i({
+			open: M,
+			close: N,
+			toggle: P
 		}), (i, l) => (C(), s(e, null, [i.$slots.trigger ? (C(), s("div", h({ key: 0 }, r.triggerAttrs, {
 			ref_key: "triggerEl",
 			ref: f,
 			class: ["ram-custom-trigger", { "ram-custom-trigger--block": r.block }],
-			onClick: V(N, ["stop"])
+			onClick: V(P, ["stop"])
 		}), [D(i.$slots, "trigger", { open: _.value }, void 0, !0)], 16)) : (C(), s("button", h({ key: 1 }, r.triggerAttrs, {
 			ref_key: "triggerEl",
 			ref: f,
@@ -1071,7 +1078,7 @@ var Ye = 8, Xe = 6, Ze = Je, Qe = [
 			"aria-expanded": _.value,
 			"aria-haspopup": "menu",
 			disabled: r.disabled,
-			onClick: V(N, ["stop"])
+			onClick: V(P, ["stop"])
 		}), [...l[2] ||= [c("svg", {
 			width: "14",
 			height: "14",
@@ -1109,11 +1116,11 @@ var Ye = 8, Xe = 6, Ze = Je, Qe = [
 				"aria-label": r.title,
 				onClick: l[0] ||= V(() => {}, ["stop"]),
 				onPointerdown: l[1] ||= V(() => {}, ["stop"])
-			}, [D(i.$slots, "default", { close: M }, void 0, !0)], 44, $e)) : o("", !0)]),
+			}, [D(i.$slots, "default", { close: N }, void 0, !0)], 44, $e)) : o("", !0)]),
 			_: 3
 		})]))], 64));
 	}
-}, [["__scopeId", "data-v-178856e0"]]), tt = ["aria-haspopup", "aria-expanded"], nt = {
+}, [["__scopeId", "data-v-8a6333e6"]]), tt = ["aria-haspopup", "aria-expanded"], nt = {
 	class: "ram-item__icon",
 	"aria-hidden": "true"
 }, rt = {

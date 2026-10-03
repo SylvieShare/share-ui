@@ -129,7 +129,13 @@ scroll lock. Поэтому Escape, focus restoration и вложенные ок
   `transition` остаётся приоритетным escape hatch для специализированного
   Vue Transition name.
 - `ActionMenu` (`RowActionMenu` alias) — меню действий, которое измеряет себя и
-  открывается над trigger, когда снизу не хватает места.
+  открывается над trigger, когда снизу не хватает места. Опциональный `anchor`
+  задаёт внешний DOM-элемент для программного открытия через `open`/`toggle`:
+  меню привязывается к его границам, даже если встроенный trigger скрыт.
+  Нажатие на внешний anchor не считается кликом снаружи; без `anchor`
+  позиционирование и закрытие используют встроенный trigger как прежде.
+  Размеры меню измеряются без масштаба enter-анимации и с учётом рамки,
+  чтобы выравнивание по anchor не менялось после появления меню.
 - `ActionMenuItem` (`RowActionItem` alias) — нейтральная строка меню с icon
   component/slot, suffix, submenu state и semantic tone.
 - `ActionMenuSubmenu` (`RowActionSubmenu` alias) — соседний popover на desktop и

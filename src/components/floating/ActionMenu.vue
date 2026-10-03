@@ -60,6 +60,7 @@ import { ACTION_MENU_MARGIN, computeActionMenuPlacement } from '../../lib/action
 
 const props = defineProps({
   triggerAttrs: { type: Object, default: () => ({}) },
+  anchor: { type: Object, default: null },
   related: { type: Boolean, default: false },
   title: { type: String, default: 'Actions' },
   disabled: { type: Boolean, default: false },
@@ -74,8 +75,12 @@ const isOpen = ref(false)
 let openOrigin = null
 let placementFrame = null
 
+function resolveAnchor() {
+  return props.anchor ?? triggerEl.value
+}
+
 function initialStyle(event) {
-  const trigger = triggerEl.value
+  const trigger = resolveAnchor()
   if (!trigger) return null
   const rect = trigger.getBoundingClientRect()
   const hasPointerOrigin = event?.detail > 0
@@ -103,7 +108,7 @@ function viewportRect() {
 
 function placePopover() {
   placementFrame = null
-  const trigger = triggerEl.value
+  const trigger = resolveAnchor()
   const popover = popoverEl.value
   if (!isOpen.value || !trigger || !popover) return
 
@@ -113,11 +118,13 @@ function placePopover() {
   popover.style.maxWidth = `${Math.min(280, availableWidth)}px`
 
   const rect = trigger.getBoundingClientRect()
-  const popoverRect = popover.getBoundingClientRect()
+  // Measure layout width, unaffected by the enter transition scale.
+  const popoverWidth = popover.offsetWidth
   const placement = computeActionMenuPlacement({
     triggerRect: rect,
-    popoverWidth: popoverRect.width,
-    popoverHeight: popover.scrollHeight,
+    popoverWidth,
+    // Include borders when positioning an overflowing menu above its anchor.
+    popoverHeight: popover.scrollHeight + popover.offsetHeight - popover.clientHeight,
     originX: openOrigin?.x ?? rect.left + rect.width / 2,
     originY: openOrigin?.y ?? rect.bottom,
     ...viewport,
@@ -188,6 +195,7 @@ function toggle(event) {
 function onDocumentPointerDown(event) {
   if (event.target?.closest?.('.ram-popover, [data-share-popover-related]')) return
   if (triggerEl.value?.contains?.(event.target)) return
+  if (resolveAnchor()?.contains?.(event.target)) return
   close()
 }
 

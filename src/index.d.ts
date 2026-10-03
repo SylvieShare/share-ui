@@ -133,6 +133,7 @@ export const BasePopover: DefineComponent<{
 export const ActionMenu: DefineComponent<{
   related?: boolean
   triggerAttrs?: Record<string, unknown>
+  anchor?: HTMLElement | null
   title?: string
   disabled?: boolean
   block?: boolean

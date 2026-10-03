@@ -24,6 +24,11 @@ describe('BasePopover transitions', () => {
     expect(baseSource).toContain('[data-share-popover-related]')
   })
 
+  it('allows an external action-menu anchor without changing the default trigger contract', () => {
+    expect(ActionMenu.props.anchor.default).toBe(null)
+    expect(ActionMenu.props.anchor.type).toBe(Object)
+  })
+
   it('lets ActionMenu consume the preset without owning duplicate transition CSS', () => {
     expect(actionSource).toContain('<Transition name="share-popover-action">')
     expect(actionSource).not.toContain('.ram-popover-enter-active')

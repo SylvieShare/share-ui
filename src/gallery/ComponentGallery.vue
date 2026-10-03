@@ -225,6 +225,17 @@
             </ActionMenuSubmenu>
             <ActionMenuItem tone="danger">Удалить</ActionMenuItem>
           </ActionMenu>
+          <button ref="actionMenuAnchor" type="button" class="share-component-gallery__button" @click="anchoredActionMenu?.toggle($event)">
+            Меню внешнего элемента
+          </button>
+          <ActionMenu
+            ref="anchoredActionMenu"
+            :anchor="actionMenuAnchor"
+            title="Действия внешнего элемента"
+            :trigger-attrs="{ style: { display: 'none' } }"
+          >
+            <template #default="{ close }"><ActionMenuItem @click="close">Закрыть меню</ActionMenuItem></template>
+          </ActionMenu>
         </article>
 
         <article class="share-component-gallery__card" data-share-gallery="AccountMenu">
@@ -467,6 +478,8 @@ const richValue = ref('<p><strong>RichContent</strong> показывает оч
 const sidebarExpanded = ref(true)
 const popoverOpen = ref(false)
 const popoverAnchor = ref(null)
+const actionMenuAnchor = ref(null)
+const anchoredActionMenu = ref(null)
 const modalOpen = ref(false)
 const frameOpen = ref(false)
 const shellOpen = ref(false)
