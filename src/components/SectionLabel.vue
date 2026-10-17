@@ -1,5 +1,5 @@
 <template>
-  <div class="share-section-label" :class="{ 'share-section-label--border': border, 'share-section-label--before': border && borderPosition === 'before' }" :style="alignStyle">
+  <div class="share-section-label" :class="{ 'share-section-label--medium': size === 'medium', 'share-section-label--border': border, 'share-section-label--before': border && borderPosition === 'before' }" :style="alignStyle">
     <span class="share-section-label__text"><slot>{{ title }}</slot></span>
     <span v-if="line" class="share-section-label__line" aria-hidden="true" />
     <span v-if="$slots.actions" class="share-section-label__actions"><slot name="actions" /></span>
@@ -10,6 +10,7 @@
 import { computed } from 'vue'
 const props = defineProps({
   title: { type: String, default: '' },
+  size: { type: String, default: 'small', validator: value => ['small', 'medium'].includes(value) },
   line: { type: Boolean, default: false },
   border: { type: Boolean, default: false },
   borderPosition: { type: String, default: 'after', validator: value => ['before', 'after'].includes(value) },
@@ -39,6 +40,7 @@ const alignStyle = computed(() => {
   letter-spacing: .1em;
   text-transform: uppercase;
 }
+.share-section-label--medium { font-size: 12px; }
 .share-section-label--border { margin-bottom: 6px; padding-bottom: 5px; border-bottom: 1px solid var(--border); }
 .share-section-label--before { padding-bottom: 0; border-bottom: 0; padding-top: 8px; border-top: 1px solid var(--border); margin-bottom: 8px; }
 .share-section-label__line { flex: 1; min-width: 12px; height: 1px; background: var(--border-strong); }

@@ -23,7 +23,8 @@ it('places a full section border before its title with an explicit content inset
 })
 
 it('supports section spacing without a divider', async () => {
-  const html = await renderToString(createSSRApp({ render: () => h(SectionLabel, { title: 'Title', spaceAfter: 12 }) }))
+  const html = await renderToString(createSSRApp({ render: () => h(SectionLabel, { title: 'Title', size: 'medium', spaceAfter: 12 }) }))
+  expect(html).toContain('share-section-label--medium')
   expect(html).toContain('margin-bottom:12px')
   expect(html).not.toContain('share-section-label--border')
 })

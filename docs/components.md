@@ -428,4 +428,5 @@ stroke-dashoffset плавно меняется в обе стороны. Лин
 SectionLabel поддерживает `borderPosition="before"` для линии над текстом
 и `inset` (number px либо CSS length) для горизонтальных отступов содержимого.
 `spaceAfter` (number px либо CSS length) задаёт margin-bottom заголовка.
+`size="small"` сохраняет шрифт 10px по умолчанию; `size="medium"` увеличивает его до 12px.
 Default `after` и отсутствие inset/spaceAfter сохраняют прежнюю геометрию.

@@ -612,6 +612,11 @@ var H = (e, t) => {
 			type: String,
 			default: ""
 		},
+		size: {
+			type: String,
+			default: "small",
+			validator: (e) => ["small", "medium"].includes(e)
+		},
 		line: {
 			type: Boolean,
 			default: !1
@@ -649,6 +654,7 @@ var H = (e, t) => {
 		});
 		return (t, r) => (C(), s("div", {
 			class: _(["share-section-label", {
+				"share-section-label--medium": e.size === "medium",
 				"share-section-label--border": e.border,
 				"share-section-label--before": e.border && e.borderPosition === "before"
 			}]),
@@ -659,7 +665,7 @@ var H = (e, t) => {
 			t.$slots.actions ? (C(), s("span", X, [D(t.$slots, "actions", {}, void 0, !0)])) : o("", !0)
 		], 6));
 	}
-}, [["__scopeId", "data-v-c79f9591"]]), Se = ["aria-label"], Ce = {
+}, [["__scopeId", "data-v-9d1971f5"]]), Se = ["aria-label"], Ce = {
 	viewBox: "0 0 120 120",
 	role: "img",
 	"aria-hidden": "true"

@@ -98,7 +98,7 @@
             <IconToggleButton :model-value="true" label="Недоступное действие" disabled><template #icon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7" /></svg></template></IconToggleButton>
           </div>
           <SectionLabel title="Заголовок под разделителем" border border-position="before" :inset="8" />
-          <SectionLabel title="Заголовок с отступом 12px" :space-after="12" />
+          <SectionLabel title="Увеличенный заголовок с отступом 12px" size="medium" :space-after="12" />
           <div class="share-component-gallery__row">
             <ActionButton>Основное действие</ActionButton>
             <ActionButton variant="secondary">Вторичное</ActionButton>
