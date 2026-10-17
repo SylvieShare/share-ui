@@ -18,6 +18,7 @@ export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
   'SectionList',
   'AddButton',
   'ActionButton',
+  'IconToggleButton',
   'AppSlider',
   'CompactCheckbox',
   'MultiToggle',

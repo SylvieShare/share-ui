@@ -413,3 +413,17 @@ tokens; контент, редактор и порядок остаются у c
 `SectionLabel.line` (false по умолчанию) добавляет горизонтальную линию между
 названием и слотом `actions`, например счётчиком. Старые состояния компонента
 не меняются. Для заголовка используйте `role="heading"` / `aria-level` через attrs.
+
+
+### IconToggleButton
+
+Нейтральная кнопка 48×48 на ActionButton: `modelValue`, обязательный `label`,
+`color` (CSS color/token), `disabled`; emit `update:modelValue`, slot `icon`.
+Состояние выключения рисуется одной постоянной SVG-линией поверх иконки:
+stroke-dashoffset плавно меняется в обе стороны. Цвет и рамка также анимированы;
+`prefers-reduced-motion` отключает transitions. Иконка остаётся у consumer;
+компонент не зависит от icon library и не хранит серверное состояние.
+
+SectionLabel поддерживает `borderPosition="before"` для линии над текстом
+и `inset` (number px либо CSS length) для горизонтальных отступов содержимого.
+Default `after` и отсутствие inset сохраняют прежнюю геометрию.

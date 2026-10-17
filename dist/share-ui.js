@@ -1,8 +1,8 @@
-import { $ as e, A as t, At as n, B as r, C as i, Ct as a, D as o, Dt as s, E as c, Et as l, F as u, G as d, H as f, I as p, J as m, K as h, L as g, M as _, N as v, O as y, Ot as b, P as x, Q as S, R as C, S as w, St as T, T as E, Tt as D, U as O, V as k, W as ee, X as te, Y as ne, Z as re, _ as ie, _t as ae, a as oe, at as A, b as j, bt as se, c as M, ct as N, d as P, dt as F, et as I, f as L, ft as R, g as z, gt as B, h as V, ht as H, i as U, it as W, j as G, k as K, kt as ce, l as le, lt as q, m as ue, mt as de, n as fe, nt as pe, o as me, ot as he, p as ge, pt as _e, q as ve, r as ye, rt as be, s as xe, st as Se, t as Ce, tt as we, u as Te, ut as J, v as Ee, vt as De, w as Oe, wt as ke, x as Ae, xt as je, y as Me, yt as Ne, z as Pe } from "./TimelineGroup-BOBGEEn7.js";
-import { computed as Y, nextTick as X, onBeforeUnmount as Fe, onScopeDispose as Ie, ref as Z, shallowRef as Le, toValue as Re, watch as Q } from "vue";
+import { $ as e, A as t, At as n, B as r, C as i, Ct as a, D as o, Dt as s, E as c, Et as l, F as u, G as d, H as f, I as p, J as m, K as h, L as g, M as _, N as v, O as y, Ot as b, P as x, Q as S, R as C, S as w, St as T, T as E, Tt as D, U as O, V as k, W as A, X as ee, Y as te, Z as ne, _ as re, _t as ie, a as ae, at as oe, b as se, bt as ce, c as j, ct as M, d as N, dt as P, et as F, f as I, ft as L, g as R, gt as z, h as B, ht as V, i as H, it as U, j as W, jt as G, k as le, kt as ue, l as de, lt as fe, m as pe, mt as me, n as he, nt as ge, o as _e, ot as K, p as ve, pt as ye, q as be, r as xe, rt as Se, s as Ce, st as we, t as Te, tt as Ee, u as De, ut as q, v as Oe, vt as ke, w as Ae, wt as je, x as J, xt as Me, y as Ne, yt as Pe, z as Fe } from "./TimelineGroup-CdFgPhnf.js";
+import { computed as Y, nextTick as X, onBeforeUnmount as Ie, onScopeDispose as Le, ref as Z, shallowRef as Re, toValue as ze, watch as Q } from "vue";
 //#region src/composables/useSortable.js
-var ze = 4;
-function Be(e, t = null) {
+var Be = 4;
+function Ve(e, t = null) {
 	return Array.from(e.querySelectorAll("[data-sortable-key]")).filter((t) => t.closest("[data-sortable-container]") === e).filter((e) => e.getAttribute("data-sortable-key") !== t);
 }
 function $(e, t, n, r, i = "list") {
@@ -15,15 +15,15 @@ function $(e, t, n, r, i = "list") {
 		let i = Number(r.getAttribute("data-sortable-slot"));
 		return Number.isInteger(i) && i >= 0 ? i : -1;
 	}
-	let a = Be(e, r), o = a.findIndex((e) => n < e.getBoundingClientRect().top + e.getBoundingClientRect().height / 2);
+	let a = Ve(e, r), o = a.findIndex((e) => n < e.getBoundingClientRect().top + e.getBoundingClientRect().height / 2);
 	return o < 0 ? a.length : o;
 }
-function Ve(e, t, n) {
+function He(e, t, n) {
 	if (t < 0) return e.slice();
 	let r = e.slice(), [i] = r.splice(t, 1);
 	return r.splice(Math.min(n, r.length), 0, i), r;
 }
-function He(e) {
+function Ue(e) {
 	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = Z(!1), o = Z(null), s = Z(null), c = Z(-1), l = Z(null), u = Z(-1), d = Z(!1), f = null, p = 0, m = 0, h = null, g = 0, _ = null;
 	function v(e, t, n, r) {
 		if (e.button !== void 0 && e.button !== 0) return;
@@ -41,7 +41,7 @@ function He(e) {
 		if (!a.value) {
 			if (!h) return;
 			let t = e.clientX - h.x, n = e.clientY - h.y;
-			if (Math.hypot(t, n) < ze) return;
+			if (Math.hypot(t, n) < Be) return;
 			b();
 		}
 		x(e.clientX, e.clientY), S(e.clientX, e.clientY);
@@ -150,7 +150,7 @@ function He(e) {
 		}
 		return c;
 	}
-	return Fe(() => {
+	return Ie(() => {
 		T(), clearTimeout(_), d.value = !1;
 	}), {
 		dragging: a,
@@ -167,9 +167,9 @@ function He(e) {
 }
 //#endregion
 //#region src/composables/useSheetSubpages.js
-var Ue = "cubic-bezier(.2, 0, 0, 1)", We = 320;
-function Ge() {
-	let e = Z("detail"), t = Z(0), n = Z(!1), r = 1, i = null, a = Y(() => n.value ? `transform ${We}ms ${Ue}` : "none"), o = Y(() => ({
+var We = "cubic-bezier(.2, 0, 0, 1)", Ge = 320;
+function Ke() {
+	let e = Z("detail"), t = Z(0), n = Z(!1), r = 1, i = null, a = Y(() => n.value ? `transform ${Ge}ms ${We}` : "none"), o = Y(() => ({
 		transform: `translateX(${(-t.value * 100).toFixed(3)}%)`,
 		transition: a.value
 	})), s = Y(() => ({
@@ -219,12 +219,12 @@ function Ge() {
 }
 //#endregion
 //#region src/lib/virtualListLayout.js
-function Ke(e, t, n, r) {
+function qe(e, t, n, r) {
 	let i = [0];
 	for (let a of e) i.push(i.at(-1) + (r.get(t(a)) || Math.max(1, n(a))));
 	return i;
 }
-function qe(e, t, n, r = 6) {
+function Je(e, t, n, r = 6) {
 	let i = e.length - 1;
 	if (!i) return {
 		start: 0,
@@ -245,8 +245,8 @@ function qe(e, t, n, r = 6) {
 }
 //#endregion
 //#region src/composables/useVirtualList.js
-function Je(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overscan: a = 6 } = {}) {
-	let o = Le(/* @__PURE__ */ new Map()), s = Z(0), c = Z(0), l = Z(null), u = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new WeakMap(), f = Y(() => Re(e) || []), p = Y(() => Ke(f.value, n, r, o.value)), m = Y(() => new Map(f.value.map((e, t) => [n(e), t]))), h = Y(() => f.value.length > i), g = Y(() => h.value ? qe(p.value, s.value, c.value || 600, a) : {
+function Ye(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overscan: a = 6 } = {}) {
+	let o = Re(/* @__PURE__ */ new Map()), s = Z(0), c = Z(0), l = Z(null), u = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new WeakMap(), f = Y(() => ze(e) || []), p = Y(() => qe(f.value, n, r, o.value)), m = Y(() => new Map(f.value.map((e, t) => [n(e), t]))), h = Y(() => f.value.length > i), g = Y(() => h.value ? Je(p.value, s.value, c.value || 600, a) : {
 		start: 0,
 		end: f.value.length
 	}), _ = Y(() => {
@@ -307,7 +307,7 @@ function Je(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overs
 		flush: "post"
 	}), Q(m, (e) => {
 		o.value = new Map([...o.value].filter(([t]) => e.has(t))), e.has(l.value) || (l.value = null), X(w);
-	}), Ie(() => {
+	}), Le(() => {
 		k(), y?.disconnect(), S != null && cancelAnimationFrame(S);
 	}), {
 		visibleItems: _,
@@ -317,4 +317,4 @@ function Je(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overs
 	};
 }
 //#endregion
-export { F as ACTION_MENU_GAP, R as ACTION_MENU_MARGIN, f as AccountMenu, L as ActionButton, J as ActionMenu, J as RowActionMenu, q as ActionMenuItem, q as RowActionItem, A as ActionMenuSubmenu, A as RowActionSubmenu, D as AddButton, K as AppModal, y as AppModalFrame, k as AppShell, Pe as AppSidebar, ke as AppSlider, he as BasePopover, n as BaseTile, we as ColorPresetPicker, a as CompactCheckbox, c as ConfirmDialog, me as ContentRow, fe as DatePicker, xe as DetailSection, u as EditorPanel, v as EditorSection, x as EditorSectionTitle, _ as EditorTotal, ye as FloatingTooltip, w as FormActionButtons, Me as FormField, Ee as FormNumberInput, ie as FormSelect, Ae as FormTextInput, z as FormTextarea, P as GuidedTour, M as IconPicker, V as InlineEdit, o as LoadingIndicator, ge as LoadingState, E as ModalShell, i as MorphSheet, b as MorphTile, ce as MorphTileHeader, T as MultiToggle, oe as OptionList, pe as PRESET_COLORS, j as PromptDialog, j as TextPromptDialog, _e as ROW_ACTION_GAP, de as ROW_ACTION_MARGIN, je as RemoveButton, ee as RichContent, O as RichTextEditor, U as SearchMultiSelect, se as SectionLabel, l as SectionList, Ne as SegmentDonutChart, C as SidebarBrand, g as SidebarGroup, p as SidebarNavItem, r as SidebarToggle, ue as SkeletonBlock, De as SlidingTabs, le as StatBar, s as TileAccentStrip, Ce as TimelineGroup, ae as ToggleSwitch, I as ValueSelect, H as computeActionMenuPlacement, B as computeRowActionPlacement, d as createRichNodeHtml, h as decodeRichNodePayload, ve as encodeRichNodePayload, m as escapeHtml, be as isValidHexColor, ne as plainTextToRichHtml, W as randomPreset, te as readRichNode, Ve as reorderByDrop, t as restoreFocus, re as sanitizeRichHtml, S as sanitizeRichTextColor, e as sanitizeRichTextUrl, Oe as useContainerMorph, G as useFullscreenViewportHeight, Te as useGuidedTour, Se as useIsMobile, N as useMediaQuery, Ge as useSheetSubpages, He as useSortable, Je as useVirtualList };
+export { L as ACTION_MENU_GAP, ye as ACTION_MENU_MARGIN, O as AccountMenu, ve as ActionButton, P as ActionMenu, P as RowActionMenu, q as ActionMenuItem, q as RowActionItem, K as ActionMenuSubmenu, K as RowActionSubmenu, l as AddButton, t as AppModal, le as AppModalFrame, f as AppShell, r as AppSidebar, D as AppSlider, we as BasePopover, G as BaseTile, ge as ColorPresetPicker, je as CompactCheckbox, o as ConfirmDialog, _e as ContentRow, he as DatePicker, Ce as DetailSection, p as EditorPanel, x as EditorSection, u as EditorSectionTitle, v as EditorTotal, xe as FloatingTooltip, i as FormActionButtons, se as FormField, Ne as FormNumberInput, Oe as FormSelect, w as FormTextInput, re as FormTextarea, N as GuidedTour, j as IconPicker, I as IconToggleButton, R as InlineEdit, y as LoadingIndicator, pe as LoadingState, c as ModalShell, Ae as MorphSheet, ue as MorphTile, n as MorphTileHeader, a as MultiToggle, ae as OptionList, Se as PRESET_COLORS, J as PromptDialog, J as TextPromptDialog, me as ROW_ACTION_GAP, V as ROW_ACTION_MARGIN, T as RemoveButton, d as RichContent, A as RichTextEditor, H as SearchMultiSelect, Me as SectionLabel, s as SectionList, ce as SegmentDonutChart, Fe as SidebarBrand, C as SidebarGroup, g as SidebarNavItem, k as SidebarToggle, B as SkeletonBlock, Pe as SlidingTabs, de as StatBar, b as TileAccentStrip, Te as TimelineGroup, ke as ToggleSwitch, Ee as ValueSelect, z as computeActionMenuPlacement, ie as computeRowActionPlacement, h as createRichNodeHtml, be as decodeRichNodePayload, m as encodeRichNodePayload, te as escapeHtml, U as isValidHexColor, ee as plainTextToRichHtml, oe as randomPreset, ne as readRichNode, He as reorderByDrop, W as restoreFocus, S as sanitizeRichHtml, e as sanitizeRichTextColor, F as sanitizeRichTextUrl, E as useContainerMorph, _ as useFullscreenViewportHeight, De as useGuidedTour, M as useIsMobile, fe as useMediaQuery, Ke as useSheetSubpages, Ue as useSortable, Ye as useVirtualList };

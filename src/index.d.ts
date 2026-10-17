@@ -59,6 +59,8 @@ export const CompactCheckbox: DefineComponent<{
 }>
 
 export const SectionLabel: DefineComponent<{
+  borderPosition?: 'before' | 'after'
+  inset?: string | number | null
   title?: string
   border?: boolean
   align?: 'left' | 'center' | 'right' | ''
@@ -577,6 +579,8 @@ export const LoadingIndicator: DefineComponent<{ label: string; size?: 'xs' | 's
 export const SkeletonBlock: DefineComponent<{ width?: string; height?: string; round?: boolean }>
 
 export const LoadingState: DefineComponent<{ label: string; compact?: boolean; fill?: boolean }>
+
+export const IconToggleButton: DefineComponent<{ modelValue?: boolean; label: string; color?: string | null; disabled?: boolean }>
 
 export const ActionButton: DefineComponent<{
   iconOnly?: boolean

@@ -90,8 +90,14 @@
           </SectionList>
         </article>
 
-        <article class="share-component-gallery__card" data-share-gallery="AddButton RemoveButton ActionButton">
+        <article class="share-component-gallery__card" data-share-gallery="AddButton RemoveButton ActionButton IconToggleButton">
           <h2>Кнопки элементов</h2>
+          <div class="share-component-gallery__row">
+            <IconToggleButton v-model="iconToggle" label="Переключить действие" color="var(--success)"><template #icon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7" /></svg></template></IconToggleButton>
+            <IconToggleButton :model-value="false" label="Выключенное действие"><template #icon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7" /></svg></template></IconToggleButton>
+            <IconToggleButton :model-value="true" label="Недоступное действие" disabled><template #icon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7" /></svg></template></IconToggleButton>
+          </div>
+          <SectionLabel title="Заголовок под разделителем" border border-position="before" :inset="8" />
           <div class="share-component-gallery__row">
             <ActionButton>Основное действие</ActionButton>
             <ActionButton variant="secondary">Вторичное</ActionButton>
@@ -431,6 +437,7 @@ import TileAccentStrip from '../components/TileAccentStrip.vue'
 import MorphTile from '../components/MorphTile.vue'
 import MorphTileHeader from '../components/MorphTileHeader.vue'
 import ActionButton from '../components/ActionButton.vue'
+import IconToggleButton from '../components/IconToggleButton.vue'
 import AddButton from '../components/AddButton.vue'
 import AppSlider from '../components/AppSlider.vue'
 import CompactCheckbox from '../components/CompactCheckbox.vue'
@@ -483,6 +490,7 @@ defineProps({
 })
 
 const componentCount = COMPONENT_GALLERY_COMPONENTS.length
+const iconToggle = ref(true)
 const switchValue = ref(true)
 const checkboxValue = ref(true)
 const toggleValue = ref('md')
