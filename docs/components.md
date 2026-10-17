@@ -145,7 +145,10 @@ scroll lock. Поэтому Escape, focus restoration и вложенные ок
   `ActionMenuItem`. Prop `expanded` переключает rail- и полный варианты.
 - `ValueSelect` — компактный searchable listbox с disabled options, стрелками,
   Home/End, Enter и Escape. Все видимые тексты передаются props.
-- `ColorPresetPicker` — preset/custom/clear picker. Палитра передаётся `colors`,
+- `ColorPresetPicker` — preset/custom/clear picker. `variant="button"` даёт кнопку
+  80×40: нейтральная палитра (заменяется слотом `icon`) слева и текущий цвет
+  справа. По умолчанию `variant="swatch"`; существующий слот `trigger` сохраняется
+  для этого варианта. `inline` всегда выводит саму палитру. Палитра передаётся `colors`,
   тексты — `clearLabel`, `customLabel`, `ariaLabel`; custom text эмитится только
   после проверки hex-формата.
 

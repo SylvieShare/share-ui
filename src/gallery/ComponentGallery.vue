@@ -213,6 +213,7 @@
               aria-label="Выбрать редкость"
               searchable
             />
+            <ColorPresetPicker v-model="colorValue" variant="button" aria-label="Цвет кнопкой" allow-custom />
             <ColorPresetPicker v-model="colorValue" inline allow-custom allow-clear />
           </div>
         </article>

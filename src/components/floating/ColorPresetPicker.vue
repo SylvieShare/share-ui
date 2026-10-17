@@ -4,7 +4,12 @@
   </div>
 
   <span v-else ref="anchorEl" class="cpp-host">
-    <slot name="trigger" :toggle="toggle" :open="open" :value="modelValue">
+    <button v-if="variant === 'button'" type="button" class="cpp-button"
+      :aria-label="ariaLabel" :title="ariaLabel" :aria-expanded="open" aria-haspopup="dialog" @click="toggle">
+      <span class="cpp-button-icon" aria-hidden="true"><slot name="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18h1a2 2 0 0 0 1-3.7 1.6 1.6 0 0 1 .8-3H17a4 4 0 0 0 4-4C21 6.4 17 3 12 3Z"/><circle cx="7.5" cy="10" r=".7"/><circle cx="11" cy="7" r=".7"/><circle cx="15.5" cy="8" r=".7"/><circle cx="6.5" cy="14" r=".7"/></svg></slot></span>
+      <span class="cpp-button-color" aria-hidden="true"><span :style="{ background: modelValue || 'var(--bg)' }" /></span>
+    </button>
+    <slot v-else name="trigger" :toggle="toggle" :open="open" :value="modelValue">
       <button
         type="button"
         class="cpp-swatch"
@@ -51,6 +56,7 @@ const props = defineProps({
   customLabel: { type: String, default: 'Custom color' },
   ariaLabel: { type: String, default: 'Choose color' },
   inline: { type: Boolean, default: false },
+  variant: { type: String, default: 'swatch', validator: value => ['swatch', 'button'].includes(value) },
   placement: { type: String, default: 'bottom-start' },
   zIndex: { type: Number, default: 4000 },
 })
@@ -183,6 +189,13 @@ const ColorGrid = defineComponent({
 <style scoped>
 .cpp-host { position: relative; display: inline-flex; flex-shrink: 0; }
 
+.cpp-button { display: inline-flex; width: 80px; height: 40px; padding: 0; align-items: center; background: var(--surface); border: 1px solid var(--border-strong); border-radius: var(--r-sm); color: var(--text-muted); cursor: pointer; transition: color .2s, border-color .2s; }
+.cpp-button:hover, .cpp-button[aria-expanded="true"] { color: var(--accent); border-color: var(--accent); }
+.cpp-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cpp-button-icon, .cpp-button-color { width: 50%; height: 100%; display: grid; place-items: center; }
+.cpp-button-icon :deep(svg) { width: 24px; height: 24px; }
+.cpp-button-color { border-left: 1px solid var(--border-strong); }
+.cpp-button-color > span { width: 20px; height: 20px; border-radius: var(--r-sm); border: 1px solid var(--border-strong); }
 .cpp-swatch {
   width: 22px;
   height: 22px;

@@ -183,6 +183,7 @@ export const ValueSelect: DefineComponent<{
 }>
 
 export const ColorPresetPicker: DefineComponent<{
+  variant?: 'swatch' | 'button'
   modelValue?: string
   colors?: string[]
   columns?: number
