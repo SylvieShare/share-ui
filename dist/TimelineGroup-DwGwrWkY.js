@@ -629,6 +629,10 @@ var H = (e, t) => {
 			type: [String, Number],
 			default: null
 		},
+		spaceAfter: {
+			type: [String, Number],
+			default: null
+		},
 		align: {
 			type: String,
 			default: ""
@@ -641,7 +645,7 @@ var H = (e, t) => {
 				center: "center",
 				right: "flex-end"
 			}, n = t.align && e[t.align] ? { justifyContent: e[t.align] } : {};
-			return t.inset != null && (n.paddingInline = typeof t.inset == "number" ? `${t.inset}px` : t.inset), n;
+			return t.inset != null && (n.paddingInline = typeof t.inset == "number" ? `${t.inset}px` : t.inset), t.spaceAfter != null && (n.marginBottom = typeof t.spaceAfter == "number" ? `${t.spaceAfter}px` : t.spaceAfter), n;
 		});
 		return (t, r) => (C(), s("div", {
 			class: _(["share-section-label", {
@@ -655,7 +659,7 @@ var H = (e, t) => {
 			t.$slots.actions ? (C(), s("span", X, [D(t.$slots, "actions", {}, void 0, !0)])) : o("", !0)
 		], 6));
 	}
-}, [["__scopeId", "data-v-c93ed9d1"]]), Se = ["aria-label"], Ce = {
+}, [["__scopeId", "data-v-c79f9591"]]), Se = ["aria-label"], Ce = {
 	viewBox: "0 0 120 120",
 	role: "img",
 	"aria-hidden": "true"
@@ -4803,7 +4807,7 @@ var Ur = ["aria-label"], Wr = { class: "ms-head-content" }, Gr = ["aria-label"],
 				fill: "none",
 				"aria-hidden": "true"
 			}, [c("path", {
-				d: "M4 4 20 20",
+				d: "M2 2 22 22",
 				pathLength: "1"
 			})], -1)]),
 			_: 3
@@ -4816,7 +4820,7 @@ var Ur = ["aria-label"], Wr = { class: "ms-head-content" }, Gr = ["aria-label"],
 			"aria-pressed"
 		]));
 	}
-}, [["__scopeId", "data-v-b0351404"]]), Pi = (e) => `${Math.round(e)}px`, Fi = (e, t, n, r) => ({
+}, [["__scopeId", "data-v-a44e202c"]]), Pi = (e) => `${Math.round(e)}px`, Fi = (e, t, n, r) => ({
 	left: Pi(e),
 	top: Pi(t),
 	width: Pi(Math.max(0, n)),

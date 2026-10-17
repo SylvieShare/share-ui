@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, C as r, Ct as i, D as a, Dt as o, E as s, Et as c, F as l, G as ee, H as te, I as ne, L as re, Mt as u, N as ie, O as d, Ot as ae, P as oe, R as se, S as ce, St as f, Tt as le, U as ue, W as de, _ as fe, a as p, b as m, bt as pe, c as h, ct as g, d as _, dt as me, f as v, g as y, h as he, i as b, jt as x, k as ge, kt as S, l as C, m as _e, n as ve, nt as ye, o as w, ot as be, p as T, r as E, s as D, st as xe, t as O, tt as Se, u as k, ut as A, v as Ce, vt as we, w as Te, wt as Ee, x as De, xt as j, y as Oe, yt as ke, z as Ae } from "./TimelineGroup-CdFgPhnf.js";
+import { A as e, At as t, B as n, C as r, Ct as i, D as a, Dt as o, E as s, Et as c, F as l, G as ee, H as te, I as ne, L as re, Mt as u, N as ie, O as d, Ot as ae, P as oe, R as se, S as ce, St as f, Tt as le, U as ue, W as de, _ as fe, a as p, b as m, bt as pe, c as h, ct as g, d as _, dt as me, f as v, g as y, h as he, i as b, jt as x, k as ge, kt as S, l as C, m as _e, n as ve, nt as ye, o as w, ot as be, p as T, r as E, s as D, st as xe, t as O, tt as Se, u as k, ut as A, v as Ce, vt as we, w as Te, wt as Ee, x as De, xt as j, y as Oe, yt as ke, z as Ae } from "./TimelineGroup-DwGwrWkY.js";
 import { Fragment as M, createBlock as N, createCommentVNode as P, createElementBlock as F, createElementVNode as I, createTextVNode as L, createVNode as R, h as z, normalizeClass as je, openBlock as B, reactive as Me, ref as V, toDisplayString as H, unref as Ne, withCtx as U, withModifiers as Pe } from "vue";
 //#region src/gallery/TourGalleryExample.vue
 var Fe = {
@@ -558,6 +558,10 @@ var Fe = {
 						"border-position": "before",
 						inset: 8
 					}),
+					R(j, {
+						title: "Заголовок с отступом 12px",
+						"space-after": 12
+					}),
 					I("div", tt, [
 						R(T, null, {
 							default: U(() => [...V[65] ||= [L("Основное действие", -1)]]),
@@ -1059,6 +1063,6 @@ var Fe = {
 			}, 8, ["origin-el"])) : P("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-099ab2ef"]]);
+}, [["__scopeId", "data-v-e36e3918"]]);
 //#endregion
 export { W as COMPONENT_GALLERY_ALIASES, Le as COMPONENT_GALLERY_COMPONENTS, G as ComponentGallery };

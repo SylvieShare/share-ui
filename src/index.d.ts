@@ -61,6 +61,7 @@ export const CompactCheckbox: DefineComponent<{
 export const SectionLabel: DefineComponent<{
   borderPosition?: 'before' | 'after'
   inset?: string | number | null
+  spaceAfter?: string | number | null
   title?: string
   border?: boolean
   align?: 'left' | 'center' | 'right' | ''

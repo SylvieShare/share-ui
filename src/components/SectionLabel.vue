@@ -14,12 +14,14 @@ const props = defineProps({
   border: { type: Boolean, default: false },
   borderPosition: { type: String, default: 'after', validator: value => ['before', 'after'].includes(value) },
   inset: { type: [String, Number], default: null },
+  spaceAfter: { type: [String, Number], default: null },
   align: { type: String, default: '' },
 })
 const alignStyle = computed(() => {
   const map = { left: 'flex-start', center: 'center', right: 'flex-end' }
   const style = props.align && map[props.align] ? { justifyContent: map[props.align] } : {}
   if (props.inset != null) style.paddingInline = typeof props.inset === 'number' ? `${props.inset}px` : props.inset
+  if (props.spaceAfter != null) style.marginBottom = typeof props.spaceAfter === 'number' ? `${props.spaceAfter}px` : props.spaceAfter
   return style
 })
 </script>

@@ -417,13 +417,15 @@ tokens; контент, редактор и порядок остаются у c
 
 ### IconToggleButton
 
-Нейтральная кнопка 48×48 на ActionButton: `modelValue`, обязательный `label`,
+Нейтральная кнопка 40×40 на ActionButton: `modelValue`, обязательный `label`,
 `color` (CSS color/token), `disabled`; emit `update:modelValue`, slot `icon`.
 Состояние выключения рисуется одной постоянной SVG-линией поверх иконки:
-stroke-dashoffset плавно меняется в обе стороны. Цвет и рамка также анимированы;
+stroke-dashoffset плавно меняется в обе стороны. Линия проходит от (2,2) до (22,22);
+основная иконка выключенной кнопки имеет opacity .4, включённой — 1. Цвет и рамка также анимированы;
 `prefers-reduced-motion` отключает transitions. Иконка остаётся у consumer;
 компонент не зависит от icon library и не хранит серверное состояние.
 
 SectionLabel поддерживает `borderPosition="before"` для линии над текстом
 и `inset` (number px либо CSS length) для горизонтальных отступов содержимого.
-Default `after` и отсутствие inset сохраняют прежнюю геометрию.
+`spaceAfter` (number px либо CSS length) задаёт margin-bottom заголовка.
+Default `after` и отсутствие inset/spaceAfter сохраняют прежнюю геометрию.
