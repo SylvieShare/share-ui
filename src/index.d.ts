@@ -704,3 +704,5 @@ export const TimelineGroup: DefineComponent<{
   sticky?: boolean
   separated?: boolean
 }>
+
+export const StarRating: DefineComponent<{ modelValue?: number; max?: number; label: string; valueLabel?: string; optionLabels?: string[]; readonly?: boolean; disabled?: boolean }>

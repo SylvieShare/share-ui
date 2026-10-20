@@ -9,6 +9,7 @@
       <span class="share-component-gallery__accent" aria-label="Текущий акцент" />
     </header>
 
+    <section class="share-component-gallery__section" data-share-gallery="StarRating"><StarRating v-model="galleryRating" label="Оценка" /><StarRating :model-value="3.7" label="Средняя оценка" value-label="3,7 из 5" readonly /><StarRating :model-value="2" label="Недоступная оценка" disabled /></section>
     <section class="share-component-gallery__section" data-share-gallery="StatBar IconPicker DetailSection ContentRow OptionList SearchMultiSelect FloatingTooltip"><PerformanceGalleryExample /></section>
     <section class="share-component-gallery__section" data-share-gallery="GuidedTour">
       <h2>GuidedTour</h2>
@@ -426,6 +427,8 @@
 </template>
 
 <script setup>
+import StarRating from '../components/StarRating.vue'
+
 import TourGalleryExample from './TourGalleryExample.vue'
 import LoadingState from '../components/LoadingState.vue'
 import LoadingIndicator from '../components/LoadingIndicator.vue'
@@ -492,6 +495,7 @@ defineProps({
 })
 
 const componentCount = COMPONENT_GALLERY_COMPONENTS.length
+const galleryRating = ref(3)
 const iconToggle = ref(true)
 const switchValue = ref(true)
 const checkboxValue = ref(true)

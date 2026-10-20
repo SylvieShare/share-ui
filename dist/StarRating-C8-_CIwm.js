@@ -6122,6 +6122,97 @@ var Aa = { class: "share-date-picker" }, ja = [
 			t.$slots.footer ? (w(), s("div", qa, [O(t.$slots, "footer", {}, void 0, !0)])) : o("", !0)
 		], 6));
 	}
-}, [["__scopeId", "data-v-af3f22a5"]]);
+}, [["__scopeId", "data-v-af3f22a5"]]), Ya = [
+	"role",
+	"aria-label",
+	"aria-disabled"
+], Xa = {
+	class: "share-star-rating__star",
+	"aria-hidden": "true"
+}, Za = "m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2 2 9.3l6.9-1Z", Qa = /*#__PURE__*/ U({
+	__name: "StarRating",
+	props: {
+		modelValue: {
+			type: Number,
+			default: 0
+		},
+		max: {
+			type: Number,
+			default: 5,
+			validator: (e) => Number.isInteger(e) && e >= 1 && e <= 10
+		},
+		label: {
+			type: String,
+			required: !0
+		},
+		valueLabel: String,
+		optionLabels: {
+			type: Array,
+			default: () => []
+		},
+		readonly: Boolean,
+		disabled: Boolean
+	},
+	emits: ["update:modelValue"],
+	setup(t, { emit: n }) {
+		let r = t, o = n, l = E(0), u = [], d = i(() => Math.max(1, Math.min(r.max, Math.round(r.modelValue)))), f = (e) => Math.max(0, Math.min(1, (r.readonly ? r.modelValue : l.value || r.modelValue) - e + 1)) * 100;
+		function p(e) {
+			!r.readonly && !r.disabled && o("update:modelValue", e);
+		}
+		function m(e, t) {
+			if (r.readonly || r.disabled) return;
+			let n = {
+				ArrowRight: Math.min(r.max, t + 1),
+				ArrowLeft: Math.max(1, t - 1),
+				Home: 1,
+				End: r.max
+			}[e.key];
+			n !== void 0 && (e.preventDefault(), p(n), u[n - 1]?.focus());
+		}
+		return (n, r) => (w(), s("div", {
+			class: v(["share-star-rating", { "share-star-rating--readonly": t.readonly }]),
+			role: t.readonly ? "img" : "radiogroup",
+			"aria-label": t.readonly && t.valueLabel || t.label,
+			"aria-disabled": !t.readonly && t.disabled || void 0,
+			onMouseleave: r[1] ||= (e) => l.value = 0
+		}, [(w(!0), s(e, null, D(t.max, (e) => (w(), a(k(t.readonly ? "span" : "button"), {
+			key: e,
+			ref_for: !0,
+			ref: (t) => u[e - 1] = t,
+			class: "share-star-rating__item",
+			type: t.readonly ? void 0 : "button",
+			role: t.readonly ? void 0 : "radio",
+			"aria-label": t.readonly ? void 0 : t.optionLabels[e - 1] || String(e),
+			"aria-checked": t.readonly ? void 0 : t.modelValue === e,
+			disabled: !t.readonly && t.disabled || void 0,
+			tabindex: t.readonly ? void 0 : d.value === e ? 0 : -1,
+			onMouseenter: (n) => !t.readonly && (l.value = e),
+			onFocus: (n) => !t.readonly && (l.value = e),
+			onBlur: r[0] ||= (e) => l.value = 0,
+			onClick: (t) => p(e),
+			onKeydown: (t) => m(t, e)
+		}, {
+			default: z(() => [c("span", Xa, [c("svg", {
+				viewBox: "0 0 24 24",
+				fill: "none"
+			}, [c("path", { d: Za })]), c("span", {
+				class: "share-star-rating__fill",
+				style: b({ width: `${f(e)}%` })
+			}, [c("svg", { viewBox: "0 0 24 24" }, [c("path", { d: Za })])], 4)])]),
+			_: 2
+		}, 1064, [
+			"type",
+			"role",
+			"aria-label",
+			"aria-checked",
+			"disabled",
+			"tabindex",
+			"onMouseenter",
+			"onFocus",
+			"onClick",
+			"onKeydown"
+		]))), 128))], 42, Ya));
+	}
+}, [["__scopeId", "data-v-2d52a2de"]]);
 //#endregion
-export { Ut as $, Or as A, G as At, zn as B, ri as C, J as Ct, Wr as D, ce as Dt, Gr as E, K as Et, $n as F, en as G, Dn as H, Yn as I, Wt as J, Kt as K, qn as L, or as M, U as Mt, ar as N, zr as O, re as Ot, tr as P, Xt as Q, Wn as R, ai as S, ye as St, Kr as T, de as Tt, Tn as U, Pn as V, bn as W, Zt as X, Vt as Y, qt as Z, vi as _, $e as _t, ya as a, xt as at, di as b, Z as bt, Qi as c, ut as ct, Gi as d, nt as dt, Ht as et, Li as f, Je as ft, ji as g, Xe as gt, Mi as h, Ze as ht, Sa as i, bt as it, Dr as j, W as jt, Ir as k, ne as kt, Yi as l, lt, Ni as m, Qe as mt, Ua as n, kt as nt, ha as o, vt as ot, Fi as p, qe as pt, Gt as q, wa as r, yt as rt, ia as s, ft as st, Ja as t, Ft as tt, Ki as u, ct as ut, gi as v, Fe as vt, $r as w, me as wt, ci as x, Se as xt, mi as y, Me as yt, Hn as z };
+export { Xt as $, Ir as A, ne as At, Hn as B, ai as C, ye as Ct, Gr as D, K as Dt, Kr as E, de as Et, tr as F, bn as G, Pn as H, $n as I, Gt as J, en as K, Yn as L, Dr as M, W as Mt, or as N, U as Nt, Wr as O, ce as Ot, ar as P, qt as Q, qn as R, ci as S, Se as St, $r as T, me as Tt, Dn as U, zn as V, Tn as W, Vt as X, Wt as Y, Zt as Z, ji as _, Xe as _t, Sa as a, bt as at, mi as b, Me as bt, ia as c, ft as ct, Ki as d, ct as dt, Ut as et, Gi as f, nt as ft, Mi as g, Ze as gt, Ni as h, Qe as ht, wa as i, yt as it, Or as j, G as jt, zr as k, re as kt, Qi as l, ut as lt, Fi as m, qe as mt, Ja as n, Ft as nt, ya as o, xt as ot, Li as p, Je as pt, Kt as q, Ua as r, kt as rt, ha as s, vt as st, Qa as t, Ht as tt, Yi as u, lt as ut, vi as v, $e as vt, ri as w, J as wt, di as x, Z as xt, gi as y, Fe as yt, Wn as z };

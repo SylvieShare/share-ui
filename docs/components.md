@@ -433,3 +433,13 @@ SectionLabel поддерживает `borderPosition="before"` для лини�
 `spaceAfter` (number px либо CSS length) задаёт margin-bottom заголовка.
 `size="small"` сохраняет шрифт 10px по умолчанию; `size="medium"` увеличивает его до 12px.
 Default `after` и отсутствие inset/spaceAfter сохраняют прежнюю геометрию.
+
+## StarRating
+
+Нейтральный выбор оценки. modelValue — число, max — целое 1–10 (по умолчанию5),
+label — имя группы, optionLabels — локализованные имена вариантов. Изменения
+идут через update:modelValue. Стрелки/Home/End выбирают значение и перемещают
+фокус; кнопки работают с Enter/Space. readonly показывает дробную заливку и
+один доступный образ с valueLabel, disabled блокирует изменения. Цвет берётся
+из warning, coarse pointer увеличивает цель нажатия, reduced motion убирает
+переходы. HTTP, разрешения, среднее число и подписи количества остаются consumer.
