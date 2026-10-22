@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, C as r, Ct as i, D as a, Dt as o, Et as s, F as ee, G as c, I as te, K as ne, L as re, Mt as ie, Nt as l, O as ae, Ot as u, P as oe, Pt as d, R as se, S as ce, St as le, T as ue, Tt as de, U as fe, V as pe, W as me, _ as f, a as p, b as he, bt as ge, c as m, ct as _e, d as h, dt as g, f as _, ft as ve, g as ye, h as be, i as v, j as xe, jt as y, k as b, kt as Se, l as x, lt as S, m as C, n as Ce, nt as we, o as w, p as T, r as Te, rt as Ee, s as E, st as De, t as D, u as O, v as Oe, w as ke, wt as k, x as A, xt as Ae, y as je, yt as Me, z as Ne } from "./StarRating-B41p5qU4.js";
+import { A as e, At as t, B as n, C as r, Ct as i, D as a, Dt as o, Et as s, F as ee, G as c, I as te, K as ne, L as re, Mt as ie, Nt as l, O as ae, Ot as u, P as oe, Pt as d, R as se, S as ce, St as le, T as ue, Tt as de, U as fe, V as pe, W as me, _ as f, a as p, b as he, bt as ge, c as m, ct as _e, d as h, dt as g, f as _, ft as ve, g as ye, h as be, i as v, j as xe, jt as y, k as b, kt as Se, l as x, lt as S, m as C, n as Ce, nt as we, o as w, p as T, r as Te, rt as Ee, s as E, st as De, t as D, u as O, v as Oe, w as ke, wt as k, x as A, xt as Ae, y as je, yt as Me, z as Ne } from "./StarRating-D3vkvtJN.js";
 import { Fragment as j, createBlock as M, createCommentVNode as N, createElementBlock as P, createElementVNode as F, createTextVNode as I, createVNode as L, h as R, normalizeClass as Pe, openBlock as z, reactive as Fe, ref as B, toDisplayString as V, unref as Ie, withCtx as H, withModifiers as Le } from "vue";
 //#region src/gallery/TourGalleryExample.vue
 var Re = {
@@ -567,7 +567,7 @@ var Re = {
 					})
 				]),
 				F("article", it, [
-					B[78] ||= F("h2", null, "Кнопки элементов", -1),
+					B[80] ||= F("h2", null, "Кнопки элементов", -1),
 					F("div", at, [
 						L(T, {
 							modelValue: h.value,
@@ -649,15 +649,23 @@ var Re = {
 							default: H(() => [...B[75] ||= [I("Пунктирная рамка", -1)]]),
 							_: 1
 						}),
+						L(C, {
+							layout: "stacked",
+							variant: "quiet"
+						}, {
+							icon: H(() => [...B[76] ||= [I("✦", -1)]]),
+							default: H(() => [B[77] ||= I("Действие", -1)]),
+							_: 1
+						}),
 						L(C, { disabled: "" }, {
-							default: H(() => [...B[76] ||= [I("Недоступно", -1)]]),
+							default: H(() => [...B[78] ||= [I("Недоступно", -1)]]),
 							_: 1
 						}),
 						L(C, {
 							loading: "",
 							"loading-label": "Загрузка"
 						}, {
-							default: H(() => [...B[77] ||= [I("Загрузка", -1)]]),
+							default: H(() => [...B[79] ||= [I("Загрузка", -1)]]),
 							_: 1
 						}),
 						L(u, { label: "Добавить элемент" }),
@@ -686,7 +694,7 @@ var Re = {
 						})
 					])
 				]),
-				F("article", st, [B[79] ||= F("h2", null, "SegmentDonutChart", -1), L(le, {
+				F("article", st, [B[81] ||= F("h2", null, "SegmentDonutChart", -1), L(le, {
 					segments: rn,
 					"total-label": "Всего",
 					"aria-label": "Распределение места",
@@ -697,7 +705,7 @@ var Re = {
 				title: "Переключатели",
 				border: ""
 			}), F("div", lt, [
-				F("article", ut, [B[82] ||= F("h2", null, "Boolean controls", -1), F("div", dt, [
+				F("article", ut, [B[84] ||= F("h2", null, "Boolean controls", -1), F("div", dt, [
 					L(Me, {
 						modelValue: _.value,
 						"onUpdate:modelValue": B[3] ||= (e) => _.value = e,
@@ -707,15 +715,15 @@ var Re = {
 						modelValue: v.value,
 						"onUpdate:modelValue": B[4] ||= (e) => v.value = e,
 						label: "Выбрать элемент"
-					}, null, 8, ["modelValue"]), B[80] ||= I(" Выбрать элемент ", -1)]),
+					}, null, 8, ["modelValue"]), B[82] ||= I(" Выбрать элемент ", -1)]),
 					F("label", pt, [L(s, {
 						modelValue: v.value,
 						"onUpdate:modelValue": B[5] ||= (e) => v.value = e,
 						size: 24,
 						label: "Крупный выбор"
-					}, null, 8, ["modelValue"]), B[81] ||= I(" Крупный выбор (24px) ", -1)])
+					}, null, 8, ["modelValue"]), B[83] ||= I(" Крупный выбор (24px) ", -1)])
 				])]),
-				F("article", mt, [B[83] ||= F("h2", null, "Segmented controls", -1), F("div", ht, [L(de, {
+				F("article", mt, [B[85] ||= F("h2", null, "Segmented controls", -1), F("div", ht, [L(de, {
 					modelValue: x.value,
 					"onUpdate:modelValue": B[6] ||= (e) => x.value = e,
 					options: en,
@@ -726,7 +734,7 @@ var Re = {
 					tabs: tn,
 					"aria-label": "Режим просмотра"
 				}, null, 8, ["modelValue"])])]),
-				F("article", gt, [B[84] ||= F("h2", null, "IconNavigation", -1), F("div", _t, [L(Ae, {
+				F("article", gt, [B[86] ||= F("h2", null, "IconNavigation", -1), F("div", _t, [L(Ae, {
 					modelValue: w.value,
 					"onUpdate:modelValue": B[8] ||= (e) => w.value = e,
 					items: E,
@@ -745,7 +753,7 @@ var Re = {
 					icon: H(({ item: e }) => [(z(), P("svg", bt, [F("path", { d: e.key === "build" ? "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" : "M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6" }, null, 8, xt)]))]),
 					_: 1
 				}, 8, ["modelValue"])])]),
-				F("article", St, [B[85] ||= F("h2", null, "AppSlider", -1), F("div", Ct, [L(o, {
+				F("article", St, [B[87] ||= F("h2", null, "AppSlider", -1), F("div", Ct, [L(o, {
 					modelValue: O.value,
 					"onUpdate:modelValue": B[10] ||= (e) => O.value = e,
 					min: 0,
@@ -758,7 +766,7 @@ var Re = {
 				title: "Формы",
 				border: ""
 			}), F("div", Tt, [F("article", Et, [
-				B[87] ||= F("h2", null, "Form primitives", -1),
+				B[89] ||= F("h2", null, "Form primitives", -1),
 				F("div", Dt, [
 					L(A, {
 						label: "Название",
@@ -828,7 +836,7 @@ var Re = {
 							value: $.type,
 							"onUpdate:value": B[15] ||= (e) => $.type = e
 						}, {
-							default: H(() => [...B[86] ||= [F("option", { value: "base" }, "Основной", -1), F("option", { value: "extra" }, "Дополнительный", -1)]]),
+							default: H(() => [...B[88] ||= [F("option", { value: "base" }, "Основной", -1), F("option", { value: "extra" }, "Дополнительный", -1)]]),
 							_: 1
 						}, 8, ["value"])]),
 						_: 1
@@ -854,7 +862,7 @@ var Re = {
 				title: "Выбор значений и floating UI",
 				border: ""
 			}), F("div", kt, [
-				F("article", At, [B[88] ||= F("h2", null, "Selectors", -1), F("div", jt, [
+				F("article", At, [B[90] ||= F("h2", null, "Selectors", -1), F("div", jt, [
 					L(we, {
 						modelValue: j.value,
 						"onUpdate:modelValue": B[17] ||= (e) => j.value = e,
@@ -878,7 +886,7 @@ var Re = {
 					}, null, 8, ["modelValue"])
 				])]),
 				F("article", Mt, [
-					B[90] ||= F("h2", null, "BasePopover", -1),
+					B[92] ||= F("h2", null, "BasePopover", -1),
 					F("button", {
 						ref_key: "popoverAnchor",
 						ref: Yt,
@@ -893,19 +901,19 @@ var Re = {
 						"aria-label": "Пример popover",
 						"onUpdate:open": B[21] ||= (e) => K.value = e
 					}, {
-						default: H(() => [...B[89] ||= [F("span", { class: "share-component-gallery__popover-copy" }, "Headless-позиционирование, общий action transition и закрытие снаружи", -1)]]),
+						default: H(() => [...B[91] ||= [F("span", { class: "share-component-gallery__popover-copy" }, "Headless-позиционирование, общий action transition и закрытие снаружи", -1)]]),
 						_: 1
 					}, 8, ["open", "anchor"])
 				]),
 				F("article", Nt, [
-					B[97] ||= F("h2", null, "ActionMenu", -1),
+					B[99] ||= F("h2", null, "ActionMenu", -1),
 					L(ve, {
 						title: "Действия",
 						related: ""
 					}, {
 						default: H(() => [
 							L(g, { tone: "accent" }, {
-								default: H(() => [...B[91] ||= [I("Редактировать", -1)]]),
+								default: H(() => [...B[93] ||= [I("Редактировать", -1)]]),
 								_: 1
 							}),
 							L(De, { label: "Перемещение" }, {
@@ -913,20 +921,20 @@ var Re = {
 									submenu: "",
 									"submenu-open": e
 								}, {
-									default: H(() => [...B[92] ||= [I("Переместить", -1)]]),
+									default: H(() => [...B[94] ||= [I("Переместить", -1)]]),
 									_: 1
 								}, 8, ["submenu-open"])]),
 								default: H(() => [L(g, null, {
-									default: H(() => [...B[93] ||= [I("В начало", -1)]]),
+									default: H(() => [...B[95] ||= [I("В начало", -1)]]),
 									_: 1
 								}), L(g, null, {
-									default: H(() => [...B[94] ||= [I("В конец", -1)]]),
+									default: H(() => [...B[96] ||= [I("В конец", -1)]]),
 									_: 1
 								})]),
 								_: 1
 							}),
 							L(g, { tone: "danger" }, {
-								default: H(() => [...B[95] ||= [I("Удалить", -1)]]),
+								default: H(() => [...B[97] ||= [I("Удалить", -1)]]),
 								_: 1
 							})
 						]),
@@ -947,25 +955,25 @@ var Re = {
 						"trigger-attrs": { style: { display: "none" } }
 					}, {
 						default: H(({ close: e }) => [L(g, { onClick: e }, {
-							default: H(() => [...B[96] ||= [I("Закрыть меню", -1)]]),
+							default: H(() => [...B[98] ||= [I("Закрыть меню", -1)]]),
 							_: 1
 						}, 8, ["onClick"])]),
 						_: 1
 					}, 8, ["anchor"])
 				]),
-				F("article", Pt, [B[100] ||= F("h2", null, "AccountMenu", -1), L(me, {
+				F("article", Pt, [B[102] ||= F("h2", null, "AccountMenu", -1), L(me, {
 					label: "Sylvie",
 					"avatar-text": "S",
 					expanded: ""
 				}, {
 					default: H(({ close: e }) => [L(g, { onClick: e }, {
-						default: H(() => [...B[98] ||= [I("Настройки", -1)]]),
+						default: H(() => [...B[100] ||= [I("Настройки", -1)]]),
 						_: 1
 					}, 8, ["onClick"]), L(g, {
 						tone: "danger",
 						onClick: e
 					}, {
-						default: H(() => [...B[99] ||= [I("Выйти", -1)]]),
+						default: H(() => [...B[101] ||= [I("Выйти", -1)]]),
 						_: 1
 					}, 8, ["onClick"])]),
 					_: 1
@@ -975,7 +983,7 @@ var Re = {
 				title: "Редакторы и rich text",
 				border: ""
 			}), F("div", It, [F("article", Lt, [
-				B[101] ||= F("h2", null, "Rich text", -1),
+				B[103] ||= F("h2", null, "Rich text", -1),
 				L(c, {
 					ref: "richEditor",
 					modelValue: U.value,
@@ -1002,11 +1010,11 @@ var Re = {
 					node: H(({ node: e }) => [F("strong", Vt, V(e.label), 1)]),
 					_: 1
 				}, 8, ["html"])])
-			]), F("article", Ht, [B[104] ||= F("h2", null, "Editor composition", -1), L(l, null, {
+			]), F("article", Ht, [B[106] ||= F("h2", null, "Editor composition", -1), L(l, null, {
 				default: H(() => [L(re, { title: "Параметры" }, {
 					default: H(() => [L(ee, { title: "Основное" }, {
 						default: H(() => [L(te, { title: "Значение" }, {
-							actions: H(() => [...B[102] ||= [F("span", null, "12", -1)]]),
+							actions: H(() => [...B[104] ||= [F("span", null, "12", -1)]]),
 							_: 1
 						}), L(o, {
 							modelValue: O.value,
@@ -1017,7 +1025,7 @@ var Re = {
 						}, null, 8, ["modelValue"])]),
 						_: 1
 					}), L(oe, null, {
-						default: H(() => [B[103] ||= I("Итого: ", -1), F("strong", null, V(O.value), 1)]),
+						default: H(() => [B[105] ||= I("Итого: ", -1), F("strong", null, V(O.value), 1)]),
 						_: 1
 					})]),
 					_: 1
@@ -1028,7 +1036,7 @@ var Re = {
 				title: "Каркас приложения",
 				border: ""
 			}), F("article", Wt, [
-				B[110] ||= F("h2", null, "Navigation composition", -1),
+				B[112] ||= F("h2", null, "Navigation composition", -1),
 				L(Me, {
 					modelValue: G.value,
 					"onUpdate:modelValue": B[25] ||= (e) => G.value = e,
@@ -1051,7 +1059,7 @@ var Re = {
 							as: "div",
 							label: "share-ui"
 						}, {
-							icon: H(() => [...B[105] ||= [F("span", null, "◆", -1)]]),
+							icon: H(() => [...B[107] ||= [F("span", null, "◆", -1)]]),
 							_: 1
 						})]),
 						default: H(() => [
@@ -1060,7 +1068,7 @@ var Re = {
 								label: "Главная",
 								active: ""
 							}, {
-								icon: H(() => [...B[106] ||= [F("span", null, "⌂", -1)]]),
+								icon: H(() => [...B[108] ||= [F("span", null, "⌂", -1)]]),
 								_: 1
 							}),
 							L(Ne, { label: "Примеры" }),
@@ -1068,14 +1076,14 @@ var Re = {
 								as: "button",
 								label: "Компоненты"
 							}, {
-								icon: H(() => [...B[107] ||= [F("span", null, "◇", -1)]]),
+								icon: H(() => [...B[109] ||= [F("span", null, "◇", -1)]]),
 								_: 1
 							})
 						]),
 						_: 1
 					}, 8, ["modelValue", "elevated"])]),
-					rail: H(() => [...B[108] ||= [F("div", { class: "share-component-gallery__rail" }, "rail", -1)]]),
-					default: H(() => [B[109] ||= F("div", { class: "share-component-gallery__chrome-content" }, [
+					rail: H(() => [...B[110] ||= [F("div", { class: "share-component-gallery__rail" }, "rail", -1)]]),
+					default: H(() => [B[111] ||= F("div", { class: "share-component-gallery__chrome-content" }, [
 						F("span", { class: "share-component-gallery__chrome-kicker" }, "content"),
 						F("strong", null, "AppShell + AppSidebar"),
 						F("span", null, "Фон, точки, раскрываемая навигация и rail образуют общий каркас.")
@@ -1086,7 +1094,7 @@ var Re = {
 			F("section", Kt, [L(i, {
 				title: "Оверлеи и morph",
 				border: ""
-			}), F("article", qt, [B[111] ||= F("h2", null, "Интерактивные примеры", -1), F("div", Jt, [
+			}), F("article", qt, [B[113] ||= F("h2", null, "Интерактивные примеры", -1), F("div", Jt, [
 				F("button", {
 					type: "button",
 					class: "share-component-gallery__button",
@@ -1125,7 +1133,7 @@ var Re = {
 				"aria-label": "Пример AppModal",
 				onClose: B[33] ||= (e) => q.value = !1
 			}, {
-				default: H(() => [...B[112] ||= [F("div", { class: "share-component-gallery__overlay-content" }, [F("h2", null, "AppModal"), F("p", null, "Низкоуровневый адаптивный overlay.")], -1)]]),
+				default: H(() => [...B[114] ||= [F("div", { class: "share-component-gallery__overlay-content" }, [F("h2", null, "AppModal"), F("p", null, "Низкоуровневый адаптивный overlay.")], -1)]]),
 				_: 1
 			})) : N("", !0),
 			J.value ? (z(), M(e, {
@@ -1138,7 +1146,7 @@ var Re = {
 					onCancel: B[34] ||= (e) => J.value = !1,
 					onSubmit: B[35] ||= (e) => J.value = !1
 				})]),
-				default: H(() => [B[113] ||= F("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
+				default: H(() => [B[115] ||= F("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
 				_: 1
 			})) : N("", !0),
 			L(a, {
@@ -1146,7 +1154,7 @@ var Re = {
 				"aria-label": "Пример ModalShell",
 				onClose: B[37] ||= (e) => Y.value = !1
 			}, {
-				default: H(() => [...B[114] ||= [F("div", { class: "share-component-gallery__overlay-content" }, [F("h2", null, "ModalShell"), F("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
+				default: H(() => [...B[116] ||= [F("div", { class: "share-component-gallery__overlay-content" }, [F("h2", null, "ModalShell"), F("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
 				_: 1
 			}, 8, ["open"]),
 			L(ae, {
@@ -1169,12 +1177,12 @@ var Re = {
 				"show-close": "",
 				onClose: B[40] ||= (e) => Q.value = !1
 			}, {
-				head: H(() => [...B[115] ||= [F("div", { class: "share-component-gallery__morph-head" }, [F("strong", null, "MorphSheet")], -1)]]),
-				default: H(() => [B[116] ||= F("div", { class: "share-component-gallery__overlay-content" }, [F("p", null, "Контейнер раскрывается из исходной кнопки и возвращается обратно.")], -1)]),
+				head: H(() => [...B[117] ||= [F("div", { class: "share-component-gallery__morph-head" }, [F("strong", null, "MorphSheet")], -1)]]),
+				default: H(() => [B[118] ||= F("div", { class: "share-component-gallery__overlay-content" }, [F("p", null, "Контейнер раскрывается из исходной кнопки и возвращается обратно.")], -1)]),
 				_: 1
 			}, 8, ["origin-el"])) : N("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-10692579"]]);
+}, [["__scopeId", "data-v-3215e527"]]);
 //#endregion
 export { U as COMPONENT_GALLERY_ALIASES, Be as COMPONENT_GALLERY_COMPONENTS, W as ComponentGallery };

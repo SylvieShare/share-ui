@@ -15,3 +15,10 @@ it('supports an accessible icon-only quiet action', async () => {
   expect(html).toContain('share-action-button--icon-only')
   expect(html).toContain('aria-label="Players"')
 })
+
+it('keeps the full accessible action name with an icon above its compact caption', async () => {
+  const html = await renderToString(createSSRApp({ render: () => h(ActionButton, { layout: 'stacked', variant: 'quiet', 'aria-label': 'Capture the current view' }, { icon: () => h('svg'), default: () => 'Capture' }) }))
+  expect(html).toContain('share-action-button--stacked')
+  expect(html).toContain('aria-label="Capture the current view"')
+  expect(html).toMatch(/<svg[\s\S]*<span[\s\S]*Capture/)
+})

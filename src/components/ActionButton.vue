@@ -1,5 +1,5 @@
 <template>
-  <button class="share-action-button" :class="[`share-action-button--${variant}`, { 'share-action-button--icon-only': iconOnly }]" :type="type" :disabled="disabled || loading" :aria-busy="loading || undefined">
+  <button class="share-action-button" :class="[`share-action-button--${variant}`, { 'share-action-button--icon-only': iconOnly, 'share-action-button--stacked': layout === 'stacked' && !iconOnly }]" :type="type" :disabled="disabled || loading" :aria-busy="loading || undefined">
     <LoadingIndicator v-if="loading" :label="loadingLabel" size="xs" aria-hidden="true" />
     <slot v-else name="icon" />
     <span><slot /></span>
@@ -10,6 +10,7 @@ import LoadingIndicator from './LoadingIndicator.vue'
 defineProps({
   variant: { type: String, default: 'primary', validator: value => ['primary', 'secondary', 'quiet', 'dashed'].includes(value) },
   type: { type: String, default: 'button' },
+  layout: { type: String, default: 'inline', validator: value => ['inline', 'stacked'].includes(value) },
   iconOnly: Boolean,
   disabled: Boolean,
   loading: Boolean,
@@ -28,4 +29,6 @@ defineProps({
 .share-action-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .share-action-button--icon-only { width: 48px; height: 48px; padding: 0; gap: 0; flex-shrink: 0; }
 .share-action-button--icon-only :deep(svg) { flex-shrink: 0; }
+.share-action-button--stacked { flex-direction: column; gap: 3px; min-width: 56px; height: 48px; padding: 4px 8px; font-size: 10px; line-height: 1.2; }
+.share-action-button--stacked > :deep(svg) { flex: none; }
 </style>

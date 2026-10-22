@@ -610,6 +610,7 @@ export const LoadingState: DefineComponent<{ label: string; compact?: boolean; f
 export const IconToggleButton: DefineComponent<{ modelValue?: boolean; label: string; color?: string | null; disabled?: boolean }>
 
 export const ActionButton: DefineComponent<{
+  layout?: 'inline' | 'stacked'
   iconOnly?: boolean
   variant?: 'primary' | 'secondary' | 'quiet' | 'dashed'; type?: 'button' | 'submit' | 'reset'; disabled?: boolean; loading?: boolean; loadingLabel?: string }>
 

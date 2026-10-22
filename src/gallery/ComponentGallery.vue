@@ -109,6 +109,7 @@
             <ActionButton variant="secondary">Вторичное</ActionButton>
             <ActionButton variant="quiet">Тихое</ActionButton>
             <ActionButton variant="dashed">Пунктирная рамка</ActionButton>
+            <ActionButton layout="stacked" variant="quiet"><template #icon>✦</template>Действие</ActionButton>
             <ActionButton disabled>Недоступно</ActionButton>
             <ActionButton loading loading-label="Загрузка">Загрузка</ActionButton>
             <AddButton label="Добавить элемент" />
