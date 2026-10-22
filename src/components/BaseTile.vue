@@ -1,8 +1,8 @@
 <template>
   <div
     class="base-tile"
-    :class="{ 'base-tile--interactive': interactive, 'base-tile--tint': tint, 'base-tile--framed': framed }"
-    :style="{ '--tile-color': resolvedColor }"
+    :class="{ 'base-tile--interactive': interactive, 'base-tile--tint': tint, 'base-tile--framed': framed, 'base-tile--glass': surface === 'glass' }"
+    :style="{ '--tile-color': resolvedColor, ...(surface === 'glass' ? { 'backdrop-filter': 'blur(14px)', '-webkit-backdrop-filter': 'blur(14px)' } : {}) }"
     @click="$emit('click', $event)"
   >
     <slot />
@@ -15,6 +15,7 @@ import { computed } from 'vue'
 const props = defineProps({
   // Accent color for tint and frame.
   color: { type: String, default: null },
+  surface: { type: String, default: 'solid', validator: value => ['solid', 'glass'].includes(value) },
   // Faint always-on background tint in the tile color (a light accent).
   tint: { type: Boolean, default: false },
   // Gradient fill + colored border in the tile color (e.g. the HP block).
@@ -30,8 +31,9 @@ const resolvedColor = computed(() => props.color || 'var(--accent)')
 
 <style scoped>
 .base-tile {
+  --tile-surface: var(--surface);
   position: relative;
-  background: var(--surface);
+  background: var(--tile-surface);
   border: none;
   border-radius: var(--r-lg);
   box-shadow: inset 0 0 0 1px var(--border);
@@ -39,8 +41,12 @@ const resolvedColor = computed(() => props.color || 'var(--accent)')
   transition: background 0.15s, box-shadow 0.15s;
 }
 
+.base-tile--glass {
+  --tile-surface: color-mix(in srgb, var(--surface) 76%, transparent);
+}
+
 .base-tile--tint {
-  background: color-mix(in srgb, var(--tile-color) 6%, var(--surface));
+  background: color-mix(in srgb, var(--tile-color) 6%, var(--tile-surface));
 }
 
 .base-tile--interactive {
@@ -48,13 +54,13 @@ const resolvedColor = computed(() => props.color || 'var(--accent)')
 }
 
 .base-tile--interactive:hover {
-  background: color-mix(in srgb, var(--tile-color) 11%, var(--surface));
+  background: color-mix(in srgb, var(--tile-color) 11%, var(--tile-surface));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tile-color) 28%, var(--border));
 }
 
 /* gradient + colored border (HP block look) */
 .base-tile--framed {
-  background: linear-gradient(135deg, var(--surface) 50%, color-mix(in srgb, var(--tile-color) 6%, var(--surface)));
+  background: linear-gradient(135deg, var(--tile-surface) 50%, color-mix(in srgb, var(--tile-color) 6%, var(--tile-surface)));
   box-shadow: none;
   transition: background 0.3s ease;
 }
@@ -69,7 +75,7 @@ const resolvedColor = computed(() => props.color || 'var(--accent)')
   z-index: 2;
 }
 .base-tile--framed.base-tile--interactive:hover {
-  background: linear-gradient(135deg, var(--surface) 50%, color-mix(in srgb, var(--tile-color) 8%, var(--surface)));
+  background: linear-gradient(135deg, var(--tile-surface) 50%, color-mix(in srgb, var(--tile-color) 8%, var(--tile-surface)));
   box-shadow: none;
 }
 .base-tile--framed.base-tile--interactive:hover::before {

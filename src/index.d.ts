@@ -9,6 +9,7 @@ export const SectionList: DefineComponent<{
 }>
 
 export const BaseTile: DefineComponent<{
+  surface?: 'solid' | 'glass'
   color?: string | null
   tint?: boolean
   framed?: boolean

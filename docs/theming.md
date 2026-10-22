@@ -65,3 +65,12 @@ local storage или профиле пользователя.
 
 Пакет задаёт font stacks, но не загружает web fonts и не делает сетевые запросы.
 Consumer сам подключает нужные font assets.
+
+BaseTile может использовать `surface="glass"`: тот же semantic surface смешивается
+с прозрачностью (76%), backdrop blur — 14 px. Это opt-in вариант; solid-default,
+размеры, tint/frame и интерактивное поведение остаются прежними. Цвет и отступы
+не задаются доменными селекторами consumer поверх поверхности.
+
+Blur для glass задаётся inline обеими формами backdrop-filter: CSS minifier
+не должен удалять unprefixed свойство, нужное Chromium, сохраняя только Safari
+prefix. При переключении на solid inline фильтры удаляются.

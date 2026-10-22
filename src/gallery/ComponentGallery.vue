@@ -20,6 +20,10 @@
       <div class="share-component-gallery__grid">
         <article class="share-component-gallery__card" data-share-gallery="BaseTile TileAccentStrip MorphTile MorphTileHeader SectionLabel">
           <h2>BaseTile</h2>
+          <div class="share-component-gallery__glass-surfaces">
+            <BaseTile surface="glass" framed class="share-component-gallery__tile">Glass frame</BaseTile>
+            <BaseTile surface="glass" tint interactive class="share-component-gallery__tile">Glass interactive</BaseTile>
+          </div>
           <ActionButton icon-only variant="quiet" aria-label="Действие без рамки"><template #icon>✦</template></ActionButton>
           <div class="share-component-gallery__tile-row">
             <BaseTile tint interactive class="share-component-gallery__tile">
@@ -568,6 +572,7 @@ function resetForm() {
 </script>
 
 <style scoped>
+.share-component-gallery__glass-surfaces { display:flex;gap:12px;padding:16px;background:repeating-linear-gradient(45deg,var(--surface-raised) 0 12px,color-mix(in srgb,var(--accent) 30%,var(--surface)) 12px 24px);border-radius:var(--r-lg); }
 .share-component-gallery {
   width: min(1180px, 100%);
   margin: 0 auto;

@@ -8,6 +8,7 @@ Deep imports из `dist/` или `src/` не являются контракто
 Базовая поверхность карточки. Props:
 
 - `color` — accent плитки, fallback `var(--accent)`;
+- `surface` — `solid` (по умолчанию) или `glass`: фон с opacity 76% и backdrop blur 14 px. Tint, gradient и frame сохраняются; при отсутствии поддержки blur остаётся полупрозрачный фон;
 - `tint` — постоянный слабый цветовой tint;
 - `framed` — gradient и accent border;
 - `interactive` — pointer и hover feedback.
