@@ -1,21 +1,23 @@
 <template>
   <div class="fn-wrap">
-    <button type="button" class="fn-btn" tabindex="-1" @click.stop="step(-1)">−</button>
+    <button type="button" class="fn-btn" tabindex="-1" @click.stop="increment(-1)">−</button>
     <input
       class="fn-input"
       type="number"
       :value="value"
       :min="min"
       :max="max"
+      :step="step"
       @change="onChange"
     />
-    <button type="button" class="fn-btn" tabindex="-1" @click.stop="step(1)">+</button>
+    <button type="button" class="fn-btn" tabindex="-1" @click.stop="increment(1)">+</button>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
   value: { default: 0 },
+  step: { type: Number, default: 1, validator: n => Number.isFinite(n) && n > 0 },
   min:   { default: undefined },
   max:   { default: undefined },
 })
@@ -27,12 +29,17 @@ function clamp(n) {
   return n
 }
 
-function onChange(e) {
-  emit('change', clamp(parseInt(e.target.value) || 0))
+function read(value) {
+  return (Number.isInteger(props.step) ? parseInt(value) : parseFloat(value)) || 0
 }
 
-function step(delta) {
-  emit('change', clamp((parseInt(props.value) || 0) + delta))
+function onChange(e) {
+  emit('change', clamp(read(e.target.value)))
+}
+
+function increment(delta) {
+  const next = Number((read(props.value) + delta * props.step).toPrecision(15))
+  emit('change', clamp(next))
 }
 </script>
 

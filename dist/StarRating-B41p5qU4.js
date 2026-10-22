@@ -1010,7 +1010,7 @@ var je = ["aria-label"], Me = ["aria-orientation", "aria-label"], Ne = [
 		}
 		async function g(e) {
 			let t = a.tabs[e];
-			!t || t.disabled || (h(t.key), await _(), d.value[e]?.focus());
+			t && !t.disabled && (h(t.key), await _(), d.value[e]?.focus());
 		}
 		function y(e, t) {
 			let n = a.tabs.map((e, t) => ({
@@ -2078,7 +2078,7 @@ var kt = ["aria-label"], At = [
 			h.value ? L() : F();
 		}
 		function V(e) {
-			!e || e.disabled || (u("update:modelValue", e.value), L({ restoreFocus: !0 }));
+			e && !e.disabled && (u("update:modelValue", e.value), L({ restoreFocus: !0 }));
 		}
 		function H() {
 			V(C.value[y.value]);
@@ -2441,7 +2441,7 @@ var cn = /*#__PURE__*/ U({
 			return rn(e) || "<p><br></p>";
 		}
 		function G(e) {
-			!p.editable || !k.value || document.activeElement !== k.value && (k.value.innerHTML = te(e));
+			p.editable && k.value && document.activeElement !== k.value && (k.value.innerHTML = te(e));
 		}
 		R(() => p.modelValue, G), R(() => p.editable, (e) => {
 			e && _(() => G(p.modelValue));
@@ -2538,7 +2538,7 @@ var cn = /*#__PURE__*/ U({
 				return;
 			}
 			let n = e.target.closest?.("[data-rich-node]");
-			!n || !k.value?.contains(n) || (e.preventDefault(), L.value = n, h("node-select", {
+			n && k.value?.contains(n) && (e.preventDefault(), L.value = n, h("node-select", {
 				element: n,
 				node: en(n)
 			}));
@@ -3502,7 +3502,7 @@ var Fr = /*#__PURE__*/ U({
 		}
 		function F() {
 			let e = d.value, t = f.value;
-			!e || !t || (e.style.opacity = "0", e.style.backdropFilter = "blur(0px)", e.style.webkitBackdropFilter = "blur(0px)", Ar() ? t.style.transform = "translateY(100%)" : (t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), requestAnimationFrame(() => {
+			e && t && (e.style.opacity = "0", e.style.backdropFilter = "blur(0px)", e.style.webkitBackdropFilter = "blur(0px)", Ar() ? t.style.transform = "translateY(100%)" : (t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), requestAnimationFrame(() => {
 				requestAnimationFrame(() => {
 					let n = "cubic-bezier(0, 0, 0.4, 1)", r = `opacity ${jr}ms ${n}, backdrop-filter ${jr}ms ${n}, -webkit-backdrop-filter ${jr}ms ${n}`;
 					e.style.transition = r, e.style.opacity = "1", e.style.backdropFilter = "blur(6px)", e.style.webkitBackdropFilter = "blur(6px)", Ar() ? (t.style.transition = `transform ${jr}ms ${Mr}`, t.style.transform = "translateY(0)") : (t.style.transition = `transform ${jr}ms ${Mr}, opacity ${jr}ms ${n}`, t.style.transform = "none", t.style.opacity = "1"), setTimeout(() => {
@@ -3525,7 +3525,7 @@ var Fr = /*#__PURE__*/ U({
 			}, 300);
 		}
 		function L() {
-			!l.dismissible || k || (k = !0, I());
+			l.dismissible && !k && (k = !0, I());
 		}
 		n({ requestClose: L });
 		function R(e) {
@@ -4146,7 +4146,7 @@ var ei = ["aria-label"], ti = { class: "ms-head-content" }, ni = ["aria-label"],
 		})));
 		let pe = E(0), me = !1, he = 0, ge = 0, J = null, Y = 0, _e = null, ve = 0, ye = 0, be = 0;
 		function X(e) {
-			!d.value || W.value || (he = e.touches[0].clientX, ge = e.touches[0].clientY, _e = e.target, J = null);
+			d.value && !W.value && (he = e.touches[0].clientX, ge = e.touches[0].clientY, _e = e.target, J = null);
 		}
 		function xe() {
 			let e = _e;
@@ -4210,7 +4210,7 @@ var ei = ["aria-label"], ti = { class: "ms-head-content" }, ni = ["aria-label"],
 			return typeof l.backgroundTarget == "string" ? document.querySelector(l.backgroundTarget) : l.backgroundTarget instanceof Element ? l.backgroundTarget : null;
 		}
 		function De(e) {
-			Te(), Te = () => {}, !(!e || d.value || !l.blurBackground) && (Te = Er(Ee(), { blur: ai }));
+			Te(), Te = () => {}, e && !d.value && l.blurBackground && (Te = Er(Ee(), { blur: ai }));
 		}
 		let Oe = "", Z = "", ke = !1;
 		function Ae() {
@@ -4591,11 +4591,17 @@ var ei = ["aria-label"], ti = { class: "ms-head-content" }, ni = ["aria-label"],
 }, [["__scopeId", "data-v-01093950"]]), yi = { class: "fn-wrap" }, bi = [
 	"value",
 	"min",
-	"max"
+	"max",
+	"step"
 ], xi = /*#__PURE__*/ U({
 	__name: "FormNumberInput",
 	props: {
 		value: { default: 0 },
+		step: {
+			type: Number,
+			default: 1,
+			validator: (e) => Number.isFinite(e) && e > 0
+		},
 		min: { default: void 0 },
 		max: { default: void 0 }
 	},
@@ -4606,17 +4612,21 @@ var ei = ["aria-label"], ti = { class: "ms-head-content" }, ni = ["aria-label"],
 			return n.min != null && e < n.min ? n.min : n.max != null && e > n.max ? n.max : e;
 		}
 		function a(e) {
-			r("change", i(parseInt(e.target.value) || 0));
+			return (Number.isInteger(n.step) ? parseInt(e) : parseFloat(e)) || 0;
 		}
 		function o(e) {
-			r("change", i((parseInt(n.value) || 0) + e));
+			r("change", i(a(e.target.value)));
+		}
+		function l(e) {
+			let t = Number((a(n.value) + e * n.step).toPrecision(15));
+			r("change", i(t));
 		}
 		return (t, n) => (w(), s("div", yi, [
 			c("button", {
 				type: "button",
 				class: "fn-btn",
 				tabindex: "-1",
-				onClick: n[0] ||= H((e) => o(-1), ["stop"])
+				onClick: n[0] ||= H((e) => l(-1), ["stop"])
 			}, "−"),
 			c("input", {
 				class: "fn-input",
@@ -4624,17 +4634,18 @@ var ei = ["aria-label"], ti = { class: "ms-head-content" }, ni = ["aria-label"],
 				value: e.value,
 				min: e.min,
 				max: e.max,
-				onChange: a
+				step: e.step,
+				onChange: o
 			}, null, 40, bi),
 			c("button", {
 				type: "button",
 				class: "fn-btn",
 				tabindex: "-1",
-				onClick: n[1] ||= H((e) => o(1), ["stop"])
+				onClick: n[1] ||= H((e) => l(1), ["stop"])
 			}, "+")
 		]));
 	}
-}, [["__scopeId", "data-v-df9f8db7"]]), Si = ["value"], Ci = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-0b32d927"]]), Si = ["value"], Ci = /*#__PURE__*/ U({
 	__name: "FormSelect",
 	props: {
 		value: { default: "" },
@@ -5580,7 +5591,7 @@ var ea = ["aria-label", "aria-valuenow"], ta = {
 	setup(e, { emit: t }) {
 		let n = e, r = t;
 		function i(e) {
-			!n.interactive || e.target !== e.currentTarget || !["Enter", " "].includes(e.key) || (e.preventDefault(), r("activate", e));
+			n.interactive && e.target === e.currentTarget && ["Enter", " "].includes(e.key) && (e.preventDefault(), r("activate", e));
 		}
 		return (t, n) => (w(), s("div", {
 			class: v(["oli", {

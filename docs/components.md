@@ -55,8 +55,11 @@ Consumer не переопределяет типографику заголов
   в default slot; emits `change`, expose `focus()`.
 - `FormTextarea`: named model `v-model:value`, `placeholder`, `rows`,
   `maxlength`.
-- `FormNumberInput`: controlled `value`, `min`, `max`; emit `change` после
-  ввода или нажатия −/+.
+- `FormNumberInput`: controlled `value`, `min`, `max`, положительный `step`
+  (по умолчанию 1). Целый шаг сохраняет целочисленный ввод; дробный шаг
+  сохраняет дробную часть без округления к кратному шагу. Шаг передаётся
+  input и кнопкам −/+, арифметический шум при нажатиях убирается. Emit
+  `change` после ввода или нажатия −/+ с ограничением min/max.
 - `FormActionButtons`: тексты, `loading`, `canSubmit`, `disabled`; emits
   `cancel` и `submit`.
 

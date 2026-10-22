@@ -429,6 +429,7 @@ export const FormField: DefineComponent<{
 }>
 
 export const FormNumberInput: DefineComponent<{
+  step?: number
   value?: unknown
   min?: number
   max?: number

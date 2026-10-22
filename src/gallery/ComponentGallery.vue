@@ -202,6 +202,9 @@
             <FormField label="Количество" vertical>
               <FormNumberInput :value="form.count" :min="0" :max="20" @change="form.count = $event" />
             </FormField>
+            <FormField label="Дробное значение" vertical>
+              <FormNumberInput :value="form.fraction" :min="-10" :max="10" :step="0.1" @change="form.fraction = $event" />
+            </FormField>
             <FormField label="Тип" vertical>
               <FormSelect v-model:value="form.type">
                 <option value="base">Основной</option>
@@ -557,7 +560,7 @@ const donutSegments = [
   { key: 'video', label: 'Видео', value: 142, color: 'var(--info)' },
   { key: 'audio', label: 'Аудио', value: 74, color: 'var(--success)' },
 ]
-const form = reactive({ date: '', name: 'Новый элемент', count: 3, type: 'base', description: '' })
+const form = reactive({ date: '', name: 'Новый элемент', count: 3, fraction: 1.25, type: 'base', description: '' })
 
 function formatDonutValue(value) {
   return `${value} МБ`

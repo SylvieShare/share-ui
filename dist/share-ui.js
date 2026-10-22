@@ -1,4 +1,4 @@
-import { $ as e, A as t, At as n, B as r, C as i, Ct as a, D as o, Dt as s, E as c, Et as l, F as u, G as d, H as f, I as p, J as m, K as h, L as g, M as _, Mt as v, N as y, Nt as b, O as x, Ot as S, P as C, Q as w, R as T, S as E, St as D, T as O, Tt as k, U as A, V as j, W as ee, X as te, Y as ne, Z as re, _ as ie, _t as ae, a as oe, at as M, b as N, bt as P, c as F, ct as I, d as L, dt as R, et as z, f as B, ft as V, g as H, gt as U, h as W, ht as G, i as K, it as q, j as se, jt as ce, k as le, kt as ue, l as de, lt as fe, m as pe, mt as me, n as he, nt as ge, o as _e, ot as ve, p as ye, pt as be, q as xe, r as Se, rt as Ce, s as we, st as J, t as Te, tt as Ee, u as De, ut as Oe, v as ke, vt as Ae, w as je, wt as Me, x as Ne, xt as Pe, y as Fe, yt as Ie, z as Le } from "./StarRating-DjC2B4JH.js";
+import { $ as e, A as t, At as n, B as r, C as i, Ct as a, D as o, Dt as s, E as c, Et as l, F as u, G as d, H as f, I as p, J as m, K as h, L as g, M as _, Mt as v, N as y, Nt as b, O as x, Ot as S, P as C, Q as w, R as T, S as E, St as D, T as O, Tt as k, U as A, V as j, W as ee, X as te, Y as ne, Z as re, _ as ie, _t as ae, a as oe, at as M, b as N, bt as P, c as F, ct as I, d as L, dt as R, et as z, f as B, ft as V, g as H, gt as U, h as W, ht as G, i as K, it as q, j as se, jt as ce, k as le, kt as ue, l as de, lt as fe, m as pe, mt as me, n as he, nt as ge, o as _e, ot as ve, p as ye, pt as be, q as xe, r as Se, rt as Ce, s as we, st as J, t as Te, tt as Ee, u as De, ut as Oe, v as ke, vt as Ae, w as je, wt as Me, x as Ne, xt as Pe, y as Fe, yt as Ie, z as Le } from "./StarRating-B41p5qU4.js";
 import { computed as Y, nextTick as X, onBeforeUnmount as Re, onScopeDispose as ze, ref as Z, shallowRef as Be, toValue as Ve, watch as Q } from "vue";
 //#region src/composables/useSortable.js
 var He = 4;
@@ -90,12 +90,12 @@ function Ge(e) {
 		}
 		if (l.value = null, u.value = -1, !d) return;
 		let f = s.value ? String(n(s.value)) : null, p = We(c, e, r, f, t[d].layout);
-		p < 0 || i && !i({
+		p < 0 || (!i || i({
 			item: s.value,
 			fromGroup: o.value,
 			toGroup: d,
 			toIndex: p
-		}) || (l.value = d, u.value = p);
+		})) && (l.value = d, u.value = p);
 	}
 	function C(e) {
 		if (e?.type === "pointercancel") {
