@@ -87,6 +87,28 @@ export const SegmentDonutChart: DefineComponent<{
   showPercent?: boolean
 }>
 
+export interface IconNavigationItem {
+  key: string | number
+  label: string
+  shortLabel?: string
+  ariaLabel?: string
+  title?: string
+  icon?: Component
+  disabled?: boolean
+  divider?: boolean
+  dividerLabel?: string
+  attrs?: Record<string, unknown>
+}
+export const IconNavigation: DefineComponent<{
+  items: IconNavigationItem[]
+  modelValue?: string | number | null
+  label: string
+  orientation?: 'horizontal' | 'vertical'
+  size?: number
+  active?: boolean
+  animate?: boolean
+}>
+
 export interface SlidingTab<T = string | number> {
   key: T
   title: string

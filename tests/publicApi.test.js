@@ -42,6 +42,7 @@ describe('public API', () => {
     'SidebarNavItem',
     'SidebarToggle',
     'SlidingTabs',
+    'IconNavigation',
     'ToggleSwitch',
     'TextPromptDialog',
     'ValueSelect',

@@ -28,6 +28,7 @@ export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
   'TimelineGroup',
   'SegmentDonutChart',
   'SlidingTabs',
+  'IconNavigation',
   'ToggleSwitch',
   'ActionMenu',
   'ActionMenuItem',

@@ -158,6 +158,17 @@
           </div>
         </article>
 
+        <article class="share-component-gallery__card" data-share-gallery="IconNavigation">
+          <h2>IconNavigation</h2>
+          <div class="share-component-gallery__stack">
+            <IconNavigation v-model="iconNavigationValue" :items="iconNavigationItems" label="Horizontal sections">
+              <template #icon="{ item }"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path :d="item.key === 'build' ? 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z' : 'M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6'" /></svg></template>
+            </IconNavigation>
+            <IconNavigation v-model="iconNavigationValue" :items="iconNavigationItems" orientation="vertical" :size="64" label="Vertical sections">
+              <template #icon="{ item }"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path :d="item.key === 'build' ? 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z' : 'M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6'" /></svg></template>
+            </IconNavigation>
+          </div>
+        </article>
         <article class="share-component-gallery__card" data-share-gallery="AppSlider">
           <h2>AppSlider</h2>
           <div class="share-component-gallery__slider">
@@ -451,6 +462,7 @@ import RemoveButton from '../components/RemoveButton.vue'
 import TimelineGroup from '../components/TimelineGroup.vue'
 import SectionLabel from '../components/SectionLabel.vue'
 import SegmentDonutChart from '../components/SegmentDonutChart.vue'
+import IconNavigation from '../components/IconNavigation.vue'
 import SlidingTabs from '../components/SlidingTabs.vue'
 import ToggleSwitch from '../components/ToggleSwitch.vue'
 import ActionMenu from '../components/floating/ActionMenu.vue'
@@ -501,6 +513,8 @@ const switchValue = ref(true)
 const checkboxValue = ref(true)
 const toggleValue = ref('md')
 const tabValue = ref('preview')
+const iconNavigationValue = ref('build')
+const iconNavigationItems = [{ key: 'build', label: 'Build' }, { key: 'disabled', label: 'Unavailable', disabled: true }, { key: 'settings', label: 'Settings', divider: true, dividerLabel: 'Tools' }]
 const sliderValue = ref(62)
 const selectValue = ref('rare')
 const colorValue = ref('#7c5ce2')

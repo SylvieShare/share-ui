@@ -73,6 +73,18 @@ Consumer не переопределяет типографику заголов
 - `MultiToggle`: options `{ value, label, disabled? }`, `block`, `neutralValue`;
   поддерживает стрелки, Home и End.
 - `CompactCheckbox`: компактный checkbox для строк и таблиц. `size` задаёт размер квадрата в px (по умолчанию 18); галочка масштабируется пропорционально, дополнительная область нажатия сохраняется. В галерее представлены размеры 18 и 24.
+- `IconNavigation`: иконки с подписью и единый перемещающийся квадрат выделения.
+  `items` — `{ key, label, shortLabel?, ariaLabel?, title?, icon?, disabled?, divider?, dividerLabel?, attrs? }`.
+  `modelValue` определяет текущий раздел, `orientation` — horizontal/vertical,
+  `size` — сторону кнопки (56 px), `active=false` скрывает выделение при свёрнутой панели,
+  `animate=false` отключает перемещение при раскрытии. `label` задаёт имя navigation.
+  Событие `select(key)` приходит и при повторном выборе, `update:modelValue` — при смене.
+  Slots `icon`, `label`, `decoration` получают `item`; предметные badges/shortcuts остаются у consumer.
+  Tab/Enter работают как у обычных кнопок; стрелки по оси и Home/End перемещают фокус
+  без активации. Отключённые элементы пропускаются. Навигация прокручивается по своей оси,
+  индикатор учитывает размеры/разделители/scroll и отключает motion при reduced motion.
+  Exposed `element` и `updateIndicator()` доступны измеряющим компоновку adapters.
+  Компонент аддитивный; существующие `SlidingTabs` и sidebar primitives не меняются.
 - `SlidingTabs`: tabs `{ key, title, icon?, disabled?, id?, panelId? }`, icon-slot
   и клавиатурная навигация.
 - `AppSlider`: доступный native range с DnD Share visual style.
