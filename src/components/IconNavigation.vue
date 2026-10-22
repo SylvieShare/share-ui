@@ -20,6 +20,7 @@
 </template>
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { fitNavigationLabels } from '../lib/fitNavigationLabels.js'
 import { navigationFocusKey } from '../lib/iconNavigation.js'
 const props = defineProps({
   items: { type: Array, required: true }, modelValue: { type: [String, Number], default: null },
@@ -33,13 +34,17 @@ const indicatorStyle = computed(() => ({
   width: `${indicator.value?.width || 0}px`, height: `${indicator.value?.height || 0}px`,
   opacity: props.active && indicator.value ? 1 : 0,
 }))
-let observer
+let observer, fonts, disposed = false
 function setButton(key, node) {
   const old = buttons.get(key)
   if (old === node) return
   if (old) observer?.unobserve(old)
   if (node) { buttons.set(key, node); observer?.observe(node) }
   else buttons.delete(key)
+}
+function measure() {
+  fitNavigationLabels(buttons.values())
+  updateIndicator()
 }
 function updateIndicator() {
   const node = buttons.get(props.modelValue)
@@ -71,18 +76,25 @@ function keydown(event, key) {
   reveal(buttons.get(next))
 }
 onMounted(() => {
-  updateIndicator()
+  measure()
   reveal(buttons.get(props.modelValue))
   if (typeof ResizeObserver !== 'undefined') {
-    observer = new ResizeObserver(updateIndicator)
+    observer = new ResizeObserver(measure)
     observer.observe(element.value)
     for (const node of buttons.values()) observer.observe(node)
   }
+  fonts = document.fonts
+  fonts?.ready.then(() => { if (!disposed) measure() })
+  fonts?.addEventListener('loadingdone', measure)
 })
 watch(() => [props.modelValue, props.items, props.orientation, props.size], async () => {
-  await nextTick(); updateIndicator(); reveal(buttons.get(props.modelValue))
+  await nextTick(); measure(); reveal(buttons.get(props.modelValue))
 }, { deep: true })
-onBeforeUnmount(() => observer?.disconnect())
+onBeforeUnmount(() => {
+  disposed = true
+  observer?.disconnect()
+  fonts?.removeEventListener('loadingdone', measure)
+})
 defineExpose({ element, updateIndicator })
 </script>
 <style scoped>

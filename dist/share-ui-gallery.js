@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, C as r, Ct as i, D as a, Dt as o, Et as s, F as ee, G as c, I as te, K as ne, L as re, Mt as ie, Nt as l, O as ae, Ot as u, P as oe, Pt as d, R as se, S as ce, St as le, T as ue, Tt as de, U as fe, V as pe, W as me, _ as f, a as he, b as ge, bt as _e, c as p, ct as ve, d as m, dt as h, f as g, ft as ye, g as be, h as xe, i as _, j as Se, jt as v, k as y, kt as Ce, l as b, lt as x, m as S, n as C, nt as we, o as w, p as T, r as Te, rt as Ee, s as E, st as De, t as D, u as O, v as Oe, w as ke, wt as k, x as A, xt as Ae, y as je, yt as Me, z as Ne } from "./StarRating-B09f18j0.js";
+import { A as e, At as t, B as n, C as r, Ct as i, D as a, Dt as o, Et as s, F as ee, G as c, I as te, K as ne, L as re, Mt as ie, Nt as l, O as ae, Ot as u, P as oe, Pt as d, R as se, S as ce, St as le, T as ue, Tt as de, U as fe, V as pe, W as me, _ as f, a as he, b as ge, bt as _e, c as p, ct as ve, d as m, dt as h, f as g, ft as ye, g as be, h as xe, i as _, j as Se, jt as v, k as y, kt as Ce, l as b, lt as x, m as S, n as C, nt as we, o as w, p as T, r as Te, rt as Ee, s as E, st as De, t as D, u as O, v as Oe, w as ke, wt as k, x as A, xt as Ae, y as je, yt as Me, z as Ne } from "./StarRating-DET56kz6.js";
 import { Fragment as j, createBlock as M, createCommentVNode as N, createElementBlock as P, createElementVNode as F, createTextVNode as I, createVNode as L, h as R, normalizeClass as Pe, openBlock as z, reactive as Fe, ref as B, toDisplayString as V, unref as Ie, withCtx as H, withModifiers as Le } from "vue";
 //#region src/gallery/TourGalleryExample.vue
 var Re = {
@@ -268,7 +268,7 @@ var Re = {
 			},
 			{
 				key: "settings",
-				label: "Settings",
+				label: "Настройки освещения",
 				divider: !0,
 				dividerLabel: "Tools"
 			}
@@ -1145,6 +1145,6 @@ var Re = {
 			}, 8, ["origin-el"])) : N("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-df8616a4"]]);
+}, [["__scopeId", "data-v-a8aa1595"]]);
 //#endregion
 export { U as COMPONENT_GALLERY_ALIASES, Be as COMPONENT_GALLERY_COMPONENTS, W as ComponentGallery };
