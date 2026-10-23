@@ -672,7 +672,7 @@ export const MorphTile: DefineComponent<MorphTileHeaderProps & {
 
 export const StatBar: DefineComponent<{
   percent?: number; tempPercent?: number; color?: string; tempColor?: string
-  size?: 'small' | 'medium' | 'large'; decorated?: boolean; label?: string
+  size?: 'small' | 'compact' | 'medium' | 'large'; decorated?: boolean; label?: string
 }>
 export interface IconPickerOption { value: string | number; label?: string; icon?: Component; disabled?: boolean }
 export const IconPicker: DefineComponent<{ modelValue?: string | number; options?: IconPickerOption[]; label: string; disabled?: boolean }>

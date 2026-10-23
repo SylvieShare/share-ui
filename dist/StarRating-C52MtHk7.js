@@ -5412,7 +5412,7 @@ var ea = ["aria-label", "aria-valuenow"], ta = {
 			t.decorated ? (w(), s("span", ta)) : o("", !0)
 		], 14, ea));
 	}
-}, [["__scopeId", "data-v-5af0c4fc"]]), ra = ["aria-label"], ia = [
+}, [["__scopeId", "data-v-9d00cb02"]]), ra = ["aria-label"], ia = [
 	"aria-label",
 	"aria-pressed",
 	"title",

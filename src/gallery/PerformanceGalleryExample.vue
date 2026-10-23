@@ -2,6 +2,7 @@
   <DetailSection label="Переиспользуемые представления" collapsible>
     <StatBar :percent="65" :temp-percent="15" label="Значение" decorated size="large" />
     <StatBar :percent="0" label="Пустое значение" size="small" />
+    <StatBar :percent="65" :temp-percent="15" label="Компактное значение" size="compact" />
     <StatBar :percent="100" label="Полное значение" />
     <IconPicker v-model="icon" :options="icons" label="Иконка" />
     <IconPicker :options="icons" label="Недоступный выбор" disabled />
