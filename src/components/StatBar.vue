@@ -34,7 +34,7 @@ const props = defineProps({
   percent: { type: Number, default: 0 },
   // Fill color (any CSS color or var()). Drives fill + optional glow.
   color: { type: String, default: 'var(--accent)' },
-  // 'small' (4px), 'compact' (9px), 'medium' (14px pill), 'large' (22px pill).
+  // 'small' (4px), 'compact' (6px), 'medium' (14px pill), 'large' (22px pill).
   size: { type: String, default: 'medium' },
   // Optional secondary overlay width, 0–100 (clamped so it can't exceed the remainder).
   tempPercent: { type: Number, default: 0 },
@@ -86,7 +86,7 @@ const clampedTemp = computed(() =>
 
 /* ── compact ── thicker flat line (compact rows) */
 .stat-bar--compact {
-  height: 9px;
+  height: 6px;
   border-radius: 999px;
   background: var(--bg);
 }
