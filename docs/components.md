@@ -11,6 +11,7 @@ Deep imports из `dist/` или `src/` не являются контракто
 - `surface` — `solid` (по умолчанию) или `glass`: фон с opacity 76% и backdrop blur 14 px. Tint, gradient и frame сохраняются; при отсутствии поддержки blur остаётся полупрозрачный фон;
 - `tint` — постоянный слабый цветовой tint;
 - `framed` — gradient и accent border;
+- `frameWidth` — толщина accent border от 1 до 4 px, по умолчанию 1; действует только вместе с `framed`, обычная рамка не меняется;
 - `interactive` — pointer и hover feedback.
 
 Контент передаётся default slot, событие `click` пробрасывает исходный event.

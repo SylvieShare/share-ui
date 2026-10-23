@@ -24,6 +24,10 @@ var U = (e, t) => {
 			type: Boolean,
 			default: !1
 		},
+		frameWidth: {
+			type: Number,
+			default: 1
+		},
 		interactive: {
 			type: Boolean,
 			default: !1
@@ -41,6 +45,7 @@ var U = (e, t) => {
 			}]),
 			style: b({
 				"--tile-color": n.value,
+				"--tile-frame-width": `${Math.max(1, Math.min(4, Number(e.frameWidth) || 1))}px`,
 				...e.surface === "glass" ? {
 					"backdrop-filter": "blur(14px)",
 					"-webkit-backdrop-filter": "blur(14px)"
@@ -49,7 +54,7 @@ var U = (e, t) => {
 			onClick: r[0] ||= (e) => t.$emit("click", e)
 		}, [O(t.$slots, "default", {}, void 0, !0)], 6));
 	}
-}, [["__scopeId", "data-v-579988b8"]]), ee = { class: "morph-tile-title" }, te = ["aria-label", "disabled"], G = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-cf926d25"]]), ee = { class: "morph-tile-title" }, te = ["aria-label", "disabled"], G = /*#__PURE__*/ U({
 	__name: "MorphTileHeader",
 	props: {
 		title: {

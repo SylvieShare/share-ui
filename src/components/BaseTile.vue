@@ -2,7 +2,7 @@
   <div
     class="base-tile"
     :class="{ 'base-tile--interactive': interactive, 'base-tile--tint': tint, 'base-tile--framed': framed, 'base-tile--glass': surface === 'glass' }"
-    :style="{ '--tile-color': resolvedColor, ...(surface === 'glass' ? { 'backdrop-filter': 'blur(14px)', '-webkit-backdrop-filter': 'blur(14px)' } : {}) }"
+    :style="{ '--tile-color': resolvedColor, '--tile-frame-width': `${Math.max(1, Math.min(4, Number(frameWidth) || 1))}px`, ...(surface === 'glass' ? { 'backdrop-filter': 'blur(14px)', '-webkit-backdrop-filter': 'blur(14px)' } : {}) }"
     @click="$emit('click', $event)"
   >
     <slot />
@@ -20,6 +20,7 @@ const props = defineProps({
   tint: { type: Boolean, default: false },
   // Gradient fill + colored border in the tile color (e.g. the HP block).
   framed: { type: Boolean, default: false },
+  frameWidth: { type: Number, default: 1 },
   // Pointer cursor + hover tint.
   interactive: { type: Boolean, default: false },
 })
@@ -68,7 +69,7 @@ const resolvedColor = computed(() => props.color || 'var(--accent)')
   content: "";
   position: absolute;
   inset: 0;
-  border: 1px solid color-mix(in srgb, var(--tile-color) 35%, var(--border));
+  border: var(--tile-frame-width) solid color-mix(in srgb, var(--tile-color) 35%, var(--border));
   border-radius: inherit;
   pointer-events: none;
   transition: border-color 0.3s ease;

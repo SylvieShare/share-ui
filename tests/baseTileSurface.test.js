@@ -11,3 +11,9 @@ it('combines the glass surface with framing, tint and interaction without replac
   const html=await render({...props,surface:'glass'});expect(html).toContain('base-tile--glass');expect(html).toContain('backdrop-filter:blur(14px)');expect(html).toContain('<button>Action</button>');expect(html).not.toContain('surface="glass"')
  }
 })
+
+it('supports a stronger accent frame while clamping its width',async()=>{
+ expect(await render({framed:true,frameWidth:2})).toContain('--tile-frame-width:2px')
+ expect(await render({framed:true,frameWidth:99})).toContain('--tile-frame-width:4px')
+ expect(await render({framed:true})).toContain('--tile-frame-width:1px')
+})

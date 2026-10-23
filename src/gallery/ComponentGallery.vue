@@ -34,6 +34,7 @@
               <strong>Рамка</strong>
               <span>framed</span>
             </BaseTile>
+            <BaseTile framed :frame-width="2" class="share-component-gallery__tile"><strong>Усиленная рамка</strong><span>frameWidth=2</span></BaseTile>
             <MorphTile title="Редактируемая плитка" show-edit edit-label="Редактировать" @edit="morphTileEdits++">
               <template #aside><span>{{ morphTileEdits }}</span></template>
               <span>Единый заголовок и действие справа</span>
