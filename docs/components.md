@@ -96,7 +96,11 @@ Consumer не переопределяет типографику заголов
   Exposed `element` и `updateIndicator()` доступны измеряющим компоновку adapters.
   Компонент аддитивный; существующие `SlidingTabs` и sidebar primitives не меняются.
 - `SlidingTabs`: tabs `{ key, title, icon?, disabled?, id?, panelId? }`, icon-slot
-  и клавиатурная навигация.
+  и клавиатурная навигация. `maxTabWidth` ограничивает кнопку и сокращает длинное
+  название многоточием. Slot `tab-actions({tab})` размещает отдельные действия
+  рядом с вкладкой, вне её кнопки: переименование, закрытие или меню. Состояния
+  и доступные подписи задаёт consumer. Индикатор измеряет саму кнопку, реагирует
+  на изменение её ширины и учитывает reduced motion.
 - `AppSlider`: доступный native range с DnD Share visual style.
 - `SectionLabel`: общий uppercase label, optional border/actions/alignment.
 

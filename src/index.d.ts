@@ -122,6 +122,7 @@ export interface SlidingTab<T = string | number> {
 }
 
 export const SlidingTabs: DefineComponent<{
+  maxTabWidth?: number
   tabs: SlidingTab[]
   modelValue?: string | number | null
   ariaLabel?: string

@@ -1,9 +1,8 @@
 <template>
-  <nav ref="rootElement" class="share-sliding-tabs" role="tablist" :aria-label="ariaLabel || undefined">
+  <nav ref="rootElement" class="share-sliding-tabs" role="tablist" :aria-label="ariaLabel || undefined" :style="{ '--sliding-tab-max-width': maxTabWidth ? `${maxTabWidth}px` : undefined }">
+    <div v-for="(tab, index) in tabs" :key="String(tab.key)" class="share-sliding-tabs__item" role="presentation">
     <button
-      v-for="(tab, index) in tabs"
       :id="tab.id"
-      :key="String(tab.key)"
       :ref="element => setButtonRef(element, index)"
       class="share-sliding-tabs__tab"
       :class="{ 'share-sliding-tabs__tab--active': modelValue === tab.key }"
@@ -19,8 +18,10 @@
       <slot name="icon" :tab="tab">
         <img v-if="tab.icon || tab.svg" class="share-sliding-tabs__icon" :src="tab.icon || tab.svg" alt="" aria-hidden="true" />
       </slot>
-      <span>{{ tab.title }}</span>
+      <span class="share-sliding-tabs__title">{{ tab.title }}</span>
     </button>
+    <slot name="tab-actions" :tab="tab" />
+    </div>
     <span class="share-sliding-tabs__underline" :style="underlineStyle" aria-hidden="true" />
   </nav>
 </template>
@@ -31,6 +32,7 @@ const props = defineProps({
   tabs: { type: Array, required: true },
   modelValue: { type: [String, Number], default: null },
   ariaLabel: { type: String, default: '' },
+  maxTabWidth: { type: Number, default: 0 },
 })
 const emit = defineEmits(['update:modelValue'])
 const rootElement = ref(null)
@@ -41,7 +43,13 @@ const underlineStyle = computed(() => ({
   width: `${underline.value.width}px`,
   opacity: underline.value.ready ? 1 : 0,
 }))
-function setButtonRef(element, index) { buttonElements.value[index] = element }
+function setButtonRef(element, index) {
+  const previous = buttonElements.value[index]
+  if (previous === element) return
+  if (previous) resizeObserver?.unobserve(previous)
+  buttonElements.value[index] = element
+  if (element) resizeObserver?.observe(element)
+}
 function select(key) {
   const tab = props.tabs.find(candidate => candidate.key === key)
   if (tab && !tab.disabled && key !== props.modelValue) emit('update:modelValue', key)
@@ -66,6 +74,13 @@ function onKeydown(event, currentIndex) {
   event.preventDefault()
   focusTab(target.index)
 }
+function revealActive() {
+  const root = rootElement.value, element = buttonElements.value[props.tabs.findIndex(tab => tab.key === props.modelValue)]
+  if (!root || !element) return
+  const left = element.offsetLeft, right = left + element.offsetWidth
+  if (left < root.scrollLeft || right > root.scrollLeft + root.clientWidth)
+    root.scrollTo({ left: Math.max(0, left - (root.clientWidth - element.offsetWidth) / 2), behavior: globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+}
 function updateUnderline() {
   const index = props.tabs.findIndex(tab => tab.key === props.modelValue)
   const element = buttonElements.value[index]
@@ -74,15 +89,16 @@ function updateUnderline() {
 }
 let resizeObserver = null
 onMounted(() => {
-  nextTick(updateUnderline)
+  nextTick(() => { updateUnderline(); revealActive() })
   if (typeof ResizeObserver !== 'undefined' && rootElement.value) {
     resizeObserver = new ResizeObserver(updateUnderline)
     resizeObserver.observe(rootElement.value)
+    buttonElements.value.forEach(element => element && resizeObserver.observe(element))
   }
 })
 onBeforeUnmount(() => resizeObserver?.disconnect())
-watch(() => props.modelValue, () => nextTick(updateUnderline))
-watch(() => props.tabs, () => nextTick(updateUnderline), { deep: true })
+watch(() => props.modelValue, () => nextTick(() => { updateUnderline(); revealActive() }))
+watch(() => props.tabs, () => nextTick(() => { updateUnderline(); revealActive() }), { deep: true })
 defineExpose({ updateUnderline })
 </script>
 
@@ -97,6 +113,7 @@ defineExpose({ updateUnderline })
   overflow-x: auto;
   overflow-y: hidden;
 }
+.share-sliding-tabs__item { display: inline-flex; align-items: stretch; flex: none; }
 .share-sliding-tabs__tab {
   display: inline-flex;
   align-items: center;
@@ -109,10 +126,13 @@ defineExpose({ updateUnderline })
   font-size: 14px;
   font-weight: 700;
   letter-spacing: .02em;
+  max-width: var(--sliding-tab-max-width, none);
   white-space: nowrap;
   cursor: pointer;
   transition: color .15s;
 }
+.share-sliding-tabs__title { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.share-sliding-tabs__tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; border-radius: var(--r-sm); }
 .share-sliding-tabs__tab:hover:not(:disabled) { color: var(--text-2); }
 .share-sliding-tabs__tab--active { color: var(--text-1); }
 .share-sliding-tabs__tab:disabled { opacity: .4; cursor: not-allowed; }
@@ -132,4 +152,5 @@ defineExpose({ updateUnderline })
   .share-sliding-tabs { gap: 18px; padding: 0 16px; }
   .share-sliding-tabs__tab { font-size: 12px; }
 }
+@media (prefers-reduced-motion: reduce) { .share-sliding-tabs__underline, .share-sliding-tabs__tab { transition: none; } }
 </style>
