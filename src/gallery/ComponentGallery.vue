@@ -160,6 +160,7 @@
           <h2>Segmented controls</h2>
           <div class="share-component-gallery__stack">
             <MultiToggle v-model="toggleValue" :options="toggleOptions" aria-label="Размер" />
+            <SlidingTabs v-model="tabValue" variant="chips" :tabs="tabs" :max-tab-width="160" aria-label="Режим просмотра чипами"><template #tab-actions="{tab}"><ActionButton icon-only variant="quiet" :aria-label="`Изменить ${tab.title}`"><template #icon>✎</template></ActionButton></template></SlidingTabs>
             <SlidingTabs v-model="tabValue" :tabs="tabs" :max-tab-width="160" aria-label="Режим просмотра"><template #tab-actions="{tab}"><ActionButton icon-only variant="quiet" :aria-label="`Изменить ${tab.title}`"><template #icon>✎</template></ActionButton></template></SlidingTabs>
           </div>
         </article>

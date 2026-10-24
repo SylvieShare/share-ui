@@ -1,6 +1,6 @@
 <template>
-  <nav ref="rootElement" class="share-sliding-tabs" role="tablist" :aria-label="ariaLabel || undefined" :style="{ '--sliding-tab-max-width': maxTabWidth ? `${maxTabWidth}px` : undefined }">
-    <div v-for="(tab, index) in tabs" :key="String(tab.key)" class="share-sliding-tabs__item" role="presentation">
+  <nav ref="rootElement" class="share-sliding-tabs" :class="`share-sliding-tabs--${variant}`" role="tablist" :aria-label="ariaLabel || undefined" :style="{ '--sliding-tab-max-width': maxTabWidth ? `${maxTabWidth}px` : undefined }">
+    <div v-for="(tab, index) in tabs" :key="String(tab.key)" class="share-sliding-tabs__item" :class="{ 'share-sliding-tabs__item--active': modelValue === tab.key }" role="presentation">
     <button
       :id="tab.id"
       :ref="element => setButtonRef(element, index)"
@@ -22,7 +22,7 @@
     </button>
     <slot name="tab-actions" :tab="tab" />
     </div>
-    <span class="share-sliding-tabs__underline" :style="underlineStyle" aria-hidden="true" />
+    <span v-if="variant === 'underline'" class="share-sliding-tabs__underline" :style="underlineStyle" aria-hidden="true" />
   </nav>
 </template>
 
@@ -33,6 +33,7 @@ const props = defineProps({
   modelValue: { type: [String, Number], default: null },
   ariaLabel: { type: String, default: '' },
   maxTabWidth: { type: Number, default: 0 },
+  variant: { type: String, default: 'underline', validator: value => ['underline', 'chips'].includes(value) },
 })
 const emit = defineEmits(['update:modelValue'])
 const rootElement = ref(null)
@@ -82,6 +83,7 @@ function revealActive() {
     root.scrollTo({ left: Math.max(0, left - (root.clientWidth - element.offsetWidth) / 2), behavior: globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
 }
 function updateUnderline() {
+  if (props.variant !== 'underline') return
   const index = props.tabs.findIndex(tab => tab.key === props.modelValue)
   const element = buttonElements.value[index]
   if (!element) { underline.value = { left: 0, width: 0, ready: false }; return }
@@ -98,6 +100,7 @@ onMounted(() => {
 })
 onBeforeUnmount(() => resizeObserver?.disconnect())
 watch(() => props.modelValue, () => nextTick(() => { updateUnderline(); revealActive() }))
+watch(() => props.variant, () => nextTick(() => { updateUnderline(); revealActive() }))
 watch(() => props.tabs, () => nextTick(() => { updateUnderline(); revealActive() }), { deep: true })
 defineExpose({ updateUnderline })
 </script>
@@ -152,5 +155,24 @@ defineExpose({ updateUnderline })
   .share-sliding-tabs { gap: 18px; padding: 0 16px; }
   .share-sliding-tabs__tab { font-size: 12px; }
 }
-@media (prefers-reduced-motion: reduce) { .share-sliding-tabs__underline, .share-sliding-tabs__tab { transition: none; } }
+.share-sliding-tabs--chips { align-items: center; gap: 8px; padding: 6px 12px; }
+.share-sliding-tabs--chips .share-sliding-tabs__item {
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: var(--surface-raised);
+  transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.share-sliding-tabs--chips .share-sliding-tabs__item:hover { border-color: var(--border-strong); }
+.share-sliding-tabs--chips .share-sliding-tabs__tab { min-height: 38px; padding: 8px 12px; font-size: 13px; letter-spacing: 0; }
+.share-sliding-tabs--chips .share-sliding-tabs__item--active,
+.share-sliding-tabs--chips .share-sliding-tabs__item--active:hover {
+  background: color-mix(in srgb, var(--accent) 18%, var(--surface-raised));
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.share-sliding-tabs--chips .share-sliding-tabs__tab--active { color: var(--text-1); }
+.share-sliding-tabs--chips .share-sliding-tabs__tab:focus-visible { border-radius: var(--r-pill); }
+@media (prefers-reduced-motion: reduce) { .share-sliding-tabs__underline, .share-sliding-tabs__tab, .share-sliding-tabs--chips .share-sliding-tabs__item { transition: none; } }
 </style>

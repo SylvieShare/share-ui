@@ -11,3 +11,13 @@ it('keeps tab actions beside navigation buttons without nesting interactive cont
  expect(html).toMatch(/<\/button>[\s\S]*<button aria-label="Rename First"/)
  expect(html).not.toMatch(/<button[^>]*>[\s\S]*?<button[^>]*>[\s\S]*?<\/button>[\s\S]*?<\/button>/)
 })
+
+it('offers chip tabs with an active container and no underline while retaining tab semantics',async()=>{
+ const html=await renderToString(createSSRApp({render:()=>h(SlidingTabs,{variant:'chips',tabs:[{key:'a',title:'First'}],modelValue:'a'})}))
+ expect(html).toContain('share-sliding-tabs--chips')
+ expect(html).toContain('share-sliding-tabs__item--active')
+ expect(html).toContain('aria-selected="true"')
+ expect(html).not.toContain('share-sliding-tabs__underline')
+ const standard=await renderToString(createSSRApp({render:()=>h(SlidingTabs,{tabs:[{key:'a',title:'First'}],modelValue:'a'})}))
+ expect(standard).toContain('share-sliding-tabs__underline')
+})

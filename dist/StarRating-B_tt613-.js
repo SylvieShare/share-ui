@@ -997,6 +997,11 @@ var je = ["aria-label"], Me = ["aria-orientation", "aria-label"], Ne = [
 		maxTabWidth: {
 			type: Number,
 			default: 0
+		},
+		variant: {
+			type: String,
+			default: "underline",
+			validator: (e) => ["underline", "chips"].includes(e)
 		}
 	},
 	emits: ["update:modelValue"],
@@ -1041,6 +1046,7 @@ var je = ["aria-label"], Me = ["aria-orientation", "aria-label"], Ne = [
 			});
 		}
 		function T() {
+			if (a.variant !== "underline") return;
 			let e = a.tabs.findIndex((e) => e.key === a.modelValue), t = d.value[e];
 			if (!t) {
 				f.value = {
@@ -1063,18 +1069,20 @@ var je = ["aria-label"], Me = ["aria-orientation", "aria-label"], Ne = [
 			}), typeof ResizeObserver < "u" && u.value && (k = new ResizeObserver(T), k.observe(u.value), d.value.forEach((e) => e && k.observe(e)));
 		}), x(() => k?.disconnect()), R(() => a.modelValue, () => _(() => {
 			T(), C();
+		})), R(() => a.variant, () => _(() => {
+			T(), C();
 		})), R(() => a.tabs, () => _(() => {
 			T(), C();
 		}), { deep: !0 }), n({ updateUnderline: T }), (n, r) => (w(), s("nav", {
 			ref_key: "rootElement",
 			ref: u,
-			class: "share-sliding-tabs",
+			class: v(["share-sliding-tabs", `share-sliding-tabs--${t.variant}`]),
 			role: "tablist",
 			"aria-label": t.ariaLabel || void 0,
 			style: b({ "--sliding-tab-max-width": t.maxTabWidth ? `${t.maxTabWidth}px` : void 0 })
 		}, [(w(!0), s(e, null, D(t.tabs, (e, r) => (w(), s("div", {
 			key: String(e.key),
-			class: "share-sliding-tabs__item",
+			class: v(["share-sliding-tabs__item", { "share-sliding-tabs__item--active": t.modelValue === e.key }]),
 			role: "presentation"
 		}, [c("button", {
 			id: e.id,
@@ -1095,13 +1103,14 @@ var je = ["aria-label"], Me = ["aria-orientation", "aria-label"], Ne = [
 			src: e.icon || e.svg,
 			alt: "",
 			"aria-hidden": "true"
-		}, null, 8, Re)) : o("", !0)], !0), c("span", ze, j(e.title), 1)], 42, Le), O(n.$slots, "tab-actions", { tab: e }, void 0, !0)]))), 128)), c("span", {
+		}, null, 8, Re)) : o("", !0)], !0), c("span", ze, j(e.title), 1)], 42, Le), O(n.$slots, "tab-actions", { tab: e }, void 0, !0)], 2))), 128)), t.variant === "underline" ? (w(), s("span", {
+			key: 0,
 			class: "share-sliding-tabs__underline",
 			style: b(p.value),
 			"aria-hidden": "true"
-		}, null, 4)], 12, Ie));
+		}, null, 4)) : o("", !0)], 14, Ie));
 	}
-}, [["__scopeId", "data-v-5951f531"]]), Ve = [
+}, [["__scopeId", "data-v-7ae5b626"]]), Ve = [
 	"aria-checked",
 	"aria-label",
 	"disabled"
