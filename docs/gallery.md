@@ -62,3 +62,9 @@ stories и отдельную интеграцию тем. Встраиваем�
 
 
 Раздел примитивов списков показывает StatBar с основной/временной долей, выбор иконки, сворачиваемый DetailSection, интерактивный ContentRow, OptionList, SearchMultiSelect и FloatingTooltip. Все семь компонентов включены в coverage-каталог.
+
+`AppDrawer` показан двумя интерактивными примерами: header/body/footer с длинным
+body и вложенным drawer; полный `AppSidebar position="embedded"` без внешней
+кнопки закрытия, со своими brand/account и teleported account menu. Переключатель
+включает swipe-close. Embedded пример остаётся вертикальным и широким при любом
+viewport, даже с `mobileMode="top"` и breakpoint `1200`.

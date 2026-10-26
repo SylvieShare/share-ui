@@ -21,7 +21,7 @@
 - `FormField`, `FormTextInput`, `FormNumberInput`, `FormSelect`, `FormTextarea`,
   `FormActionButtons`;
 - `BasePopover`, action menu, `ValueSelect`, `ColorPresetPicker`;
-- modal/morph overlays;
+- modal/morph overlays и `AppDrawer` с встраиваемым sidebar;
 - `useSortable`, `reorderByDrop`, viewport и morph composables;
 - базовые theme-токены и класс `.share-app-canvas` из `styles.css`.
 - отдельную встраиваемую галерею всех публичных визуальных компонентов.

@@ -384,6 +384,10 @@
 
     <section class="share-component-gallery__section">
       <SectionLabel title="Оверлеи и morph" border />
+      <article class="share-component-gallery__card" data-share-gallery="AppDrawer">
+        <h2>AppDrawer + embedded navigation</h2>
+        <DrawerGalleryExample />
+      </article>
       <article
         class="share-component-gallery__card"
         data-share-gallery="AppModal AppModalFrame ModalShell ConfirmDialog TextPromptDialog MorphSheet"
@@ -451,6 +455,7 @@
 import StarRating from '../components/StarRating.vue'
 
 import TourGalleryExample from './TourGalleryExample.vue'
+import DrawerGalleryExample from './DrawerGalleryExample.vue'
 import LoadingState from '../components/LoadingState.vue'
 import LoadingIndicator from '../components/LoadingIndicator.vue'
 import SkeletonBlock from '../components/SkeletonBlock.vue'

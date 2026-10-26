@@ -49,6 +49,7 @@ export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
   'EditorSection',
   'EditorSectionTitle',
   'EditorTotal',
+  'AppDrawer',
   'AppModal',
   'AppModalFrame',
   'ConfirmDialog',

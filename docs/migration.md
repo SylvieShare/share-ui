@@ -13,6 +13,7 @@
 | Плитки | `BaseTile` | общий primitive | доступен для поэтапной замены domain tiles | доступен для поэтапной замены domain tiles |
 | Формы | `Form*`, toggles, checkbox, editor primitives | подключено | подключено | подключено через локальные adapters там, где UX отличается |
 | Overlays и morph | `AppModal*`, dialogs, `MorphSheet`, composables | подключено | подключено | подключено |
+| Опциональная выдвижная навигация | `AppDrawer` + `AppSidebar position="embedded"` (v0.44.0) | consumer выбирает адаптер | доступно без миграции | доступно без миграции |
 | Floating UI | `BasePopover`, `ActionMenu*`, `ValueSelect`, `ColorPresetPicker` | подключено; локален icon adapter | подключено | picker подключён через palette adapter |
 | Rich text | `RichTextEditor`, `RichContent`, sanitizer | подключено через DnD adapter | подключено | будет подключаться при появлении сохранённого rich text |
 | Сортировка списков | `useSortable`, `reorderByDrop` | подключено | подключено | будет подключаться для сортируемого списка |

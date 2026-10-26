@@ -4,9 +4,10 @@
     :class="[
       expanded && 'share-app-sidebar--expanded app-sidebar--expanded',
       elevated && 'share-app-sidebar--elevated',
+      !(showToggle || $slots.tools) && 'share-app-sidebar--without-tools',
       `share-app-sidebar--${position}`,
-      `share-app-sidebar--mobile-${mobileMode}`,
-      `share-app-sidebar--breakpoint-${mobileBreakpoint}`,
+      position !== 'embedded' && mobileBreakpoint !== 0 && `share-app-sidebar--mobile-${mobileMode}`,
+      position !== 'embedded' && mobileBreakpoint !== 0 && `share-app-sidebar--breakpoint-${mobileBreakpoint}`,
     ]"
   >
     <div v-if="$slots.brand" class="share-sidebar-head">
@@ -46,7 +47,7 @@ const props = defineProps({
   position: {
     type: String,
     default: 'fixed',
-    validator: value => ['fixed', 'sticky'].includes(value),
+    validator: value => ['fixed', 'sticky', 'embedded'].includes(value),
   },
   mobileMode: {
     type: String,
@@ -56,7 +57,7 @@ const props = defineProps({
   mobileBreakpoint: {
     type: Number,
     default: 768,
-    validator: value => [640, 768].includes(value),
+    validator: value => [0, 600, 640, 768, 1200].includes(value),
   },
   ariaLabel: { type: String, default: 'Main navigation' },
   showToggle: { type: Boolean, default: true },
@@ -124,6 +125,14 @@ defineExpose({ expanded, expand, collapse, toggle })
   box-shadow: var(--shadow-lg);
 }
 
+.share-app-sidebar--embedded {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  box-shadow: none;
+}
+
 .share-app-sidebar--elevated {
   background: var(--surface);
   border-right-color: var(--border-strong);
@@ -163,6 +172,8 @@ defineExpose({ expanded, expand, collapse, toggle })
   padding: 10px;
   border-top: 1px solid var(--border);
 }
+
+.share-app-sidebar--without-tools .share-sidebar-account { margin-top: auto; }
 
 @media (max-width: 768px) {
   .share-app-sidebar--breakpoint-768.share-app-sidebar--mobile-hide { display: none; }
@@ -250,6 +261,94 @@ defineExpose({ expanded, expand, collapse, toggle })
 
   .share-app-sidebar--breakpoint-640.share-app-sidebar--mobile-top .share-sidebar-tools,
   .share-app-sidebar--breakpoint-640.share-app-sidebar--mobile-top .share-sidebar-account { display: none; }
+}
+
+@media (max-width: 599px) {
+  .share-app-sidebar--breakpoint-600.share-app-sidebar--mobile-hide { display: none; }
+
+  .share-app-sidebar--breakpoint-600.share-app-sidebar--mobile-top {
+    position: sticky;
+    inset: auto;
+    top: 0;
+    z-index: 100;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    height: auto;
+    padding: 8px 12px;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    box-shadow: none;
+  }
+
+  .share-app-sidebar--breakpoint-600.share-app-sidebar--mobile-top.share-app-sidebar--elevated {
+    border-bottom-color: var(--border-strong);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--scrim) 45%, transparent);
+  }
+
+  .share-app-sidebar--breakpoint-600.share-app-sidebar--mobile-top .share-sidebar-head {
+    width: auto;
+    height: auto;
+    padding: 0;
+    border: 0;
+  }
+
+  .share-app-sidebar--breakpoint-600.share-app-sidebar--mobile-top .share-sidebar-nav {
+    flex: 1;
+    flex-direction: row;
+    gap: 4px;
+    padding: 0;
+    overflow-x: auto;
+  }
+
+  .share-app-sidebar--breakpoint-600.share-app-sidebar--mobile-top .share-sidebar-tools,
+  .share-app-sidebar--breakpoint-600.share-app-sidebar--mobile-top .share-sidebar-account { display: none; }
+}
+
+@media (max-width: 1199px) {
+  .share-app-sidebar--breakpoint-1200.share-app-sidebar--mobile-hide { display: none; }
+
+  .share-app-sidebar--breakpoint-1200.share-app-sidebar--mobile-top {
+    position: sticky;
+    inset: auto;
+    top: 0;
+    z-index: 100;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    height: auto;
+    padding: 8px 12px;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    box-shadow: none;
+  }
+
+  .share-app-sidebar--breakpoint-1200.share-app-sidebar--mobile-top.share-app-sidebar--elevated {
+    border-bottom-color: var(--border-strong);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--scrim) 45%, transparent);
+  }
+
+  .share-app-sidebar--breakpoint-1200.share-app-sidebar--mobile-top .share-sidebar-head {
+    width: auto;
+    height: auto;
+    padding: 0;
+    border: 0;
+  }
+
+  .share-app-sidebar--breakpoint-1200.share-app-sidebar--mobile-top .share-sidebar-nav {
+    flex: 1;
+    flex-direction: row;
+    gap: 4px;
+    padding: 0;
+    overflow-x: auto;
+  }
+
+  .share-app-sidebar--breakpoint-1200.share-app-sidebar--mobile-top .share-sidebar-tools,
+  .share-app-sidebar--breakpoint-1200.share-app-sidebar--mobile-top .share-sidebar-account { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

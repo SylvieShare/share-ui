@@ -52,7 +52,16 @@ defineProps({
 </style>
 
 <style>
+@media (max-width: 599px) {
+  .share-app-sidebar--breakpoint-600.share-app-sidebar--mobile-top .share-sidebar-brand { width: 42px; flex: 0 0 42px; }
+}
+@media (max-width: 640px) {
+  .share-app-sidebar--breakpoint-640.share-app-sidebar--mobile-top .share-sidebar-brand { width: 42px; flex: 0 0 42px; }
+}
 @media (max-width: 768px) {
-  .share-app-sidebar--mobile-top .share-sidebar-brand { width: 42px; flex: 0 0 42px; }
+  .share-app-sidebar--breakpoint-768.share-app-sidebar--mobile-top .share-sidebar-brand { width: 42px; flex: 0 0 42px; }
+}
+@media (max-width: 1199px) {
+  .share-app-sidebar--breakpoint-1200.share-app-sidebar--mobile-top .share-sidebar-brand { width: 42px; flex: 0 0 42px; }
 }
 </style>

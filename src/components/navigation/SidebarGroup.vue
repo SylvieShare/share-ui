@@ -32,7 +32,16 @@ defineProps({ label: { type: String, default: '' } })
   opacity: 1;
 }
 
+@media (max-width: 599px) {
+  .share-app-sidebar--breakpoint-600.share-app-sidebar--mobile-top .share-sidebar-group { display: none; }
+}
+@media (max-width: 640px) {
+  .share-app-sidebar--breakpoint-640.share-app-sidebar--mobile-top .share-sidebar-group { display: none; }
+}
 @media (max-width: 768px) {
-  .share-app-sidebar--mobile-top .share-sidebar-group { display: none; }
+  .share-app-sidebar--breakpoint-768.share-app-sidebar--mobile-top .share-sidebar-group { display: none; }
+}
+@media (max-width: 1199px) {
+  .share-app-sidebar--breakpoint-1200.share-app-sidebar--mobile-top .share-sidebar-group { display: none; }
 }
 </style>

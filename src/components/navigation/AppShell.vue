@@ -33,7 +33,7 @@ const props = defineProps({
   mobileBreakpoint: {
     type: Number,
     default: 768,
-    validator: value => [640, 768].includes(value),
+    validator: value => [0, 600, 640, 768, 1200].includes(value),
   },
   contentTag: { type: String, default: 'main' },
   railWidth: { type: [Number, String], default: 0 },
@@ -76,6 +76,18 @@ const shellStyle = computed(() => ({
   .share-app-shell--breakpoint-640.share-app-shell--column { grid-template-columns: minmax(0, 1fr); }
   .share-app-shell--breakpoint-640.share-app-shell--fixed .share-app-shell__content { margin-left: 0; }
   .share-app-shell--breakpoint-640 .share-app-shell__rail { display: none; }
+}
+
+@media (max-width: 599px) {
+  .share-app-shell--breakpoint-600.share-app-shell--column { grid-template-columns: minmax(0, 1fr); }
+  .share-app-shell--breakpoint-600.share-app-shell--fixed .share-app-shell__content { margin-left: 0; }
+  .share-app-shell--breakpoint-600 .share-app-shell__rail { display: none; }
+}
+
+@media (max-width: 1199px) {
+  .share-app-shell--breakpoint-1200.share-app-shell--column { grid-template-columns: minmax(0, 1fr); }
+  .share-app-shell--breakpoint-1200.share-app-shell--fixed .share-app-shell__content { margin-left: 0; }
+  .share-app-shell--breakpoint-1200 .share-app-shell__rail { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

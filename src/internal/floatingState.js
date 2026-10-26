@@ -1,3 +1,5 @@
+import { isTopOverlay, registerOverlay, unregisterOverlay } from './overlayStack.js'
+
 const floatingStack = []
 
 let activeActionMenu = null
@@ -6,11 +8,13 @@ let activeActionSubmenu = null
 function removeFromStack(token) {
   const index = floatingStack.lastIndexOf(token)
   if (index >= 0) floatingStack.splice(index, 1)
+  unregisterOverlay(token)
 }
 
 export function registerFloating(token) {
   removeFromStack(token)
   floatingStack.push(token)
+  registerOverlay(token)
 }
 
 export function unregisterFloating(token) {
@@ -18,7 +22,7 @@ export function unregisterFloating(token) {
 }
 
 export function isTopFloating(token) {
-  return floatingStack.at(-1) === token
+  return floatingStack.at(-1) === token && isTopOverlay(token)
 }
 
 export function activateActionMenu(token, close) {
@@ -50,6 +54,7 @@ export function closeActiveActionSubmenu() {
 }
 
 export function resetFloatingState() {
+  floatingStack.forEach(unregisterOverlay)
   floatingStack.splice(0)
   activeActionMenu = null
   activeActionSubmenu = null

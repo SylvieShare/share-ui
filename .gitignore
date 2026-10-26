@@ -5,3 +5,6 @@ coverage/
 
 # dist is committed intentionally: consumers currently install immutable Git tags.
 !dist/
+
+playwright-report/
+test-results/

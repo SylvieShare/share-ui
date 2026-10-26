@@ -281,7 +281,7 @@ export const AccountMenu: DefineComponent<{
 export const AppShell: DefineComponent<{
   sidebarMode?: 'column' | 'fixed'
   sidebarVisible?: boolean
-  mobileBreakpoint?: 640 | 768
+  mobileBreakpoint?: 0 | 600 | 640 | 768 | 1200
   contentTag?: string
   railWidth?: number | string
   canvas?: boolean
@@ -292,9 +292,9 @@ export const AppSidebar: DefineComponent<{
   defaultExpanded?: boolean
   elevated?: boolean
   storageKey?: string
-  position?: 'fixed' | 'sticky'
+  position?: 'fixed' | 'sticky' | 'embedded'
   mobileMode?: 'hide' | 'top'
-  mobileBreakpoint?: 640 | 768
+  mobileBreakpoint?: 0 | 600 | 640 | 768 | 1200
   ariaLabel?: string
   showToggle?: boolean
   expandLabel?: string
@@ -321,6 +321,16 @@ export const SidebarToggle: DefineComponent<{
   expanded?: boolean
   expandLabel?: string
   collapseLabel?: string
+}>
+
+export const AppDrawer: DefineComponent<{
+  modelValue?: boolean
+  ariaLabel?: string
+  width?: number | string
+  zIndex?: number
+  showClose?: boolean
+  closeLabel?: string
+  swipeToClose?: boolean
 }>
 
 export const AppModal: DefineComponent<{

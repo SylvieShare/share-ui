@@ -134,6 +134,38 @@ permissions или конкретном домене приложения.
 
 ## Overlays
 
+- `AppDrawer` — controlled `v-model` Boolean (default `false`), teleported слева
+  поверх страницы. `ariaLabel` задаёт имя `role="dialog"` (default `Drawer`),
+  `width: number | string` по умолчанию `288` px и ограничен шириной viewport,
+  `zIndex=3000`. Для application navigation consumer может передать `zIndex=100`:
+  тогда стандартный `BasePopover` (`200`), `ActionMenu` (`9300`) и обычные modal
+  (`3000`) видны поверх drawer без изменения существующих floating defaults.
+  Attrs (`id` для `aria-controls`, class, style и другие) передаются на
+  `section[role=dialog]`, а не на Teleport/внешний слой.
+  Высота всегда равна viewport; panel скользит горизонтально
+  слева за `220ms`, scrim одновременно меняет opacity. Reduced motion убирает
+  оба перехода. Backdrop, Escape и кнопка закрытия сразу отправляют
+  `update:modelValue(false)`; consumer должен применить значение через `v-model`.
+  `showClose=true`, `closeLabel='Close'`; `showClose=false` позволяет использовать
+  собственную кнопку внутри brand/header. События `opened` и `closed` приходят
+  после соответствующего перехода; `requestClose()` доступен через ref.
+  Slots `header` (приоритетнее `title`), `title`, default и `footer` получают
+  `{ close }`. Header/footer создаются только при наличии slots. Default body
+  без padding, занимает всю доступную высоту, прокручивается отдельно; без
+  header/footer он занимает 100% panel без ограничения max-height.
+  Уходящий слой сразу получает `inert`, `aria-hidden` и `pointer-events:none`.
+  До конца leave он удерживает scroll lock и место в overlay stack. При открытии
+  фокус переходит на первый видимый control (либо panel); Tab/Shift+Tab и внешний
+  focus остаются внутри верхнего drawer, после закрытия фокус возвращается
+  инициатору, если он ещё существует и над drawer не открыто другое окно.
+  Teleported `BasePopover`/`ActionMenu` входят в общий stack: drawer уступает
+  им Escape и focus, включая Tab. Для `BasePopover` внутри drawer consumer
+  задаёт `zIndex` выше drawer; `ActionMenu` уже использует `9300`.
+  `swipeToClose=false` — opt-in жест влево внутри panel. Распознаётся
+  горизонтальное движение с порогом `max(64px, 25% ширины)` и преимуществом
+  горизонтали 1.5×; вертикальная прокрутка, taps, правый swipe и multi-touch
+  не закрывают panel. Inputs/contenteditable и `[data-share-drawer-no-swipe]`
+  исключены. Открытие жестом от края и навигация принадлежат consumer.
 - `AppModal` — низкоуровневое DnD-style окно с Teleport, focus trap,
   topmost Escape, mobile swipe-down и анимацией.
 - `AppModalFrame` — header/body/footer shell поверх `AppModal`.
@@ -146,8 +178,24 @@ permissions или конкретном домене приложения.
   вложенных overlay-сценариев и swipe-навигация.
 - `useSheetSubpages` — controller двухпанельной дорожки MorphSheet.
 
-Все overlay-компоненты используют единый внутренний stack и reference-counted
-scroll lock. Поэтому Escape, focus restoration и вложенные окна не конфликтуют.
+Overlay-компоненты используют единый внутренний stack и reference-counted
+scroll lock. Floating surfaces тоже регистрируются в stack, но сами не
+захватывают scroll lock. Escape обрабатывает только верхний владелец.
+
+Полный sidebar внутри drawer (brand/account остаются частью sidebar):
+
+```vue
+<AppDrawer v-model="navigationOpen" aria-label="Navigation" :show-close="false" :z-index="100">
+  <AppSidebar position="embedded" :model-value="true" :show-toggle="false">
+    <template #brand>
+      <SidebarBrand as="div" label="Application" />
+      <button type="button" aria-label="Close navigation" @click="navigationOpen = false">×</button>
+    </template>
+    <SidebarNavItem as="button" label="Overview" />
+    <template #account><AccountMenu label="Account" expanded /></template>
+  </AppSidebar>
+</AppDrawer>
+```
 
 ## Floating UI
 
@@ -227,7 +275,13 @@ Visible labels редактора передаются через `labels`; па
   По умолчанию shell также применяет общий `.share-app-canvas`; prop
   `canvas=false` оставлен для специальных полноэкранных и печатных экранов.
 - `AppSidebar` — DnD-style collapsible sidebar, optional localStorage state,
-  fixed/sticky positioning и mobile modes `hide`/`top`. Opt-in `elevated=true`
+  positioning `fixed` (default), `sticky`, `embedded` и mobile modes `hide`/`top`.
+  `embedded` занимает `width:100%; height:100%` родителя, игнорирует mobile
+  hide/top и не позиционируется относительно viewport. Expanded state по-прежнему
+  задаётся через `v-model`/`defaultExpanded`; для широких подписей в drawer
+  передать `modelValue=true`, для постоянного rail — `modelValue=false`.
+  Account прижат к низу и без toggle/tools (`showToggle=false` и нет tools slot).
+  Opt-in `elevated=true`
   отделяет панель от canvas через `--surface`, `--border-strong` и короткую
   направленную тень в раскрытом и свёрнутом состоянии; mobile `top` направляет
   тень вниз. По умолчанию сохраняются `--bg` и прежняя expanded-тень.
@@ -239,7 +293,16 @@ Visible labels редактора передаются через `labels`; па
 search, account и theme controls через slots. Ширины задают токены
 `--share-sidebar-collapsed-w` (64 px) и `--share-sidebar-expanded-w` (224 px).
 
-Breakpoint выбирается из 640/768: DnD Share сохраняет desktop sidebar до 640,
+`AppShell` и `AppSidebar` принимают `mobileBreakpoint: 0 | 600 | 640 | 768 | 1200`
+(default `768`); `0` полностью отключает mobile presentation, включая дочерние
+labels/groups. Новые `600/1200` используют `max-width:599px/1199px`, поэтому
+при ровно `600/1200` уже применяется desktop presentation. Существующие
+`640/768` по-прежнему включительны (`max-width:640px/768px`). CSS и
+типы используют один набор значений; shell и sidebar должны получать одинаковое
+значение. `mobileBreakpoint=600` вместе с `modelValue=false` оставляет
+свёрнутый rail на планшете и скрывает его на телефоне при `mobileMode='hide'`.
+Прежние defaults, ширины `64/224` и поведение `640/768` сохранены.
+DnD Share сохраняет desktop sidebar до 640,
 HavenShare скрывает его при своём bottom-nav до 768, TrenchShare переключает
 его в горизонтальный `top` mode до 768.
 

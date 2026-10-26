@@ -82,6 +82,11 @@ preset, поэтому consumer не зависит от CSS, случайно �
 - Headless composable может сообщить результат действия, но не сохраняет его.
 - Глобальные browser-ресурсы (scroll lock, overlay stack, listeners) в будущих
   overlay/floating-компонентах имеют одного владельца и корректный cleanup.
+- `AppDrawer` использует focus helpers, общий overlay stack и scroll lock из
+  `src/internal/overlayStack.js`; его layout и горизонтальный motion независимы
+  от `AppModal`. `floatingState` регистрирует floating surfaces в том же stack,
+  чтобы верхний popover получал Escape/focus прежде drawer или modal. Swipe
+  recognition drawer находится в отдельном internal helper без consumer logic.
 - Сохранённый пользовательский HTML проходит allowlist sanitizer и при вводе,
   и перед построением read-only DOM; доверие к тому, что consumer/backend уже очистил строку,
   не является частью контракта.

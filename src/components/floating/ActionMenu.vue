@@ -206,9 +206,9 @@ function onWindowScroll(event) {
 }
 
 function onKeydown(event) {
-  if (event.key !== 'Escape') return
+  if (event.key !== 'Escape' || event.defaultPrevented || !isTopFloating(token)) return
+  event.preventDefault()
   if (closeActiveActionSubmenu()) return
-  if (!isTopFloating(token)) return
   close()
 }
 

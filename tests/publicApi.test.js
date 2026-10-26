@@ -8,6 +8,7 @@ describe('public API', () => {
     'ActionMenuItem',
     'ActionMenuSubmenu',
     'AccountMenu',
+    'AppDrawer',
     'AppModal',
     'AppModalFrame',
     'AppShell',
