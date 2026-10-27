@@ -1,7 +1,7 @@
 <template>
   <div
     class="base-tile"
-    :class="{ 'base-tile--interactive': interactive, 'base-tile--tint': tint, 'base-tile--framed': framed, 'base-tile--glass': surface === 'glass' }"
+    :class="{ 'base-tile--outlined': outlined, 'base-tile--interactive': interactive, 'base-tile--tint': tint, 'base-tile--framed': framed, 'base-tile--glass': surface === 'glass' }"
     :style="{ '--tile-color': resolvedColor, '--tile-frame-width': `${Math.max(1, Math.min(4, Number(frameWidth) || 1))}px`, ...(surface === 'glass' ? { 'backdrop-filter': 'blur(14px)', '-webkit-backdrop-filter': 'blur(14px)' } : {}) }"
     @click="$emit('click', $event)"
   >
@@ -20,6 +20,7 @@ const props = defineProps({
   tint: { type: Boolean, default: false },
   // Gradient fill + colored border in the tile color (e.g. the HP block).
   framed: { type: Boolean, default: false },
+  outlined: { type: Boolean, default: true },
   frameWidth: { type: Number, default: 1 },
   // Pointer cursor + hover tint.
   interactive: { type: Boolean, default: false },
@@ -37,10 +38,12 @@ const resolvedColor = computed(() => props.color || 'var(--accent)')
   background: var(--tile-surface);
   border: none;
   border-radius: var(--r-lg);
-  box-shadow: inset 0 0 0 1px var(--border);
+  box-shadow: none;
   box-sizing: border-box;
   transition: background 0.15s, box-shadow 0.15s;
 }
+
+.base-tile--outlined { box-shadow: inset 0 0 0 1px var(--border); }
 
 .base-tile--glass {
   --tile-surface: color-mix(in srgb, var(--surface) 76%, transparent);
@@ -56,8 +59,8 @@ const resolvedColor = computed(() => props.color || 'var(--accent)')
 
 .base-tile--interactive:hover {
   background: color-mix(in srgb, var(--tile-color) 11%, var(--tile-surface));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tile-color) 28%, var(--border));
 }
+.base-tile--interactive.base-tile--outlined:hover { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tile-color) 28%, var(--border)); }
 
 /* gradient + colored border (HP block look) */
 .base-tile--framed {

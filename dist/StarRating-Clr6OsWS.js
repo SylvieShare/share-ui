@@ -24,6 +24,10 @@ var U = (e, t) => {
 			type: Boolean,
 			default: !1
 		},
+		outlined: {
+			type: Boolean,
+			default: !0
+		},
 		frameWidth: {
 			type: Number,
 			default: 1
@@ -38,6 +42,7 @@ var U = (e, t) => {
 		let t = e, n = i(() => t.color || "var(--accent)");
 		return (t, r) => (w(), s("div", {
 			class: v(["base-tile", {
+				"base-tile--outlined": e.outlined,
 				"base-tile--interactive": e.interactive,
 				"base-tile--tint": e.tint,
 				"base-tile--framed": e.framed,
@@ -54,7 +59,7 @@ var U = (e, t) => {
 			onClick: r[0] ||= (e) => t.$emit("click", e)
 		}, [O(t.$slots, "default", {}, void 0, !0)], 6));
 	}
-}, [["__scopeId", "data-v-cf926d25"]]), ee = { class: "morph-tile-title" }, te = ["aria-label", "disabled"], G = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-901c0902"]]), ee = { class: "morph-tile-title" }, te = ["aria-label", "disabled"], G = /*#__PURE__*/ U({
 	__name: "MorphTileHeader",
 	props: {
 		title: {
@@ -154,6 +159,10 @@ var U = (e, t) => {
 		},
 		tint: Boolean,
 		framed: Boolean,
+		outlined: {
+			type: Boolean,
+			default: !0
+		},
 		interactive: Boolean
 	},
 	emits: ["click", "edit"],
@@ -163,6 +172,7 @@ var U = (e, t) => {
 			color: e.embedded ? void 0 : e.color,
 			tint: e.embedded ? void 0 : e.tint,
 			framed: e.embedded ? void 0 : e.framed,
+			outlined: e.embedded ? void 0 : e.outlined,
 			interactive: e.embedded ? void 0 : e.interactive,
 			style: b({ "--morph-tile-padding": e.padding }),
 			onClick: n[1] ||= (e) => t.$emit("click", e)
@@ -201,11 +211,12 @@ var U = (e, t) => {
 			"color",
 			"tint",
 			"framed",
+			"outlined",
 			"interactive",
 			"style"
 		]));
 	}
-}, [["__scopeId", "data-v-0bb5ce11"]]), re = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-e7cabb36"]]), re = /*#__PURE__*/ U({
 	__name: "TileAccentStrip",
 	props: { color: {
 		type: String,

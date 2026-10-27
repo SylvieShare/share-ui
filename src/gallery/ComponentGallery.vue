@@ -41,6 +41,7 @@
             </MorphTile>
             <MorphTile compact-header title="Компактный заголовок" show-edit edit-label="Редактировать"><span>Малая плитка</span></MorphTile>
             <MorphTile title="Только просмотр"><span>Без карандаша</span></MorphTile>
+            <MorphTile :outlined="false" title="Мягкая поверхность"><span>Подложка без обводки</span></MorphTile>
             <MorphTile><span>Без заголовка</span></MorphTile>
             <MorphTile embedded title="Раскрытая грань" show-edit edit-fade edit-label="Редактировать"><span>Без второй поверхности</span></MorphTile>
             <MorphTileHeader title="Общий заголовок" />

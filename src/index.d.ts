@@ -9,6 +9,7 @@ export const SectionList: DefineComponent<{
 }>
 
 export const BaseTile: DefineComponent<{
+  outlined?: boolean
   frameWidth?: number
   surface?: 'solid' | 'glass'
   color?: string | null
@@ -674,6 +675,7 @@ export interface MorphTileHeaderProps {
 }
 export const MorphTileHeader: DefineComponent<MorphTileHeaderProps>
 export const MorphTile: DefineComponent<MorphTileHeaderProps & {
+  outlined?: boolean
   embedded?: boolean
   padding?: string
   color?: string | null
