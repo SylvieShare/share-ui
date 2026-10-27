@@ -29,7 +29,7 @@ defineEmits(['edit'])
 .morph-tile-heading:focus-visible, .morph-tile-edit:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 .morph-tile-aside { flex: 0 0 auto; }
 .morph-tile-header--compact .morph-tile-heading { gap: 4px; min-height: 18px; }
-.morph-tile-header--compact .morph-tile-title { font-size: 9px; line-height: 1.3; letter-spacing: .04em; overflow-wrap: normal; }
+.morph-tile-header--compact .morph-tile-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 9px; line-height: 1.3; letter-spacing: .04em; overflow-wrap: normal; }
 .morph-tile-header--compact .morph-tile-pencil { flex-basis: 12px; width: 12px; height: 12px; }
 .morph-tile-header--compact .morph-tile-edit { flex-basis: 18px; width: 18px; height: 18px; }
 </style>

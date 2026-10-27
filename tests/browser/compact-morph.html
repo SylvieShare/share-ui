@@ -1,0 +1,6 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body><div id="app"></div><script type="module">
+import { createApp,h,ref } from 'vue'
+import { MorphTile } from '../../dist/share-ui.js'
+import '../../dist/share-ui.css'
+createApp({setup(){const count=ref(0);return()=>h('main', [h('div',{style:'width:100px;height:64px'}, [h(MorphTile,{compactHeader:true,title:'Очень длинное название',showEdit:true,editLabel:'Изменить',padding:'6px 10px',onEdit:()=>count.value++},()=>h('span','+2'))]), h('output',{'data-testid':'count'},count.value)])}}).mount('#app')
+</script></body></html>

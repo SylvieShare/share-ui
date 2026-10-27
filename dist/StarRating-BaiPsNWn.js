@@ -130,7 +130,7 @@ var U = (e, t) => {
 			onClick: n[2] ||= H(() => {}, ["stop"])
 		}, [O(t.$slots, "aside", {}, void 0, !0)])) : o("", !0)], 2));
 	}
-}, [["__scopeId", "data-v-90c3723b"]]), ne = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-335e3363"]]), ne = /*#__PURE__*/ U({
 	__name: "MorphTile",
 	props: {
 		title: {

@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, C as r, Ct as i, D as a, Dt as o, Et as s, F as ee, Ft as c, G as te, H as ne, I as re, K as ie, L as ae, Mt as l, Nt as oe, O as se, Ot as ce, P as u, Pt as d, R as le, S as ue, St as de, T as fe, Tt as f, V as pe, W as me, _ as p, a as m, b as he, bt as h, c as g, ct as ge, d as _, f as v, ft as y, g as _e, h as ve, i as b, it as ye, j as be, jt as xe, k as x, kt as S, l as C, lt as Se, m as w, n as Ce, o as T, p as E, pt as we, q as Te, r as Ee, rt as De, s as D, t as O, u as k, ut as A, v as Oe, w as ke, wt as j, x as M, xt as Ae, y as je, z as N } from "./StarRating-Clr6OsWS.js";
+import { A as e, At as t, B as n, C as r, Ct as i, D as a, Dt as o, Et as s, F as ee, Ft as c, G as te, H as ne, I as re, K as ie, L as ae, Mt as l, Nt as oe, O as se, Ot as ce, P as u, Pt as d, R as le, S as ue, St as de, T as fe, Tt as f, V as pe, W as me, _ as p, a as m, b as he, bt as h, c as g, ct as ge, d as _, f as v, ft as y, g as _e, h as ve, i as b, it as ye, j as be, jt as xe, k as x, kt as S, l as C, lt as Se, m as w, n as Ce, o as T, p as E, pt as we, q as Te, r as Ee, rt as De, s as D, t as O, u as k, ut as A, v as Oe, w as ke, wt as j, x as M, xt as Ae, y as je, z as N } from "./StarRating-BaiPsNWn.js";
 import { Fragment as P, createBlock as F, createCommentVNode as I, createElementBlock as L, createElementVNode as R, createTextVNode as z, createVNode as B, h as V, normalizeClass as Me, openBlock as H, reactive as Ne, ref as U, renderList as W, toDisplayString as G, unref as Pe, withCtx as K, withModifiers as Fe } from "vue";
 //#region src/gallery/TourGalleryExample.vue
 var Ie = {
@@ -553,6 +553,7 @@ var Ie = {
 							_: 1
 						}),
 						B(l, {
+							style: { width: "100px" },
 							"compact-header": "",
 							title: "Компактный заголовок",
 							"show-edit": "",
@@ -1352,6 +1353,6 @@ var Ie = {
 			}, 8, ["origin-el"])) : I("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-69ac16cc"]]);
+}, [["__scopeId", "data-v-a46bc15b"]]);
 //#endregion
 export { Be as COMPONENT_GALLERY_ALIASES, ze as COMPONENT_GALLERY_COMPONENTS, Z as ComponentGallery };
