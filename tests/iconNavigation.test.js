@@ -29,3 +29,11 @@ it('can retain the current section while its panel is collapsed', async () => {
   expect(html).not.toContain('aria-current="page"')
   expect(html).not.toContain('aria-pressed="true"')
 })
+
+it('offers a pill appearance without changing selection semantics or the default', async () => {
+  const render = props => renderToString(createSSRApp({ render: () => h(IconNavigation, { items, modelValue:'build', label:'Sections', ...props }) }))
+  const pill = await render({pill:true})
+  expect(pill).toContain('share-icon-navigation--pill')
+  expect(pill).toContain('aria-pressed="true"')
+  expect(await render({})).not.toContain('share-icon-navigation--pill')
+})

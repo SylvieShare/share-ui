@@ -1,6 +1,6 @@
 <template>
   <nav ref="element" class="share-icon-navigation"
-    :class="[`share-icon-navigation--${orientation}`, { 'share-icon-navigation--instant': !animate }]"
+    :class="[`share-icon-navigation--${orientation}`, { 'share-icon-navigation--instant': !animate, 'share-icon-navigation--pill': pill }]"
     :style="{ '--icon-navigation-size': `${size}px` }" :aria-label="label">
     <span class="share-icon-navigation__indicator" :style="indicatorStyle" aria-hidden="true" />
     <template v-for="item in items" :key="item.key">
@@ -25,6 +25,7 @@ import { navigationFocusKey } from '../lib/iconNavigation.js'
 const props = defineProps({
   items: { type: Array, required: true }, modelValue: { type: [String, Number], default: null },
   label: { type: String, required: true }, orientation: { type: String, default: 'horizontal', validator: value => ['horizontal', 'vertical'].includes(value) },
+  pill: { type: Boolean, default: false },
   size: { type: Number, default: 56 }, active: { type: Boolean, default: true }, animate: { type: Boolean, default: true },
 })
 const emit = defineEmits(['update:modelValue', 'select'])
@@ -157,6 +158,10 @@ defineExpose({ element, updateIndicator })
   pointer-events: none;
   transition: transform 260ms cubic-bezier(.2,.7,.2,1), opacity 150ms ease;
 }
+.share-icon-navigation--pill > .share-icon-navigation__indicator { border-radius: 999px; background: color-mix(in srgb, var(--accent) 18%, var(--surface)); }
+.share-icon-navigation--pill > .share-icon-navigation__item { border-radius: 999px; }
+.share-icon-navigation--pill > .share-icon-navigation__item--selected,
+.share-icon-navigation--pill > .share-icon-navigation__item--selected:hover:not(:disabled) { color: var(--accent-soft); }
 .share-icon-navigation__divider { flex: none; width: 1px; height: 24px; margin: 0 6px; background: var(--border-strong); }
 .share-icon-navigation--vertical > .share-icon-navigation__divider { width: 40px; height: 1px; margin: 6px 0; }
 .share-icon-navigation--instant > .share-icon-navigation__indicator { transition: none; }

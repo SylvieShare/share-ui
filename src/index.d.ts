@@ -107,6 +107,7 @@ export const IconNavigation: DefineComponent<{
   modelValue?: string | number | null
   label: string
   orientation?: 'horizontal' | 'vertical'
+  pill?: boolean
   size?: number
   active?: boolean
   animate?: boolean

@@ -872,6 +872,10 @@ var je = ["aria-label"], Me = ["aria-orientation", "aria-label"], Ne = [
 			default: "horizontal",
 			validator: (e) => ["horizontal", "vertical"].includes(e)
 		},
+		pill: {
+			type: Boolean,
+			default: !1
+		},
 		size: {
 			type: Number,
 			default: 56
@@ -946,7 +950,10 @@ var je = ["aria-label"], Me = ["aria-orientation", "aria-label"], Ne = [
 		}), (n, r) => (w(), s("nav", {
 			ref_key: "element",
 			ref: f,
-			class: v(["share-icon-navigation", [`share-icon-navigation--${t.orientation}`, { "share-icon-navigation--instant": !t.animate }]]),
+			class: v(["share-icon-navigation", [`share-icon-navigation--${t.orientation}`, {
+				"share-icon-navigation--instant": !t.animate,
+				"share-icon-navigation--pill": t.pill
+			}]]),
 			style: b({ "--icon-navigation-size": `${t.size}px` }),
 			"aria-label": t.label
 		}, [c("span", {
@@ -982,7 +989,7 @@ var je = ["aria-label"], Me = ["aria-orientation", "aria-label"], Ne = [
 			O(n.$slots, "decoration", { item: r }, void 0, !0)
 		], 16, Ne)], 64))), 128))], 14, je));
 	}
-}, [["__scopeId", "data-v-317ddef9"]]), Ie = ["aria-label"], Le = [
+}, [["__scopeId", "data-v-7a8afc22"]]), Ie = ["aria-label"], Le = [
 	"id",
 	"aria-selected",
 	"aria-controls",

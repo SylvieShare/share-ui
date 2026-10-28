@@ -87,7 +87,7 @@ Consumer не переопределяет типографику заголов
   `items` — `{ key, label, shortLabel?, ariaLabel?, title?, icon?, disabled?, divider?, dividerLabel?, attrs? }`.
   `modelValue` определяет текущий раздел, `orientation` — horizontal/vertical,
   `size` — сторону кнопки (56 px), `active=false` скрывает выделение при свёрнутой панели,
-  `animate=false` отключает перемещение при раскрытии. `label` задаёт имя navigation.
+  `animate=false` отключает перемещение при раскрытии. `pill=true` даёт скруглённое мягкое выделение и акцентную подпись внутри компактной навигационной поверхности; default сохраняет квадрат. `label` задаёт имя navigation.
   Событие `select(key)` приходит и при повторном выборе, `update:modelValue` — при смене.
   Slots `icon`, `label`, `decoration` получают `item`; предметные badges/shortcuts остаются у consumer.
   Tab/Enter работают как у обычных кнопок; стрелки по оси и Home/End перемещают фокус
