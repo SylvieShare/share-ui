@@ -37,7 +37,7 @@ defineExpose({ focus: () => inputRef.value?.focus() })
 <style scoped>
 .form-text-input {
   background: var(--surface-raised);
-  border: 1px solid var(--border-strong);
+  border: var(--control-border-width) solid var(--border-strong);
   border-radius: 8px;
   color: var(--text-1);
   font: inherit;
@@ -46,11 +46,11 @@ defineExpose({ focus: () => inputRef.value?.focus() })
   outline: none;
   width: 100%;
   box-sizing: border-box;
-  transition: border-color 0.15s;
+  transition: background-color 0.15s, border-color 0.15s;
 }
 
-.form-text-input:focus { border-color: var(--accent); }
-.form-text-input--invalid { border-color: var(--danger); }
+.form-text-input:focus { border-color: var(--accent); background: var(--control-focus-bg); }
+.form-text-input--invalid { border-color: var(--danger); background: var(--control-invalid-bg); }
 .form-text-input:disabled { cursor: not-allowed; opacity: 0.55; }
 .form-text-input::placeholder { color: var(--text-muted); }
 .form-text-input--mono { font-family: monospace; font-size: 13px; }

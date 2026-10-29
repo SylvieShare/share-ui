@@ -216,7 +216,7 @@ onBeforeUnmount(unbind)
   gap: 2px;
   padding: 6px;
   background: var(--popover-bg);
-  border: 1px solid var(--border-strong);
+  border: var(--popover-border-width) solid var(--border-strong);
   border-radius: var(--r-md);
   box-shadow: var(--shadow-lg);
   color: var(--text-1);

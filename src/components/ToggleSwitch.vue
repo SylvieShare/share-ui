@@ -51,7 +51,7 @@ function toggle() {
   flex: none;
   border-radius: var(--r-pill);
   background: var(--surface-raised);
-  box-shadow: inset 0 0 0 1px var(--border-strong);
+  box-shadow: inset 0 0 0 var(--control-border-width) var(--border-strong);
   transition: background-color .2s ease, box-shadow .2s ease;
 }
 .share-toggle-switch__thumb {

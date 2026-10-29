@@ -53,9 +53,9 @@ function toggle() { if (!props.disabled) emit('update:modelValue', !props.modelV
   width: var(--checkbox-size);
   height: var(--checkbox-size);
   transform: translate(-50%, -50%);
-  border: 1.5px solid var(--border-strong);
+  border: calc(var(--control-border-width) * 1.5) solid var(--border-strong);
   border-radius: 5px;
-  background: color-mix(in srgb, var(--text-on-accent) 4%, transparent);
+  background: var(--surface-raised);
   transition: background .12s, border-color .12s, box-shadow .12s;
 }
 .share-compact-checkbox:hover:not(:disabled)::before { border-color: color-mix(in srgb, var(--accent) 60%, transparent); }

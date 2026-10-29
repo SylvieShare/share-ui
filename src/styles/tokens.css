@@ -1,25 +1,32 @@
 :root {
   /* Surfaces */
-  --bg: #1b1b1d;
-  --surface: #242427;
-  --surface-raised: #2c2c30;
-  --surface-active: #35353b;
-  --popover-bg: #202024;
+  --bg: #17171b;
+  --surface: #27272e;
+  --surface-raised: #34343e;
+  --surface-active: #42424f;
+  --subheader: #35313f;
+  --popover-bg: var(--subheader);
+  --popover-border-width: 0px;
   --scrim: rgb(0 0 0 / 62%);
+
+  /* Form controls: filled, frameless defaults. Focus remains visible by fill and keyboard ring. */
+  --control-border-width: 0px;
+  --control-focus-bg: color-mix(in srgb, var(--accent) 18%, var(--surface-raised));
+  --control-invalid-bg: color-mix(in srgb, var(--danger) 16%, var(--surface-raised));
 
   /* Shared application canvas */
   --app-canvas-bg: var(--bg);
   --app-canvas-dot-color: color-mix(in srgb, var(--border-strong) 42%, transparent);
   --app-canvas-dot-size: 24px;
   --app-canvas-position: 0 0;
-  --app-canvas-pattern: radial-gradient(circle, var(--app-canvas-dot-color) 1px, transparent 1px);
+  --app-canvas-pattern: none;
 
   /* Lines and text */
   --border: rgb(255 255 255 / 8%);
   --border-strong: rgb(255 255 255 / 16%);
   --text-1: #ececed;
   --text-2: #a6a6ab;
-  --text-muted: #8a8a92;
+  --text-muted: #a0a0ad;
   --text-on-accent: #fff;
 
   /* Product accent: consumers normally override only --accent. */
@@ -34,7 +41,7 @@
   --info: #5c95e8;
 
   /* Shape, effects and typography */
-  --shadow-lg: 0 18px 48px rgb(0 0 0 / 42%), 0 0 0 1px rgb(255 255 255 / 5%);
+  --shadow-lg: 0 18px 48px rgb(0 0 0 / 42%);
   --r-xs: 4px;
   --r-sm: 6px;
   --r-md: 10px;

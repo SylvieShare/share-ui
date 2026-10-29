@@ -546,3 +546,8 @@ label — имя группы, optionLabels — локализованные и�
 один доступный образ с valueLabel, disabled блокирует изменения. Цвет берётся
 из warning, coarse pointer увеличивает цель нажатия, reduced motion убирает
 переходы. HTTP, разрешения, среднее число и подписи количества остаются consumer.
+
+FormNumberInput supports optional live:boolean (default false). When enabled,
+valid native input emits change immediately, intermediate blank/sign input stays
+in the local text buffer, external updates remain authoritative, and blur does
+not emit the same accepted value twice. Default non-live change semantics remain.

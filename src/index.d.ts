@@ -444,6 +444,7 @@ export const FormField: DefineComponent<{
 }>
 
 export const FormNumberInput: DefineComponent<{
+  live?: boolean
   step?: number
   value?: unknown
   min?: number

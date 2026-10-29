@@ -35,16 +35,16 @@ defineExpose({ focus: () => selectRef.value?.focus() })
   width: 100%;
   box-sizing: border-box;
   background: var(--surface-raised);
-  border: 1px solid var(--border-strong);
+  border: var(--control-border-width) solid var(--border-strong);
   border-radius: 8px;
   color: var(--text-1);
   font: inherit;
   font-size: 14px;
   padding: 9px 12px;
   outline: none;
-  transition: border-color 0.15s;
+  transition: background-color 0.15s, border-color 0.15s;
 }
 
-.form-select:focus { border-color: var(--accent); }
+.form-select:focus { border-color: var(--accent); background: var(--control-focus-bg); }
 .form-select:disabled { cursor: not-allowed; opacity: 0.55; }
 </style>

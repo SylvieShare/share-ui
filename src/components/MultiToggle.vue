@@ -127,7 +127,7 @@ watch(() => props.options, async () => { await nextTick(); measure(false) }, { d
   display: inline-flex;
   width: fit-content;
   padding: 3px;
-  border: 1px solid var(--border);
+  border: var(--control-border-width) solid var(--border);
   border-radius: 9px;
   background: var(--surface-raised);
 }

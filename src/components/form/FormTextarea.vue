@@ -22,7 +22,7 @@ defineEmits(['update:value'])
 <style scoped>
 .form-textarea {
   background: var(--surface-raised);
-  border: 1px solid var(--border-strong);
+  border: var(--control-border-width) solid var(--border-strong);
   border-radius: 8px;
   color: var(--text-1);
   font: inherit;
@@ -32,9 +32,9 @@ defineEmits(['update:value'])
   resize: none;
   width: 100%;
   box-sizing: border-box;
-  transition: border-color 0.15s;
+  transition: background-color 0.15s, border-color 0.15s;
 }
 
-.form-textarea:focus { border-color: var(--accent); }
+.form-textarea:focus { border-color: var(--accent); background: var(--control-focus-bg); }
 .form-textarea::placeholder { color: var(--text-muted); }
 </style>

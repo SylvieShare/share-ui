@@ -49,7 +49,7 @@ local storage или профиле пользователя.
 
 ## Canvas
 
-`AppShell` по умолчанию применяет общий фон с точечной сеткой, основной цвет
+`AppShell` по умолчанию применяет ровный общий фон, основной цвет
 текста и UI-шрифт. Это делает canvas частью общего application chrome:
 
 ```vue
@@ -74,3 +74,12 @@ BaseTile может использовать `surface="glass"`: тот же sema
 Blur для glass задаётся inline обеими формами backdrop-filter: CSS minifier
 не должен удалять unprefixed свойство, нужное Chromium, сохраняя только Safari
 prefix. При переключении на solid inline фильтры удаляются.
+
+## Filled control defaults (0.47)
+
+Forms use raised surfaces without strokes. --control-border-width defaults to 0px;
+--control-focus-bg and --control-invalid-bg provide focus/validation fills. Keyboard
+focus rings on buttons remain accessible. A consumer can set --control-border-width
+to 1px for an explicitly framed theme. Popovers use --subheader with
+--popover-border-width: 0px. Canvas is flat by default; intentional grid canvases
+set --app-canvas-pattern explicitly. Dashed add-action outlines are unchanged.

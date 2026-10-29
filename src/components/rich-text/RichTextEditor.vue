@@ -713,7 +713,7 @@ defineExpose({
   width: 100%;
   box-sizing: border-box;
   padding: 7px 9px;
-  border: 1px solid var(--border);
+  border: var(--control-border-width) solid var(--border);
   border-radius: var(--r-sm);
   outline: none;
   background: var(--surface-raised);

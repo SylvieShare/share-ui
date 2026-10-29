@@ -126,7 +126,7 @@ watch(() => props.modelValue, value => { if (open.value) show(value) })
 
 <style scoped>
 .share-date-picker { display: block; min-width: 0; }
-.share-date-picker__trigger { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 42px; padding: 10px 12px; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--input-bg, var(--surface)); color: var(--text-1); text-align: left; font: inherit; font-size: 14px; cursor: pointer; }
+.share-date-picker__trigger { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 42px; padding: 10px 12px; border: var(--control-border-width) solid var(--border-strong); border-radius: 8px; background: var(--input-bg, var(--surface-raised)); color: var(--text-1); text-align: left; font: inherit; font-size: 14px; cursor: pointer; }
 .share-date-picker__trigger svg { flex: none; color: var(--accent); }
 .share-date-picker__placeholder { color: var(--text-muted); }
 .share-date-picker__trigger:hover:not(:disabled) { border-color: var(--accent); }

@@ -86,7 +86,7 @@ async function confirm() {
 .share-inline-edit button:hover { color: var(--accent); }
 .share-inline-edit button:focus-visible { outline: 2px solid var(--accent); }
 .share-inline-edit button:disabled { opacity: .45; cursor: default; }
-.share-inline-edit input, .share-inline-edit select { box-sizing: border-box; width: 100%; min-width: 0; height: 100%; padding: 0 60px 0 6px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); color: var(--text-1); font: inherit; outline: none; }
+.share-inline-edit input, .share-inline-edit select { box-sizing: border-box; width: 100%; min-width: 0; height: 100%; padding: 0 60px 0 6px; border: var(--control-border-width) solid var(--border); border-radius: var(--r-sm); background: var(--surface); color: var(--text-1); font: inherit; outline: none; }
 .share-inline-edit select { appearance: none; }
 .share-inline-edit input:focus, .share-inline-edit select:focus { border-color: var(--accent); }
 .share-inline-edit [aria-invalid="true"] { border-color: var(--danger); }

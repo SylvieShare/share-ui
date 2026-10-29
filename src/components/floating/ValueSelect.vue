@@ -267,7 +267,7 @@ defineExpose({ open: openSelect, close, toggle })
   min-width: 0;
   padding: 0 10px;
   background: var(--surface-raised);
-  border: 1px solid var(--border-strong);
+  border: var(--control-border-width) solid var(--border-strong);
   border-radius: 8px;
   color: var(--text-1);
   font: inherit;
@@ -293,7 +293,7 @@ defineExpose({ open: openSelect, close, toggle })
   padding: 5px;
   overflow-y: auto;
   background: var(--popover-bg);
-  border: 1px solid var(--border-strong);
+  border: var(--control-border-width) solid var(--border-strong);
   border-radius: var(--r-md);
   box-shadow: var(--shadow-lg);
 }
@@ -307,7 +307,7 @@ defineExpose({ open: openSelect, close, toggle })
   margin-bottom: 4px;
   padding: 0 10px;
   background: var(--surface-raised);
-  border: 1px solid var(--border-strong);
+  border: var(--control-border-width) solid var(--border-strong);
   border-radius: 8px;
   color: var(--text-1);
   font: inherit;

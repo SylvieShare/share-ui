@@ -198,6 +198,7 @@
           data-share-gallery="DatePicker FormField FormTextInput FormNumberInput FormSelect FormTextarea FormActionButtons"
         >
           <h2>Form primitives</h2>
+          <p>Filled controls without borders; focus and validation use surface colour. Dashed add actions keep their dashed outline.</p>
           <div class="share-component-gallery__form-grid">
             <FormField label="Название" vertical hint="обязательное поле">
               <FormTextInput v-model:value="form.name" placeholder="Название элемента" />
