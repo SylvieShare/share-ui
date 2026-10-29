@@ -25,7 +25,7 @@ function toggle() { if (!props.disabled) emit('update:modelValue', !props.modelV
 .share-icon-toggle.share-action-button--icon-only { width: 40px; height: 40px; }
 .share-icon-toggle { position: relative; color: color-mix(in srgb, var(--icon-toggle-color) 65%, var(--text-muted)); transition: color .2s ease, border-color .2s ease, background .2s ease; }
 .share-icon-toggle.share-action-button:hover:not(:disabled) { color: var(--icon-toggle-color); }
-.share-icon-toggle--on { color: var(--icon-toggle-color); border-color: color-mix(in srgb, var(--icon-toggle-color) 60%, var(--border-strong)); }
+.share-icon-toggle--on { color: var(--icon-toggle-color); background: color-mix(in srgb, var(--icon-toggle-color) 18%, var(--surface-raised)); }
 .share-icon-toggle__icon { display: grid; place-items: center; width: 24px; height: 24px; opacity: .4; transition: opacity .2s ease; }
 .share-icon-toggle--on .share-icon-toggle__icon { opacity: 1; }
 .share-icon-toggle__icon :deep(svg) { width: 24px; height: 24px; }

@@ -5285,7 +5285,7 @@ var ci = ["aria-label"], li = { class: "ms-head-content" }, ui = ["aria-label"],
 			"aria-hidden": "true"
 		}, null, 8, ["label"])) : O(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [O(t.$slots, "default", {}, void 0, !0)])], 10, Yi));
 	}
-}, [["__scopeId", "data-v-00512a64"]]), Zi = {
+}, [["__scopeId", "data-v-59cbbf0c"]]), Zi = {
 	class: "share-icon-toggle__icon",
 	"aria-hidden": "true"
 }, Qi = /*#__PURE__*/ U({
@@ -5338,7 +5338,7 @@ var ci = ["aria-label"], li = { class: "ms-head-content" }, ui = ["aria-label"],
 			"aria-pressed"
 		]));
 	}
-}, [["__scopeId", "data-v-a44e202c"]]), $i = (e) => `${Math.round(e)}px`, ea = (e, t, n, r) => ({
+}, [["__scopeId", "data-v-99701f3b"]]), $i = (e) => `${Math.round(e)}px`, ea = (e, t, n, r) => ({
 	left: $i(e),
 	top: $i(t),
 	width: $i(Math.max(0, n)),

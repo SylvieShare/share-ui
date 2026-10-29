@@ -1,5 +1,5 @@
 import {createApp,h,ref} from 'vue'
-import {FormTextInput,FormTextarea,FormSelect,FormNumberInput,ToggleSwitch,CompactCheckbox,MultiToggle,AddButton} from '../../dist/share-ui.js'
+import {FormTextInput,FormTextarea,FormSelect,FormNumberInput,ToggleSwitch,CompactCheckbox,MultiToggle,AddButton,ActionButton,IconToggleButton} from '../../dist/share-ui.js'
 import '../../dist/share-ui.css'
 createApp({setup(){const name=ref(''), number=ref(12), checked=ref(false), calls=ref(0)
 return ()=>h('main',{style:'padding:24px;max-width:700px;display:grid;gap:14px'},[
@@ -11,4 +11,4 @@ h(FormNumberInput,{value:number.value,live:true,onChange:v=>{number.value=v;call
 h(ToggleSwitch,{modelValue:checked.value,'onUpdate:modelValue':v=>checked.value=v,label:'Toggle'}),
 h(CompactCheckbox,{modelValue:checked.value,'onUpdate:modelValue':v=>checked.value=v,label:'Check'}),
 h(MultiToggle,{modelValue:'a',options:[{value:'a',label:'Alpha'},{value:'b',label:'Beta'}]}),
-h(AddButton,{label:'Add entry'}),h('output',{'data-testid':'value'},String(number.value)),h('output',{'data-testid':'calls'},String(calls.value))])}}).mount('#app')
+h(AddButton,{label:'Add entry'}),h(ActionButton,{variant:'secondary'},{default:()=> 'Secondary'}),h(IconToggleButton,{label:'Icon toggle',modelValue:true}),h('output',{'data-testid':'value'},String(number.value)),h('output',{'data-testid':'calls'},String(calls.value))])}}).mount('#app')

@@ -18,10 +18,10 @@ defineProps({
 })
 </script>
 <style scoped>
-.share-action-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 38px; padding: 9px 16px; border: 1px solid transparent; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 600; line-height: 1.3; cursor: pointer; transition: background .15s, border-color .15s; }
+.share-action-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 38px; padding: 9px 16px; border: var(--control-border-width) solid transparent; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 600; line-height: 1.3; cursor: pointer; transition: background .15s, border-color .15s; }
 .share-action-button--primary { background: var(--accent); color: var(--text-on-accent); }
 .share-action-button--primary:hover:not(:disabled) { background: var(--accent-hover); }
-.share-action-button--secondary { background: transparent; border-color: var(--border-strong); color: var(--text-2); }
+.share-action-button--secondary { background: var(--surface-raised); color: var(--text-2); }
 .share-action-button--dashed { background: transparent; border: 1px dashed var(--border-strong); color: var(--text-2); }
 .share-action-button--quiet { background: transparent; color: var(--text-2); }
 .share-action-button--dashed:hover:not(:disabled), .share-action-button--secondary:hover:not(:disabled), .share-action-button--quiet:hover:not(:disabled) { background: var(--surface-raised); color: var(--text-1); }

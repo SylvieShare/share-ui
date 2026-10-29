@@ -17,6 +17,8 @@ for (const width of [390,834,1440]) test(`filled forms retain focus, live input 
  await number.blur()
  await expect(page.getByTestId('calls')).toHaveText(count)
  await expect(page.locator('.fn-wrap')).toHaveCSS('box-shadow',/0px 0px 0px 0px/)
+ await expect(page.getByRole('button',{name:'Secondary',exact:true})).toHaveCSS('border-top-width','0px')
+ await expect(page.getByRole('button',{name:'Icon toggle',exact:true})).toHaveCSS('border-top-width','0px')
  await expect(page.locator('.form-select')).toHaveCSS('border-top-width','0px')
  await expect(page.locator('.form-textarea')).toHaveCSS('border-top-width','0px')
  await expect(page.getByRole('button',{name:'Add entry',exact:true})).toHaveCSS('border-top-style','dashed')
