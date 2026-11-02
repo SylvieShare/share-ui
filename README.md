@@ -20,6 +20,7 @@ DnD Share — основной потребитель и визуальный о
 Публичный API уже включает:
 
 - `BaseTile`, controls и editor primitives;
+- `BlurBackdrop` и общие [механизмы blur](./docs/blur.md) для поверхностей и overlays;
 - `SegmentDonutChart` для нейтральной визуализации состава значения;
 - `FormField`, `FormTextInput`, `FormNumberInput`, `FormSelect`, `FormTextarea`,
   `FormActionButtons`;

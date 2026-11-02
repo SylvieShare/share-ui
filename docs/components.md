@@ -1,5 +1,12 @@
 # Публичный API
 
+## BlurBackdrop
+
+A shared decorative blur surface. Props: `radius?: number | string` (default 8).
+Tint, positioned bounds and fading use the public CSS variables described in
+[Blur effects](blur.md). `backdropBlurStyle`, `applyBackdropBlur` and `blurFilter`
+are exported for surfaces and animated owners that already have their own DOM.
+
 Все JavaScript-экспорты импортируются только из `@sylvieshare/share-ui`.
 Deep imports из `dist/` или `src/` не являются контрактом.
 

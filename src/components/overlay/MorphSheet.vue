@@ -230,8 +230,8 @@ function closeDown() {
 
 // Blur the page content behind the desktop window. We blur `#app` (the overlay is teleported to
 // <body>, a sibling of #app, so it stays sharp) with a real `filter: blur()` — `backdrop-filter` is
-// unreliable (unsupported / hardware-accel-gated in some Chromium builds e.g. Yandex, and the
-// unprefixed prop gets dropped by our CSS minifier), whereas `filter` is universally supported.
+// a different operation: this overlay owns the entire background target, whereas localized
+// surfaces use BlurBackdrop and the shared inline backdrop helpers to survive CSS minification.
 // Mobile sheets cover the whole viewport, so blurring the hidden page only adds GPU work during the
 // morph without changing the final appearance.
 const BG_BLUR = '8px'

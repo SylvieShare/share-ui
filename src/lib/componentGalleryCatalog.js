@@ -12,6 +12,7 @@ export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
   'LoadingState',
   'SkeletonBlock',
   'BaseTile',
+  'BlurBackdrop',
   'TileAccentStrip',
   'MorphTile',
   'MorphTileHeader',

@@ -1,3 +1,5 @@
+export { default as BlurBackdrop } from './components/BlurBackdrop.vue'
+export { blurFilter, backdropBlurStyle, applyBackdropBlur } from './lib/blur.js'
 export { default as MorphTile } from './components/MorphTile.vue'
 export { default as MorphTileHeader } from './components/MorphTileHeader.vue'
 export { default as TileAccentStrip } from './components/TileAccentStrip.vue'

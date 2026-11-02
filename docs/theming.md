@@ -83,3 +83,11 @@ focus rings on buttons remain accessible. A consumer can set --control-border-wi
 to 1px for an explicitly framed theme. Popovers use --subheader with
 --popover-border-width: 0px. Canvas is flat by default; intentional grid canvases
 set --app-canvas-pattern explicitly. Dashed add-action outlines are unchanged.
+
+
+## Shared blur construction
+
+Use [Blur effects](blur.md) for frosted surfaces, fading header backdrops and
+animated overlays. The shared inline implementation preserves the standard
+property through production CSS optimization; do not duplicate the declarations
+in a new consumer component. Content blur and backdrop blur have different targets.

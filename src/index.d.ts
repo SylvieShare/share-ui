@@ -1,4 +1,11 @@
-import type { Component, ComputedRef, DefineComponent, Ref } from 'vue'
+import type { Component, ComputedRef, CSSProperties, DefineComponent, Ref } from 'vue'
+
+export type BlurRadius = string | number
+export const BlurBackdrop: DefineComponent<{ radius?: BlurRadius }>
+export function blurFilter(radius?: BlurRadius): string
+export function backdropBlurStyle(radius?: BlurRadius): CSSProperties
+export function applyBackdropBlur(element: HTMLElement | SVGElement | null | undefined, radius?: BlurRadius): void
+
 
 export const SectionList: DefineComponent<{
   title?: string

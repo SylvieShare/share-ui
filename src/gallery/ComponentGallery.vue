@@ -9,6 +9,7 @@
       <span class="share-component-gallery__accent" aria-label="Текущий акцент" />
     </header>
 
+    <section class="share-component-gallery__section" data-share-gallery="BlurBackdrop"><BlurGalleryExample /></section>
     <section class="share-component-gallery__section" data-share-gallery="StarRating"><StarRating v-model="galleryRating" label="Оценка" /><StarRating :model-value="3.7" label="Средняя оценка" value-label="3,7 из 5" readonly /><StarRating :model-value="2" label="Недоступная оценка" disabled /></section>
     <section class="share-component-gallery__section" data-share-gallery="StatBar IconPicker DetailSection ContentRow OptionList SearchMultiSelect FloatingTooltip"><PerformanceGalleryExample /></section>
     <section class="share-component-gallery__section" data-share-gallery="GuidedTour">
@@ -457,6 +458,7 @@
 </template>
 
 <script setup>
+import BlurGalleryExample from './BlurGalleryExample.vue'
 import StarRating from '../components/StarRating.vue'
 
 import TourGalleryExample from './TourGalleryExample.vue'

@@ -48,6 +48,7 @@ export function restoreFocus(element) {
 </script>
 
 <script setup>
+import { applyBackdropBlur } from '../../lib/blur.js'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useFullscreenViewportHeight } from '../../composables/useFullscreenViewportHeight.js'
 import { acquirePageScrollLock, isTopOverlay, registerOverlay, unregisterOverlay } from '../../internal/overlayStack.js'
@@ -124,8 +125,7 @@ function _animateIn() {
   const ov = overlay.value; const c = card.value
   if (!ov || !c) return
   ov.style.opacity = '0'
-  ov.style.backdropFilter = 'blur(0px)'
-  ov.style.webkitBackdropFilter = 'blur(0px)'
+  applyBackdropBlur(ov, 0)
   if (MOBILE()) {
     c.style.transform = 'translateY(100%)'
   } else {
@@ -138,8 +138,7 @@ function _animateIn() {
       const ovTr = `opacity ${DUR_IN}ms ${EASE_OPACITY_IN}, backdrop-filter ${DUR_IN}ms ${EASE_OPACITY_IN}, -webkit-backdrop-filter ${DUR_IN}ms ${EASE_OPACITY_IN}`
       ov.style.transition = ovTr
       ov.style.opacity = '1'
-      ov.style.backdropFilter = 'blur(6px)'
-      ov.style.webkitBackdropFilter = 'blur(6px)'
+      applyBackdropBlur(ov, 6)
       if (MOBILE()) {
         c.style.transition = `transform ${DUR_IN}ms ${EASE_SLIDE}`
         c.style.transform = 'translateY(0)'
@@ -154,8 +153,7 @@ function _animateIn() {
         // Keep the blur applied inline. Clearing it would fall back to the `.am-overlay` CSS rule,
         // whose unprefixed `backdrop-filter` the minifier drops (and which is unreliable in some
         // Chromium builds), so the blur would snap off at the end of the open animation.
-        ov.style.backdropFilter = 'blur(6px)'
-        ov.style.webkitBackdropFilter = 'blur(6px)'
+        applyBackdropBlur(ov, 6)
         c.style.transition = ''
         c.style.transform = ''
         c.style.opacity = ''
@@ -174,8 +172,7 @@ function _animateOut() {
   const ovTr = `opacity ${DUR_OUT}ms ease, backdrop-filter ${DUR_OUT}ms ease, -webkit-backdrop-filter ${DUR_OUT}ms ease`
   ov.style.transition = ovTr
   ov.style.opacity = '0'
-  ov.style.backdropFilter = 'blur(0px)'
-  ov.style.webkitBackdropFilter = 'blur(0px)'
+  applyBackdropBlur(ov, 0)
   if (MOBILE()) {
     c.style.transition = `transform ${DUR_OUT}ms ${EASE_SLIDE}`
     c.style.transform = 'translateY(100%)'

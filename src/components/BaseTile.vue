@@ -2,7 +2,7 @@
   <div
     class="base-tile"
     :class="{ 'base-tile--outlined': outlined, 'base-tile--interactive': interactive, 'base-tile--tint': tint, 'base-tile--framed': framed, 'base-tile--glass': surface === 'glass' }"
-    :style="{ '--tile-color': resolvedColor, '--tile-frame-width': `${Math.max(1, Math.min(4, Number(frameWidth) || 1))}px`, ...(surface === 'glass' ? { 'backdrop-filter': 'blur(14px)', '-webkit-backdrop-filter': 'blur(14px)' } : {}) }"
+    :style="{ '--tile-color': resolvedColor, '--tile-frame-width': `${Math.max(1, Math.min(4, Number(frameWidth) || 1))}px`, ...(surface === 'glass' ? backdropBlurStyle(14) : {}) }"
     @click="$emit('click', $event)"
   >
     <slot />
@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+import { backdropBlurStyle } from '../lib/blur.js'
 import { computed } from 'vue'
 
 const props = defineProps({

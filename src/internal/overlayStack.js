@@ -1,3 +1,5 @@
+import { blurFilter } from '../lib/blur.js'
+
 const stack = []
 export const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
 let scrollLockCount = 0
@@ -79,7 +81,7 @@ export function acquireBackgroundBlur(target, { blur = '8px', duration = '300ms'
   }
   record.count += 1
   target.style.transition = `filter ${duration} ease`
-  target.style.filter = `blur(${blur})`
+  target.style.filter = blurFilter(blur)
   let released = false
   return () => {
     if (released) return

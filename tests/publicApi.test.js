@@ -48,6 +48,7 @@ describe('public API', () => {
     'TextPromptDialog',
     'ValueSelect',
     'BaseTile',
+    'BlurBackdrop',
     'MorphTile',
     'MorphTileHeader',
     'TileAccentStrip',
@@ -55,7 +56,7 @@ describe('public API', () => {
     expect(shareUi[name]).toBeTruthy()
   })
 
-  it.each(['restoreFocus', 'useFullscreenViewportHeight', 'useIsMobile', 'useMediaQuery', 'useSheetSubpages'])(
+  it.each(['blurFilter', 'backdropBlurStyle', 'applyBackdropBlur', 'restoreFocus', 'useFullscreenViewportHeight', 'useIsMobile', 'useMediaQuery', 'useSheetSubpages'])(
     'exports %s',
     name => expect(shareUi[name]).toBeTypeOf('function'),
   )
