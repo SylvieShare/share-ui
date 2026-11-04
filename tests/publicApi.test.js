@@ -4,6 +4,7 @@ import * as shareUi from '../src/index.js'
 describe('public API', () => {
   it.each([
     'AddButton',
+    'ChoiceCard',
     'ActionMenu',
     'ActionMenuItem',
     'ActionMenuSubmenu',

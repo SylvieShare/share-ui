@@ -1,5 +1,13 @@
 import type { Component, ComputedRef, CSSProperties, DefineComponent, Ref } from 'vue'
 
+export const ChoiceCard: DefineComponent<{
+  modelValue?: boolean
+  label: string
+  description?: string
+  color?: string
+  disabled?: boolean
+}>
+
 export type BlurRadius = string | number
 export const BlurBackdrop: DefineComponent<{ radius?: BlurRadius }>
 export function blurFilter(radius?: BlurRadius): string

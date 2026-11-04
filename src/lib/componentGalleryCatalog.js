@@ -13,6 +13,7 @@ export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
   'SkeletonBlock',
   'BaseTile',
   'BlurBackdrop',
+  'ChoiceCard',
   'TileAccentStrip',
   'MorphTile',
   'MorphTileHeader',

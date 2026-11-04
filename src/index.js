@@ -1,3 +1,4 @@
+export { default as ChoiceCard } from './components/ChoiceCard.vue'
 export { default as BlurBackdrop } from './components/BlurBackdrop.vue'
 export { blurFilter, backdropBlurStyle, applyBackdropBlur } from './lib/blur.js'
 export { default as MorphTile } from './components/MorphTile.vue'

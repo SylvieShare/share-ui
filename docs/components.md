@@ -79,6 +79,17 @@ Consumer не переопределяет типографику заголов
 Компоненты не содержат validation rules и переводов приложения. Тексты можно
 передавать props; field-level ошибки выводит consumer рядом с контролом.
 
+## ChoiceCard
+
+Frameless toggle card with a contrasting canvas background, icon slot, label,
+optional description and an animated checkmark. Boolean `v-model`, required
+`label`, optional `description`, semantic CSS `color`, `disabled`; emits
+`update:modelValue`. Native button, `aria-pressed`, Enter/Space and focus ring.
+The parent owns exclusive selection or multiple selection; the card never
+silently changes another option. All text is supplied by the consumer.
+`--choice-card-min-height` (88px default) is the public geometry variable.
+Reduced motion disables the background/checkmark transitions.
+
 ## Controls
 
 - `AddButton`: `inline` и `icon` варианты, `block`, `disabled`, слот текста.
