@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <Transition :name="resolvedTransition">
+    <Transition :name="resolvedTransition" :appear="!transition && transitionPreset === 'action-menu'">
       <div
         v-if="open"
         :id="id || undefined"

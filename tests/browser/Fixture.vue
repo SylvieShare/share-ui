@@ -1,4 +1,12 @@
 <template>
+  <template v-if="actionMotion">
+    <button ref="actionAnchor" @click="actionOpen = true">Open mounted actions</button>
+    <BasePopover v-if="actionOpen" :open="true" :anchor="actionAnchor" role="menu" aria-label="Mounted actions"
+      transition-preset="action-menu" @update:open="actionOpen = $event">
+      <ActionMenuItem>Mounted action</ActionMenuItem>
+    </BasePopover>
+    <ActionMenu title="Standard actions"><ActionMenuItem>Standard action</ActionMenuItem></ActionMenu>
+  </template>
   <button id="opener" aria-controls="app-navigation-drawer" @click="open = true">Open drawer</button>
   <button id="background">Background</button>
   <button v-if="legacy" id="modal-opener" @click="modal = true">Open modal</button>
@@ -73,6 +81,9 @@ import {
 } from '../../dist/share-ui.js'
 
 const params = new URLSearchParams(location.search)
+const actionMotion = params.has('action-motion')
+const actionAnchor = ref(null)
+const actionOpen = ref(false)
 const legacy = params.has('legacy')
 const modal = ref(false)
 const modalPopover = ref(false)
