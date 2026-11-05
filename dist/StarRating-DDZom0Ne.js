@@ -150,6 +150,10 @@ var oe = /*#__PURE__*/ U({
 		},
 		compactHeader: Boolean,
 		showEdit: Boolean,
+		showEditIcon: {
+			type: Boolean,
+			default: !0
+		},
 		editFade: Boolean,
 		clickableTitle: {
 			type: Boolean,
@@ -169,7 +173,7 @@ var oe = /*#__PURE__*/ U({
 			"aria-label": e.showEdit && e.clickableTitle ? `${e.editLabel}: ${e.title}` : void 0,
 			onClick: n[1] ||= H((n) => e.showEdit && e.clickableTitle && !e.editFade && t.$emit("edit", n), ["stop"])
 		}, {
-			default: z(() => [c("span", se, [O(t.$slots, "default", {}, () => [d(j(e.title), 1)], !0)]), e.showEdit && e.clickableTitle ? (w(), s("svg", {
+			default: z(() => [c("span", se, [O(t.$slots, "default", {}, () => [d(j(e.title), 1)], !0)]), e.showEdit && e.clickableTitle && e.showEditIcon ? (w(), s("svg", {
 				key: 0,
 				class: v(["morph-tile-pencil", { "morph-tile-pencil--hidden": e.editFade }]),
 				viewBox: "0 0 24 24",
@@ -181,7 +185,7 @@ var oe = /*#__PURE__*/ U({
 				"stroke-linecap": "round",
 				"stroke-linejoin": "round",
 				"aria-hidden": "true"
-			}, [...n[3] ||= [c("path", { d: "M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" }, null, -1)]], 2)) : e.showEdit ? (w(), s("button", {
+			}, [...n[3] ||= [c("path", { d: "M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" }, null, -1)]], 2)) : e.showEdit && !e.clickableTitle ? (w(), s("button", {
 				key: 1,
 				class: "morph-tile-edit",
 				type: "button",
@@ -212,7 +216,7 @@ var oe = /*#__PURE__*/ U({
 			onClick: n[2] ||= H(() => {}, ["stop"])
 		}, [O(t.$slots, "aside", {}, void 0, !0)])) : o("", !0)], 2));
 	}
-}, [["__scopeId", "data-v-ad6f287a"]]), Y = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-3115b3b3"]]), Y = /*#__PURE__*/ U({
 	__name: "MorphTile",
 	props: {
 		title: {
@@ -221,6 +225,10 @@ var oe = /*#__PURE__*/ U({
 		},
 		compactHeader: Boolean,
 		showEdit: Boolean,
+		showEditIcon: {
+			type: Boolean,
+			default: !0
+		},
 		editLabel: {
 			type: String,
 			default: ""
@@ -266,6 +274,7 @@ var oe = /*#__PURE__*/ U({
 					title: e.title,
 					"compact-header": e.compactHeader,
 					"show-edit": e.showEdit,
+					"show-edit-icon": e.showEditIcon,
 					"edit-label": e.editLabel,
 					"edit-fade": e.editFade,
 					"clickable-title": e.clickableTitle,
@@ -282,6 +291,7 @@ var oe = /*#__PURE__*/ U({
 					"title",
 					"compact-header",
 					"show-edit",
+					"show-edit-icon",
 					"edit-label",
 					"edit-fade",
 					"clickable-title"
@@ -298,7 +308,7 @@ var oe = /*#__PURE__*/ U({
 			"style"
 		]));
 	}
-}, [["__scopeId", "data-v-5b024425"]]), le = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-2af74b97"]]), le = /*#__PURE__*/ U({
 	__name: "TileAccentStrip",
 	props: { color: {
 		type: String,

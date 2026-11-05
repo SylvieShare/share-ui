@@ -686,6 +686,7 @@ export interface MorphTileHeaderProps {
   compactHeader?: boolean
   title?: string
   showEdit?: boolean
+  showEditIcon?: boolean
   editLabel?: string
   editFade?: boolean
   clickableTitle?: boolean

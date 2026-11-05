@@ -4,8 +4,8 @@
       :type="showEdit && clickableTitle ? 'button' : undefined" :disabled="showEdit && clickableTitle && editFade || undefined"
       :aria-label="showEdit && clickableTitle ? `${editLabel}: ${title}` : undefined" @click.stop="showEdit && clickableTitle && !editFade && $emit('edit', $event)">
       <span class="morph-tile-title"><slot>{{ title }}</slot></span>
-      <svg v-if="showEdit && clickableTitle" class="morph-tile-pencil" :class="{ 'morph-tile-pencil--hidden': editFade }" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></svg>
-      <button v-else-if="showEdit" class="morph-tile-edit" type="button" :aria-label="`${editLabel}: ${title}`" :disabled="editFade" @click.stop="$emit('edit', $event)">
+      <svg v-if="showEdit && clickableTitle && showEditIcon" class="morph-tile-pencil" :class="{ 'morph-tile-pencil--hidden': editFade }" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></svg>
+      <button v-else-if="showEdit && !clickableTitle" class="morph-tile-edit" type="button" :aria-label="`${editLabel}: ${title}`" :disabled="editFade" @click.stop="$emit('edit', $event)">
         <svg class="morph-tile-pencil" :class="{ 'morph-tile-pencil--hidden': editFade }" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></svg>
       </button>
     </component>
@@ -13,7 +13,7 @@
   </div>
 </template>
 <script setup>
-defineProps({ title: { type: String, default: '' }, compactHeader: Boolean, showEdit: Boolean, editFade: Boolean, clickableTitle: { type: Boolean, default: true }, editLabel: { type: String, default: '' } })
+defineProps({ title: { type: String, default: '' }, compactHeader: Boolean, showEdit: Boolean, showEditIcon: { type: Boolean, default: true }, editFade: Boolean, clickableTitle: { type: Boolean, default: true }, editLabel: { type: String, default: '' } })
 defineEmits(['edit'])
 </script>
 <style scoped>
