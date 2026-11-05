@@ -30,7 +30,7 @@
   </button>
 
   <Teleport to="body">
-    <Transition name="share-popover-action">
+    <Transition name="share-popover-action" @before-enter="el => setFloatingInteractive(el, true)" @before-leave="el => setFloatingInteractive(el, false)">
       <div
         v-if="isOpen"
         ref="popoverEl"
@@ -42,6 +42,7 @@
         @click.stop
         @pointerdown.stop
       >
+        <div v-if="heading" class="ram-heading">{{ heading }}</div>
         <slot :close="close" />
       </div>
     </Transition>
@@ -51,6 +52,7 @@
 <script setup>
 import { nextTick, onBeforeUnmount, ref } from 'vue'
 import {
+  setFloatingInteractive,
   activateActionMenu,
   closeActiveActionSubmenu,
   deactivateActionMenu,
@@ -63,6 +65,7 @@ const props = defineProps({
   anchor: { type: Object, default: null },
   related: { type: Boolean, default: false },
   title: { type: String, default: 'Actions' },
+  heading: { type: String, default: '' },
   disabled: { type: Boolean, default: false },
   block: { type: Boolean, default: false },
 })
@@ -74,6 +77,8 @@ const popoverStyle = ref(null)
 const isOpen = ref(false)
 let openOrigin = null
 let placementFrame = null
+let resizeObserver = null
+let contentObserver = null
 
 function resolveAnchor() {
   return props.anchor ?? triggerEl.value
@@ -114,8 +119,11 @@ function placePopover() {
 
   const viewport = viewportRect()
   const availableWidth = Math.max(0, viewport.viewportWidth - ACTION_MENU_MARGIN * 2)
-  popover.style.minWidth = `${Math.min(200, availableWidth)}px`
-  popover.style.maxWidth = `${Math.min(280, availableWidth)}px`
+  const expanded = Boolean(popover.querySelector('.ras-inline'))
+  const minimumWidth = Math.min(expanded ? 360 : 200, availableWidth)
+  const maximumWidth = Math.min(expanded ? 360 : 280, availableWidth)
+  popover.style.minWidth = `${minimumWidth}px`
+  popover.style.maxWidth = `${maximumWidth}px`
 
   const rect = trigger.getBoundingClientRect()
   // Measure layout width, unaffected by the enter transition scale.
@@ -134,8 +142,8 @@ function placePopover() {
     position: 'fixed',
     top: `${placement.top}px`,
     left: `${placement.left}px`,
-    minWidth: `${Math.min(200, availableWidth)}px`,
-    maxWidth: `${Math.min(280, availableWidth)}px`,
+    minWidth: `${minimumWidth}px`,
+    maxWidth: `${maximumWidth}px`,
     maxHeight: `${placement.maxHeight}px`,
     visibility: 'visible',
     '--share-popover-origin-x': `${placement.originX}px`,
@@ -159,6 +167,10 @@ function bind() {
 }
 
 function unbind() {
+  resizeObserver?.disconnect()
+  contentObserver?.disconnect()
+  resizeObserver = null
+  contentObserver = null
   document.removeEventListener('pointerdown', onDocumentPointerDown, true)
   document.removeEventListener('keydown', onKeydown)
   window.removeEventListener('resize', schedulePlacement)
@@ -173,7 +185,14 @@ function open(event) {
   activateActionMenu(token, close)
   isOpen.value = true
   bind()
-  nextTick(schedulePlacement)
+  nextTick(() => {
+    if (!isOpen.value || !popoverEl.value) return
+    resizeObserver = new ResizeObserver(schedulePlacement)
+    resizeObserver.observe(popoverEl.value)
+    contentObserver = new MutationObserver(schedulePlacement)
+    contentObserver.observe(popoverEl.value, { childList: true, subtree: true })
+    schedulePlacement()
+  })
 }
 
 function close() {
@@ -229,7 +248,7 @@ defineExpose({ open, close, toggle })
   width: 100%;
 }
 
-.ram-custom-trigger:active { transform: scale(0.97); }
+.ram-custom-trigger:active { transform: scale(var(--action-menu-trigger-press-scale, 0.97)); }
 
 .ram-trigger {
   display: flex;
@@ -286,6 +305,7 @@ defineExpose({ open, close, toggle })
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+.ram-heading { padding: 8px 10px; font-size: 14px; font-weight: 700; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; }
 
 @media (prefers-reduced-motion: reduce) {
   .ram-popover { will-change: auto; }

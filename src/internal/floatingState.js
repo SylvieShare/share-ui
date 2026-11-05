@@ -59,3 +59,10 @@ export function resetFloatingState() {
   activeActionMenu = null
   activeActionSubmenu = null
 }
+
+// Leaving transition nodes remain painted but must immediately leave hit testing and accessibility.
+export function setFloatingInteractive(element, interactive) {
+  element.inert = !interactive
+  element.setAttribute('aria-hidden', String(!interactive))
+  element.style.pointerEvents = interactive ? '' : 'none'
+}

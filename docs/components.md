@@ -204,7 +204,9 @@ permissions или конкретном домене приложения.
   `submit`, чтобы проекты могли мигрировать без промежуточных wrapper-ов.
 - `MorphSheet` — container morph из origin element/rect, add-mode, slots
   `head/detail/sub/foot`, optional background blur, настраиваемый `zIndex` для
-  вложенных overlay-сценариев и swipe-навигация.
+  вложенных overlay-сценариев и swipe-навигация. `openDuration`/`closeDuration`
+  задают длительность morph в ms (defaults 420/300); системный reduced motion
+  отключает перемещение. `useContainerMorph` также принимает getters длительностей.
 - `useSheetSubpages` — controller двухпанельной дорожки MorphSheet.
 
 Overlay-компоненты используют единый внутренний stack и reference-counted
@@ -234,7 +236,8 @@ scroll lock. Floating surfaces тоже регистрируются в stack, �
   `prefers-reduced-motion`, в том числе если компонент монтируется сразу
   открытым. `none` оставляет поверхность без motion. Сырой
   `transition` остаётся приоритетным escape hatch для специализированного
-  Vue Transition name.
+  Vue Transition name. Закрывающийся слой сразу становится inert и исчезает
+  из accessibility tree, хотя его exit-анимация ещё дорисовывается.
 - `ActionMenu` (`RowActionMenu` alias) — меню действий, которое измеряет себя и
   открывается над trigger, когда снизу не хватает места. Опциональный `anchor`
   задаёт внешний DOM-элемент для программного открытия через `open`/`toggle`:
@@ -242,9 +245,13 @@ scroll lock. Floating surfaces тоже регистрируются в stack, �
   Нажатие на внешний anchor не считается кликом снаружи; без `anchor`
   позиционирование и закрытие используют встроенный trigger как прежде.
   Размеры меню измеряются без масштаба enter-анимации и с учётом рамки,
-  чтобы выравнивание по anchor не менялось после появления меню.
+  чтобы выравнивание по anchor не менялось после появления меню. `heading`
+  выводит видимый контекст над действиями; `title` остаётся accessible name.
+  ResizeObserver и изменения вложенного содержимого повторно привязывают меню
+  к viewport, включая раскрытие inline-подменю (до 360 px).
 - `ActionMenuItem` (`RowActionItem` alias) — нейтральная строка меню с icon
-  component/slot, suffix, submenu state и semantic tone.
+  component/slot, suffix, submenu state и semantic tone. При coarse pointer или
+  ширине до 1199 px строка имеет минимальную высоту 48 px.
 - `ActionMenuSubmenu` (`RowActionSubmenu` alias) — соседний popover на desktop и
   inline-раскрытие на mobile.
 - `AccountMenu` — общий trigger профиля для sidebar: avatar, подпись и chevron;

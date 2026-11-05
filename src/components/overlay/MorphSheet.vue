@@ -23,6 +23,8 @@ import {
 } from '../../internal/overlayStack.js'
 
 const props = defineProps({
+  openDuration: { type: Number, default: 420 },
+  closeDuration: { type: Number, default: 300 },
   mode: { type: String, default: 'edit' },
   originRect: { type: Object, default: null },
   originEl: { type: Object, default: null },
@@ -63,7 +65,7 @@ const closing = ref(false)
 const entered = ref(false)
 const padded = ref(false)
 const revealed = ref(false)   // exposed to slots: false during the open/close morph → fade slot content
-const { EASE, visible, morphing, playClose, playOpen } = useContainerMorph()
+const { EASE, visible, morphing, playClose, playOpen } = useContainerMorph({ open: () => props.openDuration, close: () => props.closeDuration })
 const endRadius = () => (isMobile.value ? '0px' : '18px')
 const HEIGHT_DUR = 320
 

@@ -181,6 +181,7 @@ export const BasePopover: DefineComponent<{
 }>
 
 export const ActionMenu: DefineComponent<{
+  heading?: string
   related?: boolean
   triggerAttrs?: Record<string, unknown>
   anchor?: HTMLElement | null
@@ -426,6 +427,8 @@ export const TextPromptDialog: DefineComponent<{
 export const PromptDialog: typeof TextPromptDialog
 
 export const MorphSheet: DefineComponent<{
+  openDuration?: number
+  closeDuration?: number
   mode?: 'edit' | 'add'
   originRect?: ContainerRect | null
   originEl?: HTMLElement | null
@@ -553,7 +556,7 @@ export interface UseContainerMorphResult {
   ) => void
 }
 
-export function useContainerMorph(options?: { open?: number; close?: number }): UseContainerMorphResult
+export function useContainerMorph(options?: { open?: number | (() => number); close?: number | (() => number) }): UseContainerMorphResult
 export function useMediaQuery(query: string): Ref<boolean>
 export function useIsMobile(maxWidth?: number): Ref<boolean>
 export function useFullscreenViewportHeight(scale?: number): Ref<string>

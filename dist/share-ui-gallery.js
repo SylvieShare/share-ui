@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as ee, F as c, Ft as te, G as ne, H as re, I as ie, K as ae, L as oe, Mt as l, Nt as se, O as ce, Ot as le, P as u, Pt as d, R as ue, S as de, St as fe, T as pe, Tt as f, V as me, W as he, _ as ge, a as _e, b as p, bt as m, c as h, ct as ve, d as g, f as _, ft as v, g as ye, h as be, i as y, it as xe, j as Se, jt as Ce, k as b, kt as x, l as S, lt as we, m as C, n as Te, o as w, p as T, pt as Ee, q as De, r as Oe, rt as ke, s as E, t as D, u as O, ut as k, v as Ae, w as je, wt as A, x as j, xt as Me, y as Ne, z as M, zt as N } from "./StarRating-UvoK4LwO.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as ee, F as c, Ft as te, G as ne, H as re, I as ie, K as ae, L as oe, Mt as l, Nt as se, O as ce, Ot as le, P as u, Pt as d, R as ue, S as de, St as fe, T as pe, Tt as f, V as me, W as he, _ as ge, a as _e, b as p, bt as m, c as h, ct as ve, d as g, f as _, ft as v, g as ye, h as be, i as y, it as xe, j as Se, jt as Ce, k as b, kt as x, l as S, lt as we, m as C, n as Te, o as w, p as T, pt as Ee, q as De, r as Oe, rt as ke, s as E, t as D, u as O, ut as k, v as Ae, w as je, wt as A, x as j, xt as Me, y as Ne, z as M, zt as N } from "./StarRating-Btek-rE-.js";
 import { Fragment as P, createBlock as F, createCommentVNode as I, createElementBlock as L, createElementVNode as R, createTextVNode as z, createVNode as B, h as V, normalizeClass as Pe, openBlock as H, reactive as Fe, ref as U, renderList as W, toDisplayString as G, unref as Ie, withCtx as K, withModifiers as Le } from "vue";
 //#region src/gallery/ChoiceCardGalleryExample.vue
 var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
@@ -1169,6 +1169,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 					U[108] ||= R("h2", null, "ActionMenu", -1),
 					B(Ee, {
 						title: "Действия",
+						heading: "Выбранная запись",
 						related: ""
 					}, {
 						default: K(() => [
@@ -1438,6 +1439,8 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 				key: 2,
 				"origin-el": cn.value,
 				"aria-label": "Пример MorphSheet",
+				"open-duration": 300,
+				"close-duration": 200,
 				"show-close": "",
 				onClose: U[43] ||= (e) => sn.value = !1
 			}, {
@@ -1447,6 +1450,6 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 			}, 8, ["origin-el"])) : I("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-2861ad37"]]);
+}, [["__scopeId", "data-v-13fdb0ff"]]);
 //#endregion
 export { Z as COMPONENT_GALLERY_ALIASES, Ke as COMPONENT_GALLERY_COMPONENTS, Q as ComponentGallery };

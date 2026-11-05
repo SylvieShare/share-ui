@@ -90,8 +90,12 @@ defineProps({
 .ram-item--info:not(:disabled):hover { background: color-mix(in srgb, var(--info) 12%, transparent); }
 .ram-item--danger { color: var(--danger); --ram-item-press-bg: color-mix(in srgb, var(--danger) 20%, transparent); }
 .ram-item--danger:not(:disabled):hover { background: color-mix(in srgb, var(--danger) 12%, transparent); }
-.ram-item:active:not(:disabled) { background: var(--ram-item-press-bg); transform: scale(0.975); }
-.ram-item:active:not(:disabled) .ram-item__icon { transform: scale(0.84); }
+.ram-item:active:not(:disabled) { background: var(--ram-item-press-bg); transform: scale(var(--action-menu-item-press-scale, 0.975)); }
+.ram-item:active:not(:disabled) .ram-item__icon { transform: scale(var(--action-menu-icon-press-scale, 0.84)); }
+
+@media (max-width: 1199px), (pointer: coarse) {
+  .ram-item { min-height: 48px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .ram-item, .ram-item__icon { transition: none; }

@@ -95,3 +95,11 @@ Use [Blur effects](blur.md) for frosted surfaces, fading header backdrops and
 animated overlays. The shared inline implementation preserves the standard
 property through production CSS optimization; do not duplicate the declarations
 in a new consumer component. Content blur and backdrop blur have different targets.
+
+## Action menu feedback
+
+`--action-menu-trigger-press-scale` (0.97), `--action-menu-item-press-scale`
+(0.975) and `--action-menu-icon-press-scale` (0.84) let consumers quiet press
+feedback without replacing menu geometry. Set the first two to 1 to keep content
+still. Source selection belongs to the consumer and follows the trigger slot’s
+`open` state until the menu and its submenus close.

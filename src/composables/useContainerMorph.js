@@ -8,6 +8,8 @@ import { ref } from 'vue'
 // The panel itself stays OPAQUE through the whole morph (see the sheet's `shown` flag) so it
 // reads as "the tile turns into the window", not "a window fades in".
 export function useContainerMorph({ open = 420, close = 300 } = {}) {
+  const duration = value => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    ? 0 : Math.max(0, typeof value === 'function' ? value() : value)
   const EASE = 'cubic-bezier(.2, 0, 0, 1)'
   const SHADOW = 'var(--shadow-lg)'
   const RECT_PROPS = ['position', 'margin', 'left', 'top', 'width', 'height', 'maxHeight', 'overflow', 'borderRadius', 'boxShadow', 'transition']
@@ -33,34 +35,36 @@ export function useContainerMorph({ open = 420, close = 300 } = {}) {
 
   function playOpen(el, fromRect, { fromRadius = '0px', toRadius = '0px' } = {}) {
     clearTimeout(timer)
+    const ms = duration(open)
     if (!el || !fromRect) { visible.value = true; return }
     morphing.value = true
     const f = el.getBoundingClientRect()
-    applyRect(el, fromRect, false, open)
+    applyRect(el, fromRect, false, ms)
     el.style.borderRadius = fromRadius
     el.style.boxShadow = 'none'
     void el.offsetWidth
     visible.value = true
-    applyRect(el, f, true, open)
+    applyRect(el, f, true, ms)
     el.style.borderRadius = toRadius
     el.style.boxShadow = SHADOW
-    timer = setTimeout(() => { clearRect(el); morphing.value = false }, open + 20)
+    timer = setTimeout(() => { clearRect(el); morphing.value = false }, ms + 20)
   }
 
   function playClose(el, toRect, { fromRadius = '0px', toRadius = '0px' } = {}, done = () => {}) {
     clearTimeout(timer)
-    if (!el || !toRect) { visible.value = false; timer = setTimeout(done, 240); return }
+    const ms = duration(close)
+    if (!el || !toRect) { visible.value = false; timer = setTimeout(done, ms); return }
     morphing.value = true
     const f = el.getBoundingClientRect()
-    applyRect(el, f, false, close)
+    applyRect(el, f, false, ms)
     el.style.borderRadius = fromRadius
     el.style.boxShadow = SHADOW
     void el.offsetWidth
     visible.value = false
-    applyRect(el, toRect, true, close)
+    applyRect(el, toRect, true, ms)
     el.style.borderRadius = toRadius
     el.style.boxShadow = 'none'
-    timer = setTimeout(done, close)
+    timer = setTimeout(done, ms)
   }
 
   return { EASE, visible, morphing, playOpen, playClose }

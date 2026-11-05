@@ -4,7 +4,7 @@
       <slot name="trigger" :open="isOpen" :toggle="toggle" />
     </div>
 
-    <Transition name="ras-inline">
+    <Transition name="ras-inline" @before-enter="el => setFloatingInteractive(el, true)" @before-leave="el => setFloatingInteractive(el, false)">
       <div
         v-if="isMobile && isOpen"
         class="ras-inline"
@@ -43,6 +43,7 @@
 import { onBeforeUnmount, ref } from 'vue'
 import { useIsMobile } from '../../composables/useMediaQuery.js'
 import {
+  setFloatingInteractive,
   activateActionSubmenu,
   deactivateActionSubmenu,
 } from '../../internal/floatingState.js'

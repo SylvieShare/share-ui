@@ -269,7 +269,7 @@
 
         <article class="share-component-gallery__card" data-share-gallery="ActionMenu ActionMenuItem ActionMenuSubmenu">
           <h2>ActionMenu</h2>
-          <ActionMenu title="Действия" related>
+          <ActionMenu title="Действия" heading="Выбранная запись" related>
             <ActionMenuItem tone="accent">Редактировать</ActionMenuItem>
             <ActionMenuSubmenu label="Перемещение">
               <template #trigger="{ open }">
@@ -450,7 +450,7 @@
     <MorphSheet
       v-if="morphOpen"
       :origin-el="morphOrigin"
-      aria-label="Пример MorphSheet"
+      aria-label="Пример MorphSheet" :open-duration="300" :close-duration="200"
       show-close
       @close="morphOpen = false"
     >

@@ -30,7 +30,7 @@ describe('BasePopover transitions', () => {
   })
 
   it('lets ActionMenu consume the preset without owning duplicate transition CSS', () => {
-    expect(actionSource).toContain('<Transition name="share-popover-action">')
+    expect(actionSource).toContain('<Transition name="share-popover-action"')
     expect(actionSource).not.toContain('.ram-popover-enter-active')
   })
 })

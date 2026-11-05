@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <Transition :name="resolvedTransition" :appear="!transition && transitionPreset === 'action-menu'">
+    <Transition :name="resolvedTransition" @before-enter="el => setFloatingInteractive(el, true)" @before-leave="el => setFloatingInteractive(el, false)" :appear="!transition && transitionPreset === 'action-menu'">
       <div
         v-if="open"
         :id="id || undefined"
@@ -22,6 +22,7 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import {
+  setFloatingInteractive,
   closeActiveActionSubmenu,
   isTopFloating,
   registerFloating,
