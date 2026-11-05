@@ -124,6 +124,7 @@ export const IconNavigation: DefineComponent<{
   orientation?: 'horizontal' | 'vertical'
   pill?: boolean
   size?: number
+  height?: number | null
   active?: boolean
   animate?: boolean
 }>

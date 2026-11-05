@@ -1,7 +1,7 @@
 <template>
   <nav ref="element" class="share-icon-navigation"
     :class="[`share-icon-navigation--${orientation}`, { 'share-icon-navigation--instant': !animate, 'share-icon-navigation--pill': pill }]"
-    :style="{ '--icon-navigation-size': `${size}px` }" :aria-label="label">
+    :style="{ '--icon-navigation-size': `${size}px`, '--icon-navigation-height': `${height ?? size}px` }" :aria-label="label">
     <span class="share-icon-navigation__indicator" :style="indicatorStyle" aria-hidden="true" />
     <template v-for="item in items" :key="item.key">
       <span v-if="item.divider" class="share-icon-navigation__divider" role="separator"
@@ -26,7 +26,8 @@ const props = defineProps({
   items: { type: Array, required: true }, modelValue: { type: [String, Number], default: null },
   label: { type: String, required: true }, orientation: { type: String, default: 'horizontal', validator: value => ['horizontal', 'vertical'].includes(value) },
   pill: { type: Boolean, default: false },
-  size: { type: Number, default: 56 }, active: { type: Boolean, default: true }, animate: { type: Boolean, default: true },
+  size: { type: Number, default: 56 }, height: { type: Number, default: null },
+  active: { type: Boolean, default: true }, animate: { type: Boolean, default: true },
 })
 const emit = defineEmits(['update:modelValue', 'select'])
 const element = ref(null), indicator = ref(null), buttons = new Map()
@@ -88,7 +89,7 @@ onMounted(() => {
   fonts?.ready.then(() => { if (!disposed) measure() })
   fonts?.addEventListener('loadingdone', measure)
 })
-watch(() => [props.modelValue, props.items, props.orientation, props.size], async () => {
+watch(() => [props.modelValue, props.items, props.orientation, props.size, props.height], async () => {
   await nextTick(); measure(); reveal(buttons.get(props.modelValue))
 }, { deep: true })
 onBeforeUnmount(() => {
@@ -129,7 +130,7 @@ defineExpose({ element, updateIndicator })
   justify-content: center;
   gap: 4px;
   width: var(--icon-navigation-size);
-  height: var(--icon-navigation-size);
+  height: var(--icon-navigation-height);
   padding: 4px;
   box-sizing: border-box;
   border: 1px solid transparent;

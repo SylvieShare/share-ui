@@ -30,6 +30,14 @@ it('can retain the current section while its panel is collapsed', async () => {
   expect(html).not.toContain('aria-pressed="true"')
 })
 
+it('can reduce the item height while retaining its caption width', async () => {
+  const render = props => renderToString(createSSRApp({ render: () => h(IconNavigation, { items, label: 'Sections', ...props }) }))
+  expect(await render({})).toContain('--icon-navigation-height:56px')
+  const rectangular = await render({ size: 56, height: 48 })
+  expect(rectangular).toContain('--icon-navigation-size:56px')
+  expect(rectangular).toContain('--icon-navigation-height:48px')
+})
+
 it('offers a pill appearance without changing selection semantics or the default', async () => {
   const render = props => renderToString(createSSRApp({ render: () => h(IconNavigation, { items, modelValue:'build', label:'Sections', ...props }) }))
   const pill = await render({pill:true})

@@ -972,6 +972,10 @@ var Be = ["aria-label"], Ve = ["aria-orientation", "aria-label"], He = [
 			type: Number,
 			default: 56
 		},
+		height: {
+			type: Number,
+			default: null
+		},
 		active: {
 			type: Boolean,
 			default: !0
@@ -1031,7 +1035,8 @@ var Be = ["aria-label"], Ve = ["aria-orientation", "aria-label"], He = [
 			l.modelValue,
 			l.items,
 			l.orientation,
-			l.size
+			l.size,
+			l.height
 		], async () => {
 			await _(), M(), P(m.get(l.modelValue));
 		}, { deep: !0 }), x(() => {
@@ -1046,7 +1051,10 @@ var Be = ["aria-label"], Ve = ["aria-orientation", "aria-label"], He = [
 				"share-icon-navigation--instant": !t.animate,
 				"share-icon-navigation--pill": t.pill
 			}]]),
-			style: b({ "--icon-navigation-size": `${t.size}px` }),
+			style: b({
+				"--icon-navigation-size": `${t.size}px`,
+				"--icon-navigation-height": `${t.height ?? t.size}px`
+			}),
 			"aria-label": t.label
 		}, [c("span", {
 			class: "share-icon-navigation__indicator",
@@ -1081,7 +1089,7 @@ var Be = ["aria-label"], Ve = ["aria-orientation", "aria-label"], He = [
 			O(n.$slots, "decoration", { item: r }, void 0, !0)
 		], 16, He)], 64))), 128))], 14, Be));
 	}
-}, [["__scopeId", "data-v-d1be12a5"]]), Ge = ["aria-label"], Ke = [
+}, [["__scopeId", "data-v-516dff8c"]]), Ge = ["aria-label"], Ke = [
 	"id",
 	"aria-selected",
 	"aria-controls",
