@@ -36,6 +36,10 @@ it('can reduce the item height while retaining its caption width', async () => {
   const rectangular = await render({ size: 56, height: 48 })
   expect(rectangular).toContain('--icon-navigation-size:56px')
   expect(rectangular).toContain('--icon-navigation-height:48px')
+  expect(await render({ radius: 8 })).toContain('--icon-navigation-radius:8px')
+  expect(await render({ radius: 0 })).toContain('--icon-navigation-radius:0px')
+  expect(await render({ radius: 'var(--r-md)' })).toContain('--icon-navigation-radius:var(--r-md)')
+  expect(await render({})).not.toContain('--icon-navigation-radius:')
 })
 
 it('offers a pill appearance without changing selection semantics or the default', async () => {

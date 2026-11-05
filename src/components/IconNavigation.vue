@@ -1,7 +1,7 @@
 <template>
   <nav ref="element" class="share-icon-navigation"
     :class="[`share-icon-navigation--${orientation}`, { 'share-icon-navigation--instant': !animate, 'share-icon-navigation--pill': pill }]"
-    :style="{ '--icon-navigation-size': `${size}px`, '--icon-navigation-height': `${height ?? size}px` }" :aria-label="label">
+    :style="{ '--icon-navigation-size': `${size}px`, '--icon-navigation-height': `${height ?? size}px`, '--icon-navigation-radius': typeof radius === 'number' ? `${radius}px` : radius || undefined }" :aria-label="label">
     <span class="share-icon-navigation__indicator" :style="indicatorStyle" aria-hidden="true" />
     <template v-for="item in items" :key="item.key">
       <span v-if="item.divider" class="share-icon-navigation__divider" role="separator"
@@ -27,6 +27,7 @@ const props = defineProps({
   label: { type: String, required: true }, orientation: { type: String, default: 'horizontal', validator: value => ['horizontal', 'vertical'].includes(value) },
   pill: { type: Boolean, default: false },
   size: { type: Number, default: 56 }, height: { type: Number, default: null },
+  radius: { type: [Number, String], default: null },
   active: { type: Boolean, default: true }, animate: { type: Boolean, default: true },
 })
 const emit = defineEmits(['update:modelValue', 'select'])
@@ -134,7 +135,7 @@ defineExpose({ element, updateIndicator })
   padding: 4px;
   box-sizing: border-box;
   border: 1px solid transparent;
-  border-radius: 9px;
+  border-radius: var(--icon-navigation-radius, 9px);
   background: transparent;
   color: var(--text-muted);
   font: inherit;
@@ -154,13 +155,13 @@ defineExpose({ element, updateIndicator })
   z-index: 0;
   top: 0;
   left: 0;
-  border-radius: 9px;
+  border-radius: var(--icon-navigation-radius, 9px);
   background: var(--accent);
   pointer-events: none;
   transition: transform 260ms cubic-bezier(.2,.7,.2,1), opacity 150ms ease;
 }
-.share-icon-navigation--pill > .share-icon-navigation__indicator { border-radius: 999px; background: color-mix(in srgb, var(--accent) 18%, var(--surface)); }
-.share-icon-navigation--pill > .share-icon-navigation__item { border-radius: 999px; }
+.share-icon-navigation--pill > .share-icon-navigation__indicator { border-radius: var(--icon-navigation-radius, 999px); background: color-mix(in srgb, var(--accent) 18%, var(--surface)); }
+.share-icon-navigation--pill > .share-icon-navigation__item { border-radius: var(--icon-navigation-radius, 999px); }
 .share-icon-navigation--pill > .share-icon-navigation__item--selected,
 .share-icon-navigation--pill > .share-icon-navigation__item--selected:hover:not(:disabled) { color: var(--accent-soft); }
 .share-icon-navigation__divider { flex: none; width: 1px; height: 24px; margin: 0 6px; background: var(--border-strong); }

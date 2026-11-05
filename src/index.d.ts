@@ -125,6 +125,7 @@ export const IconNavigation: DefineComponent<{
   pill?: boolean
   size?: number
   height?: number | null
+  radius?: number | string | null
   active?: boolean
   animate?: boolean
 }>

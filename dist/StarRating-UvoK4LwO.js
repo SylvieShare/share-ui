@@ -976,6 +976,10 @@ var Be = ["aria-label"], Ve = ["aria-orientation", "aria-label"], He = [
 			type: Number,
 			default: null
 		},
+		radius: {
+			type: [Number, String],
+			default: null
+		},
 		active: {
 			type: Boolean,
 			default: !0
@@ -1053,7 +1057,8 @@ var Be = ["aria-label"], Ve = ["aria-orientation", "aria-label"], He = [
 			}]]),
 			style: b({
 				"--icon-navigation-size": `${t.size}px`,
-				"--icon-navigation-height": `${t.height ?? t.size}px`
+				"--icon-navigation-height": `${t.height ?? t.size}px`,
+				"--icon-navigation-radius": typeof t.radius == "number" ? `${t.radius}px` : t.radius || void 0
 			}),
 			"aria-label": t.label
 		}, [c("span", {
@@ -1089,7 +1094,7 @@ var Be = ["aria-label"], Ve = ["aria-orientation", "aria-label"], He = [
 			O(n.$slots, "decoration", { item: r }, void 0, !0)
 		], 16, He)], 64))), 128))], 14, Be));
 	}
-}, [["__scopeId", "data-v-516dff8c"]]), Ge = ["aria-label"], Ke = [
+}, [["__scopeId", "data-v-21272ad3"]]), Ge = ["aria-label"], Ke = [
 	"id",
 	"aria-selected",
 	"aria-controls",

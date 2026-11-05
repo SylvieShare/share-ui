@@ -109,6 +109,7 @@ Reduced motion disables the background/checkmark transitions.
   `items` — `{ key, label, shortLabel?, ariaLabel?, title?, icon?, disabled?, divider?, dividerLabel?, attrs? }`.
   `modelValue` определяет текущий раздел, `orientation` — horizontal/vertical,
   `size` — ширину кнопки (56 px), `height` — её высоту (по умолчанию равна `size`).
+  `radius` задаёт радиус кнопок и выделения числом px или CSS-значением, включая токен.
   `active=false` скрывает выделение при свёрнутой панели,
   `animate=false` отключает перемещение при раскрытии. `pill=true` даёт скруглённое мягкое выделение и акцентную подпись внутри компактной навигационной поверхности; default сохраняет квадрат. `label` задаёт имя navigation.
   Событие `select(key)` приходит и при повторном выборе, `update:modelValue` — при смене.
