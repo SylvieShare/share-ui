@@ -293,7 +293,7 @@ defineExpose({ open: openSelect, close, toggle })
   padding: 5px;
   overflow-y: auto;
   background: var(--popover-bg);
-  border: var(--control-border-width) solid var(--border-strong);
+  border: var(--popover-border-width) solid var(--border-strong);
   border-radius: var(--r-md);
   box-shadow: var(--shadow-lg);
 }
@@ -332,7 +332,7 @@ defineExpose({ open: openSelect, close, toggle })
 }
 
 .vs-option:hover,
-.vs-option--active { color: var(--text-1); background: var(--surface-raised); }
+.vs-option--active { color: var(--text-1); background: var(--surface-active); }
 .vs-option:disabled { cursor: default; opacity: 0.5; }
 
 .vs-empty { padding: 8px; color: var(--text-muted); font-size: 13px; text-align: center; }

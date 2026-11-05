@@ -375,7 +375,7 @@ defineExpose({ close, finishNow })
    sheets cover the viewport and intentionally skip the background blur. */
 .ms-overlay { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; background: color-mix(in srgb, var(--scrim) 1%, transparent); transition: background .3s ease; }
 .ms-overlay.visible { background: color-mix(in srgb, var(--scrim) 73%, transparent); }
-.ms-sheet { flex: none; position: relative; box-sizing: border-box; width: var(--ms-w, 440px); max-width: 100%; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow-lg); opacity: 0; }
+.ms-sheet { flex: none; position: relative; box-sizing: border-box; width: var(--ms-w, 440px); max-width: 100%; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 18px; box-shadow: var(--shadow-lg); opacity: 0; }
 /* framed panel: the morphing block's gradient + colored border spans the whole window */
 .ms-sheet.ms-framed { background: linear-gradient(135deg, var(--surface) 55%, color-mix(in srgb, var(--ms-frame) 8%, var(--surface))); border-color: transparent; }
 .ms-sheet.ms-framed::before {

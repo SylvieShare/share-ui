@@ -103,3 +103,17 @@ in a new consumer component. Content blur and backdrop blur have different targe
 feedback without replacing menu geometry. Set the first two to 1 to keep content
 still. Source selection belongs to the consumer and follows the trigger slot’s
 `open` state until the menu and its submenus close.
+
+## Floating surfaces
+
+`--popover-bg` sets the opaque background of floating menus, tooltips and select lists.
+`--popover-border-width: 1px` enables the neutral `--border-strong` outline for
+BasePopover and ValueSelect lists while `--control-border-width: 0px` keeps
+page inputs frameless. ActionMenu, tooltips and floating modal/morph windows
+already use a 1px neutral outline; fullscreen morphs have no outside frame.
+ValueSelect active/hover options use `--surface-active`, so they remain visible
+when the menu background equals `--surface-raised`.
+
+Editor windows use a continuous `--surface` background across their shell and
+action footer; fields use the raised control surface. Modal and desktop morph
+backdrops keep the existing blur, independently of the sharp foreground frame.

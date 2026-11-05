@@ -246,6 +246,8 @@
               aria-label="Выбрать редкость"
               searchable
             />
+            <ValueSelect v-model="selectValue" :options="selectOptions" aria-label="Выбор с рамкой списка"
+              style="--popover-border-width: 1px; --popover-bg: var(--surface-raised)" searchable />
             <ColorPresetPicker v-model="colorValue" variant="button" aria-label="Цвет кнопкой" allow-custom />
             <ColorPresetPicker v-model="colorValue" inline allow-custom allow-clear />
           </div>

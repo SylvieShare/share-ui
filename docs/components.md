@@ -258,7 +258,8 @@ scroll lock. Floating surfaces тоже регистрируются в stack, �
   сами действия передаются consumer-ом через default slot и строятся на
   `ActionMenuItem`. Prop `expanded` переключает rail- и полный варианты.
 - `ValueSelect` — компактный searchable listbox с disabled options, стрелками,
-  Home/End, Enter и Escape. Все видимые тексты передаются props.
+  Home/End, Enter и Escape. Все видимые тексты передаются props. Рамка списка
+  использует popover-border-width; рамки trigger/search остаются control-border-width.
 - `ColorPresetPicker` — preset/custom/clear picker. `variant="button"` даёт кнопку
   80×40: нейтральная палитра (заменяется слотом `icon`) слева и текущий цвет
   справа. По умолчанию `variant="swatch"`; существующий слот `trigger` сохраняется
