@@ -2,7 +2,11 @@
   <button
     type="button"
     class="share-choice-card"
-    :class="{ 'share-choice-card--selected': modelValue }"
+    :class="{
+      'share-choice-card--selected': modelValue,
+      'share-choice-card--inline': layout === 'inline',
+      'share-choice-card--described': description,
+    }"
     :style="{ '--choice-card-color': color || 'var(--accent)' }"
     :aria-label="label"
     :aria-describedby="description ? descriptionId : undefined"
@@ -11,7 +15,7 @@
     @click="emit('update:modelValue', !modelValue)"
   >
     <span class="share-choice-card__top" aria-hidden="true">
-      <slot name="icon" />
+      <span v-if="$slots.icon" class="share-choice-card__icon"><slot name="icon" /></span>
       <svg class="share-choice-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>
     </span>
     <span class="share-choice-card__body">
@@ -30,6 +34,7 @@ defineProps({
   description: { type: String, default: '' },
   color: { type: String, default: '' },
   disabled: Boolean,
+  layout: { type: String, default: 'stacked', validator: value => ['inline', 'stacked'].includes(value) },
 })
 const emit = defineEmits(['update:modelValue'])
 const descriptionId = useId()
@@ -54,6 +59,7 @@ const descriptionId = useId()
 }
 .share-choice-card__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; color: var(--text-muted); }
 .share-choice-card__top :deep(svg) { width: 20px; height: 20px; flex: none; }
+.share-choice-card__icon { display: inline-flex; }
 .share-choice-card__check { opacity: 0; transition: opacity .18s ease; }
 .share-choice-card__body { display: flex; flex-direction: column; gap: 0; }
 .share-choice-card__label { font-size: 14px; font-weight: 600; line-height: 20px; overflow-wrap: anywhere; }
@@ -66,5 +72,29 @@ const descriptionId = useId()
 .share-choice-card--selected .share-choice-card__description { color: var(--text-2); }
 .share-choice-card:disabled { opacity: .45; cursor: not-allowed; }
 .share-choice-card:focus-visible { outline: 2px solid var(--choice-card-color); outline-offset: 2px; }
+
+.share-choice-card--inline {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  align-content: center;
+  gap: 0 6px;
+  min-height: var(--choice-card-min-height, 52px);
+  padding: 8px;
+}
+.share-choice-card--inline .share-choice-card__top,
+.share-choice-card--inline .share-choice-card__body { display: contents; }
+.share-choice-card--inline .share-choice-card__icon { grid-area: 1 / 1; }
+.share-choice-card--inline .share-choice-card__icon :deep(svg) { width: 16px; height: 16px; }
+.share-choice-card--inline .share-choice-card__label {
+  grid-area: 1 / 2;
+  font-size: 13px;
+  line-height: 18px;
+}
+.share-choice-card--inline .share-choice-card__check { grid-area: 1 / 3; width: 12px; height: 12px; }
+.share-choice-card--inline.share-choice-card--described .share-choice-card__icon { grid-row: 1 / 3; }
+.share-choice-card--inline.share-choice-card--described .share-choice-card__label { grid-column: 2 / 4; }
+.share-choice-card--inline.share-choice-card--described .share-choice-card__check { grid-row: 2; }
+.share-choice-card--inline .share-choice-card__description { grid-area: 2 / 2; }
 @media (prefers-reduced-motion: reduce) { .share-choice-card, .share-choice-card__check { transition: none; } }
 </style>

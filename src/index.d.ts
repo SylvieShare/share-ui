@@ -1,6 +1,7 @@
 import type { Component, ComputedRef, CSSProperties, DefineComponent, Ref } from 'vue'
 
 export const ChoiceCard: DefineComponent<{
+  layout?: 'stacked' | 'inline'
   modelValue?: boolean
   label: string
   description?: string

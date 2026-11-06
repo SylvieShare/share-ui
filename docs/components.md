@@ -91,7 +91,9 @@ optional description and an animated checkmark. Boolean `v-model`, required
 `update:modelValue`. Native button, `aria-pressed`, Enter/Space and focus ring.
 The parent owns exclusive selection or multiple selection; the card never
 silently changes another option. All text is supplied by the consumer.
-`--choice-card-min-height` (88px default) is the public geometry variable.
+`layout="stacked"` places the icon above the label. `layout="inline"` places it
+beside the text and aligns the selection check with the description when present.
+`--choice-card-min-height` defaults to 88px for stacked cards and 52px for inline cards.
 Reduced motion disables the background/checkmark transitions.
 
 ## Controls
