@@ -1,6 +1,11 @@
 export const ACTION_MENU_MARGIN = 8
 export const ACTION_MENU_GAP = 6
 
+export function scrollMovesActionMenuAnchor(target, anchor) {
+  if (!target || !anchor) return false
+  return target === anchor.ownerDocument || target === anchor.ownerDocument?.defaultView || Boolean(target.contains?.(anchor))
+}
+
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), Math.max(min, max))
 }

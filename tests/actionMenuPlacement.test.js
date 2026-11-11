@@ -1,7 +1,16 @@
 import { describe, expect, it } from 'vitest'
-import { computeActionMenuPlacement } from '../src/lib/actionMenuPlacement.js'
+import { computeActionMenuPlacement, scrollMovesActionMenuAnchor } from '../src/lib/actionMenuPlacement.js'
 
 const viewport = { viewportWidth: 360, viewportHeight: 640 }
+
+it('keeps an action menu open during unrelated scrolling and closes when its anchor moves', () => {
+  const window = {}, document = { defaultView: window }, anchor = { ownerDocument: document }
+  expect(scrollMovesActionMenuAnchor({ contains: () => false }, anchor)).toBe(false)
+  expect(scrollMovesActionMenuAnchor({ contains: node => node === anchor }, anchor)).toBe(true)
+  expect(scrollMovesActionMenuAnchor(document, anchor)).toBe(true)
+  expect(scrollMovesActionMenuAnchor(window, anchor)).toBe(true)
+  expect(scrollMovesActionMenuAnchor(null, anchor)).toBe(false)
+})
 
 describe('computeActionMenuPlacement', () => {
   it('clamps a menu to both horizontal viewport edges', () => {

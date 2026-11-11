@@ -586,3 +586,9 @@ FormNumberInput supports optional live:boolean (default false). When enabled,
 valid native input emits change immediately, intermediate blank/sign input stays
 in the local text buffer, external updates remain authoritative, and blur does
 not emit the same accepted value twice. Default non-live change semantics remain.
+
+### Прокрутка рядом с меню действий
+
+ActionMenu/RowActionMenu закрываются при прокрутке документа или предка якоря.
+Прокрутка независимой полосы вкладок или соседней панели не закрывает меню.
+Прокрутка самого меню и явно связанных поверхностей сохраняет прежнее поведение.

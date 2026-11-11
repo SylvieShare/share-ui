@@ -58,7 +58,7 @@ import {
   deactivateActionMenu,
   isTopFloating,
 } from '../../internal/floatingState.js'
-import { ACTION_MENU_MARGIN, computeActionMenuPlacement } from '../../lib/actionMenuPlacement.js'
+import { ACTION_MENU_MARGIN, computeActionMenuPlacement, scrollMovesActionMenuAnchor } from '../../lib/actionMenuPlacement.js'
 
 const props = defineProps({
   triggerAttrs: { type: Object, default: () => ({}) },
@@ -221,7 +221,7 @@ function onDocumentPointerDown(event) {
 function onWindowScroll(event) {
   if (popoverEl.value?.contains?.(event.target)) return
   if (event.target?.closest?.('[data-share-popover-related]')) return
-  close()
+  if (scrollMovesActionMenuAnchor(event.target, resolveAnchor())) close()
 }
 
 function onKeydown(event) {
