@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as ee, F as c, Ft as te, G as ne, H as re, I as ie, K as ae, L as oe, Mt as l, Nt as se, O as ce, Ot as le, P as u, Pt as d, R as ue, S as de, St as f, T as fe, Tt as p, V as pe, W as me, _ as m, a as h, b as he, bt as g, c as _, ct as ge, d as v, f as _e, ft as y, g as ve, h as ye, i as b, it as be, j as xe, jt as Se, k as x, kt as Ce, l as S, lt as we, m as C, n as Te, o as w, p as Ee, pt as De, q as Oe, r as ke, rt as Ae, s as T, t as je, u as E, ut as D, v as Me, w as Ne, wt as O, x as k, xt as Pe, y as Fe, z as A, zt as j } from "./StarRating-8Gn02wT3.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as ee, F as c, Ft as te, G as ne, H as re, I as ie, K as ae, L as oe, Mt as l, Nt as se, O as ce, Ot as le, P as u, Pt as d, R as ue, S as de, St as f, T as fe, Tt as p, V as pe, W as me, _ as m, a as h, b as he, bt as g, c as _, ct as ge, d as v, f as _e, ft as y, g as ve, h as ye, i as b, it as be, j as xe, jt as Se, k as x, kt as Ce, l as S, lt as we, m as C, n as Te, o as w, p as Ee, pt as De, q as Oe, r as ke, rt as Ae, s as T, t as je, u as E, ut as D, v as Me, w as Ne, wt as O, x as k, xt as Pe, y as Fe, z as A, zt as j } from "./StarRating-DfDHt1fU.js";
 import { Fragment as M, createBlock as N, createCommentVNode as P, createElementBlock as F, createElementVNode as I, createTextVNode as L, createVNode as R, h as z, normalizeClass as Ie, openBlock as B, reactive as Le, ref as V, renderList as H, toDisplayString as U, unref as Re, withCtx as W, withModifiers as ze } from "vue";
 //#region src/gallery/ChoiceCardGalleryExample.vue
 var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
@@ -70,14 +70,15 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				disabled: ""
 			}),
 			R(j, {
-				label: "Tinted centered choice",
+				label: "Outlined selection",
 				layout: "icon",
 				tinted: "",
 				centered: "",
+				"selection-indicator": "outline",
 				color: "var(--success)",
 				modelValue: r.value,
 				"onUpdate:modelValue": s[1] ||= (e) => r.value = e,
-				style: { "--choice-card-min-height": "112px" }
+				style: { "--choice-card-min-height": "88px" }
 			}, {
 				icon: W(() => [...s[5] ||= [I("svg", {
 					viewBox: "0 0 24 24",
@@ -89,7 +90,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 			}, 8, ["modelValue"])
 		])]));
 	}
-}, [["__scopeId", "data-v-2dc94b17"]]), K = { class: "blur-gallery-scene" }, Ve = { class: "blur-gallery-label" }, He = /*#__PURE__*/ r({
+}, [["__scopeId", "data-v-f926008d"]]), K = { class: "blur-gallery-scene" }, Ve = { class: "blur-gallery-label" }, He = /*#__PURE__*/ r({
 	__name: "BlurGalleryExample",
 	setup(e) {
 		let t = V(8);

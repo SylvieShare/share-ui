@@ -9,6 +9,7 @@
       'share-choice-card--described': description,
       'share-choice-card--tinted': tinted,
       'share-choice-card--centered': centered,
+      'share-choice-card--outlined-selection': selectionIndicator === 'outline',
     }"
     :style="{ '--choice-card-color': color || 'var(--accent)' }"
     :aria-label="label"
@@ -19,7 +20,7 @@
   >
     <span class="share-choice-card__top" aria-hidden="true">
       <span v-if="$slots.icon" class="share-choice-card__icon"><slot name="icon" /></span>
-      <svg class="share-choice-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>
+      <svg v-if="selectionIndicator === 'check'" class="share-choice-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg>
     </span>
     <span class="share-choice-card__body">
       <span class="share-choice-card__label">{{ label }}</span>
@@ -39,6 +40,7 @@ defineProps({
   disabled: Boolean,
   tinted: Boolean,
   centered: Boolean,
+  selectionIndicator: { type: String, default: 'check', validator: value => ['check', 'outline'].includes(value) },
   layout: { type: String, default: 'stacked', validator: value => ['inline', 'stacked', 'icon'].includes(value) },
 })
 const emit = defineEmits(['update:modelValue'])
@@ -60,7 +62,7 @@ const descriptionId = useId()
   font: inherit;
   text-align: start;
   cursor: pointer;
-  transition: background-color .18s ease, color .18s ease;
+  transition: background-color .18s ease, color .18s ease, box-shadow .18s ease;
 }
 .share-choice-card__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; color: var(--text-muted); }
 .share-choice-card__top :deep(svg) { width: 20px; height: 20px; flex: none; }
@@ -77,6 +79,11 @@ const descriptionId = useId()
 .share-choice-card--selected .share-choice-card__top { color: color-mix(in srgb, var(--choice-card-color) 72%, var(--text-1)); }
 .share-choice-card--selected .share-choice-card__check { opacity: 1; }
 .share-choice-card--selected .share-choice-card__description { color: var(--text-2); }
+.share-choice-card--outlined-selection.share-choice-card--selected {
+  background: color-mix(in srgb, var(--choice-card-color) 40%, var(--bg));
+  box-shadow: inset 0 0 0 2px var(--choice-card-color);
+}
+.share-choice-card--outlined-selection.share-choice-card--selected:hover:not(:disabled) { background: color-mix(in srgb, var(--choice-card-color) 46%, var(--bg)); }
 .share-choice-card:disabled { opacity: .45; cursor: not-allowed; }
 .share-choice-card:focus-visible { outline: 2px solid var(--choice-card-color); outline-offset: 2px; }
 

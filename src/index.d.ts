@@ -9,6 +9,7 @@ export const ChoiceCard: DefineComponent<{
   disabled?: boolean
   tinted?: boolean
   centered?: boolean
+  selectionIndicator?: 'check' | 'outline'
 }>
 
 export type BlurRadius = string | number
