@@ -35,7 +35,11 @@ var U = (e, t) => {
 		layout: {
 			type: String,
 			default: "stacked",
-			validator: (e) => ["inline", "stacked"].includes(e)
+			validator: (e) => [
+				"inline",
+				"stacked",
+				"icon"
+			].includes(e)
 		}
 	},
 	emits: ["update:modelValue"],
@@ -46,6 +50,7 @@ var U = (e, t) => {
 			class: v(["share-choice-card", {
 				"share-choice-card--selected": e.modelValue,
 				"share-choice-card--inline": e.layout === "inline",
+				"share-choice-card--icon": e.layout === "icon",
 				"share-choice-card--described": e.description
 			}]),
 			style: b({ "--choice-card-color": e.color || "var(--accent)" }),
@@ -72,7 +77,7 @@ var U = (e, t) => {
 			class: "share-choice-card__description"
 		}, j(e.description), 9, ie)) : o("", !0)])], 14, W));
 	}
-}, [["__scopeId", "data-v-ca8df909"]]);
+}, [["__scopeId", "data-v-c98c3181"]]);
 //#endregion
 //#region src/lib/blur.js
 function oe(e = 8) {

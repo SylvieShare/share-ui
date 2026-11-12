@@ -5,6 +5,7 @@
     :class="{
       'share-choice-card--selected': modelValue,
       'share-choice-card--inline': layout === 'inline',
+      'share-choice-card--icon': layout === 'icon',
       'share-choice-card--described': description,
     }"
     :style="{ '--choice-card-color': color || 'var(--accent)' }"
@@ -34,7 +35,7 @@ defineProps({
   description: { type: String, default: '' },
   color: { type: String, default: '' },
   disabled: Boolean,
-  layout: { type: String, default: 'stacked', validator: value => ['inline', 'stacked'].includes(value) },
+  layout: { type: String, default: 'stacked', validator: value => ['inline', 'stacked', 'icon'].includes(value) },
 })
 const emit = defineEmits(['update:modelValue'])
 const descriptionId = useId()
@@ -96,5 +97,24 @@ const descriptionId = useId()
 .share-choice-card--inline.share-choice-card--described .share-choice-card__label { grid-column: 2 / 4; }
 .share-choice-card--inline.share-choice-card--described .share-choice-card__check { grid-row: 2; }
 .share-choice-card--inline .share-choice-card__description { grid-area: 2 / 2; }
+
+.share-choice-card--icon {
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 8px;
+  text-align: center;
+}
+.share-choice-card--icon .share-choice-card__top { justify-content: center; }
+.share-choice-card--icon .share-choice-card__icon :deep(svg) {
+  width: var(--choice-card-icon-size, 28px);
+  height: var(--choice-card-icon-size, 28px);
+}
+.share-choice-card--icon .share-choice-card__check { position: absolute; top: 6px; right: 6px; width: 12px; height: 12px; }
+.share-choice-card--icon .share-choice-card__body { width: 100%; align-items: center; }
+.share-choice-card--icon .share-choice-card__label {
+  font-size: var(--choice-card-label-size, 11px);
+  line-height: var(--choice-card-label-line-height, 14px);
+}
 @media (prefers-reduced-motion: reduce) { .share-choice-card, .share-choice-card__check { transition: none; } }
 </style>

@@ -3,7 +3,7 @@ import { renderToString } from 'vue/server-renderer'
 import { expect, it } from 'vitest'
 import ChoiceCard from '../src/components/ChoiceCard.vue'
 
-it.each(['stacked', 'inline'])('exposes the choice and its explanation in the %s layout', async layout => {
+it.each(['stacked', 'inline', 'icon'])('exposes the choice and its explanation in the %s layout', async layout => {
   const html = await renderToString(createSSRApp({
     render: () => h(ChoiceCard, {
       layout, label: 'Option', description: 'Explanation', modelValue: true,

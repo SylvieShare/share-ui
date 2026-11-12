@@ -94,6 +94,10 @@ silently changes another option. All text is supplied by the consumer.
 `layout="stacked"` places the icon above the label. `layout="inline"` places it
 beside the text and aligns the selection check with the description when present.
 `--choice-card-min-height` defaults to 88px for stacked cards and 52px for inline cards.
+`layout="icon"` centers a larger icon above a compact caption; the checkmark stays
+in the upper corner without shifting the icon. The card grows with wrapped text.
+This layout supports `--choice-card-icon-size` (28px), `--choice-card-label-size`
+(11px), and `--choice-card-label-line-height` (14px), with an 88px minimum height.
 Reduced motion disables the background/checkmark transitions.
 
 ## Controls

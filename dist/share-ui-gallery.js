@@ -1,19 +1,19 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as ee, F as c, Ft as te, G as ne, H as re, I as ie, K as ae, L as oe, Mt as l, Nt as se, O as ce, Ot as le, P as u, Pt as d, R as ue, S as de, St as fe, T as pe, Tt as f, V as me, W as he, _ as p, a as m, b as h, bt as ge, c as g, ct as _e, d as _, f as ve, ft as v, g as ye, h as be, i as y, it as xe, j as Se, jt as Ce, k as b, kt as x, l as S, lt as we, m as C, n as Te, o as w, p as T, pt as E, q as Ee, r as De, rt as Oe, s as D, t as ke, u as O, ut as k, v as Ae, w as je, wt as A, x as j, xt as Me, y as Ne, z as M, zt as N } from "./StarRating-Cc24NB2O.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as ee, F as c, Ft as te, G as ne, H as re, I as ie, K as ae, L as oe, Mt as l, Nt as se, O as ce, Ot as le, P as u, Pt as d, R as ue, S as de, St as fe, T as pe, Tt as f, V as me, W as he, _ as p, a as m, b as h, bt as ge, c as g, ct as _e, d as _, f as ve, ft as v, g as ye, h as be, i as y, it as xe, j as Se, jt as Ce, k as b, kt as x, l as S, lt as we, m as C, n as Te, o as w, p as T, pt as E, q as Ee, r as De, rt as Oe, s as D, t as ke, u as O, ut as k, v as Ae, w as je, wt as A, x as j, xt as Me, y as Ne, z as M, zt as N } from "./StarRating-CfJW_MSt.js";
 import { Fragment as P, createBlock as F, createCommentVNode as I, createElementBlock as L, createElementVNode as R, createTextVNode as z, createVNode as B, h as V, normalizeClass as Pe, openBlock as H, reactive as Fe, ref as U, renderList as W, toDisplayString as G, unref as Ie, withCtx as K, withModifiers as Le } from "vue";
 //#region src/gallery/ChoiceCardGalleryExample.vue
 var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 	__name: "ChoiceCardGalleryExample",
 	setup(e) {
-		let t = U("First option"), n = U(!0), r = ["First option", "Second option"];
-		return (e, i) => (H(), L("article", null, [i[3] ||= R("h2", null, "ChoiceCard", -1), R("div", Re, [
-			(H(), L(P, null, W(r, (e) => B(N, {
+		let t = U("First option"), n = U(!0), r = ["Centered icon", "Long caption wraps below the icon"], i = U(r[0]), a = ["First option", "Second option"];
+		return (e, o) => (H(), L("article", null, [o[4] ||= R("h2", null, "ChoiceCard", -1), R("div", Re, [
+			(H(), L(P, null, W(a, (e) => B(N, {
 				key: e,
 				label: e,
 				description: "Exclusive, optional selection",
 				"model-value": t.value === e,
 				"onUpdate:modelValue": (n) => t.value = n ? e : ""
 			}, {
-				icon: K(() => [...i[1] ||= [R("svg", {
+				icon: K(() => [...o[1] ||= [R("svg", {
 					viewBox: "0 0 24 24",
 					fill: "none",
 					stroke: "currentColor",
@@ -35,19 +35,43 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 				layout: "inline",
 				description: "Inline choice",
 				modelValue: n.value,
-				"onUpdate:modelValue": i[0] ||= (e) => n.value = e
+				"onUpdate:modelValue": o[0] ||= (e) => n.value = e
 			}, {
-				icon: K(() => [...i[2] ||= [R("svg", {
+				icon: K(() => [...o[2] ||= [R("svg", {
 					viewBox: "0 0 24 24",
 					fill: "none",
 					stroke: "currentColor",
 					"stroke-width": "2"
 				}, [R("path", { d: "M5 12h14m-6-6 6 6-6 6" })], -1)]]),
 				_: 1
-			}, 8, ["modelValue"])
+			}, 8, ["modelValue"]),
+			(H(), L(P, null, W(r, (e) => B(N, {
+				key: e,
+				label: e,
+				layout: "icon",
+				"model-value": i.value === e,
+				"onUpdate:modelValue": (t) => i.value = e
+			}, {
+				icon: K(() => [...o[3] ||= [R("svg", {
+					viewBox: "0 0 24 24",
+					fill: "none",
+					stroke: "currentColor",
+					"stroke-width": "1.75"
+				}, [R("path", { d: "m12 3 9 5v8l-9 5-9-5V8z" })], -1)]]),
+				_: 1
+			}, 8, [
+				"label",
+				"model-value",
+				"onUpdate:modelValue"
+			])), 64)),
+			B(N, {
+				label: "Unavailable icon choice",
+				layout: "icon",
+				disabled: ""
+			})
 		])]));
 	}
-}, [["__scopeId", "data-v-3d02cf57"]]), Be = { class: "blur-gallery-scene" }, Ve = { class: "blur-gallery-label" }, He = /*#__PURE__*/ r({
+}, [["__scopeId", "data-v-d8ff7ae6"]]), Be = { class: "blur-gallery-scene" }, Ve = { class: "blur-gallery-label" }, He = /*#__PURE__*/ r({
 	__name: "BlurGalleryExample",
 	setup(e) {
 		let t = U(8);
