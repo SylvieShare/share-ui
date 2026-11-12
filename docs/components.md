@@ -94,6 +94,10 @@ silently changes another option. All text is supplied by the consumer.
 `layout="stacked"` places the icon above the label. `layout="inline"` places it
 beside the text and aligns the selection check with the description when present.
 `--choice-card-min-height` defaults to 88px for stacked cards and 52px for inline cards.
+`--choice-card-padding` and `--choice-card-gap` let compact pickers reduce the
+space around and between their content without changing icon or label sizes.
+Padding defaults to 12px in stacked, 8px in inline and 12px 8px in icon layouts;
+gap defaults to 8px in stacked/icon and 0 6px in inline layouts.
 `layout="icon"` centers a larger icon above a compact caption; the checkmark stays
 in the upper corner without shifting the icon. The card grows with wrapped text.
 This layout supports `--choice-card-icon-size` (28px), `--choice-card-label-size`

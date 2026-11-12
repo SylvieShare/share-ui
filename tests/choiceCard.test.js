@@ -12,9 +12,10 @@ it.each([false, true])('supports outline selection without a redundant checkmark
   expect(html).not.toContain('share-choice-card__check')
 })
 
-it('supports semantic tint and centered icon content without requiring an explanation', async () => {
+it.each([undefined, { '--choice-card-padding': '6px 8px', '--choice-card-gap': '4px' }])('supports tinted centered content with spacing %j', async style => {
   const html = await renderToString(createSSRApp({ render: () => h(ChoiceCard, {
     layout: 'icon', label: 'Colored choice', tinted: true, centered: true, color: 'var(--success)',
+    style,
   }) }))
   expect(html).toContain('share-choice-card--tinted')
   expect(html).toContain('share-choice-card--centered')

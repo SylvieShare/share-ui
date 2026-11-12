@@ -51,10 +51,10 @@ const descriptionId = useId()
 .share-choice-card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--choice-card-gap, 8px);
   min-width: 0;
   min-height: var(--choice-card-min-height, 88px);
-  padding: 12px;
+  padding: var(--choice-card-padding, 12px);
   border: 0;
   border-radius: var(--r-md);
   background: var(--bg);
@@ -92,9 +92,9 @@ const descriptionId = useId()
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   align-content: center;
-  gap: 0 6px;
+  gap: var(--choice-card-gap, 0 6px);
   min-height: var(--choice-card-min-height, 52px);
-  padding: 8px;
+  padding: var(--choice-card-padding, 8px);
 }
 .share-choice-card--inline .share-choice-card__top,
 .share-choice-card--inline .share-choice-card__body { display: contents; }
@@ -115,7 +115,7 @@ const descriptionId = useId()
   position: relative;
   align-items: center;
   justify-content: flex-start;
-  padding: 12px 8px;
+  padding: var(--choice-card-padding, 12px 8px);
   text-align: center;
 }
 .share-choice-card--icon .share-choice-card__top { justify-content: center; }
