@@ -108,6 +108,9 @@ Reduced motion disables the background/checkmark transitions.
   (по умолчанию) — крестик для снятия выбора. Оба варианта поддерживают `disabled`
   и передают исходное событие через `click`; подтверждение остаётся у consumer.
 - `ToggleSwitch`: boolean `v-model`, optional label/default slot, `disabled`.
+  `surface="base"` uses a raised off track on cards; `surface="raised"` uses a
+  contrasting canvas track on elevated surfaces. `block` makes the whole content
+  row one switch target; `trackPlacement="end"` places the track after its content.
 - `MultiToggle`: options `{ value, label, disabled? }`, `block`, `neutralValue`;
   поддерживает стрелки, Home и End.
 - `CompactCheckbox`: компактный checkbox для строк и таблиц. `size` задаёт размер квадрата в px (по умолчанию 18); галочка масштабируется пропорционально, дополнительная область нажатия сохраняется. В галерее представлены размеры 18 и 24.

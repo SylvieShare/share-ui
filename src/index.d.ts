@@ -53,6 +53,9 @@ export const ToggleSwitch: DefineComponent<{
   label?: string
   ariaLabel?: string
   disabled?: boolean
+  block?: boolean
+  surface?: 'base' | 'raised'
+  trackPlacement?: 'start' | 'end'
 }>
 
 export interface ToggleOption<T = unknown> {

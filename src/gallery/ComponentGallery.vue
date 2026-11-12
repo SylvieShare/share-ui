@@ -153,6 +153,12 @@
           <h2>Boolean controls</h2>
           <div class="share-component-gallery__stack">
             <ToggleSwitch v-model="switchValue" label="Включить механику" />
+            <ToggleSwitch v-model="baseSwitchValue" label="Обычная поверхность" />
+            <div style="background:var(--surface-raised);padding:8px;border-radius:var(--r-md)">
+              <ToggleSwitch v-model="raisedSwitchValue" surface="raised" block track-placement="end" label="Приподнятая поверхность">
+                Приподнятая поверхность — вся строка переключает значение
+              </ToggleSwitch>
+            </div>
             <label class="share-component-gallery__checkbox-row">
               <CompactCheckbox v-model="checkboxValue" label="Выбрать элемент" />
               Выбрать элемент
@@ -547,6 +553,8 @@ const componentCount = COMPONENT_GALLERY_COMPONENTS.length
 const galleryRating = ref(3)
 const iconToggle = ref(true)
 const switchValue = ref(true)
+const baseSwitchValue = ref(false)
+const raisedSwitchValue = ref(false)
 const checkboxValue = ref(true)
 const toggleValue = ref('md')
 const tabValue = ref('preview')

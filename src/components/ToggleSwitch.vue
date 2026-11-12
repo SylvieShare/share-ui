@@ -1,7 +1,7 @@
 <template>
   <button
     class="share-toggle-switch"
-    :class="{ 'share-toggle-switch--active': modelValue }"
+    :class="{ 'share-toggle-switch--active': modelValue, 'share-toggle-switch--block': block, 'share-toggle-switch--raised': surface === 'raised', 'share-toggle-switch--trailing-track': trackPlacement === 'end' }"
     type="button"
     role="switch"
     :aria-checked="modelValue"
@@ -22,6 +22,9 @@ const props = defineProps({
   label: { type: String, default: '' },
   ariaLabel: { type: String, default: '' },
   disabled: { type: Boolean, default: false },
+  block: { type: Boolean, default: false },
+  surface: { type: String, default: 'base', validator: value => ['base', 'raised'].includes(value) },
+  trackPlacement: { type: String, default: 'start', validator: value => ['start', 'end'].includes(value) },
 })
 const emit = defineEmits(['update:modelValue'])
 function toggle() {
@@ -43,6 +46,11 @@ function toggle() {
   user-select: none;
 }
 .share-toggle-switch:disabled { opacity: .45; cursor: not-allowed; }
+.share-toggle-switch--block { display:flex;width:100%;box-sizing:border-box;min-height:48px;padding:8px 10px;border-radius:var(--r-md);text-align:start }
+.share-toggle-switch--block .share-toggle-switch__text {flex:1;min-width:0}
+.share-toggle-switch--trailing-track .share-toggle-switch__track {order:1}
+.share-toggle-switch--block:hover:not(:disabled) {background:var(--surface-active)}
+.share-toggle-switch--block:focus-visible {outline:2px solid var(--accent-soft);outline-offset:2px}
 .share-toggle-switch__track {
   position: relative;
   display: inline-block;
@@ -64,6 +72,7 @@ function toggle() {
   background: var(--text-muted);
   transition: transform .2s ease, background-color .2s ease;
 }
+.share-toggle-switch--raised:not(.share-toggle-switch--active) .share-toggle-switch__track {background:var(--bg)}
 .share-toggle-switch--active .share-toggle-switch__track { background: var(--accent); box-shadow: none; }
 .share-toggle-switch--active .share-toggle-switch__thumb { transform: translateX(16px); background: var(--text-on-accent); }
 .share-toggle-switch__text { color: var(--text-muted); font-size: 13px; transition: color .2s ease; }
