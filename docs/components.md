@@ -98,6 +98,9 @@ beside the text and aligns the selection check with the description when present
 in the upper corner without shifting the icon. The card grows with wrapped text.
 This layout supports `--choice-card-icon-size` (28px), `--choice-card-label-size`
 (11px), and `--choice-card-label-line-height` (14px), with an 88px minimum height.
+`tinted` adds a gentle semantic-color fill and colors the label, while selection
+retains the stronger fill and checkmark. `centered` vertically centers the content
+of icon cards with extra height. Both options default to false.
 Reduced motion disables the background/checkmark transitions.
 
 ## Controls

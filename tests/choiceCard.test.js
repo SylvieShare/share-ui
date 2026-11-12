@@ -3,6 +3,16 @@ import { renderToString } from 'vue/server-renderer'
 import { expect, it } from 'vitest'
 import ChoiceCard from '../src/components/ChoiceCard.vue'
 
+it('supports semantic tint and centered icon content without requiring an explanation', async () => {
+  const html = await renderToString(createSSRApp({ render: () => h(ChoiceCard, {
+    layout: 'icon', label: 'Colored choice', tinted: true, centered: true, color: 'var(--success)',
+  }) }))
+  expect(html).toContain('share-choice-card--tinted')
+  expect(html).toContain('share-choice-card--centered')
+  expect(html).toContain('aria-label="Colored choice"')
+  expect(html).not.toContain('aria-describedby=')
+})
+
 it.each(['stacked', 'inline', 'icon'])('exposes the choice and its explanation in the %s layout', async layout => {
   const html = await renderToString(createSSRApp({
     render: () => h(ChoiceCard, {

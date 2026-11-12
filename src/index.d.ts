@@ -7,6 +7,8 @@ export const ChoiceCard: DefineComponent<{
   description?: string
   color?: string
   disabled?: boolean
+  tinted?: boolean
+  centered?: boolean
 }>
 
 export type BlurRadius = string | number

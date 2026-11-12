@@ -7,6 +7,8 @@
       'share-choice-card--inline': layout === 'inline',
       'share-choice-card--icon': layout === 'icon',
       'share-choice-card--described': description,
+      'share-choice-card--tinted': tinted,
+      'share-choice-card--centered': centered,
     }"
     :style="{ '--choice-card-color': color || 'var(--accent)' }"
     :aria-label="label"
@@ -35,6 +37,8 @@ defineProps({
   description: { type: String, default: '' },
   color: { type: String, default: '' },
   disabled: Boolean,
+  tinted: Boolean,
+  centered: Boolean,
   layout: { type: String, default: 'stacked', validator: value => ['inline', 'stacked', 'icon'].includes(value) },
 })
 const emit = defineEmits(['update:modelValue'])
@@ -65,6 +69,8 @@ const descriptionId = useId()
 .share-choice-card__body { display: flex; flex-direction: column; gap: 0; }
 .share-choice-card__label { font-size: 14px; font-weight: 600; line-height: 20px; overflow-wrap: anywhere; }
 .share-choice-card__description { font-size: 11px; line-height: 14px; color: var(--text-muted); }
+.share-choice-card--tinted {background:color-mix(in srgb,var(--choice-card-color) 9%,var(--bg))}
+.share-choice-card--tinted .share-choice-card__label {color:var(--choice-card-color)}
 .share-choice-card:hover:not(:disabled) { background: color-mix(in srgb, var(--choice-card-color) 10%, var(--bg)); }
 .share-choice-card--selected { background: color-mix(in srgb, var(--choice-card-color) 24%, var(--bg)); }
 .share-choice-card--selected:hover:not(:disabled) { background: color-mix(in srgb, var(--choice-card-color) 30%, var(--bg)); }
@@ -106,6 +112,7 @@ const descriptionId = useId()
   text-align: center;
 }
 .share-choice-card--icon .share-choice-card__top { justify-content: center; }
+.share-choice-card--icon.share-choice-card--centered {justify-content:center}
 .share-choice-card--icon .share-choice-card__icon :deep(svg) {
   width: var(--choice-card-icon-size, 28px);
   height: var(--choice-card-icon-size, 28px);
