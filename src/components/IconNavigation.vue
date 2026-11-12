@@ -118,7 +118,6 @@ defineExpose({ element, updateIndicator: measure, revealActive })
 .share-icon-navigation--pill > .share-icon-navigation__item--selected:hover:not(:disabled) { color: var(--accent-soft); }
 .share-icon-navigation__divider { flex: none; width: 1px; height: 24px; margin: 0 6px; background: var(--border-strong); }
 .share-icon-navigation--vertical > .share-icon-navigation__divider { width: 40px; height: 1px; margin: 6px 0; }
-.share-icon-navigation--instant > .share-icon-navigation__indicator { transition: none; }
 .share-icon-navigation--inline > .share-icon-navigation__item { flex-direction: row; gap: 8px; width: auto; min-width: var(--icon-navigation-size); padding-inline: 12px; font-size: var(--icon-navigation-label-size, 14px); }
 .share-icon-navigation--inline .share-icon-navigation__label { line-height: 1.3; }
 .share-icon-navigation--compact { width: 100%; scrollbar-width: none; }
@@ -128,7 +127,7 @@ defineExpose({ element, updateIndicator: measure, revealActive })
 .share-icon-navigation--compact .share-icon-navigation__label { position: absolute; top: calc(50% + 4px); left: 0; right: 0; opacity: var(--icon-navigation-selection,0); transition: opacity 260ms cubic-bezier(.25,.1,.25,1); pointer-events: none; }
 .share-icon-navigation--compact .share-icon-navigation__item--text .share-icon-navigation__label { position: static; opacity: 1; }
 .share-icon-navigation--compact > .share-icon-navigation__indicator { transition: transform 260ms cubic-bezier(.25,.1,.25,1),width 260ms cubic-bezier(.25,.1,.25,1),opacity 150ms ease; }
-.share-icon-navigation--instant :is(.share-icon-navigation__item,.share-icon-navigation__icon,.share-icon-navigation__label) { transition: none; }
+.share-icon-navigation--instant :is(.share-icon-navigation__item,.share-icon-navigation__icon,.share-icon-navigation__label,.share-icon-navigation__indicator) { transition: none; }
 @media (prefers-reduced-motion: reduce) {
   .share-icon-navigation__indicator, .share-icon-navigation__item, .share-icon-navigation__icon, .share-icon-navigation__label { transition: none !important; }
 }

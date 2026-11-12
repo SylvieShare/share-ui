@@ -1236,7 +1236,7 @@ var We = ["aria-label"], Ge = ["aria-orientation", "aria-label"], Ke = [
 			O(n.$slots, "decoration", { item: r }, void 0, !0)
 		], 16, Ke)], 64))), 128))], 14, We));
 	}
-}, [["__scopeId", "data-v-3d6055b5"]]), Xe = ["aria-label"], Ze = [
+}, [["__scopeId", "data-v-49eb9c6c"]]), Xe = ["aria-label"], Ze = [
 	"id",
 	"aria-selected",
 	"aria-controls",
