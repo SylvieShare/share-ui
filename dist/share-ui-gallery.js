@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as ee, F as c, Ft as te, G as ne, H as re, I as ie, K as ae, L as oe, Mt as l, Nt as se, O as ce, Ot as le, P as u, Pt as d, R as ue, S as de, St as fe, T as pe, Tt as f, V as me, W as he, _ as p, a as m, b as h, bt as ge, c as g, ct as _e, d as _, f as ve, ft as v, g as ye, h as be, i as y, it as xe, j as Se, jt as Ce, k as b, kt as x, l as S, lt as we, m as C, n as Te, o as w, p as T, pt as E, q as Ee, r as De, rt as Oe, s as D, t as ke, u as O, ut as k, v as Ae, w as je, wt as A, x as j, xt as Me, y as Ne, z as M, zt as N } from "./StarRating-CfJW_MSt.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as ee, F as c, Ft as te, G as ne, H as re, I as ie, K as ae, L as oe, Mt as l, Nt as se, O as ce, Ot as le, P as u, Pt as d, R as ue, S as de, St as fe, T as pe, Tt as f, V as me, W as he, _ as p, a as m, b as h, bt as ge, c as g, ct as _e, d as _, f as ve, ft as v, g as ye, h as be, i as y, it as xe, j as Se, jt as Ce, k as b, kt as x, l as S, lt as we, m as C, n as Te, o as w, p as T, pt as E, q as Ee, r as De, rt as Oe, s as D, t as ke, u as O, ut as k, v as Ae, w as je, wt as A, x as j, xt as Me, y as Ne, z as M, zt as N } from "./StarRating-CjwCheWG.js";
 import { Fragment as P, createBlock as F, createCommentVNode as I, createElementBlock as L, createElementVNode as R, createTextVNode as z, createVNode as B, h as V, normalizeClass as Pe, openBlock as H, reactive as Fe, ref as U, renderList as W, toDisplayString as G, unref as Ie, withCtx as K, withModifiers as Le } from "vue";
 //#region src/gallery/ChoiceCardGalleryExample.vue
 var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
@@ -821,7 +821,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 					})
 				]),
 				R("article", ft, [
-					U[87] ||= R("h2", null, "Кнопки элементов", -1),
+					U[89] ||= R("h2", null, "Кнопки элементов", -1),
 					R("div", pt, [
 						B(T, {
 							modelValue: m.value,
@@ -911,15 +911,24 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 							default: K(() => [U[84] ||= z("Действие", -1)]),
 							_: 1
 						}),
+						B(C, {
+							layout: "stacked",
+							variant: "dashed",
+							style: { "--action-button-height": "96px" }
+						}, {
+							icon: K(() => [...U[85] ||= [z("+", -1)]]),
+							default: K(() => [U[86] ||= z("Добавить превью", -1)]),
+							_: 1
+						}),
 						B(C, { disabled: "" }, {
-							default: K(() => [...U[85] ||= [z("Недоступно", -1)]]),
+							default: K(() => [...U[87] ||= [z("Недоступно", -1)]]),
 							_: 1
 						}),
 						B(C, {
 							loading: "",
 							"loading-label": "Загрузка"
 						}, {
-							default: K(() => [...U[86] ||= [z("Загрузка", -1)]]),
+							default: K(() => [...U[88] ||= [z("Загрузка", -1)]]),
 							_: 1
 						}),
 						B(x, { label: "Добавить элемент" }),
@@ -948,7 +957,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 						})
 					])
 				]),
-				R("article", ht, [U[88] ||= R("h2", null, "SegmentDonutChart", -1), B(a, {
+				R("article", ht, [U[90] ||= R("h2", null, "SegmentDonutChart", -1), B(a, {
 					segments: fn,
 					"total-label": "Всего",
 					"aria-label": "Распределение места",
@@ -959,7 +968,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 				title: "Переключатели",
 				border: ""
 			}), R("div", _t, [
-				R("article", vt, [U[91] ||= R("h2", null, "Boolean controls", -1), R("div", yt, [
+				R("article", vt, [U[93] ||= R("h2", null, "Boolean controls", -1), R("div", yt, [
 					B(ge, {
 						modelValue: g.value,
 						"onUpdate:modelValue": U[4] ||= (e) => g.value = e,
@@ -969,15 +978,15 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 						modelValue: _.value,
 						"onUpdate:modelValue": U[5] ||= (e) => _.value = e,
 						label: "Выбрать элемент"
-					}, null, 8, ["modelValue"]), U[89] ||= z(" Выбрать элемент ", -1)]),
+					}, null, 8, ["modelValue"]), U[91] ||= z(" Выбрать элемент ", -1)]),
 					R("label", xt, [B(s, {
 						modelValue: _.value,
 						"onUpdate:modelValue": U[6] ||= (e) => _.value = e,
 						size: 24,
 						label: "Крупный выбор"
-					}, null, 8, ["modelValue"]), U[90] ||= z(" Крупный выбор (24px) ", -1)])
+					}, null, 8, ["modelValue"]), U[92] ||= z(" Крупный выбор (24px) ", -1)])
 				])]),
-				R("article", St, [U[94] ||= R("h2", null, "Segmented controls", -1), R("div", Ct, [
+				R("article", St, [U[96] ||= R("h2", null, "Segmented controls", -1), R("div", Ct, [
 					B(ee, {
 						modelValue: ve.value,
 						"onUpdate:modelValue": U[7] ||= (e) => ve.value = e,
@@ -997,7 +1006,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 							variant: "quiet",
 							"aria-label": `Изменить ${e.title}`
 						}, {
-							icon: K(() => [...U[92] ||= [z("✎", -1)]]),
+							icon: K(() => [...U[94] ||= [z("✎", -1)]]),
 							_: 1
 						}, 8, ["aria-label"])]),
 						_: 1
@@ -1014,13 +1023,13 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 							variant: "quiet",
 							"aria-label": `Изменить ${e.title}`
 						}, {
-							icon: K(() => [...U[93] ||= [z("✎", -1)]]),
+							icon: K(() => [...U[95] ||= [z("✎", -1)]]),
 							_: 1
 						}, 8, ["aria-label"])]),
 						_: 1
 					}, 8, ["modelValue"])
 				])]),
-				R("article", wt, [U[95] ||= R("h2", null, "IconNavigation", -1), R("div", Tt, [
+				R("article", wt, [U[97] ||= R("h2", null, "IconNavigation", -1), R("div", Tt, [
 					B(fe, {
 						modelValue: S.value,
 						"onUpdate:modelValue": U[10] ||= (e) => S.value = e,
@@ -1054,7 +1063,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 						_: 1
 					}, 8, ["modelValue"])
 				])]),
-				R("article", Mt, [U[96] ||= R("h2", null, "AppSlider", -1), R("div", Nt, [B(le, {
+				R("article", Mt, [U[98] ||= R("h2", null, "AppSlider", -1), R("div", Nt, [B(le, {
 					modelValue: D.value,
 					"onUpdate:modelValue": U[13] ||= (e) => D.value = e,
 					min: 0,
@@ -1067,8 +1076,8 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 				title: "Формы",
 				border: ""
 			}), R("div", Ft, [R("article", It, [
-				U[98] ||= R("h2", null, "Form primitives", -1),
-				U[99] ||= R("p", null, "Filled controls without borders; focus and validation use surface colour. Dashed add actions keep their dashed outline.", -1),
+				U[100] ||= R("h2", null, "Form primitives", -1),
+				U[101] ||= R("p", null, "Filled controls without borders; focus and validation use surface colour. Dashed add actions keep their dashed outline.", -1),
 				R("div", Lt, [
 					B(j, {
 						label: "Название",
@@ -1138,7 +1147,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 							value: $.type,
 							"onUpdate:value": U[18] ||= (e) => $.type = e
 						}, {
-							default: K(() => [...U[97] ||= [R("option", { value: "base" }, "Основной", -1), R("option", { value: "extra" }, "Дополнительный", -1)]]),
+							default: K(() => [...U[99] ||= [R("option", { value: "base" }, "Основной", -1), R("option", { value: "extra" }, "Дополнительный", -1)]]),
 							_: 1
 						}, 8, ["value"])]),
 						_: 1
@@ -1164,7 +1173,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 				title: "Выбор значений и floating UI",
 				border: ""
 			}), R("div", zt, [
-				R("article", Bt, [U[100] ||= R("h2", null, "Selectors", -1), R("div", Vt, [
+				R("article", Bt, [U[102] ||= R("h2", null, "Selectors", -1), R("div", Vt, [
 					B(Oe, {
 						modelValue: O.value,
 						"onUpdate:modelValue": U[20] ||= (e) => O.value = e,
@@ -1199,7 +1208,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 					}, null, 8, ["modelValue"])
 				])]),
 				R("article", Ht, [
-					U[102] ||= R("h2", null, "BasePopover", -1),
+					U[104] ||= R("h2", null, "BasePopover", -1),
 					R("button", {
 						ref_key: "popoverAnchor",
 						ref: Re,
@@ -1214,12 +1223,12 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 						"aria-label": "Пример popover",
 						"onUpdate:open": U[25] ||= (e) => W.value = e
 					}, {
-						default: K(() => [...U[101] ||= [R("span", { class: "share-component-gallery__popover-copy" }, "Headless-позиционирование, общий action transition и закрытие снаружи", -1)]]),
+						default: K(() => [...U[103] ||= [R("span", { class: "share-component-gallery__popover-copy" }, "Headless-позиционирование, общий action transition и закрытие снаружи", -1)]]),
 						_: 1
 					}, 8, ["open", "anchor"])
 				]),
 				R("article", Ut, [
-					U[109] ||= R("h2", null, "ActionMenu", -1),
+					U[111] ||= R("h2", null, "ActionMenu", -1),
 					B(E, {
 						title: "Действия",
 						heading: "Выбранная запись",
@@ -1227,7 +1236,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 					}, {
 						default: K(() => [
 							B(v, { tone: "accent" }, {
-								default: K(() => [...U[103] ||= [z("Редактировать", -1)]]),
+								default: K(() => [...U[105] ||= [z("Редактировать", -1)]]),
 								_: 1
 							}),
 							B(_e, { label: "Перемещение" }, {
@@ -1235,20 +1244,20 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 									submenu: "",
 									"submenu-open": e
 								}, {
-									default: K(() => [...U[104] ||= [z("Переместить", -1)]]),
+									default: K(() => [...U[106] ||= [z("Переместить", -1)]]),
 									_: 1
 								}, 8, ["submenu-open"])]),
 								default: K(() => [B(v, null, {
-									default: K(() => [...U[105] ||= [z("В начало", -1)]]),
+									default: K(() => [...U[107] ||= [z("В начало", -1)]]),
 									_: 1
 								}), B(v, null, {
-									default: K(() => [...U[106] ||= [z("В конец", -1)]]),
+									default: K(() => [...U[108] ||= [z("В конец", -1)]]),
 									_: 1
 								})]),
 								_: 1
 							}),
 							B(v, { tone: "danger" }, {
-								default: K(() => [...U[107] ||= [z("Удалить", -1)]]),
+								default: K(() => [...U[109] ||= [z("Удалить", -1)]]),
 								_: 1
 							})
 						]),
@@ -1269,25 +1278,25 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 						"trigger-attrs": { style: { display: "none" } }
 					}, {
 						default: K(({ close: e }) => [B(v, { onClick: e }, {
-							default: K(() => [...U[108] ||= [z("Закрыть меню", -1)]]),
+							default: K(() => [...U[110] ||= [z("Закрыть меню", -1)]]),
 							_: 1
 						}, 8, ["onClick"])]),
 						_: 1
 					}, 8, ["anchor"])
 				]),
-				R("article", Wt, [U[112] ||= R("h2", null, "AccountMenu", -1), B(ne, {
+				R("article", Wt, [U[114] ||= R("h2", null, "AccountMenu", -1), B(ne, {
 					label: "Sylvie",
 					"avatar-text": "S",
 					expanded: ""
 				}, {
 					default: K(({ close: e }) => [B(v, { onClick: e }, {
-						default: K(() => [...U[110] ||= [z("Настройки", -1)]]),
+						default: K(() => [...U[112] ||= [z("Настройки", -1)]]),
 						_: 1
 					}, 8, ["onClick"]), B(v, {
 						tone: "danger",
 						onClick: e
 					}, {
-						default: K(() => [...U[111] ||= [z("Выйти", -1)]]),
+						default: K(() => [...U[113] ||= [z("Выйти", -1)]]),
 						_: 1
 					}, 8, ["onClick"])]),
 					_: 1
@@ -1297,7 +1306,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 				title: "Редакторы и rich text",
 				border: ""
 			}), R("div", Kt, [R("article", qt, [
-				U[113] ||= R("h2", null, "Rich text", -1),
+				U[115] ||= R("h2", null, "Rich text", -1),
 				B(ae, {
 					ref: "richEditor",
 					modelValue: N.value,
@@ -1324,11 +1333,11 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 					node: K(({ node: e }) => [R("strong", Zt, G(e.label), 1)]),
 					_: 1
 				}, 8, ["html"])])
-			]), R("article", Qt, [U[116] ||= R("h2", null, "Editor composition", -1), B(d, null, {
+			]), R("article", Qt, [U[118] ||= R("h2", null, "Editor composition", -1), B(d, null, {
 				default: K(() => [B(ue, { title: "Параметры" }, {
 					default: K(() => [B(ie, { title: "Основное" }, {
 						default: K(() => [B(oe, { title: "Значение" }, {
-							actions: K(() => [...U[114] ||= [R("span", null, "12", -1)]]),
+							actions: K(() => [...U[116] ||= [R("span", null, "12", -1)]]),
 							_: 1
 						}), B(le, {
 							modelValue: D.value,
@@ -1339,7 +1348,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 						}, null, 8, ["modelValue"])]),
 						_: 1
 					}), B(c, null, {
-						default: K(() => [U[115] ||= z("Итого: ", -1), R("strong", null, G(D.value), 1)]),
+						default: K(() => [U[117] ||= z("Итого: ", -1), R("strong", null, G(D.value), 1)]),
 						_: 1
 					})]),
 					_: 1
@@ -1350,7 +1359,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 				title: "Каркас приложения",
 				border: ""
 			}), R("article", en, [
-				U[122] ||= R("h2", null, "Navigation composition", -1),
+				U[124] ||= R("h2", null, "Navigation composition", -1),
 				B(ge, {
 					modelValue: V.value,
 					"onUpdate:modelValue": U[29] ||= (e) => V.value = e,
@@ -1373,7 +1382,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 							as: "div",
 							label: "share-ui"
 						}, {
-							icon: K(() => [...U[117] ||= [R("span", null, "◆", -1)]]),
+							icon: K(() => [...U[119] ||= [R("span", null, "◆", -1)]]),
 							_: 1
 						})]),
 						default: K(() => [
@@ -1382,7 +1391,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 								label: "Главная",
 								active: ""
 							}, {
-								icon: K(() => [...U[118] ||= [R("span", null, "⌂", -1)]]),
+								icon: K(() => [...U[120] ||= [R("span", null, "⌂", -1)]]),
 								_: 1
 							}),
 							B(n, { label: "Примеры" }),
@@ -1390,14 +1399,14 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 								as: "button",
 								label: "Компоненты"
 							}, {
-								icon: K(() => [...U[119] ||= [R("span", null, "◇", -1)]]),
+								icon: K(() => [...U[121] ||= [R("span", null, "◇", -1)]]),
 								_: 1
 							})
 						]),
 						_: 1
 					}, 8, ["modelValue", "elevated"])]),
-					rail: K(() => [...U[120] ||= [R("div", { class: "share-component-gallery__rail" }, "rail", -1)]]),
-					default: K(() => [U[121] ||= R("div", { class: "share-component-gallery__chrome-content" }, [
+					rail: K(() => [...U[122] ||= [R("div", { class: "share-component-gallery__rail" }, "rail", -1)]]),
+					default: K(() => [U[123] ||= R("div", { class: "share-component-gallery__chrome-content" }, [
 						R("span", { class: "share-component-gallery__chrome-kicker" }, "content"),
 						R("strong", null, "AppShell + AppSidebar"),
 						R("span", null, "Фон, точки, раскрываемая навигация и rail образуют общий каркас.")
@@ -1410,8 +1419,8 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 					title: "Оверлеи и morph",
 					border: ""
 				}),
-				R("article", rn, [U[123] ||= R("h2", null, "AppDrawer + embedded navigation", -1), B(We)]),
-				R("article", an, [U[124] ||= R("h2", null, "Интерактивные примеры", -1), R("div", on, [
+				R("article", rn, [U[125] ||= R("h2", null, "AppDrawer + embedded navigation", -1), B(We)]),
+				R("article", an, [U[126] ||= R("h2", null, "Интерактивные примеры", -1), R("div", on, [
 					R("button", {
 						type: "button",
 						class: "share-component-gallery__button",
@@ -1451,7 +1460,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 				"aria-label": "Пример AppModal",
 				onClose: U[37] ||= (e) => q.value = !1
 			}, {
-				default: K(() => [...U[125] ||= [R("div", { class: "share-component-gallery__overlay-content" }, [R("h2", null, "AppModal"), R("p", null, "Низкоуровневый адаптивный overlay.")], -1)]]),
+				default: K(() => [...U[127] ||= [R("div", { class: "share-component-gallery__overlay-content" }, [R("h2", null, "AppModal"), R("p", null, "Низкоуровневый адаптивный overlay.")], -1)]]),
 				_: 1
 			})) : I("", !0),
 			J.value ? (H(), F(e, {
@@ -1464,7 +1473,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 					onCancel: U[38] ||= (e) => J.value = !1,
 					onSubmit: U[39] ||= (e) => J.value = !1
 				})]),
-				default: K(() => [U[126] ||= R("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
+				default: K(() => [U[128] ||= R("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
 				_: 1
 			})) : I("", !0),
 			B(o, {
@@ -1472,7 +1481,7 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 				"aria-label": "Пример ModalShell",
 				onClose: U[41] ||= (e) => Y.value = !1
 			}, {
-				default: K(() => [...U[127] ||= [R("div", { class: "share-component-gallery__overlay-content" }, [R("h2", null, "ModalShell"), R("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
+				default: K(() => [...U[129] ||= [R("div", { class: "share-component-gallery__overlay-content" }, [R("h2", null, "ModalShell"), R("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
 				_: 1
 			}, 8, ["open"]),
 			B(ce, {
@@ -1497,12 +1506,12 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 				"show-close": "",
 				onClose: U[44] ||= (e) => sn.value = !1
 			}, {
-				head: K(() => [...U[128] ||= [R("div", { class: "share-component-gallery__morph-head" }, [R("strong", null, "MorphSheet")], -1)]]),
-				default: K(() => [U[129] ||= R("div", { class: "share-component-gallery__overlay-content" }, [R("p", null, "Контейнер раскрывается из исходной кнопки и возвращается обратно.")], -1)]),
+				head: K(() => [...U[130] ||= [R("div", { class: "share-component-gallery__morph-head" }, [R("strong", null, "MorphSheet")], -1)]]),
+				default: K(() => [U[131] ||= R("div", { class: "share-component-gallery__overlay-content" }, [R("p", null, "Контейнер раскрывается из исходной кнопки и возвращается обратно.")], -1)]),
 				_: 1
 			}, 8, ["origin-el"])) : I("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-457ea841"]]);
+}, [["__scopeId", "data-v-dcad0409"]]);
 //#endregion
 export { Z as COMPONENT_GALLERY_ALIASES, Ke as COMPONENT_GALLERY_COMPONENTS, Q as ComponentGallery };

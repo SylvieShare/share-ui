@@ -29,6 +29,6 @@ defineProps({
 .share-action-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .share-action-button--icon-only { width: 48px; height: 48px; padding: 0; gap: 0; flex-shrink: 0; }
 .share-action-button--icon-only :deep(svg) { flex-shrink: 0; }
-.share-action-button--stacked { flex-direction: column; gap: 3px; min-width: 56px; height: 48px; padding: 4px 8px; font-size: 10px; line-height: 1.2; }
+.share-action-button--stacked { flex-direction: column; gap: 3px; min-width: 56px; height: var(--action-button-height, 48px); padding: 4px 8px; font-size: 10px; line-height: 1.2; }
 .share-action-button--stacked > :deep(svg) { flex: none; }
 </style>

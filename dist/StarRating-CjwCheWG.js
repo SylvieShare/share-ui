@@ -5453,7 +5453,7 @@ var Si = ["aria-label"], Ci = { class: "ms-head-content" }, wi = ["aria-label"],
 			"aria-hidden": "true"
 		}, null, 8, ["label"])) : O(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [O(t.$slots, "default", {}, void 0, !0)])], 10, la));
 	}
-}, [["__scopeId", "data-v-59cbbf0c"]]), da = {
+}, [["__scopeId", "data-v-00cb634b"]]), da = {
 	class: "share-icon-toggle__icon",
 	"aria-hidden": "true"
 }, fa = /*#__PURE__*/ U({
