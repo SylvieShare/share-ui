@@ -1,6 +1,6 @@
 <template>
   <nav ref="element" class="share-icon-navigation"
-    :class="[`share-icon-navigation--${orientation}`, `share-icon-navigation--${layout}`, { 'share-icon-navigation--instant': !animate || !ready, 'share-icon-navigation--pill': pill }]"
+    :class="[`share-icon-navigation--${orientation}`, `share-icon-navigation--${layout}`, { 'share-icon-navigation--instant': !animate || !ready, 'share-icon-navigation--pill': pill, 'share-icon-navigation--content': contentSized && layout === 'stacked' }]"
     :style="{ '--icon-navigation-size': `${size}px`, '--icon-navigation-height': `${height ?? size}px`, '--icon-navigation-icon-size': `${iconSize}px`, '--icon-navigation-label-size': typeof labelSize === 'number' ? `${labelSize}px` : labelSize || undefined, '--icon-navigation-radius': typeof radius === 'number' ? `${radius}px` : radius || undefined }" :aria-label="label">
     <span class="share-icon-navigation__indicator" :style="indicatorStyle" aria-hidden="true" />
     <template v-for="(item, index) in items" :key="item.key">
@@ -32,6 +32,7 @@ const props = defineProps({
   iconSize: { type: Number, default: 24 }, labelSize: { type: [Number, String], default: null },
   selectedSize: { type: Number, default: 84 }, maxSize: { type: Number, default: 148 },
   selection: { type: Array, default: null },
+  contentSized: { type: Boolean, default: false },
 })
 const emit = defineEmits(['update:modelValue', 'select'])
 const { element, ready, buttons, indicatorStyle, itemStyle, setButton, measure, reveal, revealActive } = useIconNavigation(props)
@@ -97,7 +98,7 @@ defineExpose({ element, updateIndicator: measure, revealActive })
 }
 .share-icon-navigation__icon { display: flex; align-items: center; justify-content: center; width: var(--icon-navigation-icon-size); height: var(--icon-navigation-icon-size); flex: none; }
 .share-icon-navigation__icon > :deep(svg) { width: 100%; height: 100%; }
-.share-icon-navigation__label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 13px; }
+.share-icon-navigation__label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: var(--icon-navigation-label-line-height, 13px); }
 .share-icon-navigation__item:hover:not(:disabled) { color: var(--text-1); border-color: var(--border-strong); }
 .share-icon-navigation__item--selected, .share-icon-navigation__item--selected:hover:not(:disabled) { color: var(--text-on-accent); border-color: transparent; }
 .share-icon-navigation__item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
@@ -119,7 +120,8 @@ defineExpose({ element, updateIndicator: measure, revealActive })
 .share-icon-navigation__divider { flex: none; width: 1px; height: 24px; margin: 0 6px; background: var(--border-strong); }
 .share-icon-navigation--vertical > .share-icon-navigation__divider { width: 40px; height: 1px; margin: 6px 0; }
 .share-icon-navigation--inline > .share-icon-navigation__item { flex-direction: row; gap: 8px; width: auto; min-width: var(--icon-navigation-size); padding-inline: 12px; font-size: var(--icon-navigation-label-size, 14px); }
-.share-icon-navigation--inline .share-icon-navigation__label { line-height: 1.3; }
+.share-icon-navigation--inline .share-icon-navigation__label { line-height: var(--icon-navigation-label-line-height, 1.3); }
+.share-icon-navigation--content > .share-icon-navigation__item { width: auto; min-width: var(--icon-navigation-size); padding-inline: 12px; }
 .share-icon-navigation--compact { width: 100%; scrollbar-width: none; }
 .share-icon-navigation--compact::-webkit-scrollbar { display: none; }
 .share-icon-navigation--compact > .share-icon-navigation__item { flex-direction: row; padding: 0; overflow: hidden; color: color-mix(in srgb,var(--accent-soft) calc(var(--icon-navigation-selection,0) * 100%),var(--text-muted)); transition: width 260ms cubic-bezier(.25,.1,.25,1),color 260ms cubic-bezier(.25,.1,.25,1); }

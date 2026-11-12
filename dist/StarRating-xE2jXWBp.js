@@ -1024,7 +1024,7 @@ function Ue(e) {
 			r.value = t.value.clientWidth;
 			return;
 		}
-		e.layout === "stacked" && He(o.values());
+		e.layout === "stacked" && !e.contentSized && He(o.values());
 		let i = e.items.map((e) => {
 			let t = o.get(e.key);
 			return t ? {
@@ -1059,7 +1059,8 @@ function Ue(e) {
 		e.size,
 		e.height,
 		e.selectedSize,
-		e.maxSize
+		e.maxSize,
+		e.contentSized
 	], async () => {
 		await _(), g(), y();
 	}, { deep: !0 }), R(() => e.modelValue, async () => {
@@ -1163,6 +1164,10 @@ var We = ["aria-label"], Ge = ["aria-orientation", "aria-label"], Ke = [
 		selection: {
 			type: Array,
 			default: null
+		},
+		contentSized: {
+			type: Boolean,
+			default: !1
 		}
 	},
 	emits: ["update:modelValue", "select"],
@@ -1188,7 +1193,8 @@ var We = ["aria-label"], Ge = ["aria-orientation", "aria-label"], Ke = [
 				`share-icon-navigation--${t.layout}`,
 				{
 					"share-icon-navigation--instant": !t.animate || !M(f),
-					"share-icon-navigation--pill": t.pill
+					"share-icon-navigation--pill": t.pill,
+					"share-icon-navigation--content": t.contentSized && t.layout === "stacked"
 				}
 			]]),
 			style: b({
@@ -1236,7 +1242,7 @@ var We = ["aria-label"], Ge = ["aria-orientation", "aria-label"], Ke = [
 			O(n.$slots, "decoration", { item: r }, void 0, !0)
 		], 16, Ke)], 64))), 128))], 14, We));
 	}
-}, [["__scopeId", "data-v-49eb9c6c"]]), Xe = ["aria-label"], Ze = [
+}, [["__scopeId", "data-v-af4178af"]]), Xe = ["aria-label"], Ze = [
 	"id",
 	"aria-selected",
 	"aria-controls",

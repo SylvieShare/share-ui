@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as ee, F as c, Ft as te, G as ne, H as re, I as ie, K as ae, L as oe, Mt as l, Nt as se, O as ce, Ot as le, P as u, Pt as d, R as ue, S as de, St as f, T as fe, Tt as p, V as pe, W as me, _ as m, a as h, b as g, bt as he, c as _, ct as ge, d as v, f as _e, ft as y, g as ve, h as ye, i as b, it as be, j as xe, jt as Se, k as x, kt as Ce, l as S, lt as we, m as C, n as Te, o as w, p as T, pt as Ee, q as De, r as Oe, rt as ke, s as E, t as D, u as O, ut as k, v as Ae, w as je, wt as A, x as j, xt as Me, y as Ne, z as M, zt as N } from "./StarRating-BhLnS-KO.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as ee, F as c, Ft as te, G as ne, H as re, I as ie, K as ae, L as oe, Mt as l, Nt as se, O as ce, Ot as le, P as u, Pt as d, R as ue, S as de, St as f, T as fe, Tt as p, V as pe, W as me, _ as m, a as h, b as g, bt as he, c as _, ct as ge, d as v, f as _e, ft as y, g as ve, h as ye, i as b, it as be, j as xe, jt as Se, k as x, kt as Ce, l as S, lt as we, m as C, n as Te, o as w, p as T, pt as Ee, q as De, r as Oe, rt as ke, s as E, t as D, u as O, ut as k, v as Ae, w as je, wt as A, x as j, xt as Me, y as Ne, z as M, zt as N } from "./StarRating-xE2jXWBp.js";
 import { Fragment as P, createBlock as F, createCommentVNode as I, createElementBlock as L, createElementVNode as R, createTextVNode as z, createVNode as B, h as V, normalizeClass as Pe, openBlock as H, reactive as Fe, ref as U, renderList as W, toDisplayString as G, unref as Ie, withCtx as K, withModifiers as Le } from "vue";
 //#region src/gallery/ChoiceCardGalleryExample.vue
 var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
@@ -1044,9 +1044,11 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 						"onUpdate:modelValue": U[11] ||= (e) => S.value = e,
 						items: w,
 						pill: "",
+						"content-sized": "",
+						"label-size": 12,
 						height: 48,
 						radius: "var(--r-md)",
-						label: "Rounded sections"
+						label: "Rounded sections sized by caption"
 					}, {
 						icon: K(({ item: e }) => [(H(), L("svg", Ot, [R("path", { d: e.key === "build" ? "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" : "M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6" }, null, 8, kt)]))]),
 						_: 1
@@ -1551,6 +1553,6 @@ var Re = { class: "choice-gallery-options" }, ze = /*#__PURE__*/ r({
 			}, 8, ["origin-el"])) : I("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-13192513"]]);
+}, [["__scopeId", "data-v-f229a340"]]);
 //#endregion
 export { Z as COMPONENT_GALLERY_ALIASES, Ke as COMPONENT_GALLERY_COMPONENTS, Q as ComponentGallery };

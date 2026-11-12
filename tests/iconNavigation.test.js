@@ -77,3 +77,9 @@ it('keeps other buttons stationary while selection crosses the compact midpoint'
     .toEqual({x:47,y:4,width:64,height:48})
   expect(compactNavigationRects([], layout)).toEqual([])
 })
+
+it('can size stacked captions by content without changing the fixed default', async () => {
+  const render = props => renderToString(createSSRApp({ render: () => h(IconNavigation, { items, label: 'Sections', ...props }) }))
+  expect(await render({ contentSized: true, labelSize: 12 })).toContain('share-icon-navigation--content')
+  expect(await render({})).not.toContain('share-icon-navigation--content')
+})

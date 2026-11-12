@@ -179,7 +179,7 @@
             <IconNavigation v-model="iconNavigationValue" :items="iconNavigationItems" label="Horizontal sections">
               <template #icon="{ item }"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path :d="item.key === 'build' ? 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z' : 'M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6'" /></svg></template>
             </IconNavigation>
-            <IconNavigation v-model="iconNavigationValue" :items="iconNavigationItems" pill :height="48" radius="var(--r-md)" label="Rounded sections">
+            <IconNavigation v-model="iconNavigationValue" :items="iconNavigationItems" pill content-sized :label-size="12" :height="48" radius="var(--r-md)" label="Rounded sections sized by caption">
               <template #icon="{ item }"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path :d="item.key === 'build' ? 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z' : 'M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6'" /></svg></template>
             </IconNavigation>
             <IconNavigation v-model="iconNavigationValue" :items="iconNavigationItems" pill layout="inline" :icon-size="28" :height="56" label="Inline sections">

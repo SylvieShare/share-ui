@@ -135,6 +135,7 @@ export const IconNavigation: DefineComponent<{
   selectedSize?: number
   maxSize?: number
   selection?: number[] | null
+  contentSized?: boolean
 }>
 
 export interface SlidingTab<T = string | number> {

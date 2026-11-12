@@ -41,7 +41,7 @@ export function useIconNavigation(props) {
   function measure() {
     if (!element.value) return
     if (compact.value) { width.value = element.value.clientWidth; return }
-    if (props.layout === 'stacked') fitNavigationLabels(buttons.values())
+    if (props.layout === 'stacked' && !props.contentSized) fitNavigationLabels(buttons.values())
     const next = props.items.map(item => {
       const node = buttons.get(item.key)
       return node ? { x: node.offsetLeft, y: node.offsetTop, width: node.offsetWidth, height: node.offsetHeight } : null
@@ -77,7 +77,7 @@ export function useIconNavigation(props) {
     fonts?.ready.then(() => { if (!disposed) measure() })
     fonts?.addEventListener('loadingdone', measure)
   })
-  watch(() => [props.items, props.layout, props.orientation, props.size, props.height, props.selectedSize, props.maxSize], async () => {
+  watch(() => [props.items, props.layout, props.orientation, props.size, props.height, props.selectedSize, props.maxSize, props.contentSized], async () => {
     await nextTick(); measure(); revealActive()
   }, { deep: true })
   watch(() => props.modelValue, async () => { await nextTick(); revealActive() })
