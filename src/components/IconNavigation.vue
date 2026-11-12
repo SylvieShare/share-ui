@@ -99,8 +99,10 @@ defineExpose({ element, updateIndicator: measure, revealActive })
 .share-icon-navigation__icon { display: flex; align-items: center; justify-content: center; width: var(--icon-navigation-icon-size); height: var(--icon-navigation-icon-size); flex: none; }
 .share-icon-navigation__icon > :deep(svg) { width: 100%; height: 100%; }
 .share-icon-navigation__label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: var(--icon-navigation-label-line-height, 13px); }
-.share-icon-navigation__item:hover:not(:disabled) { color: var(--text-1); border-color: var(--border-strong); }
-.share-icon-navigation__item--selected, .share-icon-navigation__item--selected:hover:not(:disabled) { color: var(--text-on-accent); border-color: transparent; }
+@media (hover: hover) and (pointer: fine) {
+  .share-icon-navigation__item:hover:not(:disabled):not(.share-icon-navigation__item--selected) { color: var(--text-1); border-color: var(--border-strong); }
+}
+.share-icon-navigation__item--selected { color: var(--text-on-accent); border-color: transparent; }
 .share-icon-navigation__item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .share-icon-navigation__item:disabled { opacity: .4; cursor: not-allowed; }
 .share-icon-navigation__indicator {
@@ -115,8 +117,7 @@ defineExpose({ element, updateIndicator: measure, revealActive })
 }
 .share-icon-navigation--pill > .share-icon-navigation__indicator { border-radius: var(--icon-navigation-radius, 999px); background: color-mix(in srgb, var(--accent) 18%, var(--surface)); }
 .share-icon-navigation--pill > .share-icon-navigation__item { border-radius: var(--icon-navigation-radius, 999px); }
-.share-icon-navigation--pill > .share-icon-navigation__item--selected,
-.share-icon-navigation--pill > .share-icon-navigation__item--selected:hover:not(:disabled) { color: var(--accent-soft); }
+.share-icon-navigation--pill > .share-icon-navigation__item--selected { color: var(--accent-soft); }
 .share-icon-navigation__divider { flex: none; width: 1px; height: 24px; margin: 0 6px; background: var(--border-strong); }
 .share-icon-navigation--vertical > .share-icon-navigation__divider { width: 40px; height: 1px; margin: 6px 0; }
 .share-icon-navigation--inline > .share-icon-navigation__item { flex-direction: row; gap: 8px; width: auto; min-width: var(--icon-navigation-size); padding-inline: 12px; font-size: var(--icon-navigation-label-size, 14px); }
