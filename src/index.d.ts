@@ -129,6 +129,12 @@ export const IconNavigation: DefineComponent<{
   radius?: number | string | null
   active?: boolean
   animate?: boolean
+  layout?: 'stacked' | 'inline' | 'compact'
+  iconSize?: number
+  labelSize?: number | string | null
+  selectedSize?: number
+  maxSize?: number
+  selection?: number[] | null
 }>
 
 export interface SlidingTab<T = string | number> {

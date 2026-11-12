@@ -1,17 +1,17 @@
 <template>
   <nav ref="element" class="share-icon-navigation"
-    :class="[`share-icon-navigation--${orientation}`, { 'share-icon-navigation--instant': !animate, 'share-icon-navigation--pill': pill }]"
-    :style="{ '--icon-navigation-size': `${size}px`, '--icon-navigation-height': `${height ?? size}px`, '--icon-navigation-radius': typeof radius === 'number' ? `${radius}px` : radius || undefined }" :aria-label="label">
+    :class="[`share-icon-navigation--${orientation}`, `share-icon-navigation--${layout}`, { 'share-icon-navigation--instant': !animate || !ready, 'share-icon-navigation--pill': pill }]"
+    :style="{ '--icon-navigation-size': `${size}px`, '--icon-navigation-height': `${height ?? size}px`, '--icon-navigation-icon-size': `${iconSize}px`, '--icon-navigation-label-size': typeof labelSize === 'number' ? `${labelSize}px` : labelSize || undefined, '--icon-navigation-radius': typeof radius === 'number' ? `${radius}px` : radius || undefined }" :aria-label="label">
     <span class="share-icon-navigation__indicator" :style="indicatorStyle" aria-hidden="true" />
-    <template v-for="item in items" :key="item.key">
+    <template v-for="(item, index) in items" :key="item.key">
       <span v-if="item.divider" class="share-icon-navigation__divider" role="separator"
         :aria-orientation="orientation === 'vertical' ? 'horizontal' : 'vertical'" :aria-label="item.dividerLabel" />
       <button :ref="node => setButton(item.key, node)" v-bind="item.attrs" type="button"
-        class="share-icon-navigation__item" :class="{ 'share-icon-navigation__item--selected': active && modelValue === item.key }"
+        class="share-icon-navigation__item" :style="itemStyle(index)" :class="{ 'share-icon-navigation__item--selected': active && modelValue === item.key, 'share-icon-navigation__item--text': !$slots.icon && !item.icon }"
         :disabled="item.disabled" :title="item.title || item.label" :aria-label="item.ariaLabel || item.label"
         :aria-current="active && modelValue === item.key ? 'page' : undefined"
         :aria-pressed="active && modelValue === item.key" @click="select(item)" @keydown="keydown($event, item.key)">
-        <slot name="icon" :item="item"><component :is="item.icon" v-if="item.icon" :size="24" aria-hidden="true" /></slot>
+        <span v-if="$slots.icon || item.icon" class="share-icon-navigation__icon"><slot name="icon" :item="item"><component :is="item.icon" v-if="item.icon" :size="iconSize" aria-hidden="true" /></slot></span>
         <span class="share-icon-navigation__label"><slot name="label" :item="item">{{ item.shortLabel || item.label }}</slot></span>
         <slot name="decoration" :item="item" />
       </button>
@@ -19,8 +19,7 @@
   </nav>
 </template>
 <script setup>
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { fitNavigationLabels } from '../lib/fitNavigationLabels.js'
+import { useIconNavigation } from '../composables/useIconNavigation.js'
 import { navigationFocusKey } from '../lib/iconNavigation.js'
 const props = defineProps({
   items: { type: Array, required: true }, modelValue: { type: [String, Number], default: null },
@@ -29,41 +28,13 @@ const props = defineProps({
   size: { type: Number, default: 56 }, height: { type: Number, default: null },
   radius: { type: [Number, String], default: null },
   active: { type: Boolean, default: true }, animate: { type: Boolean, default: true },
+  layout: { type: String, default: 'stacked', validator: value => ['stacked', 'inline', 'compact'].includes(value) },
+  iconSize: { type: Number, default: 24 }, labelSize: { type: [Number, String], default: null },
+  selectedSize: { type: Number, default: 84 }, maxSize: { type: Number, default: 148 },
+  selection: { type: Array, default: null },
 })
 const emit = defineEmits(['update:modelValue', 'select'])
-const element = ref(null), indicator = ref(null), buttons = new Map()
-const indicatorStyle = computed(() => ({
-  transform: `translate(${indicator.value?.x || 0}px, ${indicator.value?.y || 0}px)`,
-  width: `${indicator.value?.width || 0}px`, height: `${indicator.value?.height || 0}px`,
-  opacity: props.active && indicator.value ? 1 : 0,
-}))
-let observer, fonts, disposed = false
-function setButton(key, node) {
-  const old = buttons.get(key)
-  if (old === node) return
-  if (old) observer?.unobserve(old)
-  if (node) { buttons.set(key, node); observer?.observe(node) }
-  else buttons.delete(key)
-}
-function measure() {
-  fitNavigationLabels(buttons.values())
-  updateIndicator()
-}
-function updateIndicator() {
-  const node = buttons.get(props.modelValue)
-  indicator.value = node ? { x: node.offsetLeft, y: node.offsetTop, width: node.offsetWidth, height: node.offsetHeight } : null
-}
-function reveal(node) {
-  const root = element.value
-  if (!root || !node) return
-  const vertical = props.orientation === 'vertical'
-  const start = vertical ? node.offsetTop : node.offsetLeft
-  const extent = vertical ? node.offsetHeight : node.offsetWidth
-  const scroll = vertical ? root.scrollTop : root.scrollLeft
-  const available = vertical ? root.clientHeight : root.clientWidth
-  const next = start < scroll ? start : start + extent > scroll + available ? start + extent - available : scroll
-  if (next !== scroll) root.scrollTo(vertical ? { top: next } : { left: next })
-}
+const { element, ready, buttons, indicatorStyle, itemStyle, setButton, measure, reveal, revealActive } = useIconNavigation(props)
 function select(item) {
   if (item.disabled) return
   if (item.key !== props.modelValue) emit('update:modelValue', item.key)
@@ -78,27 +49,7 @@ function keydown(event, key) {
   buttons.get(next)?.focus({ preventScroll: true })
   reveal(buttons.get(next))
 }
-onMounted(() => {
-  measure()
-  reveal(buttons.get(props.modelValue))
-  if (typeof ResizeObserver !== 'undefined') {
-    observer = new ResizeObserver(measure)
-    observer.observe(element.value)
-    for (const node of buttons.values()) observer.observe(node)
-  }
-  fonts = document.fonts
-  fonts?.ready.then(() => { if (!disposed) measure() })
-  fonts?.addEventListener('loadingdone', measure)
-})
-watch(() => [props.modelValue, props.items, props.orientation, props.size, props.height], async () => {
-  await nextTick(); measure(); reveal(buttons.get(props.modelValue))
-}, { deep: true })
-onBeforeUnmount(() => {
-  disposed = true
-  observer?.disconnect()
-  fonts?.removeEventListener('loadingdone', measure)
-})
-defineExpose({ element, updateIndicator })
+defineExpose({ element, updateIndicator: measure, revealActive })
 </script>
 <style scoped>
 .share-icon-navigation {
@@ -139,12 +90,13 @@ defineExpose({ element, updateIndicator })
   background: transparent;
   color: var(--text-muted);
   font: inherit;
-  font-size: 10px;
+  font-size: var(--icon-navigation-label-size, 10px);
   font-weight: 650;
   cursor: pointer;
   transition: color 150ms ease, border-color 150ms ease;
 }
-.share-icon-navigation__item > :deep(svg) { width: 24px; height: 24px; flex: none; }
+.share-icon-navigation__icon { display: flex; align-items: center; justify-content: center; width: var(--icon-navigation-icon-size); height: var(--icon-navigation-icon-size); flex: none; }
+.share-icon-navigation__icon > :deep(svg) { width: 100%; height: 100%; }
 .share-icon-navigation__label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 13px; }
 .share-icon-navigation__item:hover:not(:disabled) { color: var(--text-1); border-color: var(--border-strong); }
 .share-icon-navigation__item--selected, .share-icon-navigation__item--selected:hover:not(:disabled) { color: var(--text-on-accent); border-color: transparent; }
@@ -167,7 +119,17 @@ defineExpose({ element, updateIndicator })
 .share-icon-navigation__divider { flex: none; width: 1px; height: 24px; margin: 0 6px; background: var(--border-strong); }
 .share-icon-navigation--vertical > .share-icon-navigation__divider { width: 40px; height: 1px; margin: 6px 0; }
 .share-icon-navigation--instant > .share-icon-navigation__indicator { transition: none; }
+.share-icon-navigation--inline > .share-icon-navigation__item { flex-direction: row; gap: 8px; width: auto; min-width: var(--icon-navigation-size); padding-inline: 12px; font-size: var(--icon-navigation-label-size, 14px); }
+.share-icon-navigation--inline .share-icon-navigation__label { line-height: 1.3; }
+.share-icon-navigation--compact { width: 100%; scrollbar-width: none; }
+.share-icon-navigation--compact::-webkit-scrollbar { display: none; }
+.share-icon-navigation--compact > .share-icon-navigation__item { flex-direction: row; padding: 0; overflow: hidden; color: color-mix(in srgb,var(--accent-soft) calc(var(--icon-navigation-selection,0) * 100%),var(--text-muted)); transition: width 260ms cubic-bezier(.25,.1,.25,1),color 260ms cubic-bezier(.25,.1,.25,1); }
+.share-icon-navigation--compact .share-icon-navigation__icon { transform: translateY(calc(-7px * var(--icon-navigation-selection,0))); transition: transform 260ms cubic-bezier(.25,.1,.25,1); }
+.share-icon-navigation--compact .share-icon-navigation__label { position: absolute; top: calc(50% + 4px); left: 0; right: 0; opacity: var(--icon-navigation-selection,0); transition: opacity 260ms cubic-bezier(.25,.1,.25,1); pointer-events: none; }
+.share-icon-navigation--compact .share-icon-navigation__item--text .share-icon-navigation__label { position: static; opacity: 1; }
+.share-icon-navigation--compact > .share-icon-navigation__indicator { transition: transform 260ms cubic-bezier(.25,.1,.25,1),width 260ms cubic-bezier(.25,.1,.25,1),opacity 150ms ease; }
+.share-icon-navigation--instant :is(.share-icon-navigation__item,.share-icon-navigation__icon,.share-icon-navigation__label) { transition: none; }
 @media (prefers-reduced-motion: reduce) {
-  .share-icon-navigation__indicator, .share-icon-navigation__item { transition: none; }
+  .share-icon-navigation__indicator, .share-icon-navigation__item, .share-icon-navigation__icon, .share-icon-navigation__label { transition: none !important; }
 }
 </style>

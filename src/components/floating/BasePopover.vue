@@ -192,6 +192,7 @@ function unbind() {
 }
 
 watch(() => props.open, async (isOpen) => {
+  if (typeof window === 'undefined') return
   unbind()
   if (!isOpen) return
   compute()

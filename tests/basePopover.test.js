@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
+import { createSSRApp, h } from 'vue'
+import { renderToString } from 'vue/server-renderer'
 import ActionMenu from '../src/components/floating/ActionMenu.vue'
 import BasePopover from '../src/components/floating/BasePopover.vue'
 
@@ -8,6 +10,13 @@ const baseSource = readFileSync(fileURLToPath(new URL('../src/components/floatin
 const actionSource = readFileSync(fileURLToPath(new URL('../src/components/floating/ActionMenu.vue', import.meta.url)), 'utf8')
 
 describe('BasePopover transitions', () => {
+  it('renders closed and open server markup without binding browser listeners', async () => {
+    for (const open of [false, true]) {
+      const context = {}
+      await renderToString(createSSRApp({ render: () => h(BasePopover, { open }, () => h('span', 'Details')) }), context)
+      expect(context.teleports?.body?.includes('Details') || false).toBe(open)
+    }
+  })
   it('owns the reusable action-menu transition preset', () => {
     expect(BasePopover.props.transitionPreset.default).toBe('none')
     expect(BasePopover.props.transitionPreset.validator('action-menu')).toBe(true)
