@@ -57,6 +57,7 @@ export { default as FormTextarea } from './components/form/FormTextarea.vue'
 export { default as FormTextInput } from './components/form/FormTextInput.vue'
 
 export { reorderByDrop, useSortable } from './composables/useSortable.js'
+export { isSortableGestureActive } from './internal/sortableGesture.js'
 export { useContainerMorph } from './composables/useContainerMorph.js'
 export { useFullscreenViewportHeight } from './composables/useFullscreenViewportHeight.js'
 export { useIsMobile, useMediaQuery } from './composables/useMediaQuery.js'

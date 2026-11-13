@@ -1,0 +1,27 @@
+import { test, expect } from '@playwright/test'
+
+test('sortable reserves its pointer before moving and releases on drop, cancel, Escape and unmount', async ({ page }) => {
+  await page.goto('/tests/browser/sortable-gesture.html')
+  const handle = page.getByRole('button', { name: 'one', exact: true })
+  const active = () => page.evaluate(() => window.sortableGesture.active())
+  const start = async () => { const box = await handle.boundingBox(); await page.mouse.move(box.x + 20, box.y + 20); await page.mouse.down(); return box }
+  const box = await start()
+  expect(await active()).toBe(true)
+  await expect(page.locator('.sortable-ghost')).toHaveCount(0)
+  await page.mouse.move(box.x + 70, box.y + 20)
+  await expect(page.locator('.sortable-ghost')).toHaveCount(1)
+  await page.mouse.up()
+  expect(await active()).toBe(false)
+  await start()
+  await page.evaluate(() => document.dispatchEvent(new PointerEvent('pointercancel', { bubbles: true })))
+  expect(await active()).toBe(false)
+  await page.mouse.up()
+  await start()
+  await page.keyboard.press('Escape')
+  expect(await active()).toBe(false)
+  await page.mouse.up()
+  await start()
+  await page.evaluate(() => window.sortableGesture.unmount())
+  expect(await active()).toBe(false)
+  await page.mouse.up()
+})

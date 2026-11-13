@@ -548,6 +548,7 @@ export interface UseSortableResult<T> {
 
 export function reorderByDrop<T>(array: T[], fromIndex: number, toIndex: number): T[]
 export function useSortable<T>(config: UseSortableConfig<T>): UseSortableResult<T>
+export function isSortableGestureActive(): boolean
 
 export interface ContainerRect {
   left: number

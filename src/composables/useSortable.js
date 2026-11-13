@@ -1,4 +1,5 @@
 import { onBeforeUnmount, ref } from 'vue'
+import { claimSortableGesture } from '../internal/sortableGesture.js'
 
 const DRAG_THRESHOLD = 4
 
@@ -63,6 +64,7 @@ export function useSortable(config) {
   let ghostOffsetX = 0
   let ghostOffsetY = 0
   let pendingStart = null
+  let releaseGesture = null
   let suppressClickUntil = 0
   let suppressClickTimer = null
 
@@ -73,6 +75,8 @@ export function useSortable(config) {
     if (!sourceEl) return
 
     pendingStart = { x: e.clientX, y: e.clientY, item, group: groupName, index, sourceEl }
+    releaseGesture?.()
+    releaseGesture = claimSortableGesture()
     document.addEventListener('pointermove', onPointerMove)
     document.addEventListener('pointerup', onPointerEnd)
     document.addEventListener('pointercancel', onPointerEnd)
@@ -217,6 +221,8 @@ export function useSortable(config) {
     targetGroup.value = null
     targetIndex.value = -1
     pendingStart = null
+    releaseGesture?.()
+    releaseGesture = null
     if (wasDragging) {
       suppressClickUntil = Date.now() + 250
       suppressNextClick.value = true
