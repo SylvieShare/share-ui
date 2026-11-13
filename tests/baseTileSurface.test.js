@@ -22,3 +22,11 @@ it('supports a stronger accent frame while clamping its width',async()=>{
  expect(await render({framed:true,frameWidth:99})).toContain('--tile-frame-width:4px')
  expect(await render({framed:true})).toContain('--tile-frame-width:1px')
 })
+
+it('supports detached elevated surfaces without changing the default or slot content',async()=>{
+ expect(await render({})).not.toContain('base-tile--elevated')
+ for(const props of [{outlined:false},{outlined:true,interactive:true},{framed:true,interactive:true}]){
+  const html=await render({...props,elevated:true})
+  expect(html).toContain('base-tile--elevated');expect(html).toContain('<button>Action</button>');expect(html).not.toContain('elevated="')
+ }
+})

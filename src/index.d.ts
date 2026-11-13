@@ -29,6 +29,7 @@ export const SectionList: DefineComponent<{
 
 export const BaseTile: DefineComponent<{
   outlined?: boolean
+  elevated?: boolean
   frameWidth?: number
   surface?: 'solid' | 'glass'
   color?: string | null

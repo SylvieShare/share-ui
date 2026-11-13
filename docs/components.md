@@ -21,6 +21,7 @@ hover. Явная цветная рамка `framed` остаётся самос
 - `color` — accent плитки, fallback `var(--accent)`;
 - `surface` — `solid` (по умолчанию) или `glass`: фон с opacity 76% и backdrop blur 14 px. Tint, gradient и frame сохраняются; при отсутствии поддержки blur остаётся полупрозрачный фон;
 - `tint` — постоянный слабый цветовой tint;
+- `elevated` — внешняя тень `--shadow-lg` для отделённой поверхности; по умолчанию выключена. Сохраняет `outlined`, `framed`, `tint` и интерактивное hover-оформление. Контейнер потребителя должен оставлять тени место;
 - `framed` — gradient и accent border;
 - `frameWidth` — толщина accent border от 1 до 4 px, по умолчанию 1; действует только вместе с `framed`, обычная рамка не меняется;
 - `interactive` — pointer и hover feedback.
