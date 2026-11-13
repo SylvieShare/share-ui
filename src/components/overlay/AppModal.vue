@@ -20,6 +20,7 @@
           'am-card-extra-wide': extraWide,
           'am-card-full': fullscreen,
           'am-card-flush': flush,
+          'am-card-unoutlined': !outlined,
         }"
         tabindex="-1"
         @touchstart.passive="onTouchStart"
@@ -63,6 +64,7 @@ const props = defineProps({
   dismissible: { type: Boolean, default: true },
   // Lets a higher-level shell own padding, scrolling and fixed chrome.
   flush: { type: Boolean, default: false },
+  outlined: { type: Boolean, default: true },
   width: { type: [Number, String], default: '' },
   ariaLabel: { type: String, default: '' },
   closeLabel: { type: String, default: 'Close' },
@@ -314,6 +316,8 @@ onBeforeUnmount(() => {
   flex-direction: column;
   gap: 12px;
 }
+
+.am-card-unoutlined { border: 0; }
 
 .am-card-flush {
   padding: 0;

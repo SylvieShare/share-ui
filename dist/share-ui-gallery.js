@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as c, F as l, Ft as ee, G as te, H as ne, I as re, K as ie, L as ae, Mt as u, Nt as oe, O as se, Ot as ce, P as d, Pt as f, R as le, S as ue, St as p, T as de, Tt as m, V as fe, W as pe, _ as h, a as g, b as me, bt as _, c as v, ct as he, d as ge, f as _e, ft as y, g as ve, h as ye, i as b, it as be, j as xe, jt as Se, k as x, kt as Ce, l as S, lt as we, m as C, n as Te, o as w, p as Ee, pt as De, q as Oe, r as ke, rt as Ae, s as T, t as je, u as E, ut as D, v as Me, w as Ne, wt as O, x as k, xt as Pe, y as Fe, z as A, zt as j } from "./StarRating-Bo4jk0Tj.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as c, F as l, Ft as ee, G as te, H as ne, I as re, K as ie, L as ae, Mt as u, Nt as oe, O as se, Ot as ce, P as d, Pt as f, R as le, S as ue, St as p, T as de, Tt as m, V as fe, W as pe, _ as h, a as g, b as me, bt as _, c as v, ct as he, d as ge, f as _e, ft as y, g as ve, h as ye, i as b, it as be, j as xe, jt as Se, k as x, kt as Ce, l as S, lt as we, m as C, n as Te, o as w, p as Ee, pt as De, q as Oe, r as ke, rt as Ae, s as T, t as je, u as E, ut as D, v as Me, w as Ne, wt as O, x as k, xt as Pe, y as Fe, z as A, zt as j } from "./StarRating-TZYrEnBi.js";
 import { Fragment as M, createBlock as N, createCommentVNode as P, createElementBlock as F, createElementVNode as I, createTextVNode as L, createVNode as R, h as z, normalizeClass as Ie, openBlock as B, reactive as Le, ref as V, renderList as H, toDisplayString as U, unref as Re, withCtx as W, withModifiers as ze } from "vue";
 //#region src/gallery/ChoiceCardGalleryExample.vue
 var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
@@ -540,7 +540,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				divider: !0,
 				dividerLabel: "Tools"
 			}
-		], D = V(62), j = V("rare"), M = V("#7c5ce2"), z = V("<p><strong>RichContent</strong> показывает очищенный результат и <span data-rich-node=\"mention\" data-rich-payload=\"%7B%22id%22%3A42%7D\" contenteditable=\"false\">@example</span>.</p>"), H = V(!0), G = V(!0), K = V(!1), Ve = V(null), We = V(null), Ge = V(null), q = V(!1), J = V(!1), Y = V(!1), X = V(!1), un = V(!1), Z = V(0), Q = V(!1), dn = V(null), fn = [
+		], D = V(62), j = V("rare"), M = V("#7c5ce2"), z = V("<p><strong>RichContent</strong> показывает очищенный результат и <span data-rich-node=\"mention\" data-rich-payload=\"%7B%22id%22%3A42%7D\" contenteditable=\"false\">@example</span>.</p>"), H = V(!0), G = V(!0), K = V(!1), Ve = V(null), We = V(null), Ge = V(null), q = V(!1), J = V(!1), Y = V(!0), X = V(!1), un = V(!1), dn = V(!1), Z = V(0), Q = V(!1), fn = V(null), pn = [
 			{
 				value: "sm",
 				label: "S"
@@ -553,13 +553,13 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				value: "lg",
 				label: "L"
 			}
-		], pn = [{
+		], mn = [{
 			key: "preview",
 			title: "Пример"
 		}, {
 			key: "states",
 			title: "Состояния"
-		}], mn = [
+		}], hn = [
 			{
 				value: "common",
 				label: "Обычный"
@@ -572,7 +572,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				value: "legendary",
 				label: "Легендарный"
 			}
-		], hn = [
+		], gn = [
 			{
 				key: "images",
 				label: "Изображения",
@@ -599,10 +599,10 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 			type: "base",
 			description: ""
 		});
-		function gn(e) {
+		function _n(e) {
 			return `${e} МБ`;
 		}
-		function _n() {
+		function vn() {
 			$.name = "", $.count = 0, $.type = "base", $.description = "";
 		}
 		return (Le, V) => (B(), F("div", Ye, [
@@ -610,7 +610,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				I("p", Ze, "share-ui · " + U(Re(ee)) + " компонентов", 1),
 				I("h1", null, U(r.title), 1),
 				I("p", null, U(r.description), 1)
-			]), V[49] ||= I("span", {
+			]), V[50] ||= I("span", {
 				class: "share-component-gallery__accent",
 				"aria-label": "Текущий акцент"
 			}, null, -1)]),
@@ -635,19 +635,19 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				})
 			]),
 			I("section", tt, [R(qe)]),
-			I("section", nt, [V[50] ||= I("h2", null, "GuidedTour", -1), R(Ue)]),
+			I("section", nt, [V[51] ||= I("h2", null, "GuidedTour", -1), R(Ue)]),
 			I("section", rt, [R(O, {
 				title: "Поверхности и действия",
 				border: ""
 			}), I("div", it, [
 				I("article", at, [
-					V[69] ||= I("h2", null, "BaseTile", -1),
+					V[70] ||= I("h2", null, "BaseTile", -1),
 					I("div", ot, [R(f, {
 						surface: "glass",
 						framed: "",
 						class: "share-component-gallery__tile"
 					}, {
-						default: W(() => [...V[51] ||= [L("Glass frame", -1)]]),
+						default: W(() => [...V[52] ||= [L("Glass frame", -1)]]),
 						_: 1
 					}), R(f, {
 						surface: "glass",
@@ -655,7 +655,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						interactive: "",
 						class: "share-component-gallery__tile"
 					}, {
-						default: W(() => [...V[52] ||= [L("Glass interactive", -1)]]),
+						default: W(() => [...V[53] ||= [L("Glass interactive", -1)]]),
 						_: 1
 					})]),
 					R(C, {
@@ -663,7 +663,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						variant: "quiet",
 						"aria-label": "Действие без рамки"
 					}, {
-						icon: W(() => [...V[53] ||= [L("✦", -1)]]),
+						icon: W(() => [...V[54] ||= [L("✦", -1)]]),
 						_: 1
 					}),
 					I("div", st, [
@@ -674,8 +674,8 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						}, {
 							default: W(() => [
 								R(Se),
-								V[54] ||= I("strong", null, "Акцентная плитка", -1),
-								V[55] ||= I("span", null, "TileAccentStrip · tint · interactive", -1)
+								V[55] ||= I("strong", null, "Акцентная плитка", -1),
+								V[56] ||= I("span", null, "TileAccentStrip · tint · interactive", -1)
 							]),
 							_: 1
 						}),
@@ -683,7 +683,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							framed: "",
 							class: "share-component-gallery__tile"
 						}, {
-							default: W(() => [...V[56] ||= [I("strong", null, "Рамка", -1), I("span", null, "framed", -1)]]),
+							default: W(() => [...V[57] ||= [I("strong", null, "Рамка", -1), I("span", null, "framed", -1)]]),
 							_: 1
 						}),
 						R(f, {
@@ -691,7 +691,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							"frame-width": 2,
 							class: "share-component-gallery__tile"
 						}, {
-							default: W(() => [...V[57] ||= [I("strong", null, "Усиленная рамка", -1), I("span", null, "frameWidth=2", -1)]]),
+							default: W(() => [...V[58] ||= [I("strong", null, "Усиленная рамка", -1), I("span", null, "frameWidth=2", -1)]]),
 							_: 1
 						}),
 						R(f, {
@@ -699,7 +699,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							outlined: !1,
 							class: "share-component-gallery__tile"
 						}, {
-							default: W(() => [...V[58] ||= [I("strong", null, "Приподнятая поверхность", -1), I("span", null, "elevated", -1)]]),
+							default: W(() => [...V[59] ||= [I("strong", null, "Приподнятая поверхность", -1), I("span", null, "elevated", -1)]]),
 							_: 1
 						}),
 						R(f, {
@@ -708,7 +708,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							outlined: !1,
 							class: "share-component-gallery__tile"
 						}, {
-							default: W(() => [...V[59] ||= [I("strong", null, "Поверхность меню", -1), I("span", null, "surface=popover · elevated", -1)]]),
+							default: W(() => [...V[60] ||= [I("strong", null, "Поверхность меню", -1), I("span", null, "surface=popover · elevated", -1)]]),
 							_: 1
 						}),
 						R(f, {
@@ -716,7 +716,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							interactive: "",
 							class: "share-component-gallery__tile"
 						}, {
-							default: W(() => [...V[60] ||= [I("strong", null, "Тень с обводкой", -1), I("span", null, "elevated · outlined · interactive", -1)]]),
+							default: W(() => [...V[61] ||= [I("strong", null, "Тень с обводкой", -1), I("span", null, "elevated · outlined · interactive", -1)]]),
 							_: 1
 						}),
 						R(f, {
@@ -725,7 +725,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							interactive: "",
 							class: "share-component-gallery__tile"
 						}, {
-							default: W(() => [...V[61] ||= [I("strong", null, "Тень с рамкой", -1), I("span", null, "elevated · framed · interactive", -1)]]),
+							default: W(() => [...V[62] ||= [I("strong", null, "Тень с рамкой", -1), I("span", null, "elevated · framed · interactive", -1)]]),
 							_: 1
 						}),
 						R(u, {
@@ -735,7 +735,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							onEdit: V[1] ||= (e) => Z.value++
 						}, {
 							aside: W(() => [I("span", null, U(Z.value), 1)]),
-							default: W(() => [V[62] ||= I("span", null, "Единый заголовок и действие справа", -1)]),
+							default: W(() => [V[63] ||= I("span", null, "Единый заголовок и действие справа", -1)]),
 							_: 1
 						}),
 						R(u, {
@@ -745,11 +745,11 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							"show-edit": "",
 							"edit-label": "Редактировать"
 						}, {
-							default: W(() => [...V[63] ||= [I("span", null, "Малая плитка", -1)]]),
+							default: W(() => [...V[64] ||= [I("span", null, "Малая плитка", -1)]]),
 							_: 1
 						}),
 						R(u, { title: "Только просмотр" }, {
-							default: W(() => [...V[64] ||= [I("span", null, "Без карандаша", -1)]]),
+							default: W(() => [...V[65] ||= [I("span", null, "Без карандаша", -1)]]),
 							_: 1
 						}),
 						R(u, {
@@ -760,18 +760,18 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							onEdit: V[2] ||= (e) => Z.value++
 						}, {
 							aside: W(() => [I("span", null, U(Z.value), 1)]),
-							default: W(() => [V[65] ||= I("span", null, "Нажмите название", -1)]),
+							default: W(() => [V[66] ||= I("span", null, "Нажмите название", -1)]),
 							_: 1
 						}),
 						R(u, {
 							outlined: !1,
 							title: "Мягкая поверхность"
 						}, {
-							default: W(() => [...V[66] ||= [I("span", null, "Подложка без обводки", -1)]]),
+							default: W(() => [...V[67] ||= [I("span", null, "Подложка без обводки", -1)]]),
 							_: 1
 						}),
 						R(u, null, {
-							default: W(() => [...V[67] ||= [I("span", null, "Без заголовка", -1)]]),
+							default: W(() => [...V[68] ||= [I("span", null, "Без заголовка", -1)]]),
 							_: 1
 						}),
 						R(u, {
@@ -781,14 +781,14 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							"edit-fade": "",
 							"edit-label": "Редактировать"
 						}, {
-							default: W(() => [...V[68] ||= [I("span", null, "Без второй поверхности", -1)]]),
+							default: W(() => [...V[69] ||= [I("span", null, "Без второй поверхности", -1)]]),
 							_: 1
 						}),
 						R(oe, { title: "Общий заголовок" })
 					])
 				]),
 				I("article", ct, [
-					V[70] ||= I("h2", null, "Загрузка", -1),
+					V[71] ||= I("h2", null, "Загрузка", -1),
 					R(ye, { label: "Открываем раздел…" }),
 					R(ye, {
 						label: "Загружаем ещё…",
@@ -822,7 +822,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 					}), R(ve, { width: "60%" })])
 				]),
 				I("article", dt, [
-					V[71] ||= I("h2", null, "InlineEdit", -1),
+					V[72] ||= I("h2", null, "InlineEdit", -1),
 					R(h, {
 						"model-value": "Название записи",
 						label: "Название",
@@ -849,12 +849,12 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 					})
 				]),
 				I("article", ft, [
-					V[79] ||= I("h2", null, "TimelineGroup", -1),
+					V[80] ||= I("h2", null, "TimelineGroup", -1),
 					R(O, {
 						title: "История",
 						line: ""
 					}, {
-						actions: W(() => [...V[72] ||= [I("span", null, "2", -1)]]),
+						actions: W(() => [...V[73] ||= [I("span", null, "2", -1)]]),
 						_: 1
 					}),
 					R(Te, {
@@ -864,12 +864,12 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						"compact-gap": 10,
 						sticky: ""
 					}, {
-						identity: W(() => [...V[73] ||= [I("strong", null, "Участник", -1)]]),
-						default: W(() => [V[74] ||= I("strong", null, "Запись события", -1), V[75] ||= I("p", null, "Содержимое справа от цветной линии.", -1)]),
+						identity: W(() => [...V[74] ||= [I("strong", null, "Участник", -1)]]),
+						default: W(() => [V[75] ||= I("strong", null, "Запись события", -1), V[76] ||= I("p", null, "Содержимое справа от цветной линии.", -1)]),
 						_: 1
 					}),
 					R(Te, { color: "var(--success)" }, {
-						identity: W(() => [...V[76] ||= [I("span", { "aria-hidden": "true" }, "✓", -1)]]),
+						identity: W(() => [...V[77] ||= [I("span", { "aria-hidden": "true" }, "✓", -1)]]),
 						footer: W(() => [R(k, {
 							label: "Редактор на всю ширину",
 							vertical: ""
@@ -877,15 +877,15 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							default: W(() => [R(i, { value: "Черновик" })]),
 							_: 1
 						})]),
-						default: W(() => [V[77] ||= I("strong", null, "Компактная запись", -1), V[78] ||= I("p", null, "Короткая иконка и полный текст.", -1)]),
+						default: W(() => [V[78] ||= I("strong", null, "Компактная запись", -1), V[79] ||= I("p", null, "Короткая иконка и полный текст.", -1)]),
 						_: 1
 					})
 				]),
 				I("article", pt, [
-					V[83] ||= I("h2", null, "SectionList", -1),
+					V[84] ||= I("h2", null, "SectionList", -1),
 					R(t, { title: "Записи" }, {
 						footer: W(() => [R(Ce, { label: "Добавить запись" })]),
-						default: W(() => [V[80] ||= I("div", { style: { padding: "12px 0" } }, "Первая запись", -1), V[81] ||= I("div", { style: { padding: "12px 0" } }, "Вторая запись", -1)]),
+						default: W(() => [V[81] ||= I("div", { style: { padding: "12px 0" } }, "Первая запись", -1), V[82] ||= I("div", { style: { padding: "12px 0" } }, "Вторая запись", -1)]),
 						_: 1
 					}),
 					R(t, {
@@ -893,12 +893,12 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						embedded: "",
 						compact: ""
 					}, {
-						default: W(() => [...V[82] ||= [I("div", { style: { padding: "8px 0" } }, "Компактная запись", -1), I("div", { style: { padding: "8px 0" } }, "Ещё одна запись", -1)]]),
+						default: W(() => [...V[83] ||= [I("div", { style: { padding: "8px 0" } }, "Компактная запись", -1), I("div", { style: { padding: "8px 0" } }, "Ещё одна запись", -1)]]),
 						_: 1
 					})
 				]),
 				I("article", mt, [
-					V[97] ||= I("h2", null, "Кнопки элементов", -1),
+					V[98] ||= I("h2", null, "Кнопки элементов", -1),
 					I("div", ht, [
 						R(Ee, {
 							modelValue: g.value,
@@ -906,7 +906,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							label: "Переключить действие",
 							color: "var(--success)"
 						}, {
-							icon: W(() => [...V[84] ||= [I("svg", {
+							icon: W(() => [...V[85] ||= [I("svg", {
 								viewBox: "0 0 24 24",
 								fill: "none",
 								stroke: "currentColor",
@@ -922,7 +922,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							"model-value": !1,
 							label: "Выключенное действие"
 						}, {
-							icon: W(() => [...V[85] ||= [I("svg", {
+							icon: W(() => [...V[86] ||= [I("svg", {
 								viewBox: "0 0 24 24",
 								fill: "none",
 								stroke: "currentColor",
@@ -939,7 +939,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							label: "Недоступное действие",
 							disabled: ""
 						}, {
-							icon: W(() => [...V[86] ||= [I("svg", {
+							icon: W(() => [...V[87] ||= [I("svg", {
 								viewBox: "0 0 24 24",
 								fill: "none",
 								stroke: "currentColor",
@@ -965,27 +965,27 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 					}),
 					I("div", gt, [
 						R(C, null, {
-							default: W(() => [...V[87] ||= [L("Основное действие", -1)]]),
+							default: W(() => [...V[88] ||= [L("Основное действие", -1)]]),
 							_: 1
 						}),
 						R(C, { variant: "secondary" }, {
-							default: W(() => [...V[88] ||= [L("Вторичное", -1)]]),
+							default: W(() => [...V[89] ||= [L("Вторичное", -1)]]),
 							_: 1
 						}),
 						R(C, { variant: "quiet" }, {
-							default: W(() => [...V[89] ||= [L("Тихое", -1)]]),
+							default: W(() => [...V[90] ||= [L("Тихое", -1)]]),
 							_: 1
 						}),
 						R(C, { variant: "dashed" }, {
-							default: W(() => [...V[90] ||= [L("Пунктирная рамка", -1)]]),
+							default: W(() => [...V[91] ||= [L("Пунктирная рамка", -1)]]),
 							_: 1
 						}),
 						R(C, {
 							layout: "stacked",
 							variant: "quiet"
 						}, {
-							icon: W(() => [...V[91] ||= [L("✦", -1)]]),
-							default: W(() => [V[92] ||= L("Действие", -1)]),
+							icon: W(() => [...V[92] ||= [L("✦", -1)]]),
+							default: W(() => [V[93] ||= L("Действие", -1)]),
 							_: 1
 						}),
 						R(C, {
@@ -993,19 +993,19 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							variant: "dashed",
 							style: { "--action-button-height": "96px" }
 						}, {
-							icon: W(() => [...V[93] ||= [L("+", -1)]]),
-							default: W(() => [V[94] ||= L("Добавить превью", -1)]),
+							icon: W(() => [...V[94] ||= [L("+", -1)]]),
+							default: W(() => [V[95] ||= L("Добавить превью", -1)]),
 							_: 1
 						}),
 						R(C, { disabled: "" }, {
-							default: W(() => [...V[95] ||= [L("Недоступно", -1)]]),
+							default: W(() => [...V[96] ||= [L("Недоступно", -1)]]),
 							_: 1
 						}),
 						R(C, {
 							loading: "",
 							"loading-label": "Загрузка"
 						}, {
-							default: W(() => [...V[96] ||= [L("Загрузка", -1)]]),
+							default: W(() => [...V[97] ||= [L("Загрузка", -1)]]),
 							_: 1
 						}),
 						R(Ce, { label: "Добавить элемент" }),
@@ -1034,18 +1034,18 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						})
 					])
 				]),
-				I("article", _t, [V[98] ||= I("h2", null, "SegmentDonutChart", -1), R(a, {
-					segments: hn,
+				I("article", _t, [V[99] ||= I("h2", null, "SegmentDonutChart", -1), R(a, {
+					segments: gn,
 					"total-label": "Всего",
 					"aria-label": "Распределение места",
-					"format-value": gn
+					"format-value": _n
 				})])
 			])]),
 			I("section", vt, [R(O, {
 				title: "Переключатели",
 				border: ""
 			}), I("div", yt, [
-				I("article", bt, [V[102] ||= I("h2", null, "Boolean controls", -1), I("div", xt, [
+				I("article", bt, [V[103] ||= I("h2", null, "Boolean controls", -1), I("div", xt, [
 					R(_, {
 						modelValue: v.value,
 						"onUpdate:modelValue": V[4] ||= (e) => v.value = e,
@@ -1064,52 +1064,35 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						"track-placement": "end",
 						label: "Приподнятая поверхность"
 					}, {
-						default: W(() => [...V[99] ||= [L(" Приподнятая поверхность — вся строка переключает значение ", -1)]]),
+						default: W(() => [...V[100] ||= [L(" Приподнятая поверхность — вся строка переключает значение ", -1)]]),
 						_: 1
 					}, 8, ["modelValue"])]),
 					I("label", Ct, [R(s, {
 						modelValue: b.value,
 						"onUpdate:modelValue": V[7] ||= (e) => b.value = e,
 						label: "Выбрать элемент"
-					}, null, 8, ["modelValue"]), V[100] ||= L(" Выбрать элемент ", -1)]),
+					}, null, 8, ["modelValue"]), V[101] ||= L(" Выбрать элемент ", -1)]),
 					I("label", wt, [R(s, {
 						modelValue: b.value,
 						"onUpdate:modelValue": V[8] ||= (e) => b.value = e,
 						size: 24,
 						label: "Крупный выбор"
-					}, null, 8, ["modelValue"]), V[101] ||= L(" Крупный выбор (24px) ", -1)])
+					}, null, 8, ["modelValue"]), V[102] ||= L(" Крупный выбор (24px) ", -1)])
 				])]),
-				I("article", Tt, [V[105] ||= I("h2", null, "Segmented controls", -1), I("div", Et, [
+				I("article", Tt, [V[106] ||= I("h2", null, "Segmented controls", -1), I("div", Et, [
 					R(c, {
 						modelValue: S.value,
 						"onUpdate:modelValue": V[9] ||= (e) => S.value = e,
-						options: fn,
+						options: pn,
 						"aria-label": "Размер"
 					}, null, 8, ["modelValue"]),
 					R(Pe, {
 						modelValue: w.value,
 						"onUpdate:modelValue": V[10] ||= (e) => w.value = e,
 						variant: "chips",
-						tabs: pn,
+						tabs: mn,
 						"max-tab-width": 160,
 						"aria-label": "Режим просмотра чипами"
-					}, {
-						"tab-actions": W(({ tab: e }) => [R(C, {
-							"icon-only": "",
-							variant: "quiet",
-							"aria-label": `Изменить ${e.title}`
-						}, {
-							icon: W(() => [...V[103] ||= [L("✎", -1)]]),
-							_: 1
-						}, 8, ["aria-label"])]),
-						_: 1
-					}, 8, ["modelValue"]),
-					R(Pe, {
-						modelValue: w.value,
-						"onUpdate:modelValue": V[11] ||= (e) => w.value = e,
-						tabs: pn,
-						"max-tab-width": 160,
-						"aria-label": "Режим просмотра"
 					}, {
 						"tab-actions": W(({ tab: e }) => [R(C, {
 							"icon-only": "",
@@ -1120,9 +1103,26 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							_: 1
 						}, 8, ["aria-label"])]),
 						_: 1
+					}, 8, ["modelValue"]),
+					R(Pe, {
+						modelValue: w.value,
+						"onUpdate:modelValue": V[11] ||= (e) => w.value = e,
+						tabs: mn,
+						"max-tab-width": 160,
+						"aria-label": "Режим просмотра"
+					}, {
+						"tab-actions": W(({ tab: e }) => [R(C, {
+							"icon-only": "",
+							variant: "quiet",
+							"aria-label": `Изменить ${e.title}`
+						}, {
+							icon: W(() => [...V[105] ||= [L("✎", -1)]]),
+							_: 1
+						}, 8, ["aria-label"])]),
+						_: 1
 					}, 8, ["modelValue"])
 				])]),
-				I("article", Dt, [V[108] ||= I("h2", null, "IconNavigation", -1), I("div", Ot, [
+				I("article", Dt, [V[109] ||= I("h2", null, "IconNavigation", -1), I("div", Ot, [
 					R(p, {
 						modelValue: T.value,
 						"onUpdate:modelValue": V[12] ||= (e) => T.value = e,
@@ -1156,7 +1156,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						height: 56,
 						label: "Inline sections"
 					}, {
-						icon: W(() => [...V[106] ||= [I("svg", {
+						icon: W(() => [...V[107] ||= [I("svg", {
 							viewBox: "0 0 24 24",
 							fill: "none",
 							stroke: "currentColor",
@@ -1176,7 +1176,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						radius: "var(--r-md)",
 						label: "Compact sections"
 					}, {
-						icon: W(() => [...V[107] ||= [I("svg", {
+						icon: W(() => [...V[108] ||= [I("svg", {
 							viewBox: "0 0 24 24",
 							fill: "none",
 							stroke: "currentColor",
@@ -1197,7 +1197,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						_: 1
 					}, 8, ["modelValue"])
 				])]),
-				I("article", Ft, [V[109] ||= I("h2", null, "AppSlider", -1), I("div", It, [R(ce, {
+				I("article", Ft, [V[110] ||= I("h2", null, "AppSlider", -1), I("div", It, [R(ce, {
 					modelValue: D.value,
 					"onUpdate:modelValue": V[17] ||= (e) => D.value = e,
 					min: 0,
@@ -1210,8 +1210,8 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				title: "Формы",
 				border: ""
 			}), I("div", Rt, [I("article", zt, [
-				V[111] ||= I("h2", null, "Form primitives", -1),
-				V[112] ||= I("p", null, "Filled controls without borders; focus and validation use surface colour. Dashed add actions keep their dashed outline.", -1),
+				V[112] ||= I("h2", null, "Form primitives", -1),
+				V[113] ||= I("p", null, "Filled controls without borders; focus and validation use surface colour. Dashed add actions keep their dashed outline.", -1),
 				I("div", Bt, [
 					R(k, {
 						label: "Название",
@@ -1281,7 +1281,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							value: $.type,
 							"onUpdate:value": V[22] ||= (e) => $.type = e
 						}, {
-							default: W(() => [...V[110] ||= [I("option", { value: "base" }, "Основной", -1), I("option", { value: "extra" }, "Дополнительный", -1)]]),
+							default: W(() => [...V[111] ||= [I("option", { value: "base" }, "Основной", -1), I("option", { value: "extra" }, "Дополнительный", -1)]]),
 							_: 1
 						}, 8, ["value"])]),
 						_: 1
@@ -1300,25 +1300,25 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				]),
 				R(Ne, {
 					"submit-text": "Сохранить",
-					onCancel: _n
+					onCancel: vn
 				})
 			])])]),
 			I("section", Vt, [R(O, {
 				title: "Выбор значений и floating UI",
 				border: ""
 			}), I("div", Ht, [
-				I("article", Ut, [V[113] ||= I("h2", null, "Selectors", -1), I("div", Wt, [
+				I("article", Ut, [V[114] ||= I("h2", null, "Selectors", -1), I("div", Wt, [
 					R(Ae, {
 						modelValue: j.value,
 						"onUpdate:modelValue": V[24] ||= (e) => j.value = e,
-						options: mn,
+						options: hn,
 						"aria-label": "Выбрать редкость",
 						searchable: ""
 					}, null, 8, ["modelValue"]),
 					R(Ae, {
 						modelValue: j.value,
 						"onUpdate:modelValue": V[25] ||= (e) => j.value = e,
-						options: mn,
+						options: hn,
 						"aria-label": "Выбор с рамкой списка",
 						style: {
 							"--popover-border-width": "1px",
@@ -1342,7 +1342,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 					}, null, 8, ["modelValue"])
 				])]),
 				I("article", Gt, [
-					V[115] ||= I("h2", null, "BasePopover", -1),
+					V[116] ||= I("h2", null, "BasePopover", -1),
 					I("button", {
 						ref_key: "popoverAnchor",
 						ref: Ve,
@@ -1357,12 +1357,12 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						"aria-label": "Пример popover",
 						"onUpdate:open": V[29] ||= (e) => K.value = e
 					}, {
-						default: W(() => [...V[114] ||= [I("span", { class: "share-component-gallery__popover-copy" }, "Headless-позиционирование, общий action transition и закрытие снаружи", -1)]]),
+						default: W(() => [...V[115] ||= [I("span", { class: "share-component-gallery__popover-copy" }, "Headless-позиционирование, общий action transition и закрытие снаружи", -1)]]),
 						_: 1
 					}, 8, ["open", "anchor"])
 				]),
 				I("article", Kt, [
-					V[122] ||= I("h2", null, "ActionMenu", -1),
+					V[123] ||= I("h2", null, "ActionMenu", -1),
 					R(De, {
 						title: "Действия",
 						heading: "Выбранная запись",
@@ -1370,7 +1370,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 					}, {
 						default: W(() => [
 							R(y, { tone: "accent" }, {
-								default: W(() => [...V[116] ||= [L("Редактировать", -1)]]),
+								default: W(() => [...V[117] ||= [L("Редактировать", -1)]]),
 								_: 1
 							}),
 							R(he, { label: "Перемещение" }, {
@@ -1378,20 +1378,20 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 									submenu: "",
 									"submenu-open": e
 								}, {
-									default: W(() => [...V[117] ||= [L("Переместить", -1)]]),
+									default: W(() => [...V[118] ||= [L("Переместить", -1)]]),
 									_: 1
 								}, 8, ["submenu-open"])]),
 								default: W(() => [R(y, null, {
-									default: W(() => [...V[118] ||= [L("В начало", -1)]]),
+									default: W(() => [...V[119] ||= [L("В начало", -1)]]),
 									_: 1
 								}), R(y, null, {
-									default: W(() => [...V[119] ||= [L("В конец", -1)]]),
+									default: W(() => [...V[120] ||= [L("В конец", -1)]]),
 									_: 1
 								})]),
 								_: 1
 							}),
 							R(y, { tone: "danger" }, {
-								default: W(() => [...V[120] ||= [L("Удалить", -1)]]),
+								default: W(() => [...V[121] ||= [L("Удалить", -1)]]),
 								_: 1
 							})
 						]),
@@ -1412,25 +1412,25 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						"trigger-attrs": { style: { display: "none" } }
 					}, {
 						default: W(({ close: e }) => [R(y, { onClick: e }, {
-							default: W(() => [...V[121] ||= [L("Закрыть меню", -1)]]),
+							default: W(() => [...V[122] ||= [L("Закрыть меню", -1)]]),
 							_: 1
 						}, 8, ["onClick"])]),
 						_: 1
 					}, 8, ["anchor"])
 				]),
-				I("article", qt, [V[125] ||= I("h2", null, "AccountMenu", -1), R(te, {
+				I("article", qt, [V[126] ||= I("h2", null, "AccountMenu", -1), R(te, {
 					label: "Sylvie",
 					"avatar-text": "S",
 					expanded: ""
 				}, {
 					default: W(({ close: e }) => [R(y, { onClick: e }, {
-						default: W(() => [...V[123] ||= [L("Настройки", -1)]]),
+						default: W(() => [...V[124] ||= [L("Настройки", -1)]]),
 						_: 1
 					}, 8, ["onClick"]), R(y, {
 						tone: "danger",
 						onClick: e
 					}, {
-						default: W(() => [...V[124] ||= [L("Выйти", -1)]]),
+						default: W(() => [...V[125] ||= [L("Выйти", -1)]]),
 						_: 1
 					}, 8, ["onClick"])]),
 					_: 1
@@ -1440,7 +1440,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				title: "Редакторы и rich text",
 				border: ""
 			}), I("div", Yt, [I("article", Xt, [
-				V[126] ||= I("h2", null, "Rich text", -1),
+				V[127] ||= I("h2", null, "Rich text", -1),
 				R(ie, {
 					ref: "richEditor",
 					modelValue: z.value,
@@ -1467,11 +1467,11 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 					node: W(({ node: e }) => [I("strong", en, U(e.label), 1)]),
 					_: 1
 				}, 8, ["html"])])
-			]), I("article", tn, [V[129] ||= I("h2", null, "Editor composition", -1), R(f, null, {
+			]), I("article", tn, [V[130] ||= I("h2", null, "Editor composition", -1), R(f, null, {
 				default: W(() => [R(le, { title: "Параметры" }, {
 					default: W(() => [R(re, { title: "Основное" }, {
 						default: W(() => [R(ae, { title: "Значение" }, {
-							actions: W(() => [...V[127] ||= [I("span", null, "12", -1)]]),
+							actions: W(() => [...V[128] ||= [I("span", null, "12", -1)]]),
 							_: 1
 						}), R(ce, {
 							modelValue: D.value,
@@ -1482,7 +1482,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						}, null, 8, ["modelValue"])]),
 						_: 1
 					}), R(l, null, {
-						default: W(() => [V[128] ||= L("Итого: ", -1), I("strong", null, U(D.value), 1)]),
+						default: W(() => [V[129] ||= L("Итого: ", -1), I("strong", null, U(D.value), 1)]),
 						_: 1
 					})]),
 					_: 1
@@ -1493,7 +1493,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				title: "Каркас приложения",
 				border: ""
 			}), I("article", rn, [
-				V[135] ||= I("h2", null, "Navigation composition", -1),
+				V[136] ||= I("h2", null, "Navigation composition", -1),
 				R(_, {
 					modelValue: G.value,
 					"onUpdate:modelValue": V[33] ||= (e) => G.value = e,
@@ -1516,7 +1516,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 							as: "div",
 							label: "share-ui"
 						}, {
-							icon: W(() => [...V[130] ||= [I("span", null, "◆", -1)]]),
+							icon: W(() => [...V[131] ||= [I("span", null, "◆", -1)]]),
 							_: 1
 						})]),
 						default: W(() => [
@@ -1525,7 +1525,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 								label: "Главная",
 								active: ""
 							}, {
-								icon: W(() => [...V[131] ||= [I("span", null, "⌂", -1)]]),
+								icon: W(() => [...V[132] ||= [I("span", null, "⌂", -1)]]),
 								_: 1
 							}),
 							R(n, { label: "Примеры" }),
@@ -1533,14 +1533,14 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 								as: "button",
 								label: "Компоненты"
 							}, {
-								icon: W(() => [...V[132] ||= [I("span", null, "◇", -1)]]),
+								icon: W(() => [...V[133] ||= [I("span", null, "◇", -1)]]),
 								_: 1
 							})
 						]),
 						_: 1
 					}, 8, ["modelValue", "elevated"])]),
-					rail: W(() => [...V[133] ||= [I("div", { class: "share-component-gallery__rail" }, "rail", -1)]]),
-					default: W(() => [V[134] ||= I("div", { class: "share-component-gallery__chrome-content" }, [
+					rail: W(() => [...V[134] ||= [I("div", { class: "share-component-gallery__rail" }, "rail", -1)]]),
+					default: W(() => [V[135] ||= I("div", { class: "share-component-gallery__chrome-content" }, [
 						I("span", { class: "share-component-gallery__chrome-kicker" }, "content"),
 						I("strong", null, "AppShell + AppSidebar"),
 						I("span", null, "Фон, точки, раскрываемая навигация и rail образуют общий каркас.")
@@ -1553,8 +1553,8 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 					title: "Оверлеи и morph",
 					border: ""
 				}),
-				I("article", sn, [V[136] ||= I("h2", null, "AppDrawer + embedded navigation", -1), R(Ke)]),
-				I("article", cn, [V[137] ||= I("h2", null, "Интерактивные примеры", -1), I("div", ln, [
+				I("article", sn, [V[137] ||= I("h2", null, "AppDrawer + embedded navigation", -1), R(Ke)]),
+				I("article", cn, [V[138] ||= I("h2", null, "Интерактивные примеры", -1), I("div", ln, [
 					I("button", {
 						type: "button",
 						class: "share-component-gallery__button",
@@ -1563,89 +1563,99 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 					I("button", {
 						type: "button",
 						class: "share-component-gallery__button",
-						onClick: V[36] ||= (e) => J.value = !0
+						onClick: V[36] ||= (e) => {
+							Y.value = !0, J.value = !0;
+						}
 					}, "AppModalFrame"),
 					I("button", {
 						type: "button",
 						class: "share-component-gallery__button",
-						onClick: V[37] ||= (e) => Y.value = !0
-					}, "ModalShell"),
+						onClick: V[37] ||= (e) => {
+							Y.value = !1, J.value = !0;
+						}
+					}, "AppModalFrame без обводки"),
 					I("button", {
 						type: "button",
 						class: "share-component-gallery__button",
 						onClick: V[38] ||= (e) => X.value = !0
-					}, "ConfirmDialog"),
+					}, "ModalShell"),
 					I("button", {
 						type: "button",
 						class: "share-component-gallery__button",
 						onClick: V[39] ||= (e) => un.value = !0
+					}, "ConfirmDialog"),
+					I("button", {
+						type: "button",
+						class: "share-component-gallery__button",
+						onClick: V[40] ||= (e) => dn.value = !0
 					}, "TextPromptDialog"),
 					I("button", {
 						ref_key: "morphOrigin",
-						ref: dn,
+						ref: fn,
 						type: "button",
 						class: "share-component-gallery__button",
-						onClick: V[40] ||= (e) => Q.value = !0
+						onClick: V[41] ||= (e) => Q.value = !0
 					}, "MorphSheet", 512)
 				])])
 			]),
 			q.value ? (B(), N(xe, {
 				key: 0,
 				"aria-label": "Пример AppModal",
-				onClose: V[41] ||= (e) => q.value = !1
+				onClose: V[42] ||= (e) => q.value = !1
 			}, {
-				default: W(() => [...V[138] ||= [I("div", { class: "share-component-gallery__overlay-content" }, [I("h2", null, "AppModal"), I("p", null, "Низкоуровневый адаптивный overlay.")], -1)]]),
+				default: W(() => [...V[139] ||= [I("div", { class: "share-component-gallery__overlay-content" }, [I("h2", null, "AppModal"), I("p", null, "Низкоуровневый адаптивный overlay.")], -1)]]),
 				_: 1
 			})) : P("", !0),
 			J.value ? (B(), N(e, {
 				key: 1,
+				outlined: Y.value,
 				title: "AppModalFrame",
 				subtitle: "header · body · footer",
-				onClose: V[44] ||= (e) => J.value = !1
+				onClose: V[45] ||= (e) => J.value = !1
 			}, {
 				footer: W(() => [R(Ne, {
-					onCancel: V[42] ||= (e) => J.value = !1,
-					onSubmit: V[43] ||= (e) => J.value = !1
+					onCancel: V[43] ||= (e) => J.value = !1,
+					onSubmit: V[44] ||= (e) => J.value = !1
 				})]),
-				default: W(() => [V[139] ||= I("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
+				default: W(() => [V[140] ||= I("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
 				_: 1
-			})) : P("", !0),
+			}, 8, ["outlined"])) : P("", !0),
 			R(o, {
-				open: Y.value,
+				open: X.value,
 				"aria-label": "Пример ModalShell",
-				onClose: V[45] ||= (e) => Y.value = !1
+				onClose: V[46] ||= (e) => X.value = !1
 			}, {
-				default: W(() => [...V[140] ||= [I("div", { class: "share-component-gallery__overlay-content" }, [I("h2", null, "ModalShell"), I("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
+				default: W(() => [...V[141] ||= [I("div", { class: "share-component-gallery__overlay-content" }, [I("h2", null, "ModalShell"), I("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
 				_: 1
 			}, 8, ["open"]),
 			R(se, {
-				open: X.value,
-				"onUpdate:open": V[46] ||= (e) => X.value = e,
+				open: un.value,
+				"onUpdate:open": V[47] ||= (e) => un.value = e,
 				title: "Подтвердить действие?",
 				message: "Проверка визуального состояния опасного действия."
 			}, null, 8, ["open"]),
 			R(ue, {
-				open: un.value,
-				"onUpdate:open": V[47] ||= (e) => un.value = e,
+				open: dn.value,
+				"onUpdate:open": V[48] ||= (e) => dn.value = e,
 				title: "Новое название",
 				label: "Название",
 				initial: "Пример"
 			}, null, 8, ["open"]),
 			Q.value ? (B(), N(de, {
 				key: 2,
-				"origin-el": dn.value,
+				"origin-el": fn.value,
 				"aria-label": "Пример MorphSheet",
 				"open-duration": 300,
 				"close-duration": 200,
 				"show-close": "",
-				onClose: V[48] ||= (e) => Q.value = !1
+				onClose: V[49] ||= (e) => Q.value = !1
 			}, {
-				head: W(() => [...V[141] ||= [I("div", { class: "share-component-gallery__morph-head" }, [I("strong", null, "MorphSheet")], -1)]]),
-				default: W(() => [V[142] ||= I("div", { class: "share-component-gallery__overlay-content" }, [I("p", null, "Контейнер раскрывается из исходной кнопки и возвращается обратно.")], -1)]),
+				head: W(() => [...V[142] ||= [I("div", { class: "share-component-gallery__morph-head" }, [I("strong", null, "MorphSheet")], -1)]]),
+				default: W(() => [V[143] ||= I("div", { class: "share-component-gallery__overlay-content" }, [I("p", null, "Контейнер раскрывается из исходной кнопки и возвращается обратно.")], -1)]),
 				_: 1
 			}, 8, ["origin-el"])) : P("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-fd7a2d4c"]]);
+}, [["__scopeId", "data-v-4a9b4311"]]);
 //#endregion
 export { Y as COMPONENT_GALLERY_ALIASES, Je as COMPONENT_GALLERY_COMPONENTS, X as ComponentGallery };

@@ -369,6 +369,7 @@ export const AppDrawer: DefineComponent<{
 }>
 
 export const AppModal: DefineComponent<{
+  outlined?: boolean
   zIndex?: number
   wide?: boolean
   extraWide?: boolean
@@ -384,6 +385,7 @@ export const AppModal: DefineComponent<{
 }>
 
 export const AppModalFrame: DefineComponent<{
+  outlined?: boolean
   title?: string
   subtitle?: string | number
   wide?: boolean

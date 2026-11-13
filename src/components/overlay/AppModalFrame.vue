@@ -5,6 +5,7 @@
     :wide="wide"
     :extra-wide="extraWide"
     :fullscreen="fullscreen"
+    :outlined="outlined"
     :show-close="false"
     :show-handle="false"
     :dismissible="dismissible"
@@ -72,6 +73,7 @@ defineProps({
   wide: { type: Boolean, default: false },
   extraWide: { type: Boolean, default: false },
   fullscreen: { type: Boolean, default: false },
+  outlined: { type: Boolean, default: true },
   padded: { type: Boolean, default: true },
   bodyScroll: { type: Boolean, default: true },
   dismissible: { type: Boolean, default: true },

@@ -237,6 +237,9 @@ permissions или конкретном домене приложения.
 - `AppModal` — низкоуровневое DnD-style окно с Teleport, focus trap,
   topmost Escape, mobile swipe-down и анимацией.
 - `AppModalFrame` — header/body/footer shell поверх `AppModal`.
+  Оба компонента принимают `outlined` (по умолчанию `true`): `:outlined="false"`
+  убирает только внешнюю обводку окна на desktop и mobile. Фон, тень,
+  скругления и разделители шапки/подвала сохраняются.
 - `ModalShell` — controlled `open`-адаптер для простых окон.
 - `ConfirmDialog` поддерживает controlled `open` и условный mount.
 - `TextPromptDialog` (`PromptDialog` alias) поддерживает события `confirm` и

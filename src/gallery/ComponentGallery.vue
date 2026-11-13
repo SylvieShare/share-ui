@@ -425,7 +425,8 @@
         <h2>Интерактивные примеры</h2>
         <div class="share-component-gallery__row">
           <button type="button" class="share-component-gallery__button" @click="modalOpen = true">AppModal</button>
-          <button type="button" class="share-component-gallery__button" @click="frameOpen = true">AppModalFrame</button>
+          <button type="button" class="share-component-gallery__button" @click="frameOutlined = true; frameOpen = true">AppModalFrame</button>
+          <button type="button" class="share-component-gallery__button" @click="frameOutlined = false; frameOpen = true">AppModalFrame без обводки</button>
           <button type="button" class="share-component-gallery__button" @click="shellOpen = true">ModalShell</button>
           <button type="button" class="share-component-gallery__button" @click="confirmOpen = true">ConfirmDialog</button>
           <button type="button" class="share-component-gallery__button" @click="promptOpen = true">TextPromptDialog</button>
@@ -441,7 +442,7 @@
       </div>
     </AppModal>
 
-    <AppModalFrame v-if="frameOpen" title="AppModalFrame" subtitle="header · body · footer" @close="frameOpen = false">
+    <AppModalFrame v-if="frameOpen" :outlined="frameOutlined" title="AppModalFrame" subtitle="header · body · footer" @close="frameOpen = false">
       <p>Готовая структура редактора поверх AppModal.</p>
       <template #footer><FormActionButtons @cancel="frameOpen = false" @submit="frameOpen = false" /></template>
     </AppModalFrame>
@@ -576,6 +577,7 @@ const actionMenuAnchor = ref(null)
 const anchoredActionMenu = ref(null)
 const modalOpen = ref(false)
 const frameOpen = ref(false)
+const frameOutlined = ref(true)
 const shellOpen = ref(false)
 const confirmOpen = ref(false)
 const promptOpen = ref(false)
