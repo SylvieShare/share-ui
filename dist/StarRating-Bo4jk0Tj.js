@@ -127,7 +127,11 @@ var ce = /*#__PURE__*/ U({
 		surface: {
 			type: String,
 			default: "solid",
-			validator: (e) => ["solid", "glass"].includes(e)
+			validator: (e) => [
+				"solid",
+				"glass",
+				"popover"
+			].includes(e)
 		},
 		tint: {
 			type: Boolean,
@@ -164,7 +168,8 @@ var ce = /*#__PURE__*/ U({
 				"base-tile--interactive": e.interactive,
 				"base-tile--tint": e.tint,
 				"base-tile--framed": e.framed,
-				"base-tile--glass": e.surface === "glass"
+				"base-tile--glass": e.surface === "glass",
+				"base-tile--popover": e.surface === "popover"
 			}]),
 			style: b({
 				"--tile-color": n.value,
@@ -174,7 +179,7 @@ var ce = /*#__PURE__*/ U({
 			onClick: r[0] ||= (e) => t.$emit("click", e)
 		}, [O(t.$slots, "default", {}, void 0, !0)], 6));
 	}
-}, [["__scopeId", "data-v-692d5512"]]), q = { class: "morph-tile-title" }, J = ["aria-label", "disabled"], ue = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-0251a8a7"]]), q = { class: "morph-tile-title" }, J = ["aria-label", "disabled"], ue = /*#__PURE__*/ U({
 	__name: "MorphTileHeader",
 	props: {
 		title: {

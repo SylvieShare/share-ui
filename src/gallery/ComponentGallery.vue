@@ -38,6 +38,7 @@
             </BaseTile>
             <BaseTile framed :frame-width="2" class="share-component-gallery__tile"><strong>Усиленная рамка</strong><span>frameWidth=2</span></BaseTile>
             <BaseTile elevated :outlined="false" class="share-component-gallery__tile"><strong>Приподнятая поверхность</strong><span>elevated</span></BaseTile>
+            <BaseTile surface="popover" elevated :outlined="false" class="share-component-gallery__tile"><strong>Поверхность меню</strong><span>surface=popover · elevated</span></BaseTile>
             <BaseTile elevated interactive class="share-component-gallery__tile"><strong>Тень с обводкой</strong><span>elevated · outlined · interactive</span></BaseTile>
             <BaseTile elevated framed interactive class="share-component-gallery__tile"><strong>Тень с рамкой</strong><span>elevated · framed · interactive</span></BaseTile>
             <MorphTile title="Редактируемая плитка" show-edit edit-label="Редактировать" @edit="morphTileEdits++">

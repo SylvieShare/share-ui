@@ -1,7 +1,7 @@
 <template>
   <div
     class="base-tile"
-    :class="{ 'base-tile--outlined': outlined, 'base-tile--elevated': elevated, 'base-tile--interactive': interactive, 'base-tile--tint': tint, 'base-tile--framed': framed, 'base-tile--glass': surface === 'glass' }"
+    :class="{ 'base-tile--outlined': outlined, 'base-tile--elevated': elevated, 'base-tile--interactive': interactive, 'base-tile--tint': tint, 'base-tile--framed': framed, 'base-tile--glass': surface === 'glass', 'base-tile--popover': surface === 'popover' }"
     :style="{ '--tile-color': resolvedColor, '--tile-frame-width': `${Math.max(1, Math.min(4, Number(frameWidth) || 1))}px`, ...(surface === 'glass' ? backdropBlurStyle(14) : {}) }"
     @click="$emit('click', $event)"
   >
@@ -16,7 +16,7 @@ import { computed } from 'vue'
 const props = defineProps({
   // Accent color for tint and frame.
   color: { type: String, default: null },
-  surface: { type: String, default: 'solid', validator: value => ['solid', 'glass'].includes(value) },
+  surface: { type: String, default: 'solid', validator: value => ['solid', 'glass', 'popover'].includes(value) },
   // Faint always-on background tint in the tile color (a light accent).
   tint: { type: Boolean, default: false },
   // Gradient fill + colored border in the tile color (e.g. the HP block).
@@ -52,6 +52,7 @@ const resolvedColor = computed(() => props.color || 'var(--accent)')
 .base-tile--glass {
   --tile-surface: color-mix(in srgb, var(--surface) 76%, transparent);
 }
+.base-tile--popover { --tile-surface: var(--popover-bg); }
 
 .base-tile--tint {
   background: color-mix(in srgb, var(--tile-color) 6%, var(--tile-surface));

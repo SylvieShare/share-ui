@@ -30,3 +30,10 @@ it('supports detached elevated surfaces without changing the default or slot con
   expect(html).toContain('base-tile--elevated');expect(html).toContain('<button>Action</button>');expect(html).not.toContain('elevated="')
  }
 })
+
+it('supports the opaque popover surface together with elevation and framing',async()=>{
+ for(const props of [{outlined:false,elevated:true},{framed:true,tint:true,interactive:true}]){
+  const html=await render({...props,surface:'popover'})
+  expect(html).toContain('base-tile--popover');expect(html).not.toContain('backdrop-filter:');expect(html).toContain('<button>Action</button>');expect(html).not.toContain('surface="popover"')
+ }
+})

@@ -31,7 +31,7 @@ export const BaseTile: DefineComponent<{
   outlined?: boolean
   elevated?: boolean
   frameWidth?: number
-  surface?: 'solid' | 'glass'
+  surface?: 'solid' | 'glass' | 'popover'
   color?: string | null
   tint?: boolean
   framed?: boolean
