@@ -527,6 +527,8 @@ export interface SortableDrop<T> {
 }
 
 export interface UseSortableConfig<T> {
+  /** Hold duration in ms before a drag activates. Default 0 preserves movement activation. */
+  activationDelay?: number
   groups: Record<string, SortableGroup<T>>
   getKey: (item: T) => string | number
   onDrop?: (drop: SortableDrop<T>) => void

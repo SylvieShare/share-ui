@@ -2,6 +2,7 @@ import { onBeforeUnmount, ref } from 'vue'
 import { claimSortableGesture } from '../internal/sortableGesture.js'
 
 const DRAG_THRESHOLD = 4
+const HOLD_TOLERANCE = 8
 
 export function sortableItemElements(containerEl, sourceKey = null) {
   return Array.from(containerEl.querySelectorAll('[data-sortable-key]'))
@@ -51,6 +52,7 @@ export function reorderByDrop(array, fromIndex, toIndex) {
  */
 export function useSortable(config) {
   const { groups, getKey, onDrop, canDropAt } = config
+  const activationDelay = Number.isFinite(config.activationDelay) ? Math.max(0, config.activationDelay) : 0
 
   const dragging = ref(false)
   const sourceGroup = ref(null)
@@ -67,34 +69,58 @@ export function useSortable(config) {
   let releaseGesture = null
   let suppressClickUntil = 0
   let suppressClickTimer = null
+  let activationTimer = null
 
   function startDrag(e, item, groupName, index) {
     if (e.button !== undefined && e.button !== 0) return
+    if (pendingStart || dragging.value) return
     const handle = e.currentTarget
     const sourceEl = handle.closest('[data-sortable-key]')
     if (!sourceEl) return
 
-    pendingStart = { x: e.clientX, y: e.clientY, item, group: groupName, index, sourceEl }
+    pendingStart = { x: e.clientX, y: e.clientY, pointerId: e.pointerId, pointerType: e.pointerType, item, group: groupName, index, sourceEl }
     releaseGesture?.()
-    releaseGesture = claimSortableGesture()
+    if (!activationDelay) releaseGesture = claimSortableGesture()
     document.addEventListener('pointermove', onPointerMove)
     document.addEventListener('pointerup', onPointerEnd)
     document.addEventListener('pointercancel', onPointerEnd)
     window.addEventListener('keydown', onKeyDown, true)
-    e.preventDefault()
+    window.addEventListener('blur', onWindowBlur)
+    if (activationDelay) {
+      document.addEventListener('touchmove', onTouchMove, { passive: false })
+      document.addEventListener('contextmenu', onContextMenu, true)
+      activationTimer = setTimeout(() => {
+        activationTimer = null
+        if (!pendingStart?.sourceEl.isConnected) { cleanup(); return }
+        releaseGesture = claimSortableGesture()
+        beginDrag()
+      }, activationDelay)
+    } else e.preventDefault()
   }
 
   function onPointerMove(e) {
+    if (pendingStart?.pointerId && e.pointerId && pendingStart.pointerId !== e.pointerId) return
     if (!dragging.value) {
       if (!pendingStart) return
       const dx = e.clientX - pendingStart.x
       const dy = e.clientY - pendingStart.y
+      if (activationDelay) {
+        if (Math.hypot(dx, dy) > HOLD_TOLERANCE) cleanup(true)
+        return
+      }
       if (Math.hypot(dx, dy) < DRAG_THRESHOLD) return
       beginDrag()
     }
     moveGhost(e.clientX, e.clientY)
     updateTarget(e.clientX, e.clientY)
   }
+
+  function onTouchMove(event) {
+    if (event.touches.length !== 1) { cleanup(); return }
+    if (dragging.value && pendingStart?.pointerType === 'touch' && event.cancelable) event.preventDefault()
+  }
+  function onContextMenu(event) { if (pendingStart || dragging.value) event.preventDefault() }
+  function onWindowBlur() { cleanup() }
 
   function beginDrag() {
     const { sourceEl, x, y, item, group, index } = pendingStart
@@ -136,6 +162,7 @@ export function useSortable(config) {
       transformOrigin: 'top left',
     })
     mount.classList.add('sortable-ghost')
+    mount.setAttribute('aria-hidden', 'true')
     document.body.appendChild(mount)
     ghostEl = mount
 
@@ -184,6 +211,7 @@ export function useSortable(config) {
   }
 
   function onPointerEnd(event) {
+    if (pendingStart?.pointerId && event?.pointerId && pendingStart.pointerId !== event.pointerId) return
     if (event?.type === 'pointercancel') { cleanup(); return }
     if (!dragging.value) { cleanup(); return }
     const result = {
@@ -206,12 +234,17 @@ export function useSortable(config) {
     }
   }
 
-  function cleanup() {
-    const wasDragging = dragging.value
+  function cleanup(suppressClick = false) {
+    const wasDragging = dragging.value || suppressClick
+    clearTimeout(activationTimer)
+    activationTimer = null
     document.removeEventListener('pointermove', onPointerMove)
     document.removeEventListener('pointerup', onPointerEnd)
     document.removeEventListener('pointercancel', onPointerEnd)
     window.removeEventListener('keydown', onKeyDown, true)
+    window.removeEventListener('blur', onWindowBlur)
+    document.removeEventListener('touchmove', onTouchMove)
+    document.removeEventListener('contextmenu', onContextMenu, true)
     if (ghostEl) { ghostEl.remove(); ghostEl = null }
     document.body.classList.remove('sortable-dragging')
     dragging.value = false

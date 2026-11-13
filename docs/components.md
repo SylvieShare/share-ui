@@ -388,6 +388,14 @@ HavenShare скрывает его при своём bottom-nav до 768, Trench
 
 ## useSortable / reorderByDrop
 
+`activationDelay` is an optional hold duration in milliseconds (default 0).
+With a delay, movement beyond 8px before activation cancels the drag so native
+scrolling and swipe navigation can proceed. After activation the sortable owns
+the gesture, including touch movement; release, pointercancel, blur, Escape and
+unmount clear the pending timer. Delayed handles should allow normal touch
+actions rather than setting `touch-action:none`. Consumers use
+`shouldSuppressClick()` / `suppressNextClick` to swallow a drag's trailing click.
+
 `isSortableGestureActive()` сообщает, что указатель занят сортировкой, начиная
 с принятого `startDrag`, включая ожидание порога движения. Навигационный свайп
 должен пропустить такой touchstart и отменить свой кандидат при занятом move/end.
