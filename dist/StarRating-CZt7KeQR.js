@@ -88,7 +88,7 @@ var U = (e, t) => {
 			class: "share-choice-card__description"
 		}, j(e.description), 9, ae)) : o("", !0)])], 14, W));
 	}
-}, [["__scopeId", "data-v-edf61269"]]);
+}, [["__scopeId", "data-v-46aa0a91"]]);
 //#endregion
 //#region src/lib/blur.js
 function G(e = 8) {

@@ -1,11 +1,11 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as c, F as l, Ft as ee, G as te, H as ne, I as re, K as ie, L as ae, Mt as u, Nt as oe, O as se, Ot as ce, P as d, Pt as f, R as le, S as ue, St as p, T as de, Tt as m, V as fe, W as pe, _ as me, a as he, b as ge, bt as h, c as g, ct as _e, d as ve, f as ye, ft as _, g as be, h as xe, i as v, it as Se, j as Ce, jt as we, k as y, kt as Te, l as b, lt as Ee, m as x, n as De, o as S, p as C, pt as Oe, q as ke, r as Ae, rt as je, s as w, t as T, u as E, ut as D, v as Me, w as Ne, wt as O, x as k, xt as A, y as Pe, z as j, zt as M } from "./StarRating-D5GdwgUa.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as c, F as l, Ft as ee, G as te, H as ne, I as re, K as ie, L as ae, Mt as u, Nt as oe, O as se, Ot as ce, P as d, Pt as f, R as le, S as ue, St as p, T as de, Tt as m, V as fe, W as pe, _ as me, a as he, b as ge, bt as h, c as g, ct as _e, d as ve, f as ye, ft as _, g as be, h as xe, i as v, it as Se, j as Ce, jt as we, k as y, kt as Te, l as b, lt as Ee, m as x, n as De, o as S, p as C, pt as Oe, q as ke, r as Ae, rt as je, s as w, t as T, u as E, ut as D, v as Me, w as Ne, wt as O, x as k, xt as A, y as Pe, z as j, zt as M } from "./StarRating-CZt7KeQR.js";
 import { Fragment as N, createBlock as P, createCommentVNode as F, createElementBlock as I, createElementVNode as L, createTextVNode as R, createVNode as z, h as B, normalizeClass as Fe, normalizeStyle as Ie, openBlock as V, reactive as Le, ref as H, renderList as U, toDisplayString as W, unref as Re, withCtx as G, withModifiers as ze } from "vue";
 //#region src/gallery/ChoiceCardGalleryExample.vue
 var K = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 	__name: "ChoiceCardGalleryExample",
 	setup(e) {
 		let t = H("First option"), n = H(!0), r = H(!0), i = H(!1), a = ["Centered icon", "Long caption wraps below the icon"], o = H(a[0]), s = ["First option", "Second option"];
-		return (e, c) => (V(), I("article", null, [c[8] ||= L("h2", null, "ChoiceCard", -1), L("div", K, [
+		return (e, c) => (V(), I("article", null, [c[10] ||= L("h2", null, "ChoiceCard", -1), L("div", K, [
 			(V(), I(N, null, U(s, (e) => z(M, {
 				key: e,
 				label: e,
@@ -13,7 +13,7 @@ var K = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				"model-value": t.value === e,
 				"onUpdate:modelValue": (n) => t.value = n ? e : ""
 			}, {
-				icon: G(() => [...c[3] ||= [L("svg", {
+				icon: G(() => [...c[4] ||= [L("svg", {
 					viewBox: "0 0 24 24",
 					fill: "none",
 					stroke: "currentColor",
@@ -37,7 +37,7 @@ var K = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				modelValue: n.value,
 				"onUpdate:modelValue": c[0] ||= (e) => n.value = e
 			}, {
-				icon: G(() => [...c[4] ||= [L("svg", {
+				icon: G(() => [...c[5] ||= [L("svg", {
 					viewBox: "0 0 24 24",
 					fill: "none",
 					stroke: "currentColor",
@@ -52,7 +52,7 @@ var K = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				"model-value": o.value === e,
 				"onUpdate:modelValue": (t) => o.value = e
 			}, {
-				icon: G(() => [...c[5] ||= [L("svg", {
+				icon: G(() => [...c[6] ||= [L("svg", {
 					viewBox: "0 0 24 24",
 					fill: "none",
 					stroke: "currentColor",
@@ -70,18 +70,34 @@ var K = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				disabled: ""
 			}),
 			z(M, {
+				label: "Centered inline choice",
+				layout: "inline",
+				centered: "",
+				"selection-indicator": "outline",
+				modelValue: n.value,
+				"onUpdate:modelValue": c[1] ||= (e) => n.value = e
+			}, {
+				icon: G(() => [...c[7] ||= [L("svg", {
+					viewBox: "0 0 24 24",
+					fill: "none",
+					stroke: "currentColor",
+					"stroke-width": "2"
+				}, [L("path", { d: "M5 12h14m-6-6 6 6-6 6" })], -1)]]),
+				_: 1
+			}, 8, ["modelValue"]),
+			z(M, {
 				label: "Compact icon choice",
 				layout: "icon",
 				centered: "",
 				modelValue: r.value,
-				"onUpdate:modelValue": c[1] ||= (e) => r.value = e,
+				"onUpdate:modelValue": c[2] ||= (e) => r.value = e,
 				style: {
 					"--choice-card-min-height": "72px",
 					"--choice-card-padding": "6px 8px",
 					"--choice-card-gap": "4px"
 				}
 			}, {
-				icon: G(() => [...c[6] ||= [L("svg", {
+				icon: G(() => [...c[8] ||= [L("svg", {
 					viewBox: "0 0 24 24",
 					fill: "none",
 					stroke: "currentColor",
@@ -97,10 +113,10 @@ var K = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 				"selection-indicator": "outline",
 				color: "var(--success)",
 				modelValue: i.value,
-				"onUpdate:modelValue": c[2] ||= (e) => i.value = e,
+				"onUpdate:modelValue": c[3] ||= (e) => i.value = e,
 				style: { "--choice-card-min-height": "88px" }
 			}, {
-				icon: G(() => [...c[7] ||= [L("svg", {
+				icon: G(() => [...c[9] ||= [L("svg", {
 					viewBox: "0 0 24 24",
 					fill: "none",
 					stroke: "currentColor",
@@ -110,7 +126,7 @@ var K = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 			}, 8, ["modelValue"])
 		])]));
 	}
-}, [["__scopeId", "data-v-e9cdf31f"]]), q = { class: "blur-gallery-scene" }, Ve = { class: "blur-gallery-label" }, He = /*#__PURE__*/ r({
+}, [["__scopeId", "data-v-0276b94d"]]), q = { class: "blur-gallery-scene" }, Ve = { class: "blur-gallery-label" }, He = /*#__PURE__*/ r({
 	__name: "BlurGalleryExample",
 	setup(e) {
 		let t = H(8);

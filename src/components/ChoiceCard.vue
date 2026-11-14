@@ -110,6 +110,9 @@ const descriptionId = useId()
 .share-choice-card--inline.share-choice-card--described .share-choice-card__label { grid-column: 2 / 4; }
 .share-choice-card--inline.share-choice-card--described .share-choice-card__check { grid-row: 2; }
 .share-choice-card--inline .share-choice-card__description { grid-area: 2 / 2; }
+.share-choice-card--inline.share-choice-card--centered {grid-template-columns:auto minmax(0,auto) auto;justify-content:center}
+.share-choice-card--inline.share-choice-card--centered.share-choice-card--outlined-selection {grid-template-columns:auto minmax(0,auto)}
+.share-choice-card--inline.share-choice-card--centered.share-choice-card--outlined-selection.share-choice-card--described .share-choice-card__label {grid-column:2}
 
 .share-choice-card--icon {
   position: relative;

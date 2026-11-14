@@ -105,7 +105,9 @@ This layout supports `--choice-card-icon-size` (28px), `--choice-card-label-size
 (11px), and `--choice-card-label-line-height` (14px), with an 88px minimum height.
 `tinted` adds a gentle semantic-color fill and colors the label, while selection
 retains the stronger fill and checkmark. `centered` vertically centers the content
-of icon cards with extra height. Both options default to false.
+of icon cards with extra height. In inline cards, `centered` horizontally centers
+the icon, text and optional description as one group, preserving their order.
+Both options default to false.
 `selectionIndicator="outline"` replaces the checkmark with a saturated selected
 fill and a 2px inset outline in the semantic color. The outline does not change
 the card geometry. The default `check` retains the existing checkmark and fill.
