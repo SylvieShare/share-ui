@@ -27,6 +27,7 @@
             <BaseTile surface="glass" tint interactive class="share-component-gallery__tile">Glass interactive</BaseTile>
           </div>
           <ActionButton icon-only variant="quiet" aria-label="Действие без рамки"><template #icon>✦</template></ActionButton>
+            <ActionButton icon-only variant="quiet" style="--action-button-icon-size:36px" aria-label="Компактное действие"><template #icon>✦</template></ActionButton>
           <div class="share-component-gallery__tile-row">
             <BaseTile tint interactive class="share-component-gallery__tile">
               <TileAccentStrip /><strong>Акцентная плитка</strong>
@@ -179,6 +180,7 @@
           <div class="share-component-gallery__stack">
             <MultiToggle v-model="toggleValue" :options="toggleOptions" aria-label="Размер" />
             <SlidingTabs v-model="tabValue" variant="chips" :tabs="tabs" :max-tab-width="160" aria-label="Режим просмотра чипами"><template #tab-actions="{tab}"><ActionButton icon-only variant="quiet" :aria-label="`Изменить ${tab.title}`"><template #icon>✎</template></ActionButton></template></SlidingTabs>
+            <SlidingTabs v-model="tabValue" variant="plain" :tabs="tabs" aria-label="Режим с собственной подложкой"><template #decoration="{active}"><span aria-hidden="true" :style="{position:'absolute',inset:'2px',zIndex:-1,pointerEvents:'none',borderRadius:'8px',background:active?'var(--surface-active)':'var(--surface)'}" /></template></SlidingTabs>
             <SlidingTabs v-model="tabValue" :tabs="tabs" :max-tab-width="160" aria-label="Режим просмотра"><template #tab-actions="{tab}"><ActionButton icon-only variant="quiet" :aria-label="`Изменить ${tab.title}`"><template #icon>✎</template></ActionButton></template></SlidingTabs>
           </div>
         </article>

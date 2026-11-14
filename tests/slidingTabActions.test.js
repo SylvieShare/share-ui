@@ -21,3 +21,12 @@ it('offers chip tabs with an active container and no underline while retaining t
  const standard=await renderToString(createSSRApp({render:()=>h(SlidingTabs,{tabs:[{key:'a',title:'First'}],modelValue:'a'})}))
  expect(standard).toContain('share-sliding-tabs__underline')
 })
+
+it('passes selection to a decorative slot without replacing keyboard tab semantics',async()=>{
+ const html=await renderToString(createSSRApp({render:()=>h(SlidingTabs,{variant:'plain',tabs:[{key:'a',title:'First'},{key:'b',title:'Second'}],modelValue:'b'},{decoration:({tab,active})=>h('span',{'data-art':tab.key,'data-selected':String(active),'aria-hidden':'true'})})}))
+ expect(html).toContain('share-sliding-tabs--plain')
+ expect(html).toContain('data-art="a" data-selected="false"')
+ expect(html).toContain('data-art="b" data-selected="true"')
+ expect(html).toContain('role="tab"')
+ expect(html).not.toContain('share-sliding-tabs__underline')
+})

@@ -18,7 +18,7 @@ defineProps({
 })
 </script>
 <style scoped>
-.share-action-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 38px; padding: 9px 16px; border: var(--control-border-width) solid transparent; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 600; line-height: 1.3; cursor: pointer; transition: background .15s, border-color .15s; }
+.share-action-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: var(--action-button-min-height, 38px); padding: 9px 16px; border: var(--control-border-width) solid transparent; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 600; line-height: 1.3; cursor: pointer; transition: background .15s, border-color .15s; }
 .share-action-button--primary { background: var(--accent); color: var(--text-on-accent); }
 .share-action-button--primary:hover:not(:disabled) { background: var(--accent-hover); }
 .share-action-button--secondary { background: var(--surface-raised); color: var(--text-2); }
@@ -27,7 +27,7 @@ defineProps({
 .share-action-button--dashed:hover:not(:disabled), .share-action-button--secondary:hover:not(:disabled), .share-action-button--quiet:hover:not(:disabled) { background: var(--surface-raised); color: var(--text-1); }
 .share-action-button:disabled { opacity: .45; cursor: not-allowed; }
 .share-action-button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.share-action-button--icon-only { width: 48px; height: 48px; padding: 0; gap: 0; flex-shrink: 0; }
+.share-action-button--icon-only { width: var(--action-button-icon-size, 48px); height: var(--action-button-icon-size, 48px); min-height: var(--action-button-icon-size, var(--action-button-min-height, 38px)); padding: 0; gap: 0; flex-shrink: 0; }
 .share-action-button--icon-only :deep(svg) { flex-shrink: 0; }
 .share-action-button--stacked { flex-direction: column; gap: 3px; min-width: 56px; height: var(--action-button-height, 48px); padding: 4px 8px; font-size: 10px; line-height: 1.2; }
 .share-action-button--stacked > :deep(svg) { flex: none; }

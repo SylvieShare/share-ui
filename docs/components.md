@@ -163,10 +163,14 @@ Reduced motion disables the background/checkmark transitions.
   рассчитывается без DOM-измерений на каждом кадре. `revealActive()` прокручивает
   только саму полосу, не документ. Reduced motion отключает все переходы.
   Компонент аддитивный; существующие `SlidingTabs` и sidebar primitives не меняются.
-- `SlidingTabs`: `variant=underline|chips` (по умолчанию underline), tabs `{ key, title, icon?, disabled?, id?, panelId? }`, icon-slot
+- `SlidingTabs`: `variant=underline|chips|plain` (по умолчанию underline), tabs `{ key, title, icon?, disabled?, id?, panelId? }`, icon-slot
   и клавиатурная навигация. `maxTabWidth` ограничивает кнопку и сокращает длинное
   название многоточием. Slot `tab-actions({tab})` размещает отдельные действия
   рядом с вкладкой, вне её кнопки: переименование, закрытие или меню.
+  `plain` оставляет нейтральные кнопки без капсул и подчёркивания. Слот
+  `decoration({tab,active})` позволяет передать декоративную подложку внутрь
+  кнопки; consumer отвечает за `pointer-events:none` и контраст. CSS-параметры
+  plain-полосы: `--sliding-tabs-gap` и `--sliding-tabs-padding`.
   В chips-режиме название и действия объединены капсулой; выбранная капсула
   получает акцентные фон и рамку с плавным переходом. Подчёркивание не выводится.
   Клавиатура, доступные имена и прокрутка одинаковы для обоих вариантов. Состояния
@@ -564,6 +568,8 @@ Consumer обязан разрешать только безопасные UI-д
 тура одновременно. Действия записи данных и необратимые клики не входят в тур.
 
 `ActionButton.iconOnly` задаёт кнопку 48×48 без текстовых отступов.
+Размер можно задать через `--action-button-icon-size`, минимальную высоту
+текстовой кнопки — через `--action-button-min-height`; defaults не меняются.
 Иконка передаётся в `icon`, доступное имя — `aria-label`; вариант `quiet`
 подходит для действий без рамки.
 

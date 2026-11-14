@@ -15,6 +15,7 @@
       @click="select(tab.key)"
       @keydown="onKeydown($event, index)"
     >
+      <slot name="decoration" :tab="tab" :active="modelValue === tab.key" />
       <slot name="icon" :tab="tab">
         <img v-if="tab.icon || tab.svg" class="share-sliding-tabs__icon" :src="tab.icon || tab.svg" alt="" aria-hidden="true" />
       </slot>
@@ -33,7 +34,7 @@ const props = defineProps({
   modelValue: { type: [String, Number], default: null },
   ariaLabel: { type: String, default: '' },
   maxTabWidth: { type: Number, default: 0 },
-  variant: { type: String, default: 'underline', validator: value => ['underline', 'chips'].includes(value) },
+  variant: { type: String, default: 'underline', validator: value => ['underline', 'chips', 'plain'].includes(value) },
 })
 const emit = defineEmits(['update:modelValue'])
 const rootElement = ref(null)
@@ -118,6 +119,8 @@ defineExpose({ updateUnderline })
 }
 .share-sliding-tabs__item { display: inline-flex; align-items: stretch; flex: none; }
 .share-sliding-tabs__tab {
+  position: relative;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -174,5 +177,7 @@ defineExpose({ updateUnderline })
 }
 .share-sliding-tabs--chips .share-sliding-tabs__tab--active { color: var(--text-1); }
 .share-sliding-tabs--chips .share-sliding-tabs__tab:focus-visible { border-radius: var(--r-pill); }
+.share-sliding-tabs--plain {align-items:stretch;gap:var(--sliding-tabs-gap,8px);padding:var(--sliding-tabs-padding,0);}
+.share-sliding-tabs--plain .share-sliding-tabs__tab {min-height:44px;padding:8px 16px;font-size:14px;letter-spacing:0;}
 @media (prefers-reduced-motion: reduce) { .share-sliding-tabs__underline, .share-sliding-tabs__tab, .share-sliding-tabs--chips .share-sliding-tabs__item { transition: none; } }
 </style>

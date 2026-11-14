@@ -1293,7 +1293,11 @@ var Ge = ["aria-label"], Ke = ["aria-orientation", "aria-label"], qe = [
 		variant: {
 			type: String,
 			default: "underline",
-			validator: (e) => ["underline", "chips"].includes(e)
+			validator: (e) => [
+				"underline",
+				"chips",
+				"plain"
+			].includes(e)
 		}
 	},
 	emits: ["update:modelValue"],
@@ -1389,20 +1393,27 @@ var Ge = ["aria-label"], Ke = ["aria-orientation", "aria-label"], qe = [
 			disabled: e.disabled,
 			onClick: (t) => h(e.key),
 			onKeydown: (e) => y(e, r)
-		}, [O(n.$slots, "icon", { tab: e }, () => [e.icon || e.svg ? (w(), s("img", {
-			key: 0,
-			class: "share-sliding-tabs__icon",
-			src: e.icon || e.svg,
-			alt: "",
-			"aria-hidden": "true"
-		}, null, 8, $e)) : o("", !0)], !0), c("span", et, j(e.title), 1)], 42, Qe), O(n.$slots, "tab-actions", { tab: e }, void 0, !0)], 2))), 128)), t.variant === "underline" ? (w(), s("span", {
+		}, [
+			O(n.$slots, "decoration", {
+				tab: e,
+				active: t.modelValue === e.key
+			}, void 0, !0),
+			O(n.$slots, "icon", { tab: e }, () => [e.icon || e.svg ? (w(), s("img", {
+				key: 0,
+				class: "share-sliding-tabs__icon",
+				src: e.icon || e.svg,
+				alt: "",
+				"aria-hidden": "true"
+			}, null, 8, $e)) : o("", !0)], !0),
+			c("span", et, j(e.title), 1)
+		], 42, Qe), O(n.$slots, "tab-actions", { tab: e }, void 0, !0)], 2))), 128)), t.variant === "underline" ? (w(), s("span", {
 			key: 0,
 			class: "share-sliding-tabs__underline",
 			style: b(p.value),
 			"aria-hidden": "true"
 		}, null, 4)) : o("", !0)], 14, Ze));
 	}
-}, [["__scopeId", "data-v-b5140253"]]), nt = [
+}, [["__scopeId", "data-v-caccf49f"]]), nt = [
 	"aria-checked",
 	"aria-label",
 	"disabled"
@@ -5635,7 +5646,7 @@ var Di = ["aria-label"], Oi = { class: "ms-head-content" }, ki = ["aria-label"],
 			"aria-hidden": "true"
 		}, null, 8, ["label"])) : O(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [O(t.$slots, "default", {}, void 0, !0)])], 10, ma));
 	}
-}, [["__scopeId", "data-v-4196aa71"]]), ga = {
+}, [["__scopeId", "data-v-b7437452"]]), ga = {
 	class: "share-icon-toggle__icon",
 	"aria-hidden": "true"
 }, _a = /*#__PURE__*/ U({
