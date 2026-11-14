@@ -120,6 +120,7 @@
           <div class="share-component-gallery__row">
             <ActionButton>Основное действие</ActionButton>
             <ActionButton variant="secondary">Вторичное</ActionButton>
+            <ActionButton icon-only variant="secondary" aria-label="Цветное действие" style="--action-button-bg:var(--surface-active);--action-button-fg:var(--warning);--action-button-hover-bg:color-mix(in srgb,var(--warning) 7%,var(--surface-active));--action-button-hover-fg:var(--warning)"><template #icon>✦</template></ActionButton>
             <ActionButton variant="quiet">Тихое</ActionButton>
             <ActionButton variant="dashed">Пунктирная рамка</ActionButton>
             <ActionButton layout="stacked" variant="quiet"><template #icon>✦</template>Действие</ActionButton>

@@ -5678,7 +5678,7 @@ var Di = ["aria-label"], Oi = { class: "ms-head-content" }, ki = ["aria-label"],
 			"aria-hidden": "true"
 		}, null, 8, ["label"])) : O(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [O(t.$slots, "default", {}, void 0, !0)])], 10, ma));
 	}
-}, [["__scopeId", "data-v-b7437452"]]), ga = {
+}, [["__scopeId", "data-v-03274259"]]), ga = {
 	class: "share-icon-toggle__icon",
 	"aria-hidden": "true"
 }, _a = /*#__PURE__*/ U({
