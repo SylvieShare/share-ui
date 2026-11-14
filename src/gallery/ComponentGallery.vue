@@ -427,8 +427,9 @@
         <h2>Интерактивные примеры</h2>
         <div class="share-component-gallery__row">
           <button type="button" class="share-component-gallery__button" @click="modalOpen = true">AppModal</button>
-          <button type="button" class="share-component-gallery__button" @click="frameOutlined = true; frameOpen = true">AppModalFrame</button>
-          <button type="button" class="share-component-gallery__button" @click="frameOutlined = false; frameOpen = true">AppModalFrame без обводки</button>
+          <button type="button" class="share-component-gallery__button" @click="frameCompact = false; frameOutlined = true; frameOpen = true">AppModalFrame</button>
+          <button type="button" class="share-component-gallery__button" @click="frameCompact = false; frameOutlined = false; frameOpen = true">AppModalFrame без обводки</button>
+          <button type="button" class="share-component-gallery__button" @click="frameCompact = true; frameOpen = true">AppModalFrame compact</button>
           <button type="button" class="share-component-gallery__button" @click="shellOpen = true">ModalShell</button>
           <button type="button" class="share-component-gallery__button" @click="confirmOpen = true">ConfirmDialog</button>
           <button type="button" class="share-component-gallery__button" @click="promptOpen = true">TextPromptDialog</button>
@@ -444,7 +445,7 @@
       </div>
     </AppModal>
 
-    <AppModalFrame v-if="frameOpen" :outlined="frameOutlined" title="AppModalFrame" subtitle="header · body · footer" @close="frameOpen = false">
+    <AppModalFrame v-if="frameOpen" :compact="frameCompact" :width="frameCompact ? 360 : undefined" :outlined="frameOutlined" title="AppModalFrame" subtitle="header · body · footer" @close="frameOpen = false">
       <p>Готовая структура редактора поверх AppModal.</p>
       <template #footer><FormActionButtons @cancel="frameOpen = false" @submit="frameOpen = false" /></template>
     </AppModalFrame>
@@ -580,6 +581,7 @@ const anchoredActionMenu = ref(null)
 const modalOpen = ref(false)
 const frameOpen = ref(false)
 const frameOutlined = ref(true)
+const frameCompact = ref(false)
 const shellOpen = ref(false)
 const confirmOpen = ref(false)
 const promptOpen = ref(false)

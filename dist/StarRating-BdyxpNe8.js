@@ -4075,6 +4075,10 @@ var ci = /*#__PURE__*/ U({
 			type: Boolean,
 			default: !0
 		},
+		compact: {
+			type: Boolean,
+			default: !1
+		},
 		width: {
 			type: [Number, String],
 			default: ""
@@ -4209,7 +4213,8 @@ var ci = /*#__PURE__*/ U({
 				"am-card-extra-wide": e.extraWide,
 				"am-card-full": e.fullscreen,
 				"am-card-flush": e.flush,
-				"am-card-unoutlined": !e.outlined
+				"am-card-unoutlined": !e.outlined,
+				"am-card-compact": e.compact && !e.fullscreen
 			}]),
 			tabindex: "-1",
 			onTouchstartPassive: R,
@@ -4228,7 +4233,7 @@ var ci = /*#__PURE__*/ U({
 			O(n.$slots, "default", {}, void 0, !0)
 		], 34)], 44, ei)]));
 	}
-}, [["__scopeId", "data-v-0d84d8d9"]]), li = { class: "aem-shell" }, ui = { class: "aem-heading" }, di = { class: "aem-title" }, fi = {
+}, [["__scopeId", "data-v-4e16b3d7"]]), li = { class: "aem-shell" }, ui = { class: "aem-heading" }, di = { class: "aem-title" }, fi = {
 	key: 0,
 	class: "aem-subtitle"
 }, pi = {
@@ -4263,6 +4268,10 @@ var ci = /*#__PURE__*/ U({
 		outlined: {
 			type: Boolean,
 			default: !0
+		},
+		compact: {
+			type: Boolean,
+			default: !1
 		},
 		padded: {
 			type: Boolean,
@@ -4307,6 +4316,7 @@ var ci = /*#__PURE__*/ U({
 			"extra-wide": e.extraWide,
 			fullscreen: e.fullscreen,
 			outlined: e.outlined,
+			compact: e.compact,
 			"show-close": !1,
 			"show-handle": !1,
 			dismissible: e.dismissible,
@@ -4356,6 +4366,7 @@ var ci = /*#__PURE__*/ U({
 			"extra-wide",
 			"fullscreen",
 			"outlined",
+			"compact",
 			"dismissible",
 			"z-index",
 			"width",
@@ -4363,7 +4374,7 @@ var ci = /*#__PURE__*/ U({
 			"close-label"
 		]));
 	}
-}, [["__scopeId", "data-v-5c5d032c"]]), _i = ["aria-label"], vi = {
+}, [["__scopeId", "data-v-1fab7c24"]]), _i = ["aria-label"], vi = {
 	key: 0,
 	class: "share-loading__label",
 	"aria-hidden": "true"

@@ -15,3 +15,17 @@ for (const width of [475, 1280]) test(`modal outlines remain opt-in configurable
     await expect(dialog).toHaveCount(0)
   }
 })
+
+for (const width of [320,475,1280]) test(`compact frame keeps horizontal margins at ${width}`,async({page})=>{
+  await page.setViewportSize({width,height:900})
+  await page.goto('/tests/browser/modal-outline.html')
+  await page.getByRole('button',{name:'compact frame',exact:true}).click()
+  const dialog=page.getByRole('dialog',{name:'Example',exact:true})
+  await expect(dialog).toBeVisible()
+  const card=await dialog.locator('.am-card').boundingBox()
+  expect(card.width).toBeLessThanOrEqual(360)
+  expect(card.x).toBeGreaterThanOrEqual(11)
+  expect(card.x+card.width).toBeLessThanOrEqual(width-11)
+  await page.keyboard.press('Escape')
+  await expect(dialog).toHaveCount(0)
+})

@@ -21,6 +21,7 @@
           'am-card-full': fullscreen,
           'am-card-flush': flush,
           'am-card-unoutlined': !outlined,
+          'am-card-compact': compact && !fullscreen,
         }"
         tabindex="-1"
         @touchstart.passive="onTouchStart"
@@ -65,6 +66,7 @@ const props = defineProps({
   // Lets a higher-level shell own padding, scrolling and fixed chrome.
   flush: { type: Boolean, default: false },
   outlined: { type: Boolean, default: true },
+  compact: { type: Boolean, default: false },
   width: { type: [Number, String], default: '' },
   ariaLabel: { type: String, default: '' },
   closeLabel: { type: String, default: 'Close' },
@@ -318,6 +320,7 @@ onBeforeUnmount(() => {
 }
 
 .am-card-unoutlined { border: 0; }
+.am-card-compact {box-sizing:border-box}
 
 .am-card-flush {
   padding: 0;
@@ -391,6 +394,12 @@ onBeforeUnmount(() => {
 
   .am-card-flush {
     padding: 0;
+  }
+  .am-card.am-card-compact {
+    width: var(--am-width, 480px);
+    max-width: calc(100vw - 24px);
+    border-radius: 18px;
+    margin-bottom: max(12px, env(safe-area-inset-bottom));
   }
 
   .am-close {
