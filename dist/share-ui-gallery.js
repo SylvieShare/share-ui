@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as c, F as l, Ft as ee, G as te, H as ne, I as re, K as ie, L as ae, Mt as u, Nt as oe, O as se, Ot as ce, P as d, Pt as f, R as le, S as ue, St as p, T as de, Tt as m, V as fe, W as pe, _ as h, a as g, b as me, bt as _, c as v, ct as he, d as ge, f as _e, ft as y, g as ve, h as ye, i as b, it as be, j as xe, jt as Se, k as x, kt as Ce, l as S, lt as we, m as C, n as Te, o as w, p as Ee, pt as De, q as Oe, r as ke, rt as Ae, s as T, t as je, u as E, ut as D, v as Me, w as Ne, wt as O, x as k, xt as Pe, y as Fe, z as A, zt as j } from "./StarRating-CufCRZKR.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as c, F as l, Ft as ee, G as te, H as ne, I as re, K as ie, L as ae, Mt as u, Nt as oe, O as se, Ot as ce, P as d, Pt as f, R as le, S as ue, St as p, T as de, Tt as m, V as fe, W as pe, _ as h, a as g, b as me, bt as _, c as v, ct as he, d as ge, f as _e, ft as y, g as ve, h as ye, i as b, it as be, j as xe, jt as Se, k as x, kt as Ce, l as S, lt as we, m as C, n as Te, o as w, p as Ee, pt as De, q as Oe, r as ke, rt as Ae, s as T, t as je, u as E, ut as D, v as Me, w as Ne, wt as O, x as k, xt as Pe, y as Fe, z as A, zt as j } from "./StarRating-TZYrEnBi.js";
 import { Fragment as M, createBlock as N, createCommentVNode as P, createElementBlock as F, createElementVNode as I, createTextVNode as L, createVNode as R, h as z, normalizeClass as Ie, openBlock as B, reactive as Le, ref as V, renderList as H, toDisplayString as U, unref as Re, withCtx as W, withModifiers as ze } from "vue";
 //#region src/gallery/ChoiceCardGalleryExample.vue
 var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
@@ -135,7 +135,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 			])
 		]));
 	}
-}, [["__scopeId", "data-v-f06d0545"]]), Ue = {
+}, [["__scopeId", "data-v-34aec14d"]]), Ue = {
 	__name: "TourGalleryExample",
 	setup(e) {
 		let t = V(null), n = D(640), r = Le(ge());
@@ -281,7 +281,7 @@ var G = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 			}, 8, ["modelValue", "swipe-to-close"])
 		]));
 	}
-}, [["__scopeId", "data-v-8cf1614e"]]), qe = {
+}, [["__scopeId", "data-v-51dc5ffe"]]), qe = {
 	__name: "PerformanceGalleryExample",
 	setup(e) {
 		let t = V("star"), n = V(!1), r = V([]), i = V(null), a = V(!1), o = [{

@@ -1,5 +1,6 @@
 import { onBeforeUnmount, ref } from 'vue'
 import { claimSortableGesture } from '../internal/sortableGesture.js'
+import { cloneSortableSource, copySortableContext } from '../internal/sortableGhost.js'
 
 const DRAG_THRESHOLD = 4
 const HOLD_TOLERANCE = 8
@@ -11,14 +12,36 @@ export function sortableItemElements(containerEl, sourceKey = null) {
 }
 
 // Grid cells keep stable coordinates, including empty cells. List coordinates exclude source.
-export function sortableTargetIndex(container, x, y, sourceKey, layout = 'list') {
+export function sortableTargetIndex(container, x, y, sourceKey, layout = 'list', hitTest = 'exact') {
   if (layout === 'grid') {
+    if (hitTest === 'nearest') {
+      const bounds = container.getBoundingClientRect()
+      if (x < bounds.left || x >= bounds.right || y < bounds.top || y >= bounds.bottom) return -1
+    }
     const cells = Array.from(container.querySelectorAll('[data-sortable-slot]'))
       .filter(el => el.closest('[data-sortable-container]') === container)
-    const cell = cells.find(el => {
+    let cell = cells.find(el => {
       const r = el.getBoundingClientRect()
       return x >= r.left && x < r.right && y >= r.top && y < r.bottom
     })
+    if (!cell && hitTest === 'nearest') {
+      let distance = Infinity, source = false, nearestIndex = -1
+      for (const candidate of cells) {
+        const index = Number(candidate.getAttribute('data-sortable-slot'))
+        if (!Number.isInteger(index) || index < 0) continue
+        const r = candidate.getBoundingClientRect()
+        const dx = Math.max(r.left - x, 0, x - r.right)
+        const dy = Math.max(r.top - y, 0, y - r.bottom)
+        const nextDistance = dx * dx + dy * dy
+        const isSource = candidate.getAttribute('data-sortable-key') === sourceKey
+          || Array.from(candidate.querySelectorAll('[data-sortable-key]')).some(el => el.getAttribute('data-sortable-key') === sourceKey)
+        // A gap's midpoint should move toward its other cell, not stick to the
+        // source. An exact hit above always permits returning to the source.
+        if (nextDistance < distance || (nextDistance === distance && ((source && !isSource) || (source === isSource && index > nearestIndex)))) {
+          cell = candidate; distance = nextDistance; source = isSource; nearestIndex = index
+        }
+      }
+    }
     if (!cell) return -1
     const index = Number(cell.getAttribute('data-sortable-slot'))
     return Number.isInteger(index) && index >= 0 ? index : -1
@@ -44,7 +67,7 @@ export function reorderByDrop(array, fromIndex, toIndex) {
  * position), and visual flags for source/placeholder styling.
  *
  * config: {
- *   groups: { [name]: { items: Ref<Array>, layout?: 'list'|'grid', accepts?: (item, fromGroup, toGroup) => bool } },
+ *   groups: { [name]: { items: Ref<Array>, layout?: 'list'|'grid', hitTest?: 'exact'|'nearest', accepts?: (item, fromGroup, toGroup) => bool } },
  *   getKey: (item) => string|number,
  *   onDrop: ({ item, fromGroup, fromIndex, toGroup, toIndex }) => void,
  *   canDropAt?: ({ item, fromGroup, toGroup, toIndex }) => bool,
@@ -128,7 +151,7 @@ export function useSortable(config) {
     ghostOffsetX = x - rect.left
     ghostOffsetY = y - rect.top
 
-    const clone = sourceEl.cloneNode(true)
+    const clone = cloneSortableSource(sourceEl)
     let mount = clone
     if (sourceEl.tagName === 'TR') {
       const cells = Array.from(sourceEl.children)
@@ -145,6 +168,7 @@ export function useSortable(config) {
       table.style.borderCollapse = 'separate'
       table.style.tableLayout = 'fixed'
       mount = table
+      copySortableContext(sourceEl, mount)
     }
     Object.assign(mount.style, {
       position: 'fixed',
@@ -163,6 +187,7 @@ export function useSortable(config) {
     })
     mount.classList.add('sortable-ghost')
     mount.setAttribute('aria-hidden', 'true')
+    mount.inert = true
     document.body.appendChild(mount)
     ghostEl = mount
 
@@ -201,7 +226,7 @@ export function useSortable(config) {
     if (!groupName) return
 
     const sourceKey = sourceItem.value ? String(getKey(sourceItem.value)) : null
-    const idx = sortableTargetIndex(containerEl, x, y, sourceKey, groups[groupName].layout)
+    const idx = sortableTargetIndex(containerEl, x, y, sourceKey, groups[groupName].layout, groups[groupName].hitTest)
     if (idx < 0) return
 
     if (canDropAt && !canDropAt({ item: sourceItem.value, fromGroup: sourceGroup.value, toGroup: groupName, toIndex: idx })) return

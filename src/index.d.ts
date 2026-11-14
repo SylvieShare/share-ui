@@ -513,8 +513,10 @@ export const FormTextInput: DefineComponent<{
 
 export interface SortableGroup<T> {
   items: Ref<T[]>
-  /** Exact data-sortable-slot hit testing; items stay in place during drag. */
+  /** Grid items stay in place during drag; list items preview their target position. */
   layout?: 'list' | 'grid'
+  /** Grid only: nearest accepts gaps/blank space inside the container. Default exact. */
+  hitTest?: 'exact' | 'nearest'
   accepts?: (item: T, fromGroup: string, toGroup: string) => boolean
 }
 

@@ -75,4 +75,34 @@ describe('sortable grid targets', () => {
     expect(sortableTargetIndex(grid(), -1, 20, null, 'grid')).toBe(-1)
     expect(sortableTargetIndex(grid(), 80, 80, null, 'grid')).toBe(-1)
   })
+
+  function nearestGrid() {
+    const container = { getBoundingClientRect: () => ({ left: 0, top: 0, right: 128, bottom: 148 }) }
+    const cell = (index, left, top, height, key, nested = false) => ({
+      closest: () => nested ? {} : container,
+      getAttribute: name => name === 'data-sortable-slot' ? String(index) : key,
+      querySelectorAll: () => [],
+      getBoundingClientRect: () => ({ left, top, right: left + 60, bottom: top + height }),
+    })
+    container.querySelectorAll = () => [cell(0, 0, 0, 40, 'source'), cell(1, 68, 0, 60, 'other'), cell(2, 0, 68, 60, 'last'), cell(9, 68, 68, 60, 'nested', true)]
+    return container
+  }
+
+  it('opts into nearest cells in horizontal/vertical gutters and an empty last row', () => {
+    const target = (x, y, source = 'source') => sortableTargetIndex(nearestGrid(), x, y, source, 'grid', 'nearest')
+    expect(target(64, 20)).toBe(1)
+    expect(target(20, 54)).toBe(2)
+    expect(target(100, 100)).toBe(2)
+    expect(target(20, 55)).toBe(2)
+    expect(target(20, 20)).toBe(0)
+    expect(target(64, 20, 'other')).toBe(0)
+    expect(target(20, 147)).toBe(2)
+    expect(target(128, 20)).toBe(-1)
+    expect(target(-1, 20)).toBe(-1)
+  })
+
+  it('keeps exact the default for blank space below a shorter slot', () => {
+    expect(sortableTargetIndex(nearestGrid(), 20, 54, 'source', 'grid')).toBe(-1)
+    expect(sortableTargetIndex(nearestGrid(), 100, 100, 'source', 'grid', 'exact')).toBe(-1)
+  })
 })
