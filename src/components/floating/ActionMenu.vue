@@ -50,7 +50,7 @@
 </template>
 
 <script setup>
-import { nextTick, onBeforeUnmount, ref } from 'vue'
+import { nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import {
   setFloatingInteractive,
   activateActionMenu,
@@ -66,6 +66,7 @@ const props = defineProps({
   related: { type: Boolean, default: false },
   title: { type: String, default: 'Actions' },
   heading: { type: String, default: '' },
+  width: { type: Number, default: null, validator: value => Number.isFinite(value) && value > 0 },
   disabled: { type: Boolean, default: false },
   block: { type: Boolean, default: false },
 })
@@ -120,8 +121,8 @@ function placePopover() {
   const viewport = viewportRect()
   const availableWidth = Math.max(0, viewport.viewportWidth - ACTION_MENU_MARGIN * 2)
   const expanded = Boolean(popover.querySelector('.ras-inline'))
-  const minimumWidth = Math.min(expanded ? 360 : 200, availableWidth)
-  const maximumWidth = Math.min(expanded ? 360 : 280, availableWidth)
+  const minimumWidth = Math.min(props.width ?? (expanded ? 360 : 200), availableWidth)
+  const maximumWidth = Math.min(props.width ?? (expanded ? 360 : 280), availableWidth)
   popover.style.minWidth = `${minimumWidth}px`
   popover.style.maxWidth = `${maximumWidth}px`
 
@@ -156,6 +157,8 @@ function schedulePlacement() {
   if (placementFrame != null) cancelAnimationFrame(placementFrame)
   placementFrame = requestAnimationFrame(placePopover)
 }
+
+watch(() => props.width, schedulePlacement)
 
 function bind() {
   document.addEventListener('pointerdown', onDocumentPointerDown, true)

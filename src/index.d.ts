@@ -196,6 +196,7 @@ export const BasePopover: DefineComponent<{
 }>
 
 export const ActionMenu: DefineComponent<{
+  width?: number
   heading?: string
   related?: boolean
   triggerAttrs?: Record<string, unknown>
