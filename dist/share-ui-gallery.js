@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as c, F as l, Ft as ee, G as te, H as ne, I as re, K as ie, L as ae, Mt as u, Nt as oe, O as se, Ot as ce, P as d, Pt as f, R as le, S as ue, St as p, T as de, Tt as m, V as fe, W as pe, _ as me, a as he, b as ge, bt as h, c as g, ct as _e, d as ve, f as ye, ft as _, g as be, h as xe, i as v, it as Se, j as Ce, jt as we, k as y, kt as Te, l as b, lt as Ee, m as x, n as De, o as S, p as C, pt as Oe, q as ke, r as Ae, rt as je, s as w, t as T, u as E, ut as D, v as Me, w as Ne, wt as O, x as k, xt as A, y as Pe, z as j, zt as M } from "./StarRating-CZt7KeQR.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, D as o, Dt as s, Et as c, F as l, Ft as ee, G as te, H as ne, I as re, K as ie, L as ae, Mt as u, Nt as oe, O as se, Ot as ce, P as d, Pt as f, R as le, S as ue, St as p, T as de, Tt as m, V as fe, W as pe, _ as me, a as he, b as ge, bt as h, c as g, ct as _e, d as ve, f as ye, ft as _, g as be, h as xe, i as v, it as Se, j as Ce, jt as we, k as y, kt as Te, l as b, lt as Ee, m as x, n as De, o as S, p as C, pt as Oe, q as ke, r as Ae, rt as je, s as w, t as T, u as E, ut as D, v as Me, w as Ne, wt as O, x as k, xt as A, y as Pe, z as j, zt as M } from "./StarRating-C8qJGk5G.js";
 import { Fragment as N, createBlock as P, createCommentVNode as F, createElementBlock as I, createElementVNode as L, createTextVNode as R, createVNode as z, h as B, normalizeClass as Fe, normalizeStyle as Ie, openBlock as V, reactive as Le, ref as H, renderList as U, toDisplayString as W, unref as Re, withCtx as G, withModifiers as ze } from "vue";
 //#region src/gallery/ChoiceCardGalleryExample.vue
 var K = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
@@ -1412,6 +1412,7 @@ var K = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 						title: "Действия",
 						heading: "Выбранная запись",
 						width: 340,
+						"follow-anchor": "",
 						related: ""
 					}, {
 						default: G(() => [
@@ -1702,6 +1703,6 @@ var K = { class: "choice-gallery-options" }, Be = /*#__PURE__*/ r({
 			}, 8, ["origin-el"])) : F("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-d1f6d569"]]);
+}, [["__scopeId", "data-v-7e04136c"]]);
 //#endregion
 export { X as COMPONENT_GALLERY_ALIASES, Je as COMPONENT_GALLERY_COMPONENTS, Z as ComponentGallery };

@@ -67,6 +67,7 @@ const props = defineProps({
   title: { type: String, default: 'Actions' },
   heading: { type: String, default: '' },
   width: { type: Number, default: null, validator: value => Number.isFinite(value) && value > 0 },
+  followAnchor: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   block: { type: Boolean, default: false },
 })
@@ -224,7 +225,17 @@ function onDocumentPointerDown(event) {
 function onWindowScroll(event) {
   if (popoverEl.value?.contains?.(event.target)) return
   if (event.target?.closest?.('[data-share-popover-related]')) return
-  if (scrollMovesActionMenuAnchor(event.target, resolveAnchor())) close()
+  const anchor = resolveAnchor()
+  if (!scrollMovesActionMenuAnchor(event.target, anchor)) return
+  if (props.followAnchor && event.target instanceof Element && event.target !== document.scrollingElement) {
+    const box = anchor.getBoundingClientRect(), clip = event.target.getBoundingClientRect()
+    // Keep inner scrolling menus attached; dismiss once their source leaves the scrollport.
+    if (box.right > clip.left && box.left < clip.right && box.bottom > clip.top && box.top < clip.bottom) {
+      schedulePlacement()
+      return
+    }
+  }
+  close()
 }
 
 function onKeydown(event) {

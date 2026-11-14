@@ -196,6 +196,7 @@ export const BasePopover: DefineComponent<{
 }>
 
 export const ActionMenu: DefineComponent<{
+  followAnchor?: boolean
   width?: number
   heading?: string
   related?: boolean

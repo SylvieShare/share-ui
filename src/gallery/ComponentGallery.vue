@@ -290,7 +290,7 @@
 
         <article class="share-component-gallery__card" data-share-gallery="ActionMenu ActionMenuItem ActionMenuSubmenu">
           <h2>ActionMenu</h2>
-          <ActionMenu title="Действия" heading="Выбранная запись" :width="340" related>
+          <ActionMenu title="Действия" heading="Выбранная запись" :width="340" follow-anchor related>
             <ActionMenuItem tone="accent">Редактировать</ActionMenuItem>
             <ActionMenuSubmenu label="Перемещение">
               <template #trigger="{ open }">

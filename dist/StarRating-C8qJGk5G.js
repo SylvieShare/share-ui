@@ -1625,6 +1625,10 @@ var It = 8, Lt = 6, Rt = Ft, zt = [
 			default: null,
 			validator: (e) => Number.isFinite(e) && e > 0
 		},
+		followAnchor: {
+			type: Boolean,
+			default: !1
+		},
 		disabled: {
 			type: Boolean,
 			default: !1
@@ -1717,7 +1721,18 @@ var It = 8, Lt = 6, Rt = Ft, zt = [
 			e.target?.closest?.(".ram-popover, [data-share-popover-related]") || d.value?.contains?.(e.target) || T()?.contains?.(e.target) || L();
 		}
 		function U(e) {
-			p.value?.contains?.(e.target) || e.target?.closest?.("[data-share-popover-related]") || Nt(e.target, T()) && L();
+			if (p.value?.contains?.(e.target) || e.target?.closest?.("[data-share-popover-related]")) return;
+			let t = T();
+			if (Nt(e.target, t)) {
+				if (l.followAnchor && e.target instanceof Element && e.target !== document.scrollingElement) {
+					let n = t.getBoundingClientRect(), r = e.target.getBoundingClientRect();
+					if (n.right > r.left && n.left < r.right && n.bottom > r.top && n.top < r.bottom) {
+						N();
+						return;
+					}
+				}
+				L();
+			}
 		}
 		function W(e) {
 			e.key !== "Escape" || e.defaultPrevented || !wt(u) || (e.preventDefault(), !kt() && L());
@@ -1787,7 +1802,7 @@ var It = 8, Lt = 6, Rt = Ft, zt = [
 			_: 3
 		})]))], 64));
 	}
-}, [["__scopeId", "data-v-defb2eb0"]]), Ut = ["aria-haspopup", "aria-expanded"], Wt = {
+}, [["__scopeId", "data-v-c27f8a42"]]), Ut = ["aria-haspopup", "aria-expanded"], Wt = {
 	class: "ram-item__icon",
 	"aria-hidden": "true"
 }, Gt = {
