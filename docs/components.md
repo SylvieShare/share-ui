@@ -1,5 +1,15 @@
 # Публичный API
 
+## AvatarFrame
+
+Square clipped image frame with a small token radius. Props: `src` (empty by
+default), `size` (number in px or CSS length, default 48), `radius` (number or CSS
+length, default `var(--r-sm)`), `fit` (`cover` by default or `contain`), `position`
+(default `center`), and `label` (optional accessible image name). Without a label
+the frame is decorative. The default slot is shown when the source is empty or
+fails to load; changing `src` retries the image. Image and fallback stay inside
+the frame without flex shrinking or intrinsic image dimensions changing its size.
+
 ## BlurBackdrop
 
 A shared decorative blur surface. Props: `radius?: number | string` (default 8).

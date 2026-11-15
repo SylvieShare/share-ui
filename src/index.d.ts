@@ -1,5 +1,14 @@
 import type { Component, ComputedRef, CSSProperties, DefineComponent, Ref } from 'vue'
 
+export const AvatarFrame: DefineComponent<{
+  src?: string
+  size?: number | string
+  radius?: number | string
+  fit?: 'cover' | 'contain'
+  position?: string
+  label?: string
+}>
+
 export const ChoiceCard: DefineComponent<{
   layout?: 'stacked' | 'inline' | 'icon'
   modelValue?: boolean
