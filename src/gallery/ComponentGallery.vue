@@ -292,6 +292,15 @@
 
         <article class="share-component-gallery__card" data-share-gallery="ActionMenu ActionMenuItem ActionMenuSubmenu">
           <h2>ActionMenu</h2>
+          <ActionMenu title="Компактные действия">
+            <template #default="{ close }">
+              <div data-action-menu-size="content" style="display:flex;gap:8px">
+                <ActionButton v-for="label in ['Открыть','Изменить','Удалить']" :key="label" layout="stacked" variant="secondary" @click="close">
+                  <template #icon>✦</template>{{ label }}
+                </ActionButton>
+              </div>
+            </template>
+          </ActionMenu>
           <ActionMenu title="Действия" heading="Выбранная запись" :width="340" follow-anchor related>
             <ActionMenuItem tone="accent">Редактировать</ActionMenuItem>
             <ActionMenuSubmenu label="Перемещение">

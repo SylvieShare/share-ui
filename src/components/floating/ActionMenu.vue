@@ -59,6 +59,7 @@ import {
   isTopFloating,
 } from '../../internal/floatingState.js'
 import { ACTION_MENU_MARGIN, computeActionMenuPlacement, scrollMovesActionMenuAnchor } from '../../lib/actionMenuPlacement.js'
+import { actionMenuWidthBounds, hasContentSizedMenuContent } from '../../lib/actionMenuSizing.js'
 
 const props = defineProps({
   triggerAttrs: { type: Object, default: () => ({}) },
@@ -122,8 +123,11 @@ function placePopover() {
   const viewport = viewportRect()
   const availableWidth = Math.max(0, viewport.viewportWidth - ACTION_MENU_MARGIN * 2)
   const expanded = Boolean(popover.querySelector('.ras-inline'))
-  const minimumWidth = Math.min(props.width ?? (expanded ? 360 : 200), availableWidth)
-  const maximumWidth = Math.min(props.width ?? (expanded ? 360 : 280), availableWidth)
+  const { minimumWidth, maximumWidth, contentSized } = actionMenuWidthBounds({
+    requestedWidth: props.width, expanded, availableWidth,
+    contentSized: hasContentSizedMenuContent(popover),
+  })
+  popover.toggleAttribute('data-share-menu-content-sized', contentSized)
   popover.style.minWidth = `${minimumWidth}px`
   popover.style.maxWidth = `${maximumWidth}px`
 
@@ -194,7 +198,7 @@ function open(event) {
     resizeObserver = new ResizeObserver(schedulePlacement)
     resizeObserver.observe(popoverEl.value)
     contentObserver = new MutationObserver(schedulePlacement)
-    contentObserver.observe(popoverEl.value, { childList: true, subtree: true })
+    contentObserver.observe(popoverEl.value, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-action-menu-size', 'hidden'] })
     schedulePlacement()
   })
 }
@@ -319,6 +323,8 @@ defineExpose({ open, close, toggle })
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+.ram-popover[data-share-menu-content-sized] { width: max-content; }
+.ram-popover[data-share-menu-content-sized] > [data-action-menu-size="content"] { width: max-content; max-width: 100%; }
 .ram-heading { padding: 8px 10px; font-size: 14px; font-weight: 700; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; }
 
 @media (prefers-reduced-motion: reduce) {

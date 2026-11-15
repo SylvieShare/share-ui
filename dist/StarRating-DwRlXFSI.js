@@ -178,7 +178,7 @@ var ce = /*#__PURE__*/ U({
 			onError: r[0] ||= (e) => n.value = !0
 		}, null, 40, q)) : (w(), s("span", J, [O(t.$slots, "default", {}, void 0, !0)]))], 12, le));
 	}
-}, [["__scopeId", "data-v-6bcd7330"]]), Y = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-5a1eb56b"]]), Y = /*#__PURE__*/ U({
 	__name: "BaseTile",
 	props: {
 		color: {
@@ -1650,15 +1650,32 @@ function zt({ triggerRect: e, popoverWidth: t, popoverHeight: n, viewportWidth: 
 		originY: Rt(c - S, 0, x)
 	};
 }
-var Bt = 8, Vt = 6, Ht = zt, Ut = [
+var Bt = 8, Vt = 6, Ht = zt;
+//#endregion
+//#region src/lib/actionMenuSizing.js
+function Ut(e) {
+	let t = [...e.childNodes].filter((e) => e.nodeType === Node.TEXT_NODE ? e.textContent.trim().length > 0 : e.nodeType === Node.ELEMENT_NODE && !e.hidden && getComputedStyle(e).display !== "none");
+	return t.length > 0 && t.every((e) => e.nodeType === Node.ELEMENT_NODE && e.getAttribute("data-action-menu-size") === "content");
+}
+function Wt({ requestedWidth: e, expanded: t = !1, contentSized: n = !1, availableWidth: r }) {
+	let i = n && e == null;
+	return {
+		contentSized: i,
+		minimumWidth: i ? 0 : Math.min(e ?? (t ? 360 : 200), r),
+		maximumWidth: i ? r : Math.min(e ?? (t ? 360 : 280), r)
+	};
+}
+//#endregion
+//#region src/components/floating/ActionMenu.vue
+var Gt = [
 	"title",
 	"aria-label",
 	"aria-expanded",
 	"disabled"
-], Wt = ["data-share-popover-related", "aria-label"], Gt = {
+], Kt = ["data-share-popover-related", "aria-label"], qt = {
 	key: 0,
 	class: "ram-heading"
-}, Kt = /*#__PURE__*/ U({
+}, Jt = /*#__PURE__*/ U({
 	__name: "ActionMenu",
 	props: {
 		triggerAttrs: {
@@ -1731,27 +1748,32 @@ var Bt = 8, Vt = 6, Ht = zt, Ut = [
 			y = null;
 			let e = T(), t = p.value;
 			if (!h.value || !e || !t) return;
-			let n = k(), r = Math.max(0, n.viewportWidth - 16), i = !!t.querySelector(".ras-inline"), a = Math.min(l.width ?? (i ? 360 : 200), r), o = Math.min(l.width ?? (i ? 360 : 280), r);
-			t.style.minWidth = `${a}px`, t.style.maxWidth = `${o}px`;
-			let s = e.getBoundingClientRect(), c = t.offsetWidth, u = zt({
-				triggerRect: s,
-				popoverWidth: c,
+			let n = k(), r = Math.max(0, n.viewportWidth - 16), i = !!t.querySelector(".ras-inline"), { minimumWidth: a, maximumWidth: o, contentSized: s } = Wt({
+				requestedWidth: l.width,
+				expanded: i,
+				availableWidth: r,
+				contentSized: Ut(t)
+			});
+			t.toggleAttribute("data-share-menu-content-sized", s), t.style.minWidth = `${a}px`, t.style.maxWidth = `${o}px`;
+			let c = e.getBoundingClientRect(), u = t.offsetWidth, d = zt({
+				triggerRect: c,
+				popoverWidth: u,
 				popoverHeight: t.scrollHeight + t.offsetHeight - t.clientHeight,
-				originX: v?.x ?? s.left + s.width / 2,
-				originY: v?.y ?? s.bottom,
+				originX: v?.x ?? c.left + c.width / 2,
+				originY: v?.y ?? c.bottom,
 				...n
 			});
 			m.value = {
 				position: "fixed",
-				top: `${u.top}px`,
-				left: `${u.left}px`,
+				top: `${d.top}px`,
+				left: `${d.left}px`,
 				minWidth: `${a}px`,
 				maxWidth: `${o}px`,
-				maxHeight: `${u.maxHeight}px`,
+				maxHeight: `${d.maxHeight}px`,
 				visibility: "visible",
-				"--share-popover-origin-x": `${u.originX}px`,
-				"--share-popover-origin-y": `${u.originY}px`,
-				"--share-popover-enter-y": u.opensAbove ? "5px" : "-5px"
+				"--share-popover-origin-x": `${d.originX}px`,
+				"--share-popover-origin-y": `${d.originY}px`,
+				"--share-popover-enter-y": d.opensAbove ? "5px" : "-5px"
 			};
 		}
 		function N() {
@@ -1768,7 +1790,9 @@ var Bt = 8, Vt = 6, Ht = zt, Ut = [
 			l.disabled || h.value || (m.value = D(e), kt(u, L), h.value = !0, P(), _(() => {
 				!h.value || !p.value || (S = new ResizeObserver(N), S.observe(p.value), C = new MutationObserver(N), C.observe(p.value, {
 					childList: !0,
-					subtree: !0
+					subtree: !0,
+					attributes: !0,
+					attributeFilter: ["data-action-menu-size", "hidden"]
 				}), N());
 			}));
 		}
@@ -1843,7 +1867,7 @@ var Bt = 8, Vt = 6, Ht = zt, Ut = [
 				r: "1.2",
 				fill: "currentColor"
 			})
-		], -1)]], 16, Ut)), (w(), a(t, { to: "body" }, [f(n, {
+		], -1)]], 16, Gt)), (w(), a(t, { to: "body" }, [f(n, {
 			name: "share-popover-action",
 			onBeforeEnter: l[2] ||= (e) => M(Pt)(e, !0),
 			onBeforeLeave: l[3] ||= (e) => M(Pt)(e, !1)
@@ -1859,23 +1883,23 @@ var Bt = 8, Vt = 6, Ht = zt, Ut = [
 				"aria-label": r.title,
 				onClick: l[0] ||= H(() => {}, ["stop"]),
 				onPointerdown: l[1] ||= H(() => {}, ["stop"])
-			}, [r.heading ? (w(), s("div", Gt, j(r.heading), 1)) : o("", !0), O(i.$slots, "default", { close: L }, void 0, !0)], 44, Wt)) : o("", !0)]),
+			}, [r.heading ? (w(), s("div", qt, j(r.heading), 1)) : o("", !0), O(i.$slots, "default", { close: L }, void 0, !0)], 44, Kt)) : o("", !0)]),
 			_: 3
 		})]))], 64));
 	}
-}, [["__scopeId", "data-v-c27f8a42"]]), qt = ["aria-haspopup", "aria-expanded"], Jt = {
+}, [["__scopeId", "data-v-a9c940c3"]]), Yt = ["aria-haspopup", "aria-expanded"], Xt = {
 	class: "ram-item__icon",
 	"aria-hidden": "true"
-}, Yt = {
+}, Zt = {
 	key: 1,
 	width: "17",
 	height: "17",
 	viewBox: "0 0 17 17",
 	fill: "none"
-}, Xt = { class: "ram-item__content" }, Zt = {
+}, Qt = { class: "ram-item__content" }, $t = {
 	key: 0,
 	class: "ram-item__suffix"
-}, Qt = /*#__PURE__*/ U({
+}, en = /*#__PURE__*/ U({
 	__name: "ActionMenuItem",
 	props: {
 		icon: {
@@ -1911,11 +1935,11 @@ var Bt = 8, Vt = 6, Ht = zt, Ut = [
 			"aria-haspopup": e.submenu ? "menu" : void 0,
 			"aria-expanded": e.submenu ? e.submenuOpen : void 0
 		}, [
-			c("span", Jt, [O(t.$slots, "icon", {}, () => [e.icon ? (w(), a(k(e.icon), {
+			c("span", Xt, [O(t.$slots, "icon", {}, () => [e.icon ? (w(), a(k(e.icon), {
 				key: 0,
 				size: 17,
 				"stroke-width": 1.9
-			})) : (w(), s("svg", Yt, [...n[0] ||= [
+			})) : (w(), s("svg", Zt, [...n[0] ||= [
 				c("circle", {
 					cx: "4",
 					cy: "8.5",
@@ -1935,8 +1959,8 @@ var Bt = 8, Vt = 6, Ht = zt, Ut = [
 					fill: "currentColor"
 				}, null, -1)
 			]]))], !0)]),
-			c("span", Xt, [O(t.$slots, "default", {}, void 0, !0)]),
-			t.$slots.suffix || e.submenu ? (w(), s("span", Zt, [O(t.$slots, "suffix", {}, void 0, !0), e.submenu ? (w(), s("svg", {
+			c("span", Qt, [O(t.$slots, "default", {}, void 0, !0)]),
+			t.$slots.suffix || e.submenu ? (w(), s("span", $t, [O(t.$slots, "suffix", {}, void 0, !0), e.submenu ? (w(), s("svg", {
 				key: 0,
 				class: v(["ram-item__submenu-chevron", { "ram-item__submenu-chevron--open": e.submenuOpen }]),
 				width: "15",
@@ -1951,12 +1975,12 @@ var Bt = 8, Vt = 6, Ht = zt, Ut = [
 				"stroke-linecap": "round",
 				"stroke-linejoin": "round"
 			}, null, -1)]], 2)) : o("", !0)])) : o("", !0)
-		], 10, qt));
+		], 10, Yt));
 	}
 }, [["__scopeId", "data-v-d60f1786"]]);
 //#endregion
 //#region src/composables/useMediaQuery.js
-function $t(e) {
+function tn(e) {
 	let t = E(typeof window < "u" && !!window.matchMedia?.(e).matches), n = null;
 	function r(e) {
 		t.value = e.matches;
@@ -1965,17 +1989,17 @@ function $t(e) {
 		window.matchMedia && (n = window.matchMedia(e), t.value = n.matches, n.addEventListener?.("change", r));
 	}), x(() => n?.removeEventListener?.("change", r)), t;
 }
-function en(e = 768) {
-	return $t(`(max-width: ${e}px)`);
+function nn(e = 768) {
+	return tn(`(max-width: ${e}px)`);
 }
 //#endregion
 //#region src/components/floating/BasePopover.vue
-var tn = [
+var rn = [
 	"id",
 	"role",
 	"aria-label",
 	"data-share-popover-related"
-], nn = /*#__PURE__*/ U({
+], an = /*#__PURE__*/ U({
 	__name: "BasePopover",
 	props: {
 		open: {
@@ -2144,17 +2168,17 @@ var tn = [
 				"data-share-popover-related": e.related ? "" : void 0,
 				onClick: i[0] ||= H(() => {}, ["stop"]),
 				onPointerdown: i[1] ||= H(() => {}, ["stop"])
-			}, [O(r.$slots, "default", { close: T }, void 0, !0)], 46, tn)) : o("", !0)]),
+			}, [O(r.$slots, "default", { close: T }, void 0, !0)], 46, rn)) : o("", !0)]),
 			_: 3
 		}, 8, ["name", "appear"])]));
 	}
-}, [["__scopeId", "data-v-1a5c96fa"]]), rn = { class: "ras-root" }, an = { class: "ras-panel" }, on = {
+}, [["__scopeId", "data-v-1a5c96fa"]]), on = { class: "ras-root" }, sn = { class: "ras-panel" }, cn = {
 	key: 0,
 	class: "ras-label"
-}, sn = { class: "ras-panel ras-panel--popover" }, cn = {
+}, ln = { class: "ras-panel ras-panel--popover" }, un = {
 	key: 0,
 	class: "ras-label"
-}, ln = /*#__PURE__*/ U({
+}, dn = /*#__PURE__*/ U({
 	__name: "ActionMenuSubmenu",
 	props: {
 		label: {
@@ -2175,7 +2199,7 @@ var tn = [
 		}
 	},
 	setup(e, { expose: t }) {
-		let r = e, i = Symbol("action-submenu"), l = E(null), u = en(r.mobileBreakpoint), d = E(!1);
+		let r = e, i = Symbol("action-submenu"), l = E(null), u = nn(r.mobileBreakpoint), d = E(!1);
 		function p() {
 			r.disabled || d.value || (jt(i, h), d.value = !0);
 		}
@@ -2192,7 +2216,7 @@ var tn = [
 			open: p,
 			close: h,
 			toggle: m
-		}), (t, r) => (w(), s("div", rn, [
+		}), (t, r) => (w(), s("div", on, [
 			c("div", {
 				ref_key: "triggerEl",
 				ref: l,
@@ -2213,10 +2237,10 @@ var tn = [
 					"data-share-popover-related": "",
 					onClick: r[0] ||= H(() => {}, ["stop"]),
 					onPointerdown: r[1] ||= H(() => {}, ["stop"])
-				}, [c("div", an, [e.label ? (w(), s("div", on, j(e.label), 1)) : o("", !0), O(t.$slots, "default", { close: h }, void 0, !0)])], 32)) : o("", !0)]),
+				}, [c("div", sn, [e.label ? (w(), s("div", cn, j(e.label), 1)) : o("", !0), O(t.$slots, "default", { close: h }, void 0, !0)])], 32)) : o("", !0)]),
 				_: 3
 			}),
-			M(u) ? o("", !0) : (w(), a(nn, {
+			M(u) ? o("", !0) : (w(), a(an, {
 				key: 0,
 				open: d.value,
 				anchor: l.value,
@@ -2228,7 +2252,7 @@ var tn = [
 				related: "",
 				"onUpdate:open": g
 			}, {
-				default: z(() => [c("div", sn, [e.label ? (w(), s("div", cn, j(e.label), 1)) : o("", !0), O(t.$slots, "default", { close: h }, void 0, !0)])]),
+				default: z(() => [c("div", ln, [e.label ? (w(), s("div", un, j(e.label), 1)) : o("", !0), O(t.$slots, "default", { close: h }, void 0, !0)])]),
 				_: 3
 			}, 8, [
 				"open",
@@ -2237,7 +2261,7 @@ var tn = [
 			]))
 		]));
 	}
-}, [["__scopeId", "data-v-4d638ec2"]]), un = [
+}, [["__scopeId", "data-v-4d638ec2"]]), fn = [
 	"#ef4444",
 	"#f97316",
 	"#f59e0b",
@@ -2263,25 +2287,25 @@ var tn = [
 	"#c084fc",
 	"#94a3b8"
 ];
-function dn(e) {
+function pn(e) {
 	return /^#(?:[0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(String(e || "").trim());
 }
-function fn(e = un) {
+function mn(e = fn) {
 	return e[Math.floor(Math.random() * e.length)];
 }
 //#endregion
 //#region src/components/floating/ColorPresetPicker.vue
-var pn = ["aria-label"], mn = [
+var hn = ["aria-label"], gn = [
 	"aria-label",
 	"title",
 	"aria-expanded"
-], hn = {
+], _n = {
 	class: "cpp-button-icon",
 	"aria-hidden": "true"
-}, gn = {
+}, vn = {
 	class: "cpp-button-color",
 	"aria-hidden": "true"
-}, _n = ["aria-label", "aria-expanded"], vn = { class: "cpp-body" }, yn = "#888888", bn = /*#__PURE__*/ U({
+}, yn = ["aria-label", "aria-expanded"], bn = { class: "cpp-body" }, xn = "#888888", Sn = /*#__PURE__*/ U({
 	__name: "ColorPresetPicker",
 	props: {
 		modelValue: {
@@ -2290,7 +2314,7 @@ var pn = ["aria-label"], mn = [
 		},
 		colors: {
 			type: Array,
-			default: () => un
+			default: () => fn
 		},
 		columns: {
 			type: Number,
@@ -2337,7 +2361,7 @@ var pn = ["aria-label"], mn = [
 	},
 	emits: ["update:modelValue", "invalid"],
 	setup(e, { emit: t }) {
-		let n = e, r = t, a = E(null), o = E(!1), l = E("cpppop-cancel"), d = E(n.modelValue || ""), m = i(() => /^#[0-9a-f]{6}$/i.test(n.modelValue || "") ? n.modelValue : yn), g = i(() => !!d.value && !dn(d.value));
+		let n = e, r = t, a = E(null), o = E(!1), l = E("cpppop-cancel"), d = E(n.modelValue || ""), m = i(() => /^#[0-9a-f]{6}$/i.test(n.modelValue || "") ? n.modelValue : xn), g = i(() => !!d.value && !pn(d.value));
 		function _(e) {
 			return String(n.modelValue || "").toLowerCase() === String(e).toLowerCase();
 		}
@@ -2358,7 +2382,7 @@ var pn = ["aria-label"], mn = [
 		}
 		function D() {
 			let e = d.value.trim();
-			if (!dn(e)) {
+			if (!pn(e)) {
 				r("invalid", e);
 				return;
 			}
@@ -2431,7 +2455,7 @@ var pn = ["aria-label"], mn = [
 			key: 0,
 			class: "cpp-body cpp-body--inline",
 			"aria-label": e.ariaLabel
-		}, [f(M(j))], 8, pn)) : (w(), s("span", {
+		}, [f(M(j))], 8, hn)) : (w(), s("span", {
 			key: 1,
 			ref_key: "anchorEl",
 			ref: a,
@@ -2445,7 +2469,7 @@ var pn = ["aria-label"], mn = [
 			"aria-expanded": o.value,
 			"aria-haspopup": "dialog",
 			onClick: S
-		}, [c("span", hn, [O(t.$slots, "icon", {}, () => [n[0] ||= u("<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" data-v-659a3b96><path d=\"M12 3a9 9 0 1 0 0 18h1a2 2 0 0 0 1-3.7 1.6 1.6 0 0 1 .8-3H17a4 4 0 0 0 4-4C21 6.4 17 3 12 3Z\" data-v-659a3b96></path><circle cx=\"7.5\" cy=\"10\" r=\".7\" data-v-659a3b96></circle><circle cx=\"11\" cy=\"7\" r=\".7\" data-v-659a3b96></circle><circle cx=\"15.5\" cy=\"8\" r=\".7\" data-v-659a3b96></circle><circle cx=\"6.5\" cy=\"14\" r=\".7\" data-v-659a3b96></circle></svg>", 1)], !0)]), c("span", gn, [c("span", { style: b({ background: e.modelValue || "var(--bg)" }) }, null, 4)])], 8, mn)) : O(t.$slots, "trigger", {
+		}, [c("span", _n, [O(t.$slots, "icon", {}, () => [n[0] ||= u("<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" data-v-659a3b96><path d=\"M12 3a9 9 0 1 0 0 18h1a2 2 0 0 0 1-3.7 1.6 1.6 0 0 1 .8-3H17a4 4 0 0 0 4-4C21 6.4 17 3 12 3Z\" data-v-659a3b96></path><circle cx=\"7.5\" cy=\"10\" r=\".7\" data-v-659a3b96></circle><circle cx=\"11\" cy=\"7\" r=\".7\" data-v-659a3b96></circle><circle cx=\"15.5\" cy=\"8\" r=\".7\" data-v-659a3b96></circle><circle cx=\"6.5\" cy=\"14\" r=\".7\" data-v-659a3b96></circle></svg>", 1)], !0)]), c("span", vn, [c("span", { style: b({ background: e.modelValue || "var(--bg)" }) }, null, 4)])], 8, gn)) : O(t.$slots, "trigger", {
 			toggle: S,
 			open: o.value,
 			value: e.modelValue
@@ -2457,7 +2481,7 @@ var pn = ["aria-label"], mn = [
 			"aria-expanded": o.value,
 			"aria-haspopup": "dialog",
 			onClick: S
-		}, null, 14, _n)], !0, 1), f(nn, {
+		}, null, 14, yn)], !0, 1), f(an, {
 			open: o.value,
 			anchor: a.value,
 			placement: e.placement,
@@ -2468,7 +2492,7 @@ var pn = ["aria-label"], mn = [
 			"aria-label": e.ariaLabel,
 			"onUpdate:open": C
 		}, {
-			default: z(() => [c("div", vn, [f(M(j))])]),
+			default: z(() => [c("div", bn, [f(M(j))])]),
 			_: 1
 		}, 8, [
 			"open",
@@ -2479,25 +2503,25 @@ var pn = ["aria-label"], mn = [
 			"aria-label"
 		])], 512));
 	}
-}, [["__scopeId", "data-v-659a3b96"]]), xn = [
+}, [["__scopeId", "data-v-659a3b96"]]), Cn = [
 	"aria-label",
 	"aria-expanded",
 	"aria-activedescendant",
 	"disabled"
-], Sn = ["aria-label"], Cn = [
+], wn = ["aria-label"], Tn = [
 	"placeholder",
 	"aria-label",
 	"aria-activedescendant"
-], wn = [
+], En = [
 	"id",
 	"aria-selected",
 	"disabled",
 	"onMouseenter",
 	"onClick"
-], Tn = {
+], Dn = {
 	key: 1,
 	class: "vs-empty"
-}, En = /*#__PURE__*/ U({
+}, On = /*#__PURE__*/ U({
 	__name: "ValueSelect",
 	props: {
 		modelValue: { default: null },
@@ -2663,7 +2687,7 @@ var pn = ["aria-label"], mn = [
 		}, [c("span", null, j(S.value || t.placeholder), 1), r[1] ||= c("span", {
 			class: "vs-arrow",
 			"aria-hidden": "true"
-		}, "▾", -1)], 42, xn), h.value ? (w(), s("div", {
+		}, "▾", -1)], 42, Cn), h.value ? (w(), s("div", {
 			key: 0,
 			id: d,
 			class: v(["vs-drop", { "vs-drop-up": t.dropUp }]),
@@ -2683,7 +2707,7 @@ var pn = ["aria-label"], mn = [
 				"aria-activedescendant": y.value >= 0 ? k(y.value) : void 0,
 				autocomplete: "off",
 				onKeydown: ee
-			}, null, 40, Cn)), [[I, g.value]]) : o("", !0),
+			}, null, 40, Tn)), [[I, g.value]]) : o("", !0),
 			(w(!0), s(e, null, D(C.value, (e, t) => (w(), s("button", {
 				id: k(t),
 				key: e.key,
@@ -2694,11 +2718,11 @@ var pn = ["aria-label"], mn = [
 				disabled: e.disabled,
 				onMouseenter: (e) => N(t),
 				onClick: (t) => V(e)
-			}, j(e.label), 43, wn))), 128)),
-			C.value.length === 0 ? (w(), s("div", Tn, j(t.emptyLabel), 1)) : o("", !0)
-		], 10, Sn)) : o("", !0)], 2));
+			}, j(e.label), 43, En))), 128)),
+			C.value.length === 0 ? (w(), s("div", Dn, j(t.emptyLabel), 1)) : o("", !0)
+		], 10, wn)) : o("", !0)], 2));
 	}
-}, [["__scopeId", "data-v-ed63d542"]]), Dn = /* @__PURE__ */ new Set(/* @__PURE__ */ "a.b.blockquote.br.code.em.h1.h2.h3.h4.h5.h6.li.ol.p.pre.s.span.strike.strong.table.tbody.td.th.thead.tr.u.ul".split(".")), On = /* @__PURE__ */ new Set([
+}, [["__scopeId", "data-v-ed63d542"]]), kn = /* @__PURE__ */ new Set(/* @__PURE__ */ "a.b.blockquote.br.code.em.h1.h2.h3.h4.h5.h6.li.ol.p.pre.s.span.strike.strong.table.tbody.td.th.thead.tr.u.ul".split(".")), An = /* @__PURE__ */ new Set([
 	"embed",
 	"iframe",
 	"math",
@@ -2707,27 +2731,27 @@ var pn = ["aria-label"], mn = [
 	"style",
 	"svg",
 	"template"
-]), kn = /* @__PURE__ */ new Set([
+]), jn = /* @__PURE__ */ new Set([
 	"http:",
 	"https:",
 	"mailto:",
 	"tel:"
-]), An = /^[a-z][a-z0-9-]{0,39}$/, jn = 4096;
-function Mn(e) {
+]), Mn = /^[a-z][a-z0-9-]{0,39}$/, Nn = 4096;
+function Pn(e) {
 	return String(e ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\"", "&quot;").replaceAll("'", "&#039;");
 }
-function Nn(e) {
+function Fn(e) {
 	let t = String(e || "").trim();
 	if (!t || /[\u0000-\u001f\u007f]/.test(t)) return "";
 	if (/^(?:#|\?|\.?\.\/|\/)/.test(t)) return t;
 	try {
 		let e = new URL(t, "https://share-ui.invalid");
-		return kn.has(e.protocol) ? t : "";
+		return jn.has(e.protocol) ? t : "";
 	} catch {
 		return "";
 	}
 }
-function Pn(e) {
+function In(e) {
 	let t = String(e || "").trim();
 	if (/^#(?:[0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(t) || /^var\(--[a-z0-9-]+\)$/i.test(t)) return t;
 	let n = t.match(/^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})(?:\s*,\s*(0|1|0?\.\d+))?\s*\)$/i);
@@ -2735,17 +2759,17 @@ function Pn(e) {
 	let r = n[4] == null ? null : Number(n[4]);
 	return r != null && (r < 0 || r > 1) ? "" : t;
 }
-function Fn(e) {
+function Ln(e) {
 	try {
 		let t = encodeURIComponent(JSON.stringify(e ?? {}));
-		return t.length <= jn ? t : "";
+		return t.length <= Nn ? t : "";
 	} catch {
 		return "";
 	}
 }
-function In(e) {
+function Rn(e) {
 	let t = String(e || "");
-	if (!t || t.length > jn) return null;
+	if (!t || t.length > Nn) return null;
 	try {
 		let e = JSON.parse(decodeURIComponent(t));
 		return e && typeof e == "object" && !Array.isArray(e) ? e : null;
@@ -2758,20 +2782,20 @@ function In(e) {
 		}
 	}
 }
-function Ln(e, t, n) {
-	let r = String(e || "").trim().toLowerCase(), i = Fn(t);
-	return !An.test(r) || !i ? "" : `<span data-rich-node="${r}" data-rich-payload="${Mn(i)}" contenteditable="false">${Mn(n || r)}</span>`;
+function zn(e, t, n) {
+	let r = String(e || "").trim().toLowerCase(), i = Ln(t);
+	return !Mn.test(r) || !i ? "" : `<span data-rich-node="${r}" data-rich-payload="${Pn(i)}" contenteditable="false">${Pn(n || r)}</span>`;
 }
-function Rn(e) {
+function Bn(e) {
 	if (!e?.getAttribute) return null;
-	let t = String(e.getAttribute("data-rich-node") || "").trim().toLowerCase(), n = In(e.getAttribute("data-rich-payload"));
-	return !An.test(t) || n == null ? null : {
+	let t = String(e.getAttribute("data-rich-node") || "").trim().toLowerCase(), n = Rn(e.getAttribute("data-rich-payload"));
+	return !Mn.test(t) || n == null ? null : {
 		kind: t,
 		payload: n,
 		label: e.textContent || t
 	};
 }
-function zn(e, t) {
+function Vn(e, t) {
 	let n = e.getAttribute("title");
 	n && t.setAttribute("title", n);
 	let r = e.getAttribute("dir");
@@ -2780,59 +2804,59 @@ function zn(e, t) {
 		"rtl",
 		"auto"
 	].includes(r) && t.setAttribute("dir", r);
-	let i = Pn(e.style?.getPropertyValue("color"));
+	let i = In(e.style?.getPropertyValue("color"));
 	if (i && t.style.setProperty("color", i), t.tagName === "A") {
-		let n = Nn(e.getAttribute("href"));
+		let n = Fn(e.getAttribute("href"));
 		n && t.setAttribute("href", n), e.getAttribute("target") === "_blank" && (t.setAttribute("target", "_blank"), t.setAttribute("rel", "noopener noreferrer"));
 	}
 	if (t.tagName === "SPAN") {
-		let n = Rn(e);
-		n && (t.setAttribute("data-rich-node", n.kind), t.setAttribute("data-rich-payload", Fn(n.payload)), t.setAttribute("contenteditable", "false"));
+		let n = Bn(e);
+		n && (t.setAttribute("data-rich-node", n.kind), t.setAttribute("data-rich-payload", Ln(n.payload)), t.setAttribute("contenteditable", "false"));
 	}
 	if (t.tagName === "TD" || t.tagName === "TH") for (let n of ["colspan", "rowspan"]) {
 		let r = Number.parseInt(e.getAttribute(n), 10);
 		r >= 1 && r <= 100 && t.setAttribute(n, String(r));
 	}
 }
-function Bn(e, t, n) {
+function Hn(e, t, n) {
 	if (e.nodeType === 3) {
 		t.appendChild(n.createTextNode(e.nodeValue || ""));
 		return;
 	}
 	if (e.nodeType !== 1) return;
 	let r = e.tagName.toLowerCase();
-	if (On.has(r)) return;
-	if (!Dn.has(r)) {
-		for (let r of [...e.childNodes]) Bn(r, t, n);
+	if (An.has(r)) return;
+	if (!kn.has(r)) {
+		for (let r of [...e.childNodes]) Hn(r, t, n);
 		return;
 	}
 	let i = n.createElement(r);
-	if (zn(e, i), i.hasAttribute("data-rich-node")) i.textContent = e.textContent || i.getAttribute("data-rich-node");
-	else for (let t of [...e.childNodes]) Bn(t, i, n);
+	if (Vn(e, i), i.hasAttribute("data-rich-node")) i.textContent = e.textContent || i.getAttribute("data-rich-node");
+	else for (let t of [...e.childNodes]) Hn(t, i, n);
 	t.appendChild(i);
 }
-function Vn(e) {
+function Un(e) {
 	let t = String(e || "");
 	if (!t) return "";
-	if (typeof DOMParser > "u") return Mn(t);
+	if (typeof DOMParser > "u") return Pn(t);
 	let n = new DOMParser().parseFromString(t, "text/html"), r = n.createElement("div");
-	for (let e of [...n.body.childNodes]) Bn(e, r, n);
+	for (let e of [...n.body.childNodes]) Hn(e, r, n);
 	return r.innerHTML;
 }
-function Hn(e) {
-	return Mn(e).replace(/\r\n?|\n/g, "<br>");
+function Wn(e) {
+	return Pn(e).replace(/\r\n?|\n/g, "<br>");
 }
 //#endregion
 //#region src/components/rich-text/RichContent.vue
-function Un(e) {
+function Gn(e) {
 	let t = {};
 	for (let n of [...e.attributes]) n.name !== "class" && (t[n.name] = n.value);
 	return t;
 }
-function Wn(e, t, n) {
+function Kn(e, t, n) {
 	if (e.nodeType === Node.TEXT_NODE) return e.nodeValue || "";
 	if (e.nodeType !== Node.ELEMENT_NODE) return null;
-	let r = Rn(e);
+	let r = Bn(e);
 	if (r) {
 		let e = () => h("span", {
 			class: "rc-node",
@@ -2847,13 +2871,13 @@ function Wn(e, t, n) {
 			fallback: e
 		}) || e());
 	}
-	let i = [...e.childNodes].map((e, r) => Wn(e, t, `${n}.${r}`)).filter((e) => e != null);
+	let i = [...e.childNodes].map((e, r) => Kn(e, t, `${n}.${r}`)).filter((e) => e != null);
 	return h(e.tagName.toLowerCase(), {
-		...Un(e),
+		...Gn(e),
 		key: n
 	}, i);
 }
-var Gn = /*#__PURE__*/ U({
+var qn = /*#__PURE__*/ U({
 	name: "RichContent",
 	inheritAttrs: !1,
 	props: { html: {
@@ -2861,34 +2885,34 @@ var Gn = /*#__PURE__*/ U({
 		default: ""
 	} },
 	setup(e, { slots: t, attrs: n }) {
-		let r = i(() => Vn(e.html));
+		let r = i(() => Un(e.html));
 		return () => {
 			if (typeof DOMParser > "u") return h("div", {
 				...n,
 				class: ["rc", n.class],
 				innerHTML: r.value
 			});
-			let e = [...new DOMParser().parseFromString(r.value, "text/html").body.childNodes].map((e, n) => Wn(e, t, String(n))).filter((e) => e != null);
+			let e = [...new DOMParser().parseFromString(r.value, "text/html").body.childNodes].map((e, n) => Kn(e, t, String(n))).filter((e) => e != null);
 			return h("div", {
 				...n,
 				class: ["rc", n.class]
 			}, e);
 		};
 	}
-}, [["__scopeId", "data-v-b2aa27f6"]]), Kn = { class: "input-desc" }, qn = ["aria-label"], Jn = ["title"], Yn = ["title"], Xn = ["title"], Zn = ["aria-expanded"], Qn = ["onMousedown"], $n = ["title", "onMousedown"], er = { class: "desc-color-icon" }, tr = [
+}, [["__scopeId", "data-v-b2aa27f6"]]), Jn = { class: "input-desc" }, Yn = ["aria-label"], Xn = ["title"], Zn = ["title"], Qn = ["title"], $n = ["aria-expanded"], er = ["onMousedown"], tr = ["title", "onMousedown"], nr = { class: "desc-color-icon" }, rr = [
 	"title",
 	"aria-label",
 	"aria-expanded"
-], nr = { class: "desc-link-field" }, rr = ["placeholder"], ir = { class: "desc-link-field" }, ar = {
+], ir = { class: "desc-link-field" }, ar = ["placeholder"], or = { class: "desc-link-field" }, sr = {
 	key: 0,
 	class: "desc-link-error"
-}, or = { class: "desc-link-actions" }, sr = {
+}, cr = { class: "desc-link-actions" }, lr = {
 	type: "submit",
 	class: "desc-link-save"
-}, cr = ["data-placeholder", "aria-label"], lr = {
+}, ur = ["data-placeholder", "aria-label"], dr = {
 	key: 2,
 	class: "desc-empty"
-}, ur = /*#__PURE__*/ U({
+}, fr = /*#__PURE__*/ U({
 	__name: "RichTextEditor",
 	props: {
 		modelValue: {
@@ -2909,7 +2933,7 @@ var Gn = /*#__PURE__*/ U({
 		},
 		colors: {
 			type: Array,
-			default: () => un
+			default: () => fn
 		},
 		maxHeadingLevel: {
 			type: Number,
@@ -2962,7 +2986,7 @@ var Gn = /*#__PURE__*/ U({
 			url: ""
 		}), ee = i(() => P.value || F.value || A.value);
 		function te(e) {
-			return Vn(e) || "<p><br></p>";
+			return Un(e) || "<p><br></p>";
 		}
 		function ne(e) {
 			!p.editable || !k.value || document.activeElement !== k.value && (k.value.innerHTML = te(e));
@@ -2990,7 +3014,7 @@ var Gn = /*#__PURE__*/ U({
 			return re(V.value) ? V.value.toString().trim() : "";
 		}
 		function G(e) {
-			let t = Ln(e?.kind, e?.payload, e?.label);
+			let t = zn(e?.kind, e?.payload, e?.label);
 			if (!t || !k.value) return null;
 			ae(), document.execCommand("insertHTML", !1, t), Q();
 			let n = k.value.querySelectorAll("[data-rich-node]"), r = n[n.length - 1] || null;
@@ -3000,7 +3024,7 @@ var Gn = /*#__PURE__*/ U({
 			return e?.nodeType === Node.ELEMENT_NODE && e.matches?.("[data-rich-node]") ? e : e?.element?.matches?.("[data-rich-node]") ? e.element : L.value?.isConnected ? L.value : null;
 		}
 		function K(e, t) {
-			let n = se(e), r = Ln(t?.kind, t?.payload, t?.label);
+			let n = se(e), r = zn(t?.kind, t?.payload, t?.label);
 			if (!n || !r) return null;
 			let i = document.createElement("template");
 			i.innerHTML = r;
@@ -3030,7 +3054,7 @@ var Gn = /*#__PURE__*/ U({
 			e !== !0 && (N.value = !1, P.value = null, F.value = null, U.value = !1);
 		}
 		function de() {
-			let e = Nn(W.url);
+			let e = Fn(W.url);
 			if (!e) {
 				U.value = !0;
 				return;
@@ -3064,7 +3088,7 @@ var Gn = /*#__PURE__*/ U({
 			let n = e.target.closest?.("[data-rich-node]");
 			!n || !k.value?.contains(n) || (e.preventDefault(), L.value = n, h("node-select", {
 				element: n,
-				node: Rn(n)
+				node: Bn(n)
 			}));
 		}
 		let me = {
@@ -3109,7 +3133,7 @@ var Gn = /*#__PURE__*/ U({
 		function ve() {
 			if (!k.value) return "";
 			ye(k.value);
-			let e = Vn(k.value.innerHTML);
+			let e = Un(k.value.innerHTML);
 			return e === "<p><br></p>" || e === "<br>" ? "" : e;
 		}
 		function Q() {
@@ -3182,7 +3206,7 @@ var Gn = /*#__PURE__*/ U({
 		function Oe(e) {
 			e.preventDefault();
 			let t = e.clipboardData?.getData("text/html"), n = e.clipboardData?.getData("text/plain") || "";
-			De(t ? Vn(t) : Hn(n));
+			De(t ? Un(t) : Wn(n));
 		}
 		function ke(e) {
 			let t = document.caretPositionFromPoint?.(e.clientX, e.clientY), n = document.caretRangeFromPoint?.(e.clientX, e.clientY), r = document.createRange();
@@ -3196,7 +3220,7 @@ var Gn = /*#__PURE__*/ U({
 		function Ae(e) {
 			e.preventDefault(), ke(e);
 			let t = e.dataTransfer?.getData("text/html"), n = e.dataTransfer?.getData("text/plain") || "";
-			De(t ? Vn(t) : Hn(n));
+			De(t ? Un(t) : Wn(n));
 		}
 		function je(e) {
 			Q(), h("blur", e);
@@ -3209,7 +3233,7 @@ var Gn = /*#__PURE__*/ U({
 			insertRichNode: G,
 			updateRichNode: K,
 			removeRichNode: ce
-		}), (n, r) => (w(), s("div", Kn, [t.editable ? (w(), s(e, { key: 0 }, [
+		}), (n, r) => (w(), s("div", Jn, [t.editable ? (w(), s(e, { key: 0 }, [
 			c("div", {
 				class: "desc-toolbar",
 				role: "toolbar",
@@ -3220,19 +3244,19 @@ var Gn = /*#__PURE__*/ U({
 					class: "desc-btn",
 					title: g.value.bold,
 					onMousedown: r[0] ||= H((e) => Z("bold"), ["prevent"])
-				}, [c("b", null, j(g.value.boldShort), 1)], 40, Jn),
+				}, [c("b", null, j(g.value.boldShort), 1)], 40, Xn),
 				c("button", {
 					type: "button",
 					class: "desc-btn",
 					title: g.value.italic,
 					onMousedown: r[1] ||= H((e) => Z("italic"), ["prevent"])
-				}, [c("i", null, j(g.value.italicShort), 1)], 40, Yn),
+				}, [c("i", null, j(g.value.italicShort), 1)], 40, Zn),
 				c("button", {
 					type: "button",
 					class: "desc-btn",
 					title: g.value.underline,
 					onMousedown: r[2] ||= H((e) => Z("underline"), ["prevent"])
-				}, [c("u", null, j(g.value.underlineShort), 1)], 40, Xn),
+				}, [c("u", null, j(g.value.underlineShort), 1)], 40, Qn),
 				r[13] ||= c("div", { class: "desc-sep" }, null, -1),
 				c("button", {
 					ref_key: "headingTrigger",
@@ -3245,8 +3269,8 @@ var Gn = /*#__PURE__*/ U({
 				}, [d(j(g.value.paragraph) + " ", 1), r[11] ||= c("span", {
 					class: "desc-caret",
 					"aria-hidden": "true"
-				}, "▾", -1)], 40, Zn),
-				f(nn, {
+				}, "▾", -1)], 40, $n),
+				f(an, {
 					open: x.value,
 					anchor: C.value,
 					"min-width": 160,
@@ -3266,7 +3290,7 @@ var Gn = /*#__PURE__*/ U({
 						class: v(["desc-drop-item", `drop-h${e}`]),
 						role: "menuitem",
 						onMousedown: H((t) => he(`h${e}`), ["prevent"])
-					}, j(X(e)), 43, Qn))), 128))]),
+					}, j(X(e)), 43, er))), 128))]),
 					_: 1
 				}, 8, [
 					"open",
@@ -3274,7 +3298,7 @@ var Gn = /*#__PURE__*/ U({
 					"aria-label"
 				]),
 				r[14] ||= c("div", { class: "desc-sep" }, null, -1),
-				f(bn, {
+				f(Sn, {
 					"allow-clear": "",
 					colors: t.colors,
 					"model-value": "",
@@ -3289,7 +3313,7 @@ var Gn = /*#__PURE__*/ U({
 						onMousedown: H((t) => {
 							x.value = !1, e();
 						}, ["prevent"])
-					}, [c("span", er, j(g.value.colorShort), 1)], 40, $n)]),
+					}, [c("span", nr, j(g.value.colorShort), 1)], 40, tr)]),
 					_: 1
 				}, 8, [
 					"colors",
@@ -3308,15 +3332,15 @@ var Gn = /*#__PURE__*/ U({
 					"aria-expanded": N.value,
 					"aria-haspopup": "dialog",
 					onMousedown: r[6] ||= H((e) => J(), ["prevent"])
-				}, [...r[12] ||= [c("span", { "aria-hidden": "true" }, "↗", -1)]], 42, tr)) : o("", !0),
+				}, [...r[12] ||= [c("span", { "aria-hidden": "true" }, "↗", -1)]], 42, rr)) : o("", !0),
 				O(n.$slots, "toolbar", {
 					editor: me,
 					insertRichNode: G,
 					updateRichNode: K,
 					removeRichNode: ce
 				}, void 0, !0)
-			], 8, qn),
-			f(nn, {
+			], 8, Yn),
+			f(an, {
 				open: N.value,
 				anchor: ee.value,
 				"min-width": 260,
@@ -3329,12 +3353,12 @@ var Gn = /*#__PURE__*/ U({
 					class: "desc-link-form",
 					onSubmit: H(de, ["prevent"])
 				}, [
-					c("label", nr, [c("span", null, j(g.value.linkText), 1), B(c("input", {
+					c("label", ir, [c("span", null, j(g.value.linkText), 1), B(c("input", {
 						"onUpdate:modelValue": r[7] ||= (e) => W.text = e,
 						type: "text",
 						placeholder: g.value.linkTextPlaceholder
-					}, null, 8, rr), [[I, W.text]])]),
-					c("label", ir, [c("span", null, j(g.value.linkUrl), 1), B(c("input", {
+					}, null, 8, ar), [[I, W.text]])]),
+					c("label", or, [c("span", null, j(g.value.linkUrl), 1), B(c("input", {
 						ref_key: "linkUrlInput",
 						ref: M,
 						"onUpdate:modelValue": r[8] ||= (e) => W.url = e,
@@ -3342,8 +3366,8 @@ var Gn = /*#__PURE__*/ U({
 						inputmode: "url",
 						placeholder: "https://…"
 					}, null, 512), [[I, W.url]])]),
-					U.value ? (w(), s("span", ar, j(g.value.linkInvalid), 1)) : o("", !0),
-					c("div", or, [
+					U.value ? (w(), s("span", sr, j(g.value.linkInvalid), 1)) : o("", !0),
+					c("div", cr, [
 						P.value ? (w(), s("button", {
 							key: 0,
 							type: "button",
@@ -3355,7 +3379,7 @@ var Gn = /*#__PURE__*/ U({
 							class: "desc-link-cancel",
 							onClick: r[9] ||= (e) => Y(!1)
 						}, j(g.value.cancel), 1),
-						c("button", sr, j(g.value.saveLink), 1)
+						c("button", lr, j(g.value.saveLink), 1)
 					])
 				], 32)]),
 				_: 1
@@ -3383,8 +3407,8 @@ var Gn = /*#__PURE__*/ U({
 				onDrop: Ae,
 				onFocus: r[10] ||= (e) => n.$emit("focus", e),
 				onBlur: je
-			}, null, 40, cr)
-		], 64)) : t.modelValue ? (w(), a(Gn, {
+			}, null, 40, ur)
+		], 64)) : t.modelValue ? (w(), a(qn, {
 			key: 1,
 			class: "desc-view",
 			html: t.modelValue
@@ -3392,25 +3416,25 @@ var Gn = /*#__PURE__*/ U({
 			name: "node",
 			fn: z((e) => [O(n.$slots, "node", y(m(e)), void 0, !0)]),
 			key: "0"
-		} : void 0]), 1032, ["html"])) : (w(), s("div", lr, j(t.placeholder), 1))]));
+		} : void 0]), 1032, ["html"])) : (w(), s("div", dr, j(t.placeholder), 1))]));
 	}
-}, [["__scopeId", "data-v-28db4ac6"]]), dr = [
+}, [["__scopeId", "data-v-28db4ac6"]]), pr = [
 	"aria-label",
 	"aria-expanded",
 	"disabled"
-], fr = {
+], mr = {
 	class: "share-account-avatar",
 	"aria-hidden": "true"
-}, pr = {
+}, hr = {
 	key: 0,
 	class: "share-account-label"
-}, mr = {
+}, gr = {
 	key: 1,
 	class: "share-account-chevron",
 	viewBox: "0 0 16 16",
 	fill: "none",
 	"aria-hidden": "true"
-}, hr = /*#__PURE__*/ U({
+}, _r = /*#__PURE__*/ U({
 	__name: "AccountMenu",
 	props: {
 		label: {
@@ -3440,7 +3464,7 @@ var Gn = /*#__PURE__*/ U({
 	},
 	setup(e) {
 		let t = e, n = i(() => (t.avatarText || t.label.trim().charAt(0) || "?").toUpperCase());
-		return (t, r) => (w(), a(Kt, {
+		return (t, r) => (w(), a(Jt, {
 			title: e.title,
 			disabled: e.disabled,
 			block: ""
@@ -3456,24 +3480,24 @@ var Gn = /*#__PURE__*/ U({
 				"aria-haspopup": "menu",
 				disabled: e.disabled
 			}, [
-				c("span", fr, [O(t.$slots, "avatar", {}, () => [d(j(n.value), 1)], !0)]),
-				e.expanded ? (w(), s("span", pr, j(e.label), 1)) : o("", !0),
-				e.expanded ? (w(), s("svg", mr, [...r[0] ||= [c("path", {
+				c("span", mr, [O(t.$slots, "avatar", {}, () => [d(j(n.value), 1)], !0)]),
+				e.expanded ? (w(), s("span", hr, j(e.label), 1)) : o("", !0),
+				e.expanded ? (w(), s("svg", gr, [...r[0] ||= [c("path", {
 					d: "m4 6 4 4 4-4",
 					stroke: "currentColor",
 					"stroke-width": "1.7",
 					"stroke-linecap": "round",
 					"stroke-linejoin": "round"
 				}, null, -1)]])) : o("", !0)
-			], 10, dr)]),
+			], 10, pr)]),
 			default: z(({ close: e }) => [O(t.$slots, "default", { close: e }, void 0, !0)]),
 			_: 3
 		}, 8, ["title", "disabled"]));
 	}
-}, [["__scopeId", "data-v-1b1c351a"]]), gr = {
+}, [["__scopeId", "data-v-1b1c351a"]]), vr = {
 	key: 1,
 	class: "share-app-shell__rail"
-}, _r = /*#__PURE__*/ U({
+}, yr = /*#__PURE__*/ U({
 	__name: "AppShell",
 	props: {
 		sidebarMode: {
@@ -3527,33 +3551,33 @@ var Gn = /*#__PURE__*/ U({
 				default: z(() => [O(t.$slots, "default", {}, void 0, !0)]),
 				_: 3
 			})),
-			t.$slots.rail ? (w(), s("aside", gr, [O(t.$slots, "rail", {}, void 0, !0)])) : o("", !0),
+			t.$slots.rail ? (w(), s("aside", vr, [O(t.$slots, "rail", {}, void 0, !0)])) : o("", !0),
 			O(t.$slots, "overlay", {}, void 0, !0)
 		], 6));
 	}
-}, [["__scopeId", "data-v-20e51ba2"]]), vr = ["aria-label", "title"], yr = {
+}, [["__scopeId", "data-v-20e51ba2"]]), br = ["aria-label", "title"], xr = {
 	class: "share-sidebar-toggle__icon sidebar-icon",
 	"aria-hidden": "true"
-}, br = {
+}, Sr = {
 	width: "18",
 	height: "18",
 	viewBox: "0 0 18 18",
 	fill: "none"
-}, xr = {
+}, Cr = {
 	key: 0,
 	d: "m11 6-3 3 3 3",
 	stroke: "currentColor",
 	"stroke-width": "1.5",
 	"stroke-linecap": "round",
 	"stroke-linejoin": "round"
-}, Sr = {
+}, wr = {
 	key: 1,
 	d: "m9 6 3 3-3 3",
 	stroke: "currentColor",
 	"stroke-width": "1.5",
 	"stroke-linecap": "round",
 	"stroke-linejoin": "round"
-}, Cr = { class: "share-sidebar-label sidebar-label" }, wr = /*#__PURE__*/ U({
+}, Tr = { class: "share-sidebar-label sidebar-label" }, Er = /*#__PURE__*/ U({
 	__name: "SidebarToggle",
 	props: {
 		expanded: {
@@ -3575,7 +3599,7 @@ var Gn = /*#__PURE__*/ U({
 			class: "share-sidebar-toggle sidebar-toggle",
 			"aria-label": e.expanded ? e.collapseLabel : e.expandLabel,
 			title: e.expanded ? e.collapseLabel : e.expandLabel
-		}, [c("span", yr, [(w(), s("svg", br, [
+		}, [c("span", xr, [(w(), s("svg", Sr, [
 			n[0] ||= c("rect", {
 				x: "2.25",
 				y: "2.25",
@@ -3590,19 +3614,19 @@ var Gn = /*#__PURE__*/ U({
 				stroke: "currentColor",
 				"stroke-width": "1.5"
 			}, null, -1),
-			e.expanded ? (w(), s("path", xr)) : (w(), s("path", Sr))
-		]))]), c("span", Cr, j(e.expanded ? e.collapseLabel : e.expandLabel), 1)], 8, vr));
+			e.expanded ? (w(), s("path", Cr)) : (w(), s("path", wr))
+		]))]), c("span", Tr, j(e.expanded ? e.collapseLabel : e.expandLabel), 1)], 8, br));
 	}
-}, [["__scopeId", "data-v-60807cea"]]), Tr = {
+}, [["__scopeId", "data-v-60807cea"]]), Dr = {
 	key: 0,
 	class: "share-sidebar-head"
-}, Er = ["aria-label"], Dr = {
+}, Or = ["aria-label"], kr = {
 	key: 1,
 	class: "share-sidebar-tools"
-}, Or = {
+}, Ar = {
 	key: 2,
 	class: "share-sidebar-account"
-}, kr = /*#__PURE__*/ U({
+}, jr = /*#__PURE__*/ U({
 	__name: "AppSidebar",
 	props: {
 		modelValue: {
@@ -3708,7 +3732,7 @@ var Gn = /*#__PURE__*/ U({
 			e.position !== "embedded" && e.mobileBreakpoint !== 0 && `share-app-sidebar--mobile-${e.mobileMode}`,
 			e.position !== "embedded" && e.mobileBreakpoint !== 0 && `share-app-sidebar--breakpoint-${e.mobileBreakpoint}`
 		]]) }, [
-			t.$slots.brand ? (w(), s("div", Tr, [O(t.$slots, "brand", {
+			t.$slots.brand ? (w(), s("div", Dr, [O(t.$slots, "brand", {
 				expanded: f.value,
 				toggle: h
 			}, void 0, !0)])) : o("", !0),
@@ -3718,8 +3742,8 @@ var Gn = /*#__PURE__*/ U({
 			}, [O(t.$slots, "default", {
 				expanded: f.value,
 				toggle: h
-			}, void 0, !0)], 8, Er),
-			e.showToggle || t.$slots.tools ? (w(), s("div", Dr, [e.showToggle ? (w(), a(wr, {
+			}, void 0, !0)], 8, Or),
+			e.showToggle || t.$slots.tools ? (w(), s("div", kr, [e.showToggle ? (w(), a(Er, {
 				key: 0,
 				expanded: f.value,
 				"expand-label": e.expandLabel,
@@ -3735,13 +3759,13 @@ var Gn = /*#__PURE__*/ U({
 				collapse: m,
 				toggle: h
 			}, void 0, !0)])) : o("", !0),
-			t.$slots.account ? (w(), s("div", Or, [O(t.$slots, "account", { expanded: f.value }, void 0, !0)])) : o("", !0)
+			t.$slots.account ? (w(), s("div", Ar, [O(t.$slots, "account", { expanded: f.value }, void 0, !0)])) : o("", !0)
 		], 2));
 	}
-}, [["__scopeId", "data-v-2edf4ac9"]]), Ar = {
+}, [["__scopeId", "data-v-2edf4ac9"]]), Mr = {
 	class: "share-sidebar-brand__icon sidebar-brand-icon",
 	"aria-hidden": "true"
-}, jr = { class: "share-sidebar-label share-sidebar-brand__label sidebar-label sidebar-brand-label" }, Mr = /*#__PURE__*/ U(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
+}, Nr = { class: "share-sidebar-label share-sidebar-brand__label sidebar-label sidebar-brand-label" }, Pr = /*#__PURE__*/ U(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
 	__name: "SidebarBrand",
 	props: {
 		as: {
@@ -3770,27 +3794,27 @@ var Gn = /*#__PURE__*/ U({
 			class: "share-sidebar-brand sidebar-brand",
 			"aria-label": e.ariaLabel || e.label
 		}, t.$attrs), {
-			default: z(() => [c("span", Ar, [O(t.$slots, "icon", {}, () => [e.icon ? (w(), a(k(e.icon), {
+			default: z(() => [c("span", Mr, [O(t.$slots, "icon", {}, () => [e.icon ? (w(), a(k(e.icon), {
 				key: 0,
 				size: 22,
 				"stroke-width": 1.8
-			})) : o("", !0)], !0)]), c("span", jr, [O(t.$slots, "default", {}, () => [d(j(e.label), 1)], !0)])]),
+			})) : o("", !0)], !0)]), c("span", Nr, [O(t.$slots, "default", {}, () => [d(j(e.label), 1)], !0)])]),
 			_: 3
 		}, 16, ["aria-label"]));
 	}
-}), [["__scopeId", "data-v-2ad2fa09"]]), Nr = { class: "share-sidebar-group" }, Pr = /*#__PURE__*/ U({
+}), [["__scopeId", "data-v-2ad2fa09"]]), Fr = { class: "share-sidebar-group" }, Ir = /*#__PURE__*/ U({
 	__name: "SidebarGroup",
 	props: { label: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (w(), s("div", Nr, [O(t.$slots, "default", {}, () => [d(j(e.label), 1)], !0)]));
+		return (t, n) => (w(), s("div", Fr, [O(t.$slots, "default", {}, () => [d(j(e.label), 1)], !0)]));
 	}
-}, [["__scopeId", "data-v-914e315d"]]), Fr = {
+}, [["__scopeId", "data-v-914e315d"]]), Lr = {
 	class: "share-sidebar-icon sidebar-icon",
 	"aria-hidden": "true"
-}, Ir = { class: "share-sidebar-label sidebar-label" }, Lr = /*#__PURE__*/ U(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
+}, Rr = { class: "share-sidebar-label sidebar-label" }, zr = /*#__PURE__*/ U(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
 	__name: "SidebarNavItem",
 	props: {
 		as: {
@@ -3824,11 +3848,11 @@ var Gn = /*#__PURE__*/ U({
 			title: e.title || e.label,
 			"aria-current": e.active ? "page" : void 0
 		}, t.$attrs), {
-			default: z(() => [c("span", Fr, [O(t.$slots, "icon", {}, () => [e.icon ? (w(), a(k(e.icon), {
+			default: z(() => [c("span", Lr, [O(t.$slots, "icon", {}, () => [e.icon ? (w(), a(k(e.icon), {
 				key: 0,
 				size: 20,
 				"stroke-width": 1.8
-			})) : o("", !0)], !0)]), c("span", Ir, [O(t.$slots, "default", {}, () => [d(j(e.label), 1)], !0)])]),
+			})) : o("", !0)], !0)]), c("span", Rr, [O(t.$slots, "default", {}, () => [d(j(e.label), 1)], !0)])]),
 			_: 3
 		}, 16, [
 			"class",
@@ -3836,10 +3860,10 @@ var Gn = /*#__PURE__*/ U({
 			"aria-current"
 		]));
 	}
-}), [["__scopeId", "data-v-3deb2542"]]), Rr = {
+}), [["__scopeId", "data-v-3deb2542"]]), Br = {
 	key: 0,
 	class: "share-editor-panel__title"
-}, zr = /*#__PURE__*/ U({
+}, Vr = /*#__PURE__*/ U({
 	__name: "EditorPanel",
 	props: {
 		title: {
@@ -3852,28 +3876,28 @@ var Gn = /*#__PURE__*/ U({
 		}
 	},
 	setup(e) {
-		return (t, n) => (w(), s("div", { class: v(["share-editor-panel", { "share-editor-panel--compact": e.compact }]) }, [e.title || t.$slots.title ? (w(), s("div", Rr, [O(t.$slots, "title", {}, () => [d(j(e.title), 1)], !0)])) : o("", !0), O(t.$slots, "default", {}, void 0, !0)], 2));
+		return (t, n) => (w(), s("div", { class: v(["share-editor-panel", { "share-editor-panel--compact": e.compact }]) }, [e.title || t.$slots.title ? (w(), s("div", Br, [O(t.$slots, "title", {}, () => [d(j(e.title), 1)], !0)])) : o("", !0), O(t.$slots, "default", {}, void 0, !0)], 2));
 	}
-}, [["__scopeId", "data-v-f7a33945"]]), Br = { class: "share-editor-section-title" }, Vr = { class: "share-editor-section-title__text" }, Hr = {
+}, [["__scopeId", "data-v-f7a33945"]]), Hr = { class: "share-editor-section-title" }, Ur = { class: "share-editor-section-title__text" }, Wr = {
 	key: 0,
 	class: "share-editor-section-title__actions"
-}, Ur = /*#__PURE__*/ U({
+}, Gr = /*#__PURE__*/ U({
 	__name: "EditorSectionTitle",
 	props: { title: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (w(), s("div", Br, [c("span", Vr, [O(t.$slots, "default", {}, () => [d(j(e.title), 1)], !0)]), t.$slots.actions ? (w(), s("span", Hr, [O(t.$slots, "actions", {}, void 0, !0)])) : o("", !0)]));
+		return (t, n) => (w(), s("div", Hr, [c("span", Ur, [O(t.$slots, "default", {}, () => [d(j(e.title), 1)], !0)]), t.$slots.actions ? (w(), s("span", Wr, [O(t.$slots, "actions", {}, void 0, !0)])) : o("", !0)]));
 	}
-}, [["__scopeId", "data-v-bd6769b9"]]), Wr = { class: "share-editor-section" }, Gr = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-bd6769b9"]]), Kr = { class: "share-editor-section" }, qr = /*#__PURE__*/ U({
 	__name: "EditorSection",
 	props: { title: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (w(), s("section", Wr, [e.title || t.$slots.title ? (w(), a(Ur, {
+		return (t, n) => (w(), s("section", Kr, [e.title || t.$slots.title ? (w(), a(Gr, {
 			key: 0,
 			title: e.title
 		}, l({ _: 2 }, [t.$slots.title ? {
@@ -3886,14 +3910,14 @@ var Gn = /*#__PURE__*/ U({
 			key: "1"
 		} : void 0]), 1032, ["title"])) : o("", !0), O(t.$slots, "default", {}, void 0, !0)]));
 	}
-}, [["__scopeId", "data-v-8f45005c"]]), Kr = {}, qr = { class: "share-editor-total" };
-function Jr(e, t) {
-	return w(), s("div", qr, [O(e.$slots, "default", {}, void 0, !0)]);
+}, [["__scopeId", "data-v-8f45005c"]]), Jr = {}, Yr = { class: "share-editor-total" };
+function Xr(e, t) {
+	return w(), s("div", Yr, [O(e.$slots, "default", {}, void 0, !0)]);
 }
-var Yr = /*#__PURE__*/ U(Kr, [["render", Jr], ["__scopeId", "data-v-7fe02c46"]]);
+var Zr = /*#__PURE__*/ U(Jr, [["render", Xr], ["__scopeId", "data-v-7fe02c46"]]);
 //#endregion
 //#region src/internal/drawerSwipe.js
-function Xr({ enabled: e, width: t, close: n }) {
+function Qr({ enabled: e, width: t, close: n }) {
 	let r = null, i = null;
 	function a() {
 		r = null, i = null;
@@ -3926,13 +3950,13 @@ function Xr({ enabled: e, width: t, close: n }) {
 }
 //#endregion
 //#region src/components/overlay/AppDrawer.vue
-var Zr = ["aria-label"], Qr = {
+var $r = ["aria-label"], ei = {
 	key: 0,
 	class: "share-drawer__header"
-}, $r = ["aria-label"], ei = { class: "share-drawer__body" }, ti = {
+}, ti = ["aria-label"], ni = { class: "share-drawer__body" }, ri = {
 	key: 2,
 	class: "share-drawer__footer"
-}, ni = /*#__PURE__*/ U(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
+}, ii = /*#__PURE__*/ U(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
 	__name: "AppDrawer",
 	props: {
 		modelValue: {
@@ -3970,7 +3994,7 @@ var Zr = ["aria-label"], Qr = {
 		"closed"
 	],
 	setup(e, { expose: r, emit: l }) {
-		let u = e, d = l, p = E(null), m = E(!1), h = i(() => u.modelValue && !m.value), v = $t("(prefers-reduced-motion: reduce)"), y = Symbol("app-drawer"), S = null, C = null, T = !1;
+		let u = e, d = l, p = E(null), m = E(!1), h = i(() => u.modelValue && !m.value), v = tn("(prefers-reduced-motion: reduce)"), y = Symbol("app-drawer"), S = null, C = null, T = !1;
 		function D() {
 			return h.value && ht(y);
 		}
@@ -3997,7 +4021,7 @@ var Zr = ["aria-label"], Qr = {
 		function I() {
 			h.value && d("opened");
 		}
-		let L = Xr({
+		let L = Qr({
 			enabled: () => u.swipeToClose && D(),
 			width: () => p.value?.getBoundingClientRect().width || 288,
 			close: A
@@ -4047,7 +4071,7 @@ var Zr = ["aria-label"], Qr = {
 				onTouchend: i[2] ||= (...e) => M(L).end && M(L).end(...e),
 				onTouchcancel: i[3] ||= (...e) => M(L).cancel && M(L).cancel(...e)
 			}), [
-				r.$slots.header || r.$slots.title ? (w(), s("header", Qr, [O(r.$slots, "header", { close: A }, () => [O(r.$slots, "title", { close: A }, void 0, !0)], !0)])) : o("", !0),
+				r.$slots.header || r.$slots.title ? (w(), s("header", ei, [O(r.$slots, "header", { close: A }, () => [O(r.$slots, "title", { close: A }, void 0, !0)], !0)])) : o("", !0),
 				e.showClose ? (w(), s("button", {
 					key: 1,
 					class: "share-drawer__close",
@@ -4065,17 +4089,17 @@ var Zr = ["aria-label"], Qr = {
 					stroke: "currentColor",
 					"stroke-width": "1.6",
 					"stroke-linecap": "round"
-				})], -1)]], 8, $r)) : o("", !0),
-				c("div", ei, [O(r.$slots, "default", { close: A }, void 0, !0)]),
-				r.$slots.footer ? (w(), s("footer", ti, [O(r.$slots, "footer", { close: A }, void 0, !0)])) : o("", !0)
-			], 16, Zr)], 4)) : o("", !0)]),
+				})], -1)]], 8, ti)) : o("", !0),
+				c("div", ni, [O(r.$slots, "default", { close: A }, void 0, !0)]),
+				r.$slots.footer ? (w(), s("footer", ri, [O(r.$slots, "footer", { close: A }, void 0, !0)])) : o("", !0)
+			], 16, $r)], 4)) : o("", !0)]),
 			_: 3
 		}, 8, ["duration"])]));
 	}
 }), [["__scopeId", "data-v-855cfb00"]]);
 //#endregion
 //#region src/composables/useFullscreenViewportHeight.js
-function ri(e = .94) {
+function ai(e = .94) {
 	let t = E(`${Math.round(e * 100)}dvh`);
 	function n() {
 		if (typeof window > "u") return;
@@ -4090,14 +4114,14 @@ function ri(e = .94) {
 }
 //#endregion
 //#region src/components/overlay/AppModal.vue
-var ii = ["aria-label"], ai = {
+var oi = ["aria-label"], si = {
 	key: 0,
 	class: "am-handle"
-}, oi = ["aria-label"], si = () => window.innerWidth <= 640, ci = 260, $ = 280, li = "cubic-bezier(0.32, 0.72, 0, 1)", ui = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])";
-function di(e) {
+}, ci = ["aria-label"], li = () => window.innerWidth <= 640, ui = 260, $ = 280, di = "cubic-bezier(0.32, 0.72, 0, 1)", fi = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])";
+function pi(e) {
 	e.focus({ preventScroll: !0 });
 }
-var fi = /*#__PURE__*/ U({
+var mi = /*#__PURE__*/ U({
 	__name: "AppModal",
 	props: {
 		zIndex: {
@@ -4159,7 +4183,7 @@ var fi = /*#__PURE__*/ U({
 	},
 	emits: ["close", "opened"],
 	setup(e, { expose: n, emit: r }) {
-		let l = e, u = r, d = E(null), f = E(null), p = ri(), m = i(() => typeof l.width == "number" ? `${l.width}px` : l.width || "480px"), h = E(!1), g = E(0), y = E(0), C = E(0), T = !1, D = null, k = !1, A = () => {}, j = Symbol("app-modal"), N = typeof document < "u" ? document.activeElement : null;
+		let l = e, u = r, d = E(null), f = E(null), p = ai(), m = i(() => typeof l.width == "number" ? `${l.width}px` : l.width || "480px"), h = E(!1), g = E(0), y = E(0), C = E(0), T = !1, D = null, k = !1, A = () => {}, j = Symbol("app-modal"), N = typeof document < "u" ? document.activeElement : null;
 		function P(e) {
 			if (!ht(j)) return;
 			if (e.key === "Escape") {
@@ -4172,7 +4196,7 @@ var fi = /*#__PURE__*/ U({
 				return;
 			}
 			if (e.key !== "Tab") return;
-			let t = [...f.value?.querySelectorAll(ui) || []].filter((e) => e.getClientRects().length > 0);
+			let t = [...f.value?.querySelectorAll(fi) || []].filter((e) => e.getClientRects().length > 0);
 			if (!t.length) {
 				e.preventDefault(), f.value?.focus();
 				return;
@@ -4182,10 +4206,10 @@ var fi = /*#__PURE__*/ U({
 		}
 		function F() {
 			let e = d.value, t = f.value;
-			!e || !t || (e.style.opacity = "0", K(e, 0), si() ? t.style.transform = "translateY(100%)" : (t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), requestAnimationFrame(() => {
+			!e || !t || (e.style.opacity = "0", K(e, 0), li() ? t.style.transform = "translateY(100%)" : (t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), requestAnimationFrame(() => {
 				requestAnimationFrame(() => {
-					let n = "cubic-bezier(0, 0, 0.4, 1)", r = `opacity ${ci}ms ${n}, backdrop-filter ${ci}ms ${n}, -webkit-backdrop-filter ${ci}ms ${n}`;
-					e.style.transition = r, e.style.opacity = "1", K(e, 6), si() ? (t.style.transition = `transform ${ci}ms ${li}`, t.style.transform = "translateY(0)") : (t.style.transition = `transform ${ci}ms ${li}, opacity ${ci}ms ${n}`, t.style.transform = "none", t.style.opacity = "1"), setTimeout(() => {
+					let n = "cubic-bezier(0, 0, 0.4, 1)", r = `opacity ${ui}ms ${n}, backdrop-filter ${ui}ms ${n}, -webkit-backdrop-filter ${ui}ms ${n}`;
+					e.style.transition = r, e.style.opacity = "1", K(e, 6), li() ? (t.style.transition = `transform ${ui}ms ${di}`, t.style.transform = "translateY(0)") : (t.style.transition = `transform ${ui}ms ${di}, opacity ${ui}ms ${n}`, t.style.transform = "none", t.style.opacity = "1"), setTimeout(() => {
 						T || (e.style.transition = "", K(e, 6), t.style.transition = "", t.style.transform = "", t.style.opacity = "", u("opened"));
 					}, 310);
 				});
@@ -4200,7 +4224,7 @@ var fi = /*#__PURE__*/ U({
 				return;
 			}
 			let n = `opacity ${$}ms ease, backdrop-filter ${$}ms ease, -webkit-backdrop-filter ${$}ms ease`;
-			e.style.transition = n, e.style.opacity = "0", K(e, 0), si() ? (t.style.transition = `transform ${$}ms ${li}`, t.style.transform = "translateY(100%)") : (t.style.transition = `transform ${$}ms ease, opacity ${$}ms ease`, t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), D = setTimeout(() => {
+			e.style.transition = n, e.style.opacity = "0", K(e, 0), li() ? (t.style.transition = `transform ${$}ms ${di}`, t.style.transform = "translateY(100%)") : (t.style.transition = `transform ${$}ms ease, opacity ${$}ms ease`, t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), D = setTimeout(() => {
 				T || u("close");
 			}, 300);
 		}
@@ -4234,9 +4258,9 @@ var fi = /*#__PURE__*/ U({
 			if (!h.value) return;
 			h.value = !1;
 			let e = f.value, t = d.value;
-			g.value > 100 ? (e && (e.style.transition = `transform ${$}ms ${li}`, e.style.transform = "translateY(100%)"), t && (t.style.transition = `opacity ${$}ms ease`, t.style.opacity = "0"), D = setTimeout(() => {
+			g.value > 100 ? (e && (e.style.transition = `transform ${$}ms ${di}`, e.style.transform = "translateY(100%)"), t && (t.style.transition = `opacity ${$}ms ease`, t.style.opacity = "0"), D = setTimeout(() => {
 				T || u("close");
-			}, 300)) : (e && (e.style.transition = `transform ${$}ms ${li}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), g.value = 0, setTimeout(() => {
+			}, 300)) : (e && (e.style.transition = `transform ${$}ms ${di}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), g.value = 0, setTimeout(() => {
 				T || (e && (e.style.transition = "", e.style.transform = ""), t && (t.style.transition = "", t.style.opacity = ""));
 			}, 330));
 		}
@@ -4244,16 +4268,16 @@ var fi = /*#__PURE__*/ U({
 			if (!h.value) return;
 			h.value = !1, g.value = 0;
 			let e = f.value, t = d.value;
-			e && (e.style.transition = `transform ${$}ms ${li}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), setTimeout(() => {
+			e && (e.style.transition = `transform ${$}ms ${di}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), setTimeout(() => {
 				T || (e && (e.style.transition = "", e.style.transform = ""), t && (t.style.transition = "", t.style.opacity = ""));
 			}, 330);
 		}
 		return S(() => {
 			pt(j), A = yt(), document.addEventListener("keydown", P), _(() => {
-				F(), f.value?.contains(document.activeElement) || (f.value?.querySelector(ui)?.focus(), f.value?.contains(document.activeElement) || f.value?.focus());
+				F(), f.value?.contains(document.activeElement) || (f.value?.querySelector(fi)?.focus(), f.value?.contains(document.activeElement) || f.value?.focus());
 			});
 		}), x(() => {
-			mt(j), A(), document.removeEventListener("keydown", P), clearTimeout(D), T = !0, N instanceof HTMLElement && N.isConnected && di(N);
+			mt(j), A(), document.removeEventListener("keydown", P), clearTimeout(D), T = !0, N instanceof HTMLElement && N.isConnected && pi(N);
 		}), (n, r) => (w(), a(t, { to: "body" }, [c("div", {
 			ref_key: "overlay",
 			ref: d,
@@ -4283,27 +4307,27 @@ var fi = /*#__PURE__*/ U({
 			onTouchendPassive: B,
 			onTouchcancelPassive: V
 		}, [
-			e.showHandle ? (w(), s("div", ai)) : o("", !0),
+			e.showHandle ? (w(), s("div", si)) : o("", !0),
 			e.showClose && !e.fullscreen ? (w(), s("button", {
 				key: 1,
 				class: "am-close",
 				type: "button",
 				"aria-label": e.closeLabel,
 				onClick: L
-			}, "✕", 8, oi)) : o("", !0),
+			}, "✕", 8, ci)) : o("", !0),
 			O(n.$slots, "default", {}, void 0, !0)
-		], 34)], 44, ii)]));
+		], 34)], 44, oi)]));
 	}
-}, [["__scopeId", "data-v-4e16b3d7"]]), pi = { class: "aem-shell" }, mi = { class: "aem-heading" }, hi = { class: "aem-title" }, gi = {
+}, [["__scopeId", "data-v-4e16b3d7"]]), hi = { class: "aem-shell" }, gi = { class: "aem-heading" }, _i = { class: "aem-title" }, vi = {
 	key: 0,
 	class: "aem-subtitle"
-}, _i = {
+}, yi = {
 	key: 0,
 	class: "aem-header-actions"
-}, vi = ["aria-label"], yi = {
+}, bi = ["aria-label"], xi = {
 	key: 0,
 	class: "aem-footer"
-}, bi = /*#__PURE__*/ U({
+}, Si = /*#__PURE__*/ U({
 	__name: "AppModalFrame",
 	props: {
 		title: {
@@ -4369,7 +4393,7 @@ var fi = /*#__PURE__*/ U({
 		function n() {
 			t.value?.requestClose();
 		}
-		return (r, i) => (w(), a(fi, {
+		return (r, i) => (w(), a(mi, {
 			ref_key: "modal",
 			ref: t,
 			flush: "",
@@ -4388,14 +4412,14 @@ var fi = /*#__PURE__*/ U({
 			onClose: i[0] ||= (e) => r.$emit("close"),
 			onOpened: i[1] ||= (e) => r.$emit("opened")
 		}, {
-			default: z(() => [c("section", pi, [
+			default: z(() => [c("section", hi, [
 				c("header", { class: v(["aem-header", { "aem-header-with-actions": !!r.$slots["header-actions"] }]) }, [
 					i[3] ||= c("span", {
 						class: "aem-handle",
 						"aria-hidden": "true"
 					}, null, -1),
-					c("div", mi, [O(r.$slots, "title", {}, () => [c("h2", hi, j(e.title), 1), e.subtitle ? (w(), s("span", gi, j(e.subtitle), 1)) : o("", !0)], !0)]),
-					r.$slots["header-actions"] ? (w(), s("div", _i, [O(r.$slots, "header-actions", {}, void 0, !0)])) : o("", !0),
+					c("div", gi, [O(r.$slots, "title", {}, () => [c("h2", _i, j(e.title), 1), e.subtitle ? (w(), s("span", vi, j(e.subtitle), 1)) : o("", !0)], !0)]),
+					r.$slots["header-actions"] ? (w(), s("div", yi, [O(r.$slots, "header-actions", {}, void 0, !0)])) : o("", !0),
 					e.showClose ? (w(), s("button", {
 						key: 1,
 						class: "aem-close",
@@ -4413,13 +4437,13 @@ var fi = /*#__PURE__*/ U({
 						stroke: "currentColor",
 						"stroke-width": "1.6",
 						"stroke-linecap": "round"
-					})], -1)]], 8, vi)) : o("", !0)
+					})], -1)]], 8, bi)) : o("", !0)
 				], 2),
 				c("div", { class: v(["aem-body", {
 					"aem-body-flush": !e.padded,
 					"aem-body-no-scroll": !e.bodyScroll
 				}]) }, [O(r.$slots, "default", {}, void 0, !0)], 2),
-				r.$slots.footer ? (w(), s("footer", yi, [O(r.$slots, "footer", {}, void 0, !0)])) : o("", !0)
+				r.$slots.footer ? (w(), s("footer", xi, [O(r.$slots, "footer", {}, void 0, !0)])) : o("", !0)
 			])]),
 			_: 3
 		}, 8, [
@@ -4435,11 +4459,11 @@ var fi = /*#__PURE__*/ U({
 			"close-label"
 		]));
 	}
-}, [["__scopeId", "data-v-1fab7c24"]]), xi = ["aria-label"], Si = {
+}, [["__scopeId", "data-v-1fab7c24"]]), Ci = ["aria-label"], wi = {
 	key: 0,
 	class: "share-loading__label",
 	"aria-hidden": "true"
-}, Ci = /*#__PURE__*/ U({
+}, Ti = /*#__PURE__*/ U({
 	__name: "LoadingIndicator",
 	props: {
 		label: {
@@ -4495,12 +4519,12 @@ var fi = /*#__PURE__*/ U({
 			r: "9",
 			"stroke-dasharray": "16 41",
 			"vector-effect": "non-scaling-stroke"
-		})], -1), e.showLabel ? (w(), s("span", Si, j(e.label), 1)) : o("", !0)], 14, xi));
+		})], -1), e.showLabel ? (w(), s("span", wi, j(e.label), 1)) : o("", !0)], 14, Ci));
 	}
-}, [["__scopeId", "data-v-c549d335"]]), wi = {
+}, [["__scopeId", "data-v-c549d335"]]), Ei = {
 	key: 0,
 	class: "cd-message"
-}, Ti = { class: "cd-actions" }, Ei = ["disabled"], Di = ["aria-busy", "disabled"], Oi = /*#__PURE__*/ U({
+}, Di = { class: "cd-actions" }, Oi = ["disabled"], ki = ["aria-busy", "disabled"], Ai = /*#__PURE__*/ U({
 	__name: "ConfirmDialog",
 	props: {
 		open: {
@@ -4568,7 +4592,7 @@ var fi = /*#__PURE__*/ U({
 		function g() {
 			n.loading || (r("confirm"), m());
 		}
-		return (t, n) => l.value ? (w(), a(bi, {
+		return (t, n) => l.value ? (w(), a(Si, {
 			key: 0,
 			title: e.title,
 			"z-index": e.zIndex,
@@ -4576,25 +4600,25 @@ var fi = /*#__PURE__*/ U({
 			dismissible: !e.loading,
 			onClose: h
 		}, {
-			footer: z(() => [c("div", Ti, [c("button", {
+			footer: z(() => [c("div", Di, [c("button", {
 				type: "button",
 				class: "cd-btn-cancel",
 				disabled: e.loading,
 				onClick: h
-			}, j(f.value), 9, Ei), c("button", {
+			}, j(f.value), 9, Oi), c("button", {
 				type: "button",
 				class: v(["cd-btn-confirm", `cd-btn--${p.value}`]),
 				"aria-busy": e.loading,
 				disabled: e.loading,
 				onClick: g
-			}, [e.loading ? (w(), a(Ci, {
+			}, [e.loading ? (w(), a(Ti, {
 				key: 0,
 				label: e.loadingLabel,
 				size: "xs",
 				class: "button-loading",
 				"aria-hidden": "true"
-			}, null, 8, ["label"])) : o("", !0), d(" " + j(e.loading ? e.loadingLabel : u.value), 1)], 10, Di)])]),
-			default: z(() => [e.message ? (w(), s("div", wi, j(e.message), 1)) : o("", !0)]),
+			}, null, 8, ["label"])) : o("", !0), d(" " + j(e.loading ? e.loadingLabel : u.value), 1)], 10, ki)])]),
+			default: z(() => [e.message ? (w(), s("div", Ei, j(e.message), 1)) : o("", !0)]),
 			_: 1
 		}, 8, [
 			"title",
@@ -4602,7 +4626,7 @@ var fi = /*#__PURE__*/ U({
 			"dismissible"
 		])) : o("", !0);
 	}
-}, [["__scopeId", "data-v-846211e5"]]), ki = {
+}, [["__scopeId", "data-v-846211e5"]]), ji = {
 	__name: "ModalShell",
 	props: {
 		open: {
@@ -4632,7 +4656,7 @@ var fi = /*#__PURE__*/ U({
 	},
 	emits: ["close", "opened"],
 	setup(e) {
-		return (t, n) => e.open ? (w(), a(fi, {
+		return (t, n) => e.open ? (w(), a(mi, {
 			key: 0,
 			width: e.width,
 			"z-index": e.zIndex,
@@ -4657,7 +4681,7 @@ var fi = /*#__PURE__*/ U({
 };
 //#endregion
 //#region src/composables/useContainerMorph.js
-function Ai({ open: e = 420, close: t = 300 } = {}) {
+function Mi({ open: e = 420, close: t = 300 } = {}) {
 	let n = (e) => typeof window < "u" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? 0 : Math.max(0, typeof e == "function" ? e() : e), r = "cubic-bezier(.2, 0, 0, 1)", i = "var(--shadow-lg)", a = [
 		"position",
 		"margin",
@@ -4709,7 +4733,7 @@ function Ai({ open: e = 420, close: t = 300 } = {}) {
 }
 //#endregion
 //#region src/components/overlay/MorphSheet.vue
-var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"], Pi = 320, Fi = 260, Ii = "8px", Li = /*#__PURE__*/ U({
+var Ni = ["aria-label"], Pi = { class: "ms-head-content" }, Fi = ["aria-label"], Ii = 320, Li = 260, Ri = "8px", zi = /*#__PURE__*/ U({
 	__name: "MorphSheet",
 	props: {
 		openDuration: {
@@ -4783,7 +4807,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 	},
 	emits: ["close", "back"],
 	setup(e, { expose: n, emit: r }) {
-		let l = e, u = r, d = en(), f = F(), p = i(() => l.mode === "add"), m = i(() => l.showClose === null ? !!f.head : l.showClose), h = i(() => l.nav ? l.nav.view.value : "detail"), g = i(() => l.nav ? l.nav.detailStyle.value : null), y = i(() => l.nav ? l.nav.subStyle.value : null), C = i(() => !!l.nav && h.value !== "detail"), T = E(null), D = E(null), k = E(null), A = E(null), j = E(null), N = E(null), P = E(!1), I = E(!1), L = E(!1), z = E(!1), B = E(!1), { EASE: V, visible: U, morphing: W, playClose: ee, playOpen: te } = Ai({
+		let l = e, u = r, d = nn(), f = F(), p = i(() => l.mode === "add"), m = i(() => l.showClose === null ? !!f.head : l.showClose), h = i(() => l.nav ? l.nav.view.value : "detail"), g = i(() => l.nav ? l.nav.detailStyle.value : null), y = i(() => l.nav ? l.nav.subStyle.value : null), C = i(() => !!l.nav && h.value !== "detail"), T = E(null), D = E(null), k = E(null), A = E(null), j = E(null), N = E(null), P = E(!1), I = E(!1), L = E(!1), z = E(!1), B = E(!1), { EASE: V, visible: U, morphing: W, playClose: ee, playOpen: te } = Mi({
 			open: () => l.openDuration,
 			close: () => l.closeDuration
 		}), ne = () => d.value ? "0px" : "18px", re = i(() => ({
@@ -4839,7 +4863,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 		function q(e) {
 			if (d.value || !A.value || W.value) return;
 			let t = l.nav ? l.nav.pos.value : 0, n = ce(j.value), r = N.value ? ce(N.value) : n, i = n * (1 - t) + r * t, a = Math.min(i, Math.max(120, le()));
-			A.value.style.transition = e ? `height ${Pi}ms ${V}` : "none", A.value.style.height = `${a}px`;
+			A.value.style.transition = e ? `height ${Ii}ms ${V}` : "none", A.value.style.height = `${a}px`;
 		}
 		let J = null;
 		function ue() {
@@ -4912,14 +4936,14 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 		}
 		function Se() {
 			let e = T.value;
-			e && (e.style.transition = `transform ${Fi}ms ${V}`, e.style.transform = `translateY(${window.innerHeight}px)`), U.value = !1, B.value = !1, je(), Te(!1), setTimeout(() => u("close"), Fi);
+			e && (e.style.transition = `transform ${Li}ms ${V}`, e.style.transform = `translateY(${window.innerHeight}px)`), U.value = !1, B.value = !1, je(), Te(!1), setTimeout(() => u("close"), Li);
 		}
 		let Ce = () => {};
 		function we() {
 			return typeof l.backgroundTarget == "string" ? document.querySelector(l.backgroundTarget) : l.backgroundTarget instanceof Element ? l.backgroundTarget : null;
 		}
 		function Te(e) {
-			Ce(), Ce = () => {}, !(!e || d.value || !l.blurBackground) && (Ce = xt(we(), { blur: Ii }));
+			Ce(), Ce = () => {}, !(!e || d.value || !l.blurBackground) && (Ce = xt(we(), { blur: Ri }));
 		}
 		let Ee = "", De = "", Oe = !1;
 		function ke() {
@@ -4935,7 +4959,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			if (!e) return;
 			Oe = !0;
 			let t = De && De !== "none" ? `${De}, ` : "";
-			e.style.transition = `${t}opacity ${Fi}ms ease`, e.style.opacity = "0", requestAnimationFrame(() => {
+			e.style.transition = `${t}opacity ${Li}ms ease`, e.style.opacity = "0", requestAnimationFrame(() => {
 				e.style.opacity = Ee;
 			}), setTimeout(() => {
 				e.style.opacity = Ee, e.style.transition = De, Oe = !1;
@@ -4992,13 +5016,13 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 				ref_key: "headEl",
 				ref: D,
 				class: "ms-head"
-			}, [c("div", Mi, [O(n.$slots, "head", {}, void 0, !0)]), m.value ? (w(), s("button", {
+			}, [c("div", Pi, [O(n.$slots, "head", {}, void 0, !0)]), m.value ? (w(), s("button", {
 				key: 0,
 				class: "ms-x",
 				type: "button",
 				"aria-label": e.closeLabel,
 				onClick: ae
-			}, "✕", 8, Ni)) : o("", !0)], 512)) : o("", !0),
+			}, "✕", 8, Fi)) : o("", !0)], 512)) : o("", !0),
 			c("div", {
 				ref_key: "bodyEl",
 				ref: A,
@@ -5021,9 +5045,9 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 				ref: k,
 				class: "ms-foot"
 			}, [O(n.$slots, "foot", {}, void 0, !0)], 512)) : o("", !0)
-		], 46, ji)], 6)]));
+		], 46, Ni)], 6)]));
 	}
-}, [["__scopeId", "data-v-c5b79059"]]), Ri = { class: "form-actions" }, zi = ["disabled"], Bi = ["aria-busy", "disabled"], Vi = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-c5b79059"]]), Bi = { class: "form-actions" }, Vi = ["disabled"], Hi = ["aria-busy", "disabled"], Ui = /*#__PURE__*/ U({
 	__name: "FormActionButtons",
 	props: {
 		submitText: {
@@ -5053,32 +5077,32 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 	},
 	emits: ["cancel", "submit"],
 	setup(e) {
-		return (t, n) => (w(), s("div", Ri, [c("button", {
+		return (t, n) => (w(), s("div", Bi, [c("button", {
 			type: "button",
 			class: "form-actions__cancel",
 			disabled: e.disabled,
 			onClick: n[0] ||= (e) => t.$emit("cancel")
-		}, j(e.cancelText), 9, zi), c("button", {
+		}, j(e.cancelText), 9, Vi), c("button", {
 			type: "button",
 			class: "form-actions__submit",
 			"aria-busy": e.loading,
 			disabled: e.disabled || e.loading || !e.canSubmit,
 			onClick: n[1] ||= (e) => t.$emit("submit")
-		}, [e.loading ? (w(), a(Ci, {
+		}, [e.loading ? (w(), a(Ti, {
 			key: 0,
 			label: e.loadingText,
 			size: "xs",
 			class: "button-loading",
 			"aria-hidden": "true"
-		}, null, 8, ["label"])) : o("", !0), d(" " + j(e.loading ? e.loadingText : e.submitText), 1)], 8, Bi)]));
+		}, null, 8, ["label"])) : o("", !0), d(" " + j(e.loading ? e.loadingText : e.submitText), 1)], 8, Hi)]));
 	}
-}, [["__scopeId", "data-v-c01a950d"]]), Hi = [
+}, [["__scopeId", "data-v-c01a950d"]]), Wi = [
 	"type",
 	"value",
 	"placeholder",
 	"maxlength",
 	"autocomplete"
-], Ui = /*#__PURE__*/ U({
+], Gi = /*#__PURE__*/ U({
 	__name: "FormTextInput",
 	props: {
 		value: { default: "" },
@@ -5132,15 +5156,15 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			onInput: n[0] ||= (e) => t.$emit("update:value", e.target.value),
 			onChange: n[1] ||= (e) => t.$emit("change", e.target.value),
 			onKeydown: n[2] ||= V((e) => t.$emit("enter", e), ["enter"])
-		}, null, 42, Hi));
+		}, null, 42, Wi));
 	}
-}, [["__scopeId", "data-v-3dd2fc56"]]), Wi = {
+}, [["__scopeId", "data-v-3dd2fc56"]]), Ki = {
 	key: 0,
 	class: "tpd-message"
-}, Gi = {
+}, qi = {
 	key: 1,
 	class: "tpd-label"
-}, Ki = /*#__PURE__*/ U({
+}, Ji = /*#__PURE__*/ U({
 	__name: "TextPromptDialog",
 	props: {
 		title: {
@@ -5229,7 +5253,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			let e = d.value.trim();
 			e && !n.loading && (r("confirm", e), r("submit", e), p());
 		}
-		return (t, n) => c.value ? (w(), a(bi, {
+		return (t, n) => c.value ? (w(), a(Si, {
 			key: 0,
 			title: e.title,
 			"z-index": e.zIndex,
@@ -5237,7 +5261,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			dismissible: !e.loading,
 			onClose: m
 		}, {
-			footer: z(() => [f(Vi, {
+			footer: z(() => [f(Ui, {
 				"submit-text": l.value,
 				"cancel-text": u.value,
 				"loading-text": e.loadingLabel,
@@ -5253,9 +5277,9 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 				"can-submit"
 			])]),
 			default: z(() => [
-				e.message ? (w(), s("div", Wi, j(e.message), 1)) : o("", !0),
-				e.label ? (w(), s("label", Gi, j(e.label), 1)) : o("", !0),
-				f(Ui, {
+				e.message ? (w(), s("div", Ki, j(e.message), 1)) : o("", !0),
+				e.label ? (w(), s("label", qi, j(e.label), 1)) : o("", !0),
+				f(Gi, {
 					value: d.value,
 					placeholder: e.placeholder,
 					maxlength: e.maxlength,
@@ -5275,10 +5299,10 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			"dismissible"
 		])) : o("", !0);
 	}
-}, [["__scopeId", "data-v-ba4b1b08"]]), qi = { class: "form-field-label" }, Ji = {
+}, [["__scopeId", "data-v-ba4b1b08"]]), Yi = { class: "form-field-label" }, Xi = {
 	key: 0,
 	class: "form-field-hint"
-}, Yi = /*#__PURE__*/ U({
+}, Zi = /*#__PURE__*/ U({
 	__name: "FormField",
 	props: {
 		label: {
@@ -5295,14 +5319,14 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 		}
 	},
 	setup(e) {
-		return (t, n) => (w(), s("div", { class: v(["form-field", { "form-field--vertical": e.vertical }]) }, [c("span", qi, [d(j(e.label), 1), e.hint ? (w(), s("span", Ji, j(e.hint), 1)) : o("", !0)]), O(t.$slots, "default", {}, void 0, !0)], 2));
+		return (t, n) => (w(), s("div", { class: v(["form-field", { "form-field--vertical": e.vertical }]) }, [c("span", Yi, [d(j(e.label), 1), e.hint ? (w(), s("span", Xi, j(e.hint), 1)) : o("", !0)]), O(t.$slots, "default", {}, void 0, !0)], 2));
 	}
-}, [["__scopeId", "data-v-3ab3f287"]]), Xi = { class: "fn-wrap" }, Zi = [
+}, [["__scopeId", "data-v-3ab3f287"]]), Qi = { class: "fn-wrap" }, $i = [
 	"value",
 	"min",
 	"max",
 	"step"
-], Qi = /*#__PURE__*/ U({
+], ea = /*#__PURE__*/ U({
 	__name: "FormNumberInput",
 	props: {
 		value: { default: 0 },
@@ -5347,7 +5371,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			let t = Number((a(n.value) + e * n.step).toPrecision(15));
 			r("change", i(t));
 		}
-		return (t, n) => (w(), s("div", Xi, [
+		return (t, n) => (w(), s("div", Qi, [
 			c("button", {
 				type: "button",
 				class: "fn-btn",
@@ -5365,7 +5389,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 				onInput: p,
 				onFocus: n[1] ||= (e) => l.value = !0,
 				onBlur: m
-			}, null, 40, Zi),
+			}, null, 40, $i),
 			c("button", {
 				type: "button",
 				class: "fn-btn",
@@ -5374,7 +5398,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			}, "+")
 		]));
 	}
-}, [["__scopeId", "data-v-9775803a"]]), $i = ["value"], ea = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-9775803a"]]), ta = ["value"], na = /*#__PURE__*/ U({
 	__name: "FormSelect",
 	props: {
 		value: { default: "" },
@@ -5398,14 +5422,14 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			class: "form-select",
 			value: e.value,
 			onChange: o
-		}, [O(t.$slots, "default", {}, void 0, !0)], 40, $i));
+		}, [O(t.$slots, "default", {}, void 0, !0)], 40, ta));
 	}
-}, [["__scopeId", "data-v-cf13b596"]]), ta = [
+}, [["__scopeId", "data-v-cf13b596"]]), ra = [
 	"value",
 	"placeholder",
 	"rows",
 	"maxlength"
-], na = /*#__PURE__*/ U({
+], ia = /*#__PURE__*/ U({
 	__name: "FormTextarea",
 	props: {
 		value: { default: "" },
@@ -5428,20 +5452,20 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			rows: e.rows,
 			maxlength: e.maxlength,
 			onInput: n[0] ||= (e) => t.$emit("update:value", e.target.value)
-		}, null, 40, ta));
+		}, null, 40, ra));
 	}
-}, [["__scopeId", "data-v-89c3847b"]]), ra = {
+}, [["__scopeId", "data-v-89c3847b"]]), aa = {
 	class: "share-inline-edit__measure",
 	"aria-hidden": "true"
-}, ia = {
+}, oa = {
 	key: 0,
 	class: "share-inline-edit__view"
-}, aa = { class: "share-inline-edit__value" }, oa = ["aria-label", "disabled"], sa = ["onKeydown"], ca = [
+}, sa = { class: "share-inline-edit__value" }, ca = ["aria-label", "disabled"], la = ["onKeydown"], ua = [
 	"value",
 	"aria-label",
 	"disabled",
 	"aria-invalid"
-], la = ["value", "disabled"], ua = [
+], da = ["value", "disabled"], fa = [
 	"value",
 	"aria-label",
 	"placeholder",
@@ -5449,14 +5473,14 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 	"required",
 	"disabled",
 	"aria-invalid"
-], da = {
+], pa = {
 	key: 2,
 	class: "share-inline-edit__actions"
-}, fa = ["aria-label", "disabled"], pa = ["aria-label", "disabled"], ma = {
+}, ma = ["aria-label", "disabled"], ha = ["aria-label", "disabled"], ga = {
 	key: 2,
 	class: "share-inline-edit__error",
 	role: "alert"
-}, ha = /*#__PURE__*/ U({
+}, _a = /*#__PURE__*/ U({
 	__name: "InlineEdit",
 	props: {
 		modelValue: { default: "" },
@@ -5546,7 +5570,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			}
 		}
 		return (n, r) => (w(), s("span", { class: v(["share-inline-edit", { "share-inline-edit--open": g.value }]) }, [
-			c("span", ra, j(x.value), 1),
+			c("span", aa, j(x.value), 1),
 			g.value ? (w(), s("span", {
 				key: 1,
 				class: "share-inline-edit__editor",
@@ -5564,7 +5588,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 				key: String(e.value),
 				value: e.value,
 				disabled: e.disabled
-			}, j(e.label), 9, la))), 128))], 40, ca)) : (w(), s("input", {
+			}, j(e.label), 9, da))), 128))], 40, ua)) : (w(), s("input", {
 				key: 1,
 				ref_key: "input",
 				ref: m,
@@ -5576,7 +5600,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 				disabled: t.disabled || u.value,
 				"aria-invalid": !!f.value,
 				onInput: r[1] ||= (e) => C(e.target.value)
-			}, null, 40, ua)), t.forceOpen ? o("", !0) : (w(), s("span", da, [c("button", {
+			}, null, 40, fa)), t.forceOpen ? o("", !0) : (w(), s("span", pa, [c("button", {
 				type: "button",
 				"aria-label": t.confirmLabel,
 				disabled: t.disabled || u.value || t.required && !String(p.value ?? "").trim(),
@@ -5591,7 +5615,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 				d: "m4 10 4 4 8-8",
 				stroke: "currentColor",
 				"stroke-width": "1.8"
-			})], -1)]], 8, fa), c("button", {
+			})], -1)]], 8, ma), c("button", {
 				type: "button",
 				"aria-label": t.cancelLabel,
 				disabled: u.value,
@@ -5606,7 +5630,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 				d: "m5 5 10 10M15 5 5 15",
 				stroke: "currentColor",
 				"stroke-width": "1.8"
-			})], -1)]], 8, pa)]))], 40, sa)) : (w(), s("span", ia, [c("span", aa, [O(n.$slots, "default", { value: t.modelValue }, () => [d(j(b.value), 1)], !0)]), t.editable ? (w(), s("button", {
+			})], -1)]], 8, ha)]))], 40, la)) : (w(), s("span", oa, [c("span", sa, [O(n.$slots, "default", { value: t.modelValue }, () => [d(j(b.value), 1)], !0)]), t.editable ? (w(), s("button", {
 				key: 0,
 				ref_key: "editButton",
 				ref: h,
@@ -5625,11 +5649,11 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 				stroke: "currentColor",
 				"stroke-width": "1.7",
 				"stroke-linejoin": "round"
-			})], -1)]], 8, oa)) : o("", !0)])),
-			f.value ? (w(), s("span", ma, j(f.value), 1)) : o("", !0)
+			})], -1)]], 8, ca)) : o("", !0)])),
+			f.value ? (w(), s("span", ga, j(f.value), 1)) : o("", !0)
 		], 2));
 	}
-}, [["__scopeId", "data-v-c8e5a3a1"]]), ga = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-c8e5a3a1"]]), va = /*#__PURE__*/ U({
 	__name: "SkeletonBlock",
 	props: {
 		width: {
@@ -5655,7 +5679,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			"aria-hidden": "true"
 		}, null, 6));
 	}
-}, [["__scopeId", "data-v-a3d65c09"]]), _a = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-a3d65c09"]]), ya = /*#__PURE__*/ U({
 	__name: "LoadingState",
 	props: {
 		label: {
@@ -5678,7 +5702,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 				"share-loading-state--fill": e.fill
 			}]),
 			"aria-busy": "true"
-		}, [f(Ci, {
+		}, [f(Ti, {
 			label: e.label,
 			size: e.compact ? "sm" : "md",
 			inline: e.compact,
@@ -5689,11 +5713,11 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			"inline"
 		])], 2));
 	}
-}, [["__scopeId", "data-v-eab73cf4"]]), va = [
+}, [["__scopeId", "data-v-eab73cf4"]]), ba = [
 	"type",
 	"disabled",
 	"aria-busy"
-], ya = /*#__PURE__*/ U({
+], xa = /*#__PURE__*/ U({
 	__name: "ActionButton",
 	props: {
 		variant: {
@@ -5732,17 +5756,17 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			type: e.type,
 			disabled: e.disabled || e.loading,
 			"aria-busy": e.loading || void 0
-		}, [e.loading ? (w(), a(Ci, {
+		}, [e.loading ? (w(), a(Ti, {
 			key: 0,
 			label: e.loadingLabel,
 			size: "xs",
 			"aria-hidden": "true"
-		}, null, 8, ["label"])) : O(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [O(t.$slots, "default", {}, void 0, !0)])], 10, va));
+		}, null, 8, ["label"])) : O(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [O(t.$slots, "default", {}, void 0, !0)])], 10, ba));
 	}
-}, [["__scopeId", "data-v-03274259"]]), ba = {
+}, [["__scopeId", "data-v-03274259"]]), Sa = {
 	class: "share-icon-toggle__icon",
 	"aria-hidden": "true"
-}, xa = /*#__PURE__*/ U({
+}, Ca = /*#__PURE__*/ U({
 	__name: "IconToggleButton",
 	props: {
 		modelValue: Boolean,
@@ -5762,7 +5786,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 		function i() {
 			n.disabled || r("update:modelValue", !n.modelValue);
 		}
-		return (t, n) => (w(), a(ya, {
+		return (t, n) => (w(), a(xa, {
 			class: v(["share-icon-toggle", { "share-icon-toggle--on": e.modelValue }]),
 			style: b({ "--icon-toggle-color": e.color || "var(--accent)" }),
 			variant: "secondary",
@@ -5773,7 +5797,7 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			"aria-pressed": e.modelValue,
 			onClick: i
 		}, {
-			icon: z(() => [c("span", ba, [O(t.$slots, "icon", {}, void 0, !0)]), n[0] ||= c("svg", {
+			icon: z(() => [c("span", Sa, [O(t.$slots, "icon", {}, void 0, !0)]), n[0] ||= c("svg", {
 				class: "share-icon-toggle__slash",
 				viewBox: "0 0 24 24",
 				fill: "none",
@@ -5792,16 +5816,16 @@ var ji = ["aria-label"], Mi = { class: "ms-head-content" }, Ni = ["aria-label"],
 			"aria-pressed"
 		]));
 	}
-}, [["__scopeId", "data-v-28796e03"]]), Sa = (e) => `${Math.round(e)}px`, Ca = (e, t, n, r) => ({
-	left: Sa(e),
-	top: Sa(t),
-	width: Sa(Math.max(0, n)),
-	height: Sa(Math.max(0, r))
-}), wa = (e, t, n) => Math.max(t, Math.min(e, n));
-function Ta(e, t, n, r = !1) {
+}, [["__scopeId", "data-v-28796e03"]]), wa = (e) => `${Math.round(e)}px`, Ta = (e, t, n, r) => ({
+	left: wa(e),
+	top: wa(t),
+	width: wa(Math.max(0, n)),
+	height: wa(Math.max(0, r))
+}), Ea = (e, t, n) => Math.max(t, Math.min(e, n));
+function Da(e, t, n, r = !1) {
 	let { width: i, height: a, left: o = 0, top: s = 0 } = t, c = o + i, l = s + a, u = Math.min(n.width, i - 24), d = Math.min(n.height, a - 24), f = null;
 	if (e && e.width > 0 && e.height > 0) {
-		let t = wa(e.left - 5, o, c), n = wa(e.top - 5, s, l), r = wa(e.right + 5, o, c), i = wa(e.bottom + 5, s, l);
+		let t = Ea(e.left - 5, o, c), n = Ea(e.top - 5, s, l), r = Ea(e.right + 5, o, c), i = Ea(e.bottom + 5, s, l);
 		r > t && i > n && (f = {
 			left: t,
 			top: n,
@@ -5812,31 +5836,31 @@ function Ta(e, t, n, r = !1) {
 		});
 	}
 	let p = f ? [
-		Ca(o, s, i, f.top - s),
-		Ca(o, f.bottom, i, l - f.bottom),
-		Ca(o, f.top, f.left - o, f.height),
-		Ca(f.right, f.top, c - f.right, f.height)
-	] : [Ca(o, s, i, a)], m = o + (i - u) / 2, h = s + (a - d) / 2;
-	return f && (m = wa(f.left, o + 12, c - u - 12), h = f.bottom + 14 + d <= l - 12 ? f.bottom + 14 : f.top - d - 14, h < s + 12 && f.right + u + 14 <= c - 12 && (m = f.right + 14, h = f.top), h = wa(h, s + 12, l - d - 12)), r && (m = o + (i - u) / 2, h = f && f.top > s + a / 2 ? s + 12 : l - d - 12), {
+		Ta(o, s, i, f.top - s),
+		Ta(o, f.bottom, i, l - f.bottom),
+		Ta(o, f.top, f.left - o, f.height),
+		Ta(f.right, f.top, c - f.right, f.height)
+	] : [Ta(o, s, i, a)], m = o + (i - u) / 2, h = s + (a - d) / 2;
+	return f && (m = Ea(f.left, o + 12, c - u - 12), h = f.bottom + 14 + d <= l - 12 ? f.bottom + 14 : f.top - d - 14, h < s + 12 && f.right + u + 14 <= c - 12 && (m = f.right + 14, h = f.top), h = Ea(h, s + 12, l - d - 12)), r && (m = o + (i - u) / 2, h = f && f.top > s + a / 2 ? s + 12 : l - d - 12), {
 		rect: f,
 		masks: p,
-		spotlight: f ? Ca(f.left, f.top, f.width, f.height) : {},
+		spotlight: f ? Ta(f.left, f.top, f.width, f.height) : {},
 		card: {
-			left: Sa(m),
-			top: Sa(h),
-			maxHeight: Sa(a - 24)
+			left: wa(m),
+			top: wa(h),
+			maxHeight: wa(a - 24)
 		}
 	};
 }
 //#endregion
 //#region src/components/tutorial/GuidedTour.vue
-var Ea = ["aria-label"], Da = {
+var Oa = ["aria-label"], ka = {
 	"aria-live": "polite",
 	"aria-atomic": "true"
-}, Oa = {
+}, Aa = {
 	key: 0,
 	role: "alert"
-}, ka = /*#__PURE__*/ U({
+}, ja = /*#__PURE__*/ U({
 	__name: "GuidedTour",
 	props: {
 		tour: {
@@ -5864,7 +5888,7 @@ var Ea = ["aria-label"], Da = {
 		}
 	},
 	setup(n) {
-		let r = n, l = E(null), u = E(Ta(null, {
+		let r = n, l = E(null), u = E(Da(null, {
 			width: 1,
 			height: 1
 		}, {
@@ -5874,7 +5898,7 @@ var Ea = ["aria-label"], Da = {
 		function T() {
 			if (!r.tour.active) return;
 			let e = window.visualViewport;
-			u.value = Ta(r.tour.target?.getBoundingClientRect(), {
+			u.value = Da(r.tour.target?.getBoundingClientRect(), {
 				width: e?.width || window.innerWidth,
 				height: e?.height || window.innerHeight,
 				left: e?.offsetLeft || 0,
@@ -5929,21 +5953,21 @@ var Ea = ["aria-label"], Da = {
 				"aria-label": n.tour.step?.title,
 				tabindex: "-1"
 			}, [
-				c("div", Da, [
+				c("div", ka, [
 					c("small", null, j(n.labels.progress(n.tour.index + 1, n.tour.steps.length)), 1),
 					c("h2", null, j(n.tour.step?.title), 1),
 					c("p", null, j(n.tour.step?.body), 1)
 				]),
-				n.tour.error ? (w(), s("p", Oa, j(n.labels.error), 1)) : o("", !0),
+				n.tour.error ? (w(), s("p", Aa, j(n.labels.error), 1)) : o("", !0),
 				c("footer", null, [
-					f(ya, {
+					f(xa, {
 						variant: "quiet",
 						onClick: i[0] ||= (e) => n.tour.error ? n.tour.stop() : n.tour.dismiss()
 					}, {
 						default: z(() => [d(j(n.tour.error ? n.labels.close : n.labels.dismiss), 1)]),
 						_: 1
 					}),
-					n.tour.index > 0 ? (w(), a(ya, {
+					n.tour.index > 0 ? (w(), a(xa, {
 						key: 0,
 						variant: "secondary",
 						disabled: n.tour.busy,
@@ -5952,14 +5976,14 @@ var Ea = ["aria-label"], Da = {
 						default: z(() => [d(j(n.labels.previous), 1)]),
 						_: 1
 					}, 8, ["disabled", "onClick"])) : o("", !0),
-					n.tour.error ? (w(), a(ya, {
+					n.tour.error ? (w(), a(xa, {
 						key: 1,
 						disabled: n.tour.busy,
 						onClick: n.tour.retry
 					}, {
 						default: z(() => [d(j(n.labels.retry), 1)]),
 						_: 1
-					}, 8, ["disabled", "onClick"])) : (w(), a(ya, {
+					}, 8, ["disabled", "onClick"])) : (w(), a(xa, {
 						key: 2,
 						loading: n.tour.busy,
 						"loading-label": n.labels.loading,
@@ -5973,13 +5997,13 @@ var Ea = ["aria-label"], Da = {
 						"onClick"
 					]))
 				])
-			], 12, Ea)
+			], 12, Oa)
 		], 36)) : o("", !0)]));
 	}
 }, [["__scopeId", "data-v-e912449f"]]);
 //#endregion
 //#region src/composables/useGuidedTour.js
-function Aa({ onFinish: e = async () => {} } = {}) {
+function Ma({ onFinish: e = async () => {} } = {}) {
 	let t = E(!1), n = E(!1), r = A(null), a = E(0), o = A([]), s = A(null), c = i(() => o.value[a.value] || null), l = null, u = [], d = null, f = !1, p = 0;
 	function m() {
 		l?.abort(), l = null;
@@ -6071,10 +6095,10 @@ function Aa({ onFinish: e = async () => {} } = {}) {
 }
 //#endregion
 //#region src/components/StatBar.vue
-var ja = ["aria-label", "aria-valuenow"], Ma = {
+var Na = ["aria-label", "aria-valuenow"], Pa = {
 	key: 1,
 	class: "stat-bar-shine"
-}, Na = /*#__PURE__*/ U({
+}, Fa = /*#__PURE__*/ U({
 	__name: "StatBar",
 	props: {
 		label: {
@@ -6133,16 +6157,16 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 					"--temp-color": t.tempColor
 				})
 			}, null, 4)) : o("", !0),
-			t.decorated ? (w(), s("span", Ma)) : o("", !0)
-		], 14, ja));
+			t.decorated ? (w(), s("span", Pa)) : o("", !0)
+		], 14, Na));
 	}
-}, [["__scopeId", "data-v-4a3b34fc"]]), Pa = ["aria-label"], Fa = [
+}, [["__scopeId", "data-v-4a3b34fc"]]), Ia = ["aria-label"], La = [
 	"aria-label",
 	"aria-pressed",
 	"title",
 	"disabled",
 	"onClick"
-], Ia = /*#__PURE__*/ U({
+], Ra = /*#__PURE__*/ U({
 	__name: "IconPicker",
 	props: {
 		modelValue: {
@@ -6180,24 +6204,24 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 		}, [O(n.$slots, "icon", { option: e }, () => [(w(), a(k(e.icon), {
 			size: 18,
 			"aria-hidden": "true"
-		}))], !0)], 10, Fa))), 128))], 8, Pa));
+		}))], !0)], 10, La))), 128))], 8, Ia));
 	}
-}, [["__scopeId", "data-v-8e855500"]]), La = {
+}, [["__scopeId", "data-v-8e855500"]]), za = {
 	key: 0,
 	class: "detail-section-icon",
 	"aria-hidden": "true"
-}, Ra = { class: "detail-section-label" }, za = {
+}, Ba = { class: "detail-section-label" }, Va = {
 	key: 1,
 	class: "detail-section-rule",
 	"aria-hidden": "true"
-}, Ba = {
+}, Ha = {
 	key: 2,
 	class: "detail-section-chevron",
 	viewBox: "0 0 16 16",
 	fill: "none",
 	width: "14",
 	height: "14"
-}, Va = ["id"], Ha = /*#__PURE__*/ U({
+}, Ua = ["id"], Wa = /*#__PURE__*/ U({
 	__name: "DetailSection",
 	props: {
 		label: {
@@ -6242,10 +6266,10 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 			onClick: n[0] ||= (t) => e.collapsible && (d.value = !d.value)
 		}, {
 			default: z(() => [
-				t.$slots.icon ? (w(), s("span", La, [O(t.$slots, "icon", {}, void 0, !0)])) : o("", !0),
-				c("span", Ra, j(e.label), 1),
-				t.$slots.icon ? (w(), s("span", za)) : o("", !0),
-				e.collapsible ? (w(), s("svg", Ba, [...n[1] ||= [c("path", {
+				t.$slots.icon ? (w(), s("span", za, [O(t.$slots, "icon", {}, void 0, !0)])) : o("", !0),
+				c("span", Ba, j(e.label), 1),
+				t.$slots.icon ? (w(), s("span", Va)) : o("", !0),
+				e.collapsible ? (w(), s("svg", Ha, [...n[1] ||= [c("path", {
 					d: "M4 6L8 10L12 6",
 					stroke: "currentColor",
 					"stroke-width": "1.8",
@@ -6262,29 +6286,29 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 		])), B(c("div", {
 			id: M(l),
 			class: "detail-section-body"
-		}, [O(t.$slots, "default", {}, void 0, !0)], 8, Va), [[L, !e.collapsible || d.value]])], 2));
+		}, [O(t.$slots, "default", {}, void 0, !0)], 8, Ua), [[L, !e.collapsible || d.value]])], 2));
 	}
-}, [["__scopeId", "data-v-6a2f0c96"]]), Ua = [
+}, [["__scopeId", "data-v-6a2f0c96"]]), Ga = [
 	"role",
 	"tabindex",
 	"aria-current"
-], Wa = { class: "oli-icon" }, Ga = {
+], Ka = { class: "oli-icon" }, qa = {
 	key: 0,
 	class: "oli-metric"
-}, Ka = { class: "oli-main" }, qa = { class: "oli-name" }, Ja = {
+}, Ja = { class: "oli-main" }, Ya = { class: "oli-name" }, Xa = {
 	key: 0,
 	class: "oli-name-en"
-}, Ya = ["title"], Xa = {
+}, Za = ["title"], Qa = {
 	key: 0,
 	class: "oli-sub"
-}, Za = { class: "oli-right" }, Qa = {
+}, $a = { class: "oli-right" }, eo = {
 	key: 0,
 	class: "oli-chevron",
 	viewBox: "0 0 16 16",
 	fill: "none",
 	width: "14",
 	height: "14"
-}, $a = /*#__PURE__*/ U({
+}, to = /*#__PURE__*/ U({
 	__name: "ContentRow",
 	props: {
 		title: {
@@ -6341,37 +6365,37 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 			onClick: n[0] ||= (n) => e.interactive && t.$emit("activate", n),
 			onKeydown: i
 		}, [
-			c("div", Wa, [O(t.$slots, "icon", {}, void 0, !0)]),
-			t.$slots.metric ? (w(), s("div", Ga, [O(t.$slots, "metric", {}, void 0, !0)])) : o("", !0),
-			c("div", Ka, [c("div", { class: v(["oli-name-row", { "oli-name-row--center": e.nameCenter }]) }, [
-				c("span", qa, j(e.title), 1),
-				e.alternateLabel ? (w(), s("span", Ja, j(e.alternateLabel), 1)) : o("", !0),
+			c("div", Ka, [O(t.$slots, "icon", {}, void 0, !0)]),
+			t.$slots.metric ? (w(), s("div", qa, [O(t.$slots, "metric", {}, void 0, !0)])) : o("", !0),
+			c("div", Ja, [c("div", { class: v(["oli-name-row", { "oli-name-row--center": e.nameCenter }]) }, [
+				c("span", Ya, j(e.title), 1),
+				e.alternateLabel ? (w(), s("span", Xa, j(e.alternateLabel), 1)) : o("", !0),
 				e.marker ? (w(), s("span", {
 					key: 1,
 					class: "oli-custom",
 					title: e.markerLabel
-				}, j(e.marker), 9, Ya)) : o("", !0),
+				}, j(e.marker), 9, Za)) : o("", !0),
 				O(t.$slots, "name-extras", {}, void 0, !0)
-			], 2), t.$slots.subtitle || e.subtitle ? (w(), s("div", Xa, [O(t.$slots, "subtitle", {}, () => [d(j(e.subtitle), 1)], !0)])) : o("", !0)]),
-			c("div", Za, [O(t.$slots, "trailing", {}, void 0, !0), e.showChevron ? (w(), s("svg", Qa, [...n[1] ||= [c("path", {
+			], 2), t.$slots.subtitle || e.subtitle ? (w(), s("div", Qa, [O(t.$slots, "subtitle", {}, () => [d(j(e.subtitle), 1)], !0)])) : o("", !0)]),
+			c("div", $a, [O(t.$slots, "trailing", {}, void 0, !0), e.showChevron ? (w(), s("svg", eo, [...n[1] ||= [c("path", {
 				d: "M6 12L10 8L6 4",
 				stroke: "currentColor",
 				"stroke-width": "1.6",
 				"stroke-linecap": "round",
 				"stroke-linejoin": "round"
 			}, null, -1)]])) : o("", !0)])
-		], 42, Ua));
+		], 42, Ga));
 	}
-}, [["__scopeId", "data-v-bd72ecfc"]]), eo = ["id", "aria-label"], to = [
+}, [["__scopeId", "data-v-bd72ecfc"]]), no = ["id", "aria-label"], ro = [
 	"id",
 	"aria-selected",
 	"aria-disabled",
 	"onMouseenter",
 	"onClick"
-], no = {
+], io = {
 	key: 0,
 	class: "share-option-list__empty"
-}, ro = /*#__PURE__*/ U({
+}, ao = /*#__PURE__*/ U({
 	__name: "OptionList",
 	props: {
 		id: {
@@ -6424,15 +6448,15 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 				onMouseleave: r[0] ||= (e) => n.$emit("leave"),
 				onMousedown: r[1] ||= H(() => {}, ["prevent", "stop"]),
 				onClick: H((t) => !e.disabled && n.$emit("select", e), ["stop"])
-			}, [O(n.$slots, "option", { option: e }, () => [d(j(e.label), 1)], !0)], 42, to))), 128)),
-			t.options.length ? o("", !0) : (w(), s("div", no, [O(n.$slots, "empty", {}, () => [d(j(t.emptyLabel), 1)], !0)])),
+			}, [O(n.$slots, "option", { option: e }, () => [d(j(e.label), 1)], !0)], 42, ro))), 128)),
+			t.options.length ? o("", !0) : (w(), s("div", io, [O(n.$slots, "empty", {}, () => [d(j(t.emptyLabel), 1)], !0)])),
 			O(n.$slots, "footer", {}, void 0, !0)
-		], 8, eo));
+		], 8, no));
 	}
-}, [["__scopeId", "data-v-6b7f7faa"]]), io = { class: "share-search-multi-select" }, ao = {
+}, [["__scopeId", "data-v-6b7f7faa"]]), oo = { class: "share-search-multi-select" }, so = {
 	key: 0,
 	class: "share-search-multi-select__tags"
-}, oo = /*#__PURE__*/ U({
+}, co = /*#__PURE__*/ U({
 	__name: "SearchMultiSelect",
 	props: {
 		modelValue: {
@@ -6505,8 +6529,8 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 				h.value = t ? (h.value + (e.key === "ArrowDown" ? 1 : -1) + t) % t : -1, _(() => document.getElementById(`${g}-${h.value}`)?.scrollIntoView({ block: "nearest" }));
 			} else e.key === "Enter" && p.value && S.value[h.value] ? (e.preventDefault(), T(S.value[h.value])) : e.key === "Escape" ? (e.preventDefault(), p.value = !1) : e.key === "Tab" && (p.value = !1);
 		}
-		return (n, r) => (w(), s("div", io, [
-			b.value.length ? (w(), s("div", ao, [(w(!0), s(e, null, D(b.value, (e) => (w(), s("span", {
+		return (n, r) => (w(), s("div", oo, [
+			b.value.length ? (w(), s("div", so, [(w(!0), s(e, null, D(b.value, (e) => (w(), s("span", {
 				key: e.value,
 				class: "share-search-multi-select__tag"
 			}, [d(j(e.label) + " ", 1), f(Me, {
@@ -6518,7 +6542,7 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 				"disabled",
 				"onClick"
 			])]))), 128))])) : o("", !0),
-			x.value ? o("", !0) : (w(), a(Ui, {
+			x.value ? o("", !0) : (w(), a(Gi, {
 				key: 1,
 				ref_key: "input",
 				ref: u,
@@ -6545,7 +6569,7 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 				"aria-controls",
 				"aria-activedescendant"
 			])),
-			f(nn, {
+			f(an, {
 				open: p.value,
 				"onUpdate:open": r[5] ||= (e) => p.value = e,
 				anchor: u.value?.$el,
@@ -6553,7 +6577,7 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 				"z-index": t.zIndex,
 				related: ""
 			}, {
-				default: z(() => [f(ro, {
+				default: z(() => [f(ao, {
 					id: M(g),
 					label: t.label,
 					options: S.value,
@@ -6563,7 +6587,7 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 					onSelect: T
 				}, l({ _: 2 }, [t.allowCreate && m.value.trim() && !C.value && !S.value.length ? {
 					name: "footer",
-					fn: z(() => [f(ya, {
+					fn: z(() => [f(xa, {
 						loading: t.creating,
 						disabled: t.creating,
 						variant: "quiet",
@@ -6589,7 +6613,7 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 			])
 		]));
 	}
-}, [["__scopeId", "data-v-d6731ef9"]]), so = ["id"], co = /*#__PURE__*/ U({
+}, [["__scopeId", "data-v-d6731ef9"]]), lo = ["id"], uo = /*#__PURE__*/ U({
 	__name: "FloatingTooltip",
 	props: {
 		anchor: {
@@ -6689,42 +6713,42 @@ var ja = ["aria-label", "aria-valuenow"], Ma = {
 				class: v(["share-tooltip", e.tooltipClass]),
 				style: b(s.value),
 				role: "tooltip"
-			}, [O(r.$slots, "default", {}, void 0, !0)], 14, so)]),
+			}, [O(r.$slots, "default", {}, void 0, !0)], 14, lo)]),
 			_: 3
 		})]));
 	}
 }, [["__scopeId", "data-v-b3d3bcb1"]]);
 //#endregion
 //#region src/lib/calendar.js
-function lo(e) {
+function fo(e) {
 	if (!/^\d{4}-\d{2}-\d{2}$/.test(e || "")) return null;
 	let [t, n, r] = e.split("-").map(Number), i = /* @__PURE__ */ new Date(0);
 	return i.setFullYear(t, n - 1, r), i.setHours(12, 0, 0, 0), t > 0 && i.getFullYear() === t && i.getMonth() === n - 1 && i.getDate() === r ? i : null;
 }
-function uo(e) {
+function po(e) {
 	return `${String(e.getFullYear()).padStart(4, "0")}-${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")}`;
 }
-function fo(e, t = "", n = "") {
-	return !!(!lo(e) || t && e < t || n && e > n);
+function mo(e, t = "", n = "") {
+	return !!(!fo(e) || t && e < t || n && e > n);
 }
-function po(e, t = 0, n = 0) {
-	let r = lo(e);
+function ho(e, t = 0, n = 0) {
+	let r = fo(e);
 	if (!r) return e;
 	let i = r.getDate();
 	r.setDate(1), r.setMonth(r.getMonth() + n);
 	let a = new Date(r);
 	a.setMonth(a.getMonth() + 1, 0);
 	let o = a.getDate();
-	return r.setDate(Math.min(i, o) + t), uo(r);
+	return r.setDate(Math.min(i, o) + t), po(r);
 }
-function mo(e, t, n = 1) {
+function go(e, t, n = 1) {
 	let r = /* @__PURE__ */ new Date(0);
 	r.setFullYear(e, t, 1), r.setHours(12, 0, 0, 0);
 	let i = (r.getDay() - n + 7) % 7;
 	return Array.from({ length: 42 }, (e, n) => {
 		let a = new Date(r);
 		return a.setDate(n - i + 1), {
-			value: uo(a),
+			value: po(a),
 			day: a.getDate(),
 			outside: a.getMonth() !== t
 		};
@@ -6732,14 +6756,14 @@ function mo(e, t, n = 1) {
 }
 //#endregion
 //#region src/components/form/DatePicker.vue
-var ho = { class: "share-date-picker" }, go = [
+var _o = { class: "share-date-picker" }, vo = [
 	"disabled",
 	"aria-label",
 	"aria-expanded"
-], _o = { class: "share-date-picker__heading" }, vo = ["aria-label"], yo = ["value"], bo = ["value"], xo = ["aria-label"], So = ["aria-label"], Co = {
+], yo = { class: "share-date-picker__heading" }, bo = ["aria-label"], xo = ["value"], So = ["value"], Co = ["aria-label"], wo = ["aria-label"], To = {
 	class: "share-date-picker__week",
 	role: "row"
-}, wo = ["aria-selected"], To = [
+}, Eo = ["aria-selected"], Do = [
 	"data-date",
 	"tabindex",
 	"disabled",
@@ -6747,7 +6771,7 @@ var ho = { class: "share-date-picker" }, go = [
 	"aria-current",
 	"onClick",
 	"onKeydown"
-], Eo = { class: "share-date-picker__footer" }, Do = ["disabled"], Oo = /*#__PURE__*/ U({
+], Oo = { class: "share-date-picker__footer" }, ko = ["disabled"], Ao = /*#__PURE__*/ U({
 	__name: "DatePicker",
 	props: {
 		modelValue: {
@@ -6811,8 +6835,8 @@ var ho = { class: "share-date-picker" }, go = [
 	},
 	emits: ["update:modelValue"],
 	setup(t, { emit: n }) {
-		let r = t, a = n, l = E(null), u = E(null), d = E(!1), p = uo(/* @__PURE__ */ new Date()), m = i(() => lo(r.modelValue)), h = E(r.modelValue || p), g = E((/* @__PURE__ */ new Date()).getFullYear()), y = E((/* @__PURE__ */ new Date()).getMonth()), b = i(() => Array.from({ length: 12 }, (e, t) => new Intl.DateTimeFormat(r.locale, { month: "long" }).format(new Date(2024, t, 1)))), x = i(() => Array.from({ length: 201 }, (e, t) => g.value - 100 + t).filter((e) => e >= 1 && e <= 9999)), S = i(() => Array.from({ length: 7 }, (e, t) => new Intl.DateTimeFormat(r.locale, { weekday: "short" }).format(new Date(2024, 0, 7 + (r.weekStartsOn + t) % 7)))), C = i(() => {
-			let e = mo(g.value, y.value, r.weekStartsOn);
+		let r = t, a = n, l = E(null), u = E(null), d = E(!1), p = po(/* @__PURE__ */ new Date()), m = i(() => fo(r.modelValue)), h = E(r.modelValue || p), g = E((/* @__PURE__ */ new Date()).getFullYear()), y = E((/* @__PURE__ */ new Date()).getMonth()), b = i(() => Array.from({ length: 12 }, (e, t) => new Intl.DateTimeFormat(r.locale, { month: "long" }).format(new Date(2024, t, 1)))), x = i(() => Array.from({ length: 201 }, (e, t) => g.value - 100 + t).filter((e) => e >= 1 && e <= 9999)), S = i(() => Array.from({ length: 7 }, (e, t) => new Intl.DateTimeFormat(r.locale, { weekday: "short" }).format(new Date(2024, 0, 7 + (r.weekStartsOn + t) % 7)))), C = i(() => {
+			let e = go(g.value, y.value, r.weekStartsOn);
 			return Array.from({ length: 6 }, (t, n) => e.slice(n * 7, n * 7 + 7));
 		});
 		function T(e, t = !1) {
@@ -6824,11 +6848,11 @@ var ho = { class: "share-date-picker" }, go = [
 			}).format(e);
 		}
 		function O(e) {
-			return fo(e, r.min, r.max);
+			return mo(e, r.min, r.max);
 		}
 		function k(e) {
-			let t = lo(e) || /* @__PURE__ */ new Date();
-			g.value = t.getFullYear(), y.value = t.getMonth(), h.value = uo(t);
+			let t = fo(e) || /* @__PURE__ */ new Date();
+			g.value = t.getFullYear(), y.value = t.getMonth(), h.value = po(t);
 		}
 		async function A() {
 			await _(), u.value?.querySelector(`[data-date="${h.value}"]`)?.focus({ preventScroll: !0 });
@@ -6849,8 +6873,8 @@ var ho = { class: "share-date-picker" }, go = [
 			r.disabled || e && O(e) || (a("update:modelValue", e), N(!1));
 		}
 		function I(e) {
-			let t = po(h.value, 0, e);
-			lo(t) && k(t);
+			let t = ho(h.value, 0, e);
+			fo(t) && k(t);
 		}
 		function L(e) {
 			I(e - y.value);
@@ -6865,11 +6889,11 @@ var ho = { class: "share-date-picker" }, go = [
 				ArrowUp: -7,
 				ArrowDown: 7
 			}, i;
-			if (e.key in n) i = po(t, n[e.key]);
-			else if (e.key === "PageUp" || e.key === "PageDown") i = po(t, 0, (e.key === "PageUp" ? -1 : 1) * (e.shiftKey ? 12 : 1));
+			if (e.key in n) i = ho(t, n[e.key]);
+			else if (e.key === "PageUp" || e.key === "PageDown") i = ho(t, 0, (e.key === "PageUp" ? -1 : 1) * (e.shiftKey ? 12 : 1));
 			else if (e.key === "Home" || e.key === "End") {
-				let n = (lo(t).getDay() - r.weekStartsOn + 7) % 7;
-				i = po(t, e.key === "Home" ? -n : 6 - n);
+				let n = (fo(t).getDay() - r.weekStartsOn + 7) % 7;
+				i = ho(t, e.key === "Home" ? -n : 6 - n);
 			} else return;
 			e.preventDefault(), O(i) || (k(i), A());
 		}
@@ -6885,7 +6909,7 @@ var ho = { class: "share-date-picker" }, go = [
 			e && (d.value = !1);
 		}), R(() => r.modelValue, (e) => {
 			d.value && k(e);
-		}), (n, r) => (w(), s("span", ho, [c("button", {
+		}), (n, r) => (w(), s("span", _o, [c("button", {
 			ref_key: "anchor",
 			ref: l,
 			type: "button",
@@ -6909,7 +6933,7 @@ var ho = { class: "share-date-picker" }, go = [
 			width: "18",
 			height: "16",
 			rx: "3"
-		}), c("path", { d: "M7 3v4m10-4v4M3 11h18m-13 4h3m3 0h2" })], -1), c("span", { class: v({ "share-date-picker__placeholder": !m.value }) }, j(m.value ? T(m.value) : t.placeholder), 3)], 8, go), f(nn, {
+		}), c("path", { d: "M7 3v4m10-4v4M3 11h18m-13 4h3m3 0h2" })], -1), c("span", { class: v({ "share-date-picker__placeholder": !m.value }) }, j(m.value ? T(m.value) : t.placeholder), 3)], 8, vo), f(an, {
 			open: d.value,
 			anchor: l.value,
 			"min-width": 0,
@@ -6926,13 +6950,13 @@ var ho = { class: "share-date-picker" }, go = [
 				class: "share-date-picker__calendar",
 				onKeydown: U
 			}, [
-				c("div", _o, [
+				c("div", yo, [
 					c("button", {
 						type: "button",
 						"aria-label": t.previousLabel,
 						onClick: r[0] ||= (e) => I(-1)
-					}, "‹", 8, vo),
-					f(ea, {
+					}, "‹", 8, bo),
+					f(na, {
 						value: y.value,
 						"aria-label": t.monthLabel,
 						"onUpdate:value": r[1] ||= (e) => L(Number(e))
@@ -6940,10 +6964,10 @@ var ho = { class: "share-date-picker" }, go = [
 						default: z(() => [(w(!0), s(e, null, D(b.value, (e, t) => (w(), s("option", {
 							key: t,
 							value: t
-						}, j(e), 9, yo))), 128))]),
+						}, j(e), 9, xo))), 128))]),
 						_: 1
 					}, 8, ["value", "aria-label"]),
-					f(ea, {
+					f(na, {
 						value: g.value,
 						"aria-label": t.yearLabel,
 						"onUpdate:value": r[2] ||= (e) => B(Number(e))
@@ -6951,19 +6975,19 @@ var ho = { class: "share-date-picker" }, go = [
 						default: z(() => [(w(!0), s(e, null, D(x.value, (e) => (w(), s("option", {
 							key: e,
 							value: e
-						}, j(e), 9, bo))), 128))]),
+						}, j(e), 9, So))), 128))]),
 						_: 1
 					}, 8, ["value", "aria-label"]),
 					c("button", {
 						type: "button",
 						"aria-label": t.nextLabel,
 						onClick: r[3] ||= (e) => I(1)
-					}, "›", 8, xo)
+					}, "›", 8, Co)
 				]),
 				c("div", {
 					role: "grid",
 					"aria-label": `${b.value[y.value]} ${g.value}`
-				}, [c("div", Co, [(w(!0), s(e, null, D(S.value, (e) => (w(), s("span", {
+				}, [c("div", To, [(w(!0), s(e, null, D(S.value, (e) => (w(), s("span", {
 					key: e,
 					role: "columnheader"
 				}, j(e), 1))), 128))]), (w(!0), s(e, null, D(C.value, (n, r) => (w(), s("div", {
@@ -6979,7 +7003,7 @@ var ho = { class: "share-date-picker" }, go = [
 					"data-date": e.value,
 					tabindex: e.value === h.value ? 0 : -1,
 					disabled: O(e.value),
-					"aria-label": T(M(lo)(e.value), !0),
+					"aria-label": T(M(fo)(e.value), !0),
 					"aria-current": e.value === M(p) ? "date" : void 0,
 					class: v({
 						outside: e.outside,
@@ -6988,12 +7012,12 @@ var ho = { class: "share-date-picker" }, go = [
 					}),
 					onClick: (t) => F(e.value),
 					onKeydown: (t) => V(t, e.value)
-				}, j(e.day), 43, To)], 8, wo))), 128))]))), 128))], 8, So),
-				c("div", Eo, [c("button", {
+				}, j(e.day), 43, Do)], 8, Eo))), 128))]))), 128))], 8, wo),
+				c("div", Oo, [c("button", {
 					type: "button",
 					disabled: O(M(p)),
 					onClick: r[4] ||= (e) => F(M(p))
-				}, j(t.todayLabel), 9, Do), t.allowClear ? (w(), s("button", {
+				}, j(t.todayLabel), 9, ko), t.allowClear ? (w(), s("button", {
 					key: 0,
 					type: "button",
 					onClick: r[5] ||= (e) => F("")
@@ -7007,10 +7031,10 @@ var ho = { class: "share-date-picker" }, go = [
 			"aria-label"
 		])]));
 	}
-}, [["__scopeId", "data-v-a7b69f68"]]), ko = { class: "share-timeline-group__rail" }, Ao = { class: "share-timeline-group__identity" }, jo = { class: "share-timeline-group__content" }, Mo = {
+}, [["__scopeId", "data-v-a7b69f68"]]), jo = { class: "share-timeline-group__rail" }, Mo = { class: "share-timeline-group__identity" }, No = { class: "share-timeline-group__content" }, Po = {
 	key: 0,
 	class: "share-timeline-group__footer"
-}, No = /*#__PURE__*/ U({
+}, Fo = /*#__PURE__*/ U({
 	__name: "TimelineGroup",
 	props: {
 		color: {
@@ -7059,19 +7083,19 @@ var ho = { class: "share-date-picker" }, go = [
 			}]),
 			style: b(n.value)
 		}, [
-			c("div", ko, [c("div", Ao, [O(t.$slots, "identity", {}, void 0, !0)])]),
-			c("div", jo, [O(t.$slots, "default", {}, void 0, !0)]),
-			t.$slots.footer ? (w(), s("div", Mo, [O(t.$slots, "footer", {}, void 0, !0)])) : o("", !0)
+			c("div", jo, [c("div", Mo, [O(t.$slots, "identity", {}, void 0, !0)])]),
+			c("div", No, [O(t.$slots, "default", {}, void 0, !0)]),
+			t.$slots.footer ? (w(), s("div", Po, [O(t.$slots, "footer", {}, void 0, !0)])) : o("", !0)
 		], 6));
 	}
-}, [["__scopeId", "data-v-d27f0f76"]]), Po = [
+}, [["__scopeId", "data-v-d27f0f76"]]), Io = [
 	"role",
 	"aria-label",
 	"aria-disabled"
-], Fo = {
+], Lo = {
 	class: "share-star-rating__star",
 	"aria-hidden": "true"
-}, Io = "m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2 2 9.3l6.9-1Z", Lo = /*#__PURE__*/ U({
+}, Ro = "m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2 2 9.3l6.9-1Z", zo = /*#__PURE__*/ U({
 	__name: "StarRating",
 	props: {
 		modelValue: {
@@ -7134,13 +7158,13 @@ var ho = { class: "share-date-picker" }, go = [
 			onClick: (t) => p(e),
 			onKeydown: (t) => m(t, e)
 		}, {
-			default: z(() => [c("span", Fo, [c("svg", {
+			default: z(() => [c("span", Lo, [c("svg", {
 				viewBox: "0 0 24 24",
 				fill: "none"
-			}, [c("path", { d: Io })]), c("span", {
+			}, [c("path", { d: Ro })]), c("span", {
 				class: "share-star-rating__fill",
 				style: b({ width: `${f(e)}%` })
-			}, [c("svg", { viewBox: "0 0 24 24" }, [c("path", { d: Io })])], 4)])]),
+			}, [c("svg", { viewBox: "0 0 24 24" }, [c("path", { d: Ro })])], 4)])]),
 			_: 2
 		}, 1064, [
 			"type",
@@ -7153,8 +7177,8 @@ var ho = { class: "share-date-picker" }, go = [
 			"onFocus",
 			"onClick",
 			"onKeydown"
-		]))), 128))], 42, Po));
+		]))), 128))], 42, Io));
 	}
 }, [["__scopeId", "data-v-9950b486"]]);
 //#endregion
-export { Rn as $, bi as A, ve as At, Pr as B, oe as Bt, Ui as C, Ue as Ct, ki as D, Te as Dt, Ai as E, Oe as Et, Yr as F, ue as Ft, hr as G, kr as H, Gr as I, ce as It, Ln as J, ur as K, Ur as L, K as Lt, di as M, me as Mt, ri as N, pe as Nt, Oi as O, Se as Ot, ni as P, Y as Pt, Hn as Q, zr as R, se as Rt, Ki as S, et as St, Li as T, Me as Tt, wr as U, Mr as V, U as Vt, _r as W, Fn as X, In as Y, Mn as Z, ha as _, Bt as _t, oo as a, un as at, Qi as b, ct as bt, Ha as c, ln as ct, Aa as d, $t as dt, Vn as et, ka as f, Qt as ft, ga as g, Vt as gt, _a as h, Ft as ht, co as i, bn as it, fi as j, X as jt, Ci as k, be as kt, Ia as l, nn as lt, ya as m, It as mt, No as n, Nn as nt, ro as o, dn as ot, xa as p, Kt as pt, Gn as q, Oo as r, En as rt, $a as s, fn as st, Lo as t, Pn as tt, Na as u, en as ut, na as v, zt as vt, Vi as w, Ie as wt, Yi as x, at as xt, ea as y, Ht as yt, Lr as z, G as zt };
+export { Bn as $, Si as A, ve as At, Ir as B, oe as Bt, Gi as C, Ue as Ct, ji as D, Te as Dt, Mi as E, Oe as Et, Zr as F, ue as Ft, _r as G, jr as H, qr as I, ce as It, zn as J, fr as K, Gr as L, K as Lt, pi as M, me as Mt, ai as N, pe as Nt, Ai as O, Se as Ot, ii as P, Y as Pt, Wn as Q, Vr as R, se as Rt, Ji as S, et as St, zi as T, Me as Tt, Er as U, Pr as V, U as Vt, yr as W, Ln as X, Rn as Y, Pn as Z, _a as _, Bt as _t, co as a, fn as at, ea as b, ct as bt, Wa as c, dn as ct, Ma as d, tn as dt, Un as et, ja as f, en as ft, va as g, Vt as gt, ya as h, Ft as ht, uo as i, Sn as it, mi as j, X as jt, Ti as k, be as kt, Ra as l, an as lt, xa as m, It as mt, Fo as n, Fn as nt, ao as o, pn as ot, Ca as p, Jt as pt, qn as q, Ao as r, On as rt, to as s, mn as st, zo as t, In as tt, Fa as u, nn as ut, ia as v, zt as vt, Ui as w, Ie as wt, Zi as x, at as xt, na as y, Ht as yt, zr as z, G as zt };

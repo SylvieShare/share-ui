@@ -204,6 +204,8 @@ export const BasePopover: DefineComponent<{
   id?: string
 }>
 
+/** Direct slot roots can opt into intrinsic sizing; mixed content keeps the normal menu width. */
+export interface ActionMenuContentAttrs { 'data-action-menu-size'?: 'content' }
 export const ActionMenu: DefineComponent<{
   followAnchor?: boolean
   width?: number
