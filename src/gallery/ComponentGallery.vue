@@ -174,6 +174,7 @@
               <CompactCheckbox v-model="checkboxValue" :size="24" label="Крупный выбор" />
               Крупный выбор (24px)
             </label>
+            <label class="share-component-gallery__checkbox-row"><CompactCheckbox :model-value="false" indeterminate :size="22" :hit-size="48" label="Частичный выбор" />Частичный выбор · touch 48</label>
           </div>
         </article>
 

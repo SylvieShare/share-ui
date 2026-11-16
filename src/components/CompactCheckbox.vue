@@ -2,30 +2,35 @@
   <button
     type="button"
     class="share-compact-checkbox"
-    :class="{ 'share-compact-checkbox--checked': modelValue }"
-    :style="{ '--checkbox-size': `${size}px` }"
+    :class="{ 'share-compact-checkbox--checked': modelValue, 'share-compact-checkbox--mixed': indeterminate }"
+    :style="{ '--checkbox-size': `${size}px`, '--checkbox-hit-padding': `${hitPadding}px` }"
     :disabled="disabled"
     :aria-label="label"
-    :aria-checked="modelValue"
+    :aria-checked="indeterminate ? 'mixed' : modelValue"
     role="checkbox"
     @click.stop="toggle"
     @pointerdown.stop
   >
-    <svg v-if="modelValue" class="share-compact-checkbox__tick" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+    <svg v-if="indeterminate" class="share-compact-checkbox__tick" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 6h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+    <svg v-else-if="modelValue" class="share-compact-checkbox__tick" viewBox="0 0 12 12" fill="none" aria-hidden="true">
       <path d="M2.5 6.2l2.4 2.4 4.6-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
   </button>
 </template>
 
 <script setup>
+import { computed } from 'vue'
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
   size: { type: Number, default: 18 },
   disabled: { type: Boolean, default: false },
   label: { type: String, required: true },
+  indeterminate: Boolean,
+  hitSize: { type: Number, default: 0 },
 })
+const hitPadding=computed(()=>Math.max(9,(props.hitSize-props.size)/2))
 const emit = defineEmits(['update:modelValue'])
-function toggle() { if (!props.disabled) emit('update:modelValue', !props.modelValue) }
+function toggle() { if (!props.disabled) emit('update:modelValue', props.indeterminate || !props.modelValue) }
 </script>
 
 <style scoped>
@@ -38,8 +43,8 @@ function toggle() { if (!props.disabled) emit('update:modelValue', !props.modelV
   width: var(--checkbox-size);
   height: var(--checkbox-size);
   flex: none;
-  margin: -9px;
-  padding: 9px;
+  margin: calc(var(--checkbox-hit-padding) * -1);
+  padding: var(--checkbox-hit-padding);
   border: 0;
   background: transparent;
   color: var(--text-on-accent);
@@ -60,7 +65,7 @@ function toggle() { if (!props.disabled) emit('update:modelValue', !props.modelV
 }
 .share-compact-checkbox:hover:not(:disabled)::before { border-color: color-mix(in srgb, var(--accent) 60%, transparent); }
 .share-compact-checkbox:active:not(:disabled) { transform: scale(.92); }
-.share-compact-checkbox--checked::before {
+.share-compact-checkbox--checked::before,.share-compact-checkbox--mixed::before {
   border-color: var(--accent);
   background: var(--accent);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 18%, transparent);

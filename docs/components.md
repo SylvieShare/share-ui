@@ -136,7 +136,7 @@ Reduced motion disables the background/checkmark transitions.
   row one switch target; `trackPlacement="end"` places the track after its content.
 - `MultiToggle`: options `{ value, label, disabled? }`, `block`, `neutralValue`;
   поддерживает стрелки, Home и End.
-- `CompactCheckbox`: компактный checkbox для строк и таблиц. `size` задаёт размер квадрата в px (по умолчанию 18); галочка масштабируется пропорционально, дополнительная область нажатия сохраняется. В галерее представлены размеры 18 и 24.
+- `CompactCheckbox`: компактный checkbox для строк и таблиц. `size` задаёт размер квадрата в px (по умолчанию 18); галочка масштабируется пропорционально, дополнительная область нажатия сохраняется. `hitSize` задаёт минимальную область нажатия независимо от размера квадрата; default сохраняет прежние padding 9px. `indeterminate` показывает частичный выбор и `aria-checked="mixed"`; нажатие выбирает всю группу. В галерее представлены размеры 18/24 и mixed с целью 48px.
 - `IconNavigation`: иконки с подписью и единый перемещающийся квадрат выделения.
   `items` — `{ key, label, shortLabel?, ariaLabel?, title?, icon?, disabled?, divider?, dividerLabel?, attrs? }`.
   `modelValue` определяет текущий раздел, `orientation` — horizontal/vertical,
@@ -704,3 +704,5 @@ not emit the same accepted value twice. Default non-live change semantics remain
 ActionMenu/RowActionMenu закрываются при прокрутке документа или предка якоря.
 Прокрутка независимой полосы вкладок или соседней панели не закрывает меню.
 Прокрутка самого меню и явно связанных поверхностей сохраняет прежнее поведение.
+
+Списки `useSortable` допускают один и тот же ключ в нескольких группах-представлениях. Preview целевой группы сначала исключает исходный ключ, поэтому уже присутствующая запись перемещается без дубля; остальные представления сохраняют её. Consumer самостоятельно сохраняет принадлежность и порядок.

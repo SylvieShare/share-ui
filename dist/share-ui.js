@@ -1,4 +1,4 @@
-import { $ as e, A as t, At as n, B as r, Bt as i, C as a, Ct as o, D as s, Dt as c, E as l, Et as u, F as d, Ft as f, G as p, H as m, I as h, It as g, J as _, K as v, L as y, Lt as b, M as x, Mt as S, N as C, Nt as w, O as T, Ot as E, P as D, Pt as O, Q as k, R as A, Rt as j, S as M, St as N, T as P, Tt as F, U as I, V as ee, W as te, X as ne, Y as re, Z as ie, _ as ae, _t as oe, a as se, at as ce, b as le, bt as L, c as R, ct as z, d as B, dt as V, et as H, f as U, ft as W, g as ue, gt as de, h as fe, ht as pe, i as me, it as he, j as ge, jt as _e, k as ve, kt as ye, l as be, lt as xe, m as Se, mt as Ce, n as we, nt as Te, o as Ee, ot as De, p as Oe, pt as G, q as ke, r as Ae, rt as je, s as Me, st as Ne, t as Pe, tt as Fe, u as Ie, ut as Le, v as Re, vt as ze, w as Be, wt as Ve, x as He, xt as Ue, y as We, yt as Ge, z as Ke, zt as qe } from "./StarRating-DwRlXFSI.js";
+import { $ as e, A as t, At as n, B as r, Bt as i, C as a, Ct as o, D as s, Dt as c, E as l, Et as u, F as d, Ft as f, G as p, H as m, I as h, It as g, J as _, K as v, L as y, Lt as b, M as x, Mt as S, N as C, Nt as w, O as T, Ot as E, P as D, Pt as O, Q as k, R as A, Rt as j, S as M, St as N, T as P, Tt as F, U as I, V as ee, W as te, X as ne, Y as re, Z as ie, _ as ae, _t as oe, a as se, at as ce, b as le, bt as L, c as R, ct as z, d as B, dt as V, et as H, f as U, ft as W, g as ue, gt as de, h as fe, ht as pe, i as me, it as he, j as ge, jt as _e, k as ve, kt as ye, l as be, lt as xe, m as Se, mt as Ce, n as we, nt as Te, o as Ee, ot as De, p as Oe, pt as G, q as ke, r as Ae, rt as je, s as Me, st as Ne, t as Pe, tt as Fe, u as Ie, ut as Le, v as Re, vt as ze, w as Be, wt as Ve, x as He, xt as Ue, y as We, yt as Ge, z as Ke, zt as qe } from "./StarRating-DvY6bnkB.js";
 import { computed as K, nextTick as q, onBeforeUnmount as Je, onScopeDispose as Ye, ref as J, shallowRef as Xe, toValue as Ze, watch as Y } from "vue";
 //#region src/internal/sortableGesture.js
 var X = /* @__PURE__ */ new Set();
@@ -62,12 +62,25 @@ function $(e) {
 	return Q(e, t), t;
 }
 //#endregion
+//#region src/internal/sortableListPreview.js
+function nt(e, { getKey: t, sourceItem: n, removeSource: r, insertAt: i }) {
+	if (!n || !r && i == null) return e;
+	let a = t(n), o = e.filter((e) => t(e) !== a);
+	if (i == null) return o;
+	let s = Math.max(0, Math.min(i, o.length));
+	return [
+		...o.slice(0, s),
+		n,
+		...o.slice(s)
+	];
+}
+//#endregion
 //#region src/composables/useSortable.js
-var nt = 4, rt = 8;
-function it(e, t = null) {
+var rt = 4, it = 8;
+function at(e, t = null) {
 	return Array.from(e.querySelectorAll("[data-sortable-key]")).filter((t) => t.closest("[data-sortable-container]") === e).filter((e) => e.getAttribute("data-sortable-key") !== t);
 }
-function at(e, t, n, r, i = "list", a = "exact") {
+function ot(e, t, n, r, i = "list", a = "exact") {
 	if (i === "grid") {
 		if (a === "nearest") {
 			let r = e.getBoundingClientRect();
@@ -90,15 +103,15 @@ function at(e, t, n, r, i = "list", a = "exact") {
 		let s = Number(o.getAttribute("data-sortable-slot"));
 		return Number.isInteger(s) && s >= 0 ? s : -1;
 	}
-	let o = it(e, r), s = o.findIndex((e) => n < e.getBoundingClientRect().top + e.getBoundingClientRect().height / 2);
+	let o = at(e, r), s = o.findIndex((e) => n < e.getBoundingClientRect().top + e.getBoundingClientRect().height / 2);
 	return s < 0 ? o.length : s;
 }
-function ot(e, t, n) {
+function st(e, t, n) {
 	if (t < 0) return e.slice();
 	let r = e.slice(), [i] = r.splice(t, 1);
 	return r.splice(Math.min(n, r.length), 0, i), r;
 }
-function st(e) {
+function ct(e) {
 	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = Number.isFinite(e.activationDelay) ? Math.max(0, e.activationDelay) : 0, o = J(!1), s = J(null), c = J(null), l = J(-1), u = J(null), d = J(-1), f = J(!1), p = null, m = 0, h = 0, g = null, _ = null, v = 0, y = null, b = null;
 	function x(e, t, n, r) {
 		if (e.button !== void 0 && e.button !== 0 || g || o.value) return;
@@ -126,10 +139,10 @@ function st(e) {
 				if (!g) return;
 				let t = e.clientX - g.x, n = e.clientY - g.y;
 				if (a) {
-					Math.hypot(t, n) > rt && j(!0);
+					Math.hypot(t, n) > it && j(!0);
 					return;
 				}
-				if (Math.hypot(t, n) < nt) return;
+				if (Math.hypot(t, n) < rt) return;
 				E();
 			}
 			D(e.clientX, e.clientY), O(e.clientX, e.clientY);
@@ -191,7 +204,7 @@ function st(e) {
 			}
 		}
 		if (u.value = null, d.value = -1, !l) return;
-		let f = c.value ? String(n(c.value)) : null, p = at(o, e, r, f, t[l].layout, t[l].hitTest);
+		let f = c.value ? String(n(c.value)) : null, p = ot(o, e, r, f, t[l].layout, t[l].hitTest);
 		p < 0 || i && !i({
 			item: c.value,
 			fromGroup: s.value,
@@ -237,21 +250,12 @@ function st(e) {
 		let r = t[e];
 		if (!r) return [];
 		let i = r.items.value;
-		if (r.layout === "grid" || !o.value) return i;
-		let a = i;
-		if (s.value === e) {
-			let e = n(c.value);
-			a = i.filter((t) => n(t) !== e);
-		}
-		if (u.value === e && c.value) {
-			let e = Math.min(d.value, a.length);
-			a = [
-				...a.slice(0, e),
-				c.value,
-				...a.slice(e)
-			];
-		}
-		return a;
+		return r.layout === "grid" || !o.value ? i : nt(i, {
+			getKey: n,
+			sourceItem: c.value,
+			removeSource: s.value === e,
+			insertAt: u.value === e ? d.value : null
+		});
 	}
 	return Je(() => {
 		j(), clearTimeout(y), f.value = !1;
@@ -270,9 +274,9 @@ function st(e) {
 }
 //#endregion
 //#region src/composables/useSheetSubpages.js
-var ct = "cubic-bezier(.2, 0, 0, 1)", lt = 320;
-function ut() {
-	let e = J("detail"), t = J(0), n = J(!1), r = 1, i = null, a = K(() => n.value ? `transform ${lt}ms ${ct}` : "none"), o = K(() => ({
+var lt = "cubic-bezier(.2, 0, 0, 1)", ut = 320;
+function dt() {
+	let e = J("detail"), t = J(0), n = J(!1), r = 1, i = null, a = K(() => n.value ? `transform ${ut}ms ${lt}` : "none"), o = K(() => ({
 		transform: `translateX(${(-t.value * 100).toFixed(3)}%)`,
 		transition: a.value
 	})), s = K(() => ({
@@ -322,12 +326,12 @@ function ut() {
 }
 //#endregion
 //#region src/lib/virtualListLayout.js
-function dt(e, t, n, r) {
+function ft(e, t, n, r) {
 	let i = [0];
 	for (let a of e) i.push(i.at(-1) + (r.get(t(a)) || Math.max(1, n(a))));
 	return i;
 }
-function ft(e, t, n, r = 6) {
+function pt(e, t, n, r = 6) {
 	let i = e.length - 1;
 	if (!i) return {
 		start: 0,
@@ -348,8 +352,8 @@ function ft(e, t, n, r = 6) {
 }
 //#endregion
 //#region src/composables/useVirtualList.js
-function pt(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overscan: a = 6 } = {}) {
-	let o = Xe(/* @__PURE__ */ new Map()), s = J(0), c = J(0), l = J(null), u = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new WeakMap(), f = K(() => Ze(e) || []), p = K(() => dt(f.value, n, r, o.value)), m = K(() => new Map(f.value.map((e, t) => [n(e), t]))), h = K(() => f.value.length > i), g = K(() => h.value ? ft(p.value, s.value, c.value || 600, a) : {
+function mt(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overscan: a = 6 } = {}) {
+	let o = Xe(/* @__PURE__ */ new Map()), s = J(0), c = J(0), l = J(null), u = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new WeakMap(), f = K(() => Ze(e) || []), p = K(() => ft(f.value, n, r, o.value)), m = K(() => new Map(f.value.map((e, t) => [n(e), t]))), h = K(() => f.value.length > i), g = K(() => h.value ? pt(p.value, s.value, c.value || 600, a) : {
 		start: 0,
 		end: f.value.length
 	}), _ = K(() => {
@@ -420,4 +424,4 @@ function pt(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overs
 	};
 }
 //#endregion
-export { Ce as ACTION_MENU_GAP, pe as ACTION_MENU_MARGIN, p as AccountMenu, Se as ActionButton, G as ActionMenu, G as RowActionMenu, W as ActionMenuItem, W as RowActionItem, z as ActionMenuSubmenu, z as RowActionSubmenu, ye as AddButton, D as AppDrawer, ge as AppModal, t as AppModalFrame, te as AppShell, m as AppSidebar, E as AppSlider, f as AvatarFrame, xe as BasePopover, O as BaseTile, g as BlurBackdrop, i as ChoiceCard, he as ColorPresetPicker, c as CompactCheckbox, T as ConfirmDialog, Me as ContentRow, Ae as DatePicker, R as DetailSection, A as EditorPanel, h as EditorSection, y as EditorSectionTitle, d as EditorTotal, me as FloatingTooltip, Be as FormActionButtons, He as FormField, le as FormNumberInput, We as FormSelect, a as FormTextInput, Re as FormTextarea, U as GuidedTour, N as IconNavigation, be as IconPicker, Oe as IconToggleButton, ae as InlineEdit, ve as LoadingIndicator, fe as LoadingState, s as ModalShell, P as MorphSheet, S as MorphTile, w as MorphTileHeader, u as MultiToggle, Ee as OptionList, ce as PRESET_COLORS, M as PromptDialog, M as TextPromptDialog, de as ROW_ACTION_GAP, oe as ROW_ACTION_MARGIN, F as RemoveButton, ke as RichContent, v as RichTextEditor, se as SearchMultiSelect, Ve as SectionLabel, n as SectionList, o as SegmentDonutChart, ee as SidebarBrand, r as SidebarGroup, Ke as SidebarNavItem, I as SidebarToggle, ue as SkeletonBlock, Ue as SlidingTabs, Pe as StarRating, Ie as StatBar, _e as TileAccentStrip, we as TimelineGroup, L as ToggleSwitch, je as ValueSelect, b as applyBackdropBlur, j as backdropBlurStyle, qe as blurFilter, ze as computeActionMenuPlacement, Ge as computeRowActionPlacement, _ as createRichNodeHtml, re as decodeRichNodePayload, ne as encodeRichNodePayload, ie as escapeHtml, Qe as isSortableGestureActive, De as isValidHexColor, k as plainTextToRichHtml, Ne as randomPreset, e as readRichNode, ot as reorderByDrop, x as restoreFocus, H as sanitizeRichHtml, Fe as sanitizeRichTextColor, Te as sanitizeRichTextUrl, l as useContainerMorph, C as useFullscreenViewportHeight, B as useGuidedTour, Le as useIsMobile, V as useMediaQuery, ut as useSheetSubpages, st as useSortable, pt as useVirtualList };
+export { Ce as ACTION_MENU_GAP, pe as ACTION_MENU_MARGIN, p as AccountMenu, Se as ActionButton, G as ActionMenu, G as RowActionMenu, W as ActionMenuItem, W as RowActionItem, z as ActionMenuSubmenu, z as RowActionSubmenu, ye as AddButton, D as AppDrawer, ge as AppModal, t as AppModalFrame, te as AppShell, m as AppSidebar, E as AppSlider, f as AvatarFrame, xe as BasePopover, O as BaseTile, g as BlurBackdrop, i as ChoiceCard, he as ColorPresetPicker, c as CompactCheckbox, T as ConfirmDialog, Me as ContentRow, Ae as DatePicker, R as DetailSection, A as EditorPanel, h as EditorSection, y as EditorSectionTitle, d as EditorTotal, me as FloatingTooltip, Be as FormActionButtons, He as FormField, le as FormNumberInput, We as FormSelect, a as FormTextInput, Re as FormTextarea, U as GuidedTour, N as IconNavigation, be as IconPicker, Oe as IconToggleButton, ae as InlineEdit, ve as LoadingIndicator, fe as LoadingState, s as ModalShell, P as MorphSheet, S as MorphTile, w as MorphTileHeader, u as MultiToggle, Ee as OptionList, ce as PRESET_COLORS, M as PromptDialog, M as TextPromptDialog, de as ROW_ACTION_GAP, oe as ROW_ACTION_MARGIN, F as RemoveButton, ke as RichContent, v as RichTextEditor, se as SearchMultiSelect, Ve as SectionLabel, n as SectionList, o as SegmentDonutChart, ee as SidebarBrand, r as SidebarGroup, Ke as SidebarNavItem, I as SidebarToggle, ue as SkeletonBlock, Ue as SlidingTabs, Pe as StarRating, Ie as StatBar, _e as TileAccentStrip, we as TimelineGroup, L as ToggleSwitch, je as ValueSelect, b as applyBackdropBlur, j as backdropBlurStyle, qe as blurFilter, ze as computeActionMenuPlacement, Ge as computeRowActionPlacement, _ as createRichNodeHtml, re as decodeRichNodePayload, ne as encodeRichNodePayload, ie as escapeHtml, Qe as isSortableGestureActive, De as isValidHexColor, k as plainTextToRichHtml, Ne as randomPreset, e as readRichNode, st as reorderByDrop, x as restoreFocus, H as sanitizeRichHtml, Fe as sanitizeRichTextColor, Te as sanitizeRichTextUrl, l as useContainerMorph, C as useFullscreenViewportHeight, B as useGuidedTour, Le as useIsMobile, V as useMediaQuery, dt as useSheetSubpages, ct as useSortable, mt as useVirtualList };

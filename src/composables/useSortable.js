@@ -1,6 +1,7 @@
 import { onBeforeUnmount, ref } from 'vue'
 import { claimSortableGesture } from '../internal/sortableGesture.js'
 import { cloneSortableSource, copySortableContext } from '../internal/sortableGhost.js'
+import { sortableListPreview } from '../internal/sortableListPreview.js'
 
 const DRAG_THRESHOLD = 4
 const HOLD_TOLERANCE = 8
@@ -306,16 +307,8 @@ export function useSortable(config) {
     const items = group.items.value
     if (group.layout === 'grid') return items
     if (!dragging.value) return items
-    let result = items
-    if (sourceGroup.value === groupName) {
-      const srcKey = getKey(sourceItem.value)
-      result = items.filter(x => getKey(x) !== srcKey)
-    }
-    if (targetGroup.value === groupName && sourceItem.value) {
-      const idx = Math.min(targetIndex.value, result.length)
-      result = [...result.slice(0, idx), sourceItem.value, ...result.slice(idx)]
-    }
-    return result
+    return sortableListPreview(items,{getKey,sourceItem:sourceItem.value,
+      removeSource:sourceGroup.value===groupName,insertAt:targetGroup.value===groupName?targetIndex.value:null})
   }
 
   onBeforeUnmount(() => {
