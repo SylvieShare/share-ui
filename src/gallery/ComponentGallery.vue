@@ -10,6 +10,7 @@
     </header>
 
     <section class="share-component-gallery__section" data-share-gallery="AvatarFrame"><AvatarGalleryExample /></section>
+    <section class="share-component-gallery__section" data-share-gallery="FitContent"><h2>FitContent</h2><FitContentGalleryExample /></section>
     <section class="share-component-gallery__section" data-share-gallery="BlurBackdrop"><BlurGalleryExample /></section>
     <section class="share-component-gallery__section" data-share-gallery="ChoiceCard"><ChoiceCardGalleryExample /></section>
     <section class="share-component-gallery__section" data-share-gallery="StarRating"><StarRating v-model="galleryRating" label="Оценка" /><StarRating :model-value="3.7" label="Средняя оценка" value-label="3,7 из 5" readonly /><StarRating :model-value="2" label="Недоступная оценка" disabled /></section>
@@ -514,6 +515,7 @@ import SectionList from '../components/SectionList.vue'
 import BaseTile from '../components/BaseTile.vue'
 import TileAccentStrip from '../components/TileAccentStrip.vue'
 import AvatarGalleryExample from './AvatarGalleryExample.vue'
+import FitContentGalleryExample from './FitContentGalleryExample.vue'
 import MorphTile from '../components/MorphTile.vue'
 import MorphTileHeader from '../components/MorphTileHeader.vue'
 import ActionButton from '../components/ActionButton.vue'

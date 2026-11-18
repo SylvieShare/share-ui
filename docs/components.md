@@ -1,5 +1,21 @@
 # Публичный API
 
+## FitContent
+
+Fits a single live slot instance into the available width. `minScale` defaults
+to `0.5`: content first shrinks uniformly, then reflows only when that minimum
+cannot fit the original line. `tag` defaults to `span`; `inline` preserves an
+inline-sized footprint. The outer wrapper reserves the scaled height, so
+neighbouring content does not overlap. Resize, dynamic slot changes, fonts and
+hidden/visible panels trigger remeasurement without copying interactive nodes.
+
+Flex-based slot layouts should use `flex-wrap: var(--fit-content-wrap, wrap)`
+to participate in the shrink-before-wrap policy. Ordinary text is measured
+without wrapping. Existing multiline captions can retain `white-space: normal`.
+Default slot props and exposed refs: `scale`, `wrapping`; `refresh()` forces
+remeasurement when needed. Nested instances inherit the outer fit and do not
+multiply scale factors. They keep an attribute-bearing `display: contents` root.
+
 ## AvatarFrame
 
 Square clipped image frame with a small token radius. Props: `src` (empty by

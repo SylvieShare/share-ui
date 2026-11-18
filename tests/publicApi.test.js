@@ -3,6 +3,7 @@ import * as shareUi from '../src/index.js'
 
 describe('public API', () => {
   it.each([
+    'FitContent',
     'AddButton',
     'ChoiceCard',
     'ActionMenu',

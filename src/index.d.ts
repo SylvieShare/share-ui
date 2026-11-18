@@ -23,6 +23,7 @@ export const ChoiceCard: DefineComponent<{
 
 export type BlurRadius = string | number
 export const BlurBackdrop: DefineComponent<{ radius?: BlurRadius }>
+export const FitContent: DefineComponent<{ tag?: string; inline?: boolean; minScale?: number }>
 export function blurFilter(radius?: BlurRadius): string
 export function backdropBlurStyle(radius?: BlurRadius): CSSProperties
 export function applyBackdropBlur(element: HTMLElement | SVGElement | null | undefined, radius?: BlurRadius): void

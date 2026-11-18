@@ -1,6 +1,7 @@
 export { default as ChoiceCard } from './components/ChoiceCard.vue'
 export { default as BlurBackdrop } from './components/BlurBackdrop.vue'
 export { default as AvatarFrame } from './components/AvatarFrame.vue'
+export { default as FitContent } from './components/FitContent.vue'
 export { blurFilter, backdropBlurStyle, applyBackdropBlur } from './lib/blur.js'
 export { default as MorphTile } from './components/MorphTile.vue'
 export { default as MorphTileHeader } from './components/MorphTileHeader.vue'
