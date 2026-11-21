@@ -190,6 +190,41 @@ test('swipe closes only a leftward horizontal gesture when enabled', async ({ pa
   await expect(dialog(page)).toHaveCount(0)
 })
 
+test('drawer follows an edge swipe before opening and returns after cancellation', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 720 })
+  await page.goto('/tests/browser/?swipe-open')
+  const layer = page.locator('.share-drawer')
+  const panel = page.locator('.share-drawer__panel')
+  const touch = (type, x, y) => page.evaluate(([type, x, y]) => {
+    const target = document.body
+    const point = new Touch({ identifier: 1, target, clientX: x, clientY: y })
+    target.dispatchEvent(new TouchEvent(type, {
+      touches: type === 'touchend' || type === 'touchcancel' ? [] : [point],
+      changedTouches: [point],
+      bubbles: true,
+      cancelable: true,
+    }))
+  }, [type, x, y])
+
+  await touch('touchstart', 36, 200)
+  await touch('touchmove', 68, 200)
+  await expect(layer).toHaveAttribute('inert')
+  await expect.poll(async () => (await panel.boundingBox()).x).toBe(-256)
+  await expect(page.locator('.share-drawer__scrim')).toHaveCSS('opacity', '0.111111')
+  await touch('touchcancel', 68, 200)
+  await expect(layer).toHaveCount(0)
+  expect(await page.evaluate(() => window.fixture.closed.value)).toBe(0)
+
+  await touch('touchstart', 36, 200)
+  await touch('touchmove', 142, 200)
+  await expect.poll(async () => (await panel.boundingBox()).x).toBe(-182)
+  expect(await page.evaluate(() => window.fixture.open.value)).toBe(false)
+  await touch('touchend', 142, 200)
+  await expect(dialog(page)).toBeVisible()
+  await expect.poll(async () => (await panel.boundingBox()).x).toBe(0)
+  await expect.poll(() => page.evaluate(() => window.fixture.opened.value)).toBe(1)
+})
+
 for (const breakpoint of [600, 640, 768, 1200]) {
   test(`sidebar and shell switch together at ${breakpoint}px in hide/top modes`, async ({ page }) => {
     const mobileMax = [600, 1200].includes(breakpoint) ? breakpoint - 1 : breakpoint

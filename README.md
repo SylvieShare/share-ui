@@ -33,6 +33,7 @@ DnD Share — основной потребитель и визуальный о
 Подробности: [архитектура](./docs/architecture.md),
 [темизация](./docs/theming.md), [публичные компоненты](./docs/components.md),
 [галерея компонентов](./docs/gallery.md),
+[мобильный UI](./docs/mobile-ux.md),
 [карта миграции](./docs/migration.md),
 [разработка и релизы](./docs/development.md),
 [сопровождение из consumer-проектов](./MAINTAINING.md).

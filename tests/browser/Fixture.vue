@@ -39,6 +39,7 @@
     :width="width"
     :show-close="!embedded"
     :swipe-to-close="swipe"
+    :swipe-to-open="swipeOpen"
     @opened="opened++"
     @closed="closed++"
   >
@@ -102,6 +103,7 @@ const embedded = params.has('embedded')
 const chrome = params.has('chrome')
 const title = params.has('title')
 const swipe = params.has('swipe')
+const swipeOpen = params.has('swipe-open')
 const long = params.has('long')
 const navigation = params.has('navigation')
 const breakpoint = Number(params.get('breakpoint') ?? 768)

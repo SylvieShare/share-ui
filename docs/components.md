@@ -261,7 +261,11 @@ permissions или конкретном домене приложения.
   Teleported `BasePopover`/`ActionMenu` входят в общий stack: drawer уступает
   им Escape и focus, включая Tab. Для `BasePopover` внутри drawer consumer
   задаёт `zIndex` выше drawer; `ActionMenu` уже использует `9300`.
-  `swipeToClose=false` — opt-in жест влево внутри panel. Распознаётся
+  `swipeToOpen=false` и `swipeToClose=false` включаются отдельно. При открытии
+  жест начинается в пределах 48 CSS px слева. Горизонтальный сдвиг ведёт панель и
+  затемнение за пальцем. После отпускания короткое движение отменяется, а быстрый
+  уверенный свайп завершает открытие. До завершения жеста панель не забирает фокус.
+  `swipeToClose` позволяет так же стащить панель влево. Распознаётся
   горизонтальное движение с порогом `max(64px, 25% ширины)` и преимуществом
   горизонтали 1.5×; вертикальная прокрутка, taps, правый swipe и multi-touch
   не закрывают panel. Inputs/contenteditable и `[data-share-drawer-no-swipe]`
@@ -294,7 +298,7 @@ scroll lock. Floating surfaces тоже регистрируются в stack, �
 Полный sidebar внутри drawer (brand/account остаются частью sidebar):
 
 ```vue
-<AppDrawer v-model="navigationOpen" aria-label="Navigation" :show-close="false" :z-index="100">
+<AppDrawer v-model="navigationOpen" aria-label="Navigation" :show-close="false" :z-index="100" swipe-to-open swipe-to-close>
   <AppSidebar position="embedded" :model-value="true" :show-toggle="false">
     <template #brand>
       <SidebarBrand as="div" label="Application" />

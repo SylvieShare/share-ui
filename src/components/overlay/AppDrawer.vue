@@ -8,7 +8,8 @@
       @after-enter="onOpened"
       @after-leave="finishClose"
     >
-      <div v-if="visible" class="share-drawer" :style="{ zIndex }">
+      <div v-if="rendered" class="share-drawer" :class="drawerClass" :style="drawerStyle"
+        :inert="!visible" :aria-hidden="visible ? undefined : 'true'">
         <div class="share-drawer__scrim" aria-hidden="true" @click="requestClose" />
         <section
           v-bind="$attrs"
@@ -16,13 +17,13 @@
           class="share-drawer__panel"
           :style="{ width: typeof width === 'number' ? `${width}px` : width }"
           role="dialog"
-          aria-modal="true"
+          :aria-modal="visible ? true : undefined"
           :aria-label="ariaLabel"
           tabindex="-1"
-          @touchstart="swipe.start"
-          @touchmove="swipe.move"
-          @touchend="swipe.end"
-          @touchcancel="swipe.cancel"
+          @touchstart.passive="closeSwipe.start"
+          @touchmove="closeSwipe.move"
+          @touchend="closeSwipe.end"
+          @touchcancel="closeSwipe.cancel"
         >
           <header v-if="$slots.header || $slots.title" class="share-drawer__header">
             <slot name="header" :close="requestClose">
@@ -49,9 +50,10 @@
 </template>
 
 <script setup>
-import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useMediaQuery } from '../../composables/useMediaQuery.js'
 import { createDrawerSwipe } from '../../internal/drawerSwipe.js'
+import { isSortableGestureActive } from '../../internal/sortableGesture.js'
 import {
   acquirePageScrollLock, focusFirst, isTopOverlay, registerOverlay,
   restoreFocus, trapTabKey, unregisterOverlay,
@@ -67,16 +69,35 @@ const props = defineProps({
   showClose: { type: Boolean, default: true },
   closeLabel: { type: String, default: 'Close' },
   swipeToClose: { type: Boolean, default: false },
+  swipeToOpen: { type: Boolean, default: false },
 })
 const emit = defineEmits(['update:modelValue', 'opened', 'closed'])
 const panel = ref(null)
 const closing = ref(false)
 const visible = computed(() => props.modelValue && !closing.value)
+const reveal = ref(null)
+const openPreview = ref(false)
+const rendered = computed(() => visible.value || openPreview.value)
+const drawerClass = computed(() => ({
+  'share-drawer--dragging': reveal.value !== null,
+  'share-drawer--preview': !visible.value,
+}))
+function panelWidth() {
+  return panel.value?.offsetWidth || Math.min(window.innerWidth, Number(props.width) || 288)
+}
+const drawerStyle = computed(() => {
+  if (reveal.value === null) return { zIndex: props.zIndex }
+  const width = panelWidth()
+  const shown = Math.max(0, Math.min(width, reveal.value))
+  return { zIndex: props.zIndex, '--drawer-reveal': String(shown) + 'px', '--drawer-opacity': shown / width }
+})
 const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)')
 const token = Symbol('app-drawer')
 let releaseScroll = null
 let previousFocus = null
 let disposed = false
+let openedTimer
+let settlingOpen = false
 
 function isActive() { return visible.value && isTopOverlay(token) }
 
@@ -120,28 +141,89 @@ function release() {
 }
 
 function finishClose() {
-  if (visible.value) return
+  if (rendered.value) return
+  reveal.value = null
+  const wasOpen = !!releaseScroll
   release()
-  emit('closed')
+  if (wasOpen) emit('closed')
 }
 
 function onOpened() {
-  if (visible.value) emit('opened')
+  if (visible.value && !settlingOpen) emit('opened')
 }
 
-const swipe = createDrawerSwipe({
+const closeSwipe = createDrawerSwipe({
   enabled: () => props.swipeToClose && isActive(),
-  width: () => panel.value?.getBoundingClientRect().width || 288,
-  close: requestClose,
+  width: panelWidth,
+  update: value => { reveal.value = value },
+  commit: requestClose,
 })
+
+function updatePreview(value) {
+  if (value === null) {
+    openPreview.value = false
+  } else {
+    reveal.value = value
+    openPreview.value = true
+  }
+}
+
+const openSwipe = createDrawerSwipe({
+  opening: true,
+  enabled: () => props.swipeToOpen && !props.modelValue
+    && !isSortableGestureActive() && !document.querySelector('[aria-modal="true"]:not([aria-hidden="true"])'),
+  width: panelWidth,
+  update: updatePreview,
+  async commit() {
+    settlingOpen = true
+    emit('update:modelValue', true)
+    await nextTick()
+    openPreview.value = false
+    if (!visible.value) {
+      settlingOpen = false
+      return
+    }
+    reveal.value = null
+    const complete = () => {
+      settlingOpen = false
+      onOpened()
+    }
+    if (reducedMotion.value) complete()
+    else openedTimer = setTimeout(complete, 220)
+  },
+})
+
+const edgeListeners = {
+  touchstart: openSwipe.start,
+  touchmove: openSwipe.move,
+  touchend: openSwipe.end,
+  touchcancel: openSwipe.cancel,
+}
+function removeEdgeListeners() {
+  for (const [name, listener] of Object.entries(edgeListeners)) window.removeEventListener(name, listener, true)
+}
+
+onMounted(() => watch(() => props.swipeToOpen, enabled => {
+  if (!enabled) {
+    openSwipe.cancel()
+    removeEdgeListeners()
+    return
+  }
+  for (const [name, listener] of Object.entries(edgeListeners)) {
+    window.addEventListener(name, listener, { capture: true, passive: name !== 'touchmove' })
+  }
+}, { immediate: true }))
 
 watch(() => props.modelValue, value => { if (value) closing.value = false }, { flush: 'sync' })
 watch(visible, async value => {
-  swipe.cancel()
+  closeSwipe.reset()
   if (!value) {
+    clearTimeout(openedTimer)
+    settlingOpen = false
     makeInert()
     return
   }
+  if (!openPreview.value) reveal.value = null
   if (!releaseScroll && typeof document !== 'undefined') {
     previousFocus = document.activeElement
     registerOverlay(token)
@@ -161,7 +243,12 @@ watch(visible, async value => {
   if (!disposed && isActive() && !panel.value?.contains(document.activeElement)) focusFirst(panel.value)
 }, { immediate: true, flush: 'post' })
 
-onBeforeUnmount(() => { disposed = true; swipe.cancel(); release() })
+onBeforeUnmount(() => {
+  disposed = true
+  clearTimeout(openedTimer)
+  removeEdgeListeners()
+  release()
+})
 defineExpose({ requestClose })
 </script>
 
@@ -181,6 +268,7 @@ defineExpose({ requestClose })
   color: var(--text-1);
   box-shadow: var(--shadow-lg);
 }
+.share-drawer--preview { pointer-events: none; }
 .share-drawer__header, .share-drawer__footer { flex: none; }
 .share-drawer__header { padding: 16px 56px 16px 16px; }
 .share-drawer__footer { padding: 16px; }
@@ -208,9 +296,17 @@ defineExpose({ requestClose })
   touch-action: manipulation;
 }
 .share-drawer__close:hover { background: var(--surface-raised); color: var(--text-1); }
-.share-drawer-enter-active .share-drawer__panel,
+.share-drawer__panel { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
+.share-drawer__scrim { transition: opacity 220ms ease; }
+.share-drawer--dragging .share-drawer__panel {
+  transform: translateX(clamp(-100%, calc(-100% + var(--drawer-reveal)), 0px));
+  transition: none;
+}
+.share-drawer--dragging .share-drawer__scrim {
+  opacity: var(--drawer-opacity);
+  transition: none;
+}
 .share-drawer-leave-active .share-drawer__panel { transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1); }
-.share-drawer-enter-active .share-drawer__scrim,
 .share-drawer-leave-active .share-drawer__scrim { transition: opacity 220ms ease; }
 .share-drawer-enter-from .share-drawer__panel,
 .share-drawer-leave-to .share-drawer__panel { transform: translateX(-100%); }
@@ -218,9 +314,8 @@ defineExpose({ requestClose })
 .share-drawer-leave-to .share-drawer__scrim { opacity: 0; }
 .share-drawer-leave-active { pointer-events: none; }
 @media (prefers-reduced-motion: reduce) {
-  .share-drawer-enter-active .share-drawer__panel,
+  .share-drawer__panel, .share-drawer__scrim,
   .share-drawer-leave-active .share-drawer__panel,
-  .share-drawer-enter-active .share-drawer__scrim,
   .share-drawer-leave-active .share-drawer__scrim { transition: none; }
 }
 </style>

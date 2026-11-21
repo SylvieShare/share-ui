@@ -1,31 +1,54 @@
-// Gesture recognition only; vertical scrolling and taps keep their native behavior.
-export function createDrawerSwipe({ enabled, width, close }) {
-  let origin = null
-  let axis = null
-  function cancel() { origin = null; axis = null }
+const ignored = 'input, textarea, select, [contenteditable], [data-share-drawer-no-swipe]'
+const edgeWidth = 48
+const directionSlop = 8
+
+export function createDrawerSwipe({ enabled, width, update, commit, opening = false }) {
+  let gesture = null
+
+  function reset() { gesture = null }
+  function cancel() {
+    if (gesture?.locked) update(null)
+    reset()
+  }
   function start(event) {
     cancel()
-    if (!enabled() || event.touches.length !== 1) return
-    if (event.target?.closest?.('input, textarea, select, [contenteditable], [data-share-drawer-no-swipe]')) return
-    origin = { x: event.touches[0].clientX, y: event.touches[0].clientY }
+    const touch = event.touches[0]
+    if (event.touches.length !== 1 || !enabled()
+      || (opening && touch.clientX > edgeWidth) || event.target?.closest?.(ignored)) return
+    gesture = { x: touch.clientX, y: touch.clientY, lastX: touch.clientX, time: event.timeStamp }
   }
   function move(event) {
-    if (!origin) return
-    if (event.touches.length !== 1 || !enabled()) return cancel()
-    const dx = event.touches[0].clientX - origin.x
-    const dy = event.touches[0].clientY - origin.y
-    if (!axis && Math.max(Math.abs(dx), Math.abs(dy)) >= 10) {
-      axis = Math.abs(dx) > Math.abs(dy) * 1.5 ? 'horizontal' : 'vertical'
+    if (!gesture) return
+    if (event.touches.length !== 1 || !enabled()) { cancel(); return }
+    const touch = event.touches[0]
+    const dx = touch.clientX - gesture.x
+    const dy = touch.clientY - gesture.y
+    const distance = opening ? dx : -dx
+    if (!gesture.locked) {
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < directionSlop) return
+      if (distance <= Math.abs(dy) * 1.15) { cancel(); return }
+      gesture.locked = true
     }
-    if (axis === 'horizontal' && dx < 0 && event.cancelable) event.preventDefault()
+    if (event.cancelable) event.preventDefault()
+    if (opening) event.stopPropagation()
+    const elapsed = event.timeStamp - gesture.time
+    if (elapsed > 0) {
+      gesture.velocity = (touch.clientX - gesture.lastX) / elapsed * (opening ? 1 : -1)
+      gesture.time = event.timeStamp
+      gesture.lastX = touch.clientX
+    }
+    update((opening ? 0 : width()) + dx)
   }
   function end(event) {
-    if (origin && enabled() && event.changedTouches.length === 1) {
-      const dx = event.changedTouches[0].clientX - origin.x
-      const dy = event.changedTouches[0].clientY - origin.y
-      if (axis !== 'vertical' && -dx >= Math.max(64, width() * 0.25) && -dx > Math.abs(dy) * 1.5) close()
-    }
-    cancel()
+    if (!gesture?.locked || !enabled() || event.changedTouches.length !== 1) { cancel(); return }
+    const dx = event.changedTouches[0].clientX - gesture.x
+    const distance = opening ? dx : -dx
+    const threshold = opening ? Math.min(64, width() * 0.22) : Math.max(64, width() * 0.25)
+    const flick = opening && distance >= 24 && gesture.velocity > 0.35 && event.timeStamp - gesture.time < 80
+    reset()
+    if (opening) event.stopPropagation()
+    if (distance >= threshold || flick) commit()
+    else update(null)
   }
-  return { start, move, end, cancel }
+  return { start, move, end, cancel, reset }
 }

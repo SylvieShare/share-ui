@@ -4,6 +4,7 @@
     <div class="drawer-gallery__actions">
       <button type="button" @click="basicOpen = true">Header / body / footer</button>
       <button type="button" @click="navigationOpen = true">Embedded AppSidebar</button>
+      <ToggleSwitch v-model="swipeToOpen" label="Swipe from edge to open navigation" />
       <ToggleSwitch v-model="swipeToClose" label="Swipe to close" />
     </div>
     <AppDrawer v-model="basicOpen" aria-label="Drawer example" :swipe-to-close="swipeToClose">
@@ -19,7 +20,7 @@
       <template #title><strong>Nested drawer</strong></template>
       <p class="drawer-gallery__content">Escape закрывает только верхний drawer; scroll остаётся заблокирован.</p>
     </AppDrawer>
-    <AppDrawer v-model="navigationOpen" aria-label="Example navigation" :show-close="false" :swipe-to-close="swipeToClose">
+    <AppDrawer v-model="navigationOpen" aria-label="Example navigation" :show-close="false" :swipe-to-open="swipeToOpen" :swipe-to-close="swipeToClose">
       <AppSidebar :model-value="true" position="embedded" mobile-mode="top" :mobile-breakpoint="1200" :show-toggle="false">
         <template #brand>
           <SidebarBrand as="div" label="share-ui"><template #icon>◆</template></SidebarBrand>
@@ -54,6 +55,7 @@ import ToggleSwitch from '../components/ToggleSwitch.vue'
 const basicOpen = ref(false)
 const nestedOpen = ref(false)
 const navigationOpen = ref(false)
+const swipeToOpen = ref(false)
 const swipeToClose = ref(false)
 </script>
 

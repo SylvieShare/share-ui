@@ -26,7 +26,7 @@ npm run test:browser
 
 Browser suite проверяет focus/Tab/Escape, teleported popover/menu и вложенный
 drawer, scroll lock и возврат исходного overflow, inert во время leave,
-reduced motion, swipe, fullscreen embedded sidebar и точные границы
+reduced motion, открытие и отмену свайпа с промежуточным положением панели, fullscreen embedded sidebar и точные границы
 breakpoints `600/640/768/1200`, disabled `0`, tablet rail и живые gallery examples.
 `npm run check` остаётся переносимым unit/build-набором; browser suite требует
 установленного Chromium. Результаты проверки сохраняются в игнорируемом

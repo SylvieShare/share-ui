@@ -382,6 +382,7 @@ export const AppDrawer: DefineComponent<{
   showClose?: boolean
   closeLabel?: string
   swipeToClose?: boolean
+  swipeToOpen?: boolean
 }>
 
 export const AppModal: DefineComponent<{
