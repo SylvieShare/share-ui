@@ -726,3 +726,13 @@ ActionMenu/RowActionMenu закрываются при прокрутке док
 Прокрутка самого меню и явно связанных поверхностей сохраняет прежнее поведение.
 
 Списки `useSortable` допускают один и тот же ключ в нескольких группах-представлениях. Preview целевой группы сначала исключает исходный ключ, поэтому уже присутствующая запись перемещается без дубля; остальные представления сохраняют её. Consumer самостоятельно сохраняет принадлежность и порядок.
+
+## PageReport
+
+`PageReport` receives a request event, a screenshot renderer, a viewport classifier
+and an async submit adapter. It handles DOM selection, context size, screenshot
+preview, the form, keyboard and touch gestures. Applications provide locale
+strings, route metadata, network submission and optional native viewport capture.
+`privateDetails` limits automatic diagnostics to structural selectors and geometry.
+`requireAttachmentConsent` makes each screenshot opt-in after preview. The API
+accepts independently optional element and viewport screenshots.

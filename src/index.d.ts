@@ -810,3 +810,27 @@ export const TimelineGroup: DefineComponent<{
 }>
 
 export const StarRating: DefineComponent<{ modelValue?: number; max?: number; label: string; valueLabel?: string; optionLabels?: string[]; readonly?: boolean; disabled?: boolean }>
+
+export interface PageReportPayload {
+  description: string
+  pageUrl: string
+  element: Record<string, unknown>
+  screenshot?: string
+  viewportScreenshot?: string
+}
+
+export const PageReport: DefineComponent<{
+  options: {
+    requestEvent: string
+    globalShortcuts?: boolean
+    nativeBackEvent?: string
+    viewportPlatform: (width: number) => 'mobile' | 'tablet' | 'desktop'
+    getPageURL?: () => string
+    privateDetails?: boolean
+    requireAttachmentConsent?: boolean
+    submit: (report: PageReportPayload) => Promise<unknown>
+    renderCanvas: (element: HTMLElement, options: Record<string, unknown>) => Promise<HTMLCanvasElement>
+    captureViewport?: () => Promise<string>
+  }
+  messages?: Record<string, string>
+}>

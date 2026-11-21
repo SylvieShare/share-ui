@@ -112,3 +112,5 @@ export { default as DatePicker } from './components/form/DatePicker.vue'
 export { default as TimelineGroup } from './components/TimelineGroup.vue'
 
 export { default as StarRating } from './components/StarRating.vue'
+
+export { default as PageReport } from './components/feedback/PageReport.vue'

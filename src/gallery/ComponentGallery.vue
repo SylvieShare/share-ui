@@ -10,6 +10,7 @@
     </header>
 
     <section class="share-component-gallery__section" data-share-gallery="AvatarFrame"><AvatarGalleryExample /></section>
+    <section class="share-component-gallery__section" data-share-gallery="PageReport"><PageReportExample /></section>
     <section class="share-component-gallery__section" data-share-gallery="FitContent"><h2>FitContent</h2><FitContentGalleryExample /></section>
     <section class="share-component-gallery__section" data-share-gallery="BlurBackdrop"><BlurGalleryExample /></section>
     <section class="share-component-gallery__section" data-share-gallery="ChoiceCard"><ChoiceCardGalleryExample /></section>
@@ -499,6 +500,7 @@
 </template>
 
 <script setup>
+import PageReportExample from './PageReportExample.vue'
 import ChoiceCardGalleryExample from './ChoiceCardGalleryExample.vue'
 import BlurGalleryExample from './BlurGalleryExample.vue'
 import StarRating from '../components/StarRating.vue'

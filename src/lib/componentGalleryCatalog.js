@@ -1,6 +1,7 @@
 export const COMPONENT_GALLERY_COMPONENTS = Object.freeze([
   'AvatarFrame',
   'FitContent',
+  'PageReport',
   'StatBar',
   'IconPicker',
   'DetailSection',
