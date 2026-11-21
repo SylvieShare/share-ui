@@ -736,3 +736,5 @@ strings, route metadata, network submission and optional native viewport capture
 `privateDetails` limits automatic diagnostics to structural selectors and geometry.
 `requireAttachmentConsent` makes each screenshot opt-in after preview. The API
 accepts independently optional element and viewport screenshots.
+
+With `captureArea: false` the form uses the optional viewport capture alone.

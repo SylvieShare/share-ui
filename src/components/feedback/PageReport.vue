@@ -22,9 +22,9 @@
         <span v-if="selectedElement?.text" class="selected-text">{{ selectedElement.text }}</span>
       </div>
       <div class="screenshot-field">
-        <span class="selected-label">{{ labels.area }}</span>
+        <span v-if="options.captureArea !== false" class="selected-label">{{ labels.area }}</span>
         <div class="screenshot-previews">
-          <figure class="screenshot-preview-card screenshot-preview-card-element">
+          <figure v-if="options.captureArea !== false" class="screenshot-preview-card screenshot-preview-card-element">
             <figcaption>
               <strong>{{ labels.elementPhoto }}</strong>
               <span>{{ labels.elementHelp }}</span>

@@ -7710,12 +7710,12 @@ function As(e, t) {
 		if (!a.value) return;
 		let r = U(n);
 		if (!r) return;
-		n.preventDefault(), n.stopPropagation(), n.stopImmediatePropagation(), u.value = is(r, e.viewportPlatform, e.privateDetails), P.value = rs(r), x.value = 0, Y(), d.value = z(), V();
+		n.preventDefault(), n.stopPropagation(), n.stopImmediatePropagation(), u.value = is(r, e.viewportPlatform, e.privateDetails), d.value = z(), V();
 		let i = ++j;
-		if (M = {
+		if (e.captureArea !== !1 && (P.value = rs(r), x.value = 0, Y(), M = {
 			element: r,
 			session: i
-		}, m.value = "", g.value = "", h.value = !0, e.captureViewport) {
+		}, m.value = "", g.value = "", h.value = !0), e.captureViewport) {
 			b.value = !0;
 			try {
 				if (await y(), await new Promise((e) => requestAnimationFrame(() => requestAnimationFrame(e))), i !== j) return;
@@ -7908,7 +7908,13 @@ var js = {
 }, Ns = { class: "selected-element" }, Ps = { class: "selected-label" }, Fs = {
 	key: 0,
 	class: "selected-text"
-}, Is = { class: "screenshot-field" }, Ls = { class: "selected-label" }, Rs = { class: "screenshot-previews" }, zs = { class: "screenshot-preview-card screenshot-preview-card-element" }, Bs = {
+}, Is = { class: "screenshot-field" }, Ls = {
+	key: 0,
+	class: "selected-label"
+}, Rs = { class: "screenshot-previews" }, zs = {
+	key: 0,
+	class: "screenshot-preview-card screenshot-preview-card-element"
+}, Bs = {
 	key: 0,
 	class: "screenshot-state screenshot-state-inside"
 }, Vs = ["src"], Hs = [
@@ -7926,7 +7932,7 @@ var js = {
 	key: 3,
 	class: "report-attachment"
 }, qs = ["disabled"], Js = {
-	key: 0,
+	key: 1,
 	class: "screenshot-preview-card"
 }, Ys = ["src"], Xs = {
 	key: 1,
@@ -8006,7 +8012,7 @@ var js = {
 					onSubmit: i[6] ||= K((...e) => F(R) && F(R)(...e), ["prevent"])
 				}, [
 					c("div", Ns, [c("span", Ps, P(l.value.element), 1), F(v)?.text ? (E(), s("span", Fs, P(F(v).text), 1)) : o("", !0)]),
-					c("div", Is, [c("span", Ls, P(l.value.area), 1), c("div", Rs, [c("figure", zs, [
+					c("div", Is, [n.options.captureArea === !1 ? o("", !0) : (E(), s("span", Ls, P(l.value.area), 1)), c("div", Rs, [n.options.captureArea === !1 ? o("", !0) : (E(), s("figure", zs, [
 						c("figcaption", null, [c("strong", null, P(l.value.elementPhoto), 1), c("span", null, P(l.value.elementHelp), 1)]),
 						F(C) && !F(x) ? (E(), s("div", Bs, P(l.value.capturing), 1)) : F(x) ? (E(), s("div", {
 							key: 1,
@@ -8042,7 +8048,7 @@ var js = {
 							type: "checkbox",
 							disabled: F(m)
 						}, null, 8, qs), [[z, F(G)]]), d(" " + P(l.value.addArea), 1)])) : o("", !0)
-					]), F(D) || F(O) ? (E(), s("figure", Js, [
+					])), F(D) || F(O) ? (E(), s("figure", Js, [
 						c("figcaption", null, [c("strong", null, P(l.value.viewport), 1), c("span", null, P(l.value.viewportHelp), 1)]),
 						F(D) ? (E(), s("img", {
 							key: 0,
@@ -8091,6 +8097,6 @@ var js = {
 			}, [c("div", nc, P(F(b)), 1)])) : o("", !0)
 		], 64));
 	}
-}, [["__scopeId", "data-v-af90cb18"]]);
+}, [["__scopeId", "data-v-dbd59e0d"]]);
 //#endregion
 export { Gn as $, Vi as A, Ne as At, $r as B, se as Bt, ua as C, gt as Ct, Ji as D, We as Dt, ta as E, Ze as Et, yi as F, ve as Ft, zr as G, q as Gt, qr as H, X as Ht, di as I, $ as It, Tr as J, Pr as K, fi as L, he as Lt, Ai as M, De as Mt, ki as N, we as Nt, qi as O, Be as Ot, bi as P, ye as Pt, Kn as Q, ai as R, me as Rt, pa as S, Xt as St, aa as T, ct as Tt, Wr as U, oe as Ut, Yr as V, Z as Vt, Hr as W, ae as Wt, tr as X, br as Y, qn as Z, Pa as _, Wt as _t, Do as a, Un as at, va as b, Jt as bt, vo as c, bn as ct, Za as d, yn as dt, Hn as et, Ja as f, pn as ft, Fa as g, nn as gt, La as h, ln as ht, Ko as i, Wn as it, Ri as j, ke as jt, Ki as k, Ie as kt, oo as l, xn as lt, za as m, un as mt, ts as n, Jn as nt, To as o, In as ot, qa as p, dn as pt, Dr as q, Zo as r, Zn as rt, So as s, An as st, rc as t, Qn as tt, eo as u, Sn as ut, Na as v, Ut as vt, sa as w, pt as wt, ga as x, qt as xt, ba as y, Yt as yt, ti as z, de as zt };

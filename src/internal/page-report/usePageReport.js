@@ -128,16 +128,18 @@ export function usePageReport(options, labels) {
     event.stopImmediatePropagation()
 
     selectedElement.value = describeElement(target, options.viewportPlatform, options.privateDetails)
-    screenshotContextElements.value = screenshotContextsFor(target)
-    screenshotContextLevel.value = 0
-    updateScreenshotContextMetadata()
     selectedPageURL.value = getPageURL()
     stopSelection()
     const session = ++screenshotSession
-    pendingScreenshot = { element: target, session }
-    screenshotDataURL.value = ''
-    screenshotError.value = ''
-    screenshotCapturing.value = true
+    if (options.captureArea !== false) {
+      screenshotContextElements.value = screenshotContextsFor(target)
+      screenshotContextLevel.value = 0
+      updateScreenshotContextMetadata()
+      pendingScreenshot = { element: target, session }
+      screenshotDataURL.value = ''
+      screenshotError.value = ''
+      screenshotCapturing.value = true
+    }
     if (options.captureViewport) {
       preparingReport.value = true
       try {

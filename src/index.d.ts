@@ -823,6 +823,7 @@ export const PageReport: DefineComponent<{
   options: {
     requestEvent: string
     globalShortcuts?: boolean
+    captureArea?: boolean
     nativeBackEvent?: string
     viewportPlatform: (width: number) => 'mobile' | 'tablet' | 'desktop'
     getPageURL?: () => string
