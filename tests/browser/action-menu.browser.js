@@ -3,26 +3,36 @@ import { expect, test } from '@playwright/test'
 test.use({ hasTouch: true, viewport: { width: 390, height: 844 } })
 
 for (const reducedMotion of ['no-preference', 'reduce']) {
-  test(`action menus animate from their first visible frame (${reducedMotion})`, async ({ page }) => {
+  test(`menus fade and scale from their first visible frame (${reducedMotion})`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion })
     await page.goto('/tests/browser/?action-motion')
     await page.evaluate(() => {
       window.menuTransitions = []
       document.addEventListener('transitionrun', event => {
-        if (event.propertyName === 'opacity' && event.target.matches('[role="menu"]')
-          && getComputedStyle(event.target).visibility === 'visible') {
-          window.menuTransitions.push(event.target.getAttribute('aria-label'))
+        const panel = event.target
+        if (!panel.matches('[role="menu"], .ras-inline, .vs-drop') || getComputedStyle(panel).visibility !== 'visible') return
+        const name = panel.getAttribute('aria-label') || 'Inline submenu'
+        const animation = panel.getAnimations().find(animation => animation.transitionProperty === event.propertyName)
+        const from = animation?.effect.getKeyframes()[0]?.[event.propertyName]
+        if (event.propertyName === 'opacity') window.menuTransitions.push({ name, property: 'opacity', from: Number(from) })
+        if (event.propertyName === 'transform' && from) {
+          window.menuTransitions.push({ name, property: 'scale', from: Number(new DOMMatrix(from).a.toFixed(2)) })
         }
       })
     })
+    const expectEnter = async name => {
+      if (reducedMotion === 'reduce') return
+      await expect.poll(() => page.evaluate(() => window.menuTransitions)).toEqual(expect.arrayContaining([
+        { name, property: 'opacity', from: 0 },
+        { name, property: 'scale', from: 0.88 },
+      ]))
+    }
 
     const mountedTrigger = page.getByRole('button', { name: 'Open mounted actions' })
     await mountedTrigger.tap()
     const mounted = page.getByRole('menu', { name: 'Mounted actions' })
     await expect(mounted).toBeVisible()
-    if (reducedMotion === 'no-preference') {
-      await expect.poll(() => page.evaluate(() => window.menuTransitions)).toContain('Mounted actions')
-    }
+    await expectEnter('Mounted actions')
     await page.keyboard.press('Escape')
     await expect(mounted).toHaveCount(0)
 
@@ -30,13 +40,26 @@ for (const reducedMotion of ['no-preference', 'reduce']) {
     await standardTrigger.tap()
     const standard = page.getByRole('menu', { name: 'Standard actions' })
     await expect(standard).toBeVisible()
-    if (reducedMotion === 'no-preference') {
-      await expect.poll(() => page.evaluate(() => window.menuTransitions)).toContain('Standard actions')
-    }
+    await expectEnter('Standard actions')
+    await standard.getByRole('button', { name: 'More actions' }).tap()
+    await expect(standard.getByRole('button', { name: 'Nested action' })).toBeVisible()
+    await expectEnter('Inline submenu')
+    await page.keyboard.press('Escape')
+    await expect(standard.getByRole('button', { name: 'Nested action' })).toHaveCount(0)
     await expect(standardTrigger).toHaveCSS('-webkit-tap-highlight-color', 'rgba(0, 0, 0, 0)')
     await expect(standard.getByRole('menuitem')).toHaveCSS('-webkit-tap-highlight-color', 'rgba(0, 0, 0, 0)')
     await page.keyboard.press('Escape')
     await expect(standard).toHaveCount(0)
+
+    const select = page.getByRole('combobox', { name: 'Choose mode' })
+    await select.tap()
+    const listbox = page.getByRole('listbox', { name: 'Choose mode' })
+    await expect(listbox).toBeVisible()
+    await expectEnter('Choose mode')
+    await listbox.getByRole('option', { name: 'Second' }).tap()
+    await expect(listbox).toHaveCount(0)
+    await expect(select).toBeFocused()
+
     if (reducedMotion === 'reduce') {
       expect(await page.evaluate(() => window.menuTransitions)).toEqual([])
     }

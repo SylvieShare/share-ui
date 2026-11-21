@@ -2,10 +2,17 @@
   <template v-if="actionMotion">
     <button ref="actionAnchor" @click="actionOpen = true">Open mounted actions</button>
     <BasePopover v-if="actionOpen" :open="true" :anchor="actionAnchor" role="menu" aria-label="Mounted actions"
-      transition-preset="action-menu" @update:open="actionOpen = $event">
+      @update:open="actionOpen = $event">
       <ActionMenuItem>Mounted action</ActionMenuItem>
     </BasePopover>
-    <ActionMenu title="Standard actions"><ActionMenuItem>Standard action</ActionMenuItem></ActionMenu>
+    <ActionMenu title="Standard actions">
+      <ActionMenuItem>Standard action</ActionMenuItem>
+      <ActionMenuSubmenu>
+        <template #trigger><button>More actions</button></template>
+        <button>Nested action</button>
+      </ActionMenuSubmenu>
+    </ActionMenu>
+    <ValueSelect aria-label="Choose mode" :options="['First', 'Second']" style="width: 200px" />
   </template>
   <button id="opener" aria-controls="app-navigation-drawer" @click="open = true">Open drawer</button>
   <button id="background">Background</button>
@@ -77,8 +84,8 @@
 <script setup>
 import { ref } from 'vue'
 import {
-  AccountMenu, ActionMenu, ActionMenuItem, AppDrawer, AppModal, AppShell, AppSidebar,
-  BasePopover, SidebarBrand, SidebarGroup, SidebarNavItem,
+  AccountMenu, ActionMenu, ActionMenuItem, ActionMenuSubmenu, AppDrawer, AppModal, AppShell, AppSidebar,
+  BasePopover, SidebarBrand, SidebarGroup, SidebarNavItem, ValueSelect,
 } from '../../dist/share-ui.js'
 
 const params = new URLSearchParams(location.search)

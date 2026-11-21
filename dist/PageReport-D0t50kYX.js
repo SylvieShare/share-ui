@@ -2163,7 +2163,7 @@ var fn = [
 		},
 		transitionPreset: {
 			type: String,
-			default: "none",
+			default: "action-menu",
 			validator: (e) => ["none", "action-menu"].includes(e)
 		},
 		popoverClass: {
@@ -2227,11 +2227,11 @@ var fn = [
 				zIndex: c.zIndex
 			};
 			if (c.placement === "right-start") {
-				let e = t.right + c.offset, n = t.left - c.offset - i;
-				d.left = `${e + i <= s ? e : n >= o ? n : Math.max(o, Math.min(e, s - i))}px`, d.top = `${Math.max(l, Math.min(t.top, u - a))}px`;
+				let e = t.right + c.offset, n = t.left - c.offset - i, r = e + i <= s ? e : n >= o ? n : Math.max(o, Math.min(e, s - i));
+				d.left = `${r}px`, d.top = `${Math.max(l, Math.min(t.top, u - a))}px`, d["--share-popover-origin-x"] = r + i <= t.left ? "100%" : "0%", d["--share-popover-enter-y"] = "0px";
 			} else {
-				let e = c.placement === "bottom-end" ? t.right - i : t.left, n = t.bottom + c.offset, r = t.top - c.offset - a, f = n + a > u && r >= l ? r : n;
-				d.left = `${Math.max(o, Math.min(e, s - i))}px`, d.top = `${Math.max(l, Math.min(f, u - a))}px`;
+				let e = c.placement === "bottom-end" ? t.right - i : t.left, n = t.bottom + c.offset, r = t.top - c.offset - a, f = n + a > u && r >= l, p = f ? r : n, m = Math.max(o, Math.min(e, s - i));
+				d.left = `${m}px`, d.top = `${Math.max(l, Math.min(p, u - a))}px`, d["--share-popover-origin-x"] = `${Math.max(0, Math.min(i, t.left + t.width / 2 - m))}px`, d["--share-popover-origin-y"] = f ? "100%" : "0%", d["--share-popover-enter-y"] = f ? "5px" : "-5px";
 			}
 			m.value = d;
 		}
@@ -2298,7 +2298,7 @@ var fn = [
 			_: 3
 		}, 8, ["name", "appear"])]));
 	}
-}, [["__scopeId", "data-v-1a5c96fa"]]), mn = { class: "ras-root" }, hn = { class: "ras-panel" }, gn = {
+}, [["__scopeId", "data-v-a62066b6"]]), mn = { class: "ras-root" }, hn = { class: "ras-panel" }, gn = {
 	key: 0,
 	class: "ras-label"
 }, _n = { class: "ras-panel ras-panel--popover" }, vn = {
@@ -2353,7 +2353,7 @@ var fn = [
 				toggle: m
 			}, void 0, !0)], 512),
 			f(n, {
-				name: "ras-inline",
+				name: "share-popover-action",
 				onBeforeEnter: r[2] ||= (e) => F(Ht)(e, !0),
 				onBeforeLeave: r[3] ||= (e) => F(Ht)(e, !1)
 			}, {
@@ -2374,7 +2374,6 @@ var fn = [
 				"min-width": e.minWidth,
 				"z-index": 9400,
 				"popover-class": "row-action-submenu-popover",
-				transition: "ras-popover",
 				related: "",
 				"onUpdate:open": g
 			}, {
@@ -2387,7 +2386,7 @@ var fn = [
 			]))
 		]));
 	}
-}, [["__scopeId", "data-v-4d638ec2"]]), bn = [
+}, [["__scopeId", "data-v-565640f0"]]), bn = [
 	"#ef4444",
 	"#f97316",
 	"#f59e0b",
@@ -2697,10 +2696,10 @@ var Cn = ["aria-label"], wn = [
 		"open",
 		"close"
 	],
-	setup(t, { expose: n, emit: r }) {
-		let a = 0, l = t, u = r;
-		a += 1;
-		let d = `share-value-select-${a}`, f = k(null), p = k(null), m = k(null), h = k(!1), g = k(""), _ = k(-1), v = i(() => l.options.map((e, t) => e && typeof e == "object" ? {
+	setup(t, { expose: r, emit: a }) {
+		let l = 0, u = t, d = a;
+		l += 1;
+		let p = `share-value-select-${l}`, m = k(null), h = k(null), g = k(null), _ = k(!1), v = k(""), x = k(-1), S = i(() => u.options.map((e, t) => e && typeof e == "object" ? {
 			value: e.value,
 			label: String(e.label ?? e.value ?? ""),
 			disabled: !!e.disabled,
@@ -2710,18 +2709,18 @@ var Cn = ["aria-label"], wn = [
 			label: String(e ?? ""),
 			disabled: !1,
 			key: `${String(e)}-${t}`
-		})), x = i(() => v.value.find((e) => T(e.value))?.label ?? ""), S = i(() => {
-			let e = g.value.trim().toLocaleLowerCase();
-			return e ? v.value.filter((t) => t.label.toLocaleLowerCase().includes(e)) : v.value;
-		}), w = i(() => l.searchable && v.value.length >= l.searchThreshold);
-		function T(e) {
-			return String(e) === String(l.modelValue);
+		})), w = i(() => S.value.find((e) => O(e.value))?.label ?? ""), T = i(() => {
+			let e = v.value.trim().toLocaleLowerCase();
+			return e ? S.value.filter((t) => t.label.toLocaleLowerCase().includes(e)) : S.value;
+		}), D = i(() => u.searchable && S.value.length >= u.searchThreshold);
+		function O(e) {
+			return String(e) === String(u.modelValue);
 		}
-		function D(e) {
-			return `${d}-option-${e}`;
+		function j(e) {
+			return `${p}-option-${e}`;
 		}
-		function O(e = 0, t = 1) {
-			let n = S.value;
+		function M(e = 0, t = 1) {
+			let n = T.value;
 			if (!n.length) return -1;
 			for (let r = 0; r < n.length; r += 1) {
 				let i = (e + r * t + n.length) % n.length;
@@ -2729,126 +2728,133 @@ var Cn = ["aria-label"], wn = [
 			}
 			return -1;
 		}
-		function j() {
-			let e = S.value.findIndex((e) => T(e.value) && !e.disabled);
-			return e >= 0 ? e : O();
+		function N() {
+			let e = T.value.findIndex((e) => O(e.value) && !e.disabled);
+			return e >= 0 ? e : M();
 		}
-		function M(e) {
-			S.value[e]?.disabled || (_.value = e);
+		function I(e) {
+			T.value[e]?.disabled || (x.value = e);
 		}
-		function N(e) {
-			let t = S.value;
+		function L(e) {
+			let t = T.value;
 			if (!t.length) return;
-			let n = _.value < 0 ? e > 0 ? 0 : t.length - 1 : (_.value + e + t.length) % t.length;
-			_.value = O(n, e), y(() => document.getElementById(D(_.value))?.scrollIntoView?.({ block: "nearest" }));
+			let n = x.value < 0 ? e > 0 ? 0 : t.length - 1 : (x.value + e + t.length) % t.length;
+			x.value = M(n, e), y(() => document.getElementById(j(x.value))?.scrollIntoView?.({ block: "nearest" }));
 		}
-		function F() {
-			l.disabled || h.value || (h.value = !0, _.value = j(), document.addEventListener("pointerdown", V, !0), u("open"), w.value && y(() => m.value?.focus()));
+		function R() {
+			u.disabled || _.value || (_.value = !0, x.value = N(), document.addEventListener("pointerdown", q, !0), d("open"), D.value && y(() => g.value?.focus()));
 		}
-		function I({ restoreFocus: e = !1 } = {}) {
-			h.value && (h.value = !1, g.value = "", _.value = -1, document.removeEventListener("pointerdown", V, !0), u("close"), e && y(() => p.value?.focus()));
+		function z({ restoreFocus: e = !1 } = {}) {
+			_.value && (_.value = !1, v.value = "", x.value = -1, document.removeEventListener("pointerdown", q, !0), d("close"), e && y(() => h.value?.focus()));
 		}
-		function L() {
-			h.value ? I() : F();
-		}
-		function R(e) {
-			!e || e.disabled || (u("update:modelValue", e.value), I({ restoreFocus: !0 }));
-		}
-		function z() {
-			R(S.value[_.value]);
-		}
-		function V(e) {
-			f.value?.contains(e.target) || I();
-		}
-		function U(e) {
-			if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-				e.preventDefault(), h.value ? N(e.key === "ArrowDown" ? 1 : -1) : F();
-				return;
-			}
-			if (e.key === "Home" && h.value) {
-				e.preventDefault(), _.value = O();
-				return;
-			}
-			if (e.key === "End" && h.value) {
-				e.preventDefault(), _.value = O(S.value.length - 1, -1);
-				return;
-			}
-			if ((e.key === "Enter" || e.key === " ") && h.value) {
-				e.preventDefault(), z();
-				return;
-			}
-			e.key === "Escape" && h.value && (e.preventDefault(), I({ restoreFocus: !0 }));
+		function V() {
+			_.value ? z() : R();
 		}
 		function G(e) {
-			e.key === "ArrowDown" || e.key === "ArrowUp" ? (e.preventDefault(), N(e.key === "ArrowDown" ? 1 : -1)) : e.key === "Home" ? (e.preventDefault(), _.value = O()) : e.key === "End" ? (e.preventDefault(), _.value = O(S.value.length - 1, -1)) : e.key === "Enter" ? (e.preventDefault(), z()) : e.key === "Escape" && (e.preventDefault(), I({ restoreFocus: !0 }));
+			!e || e.disabled || (d("update:modelValue", e.value), z({ restoreFocus: !0 }));
 		}
-		return H(S, () => {
-			_.value = j();
-		}), H(() => l.disabled, (e) => {
-			e && I();
+		function K() {
+			G(T.value[x.value]);
+		}
+		function q(e) {
+			m.value?.contains(e.target) || z();
+		}
+		function ee(e) {
+			if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+				e.preventDefault(), _.value ? L(e.key === "ArrowDown" ? 1 : -1) : R();
+				return;
+			}
+			if (e.key === "Home" && _.value) {
+				e.preventDefault(), x.value = M();
+				return;
+			}
+			if (e.key === "End" && _.value) {
+				e.preventDefault(), x.value = M(T.value.length - 1, -1);
+				return;
+			}
+			if ((e.key === "Enter" || e.key === " ") && _.value) {
+				e.preventDefault(), K();
+				return;
+			}
+			e.key === "Escape" && _.value && (e.preventDefault(), z({ restoreFocus: !0 }));
+		}
+		function J(e) {
+			e.key === "ArrowDown" || e.key === "ArrowUp" ? (e.preventDefault(), L(e.key === "ArrowDown" ? 1 : -1)) : e.key === "Home" ? (e.preventDefault(), x.value = M()) : e.key === "End" ? (e.preventDefault(), x.value = M(T.value.length - 1, -1)) : e.key === "Enter" ? (e.preventDefault(), K()) : e.key === "Escape" && (e.preventDefault(), z({ restoreFocus: !0 }));
+		}
+		return H(T, () => {
+			x.value = N();
+		}), H(() => u.disabled, (e) => {
+			e && z();
 		}), C(() => {
-			document.removeEventListener("pointerdown", V, !0);
-		}), n({
-			open: F,
-			close: I,
-			toggle: L
-		}), (n, r) => (E(), s("div", {
+			document.removeEventListener("pointerdown", q, !0);
+		}), r({
+			open: R,
+			close: z,
+			toggle: V
+		}), (r, i) => (E(), s("div", {
 			ref_key: "rootEl",
-			ref: f,
+			ref: m,
 			class: b(["vs", { "vs--disabled": t.disabled }])
 		}, [c("button", {
 			ref_key: "triggerEl",
-			ref: p,
-			class: b(["vs-button", { empty: !x.value }]),
+			ref: h,
+			class: b(["vs-button", { empty: !w.value }]),
 			type: "button",
 			role: "combobox",
 			"aria-haspopup": "listbox",
 			"aria-label": t.ariaLabel || void 0,
-			"aria-controls": d,
-			"aria-expanded": h.value,
-			"aria-activedescendant": h.value && _.value >= 0 ? D(_.value) : void 0,
+			"aria-controls": p,
+			"aria-expanded": _.value,
+			"aria-activedescendant": _.value && x.value >= 0 ? j(x.value) : void 0,
 			disabled: t.disabled,
-			onClick: L,
-			onKeydown: U
-		}, [c("span", null, P(x.value || t.placeholder), 1), r[1] ||= c("span", {
+			onClick: V,
+			onKeydown: ee
+		}, [c("span", null, P(w.value || t.placeholder), 1), i[3] ||= c("span", {
 			class: "vs-arrow",
 			"aria-hidden": "true"
-		}, "▾", -1)], 42, jn), h.value ? (E(), s("div", {
-			key: 0,
-			id: d,
-			class: b(["vs-drop", { "vs-drop-up": t.dropUp }]),
-			role: "listbox",
-			"aria-label": t.ariaLabel || void 0
-		}, [
-			w.value ? W((E(), s("input", {
+		}, "▾", -1)], 42, jn), f(n, {
+			name: "share-popover-action",
+			onBeforeEnter: i[1] ||= (e) => F(Ht)(e, !0),
+			onBeforeLeave: i[2] ||= (e) => F(Ht)(e, !1)
+		}, {
+			default: U(() => [_.value ? (E(), s("div", {
 				key: 0,
-				ref_key: "searchEl",
-				ref: m,
-				"onUpdate:modelValue": r[0] ||= (e) => g.value = e,
-				class: "vs-search",
-				type: "search",
-				placeholder: t.searchPlaceholder,
-				"aria-label": t.searchAriaLabel || t.searchPlaceholder,
-				"aria-controls": d,
-				"aria-activedescendant": _.value >= 0 ? D(_.value) : void 0,
-				autocomplete: "off",
-				onKeydown: G
-			}, null, 40, Nn)), [[B, g.value]]) : o("", !0),
-			(E(!0), s(e, null, A(S.value, (e, t) => (E(), s("button", {
-				id: D(t),
-				key: e.key,
-				class: b(["vs-option", { "vs-option--active": t === _.value }]),
-				type: "button",
-				role: "option",
-				"aria-selected": T(e.value),
-				disabled: e.disabled,
-				onMouseenter: (e) => M(t),
-				onClick: (t) => R(e)
-			}, P(e.label), 43, Pn))), 128)),
-			S.value.length === 0 ? (E(), s("div", Fn, P(t.emptyLabel), 1)) : o("", !0)
-		], 10, Mn)) : o("", !0)], 2));
+				id: p,
+				class: b(["vs-drop", { "vs-drop-up": t.dropUp }]),
+				role: "listbox",
+				"aria-label": t.ariaLabel || void 0
+			}, [
+				D.value ? W((E(), s("input", {
+					key: 0,
+					ref_key: "searchEl",
+					ref: g,
+					"onUpdate:modelValue": i[0] ||= (e) => v.value = e,
+					class: "vs-search",
+					type: "search",
+					placeholder: t.searchPlaceholder,
+					"aria-label": t.searchAriaLabel || t.searchPlaceholder,
+					"aria-controls": p,
+					"aria-activedescendant": x.value >= 0 ? j(x.value) : void 0,
+					autocomplete: "off",
+					onKeydown: J
+				}, null, 40, Nn)), [[B, v.value]]) : o("", !0),
+				(E(!0), s(e, null, A(T.value, (e, t) => (E(), s("button", {
+					id: j(t),
+					key: e.key,
+					class: b(["vs-option", { "vs-option--active": t === x.value }]),
+					type: "button",
+					role: "option",
+					"aria-selected": O(e.value),
+					disabled: e.disabled,
+					onMouseenter: (e) => I(t),
+					onClick: (t) => G(e)
+				}, P(e.label), 43, Pn))), 128)),
+				T.value.length === 0 ? (E(), s("div", Fn, P(t.emptyLabel), 1)) : o("", !0)
+			], 10, Mn)) : o("", !0)]),
+			_: 1
+		})], 2));
 	}
-}, [["__scopeId", "data-v-ed63d542"]]), Ln = /* @__PURE__ */ new Set(/* @__PURE__ */ "a.b.blockquote.br.code.em.h1.h2.h3.h4.h5.h6.li.ol.p.pre.s.span.strike.strong.table.tbody.td.th.thead.tr.u.ul".split(".")), Rn = /* @__PURE__ */ new Set([
+}, [["__scopeId", "data-v-061a941d"]]), Ln = /* @__PURE__ */ new Set(/* @__PURE__ */ "a.b.blockquote.br.code.em.h1.h2.h3.h4.h5.h6.li.ol.p.pre.s.span.strike.strong.table.tbody.td.th.thead.tr.u.ul".split(".")), Rn = /* @__PURE__ */ new Set([
 	"embed",
 	"iframe",
 	"math",

@@ -314,12 +314,13 @@ scroll lock. Floating surfaces тоже регистрируются в stack, �
 
 - `BasePopover` — teleported anchored surface с placements `bottom-start`,
   `bottom-end`, `right-start`, viewport clamp, outside-click и topmost Escape.
-  `transitionPreset="action-menu"` включает общий enter/leave motion с
-  `prefers-reduced-motion`, в том числе если компонент монтируется сразу
-  открытым. `none` оставляет поверхность без motion. Сырой
+  По умолчанию `transitionPreset="action-menu"` раскрывает поверхность от
+  якоря, совмещая масштаб 88 → 100% и смену прозрачности. Переход работает при
+  первом монтировании открытого меню. `none` отключает переход. Сырой
   `transition` остаётся приоритетным escape hatch для специализированного
-  Vue Transition name. Закрывающийся слой сразу становится inert и исчезает
-  из accessibility tree, хотя его exit-анимация ещё дорисовывается.
+  Vue Transition name. При `prefers-reduced-motion: reduce` меню сразу
+  принимает итоговый вид. Закрывающийся слой сразу становится inert и исчезает
+  из accessibility tree, пока завершается анимация закрытия.
 - `ActionMenu` (`RowActionMenu` alias) — меню действий. Необязательный `width`
   задаёт ширину. `followAnchor` сохраняет меню при прокрутке внутреннего предка
   и обновляет положение, пока якорь виден в его области; прокрутка документа
@@ -347,12 +348,13 @@ scroll lock. Floating surfaces тоже регистрируются в stack, �
   component/slot, suffix, submenu state и semantic tone. При coarse pointer или
   ширине до 1199 px строка имеет минимальную высоту 48 px.
 - `ActionMenuSubmenu` (`RowActionSubmenu` alias) — соседний popover на desktop и
-  inline-раскрытие на mobile.
+  inline-раскрытие на mobile. Оба используют общий переход action-menu.
 - `AccountMenu` — общий trigger профиля для sidebar: avatar, подпись и chevron;
   сами действия передаются consumer-ом через default slot и строятся на
   `ActionMenuItem`. Prop `expanded` переключает rail- и полный варианты.
 - `ValueSelect` — компактный searchable listbox с disabled options, стрелками,
-  Home/End, Enter и Escape. Все видимые тексты передаются props. Рамка списка
+  Home/End, Enter и Escape. Список использует общий переход action-menu.
+  Все видимые тексты передаются props. Рамка списка
   использует popover-border-width; рамки trigger/search остаются control-border-width.
 - `ColorPresetPicker` — preset/custom/clear picker. `variant="button"` даёт кнопку
   80×40: нейтральная палитра (заменяется слотом `icon`) слева и текущий цвет

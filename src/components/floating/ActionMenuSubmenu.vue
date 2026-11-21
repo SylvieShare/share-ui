@@ -4,7 +4,7 @@
       <slot name="trigger" :open="isOpen" :toggle="toggle" />
     </div>
 
-    <Transition name="ras-inline" @before-enter="el => setFloatingInteractive(el, true)" @before-leave="el => setFloatingInteractive(el, false)">
+    <Transition name="share-popover-action" @before-enter="el => setFloatingInteractive(el, true)" @before-leave="el => setFloatingInteractive(el, false)">
       <div
         v-if="isMobile && isOpen"
         class="ras-inline"
@@ -27,7 +27,6 @@
       :min-width="minWidth"
       :z-index="9400"
       popover-class="row-action-submenu-popover"
-      transition="ras-popover"
       related
       @update:open="onPopoverState"
     >
@@ -96,6 +95,7 @@ defineExpose({ open, close, toggle })
 .ras-trigger :deep(.ram-item) { width: 100%; }
 
 .ras-inline {
+  --share-popover-origin-x: 0%;
   position: relative;
   margin: 2px 3px 4px 11px;
   padding: 4px 4px 4px 11px;
@@ -115,19 +115,6 @@ defineExpose({ open, close, toggle })
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-
-.ras-inline-enter-active,
-.ras-inline-leave-active {
-  transition: opacity 120ms ease, transform 140ms cubic-bezier(0.2, 0.8, 0.3, 1);
-  transform-origin: top;
-}
-
-.ras-inline-enter-from,
-.ras-inline-leave-to { opacity: 0; transform: translateY(-3px) scaleY(0.96); }
-
-@media (prefers-reduced-motion: reduce) {
-  .ras-inline-enter-active, .ras-inline-leave-active { transition: none; }
-}
 </style>
 
 <style>
@@ -135,18 +122,5 @@ defineExpose({ open, close, toggle })
   max-width: min(320px, calc(100vw - 16px));
   max-height: min(420px, calc(100vh - 16px));
   overflow: auto;
-}
-
-.ras-popover-enter-active,
-.ras-popover-leave-active {
-  transition: opacity 120ms ease, transform 140ms cubic-bezier(0.2, 0.8, 0.3, 1);
-  transform-origin: left top;
-}
-
-.ras-popover-enter-from,
-.ras-popover-leave-to { opacity: 0; transform: translateX(-4px) scale(0.97); }
-
-@media (prefers-reduced-motion: reduce) {
-  .ras-popover-enter-active, .ras-popover-leave-active { transition: none; }
 }
 </style>

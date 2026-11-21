@@ -43,7 +43,7 @@ const props = defineProps({
   transition: { type: String, default: '' },
   transitionPreset: {
     type: String,
-    default: 'none',
+    default: 'action-menu',
     validator: value => ['none', 'action-menu'].includes(value),
   },
   popoverClass: { type: [String, Array, Object], default: '' },
@@ -116,13 +116,20 @@ function compute() {
         : Math.max(minLeft, Math.min(rightLeft, maxRight - width))
     style.left = `${resolvedLeft}px`
     style.top = `${Math.max(minTop, Math.min(rect.top, maxBottom - height))}px`
+    style['--share-popover-origin-x'] = resolvedLeft + width <= rect.left ? '100%' : '0%'
+    style['--share-popover-enter-y'] = '0px'
   } else {
     const desiredLeft = props.placement === 'bottom-end' ? rect.right - width : rect.left
     const belowTop = rect.bottom + props.offset
     const aboveTop = rect.top - props.offset - height
-    const top = belowTop + height > maxBottom && aboveTop >= minTop ? aboveTop : belowTop
-    style.left = `${Math.max(minLeft, Math.min(desiredLeft, maxRight - width))}px`
+    const opensAbove = belowTop + height > maxBottom && aboveTop >= minTop
+    const top = opensAbove ? aboveTop : belowTop
+    const left = Math.max(minLeft, Math.min(desiredLeft, maxRight - width))
+    style.left = `${left}px`
     style.top = `${Math.max(minTop, Math.min(top, maxBottom - height))}px`
+    style['--share-popover-origin-x'] = `${Math.max(0, Math.min(width, rect.left + rect.width / 2 - left))}px`
+    style['--share-popover-origin-y'] = opensAbove ? '100%' : '0%'
+    style['--share-popover-enter-y'] = opensAbove ? '5px' : '-5px'
   }
 
   positionStyle.value = style
@@ -229,7 +236,7 @@ onBeforeUnmount(unbind)
 <style>
 .share-popover-action-enter-active {
   transform-origin: var(--share-popover-origin-x, 50%) var(--share-popover-origin-y, 0);
-  transition: opacity 135ms ease-out, transform 165ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 160ms ease-out, transform 210ms cubic-bezier(0.2, 0.85, 0.3, 1);
 }
 
 .share-popover-action-leave-active {
@@ -238,7 +245,11 @@ onBeforeUnmount(unbind)
   transition: opacity 90ms ease-in, transform 110ms cubic-bezier(0.4, 0, 1, 1);
 }
 
-.share-popover-action-enter-from,
+.share-popover-action-enter-from {
+  opacity: 0;
+  transform: translateY(var(--share-popover-enter-y, -5px)) scale(0.88);
+}
+
 .share-popover-action-leave-to {
   opacity: 0;
   transform: translateY(var(--share-popover-enter-y, -5px)) scale(0.96);

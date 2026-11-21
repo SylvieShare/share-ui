@@ -19,51 +19,54 @@
       <span class="vs-arrow" aria-hidden="true">▾</span>
     </button>
 
-    <div
-      v-if="open"
-      :id="listboxId"
-      class="vs-drop"
-      :class="{ 'vs-drop-up': dropUp }"
-      role="listbox"
-      :aria-label="ariaLabel || undefined"
-    >
-      <input
-        v-if="showSearch"
-        ref="searchEl"
-        v-model="query"
-        class="vs-search"
-        type="search"
-        :placeholder="searchPlaceholder"
-        :aria-label="searchAriaLabel || searchPlaceholder"
-        :aria-controls="listboxId"
-        :aria-activedescendant="activeIndex >= 0 ? optionId(activeIndex) : undefined"
-        autocomplete="off"
-        @keydown="onSearchKeydown"
-      />
-
-      <button
-        v-for="(option, index) in filteredOptions"
-        :id="optionId(index)"
-        :key="option.key"
-        class="vs-option"
-        :class="{ 'vs-option--active': index === activeIndex }"
-        type="button"
-        role="option"
-        :aria-selected="isSelected(option.value)"
-        :disabled="option.disabled"
-        @mouseenter="setActive(index)"
-        @click="pick(option)"
+    <Transition name="share-popover-action" @before-enter="el => setFloatingInteractive(el, true)" @before-leave="el => setFloatingInteractive(el, false)">
+      <div
+        v-if="open"
+        :id="listboxId"
+        class="vs-drop"
+        :class="{ 'vs-drop-up': dropUp }"
+        role="listbox"
+        :aria-label="ariaLabel || undefined"
       >
-        {{ option.label }}
-      </button>
+        <input
+          v-if="showSearch"
+          ref="searchEl"
+          v-model="query"
+          class="vs-search"
+          type="search"
+          :placeholder="searchPlaceholder"
+          :aria-label="searchAriaLabel || searchPlaceholder"
+          :aria-controls="listboxId"
+          :aria-activedescendant="activeIndex >= 0 ? optionId(activeIndex) : undefined"
+          autocomplete="off"
+          @keydown="onSearchKeydown"
+        />
 
-      <div v-if="filteredOptions.length === 0" class="vs-empty">{{ emptyLabel }}</div>
-    </div>
+        <button
+          v-for="(option, index) in filteredOptions"
+          :id="optionId(index)"
+          :key="option.key"
+          class="vs-option"
+          :class="{ 'vs-option--active': index === activeIndex }"
+          type="button"
+          role="option"
+          :aria-selected="isSelected(option.value)"
+          :disabled="option.disabled"
+          @mouseenter="setActive(index)"
+          @click="pick(option)"
+        >
+          {{ option.label }}
+        </button>
+
+        <div v-if="filteredOptions.length === 0" class="vs-empty">{{ emptyLabel }}</div>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script setup>
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { setFloatingInteractive } from '../../internal/floatingState.js'
 
 let selectSequence = 0
 
@@ -298,7 +301,12 @@ defineExpose({ open: openSelect, close, toggle })
   box-shadow: var(--shadow-lg);
 }
 
-.vs-drop-up { top: auto; bottom: calc(100% + 4px); }
+.vs-drop-up {
+  --share-popover-origin-y: 100%;
+  --share-popover-enter-y: 5px;
+  top: auto;
+  bottom: calc(100% + 4px);
+}
 
 .vs-search {
   box-sizing: border-box;

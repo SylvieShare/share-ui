@@ -18,7 +18,7 @@ describe('BasePopover transitions', () => {
     }
   })
   it('owns the reusable action-menu transition preset', () => {
-    expect(BasePopover.props.transitionPreset.default).toBe('none')
+    expect(BasePopover.props.transitionPreset.default).toBe('action-menu')
     expect(BasePopover.props.transitionPreset.validator('action-menu')).toBe(true)
     expect(BasePopover.props.transitionPreset.validator('unknown')).toBe(false)
     expect(baseSource).toContain("props.transitionPreset === 'action-menu' ? 'share-popover-action' : ''")
