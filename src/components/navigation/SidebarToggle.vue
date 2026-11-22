@@ -43,7 +43,7 @@ defineProps({
   transition: color 0.15s ease, background 0.15s ease;
 }
 
-.share-sidebar-toggle:hover { color: var(--text-1); background: var(--surface-raised); }
+.share-sidebar-toggle:is(:hover, :active):not(:disabled) { color: var(--text-1); background: var(--surface-raised); }
 .share-sidebar-toggle__icon { display: inline-flex; align-items: center; justify-content: center; width: 42px; flex: 0 0 42px; }
 .share-sidebar-toggle .share-sidebar-label { color: var(--text-muted); font-size: 12px; }
 </style>

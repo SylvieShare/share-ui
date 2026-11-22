@@ -1450,7 +1450,7 @@ var rt = ["aria-label"], it = ["aria-orientation", "aria-label"], at = [
 			j(n.$slots, "decoration", { item: r }, void 0, !0)
 		], 16, at)], 64))), 128))], 14, rt));
 	}
-}, [["__scopeId", "data-v-4adaf334"]]), lt = ["aria-label"], ut = [
+}, [["__scopeId", "data-v-980752c4"]]), lt = ["aria-label"], ut = [
 	"id",
 	"aria-selected",
 	"aria-controls",
@@ -2013,7 +2013,7 @@ var $t = [
 			_: 3
 		})]))], 64));
 	}
-}, [["__scopeId", "data-v-a9c940c3"]]), rn = ["aria-haspopup", "aria-expanded"], an = {
+}, [["__scopeId", "data-v-99dbc084"]]), rn = ["aria-haspopup", "aria-expanded"], an = {
 	class: "ram-item__icon",
 	"aria-hidden": "true"
 }, on = {
@@ -2103,7 +2103,7 @@ var $t = [
 			}, null, -1)]], 2)) : o("", !0)])) : o("", !0)
 		], 10, rn));
 	}
-}, [["__scopeId", "data-v-d60f1786"]]);
+}, [["__scopeId", "data-v-bff8b9a5"]]);
 //#endregion
 //#region src/composables/useMediaQuery.js
 function un(e) {
@@ -2298,7 +2298,7 @@ var fn = [
 			_: 3
 		}, 8, ["name", "appear"])]));
 	}
-}, [["__scopeId", "data-v-a62066b6"]]), mn = { class: "ras-root" }, hn = { class: "ras-panel" }, gn = {
+}, [["__scopeId", "data-v-a9dc0f63"]]), mn = { class: "ras-root" }, hn = { class: "ras-panel" }, gn = {
 	key: 0,
 	class: "ras-label"
 }, _n = { class: "ras-panel ras-panel--popover" }, vn = {
@@ -2386,7 +2386,7 @@ var fn = [
 			]))
 		]));
 	}
-}, [["__scopeId", "data-v-565640f0"]]), bn = [
+}, [["__scopeId", "data-v-fba5dc96"]]), bn = [
 	"#ef4444",
 	"#f97316",
 	"#f59e0b",
@@ -2628,25 +2628,54 @@ var Cn = ["aria-label"], wn = [
 			"aria-label"
 		])], 512));
 	}
-}, [["__scopeId", "data-v-659a3b96"]]), jn = [
+}, [["__scopeId", "data-v-659a3b96"]]), jn = "data-share-no-hover";
+`${jn}${jn}`;
+function Mn(e) {
+	return e.pointerType === "mouse";
+}
+function Nn(e) {
+	return e.type === "focus" ? !!e.currentTarget?.matches(":focus-visible") : Mn(e);
+}
+function Pn(e = globalThis.window) {
+	if (!e?.document) return () => {};
+	let t = e.document.documentElement, n = t.hasAttribute(jn);
+	t.toggleAttribute(jn, !e.matchMedia?.("(hover: hover)").matches);
+	function r(e) {
+		if (!e.pointerType) return;
+		let n = !Mn(e);
+		t.hasAttribute(jn) !== n && t.toggleAttribute(jn, n);
+	}
+	let i = ["pointerdown", "pointermove"];
+	for (let t of i) e.addEventListener(t, r, {
+		capture: !0,
+		passive: !0
+	});
+	return () => {
+		for (let t of i) e.removeEventListener(t, r, !0);
+		t.toggleAttribute(jn, n);
+	};
+}
+//#endregion
+//#region src/components/floating/ValueSelect.vue
+var Fn = [
 	"aria-label",
 	"aria-expanded",
 	"aria-activedescendant",
 	"disabled"
-], Mn = ["aria-label"], Nn = [
+], In = ["aria-label"], Ln = [
 	"placeholder",
 	"aria-label",
 	"aria-activedescendant"
-], Pn = [
+], Rn = [
 	"id",
 	"aria-selected",
 	"disabled",
-	"onMouseenter",
+	"onPointerenter",
 	"onClick"
-], Fn = {
+], zn = {
 	key: 1,
 	class: "vs-empty"
-}, In = /*#__PURE__*/ q({
+}, Bn = /*#__PURE__*/ q({
 	__name: "ValueSelect",
 	props: {
 		modelValue: { default: null },
@@ -2812,7 +2841,7 @@ var Cn = ["aria-label"], wn = [
 		}, [c("span", null, P(w.value || t.placeholder), 1), i[3] ||= c("span", {
 			class: "vs-arrow",
 			"aria-hidden": "true"
-		}, "▾", -1)], 42, jn), f(n, {
+		}, "▾", -1)], 42, Fn), f(n, {
 			name: "share-popover-action",
 			onBeforeEnter: i[1] ||= (e) => F(Ht)(e, !0),
 			onBeforeLeave: i[2] ||= (e) => F(Ht)(e, !1)
@@ -2837,7 +2866,7 @@ var Cn = ["aria-label"], wn = [
 					"aria-activedescendant": x.value >= 0 ? j(x.value) : void 0,
 					autocomplete: "off",
 					onKeydown: J
-				}, null, 40, Nn)), [[B, v.value]]) : o("", !0),
+				}, null, 40, Ln)), [[B, v.value]]) : o("", !0),
 				(E(!0), s(e, null, A(T.value, (e, t) => (E(), s("button", {
 					id: j(t),
 					key: e.key,
@@ -2846,15 +2875,15 @@ var Cn = ["aria-label"], wn = [
 					role: "option",
 					"aria-selected": O(e.value),
 					disabled: e.disabled,
-					onMouseenter: (e) => I(t),
+					onPointerenter: (e) => F(Mn)(e) && I(t),
 					onClick: (t) => G(e)
-				}, P(e.label), 43, Pn))), 128)),
-				T.value.length === 0 ? (E(), s("div", Fn, P(t.emptyLabel), 1)) : o("", !0)
-			], 10, Mn)) : o("", !0)]),
+				}, P(e.label), 43, Rn))), 128)),
+				T.value.length === 0 ? (E(), s("div", zn, P(t.emptyLabel), 1)) : o("", !0)
+			], 10, In)) : o("", !0)]),
 			_: 1
 		})], 2));
 	}
-}, [["__scopeId", "data-v-061a941d"]]), Ln = /* @__PURE__ */ new Set(/* @__PURE__ */ "a.b.blockquote.br.code.em.h1.h2.h3.h4.h5.h6.li.ol.p.pre.s.span.strike.strong.table.tbody.td.th.thead.tr.u.ul".split(".")), Rn = /* @__PURE__ */ new Set([
+}, [["__scopeId", "data-v-710f6de8"]]), Vn = /* @__PURE__ */ new Set(/* @__PURE__ */ "a.b.blockquote.br.code.em.h1.h2.h3.h4.h5.h6.li.ol.p.pre.s.span.strike.strong.table.tbody.td.th.thead.tr.u.ul".split(".")), Hn = /* @__PURE__ */ new Set([
 	"embed",
 	"iframe",
 	"math",
@@ -2863,27 +2892,27 @@ var Cn = ["aria-label"], wn = [
 	"style",
 	"svg",
 	"template"
-]), zn = /* @__PURE__ */ new Set([
+]), Un = /* @__PURE__ */ new Set([
 	"http:",
 	"https:",
 	"mailto:",
 	"tel:"
-]), Bn = /^[a-z][a-z0-9-]{0,39}$/, Vn = 4096;
-function Hn(e) {
+]), Wn = /^[a-z][a-z0-9-]{0,39}$/, Gn = 4096;
+function Kn(e) {
 	return String(e ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\"", "&quot;").replaceAll("'", "&#039;");
 }
-function Un(e) {
+function qn(e) {
 	let t = String(e || "").trim();
 	if (!t || /[\u0000-\u001f\u007f]/.test(t)) return "";
 	if (/^(?:#|\?|\.?\.\/|\/)/.test(t)) return t;
 	try {
 		let e = new URL(t, "https://share-ui.invalid");
-		return zn.has(e.protocol) ? t : "";
+		return Un.has(e.protocol) ? t : "";
 	} catch {
 		return "";
 	}
 }
-function Wn(e) {
+function Jn(e) {
 	let t = String(e || "").trim();
 	if (/^#(?:[0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(t) || /^var\(--[a-z0-9-]+\)$/i.test(t)) return t;
 	let n = t.match(/^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})(?:\s*,\s*(0|1|0?\.\d+))?\s*\)$/i);
@@ -2891,17 +2920,17 @@ function Wn(e) {
 	let r = n[4] == null ? null : Number(n[4]);
 	return r != null && (r < 0 || r > 1) ? "" : t;
 }
-function Gn(e) {
+function Yn(e) {
 	try {
 		let t = encodeURIComponent(JSON.stringify(e ?? {}));
-		return t.length <= Vn ? t : "";
+		return t.length <= Gn ? t : "";
 	} catch {
 		return "";
 	}
 }
-function Kn(e) {
+function Xn(e) {
 	let t = String(e || "");
-	if (!t || t.length > Vn) return null;
+	if (!t || t.length > Gn) return null;
 	try {
 		let e = JSON.parse(decodeURIComponent(t));
 		return e && typeof e == "object" && !Array.isArray(e) ? e : null;
@@ -2914,20 +2943,20 @@ function Kn(e) {
 		}
 	}
 }
-function qn(e, t, n) {
-	let r = String(e || "").trim().toLowerCase(), i = Gn(t);
-	return !Bn.test(r) || !i ? "" : `<span data-rich-node="${r}" data-rich-payload="${Hn(i)}" contenteditable="false">${Hn(n || r)}</span>`;
+function Zn(e, t, n) {
+	let r = String(e || "").trim().toLowerCase(), i = Yn(t);
+	return !Wn.test(r) || !i ? "" : `<span data-rich-node="${r}" data-rich-payload="${Kn(i)}" contenteditable="false">${Kn(n || r)}</span>`;
 }
-function Jn(e) {
+function Qn(e) {
 	if (!e?.getAttribute) return null;
-	let t = String(e.getAttribute("data-rich-node") || "").trim().toLowerCase(), n = Kn(e.getAttribute("data-rich-payload"));
-	return !Bn.test(t) || n == null ? null : {
+	let t = String(e.getAttribute("data-rich-node") || "").trim().toLowerCase(), n = Xn(e.getAttribute("data-rich-payload"));
+	return !Wn.test(t) || n == null ? null : {
 		kind: t,
 		payload: n,
 		label: e.textContent || t
 	};
 }
-function Yn(e, t) {
+function $n(e, t) {
 	let n = e.getAttribute("title");
 	n && t.setAttribute("title", n);
 	let r = e.getAttribute("dir");
@@ -2936,59 +2965,59 @@ function Yn(e, t) {
 		"rtl",
 		"auto"
 	].includes(r) && t.setAttribute("dir", r);
-	let i = Wn(e.style?.getPropertyValue("color"));
+	let i = Jn(e.style?.getPropertyValue("color"));
 	if (i && t.style.setProperty("color", i), t.tagName === "A") {
-		let n = Un(e.getAttribute("href"));
+		let n = qn(e.getAttribute("href"));
 		n && t.setAttribute("href", n), e.getAttribute("target") === "_blank" && (t.setAttribute("target", "_blank"), t.setAttribute("rel", "noopener noreferrer"));
 	}
 	if (t.tagName === "SPAN") {
-		let n = Jn(e);
-		n && (t.setAttribute("data-rich-node", n.kind), t.setAttribute("data-rich-payload", Gn(n.payload)), t.setAttribute("contenteditable", "false"));
+		let n = Qn(e);
+		n && (t.setAttribute("data-rich-node", n.kind), t.setAttribute("data-rich-payload", Yn(n.payload)), t.setAttribute("contenteditable", "false"));
 	}
 	if (t.tagName === "TD" || t.tagName === "TH") for (let n of ["colspan", "rowspan"]) {
 		let r = Number.parseInt(e.getAttribute(n), 10);
 		r >= 1 && r <= 100 && t.setAttribute(n, String(r));
 	}
 }
-function Xn(e, t, n) {
+function er(e, t, n) {
 	if (e.nodeType === 3) {
 		t.appendChild(n.createTextNode(e.nodeValue || ""));
 		return;
 	}
 	if (e.nodeType !== 1) return;
 	let r = e.tagName.toLowerCase();
-	if (Rn.has(r)) return;
-	if (!Ln.has(r)) {
-		for (let r of [...e.childNodes]) Xn(r, t, n);
+	if (Hn.has(r)) return;
+	if (!Vn.has(r)) {
+		for (let r of [...e.childNodes]) er(r, t, n);
 		return;
 	}
 	let i = n.createElement(r);
-	if (Yn(e, i), i.hasAttribute("data-rich-node")) i.textContent = e.textContent || i.getAttribute("data-rich-node");
-	else for (let t of [...e.childNodes]) Xn(t, i, n);
+	if ($n(e, i), i.hasAttribute("data-rich-node")) i.textContent = e.textContent || i.getAttribute("data-rich-node");
+	else for (let t of [...e.childNodes]) er(t, i, n);
 	t.appendChild(i);
 }
-function Zn(e) {
+function tr(e) {
 	let t = String(e || "");
 	if (!t) return "";
-	if (typeof DOMParser > "u") return Hn(t);
+	if (typeof DOMParser > "u") return Kn(t);
 	let n = new DOMParser().parseFromString(t, "text/html"), r = n.createElement("div");
-	for (let e of [...n.body.childNodes]) Xn(e, r, n);
+	for (let e of [...n.body.childNodes]) er(e, r, n);
 	return r.innerHTML;
 }
-function Qn(e) {
-	return Hn(e).replace(/\r\n?|\n/g, "<br>");
+function nr(e) {
+	return Kn(e).replace(/\r\n?|\n/g, "<br>");
 }
 //#endregion
 //#region src/components/rich-text/RichContent.vue
-function $n(e) {
+function rr(e) {
 	let t = {};
 	for (let n of [...e.attributes]) n.name !== "class" && (t[n.name] = n.value);
 	return t;
 }
-function er(e, t, n) {
+function ir(e, t, n) {
 	if (e.nodeType === Node.TEXT_NODE) return e.nodeValue || "";
 	if (e.nodeType !== Node.ELEMENT_NODE) return null;
-	let r = Jn(e);
+	let r = Qn(e);
 	if (r) {
 		let e = () => h("span", {
 			class: "rc-node",
@@ -3003,13 +3032,13 @@ function er(e, t, n) {
 			fallback: e
 		}) || e());
 	}
-	let i = [...e.childNodes].map((e, r) => er(e, t, `${n}.${r}`)).filter((e) => e != null);
+	let i = [...e.childNodes].map((e, r) => ir(e, t, `${n}.${r}`)).filter((e) => e != null);
 	return h(e.tagName.toLowerCase(), {
-		...$n(e),
+		...rr(e),
 		key: n
 	}, i);
 }
-var tr = /*#__PURE__*/ q({
+var ar = /*#__PURE__*/ q({
 	name: "RichContent",
 	inheritAttrs: !1,
 	props: { html: {
@@ -3017,34 +3046,34 @@ var tr = /*#__PURE__*/ q({
 		default: ""
 	} },
 	setup(e, { slots: t, attrs: n }) {
-		let r = i(() => Zn(e.html));
+		let r = i(() => tr(e.html));
 		return () => {
 			if (typeof DOMParser > "u") return h("div", {
 				...n,
 				class: ["rc", n.class],
 				innerHTML: r.value
 			});
-			let e = [...new DOMParser().parseFromString(r.value, "text/html").body.childNodes].map((e, n) => er(e, t, String(n))).filter((e) => e != null);
+			let e = [...new DOMParser().parseFromString(r.value, "text/html").body.childNodes].map((e, n) => ir(e, t, String(n))).filter((e) => e != null);
 			return h("div", {
 				...n,
 				class: ["rc", n.class]
 			}, e);
 		};
 	}
-}, [["__scopeId", "data-v-b2aa27f6"]]), nr = { class: "input-desc" }, rr = ["aria-label"], ir = ["title"], ar = ["title"], or = ["title"], sr = ["aria-expanded"], cr = ["onMousedown"], lr = ["title", "onMousedown"], ur = { class: "desc-color-icon" }, dr = [
+}, [["__scopeId", "data-v-b2aa27f6"]]), or = { class: "input-desc" }, sr = ["aria-label"], cr = ["title"], lr = ["title"], ur = ["title"], dr = ["aria-expanded"], fr = ["onMousedown"], pr = ["title", "onMousedown"], mr = { class: "desc-color-icon" }, hr = [
 	"title",
 	"aria-label",
 	"aria-expanded"
-], fr = { class: "desc-link-field" }, pr = ["placeholder"], mr = { class: "desc-link-field" }, hr = {
+], gr = { class: "desc-link-field" }, _r = ["placeholder"], vr = { class: "desc-link-field" }, yr = {
 	key: 0,
 	class: "desc-link-error"
-}, gr = { class: "desc-link-actions" }, _r = {
+}, br = { class: "desc-link-actions" }, xr = {
 	type: "submit",
 	class: "desc-link-save"
-}, vr = ["data-placeholder", "aria-label"], yr = {
+}, Sr = ["data-placeholder", "aria-label"], Cr = {
 	key: 2,
 	class: "desc-empty"
-}, br = /*#__PURE__*/ q({
+}, wr = /*#__PURE__*/ q({
 	__name: "RichTextEditor",
 	props: {
 		modelValue: {
@@ -3118,7 +3147,7 @@ var tr = /*#__PURE__*/ q({
 			url: ""
 		}), V = i(() => N.value || F.value || T.value);
 		function G(e) {
-			return Zn(e) || "<p><br></p>";
+			return tr(e) || "<p><br></p>";
 		}
 		function q(e) {
 			!p.editable || !C.value || document.activeElement !== C.value && (C.value.innerHTML = G(e));
@@ -3146,7 +3175,7 @@ var tr = /*#__PURE__*/ q({
 			return ee(L.value) ? L.value.toString().trim() : "";
 		}
 		function Y(e) {
-			let t = qn(e?.kind, e?.payload, e?.label);
+			let t = Zn(e?.kind, e?.payload, e?.label);
 			if (!t || !C.value) return null;
 			te(), document.execCommand("insertHTML", !1, t), $();
 			let n = C.value.querySelectorAll("[data-rich-node]"), r = n[n.length - 1] || null;
@@ -3156,7 +3185,7 @@ var tr = /*#__PURE__*/ q({
 			return e?.nodeType === Node.ELEMENT_NODE && e.matches?.("[data-rich-node]") ? e : e?.element?.matches?.("[data-rich-node]") ? e.element : I.value?.isConnected ? I.value : null;
 		}
 		function ie(e, t) {
-			let n = re(e), r = qn(t?.kind, t?.payload, t?.label);
+			let n = re(e), r = Zn(t?.kind, t?.payload, t?.label);
 			if (!n || !r) return null;
 			let i = document.createElement("template");
 			i.innerHTML = r;
@@ -3186,7 +3215,7 @@ var tr = /*#__PURE__*/ q({
 			e !== !0 && (M.value = !1, N.value = null, F.value = null, R.value = !1);
 		}
 		function le() {
-			let e = Un(z.url);
+			let e = qn(z.url);
 			if (!e) {
 				R.value = !0;
 				return;
@@ -3220,7 +3249,7 @@ var tr = /*#__PURE__*/ q({
 			let n = e.target.closest?.("[data-rich-node]");
 			!n || !C.value?.contains(n) || (e.preventDefault(), I.value = n, h("node-select", {
 				element: n,
-				node: Jn(n)
+				node: Qn(n)
 			}));
 		}
 		let fe = {
@@ -3265,7 +3294,7 @@ var tr = /*#__PURE__*/ q({
 		function _e() {
 			if (!C.value) return "";
 			ve(C.value);
-			let e = Zn(C.value.innerHTML);
+			let e = tr(C.value.innerHTML);
 			return e === "<p><br></p>" || e === "<br>" ? "" : e;
 		}
 		function $() {
@@ -3338,7 +3367,7 @@ var tr = /*#__PURE__*/ q({
 		function De(e) {
 			e.preventDefault();
 			let t = e.clipboardData?.getData("text/html"), n = e.clipboardData?.getData("text/plain") || "";
-			Ee(t ? Zn(t) : Qn(n));
+			Ee(t ? tr(t) : nr(n));
 		}
 		function Oe(e) {
 			let t = document.caretPositionFromPoint?.(e.clientX, e.clientY), n = document.caretRangeFromPoint?.(e.clientX, e.clientY), r = document.createRange();
@@ -3352,7 +3381,7 @@ var tr = /*#__PURE__*/ q({
 		function ke(e) {
 			e.preventDefault(), Oe(e);
 			let t = e.dataTransfer?.getData("text/html"), n = e.dataTransfer?.getData("text/plain") || "";
-			Ee(t ? Zn(t) : Qn(n));
+			Ee(t ? tr(t) : nr(n));
 		}
 		function Ae(e) {
 			$(), h("blur", e);
@@ -3365,7 +3394,7 @@ var tr = /*#__PURE__*/ q({
 			insertRichNode: Y,
 			updateRichNode: ie,
 			removeRichNode: ae
-		}), (n, r) => (E(), s("div", nr, [t.editable ? (E(), s(e, { key: 0 }, [
+		}), (n, r) => (E(), s("div", or, [t.editable ? (E(), s(e, { key: 0 }, [
 			c("div", {
 				class: "desc-toolbar",
 				role: "toolbar",
@@ -3376,19 +3405,19 @@ var tr = /*#__PURE__*/ q({
 					class: "desc-btn",
 					title: g.value.bold,
 					onMousedown: r[0] ||= K((e) => pe("bold"), ["prevent"])
-				}, [c("b", null, P(g.value.boldShort), 1)], 40, ir),
+				}, [c("b", null, P(g.value.boldShort), 1)], 40, cr),
 				c("button", {
 					type: "button",
 					class: "desc-btn",
 					title: g.value.italic,
 					onMousedown: r[1] ||= K((e) => pe("italic"), ["prevent"])
-				}, [c("i", null, P(g.value.italicShort), 1)], 40, ar),
+				}, [c("i", null, P(g.value.italicShort), 1)], 40, lr),
 				c("button", {
 					type: "button",
 					class: "desc-btn",
 					title: g.value.underline,
 					onMousedown: r[2] ||= K((e) => pe("underline"), ["prevent"])
-				}, [c("u", null, P(g.value.underlineShort), 1)], 40, or),
+				}, [c("u", null, P(g.value.underlineShort), 1)], 40, ur),
 				r[13] ||= c("div", { class: "desc-sep" }, null, -1),
 				c("button", {
 					ref_key: "headingTrigger",
@@ -3401,7 +3430,7 @@ var tr = /*#__PURE__*/ q({
 				}, [d(P(g.value.paragraph) + " ", 1), r[11] ||= c("span", {
 					class: "desc-caret",
 					"aria-hidden": "true"
-				}, "▾", -1)], 40, sr),
+				}, "▾", -1)], 40, dr),
 				f(pn, {
 					open: v.value,
 					anchor: S.value,
@@ -3422,7 +3451,7 @@ var tr = /*#__PURE__*/ q({
 						class: b(["desc-drop-item", `drop-h${e}`]),
 						role: "menuitem",
 						onMousedown: K((t) => me(`h${e}`), ["prevent"])
-					}, P(Q(e)), 43, cr))), 128))]),
+					}, P(Q(e)), 43, fr))), 128))]),
 					_: 1
 				}, 8, [
 					"open",
@@ -3445,7 +3474,7 @@ var tr = /*#__PURE__*/ q({
 						onMousedown: K((t) => {
 							v.value = !1, e();
 						}, ["prevent"])
-					}, [c("span", ur, P(g.value.colorShort), 1)], 40, lr)]),
+					}, [c("span", mr, P(g.value.colorShort), 1)], 40, pr)]),
 					_: 1
 				}, 8, [
 					"colors",
@@ -3464,14 +3493,14 @@ var tr = /*#__PURE__*/ q({
 					"aria-expanded": M.value,
 					"aria-haspopup": "dialog",
 					onMousedown: r[6] ||= K((e) => Z(), ["prevent"])
-				}, [...r[12] ||= [c("span", { "aria-hidden": "true" }, "↗", -1)]], 42, dr)) : o("", !0),
+				}, [...r[12] ||= [c("span", { "aria-hidden": "true" }, "↗", -1)]], 42, hr)) : o("", !0),
 				j(n.$slots, "toolbar", {
 					editor: fe,
 					insertRichNode: Y,
 					updateRichNode: ie,
 					removeRichNode: ae
 				}, void 0, !0)
-			], 8, rr),
+			], 8, sr),
 			f(pn, {
 				open: M.value,
 				anchor: V.value,
@@ -3485,12 +3514,12 @@ var tr = /*#__PURE__*/ q({
 					class: "desc-link-form",
 					onSubmit: K(le, ["prevent"])
 				}, [
-					c("label", fr, [c("span", null, P(g.value.linkText), 1), W(c("input", {
+					c("label", gr, [c("span", null, P(g.value.linkText), 1), W(c("input", {
 						"onUpdate:modelValue": r[7] ||= (e) => z.text = e,
 						type: "text",
 						placeholder: g.value.linkTextPlaceholder
-					}, null, 8, pr), [[B, z.text]])]),
-					c("label", mr, [c("span", null, P(g.value.linkUrl), 1), W(c("input", {
+					}, null, 8, _r), [[B, z.text]])]),
+					c("label", vr, [c("span", null, P(g.value.linkUrl), 1), W(c("input", {
 						ref_key: "linkUrlInput",
 						ref: D,
 						"onUpdate:modelValue": r[8] ||= (e) => z.url = e,
@@ -3498,8 +3527,8 @@ var tr = /*#__PURE__*/ q({
 						inputmode: "url",
 						placeholder: "https://…"
 					}, null, 512), [[B, z.url]])]),
-					R.value ? (E(), s("span", hr, P(g.value.linkInvalid), 1)) : o("", !0),
-					c("div", gr, [
+					R.value ? (E(), s("span", yr, P(g.value.linkInvalid), 1)) : o("", !0),
+					c("div", br, [
 						N.value ? (E(), s("button", {
 							key: 0,
 							type: "button",
@@ -3511,7 +3540,7 @@ var tr = /*#__PURE__*/ q({
 							class: "desc-link-cancel",
 							onClick: r[9] ||= (e) => ce(!1)
 						}, P(g.value.cancel), 1),
-						c("button", _r, P(g.value.saveLink), 1)
+						c("button", xr, P(g.value.saveLink), 1)
 					])
 				], 32)]),
 				_: 1
@@ -3539,8 +3568,8 @@ var tr = /*#__PURE__*/ q({
 				onDrop: ke,
 				onFocus: r[10] ||= (e) => n.$emit("focus", e),
 				onBlur: Ae
-			}, null, 40, vr)
-		], 64)) : t.modelValue ? (E(), a(tr, {
+			}, null, 40, Sr)
+		], 64)) : t.modelValue ? (E(), a(ar, {
 			key: 1,
 			class: "desc-view",
 			html: t.modelValue
@@ -3548,25 +3577,25 @@ var tr = /*#__PURE__*/ q({
 			name: "node",
 			fn: U((e) => [j(n.$slots, "node", x(m(e)), void 0, !0)]),
 			key: "0"
-		} : void 0]), 1032, ["html"])) : (E(), s("div", yr, P(t.placeholder), 1))]));
+		} : void 0]), 1032, ["html"])) : (E(), s("div", Cr, P(t.placeholder), 1))]));
 	}
-}, [["__scopeId", "data-v-28db4ac6"]]), xr = [
+}, [["__scopeId", "data-v-28db4ac6"]]), Tr = [
 	"aria-label",
 	"aria-expanded",
 	"disabled"
-], Sr = {
+], Er = {
 	class: "share-account-avatar",
 	"aria-hidden": "true"
-}, Cr = {
+}, Dr = {
 	key: 0,
 	class: "share-account-label"
-}, wr = {
+}, Or = {
 	key: 1,
 	class: "share-account-chevron",
 	viewBox: "0 0 16 16",
 	fill: "none",
 	"aria-hidden": "true"
-}, Tr = /*#__PURE__*/ q({
+}, kr = /*#__PURE__*/ q({
 	__name: "AccountMenu",
 	props: {
 		label: {
@@ -3612,24 +3641,24 @@ var tr = /*#__PURE__*/ q({
 				"aria-haspopup": "menu",
 				disabled: e.disabled
 			}, [
-				c("span", Sr, [j(t.$slots, "avatar", {}, () => [d(P(n.value), 1)], !0)]),
-				e.expanded ? (E(), s("span", Cr, P(e.label), 1)) : o("", !0),
-				e.expanded ? (E(), s("svg", wr, [...r[0] ||= [c("path", {
+				c("span", Er, [j(t.$slots, "avatar", {}, () => [d(P(n.value), 1)], !0)]),
+				e.expanded ? (E(), s("span", Dr, P(e.label), 1)) : o("", !0),
+				e.expanded ? (E(), s("svg", Or, [...r[0] ||= [c("path", {
 					d: "m4 6 4 4 4-4",
 					stroke: "currentColor",
 					"stroke-width": "1.7",
 					"stroke-linecap": "round",
 					"stroke-linejoin": "round"
 				}, null, -1)]])) : o("", !0)
-			], 10, xr)]),
+			], 10, Tr)]),
 			default: U(({ close: e }) => [j(t.$slots, "default", { close: e }, void 0, !0)]),
 			_: 3
 		}, 8, ["title", "disabled"]));
 	}
-}, [["__scopeId", "data-v-1b1c351a"]]), Er = {
+}, [["__scopeId", "data-v-e64ac168"]]), Ar = {
 	key: 1,
 	class: "share-app-shell__rail"
-}, Dr = /*#__PURE__*/ q({
+}, jr = /*#__PURE__*/ q({
 	__name: "AppShell",
 	props: {
 		sidebarMode: {
@@ -3683,33 +3712,33 @@ var tr = /*#__PURE__*/ q({
 				default: U(() => [j(t.$slots, "default", {}, void 0, !0)]),
 				_: 3
 			})),
-			t.$slots.rail ? (E(), s("aside", Er, [j(t.$slots, "rail", {}, void 0, !0)])) : o("", !0),
+			t.$slots.rail ? (E(), s("aside", Ar, [j(t.$slots, "rail", {}, void 0, !0)])) : o("", !0),
 			j(t.$slots, "overlay", {}, void 0, !0)
 		], 6));
 	}
-}, [["__scopeId", "data-v-20e51ba2"]]), Or = ["aria-label", "title"], kr = {
+}, [["__scopeId", "data-v-20e51ba2"]]), Mr = ["aria-label", "title"], Nr = {
 	class: "share-sidebar-toggle__icon sidebar-icon",
 	"aria-hidden": "true"
-}, Ar = {
+}, Pr = {
 	width: "18",
 	height: "18",
 	viewBox: "0 0 18 18",
 	fill: "none"
-}, jr = {
+}, Fr = {
 	key: 0,
 	d: "m11 6-3 3 3 3",
 	stroke: "currentColor",
 	"stroke-width": "1.5",
 	"stroke-linecap": "round",
 	"stroke-linejoin": "round"
-}, Mr = {
+}, Ir = {
 	key: 1,
 	d: "m9 6 3 3-3 3",
 	stroke: "currentColor",
 	"stroke-width": "1.5",
 	"stroke-linecap": "round",
 	"stroke-linejoin": "round"
-}, Nr = { class: "share-sidebar-label sidebar-label" }, Pr = /*#__PURE__*/ q({
+}, Lr = { class: "share-sidebar-label sidebar-label" }, Rr = /*#__PURE__*/ q({
 	__name: "SidebarToggle",
 	props: {
 		expanded: {
@@ -3731,7 +3760,7 @@ var tr = /*#__PURE__*/ q({
 			class: "share-sidebar-toggle sidebar-toggle",
 			"aria-label": e.expanded ? e.collapseLabel : e.expandLabel,
 			title: e.expanded ? e.collapseLabel : e.expandLabel
-		}, [c("span", kr, [(E(), s("svg", Ar, [
+		}, [c("span", Nr, [(E(), s("svg", Pr, [
 			n[0] ||= c("rect", {
 				x: "2.25",
 				y: "2.25",
@@ -3746,19 +3775,19 @@ var tr = /*#__PURE__*/ q({
 				stroke: "currentColor",
 				"stroke-width": "1.5"
 			}, null, -1),
-			e.expanded ? (E(), s("path", jr)) : (E(), s("path", Mr))
-		]))]), c("span", Nr, P(e.expanded ? e.collapseLabel : e.expandLabel), 1)], 8, Or));
+			e.expanded ? (E(), s("path", Fr)) : (E(), s("path", Ir))
+		]))]), c("span", Lr, P(e.expanded ? e.collapseLabel : e.expandLabel), 1)], 8, Mr));
 	}
-}, [["__scopeId", "data-v-60807cea"]]), Fr = {
+}, [["__scopeId", "data-v-f4b97c48"]]), zr = {
 	key: 0,
 	class: "share-sidebar-head"
-}, Ir = ["aria-label"], Lr = {
+}, Br = ["aria-label"], Vr = {
 	key: 1,
 	class: "share-sidebar-tools"
-}, Rr = {
+}, Hr = {
 	key: 2,
 	class: "share-sidebar-account"
-}, zr = /*#__PURE__*/ q({
+}, Ur = /*#__PURE__*/ q({
 	__name: "AppSidebar",
 	props: {
 		modelValue: {
@@ -3864,7 +3893,7 @@ var tr = /*#__PURE__*/ q({
 			e.position !== "embedded" && e.mobileBreakpoint !== 0 && `share-app-sidebar--mobile-${e.mobileMode}`,
 			e.position !== "embedded" && e.mobileBreakpoint !== 0 && `share-app-sidebar--breakpoint-${e.mobileBreakpoint}`
 		]]) }, [
-			t.$slots.brand ? (E(), s("div", Fr, [j(t.$slots, "brand", {
+			t.$slots.brand ? (E(), s("div", zr, [j(t.$slots, "brand", {
 				expanded: f.value,
 				toggle: h
 			}, void 0, !0)])) : o("", !0),
@@ -3874,8 +3903,8 @@ var tr = /*#__PURE__*/ q({
 			}, [j(t.$slots, "default", {
 				expanded: f.value,
 				toggle: h
-			}, void 0, !0)], 8, Ir),
-			e.showToggle || t.$slots.tools ? (E(), s("div", Lr, [e.showToggle ? (E(), a(Pr, {
+			}, void 0, !0)], 8, Br),
+			e.showToggle || t.$slots.tools ? (E(), s("div", Vr, [e.showToggle ? (E(), a(Rr, {
 				key: 0,
 				expanded: f.value,
 				"expand-label": e.expandLabel,
@@ -3891,13 +3920,13 @@ var tr = /*#__PURE__*/ q({
 				collapse: m,
 				toggle: h
 			}, void 0, !0)])) : o("", !0),
-			t.$slots.account ? (E(), s("div", Rr, [j(t.$slots, "account", { expanded: f.value }, void 0, !0)])) : o("", !0)
+			t.$slots.account ? (E(), s("div", Hr, [j(t.$slots, "account", { expanded: f.value }, void 0, !0)])) : o("", !0)
 		], 2));
 	}
-}, [["__scopeId", "data-v-2edf4ac9"]]), Br = {
+}, [["__scopeId", "data-v-2edf4ac9"]]), Wr = {
 	class: "share-sidebar-brand__icon sidebar-brand-icon",
 	"aria-hidden": "true"
-}, Vr = { class: "share-sidebar-label share-sidebar-brand__label sidebar-label sidebar-brand-label" }, Hr = /*#__PURE__*/ q(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
+}, Gr = { class: "share-sidebar-label share-sidebar-brand__label sidebar-label sidebar-brand-label" }, Kr = /*#__PURE__*/ q(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
 	__name: "SidebarBrand",
 	props: {
 		as: {
@@ -3926,27 +3955,27 @@ var tr = /*#__PURE__*/ q({
 			class: "share-sidebar-brand sidebar-brand",
 			"aria-label": e.ariaLabel || e.label
 		}, t.$attrs), {
-			default: U(() => [c("span", Br, [j(t.$slots, "icon", {}, () => [e.icon ? (E(), a(M(e.icon), {
+			default: U(() => [c("span", Wr, [j(t.$slots, "icon", {}, () => [e.icon ? (E(), a(M(e.icon), {
 				key: 0,
 				size: 22,
 				"stroke-width": 1.8
-			})) : o("", !0)], !0)]), c("span", Vr, [j(t.$slots, "default", {}, () => [d(P(e.label), 1)], !0)])]),
+			})) : o("", !0)], !0)]), c("span", Gr, [j(t.$slots, "default", {}, () => [d(P(e.label), 1)], !0)])]),
 			_: 3
 		}, 16, ["aria-label"]));
 	}
-}), [["__scopeId", "data-v-2ad2fa09"]]), Ur = { class: "share-sidebar-group" }, Wr = /*#__PURE__*/ q({
+}), [["__scopeId", "data-v-2ad2fa09"]]), qr = { class: "share-sidebar-group" }, Jr = /*#__PURE__*/ q({
 	__name: "SidebarGroup",
 	props: { label: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (E(), s("div", Ur, [j(t.$slots, "default", {}, () => [d(P(e.label), 1)], !0)]));
+		return (t, n) => (E(), s("div", qr, [j(t.$slots, "default", {}, () => [d(P(e.label), 1)], !0)]));
 	}
-}, [["__scopeId", "data-v-914e315d"]]), Gr = {
+}, [["__scopeId", "data-v-914e315d"]]), Yr = {
 	class: "share-sidebar-icon sidebar-icon",
 	"aria-hidden": "true"
-}, Kr = { class: "share-sidebar-label sidebar-label" }, qr = /*#__PURE__*/ q(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
+}, Xr = { class: "share-sidebar-label sidebar-label" }, Zr = /*#__PURE__*/ q(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
 	__name: "SidebarNavItem",
 	props: {
 		as: {
@@ -3980,11 +4009,11 @@ var tr = /*#__PURE__*/ q({
 			title: e.title || e.label,
 			"aria-current": e.active ? "page" : void 0
 		}, t.$attrs), {
-			default: U(() => [c("span", Gr, [j(t.$slots, "icon", {}, () => [e.icon ? (E(), a(M(e.icon), {
+			default: U(() => [c("span", Yr, [j(t.$slots, "icon", {}, () => [e.icon ? (E(), a(M(e.icon), {
 				key: 0,
 				size: 20,
 				"stroke-width": 1.8
-			})) : o("", !0)], !0)]), c("span", Kr, [j(t.$slots, "default", {}, () => [d(P(e.label), 1)], !0)])]),
+			})) : o("", !0)], !0)]), c("span", Xr, [j(t.$slots, "default", {}, () => [d(P(e.label), 1)], !0)])]),
 			_: 3
 		}, 16, [
 			"class",
@@ -3992,10 +4021,10 @@ var tr = /*#__PURE__*/ q({
 			"aria-current"
 		]));
 	}
-}), [["__scopeId", "data-v-3deb2542"]]), Jr = {
+}), [["__scopeId", "data-v-13938b76"]]), Qr = {
 	key: 0,
 	class: "share-editor-panel__title"
-}, Yr = /*#__PURE__*/ q({
+}, $r = /*#__PURE__*/ q({
 	__name: "EditorPanel",
 	props: {
 		title: {
@@ -4008,28 +4037,28 @@ var tr = /*#__PURE__*/ q({
 		}
 	},
 	setup(e) {
-		return (t, n) => (E(), s("div", { class: b(["share-editor-panel", { "share-editor-panel--compact": e.compact }]) }, [e.title || t.$slots.title ? (E(), s("div", Jr, [j(t.$slots, "title", {}, () => [d(P(e.title), 1)], !0)])) : o("", !0), j(t.$slots, "default", {}, void 0, !0)], 2));
+		return (t, n) => (E(), s("div", { class: b(["share-editor-panel", { "share-editor-panel--compact": e.compact }]) }, [e.title || t.$slots.title ? (E(), s("div", Qr, [j(t.$slots, "title", {}, () => [d(P(e.title), 1)], !0)])) : o("", !0), j(t.$slots, "default", {}, void 0, !0)], 2));
 	}
-}, [["__scopeId", "data-v-f7a33945"]]), Xr = { class: "share-editor-section-title" }, Zr = { class: "share-editor-section-title__text" }, Qr = {
+}, [["__scopeId", "data-v-f7a33945"]]), ei = { class: "share-editor-section-title" }, ti = { class: "share-editor-section-title__text" }, ni = {
 	key: 0,
 	class: "share-editor-section-title__actions"
-}, $r = /*#__PURE__*/ q({
+}, ri = /*#__PURE__*/ q({
 	__name: "EditorSectionTitle",
 	props: { title: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (E(), s("div", Xr, [c("span", Zr, [j(t.$slots, "default", {}, () => [d(P(e.title), 1)], !0)]), t.$slots.actions ? (E(), s("span", Qr, [j(t.$slots, "actions", {}, void 0, !0)])) : o("", !0)]));
+		return (t, n) => (E(), s("div", ei, [c("span", ti, [j(t.$slots, "default", {}, () => [d(P(e.title), 1)], !0)]), t.$slots.actions ? (E(), s("span", ni, [j(t.$slots, "actions", {}, void 0, !0)])) : o("", !0)]));
 	}
-}, [["__scopeId", "data-v-bd6769b9"]]), ei = { class: "share-editor-section" }, ti = /*#__PURE__*/ q({
+}, [["__scopeId", "data-v-bd6769b9"]]), ii = { class: "share-editor-section" }, ai = /*#__PURE__*/ q({
 	__name: "EditorSection",
 	props: { title: {
 		type: String,
 		default: ""
 	} },
 	setup(e) {
-		return (t, n) => (E(), s("section", ei, [e.title || t.$slots.title ? (E(), a($r, {
+		return (t, n) => (E(), s("section", ii, [e.title || t.$slots.title ? (E(), a(ri, {
 			key: 0,
 			title: e.title
 		}, l({ _: 2 }, [t.$slots.title ? {
@@ -4042,12 +4071,12 @@ var tr = /*#__PURE__*/ q({
 			key: "1"
 		} : void 0]), 1032, ["title"])) : o("", !0), j(t.$slots, "default", {}, void 0, !0)]));
 	}
-}, [["__scopeId", "data-v-8f45005c"]]), ni = {}, ri = { class: "share-editor-total" };
-function ii(e, t) {
-	return E(), s("div", ri, [j(e.$slots, "default", {}, void 0, !0)]);
+}, [["__scopeId", "data-v-8f45005c"]]), oi = {}, si = { class: "share-editor-total" };
+function ci(e, t) {
+	return E(), s("div", si, [j(e.$slots, "default", {}, void 0, !0)]);
 }
-var ai = /*#__PURE__*/ q(ni, [["render", ii], ["__scopeId", "data-v-7fe02c46"]]), oi = "input, textarea, select, [contenteditable], [data-share-drawer-no-swipe]", si = 48, ci = 8;
-function li({ enabled: e, width: t, update: n, commit: r, opening: i = !1 }) {
+var li = /*#__PURE__*/ q(oi, [["render", ci], ["__scopeId", "data-v-7fe02c46"]]), ui = "input, textarea, select, [contenteditable], [data-share-drawer-no-swipe]", di = 48, fi = 8;
+function pi({ enabled: e, width: t, update: n, commit: r, opening: i = !1 }) {
 	let a = null;
 	function o() {
 		a = null;
@@ -4058,7 +4087,7 @@ function li({ enabled: e, width: t, update: n, commit: r, opening: i = !1 }) {
 	function c(t) {
 		s();
 		let n = t.touches[0];
-		t.touches.length !== 1 || !e() || i && n.clientX > si || t.target?.closest?.(oi) || (a = {
+		t.touches.length !== 1 || !e() || i && n.clientX > di || t.target?.closest?.(ui) || (a = {
 			x: n.clientX,
 			y: n.clientY,
 			lastX: n.clientX,
@@ -4073,7 +4102,7 @@ function li({ enabled: e, width: t, update: n, commit: r, opening: i = !1 }) {
 		}
 		let o = r.touches[0], c = o.clientX - a.x, l = o.clientY - a.y, u = i ? c : -c;
 		if (!a.locked) {
-			if (Math.max(Math.abs(c), Math.abs(l)) < ci) return;
+			if (Math.max(Math.abs(c), Math.abs(l)) < fi) return;
 			if (u <= Math.abs(l) * 1.15) {
 				s();
 				return;
@@ -4102,23 +4131,23 @@ function li({ enabled: e, width: t, update: n, commit: r, opening: i = !1 }) {
 }
 //#endregion
 //#region src/internal/sortableGesture.js
-var ui = /* @__PURE__ */ new Set();
-function di() {
+var mi = /* @__PURE__ */ new Set();
+function hi() {
 	let e = Symbol("sortable-gesture");
-	return ui.add(e), () => ui.delete(e);
+	return mi.add(e), () => mi.delete(e);
 }
-function fi() {
-	return ui.size > 0;
+function gi() {
+	return mi.size > 0;
 }
 //#endregion
 //#region src/components/overlay/AppDrawer.vue
-var pi = ["inert", "aria-hidden"], mi = ["aria-modal", "aria-label"], hi = {
+var _i = ["inert", "aria-hidden"], vi = ["aria-modal", "aria-label"], yi = {
 	key: 0,
 	class: "share-drawer__header"
-}, gi = ["aria-label"], _i = { class: "share-drawer__body" }, vi = {
+}, bi = ["aria-label"], xi = { class: "share-drawer__body" }, Si = {
 	key: 2,
 	class: "share-drawer__footer"
-}, yi = /*#__PURE__*/ q(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
+}, Ci = /*#__PURE__*/ q(/* @__PURE__ */ Object.assign({ inheritAttrs: !1 }, {
 	__name: "AppDrawer",
 	props: {
 		modelValue: {
@@ -4205,7 +4234,7 @@ var pi = ["inert", "aria-hidden"], mi = ["aria-modal", "aria-label"], hi = {
 		function ee() {
 			h.value && !R && d("opened");
 		}
-		let J = li({
+		let J = pi({
 			enabled: () => u.swipeToClose && z(),
 			width: D,
 			update: (e) => {
@@ -4216,9 +4245,9 @@ var pi = ["inert", "aria-hidden"], mi = ["aria-modal", "aria-label"], hi = {
 		function te(e) {
 			e === null ? _.value = !1 : (g.value = e, _.value = !0);
 		}
-		let ne = li({
+		let ne = pi({
 			opening: !0,
-			enabled: () => u.swipeToOpen && !u.modelValue && !fi() && !document.querySelector("[aria-modal=\"true\"]:not([aria-hidden=\"true\"])"),
+			enabled: () => u.swipeToOpen && !u.modelValue && !gi() && !document.querySelector("[aria-modal=\"true\"]:not([aria-hidden=\"true\"])"),
 			width: D,
 			update: te,
 			async commit() {
@@ -4297,7 +4326,7 @@ var pi = ["inert", "aria-hidden"], mi = ["aria-modal", "aria-label"], hi = {
 				onTouchend: i[2] ||= (...e) => F(J).end && F(J).end(...e),
 				onTouchcancel: i[3] ||= (...e) => F(J).cancel && F(J).cancel(...e)
 			}), [
-				r.$slots.header || r.$slots.title ? (E(), s("header", hi, [j(r.$slots, "header", { close: V }, () => [j(r.$slots, "title", { close: V }, void 0, !0)], !0)])) : o("", !0),
+				r.$slots.header || r.$slots.title ? (E(), s("header", yi, [j(r.$slots, "header", { close: V }, () => [j(r.$slots, "title", { close: V }, void 0, !0)], !0)])) : o("", !0),
 				e.showClose ? (E(), s("button", {
 					key: 1,
 					class: "share-drawer__close",
@@ -4315,17 +4344,17 @@ var pi = ["inert", "aria-hidden"], mi = ["aria-modal", "aria-label"], hi = {
 					stroke: "currentColor",
 					"stroke-width": "1.6",
 					"stroke-linecap": "round"
-				})], -1)]], 8, gi)) : o("", !0),
-				c("div", _i, [j(r.$slots, "default", { close: V }, void 0, !0)]),
-				r.$slots.footer ? (E(), s("footer", vi, [j(r.$slots, "footer", { close: V }, void 0, !0)])) : o("", !0)
-			], 16, mi)], 14, pi)) : o("", !0)]),
+				})], -1)]], 8, bi)) : o("", !0),
+				c("div", xi, [j(r.$slots, "default", { close: V }, void 0, !0)]),
+				r.$slots.footer ? (E(), s("footer", Si, [j(r.$slots, "footer", { close: V }, void 0, !0)])) : o("", !0)
+			], 16, vi)], 14, _i)) : o("", !0)]),
 			_: 3
 		}, 8, ["duration"])]));
 	}
 }), [["__scopeId", "data-v-889b52f4"]]);
 //#endregion
 //#region src/composables/useFullscreenViewportHeight.js
-function bi(e = .94) {
+function wi(e = .94) {
 	let t = k(`${Math.round(e * 100)}dvh`);
 	function n() {
 		if (typeof window > "u") return;
@@ -4340,14 +4369,14 @@ function bi(e = .94) {
 }
 //#endregion
 //#region src/components/overlay/AppModal.vue
-var xi = ["aria-label"], Si = {
+var Ti = ["aria-label"], Ei = {
 	key: 0,
 	class: "am-handle"
-}, Ci = ["aria-label"], wi = () => window.innerWidth <= 640, Ti = 260, Ei = 280, Di = "cubic-bezier(0.32, 0.72, 0, 1)", Oi = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])";
-function ki(e) {
+}, Di = ["aria-label"], Oi = () => window.innerWidth <= 640, ki = 260, Ai = 280, ji = "cubic-bezier(0.32, 0.72, 0, 1)", Mi = "a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex=\"-1\"])";
+function Ni(e) {
 	e.focus({ preventScroll: !0 });
 }
-var Ai = /*#__PURE__*/ q({
+var Pi = /*#__PURE__*/ q({
 	__name: "AppModal",
 	props: {
 		zIndex: {
@@ -4409,7 +4438,7 @@ var Ai = /*#__PURE__*/ q({
 	},
 	emits: ["close", "opened"],
 	setup(e, { expose: n, emit: r }) {
-		let l = e, u = r, d = k(null), f = k(null), p = bi(), m = i(() => typeof l.width == "number" ? `${l.width}px` : l.width || "480px"), h = k(!1), g = k(0), _ = k(0), v = k(0), x = !1, T = null, D = !1, O = () => {}, A = Symbol("app-modal"), M = typeof document < "u" ? document.activeElement : null;
+		let l = e, u = r, d = k(null), f = k(null), p = wi(), m = i(() => typeof l.width == "number" ? `${l.width}px` : l.width || "480px"), h = k(!1), g = k(0), _ = k(0), v = k(0), x = !1, T = null, D = !1, O = () => {}, A = Symbol("app-modal"), M = typeof document < "u" ? document.activeElement : null;
 		function N(e) {
 			if (!Ct(A)) return;
 			if (e.key === "Escape") {
@@ -4422,7 +4451,7 @@ var Ai = /*#__PURE__*/ q({
 				return;
 			}
 			if (e.key !== "Tab") return;
-			let t = [...f.value?.querySelectorAll(Oi) || []].filter((e) => e.getClientRects().length > 0);
+			let t = [...f.value?.querySelectorAll(Mi) || []].filter((e) => e.getClientRects().length > 0);
 			if (!t.length) {
 				e.preventDefault(), f.value?.focus();
 				return;
@@ -4432,10 +4461,10 @@ var Ai = /*#__PURE__*/ q({
 		}
 		function P() {
 			let e = d.value, t = f.value;
-			!e || !t || (e.style.opacity = "0", Z(e, 0), wi() ? t.style.transform = "translateY(100%)" : (t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), requestAnimationFrame(() => {
+			!e || !t || (e.style.opacity = "0", Z(e, 0), Oi() ? t.style.transform = "translateY(100%)" : (t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), requestAnimationFrame(() => {
 				requestAnimationFrame(() => {
-					let n = "cubic-bezier(0, 0, 0.4, 1)", r = `opacity ${Ti}ms ${n}, backdrop-filter ${Ti}ms ${n}, -webkit-backdrop-filter ${Ti}ms ${n}`;
-					e.style.transition = r, e.style.opacity = "1", Z(e, 6), wi() ? (t.style.transition = `transform ${Ti}ms ${Di}`, t.style.transform = "translateY(0)") : (t.style.transition = `transform ${Ti}ms ${Di}, opacity ${Ti}ms ${n}`, t.style.transform = "none", t.style.opacity = "1"), setTimeout(() => {
+					let n = "cubic-bezier(0, 0, 0.4, 1)", r = `opacity ${ki}ms ${n}, backdrop-filter ${ki}ms ${n}, -webkit-backdrop-filter ${ki}ms ${n}`;
+					e.style.transition = r, e.style.opacity = "1", Z(e, 6), Oi() ? (t.style.transition = `transform ${ki}ms ${ji}`, t.style.transform = "translateY(0)") : (t.style.transition = `transform ${ki}ms ${ji}, opacity ${ki}ms ${n}`, t.style.transform = "none", t.style.opacity = "1"), setTimeout(() => {
 						x || (e.style.transition = "", Z(e, 6), t.style.transition = "", t.style.transform = "", t.style.opacity = "", u("opened"));
 					}, 310);
 				});
@@ -4449,8 +4478,8 @@ var Ai = /*#__PURE__*/ q({
 				}, 0);
 				return;
 			}
-			let n = `opacity ${Ei}ms ease, backdrop-filter ${Ei}ms ease, -webkit-backdrop-filter ${Ei}ms ease`;
-			e.style.transition = n, e.style.opacity = "0", Z(e, 0), wi() ? (t.style.transition = `transform ${Ei}ms ${Di}`, t.style.transform = "translateY(100%)") : (t.style.transition = `transform ${Ei}ms ease, opacity ${Ei}ms ease`, t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), T = setTimeout(() => {
+			let n = `opacity ${Ai}ms ease, backdrop-filter ${Ai}ms ease, -webkit-backdrop-filter ${Ai}ms ease`;
+			e.style.transition = n, e.style.opacity = "0", Z(e, 0), Oi() ? (t.style.transition = `transform ${Ai}ms ${ji}`, t.style.transform = "translateY(100%)") : (t.style.transition = `transform ${Ai}ms ease, opacity ${Ai}ms ease`, t.style.transform = "scale(0.95) translateY(10px)", t.style.opacity = "0"), T = setTimeout(() => {
 				x || u("close");
 			}, 300);
 		}
@@ -4484,9 +4513,9 @@ var Ai = /*#__PURE__*/ q({
 			if (!h.value) return;
 			h.value = !1;
 			let e = f.value, t = d.value;
-			g.value > 100 ? (e && (e.style.transition = `transform ${Ei}ms ${Di}`, e.style.transform = "translateY(100%)"), t && (t.style.transition = `opacity ${Ei}ms ease`, t.style.opacity = "0"), T = setTimeout(() => {
+			g.value > 100 ? (e && (e.style.transition = `transform ${Ai}ms ${ji}`, e.style.transform = "translateY(100%)"), t && (t.style.transition = `opacity ${Ai}ms ease`, t.style.opacity = "0"), T = setTimeout(() => {
 				x || u("close");
-			}, 300)) : (e && (e.style.transition = `transform ${Ei}ms ${Di}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), g.value = 0, setTimeout(() => {
+			}, 300)) : (e && (e.style.transition = `transform ${Ai}ms ${ji}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), g.value = 0, setTimeout(() => {
 				x || (e && (e.style.transition = "", e.style.transform = ""), t && (t.style.transition = "", t.style.opacity = ""));
 			}, 330));
 		}
@@ -4494,16 +4523,16 @@ var Ai = /*#__PURE__*/ q({
 			if (!h.value) return;
 			h.value = !1, g.value = 0;
 			let e = f.value, t = d.value;
-			e && (e.style.transition = `transform ${Ei}ms ${Di}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), setTimeout(() => {
+			e && (e.style.transition = `transform ${Ai}ms ${ji}`, e.style.transform = "translateY(0)"), t && (t.style.transition = "opacity 200ms ease", t.style.opacity = "1"), setTimeout(() => {
 				x || (e && (e.style.transition = "", e.style.transform = ""), t && (t.style.transition = "", t.style.opacity = ""));
 			}, 330);
 		}
 		return w(() => {
 			xt(A), O = Dt(), document.addEventListener("keydown", N), y(() => {
-				P(), f.value?.contains(document.activeElement) || (f.value?.querySelector(Oi)?.focus(), f.value?.contains(document.activeElement) || f.value?.focus());
+				P(), f.value?.contains(document.activeElement) || (f.value?.querySelector(Mi)?.focus(), f.value?.contains(document.activeElement) || f.value?.focus());
 			});
 		}), C(() => {
-			St(A), O(), document.removeEventListener("keydown", N), clearTimeout(T), x = !0, M instanceof HTMLElement && M.isConnected && ki(M);
+			St(A), O(), document.removeEventListener("keydown", N), clearTimeout(T), x = !0, M instanceof HTMLElement && M.isConnected && Ni(M);
 		}), (n, r) => (E(), a(t, { to: "body" }, [c("div", {
 			ref_key: "overlay",
 			ref: d,
@@ -4533,27 +4562,27 @@ var Ai = /*#__PURE__*/ q({
 			onTouchendPassive: B,
 			onTouchcancelPassive: V
 		}, [
-			e.showHandle ? (E(), s("div", Si)) : o("", !0),
+			e.showHandle ? (E(), s("div", Ei)) : o("", !0),
 			e.showClose && !e.fullscreen ? (E(), s("button", {
 				key: 1,
 				class: "am-close",
 				type: "button",
 				"aria-label": e.closeLabel,
 				onClick: L
-			}, "✕", 8, Ci)) : o("", !0),
+			}, "✕", 8, Di)) : o("", !0),
 			j(n.$slots, "default", {}, void 0, !0)
-		], 34)], 44, xi)]));
+		], 34)], 44, Ti)]));
 	}
-}, [["__scopeId", "data-v-4e16b3d7"]]), ji = { class: "aem-shell" }, Mi = { class: "aem-heading" }, Ni = { class: "aem-title" }, Pi = {
+}, [["__scopeId", "data-v-4e16b3d7"]]), Fi = { class: "aem-shell" }, Ii = { class: "aem-heading" }, Li = { class: "aem-title" }, Ri = {
 	key: 0,
 	class: "aem-subtitle"
-}, Fi = {
+}, zi = {
 	key: 0,
 	class: "aem-header-actions"
-}, Ii = ["aria-label"], Li = {
+}, Bi = ["aria-label"], Vi = {
 	key: 0,
 	class: "aem-footer"
-}, Ri = /*#__PURE__*/ q({
+}, Hi = /*#__PURE__*/ q({
 	__name: "AppModalFrame",
 	props: {
 		title: {
@@ -4619,7 +4648,7 @@ var Ai = /*#__PURE__*/ q({
 		function n() {
 			t.value?.requestClose();
 		}
-		return (r, i) => (E(), a(Ai, {
+		return (r, i) => (E(), a(Pi, {
 			ref_key: "modal",
 			ref: t,
 			flush: "",
@@ -4638,14 +4667,14 @@ var Ai = /*#__PURE__*/ q({
 			onClose: i[0] ||= (e) => r.$emit("close"),
 			onOpened: i[1] ||= (e) => r.$emit("opened")
 		}, {
-			default: U(() => [c("section", ji, [
+			default: U(() => [c("section", Fi, [
 				c("header", { class: b(["aem-header", { "aem-header-with-actions": !!r.$slots["header-actions"] }]) }, [
 					i[3] ||= c("span", {
 						class: "aem-handle",
 						"aria-hidden": "true"
 					}, null, -1),
-					c("div", Mi, [j(r.$slots, "title", {}, () => [c("h2", Ni, P(e.title), 1), e.subtitle ? (E(), s("span", Pi, P(e.subtitle), 1)) : o("", !0)], !0)]),
-					r.$slots["header-actions"] ? (E(), s("div", Fi, [j(r.$slots, "header-actions", {}, void 0, !0)])) : o("", !0),
+					c("div", Ii, [j(r.$slots, "title", {}, () => [c("h2", Li, P(e.title), 1), e.subtitle ? (E(), s("span", Ri, P(e.subtitle), 1)) : o("", !0)], !0)]),
+					r.$slots["header-actions"] ? (E(), s("div", zi, [j(r.$slots, "header-actions", {}, void 0, !0)])) : o("", !0),
 					e.showClose ? (E(), s("button", {
 						key: 1,
 						class: "aem-close",
@@ -4663,13 +4692,13 @@ var Ai = /*#__PURE__*/ q({
 						stroke: "currentColor",
 						"stroke-width": "1.6",
 						"stroke-linecap": "round"
-					})], -1)]], 8, Ii)) : o("", !0)
+					})], -1)]], 8, Bi)) : o("", !0)
 				], 2),
 				c("div", { class: b(["aem-body", {
 					"aem-body-flush": !e.padded,
 					"aem-body-no-scroll": !e.bodyScroll
 				}]) }, [j(r.$slots, "default", {}, void 0, !0)], 2),
-				r.$slots.footer ? (E(), s("footer", Li, [j(r.$slots, "footer", {}, void 0, !0)])) : o("", !0)
+				r.$slots.footer ? (E(), s("footer", Vi, [j(r.$slots, "footer", {}, void 0, !0)])) : o("", !0)
 			])]),
 			_: 3
 		}, 8, [
@@ -4685,11 +4714,11 @@ var Ai = /*#__PURE__*/ q({
 			"close-label"
 		]));
 	}
-}, [["__scopeId", "data-v-1fab7c24"]]), zi = ["aria-label"], Bi = {
+}, [["__scopeId", "data-v-1fab7c24"]]), Ui = ["aria-label"], Wi = {
 	key: 0,
 	class: "share-loading__label",
 	"aria-hidden": "true"
-}, Vi = /*#__PURE__*/ q({
+}, Gi = /*#__PURE__*/ q({
 	__name: "LoadingIndicator",
 	props: {
 		label: {
@@ -4745,12 +4774,12 @@ var Ai = /*#__PURE__*/ q({
 			r: "9",
 			"stroke-dasharray": "16 41",
 			"vector-effect": "non-scaling-stroke"
-		})], -1), e.showLabel ? (E(), s("span", Bi, P(e.label), 1)) : o("", !0)], 14, zi));
+		})], -1), e.showLabel ? (E(), s("span", Wi, P(e.label), 1)) : o("", !0)], 14, Ui));
 	}
-}, [["__scopeId", "data-v-c549d335"]]), Hi = {
+}, [["__scopeId", "data-v-c549d335"]]), Ki = {
 	key: 0,
 	class: "cd-message"
-}, Ui = { class: "cd-actions" }, Wi = ["disabled"], Gi = ["aria-busy", "disabled"], Ki = /*#__PURE__*/ q({
+}, qi = { class: "cd-actions" }, Ji = ["disabled"], Yi = ["aria-busy", "disabled"], Xi = /*#__PURE__*/ q({
 	__name: "ConfirmDialog",
 	props: {
 		open: {
@@ -4818,7 +4847,7 @@ var Ai = /*#__PURE__*/ q({
 		function g() {
 			n.loading || (r("confirm"), m());
 		}
-		return (t, n) => l.value ? (E(), a(Ri, {
+		return (t, n) => l.value ? (E(), a(Hi, {
 			key: 0,
 			title: e.title,
 			"z-index": e.zIndex,
@@ -4826,25 +4855,25 @@ var Ai = /*#__PURE__*/ q({
 			dismissible: !e.loading,
 			onClose: h
 		}, {
-			footer: U(() => [c("div", Ui, [c("button", {
+			footer: U(() => [c("div", qi, [c("button", {
 				type: "button",
 				class: "cd-btn-cancel",
 				disabled: e.loading,
 				onClick: h
-			}, P(f.value), 9, Wi), c("button", {
+			}, P(f.value), 9, Ji), c("button", {
 				type: "button",
 				class: b(["cd-btn-confirm", `cd-btn--${p.value}`]),
 				"aria-busy": e.loading,
 				disabled: e.loading,
 				onClick: g
-			}, [e.loading ? (E(), a(Vi, {
+			}, [e.loading ? (E(), a(Gi, {
 				key: 0,
 				label: e.loadingLabel,
 				size: "xs",
 				class: "button-loading",
 				"aria-hidden": "true"
-			}, null, 8, ["label"])) : o("", !0), d(" " + P(e.loading ? e.loadingLabel : u.value), 1)], 10, Gi)])]),
-			default: U(() => [e.message ? (E(), s("div", Hi, P(e.message), 1)) : o("", !0)]),
+			}, null, 8, ["label"])) : o("", !0), d(" " + P(e.loading ? e.loadingLabel : u.value), 1)], 10, Yi)])]),
+			default: U(() => [e.message ? (E(), s("div", Ki, P(e.message), 1)) : o("", !0)]),
 			_: 1
 		}, 8, [
 			"title",
@@ -4852,7 +4881,7 @@ var Ai = /*#__PURE__*/ q({
 			"dismissible"
 		])) : o("", !0);
 	}
-}, [["__scopeId", "data-v-846211e5"]]), qi = {
+}, [["__scopeId", "data-v-846211e5"]]), Zi = {
 	__name: "ModalShell",
 	props: {
 		open: {
@@ -4882,7 +4911,7 @@ var Ai = /*#__PURE__*/ q({
 	},
 	emits: ["close", "opened"],
 	setup(e) {
-		return (t, n) => e.open ? (E(), a(Ai, {
+		return (t, n) => e.open ? (E(), a(Pi, {
 			key: 0,
 			width: e.width,
 			"z-index": e.zIndex,
@@ -4907,7 +4936,7 @@ var Ai = /*#__PURE__*/ q({
 };
 //#endregion
 //#region src/composables/useContainerMorph.js
-function Ji({ open: e = 420, close: t = 300 } = {}) {
+function Qi({ open: e = 420, close: t = 300 } = {}) {
 	let n = (e) => typeof window < "u" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? 0 : Math.max(0, typeof e == "function" ? e() : e), r = "cubic-bezier(.2, 0, 0, 1)", i = "var(--shadow-lg)", a = [
 		"position",
 		"margin",
@@ -4959,7 +4988,7 @@ function Ji({ open: e = 420, close: t = 300 } = {}) {
 }
 //#endregion
 //#region src/components/overlay/MorphSheet.vue
-var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"], Qi = 320, $i = 260, ea = "8px", ta = /*#__PURE__*/ q({
+var $i = ["aria-label"], ea = { class: "ms-head-content" }, ta = ["aria-label"], na = 320, ra = 260, ia = "8px", aa = /*#__PURE__*/ q({
 	__name: "MorphSheet",
 	props: {
 		openDuration: {
@@ -5033,7 +5062,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 	},
 	emits: ["close", "back"],
 	setup(e, { expose: n, emit: r }) {
-		let l = e, u = r, d = dn(), f = R(), p = i(() => l.mode === "add"), m = i(() => l.showClose === null ? !!f.head : l.showClose), h = i(() => l.nav ? l.nav.view.value : "detail"), g = i(() => l.nav ? l.nav.detailStyle.value : null), _ = i(() => l.nav ? l.nav.subStyle.value : null), v = i(() => !!l.nav && h.value !== "detail"), x = k(null), T = k(null), D = k(null), O = k(null), A = k(null), M = k(null), N = k(!1), P = k(!1), I = k(!1), L = k(!1), z = k(!1), { EASE: B, visible: V, morphing: U, playClose: W, playOpen: G } = Ji({
+		let l = e, u = r, d = dn(), f = R(), p = i(() => l.mode === "add"), m = i(() => l.showClose === null ? !!f.head : l.showClose), h = i(() => l.nav ? l.nav.view.value : "detail"), g = i(() => l.nav ? l.nav.detailStyle.value : null), _ = i(() => l.nav ? l.nav.subStyle.value : null), v = i(() => !!l.nav && h.value !== "detail"), x = k(null), T = k(null), D = k(null), O = k(null), A = k(null), M = k(null), N = k(!1), P = k(!1), I = k(!1), L = k(!1), z = k(!1), { EASE: B, visible: V, morphing: U, playClose: W, playOpen: G } = Qi({
 			open: () => l.openDuration,
 			close: () => l.closeDuration
 		}), q = () => d.value ? "0px" : "18px", ee = i(() => ({
@@ -5089,7 +5118,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 		function X(e) {
 			if (d.value || !O.value || U.value) return;
 			let t = l.nav ? l.nav.pos.value : 0, n = ae(A.value), r = M.value ? ae(M.value) : n, i = n * (1 - t) + r * t, a = Math.min(i, Math.max(120, oe()));
-			O.value.style.transition = e ? `height ${Qi}ms ${B}` : "none", O.value.style.height = `${a}px`;
+			O.value.style.transition = e ? `height ${na}ms ${B}` : "none", O.value.style.height = `${a}px`;
 		}
 		let Z = null;
 		function se() {
@@ -5162,14 +5191,14 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 		}
 		function xe() {
 			let e = x.value;
-			e && (e.style.transition = `transform ${$i}ms ${B}`, e.style.transform = `translateY(${window.innerHeight}px)`), V.value = !1, z.value = !1, Ae(), we(!1), setTimeout(() => u("close"), $i);
+			e && (e.style.transition = `transform ${ra}ms ${B}`, e.style.transform = `translateY(${window.innerHeight}px)`), V.value = !1, z.value = !1, Ae(), we(!1), setTimeout(() => u("close"), ra);
 		}
 		let Se = () => {};
 		function Ce() {
 			return typeof l.backgroundTarget == "string" ? document.querySelector(l.backgroundTarget) : l.backgroundTarget instanceof Element ? l.backgroundTarget : null;
 		}
 		function we(e) {
-			Se(), Se = () => {}, !(!e || d.value || !l.blurBackground) && (Se = kt(Ce(), { blur: ea }));
+			Se(), Se = () => {}, !(!e || d.value || !l.blurBackground) && (Se = kt(Ce(), { blur: ia }));
 		}
 		let Te = "", Ee = "", De = !1;
 		function Oe() {
@@ -5185,7 +5214,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			if (!e) return;
 			De = !0;
 			let t = Ee && Ee !== "none" ? `${Ee}, ` : "";
-			e.style.transition = `${t}opacity ${$i}ms ease`, e.style.opacity = "0", requestAnimationFrame(() => {
+			e.style.transition = `${t}opacity ${ra}ms ease`, e.style.opacity = "0", requestAnimationFrame(() => {
 				e.style.opacity = Te;
 			}), setTimeout(() => {
 				e.style.opacity = Te, e.style.transition = Ee, De = !1;
@@ -5242,13 +5271,13 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 				ref_key: "headEl",
 				ref: T,
 				class: "ms-head"
-			}, [c("div", Xi, [j(n.$slots, "head", {}, void 0, !0)]), m.value ? (E(), s("button", {
+			}, [c("div", ea, [j(n.$slots, "head", {}, void 0, !0)]), m.value ? (E(), s("button", {
 				key: 0,
 				class: "ms-x",
 				type: "button",
 				"aria-label": e.closeLabel,
 				onClick: te
-			}, "✕", 8, Zi)) : o("", !0)], 512)) : o("", !0),
+			}, "✕", 8, ta)) : o("", !0)], 512)) : o("", !0),
 			c("div", {
 				ref_key: "bodyEl",
 				ref: O,
@@ -5271,9 +5300,9 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 				ref: D,
 				class: "ms-foot"
 			}, [j(n.$slots, "foot", {}, void 0, !0)], 512)) : o("", !0)
-		], 46, Yi)], 6)]));
+		], 46, $i)], 6)]));
 	}
-}, [["__scopeId", "data-v-c5b79059"]]), na = { class: "form-actions" }, ra = ["disabled"], ia = ["aria-busy", "disabled"], aa = /*#__PURE__*/ q({
+}, [["__scopeId", "data-v-c5b79059"]]), oa = { class: "form-actions" }, sa = ["disabled"], ca = ["aria-busy", "disabled"], la = /*#__PURE__*/ q({
 	__name: "FormActionButtons",
 	props: {
 		submitText: {
@@ -5303,32 +5332,32 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 	},
 	emits: ["cancel", "submit"],
 	setup(e) {
-		return (t, n) => (E(), s("div", na, [c("button", {
+		return (t, n) => (E(), s("div", oa, [c("button", {
 			type: "button",
 			class: "form-actions__cancel",
 			disabled: e.disabled,
 			onClick: n[0] ||= (e) => t.$emit("cancel")
-		}, P(e.cancelText), 9, ra), c("button", {
+		}, P(e.cancelText), 9, sa), c("button", {
 			type: "button",
 			class: "form-actions__submit",
 			"aria-busy": e.loading,
 			disabled: e.disabled || e.loading || !e.canSubmit,
 			onClick: n[1] ||= (e) => t.$emit("submit")
-		}, [e.loading ? (E(), a(Vi, {
+		}, [e.loading ? (E(), a(Gi, {
 			key: 0,
 			label: e.loadingText,
 			size: "xs",
 			class: "button-loading",
 			"aria-hidden": "true"
-		}, null, 8, ["label"])) : o("", !0), d(" " + P(e.loading ? e.loadingText : e.submitText), 1)], 8, ia)]));
+		}, null, 8, ["label"])) : o("", !0), d(" " + P(e.loading ? e.loadingText : e.submitText), 1)], 8, ca)]));
 	}
-}, [["__scopeId", "data-v-c01a950d"]]), oa = [
+}, [["__scopeId", "data-v-c01a950d"]]), ua = [
 	"type",
 	"value",
 	"placeholder",
 	"maxlength",
 	"autocomplete"
-], sa = /*#__PURE__*/ q({
+], da = /*#__PURE__*/ q({
 	__name: "FormTextInput",
 	props: {
 		value: { default: "" },
@@ -5382,15 +5411,15 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			onInput: n[0] ||= (e) => t.$emit("update:value", e.target.value),
 			onChange: n[1] ||= (e) => t.$emit("change", e.target.value),
 			onKeydown: n[2] ||= G((e) => t.$emit("enter", e), ["enter"])
-		}, null, 42, oa));
+		}, null, 42, ua));
 	}
-}, [["__scopeId", "data-v-3dd2fc56"]]), ca = {
+}, [["__scopeId", "data-v-3dd2fc56"]]), fa = {
 	key: 0,
 	class: "tpd-message"
-}, la = {
+}, pa = {
 	key: 1,
 	class: "tpd-label"
-}, ua = /*#__PURE__*/ q({
+}, ma = /*#__PURE__*/ q({
 	__name: "TextPromptDialog",
 	props: {
 		title: {
@@ -5479,7 +5508,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			let e = d.value.trim();
 			e && !n.loading && (r("confirm", e), r("submit", e), p());
 		}
-		return (t, n) => c.value ? (E(), a(Ri, {
+		return (t, n) => c.value ? (E(), a(Hi, {
 			key: 0,
 			title: e.title,
 			"z-index": e.zIndex,
@@ -5487,7 +5516,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			dismissible: !e.loading,
 			onClose: m
 		}, {
-			footer: U(() => [f(aa, {
+			footer: U(() => [f(la, {
 				"submit-text": l.value,
 				"cancel-text": u.value,
 				"loading-text": e.loadingLabel,
@@ -5503,9 +5532,9 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 				"can-submit"
 			])]),
 			default: U(() => [
-				e.message ? (E(), s("div", ca, P(e.message), 1)) : o("", !0),
-				e.label ? (E(), s("label", la, P(e.label), 1)) : o("", !0),
-				f(sa, {
+				e.message ? (E(), s("div", fa, P(e.message), 1)) : o("", !0),
+				e.label ? (E(), s("label", pa, P(e.label), 1)) : o("", !0),
+				f(da, {
 					value: d.value,
 					placeholder: e.placeholder,
 					maxlength: e.maxlength,
@@ -5525,10 +5554,10 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			"dismissible"
 		])) : o("", !0);
 	}
-}, [["__scopeId", "data-v-ba4b1b08"]]), da = { class: "form-field-label" }, fa = {
+}, [["__scopeId", "data-v-ba4b1b08"]]), ha = { class: "form-field-label" }, ga = {
 	key: 0,
 	class: "form-field-hint"
-}, pa = /*#__PURE__*/ q({
+}, _a = /*#__PURE__*/ q({
 	__name: "FormField",
 	props: {
 		label: {
@@ -5545,14 +5574,14 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 		}
 	},
 	setup(e) {
-		return (t, n) => (E(), s("div", { class: b(["form-field", { "form-field--vertical": e.vertical }]) }, [c("span", da, [d(P(e.label), 1), e.hint ? (E(), s("span", fa, P(e.hint), 1)) : o("", !0)]), j(t.$slots, "default", {}, void 0, !0)], 2));
+		return (t, n) => (E(), s("div", { class: b(["form-field", { "form-field--vertical": e.vertical }]) }, [c("span", ha, [d(P(e.label), 1), e.hint ? (E(), s("span", ga, P(e.hint), 1)) : o("", !0)]), j(t.$slots, "default", {}, void 0, !0)], 2));
 	}
-}, [["__scopeId", "data-v-3ab3f287"]]), ma = { class: "fn-wrap" }, ha = [
+}, [["__scopeId", "data-v-3ab3f287"]]), va = { class: "fn-wrap" }, ya = [
 	"value",
 	"min",
 	"max",
 	"step"
-], ga = /*#__PURE__*/ q({
+], ba = /*#__PURE__*/ q({
 	__name: "FormNumberInput",
 	props: {
 		value: { default: 0 },
@@ -5597,7 +5626,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			let t = Number((a(n.value) + e * n.step).toPrecision(15));
 			r("change", i(t));
 		}
-		return (t, n) => (E(), s("div", ma, [
+		return (t, n) => (E(), s("div", va, [
 			c("button", {
 				type: "button",
 				class: "fn-btn",
@@ -5615,7 +5644,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 				onInput: p,
 				onFocus: n[1] ||= (e) => l.value = !0,
 				onBlur: m
-			}, null, 40, ha),
+			}, null, 40, ya),
 			c("button", {
 				type: "button",
 				class: "fn-btn",
@@ -5624,7 +5653,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			}, "+")
 		]));
 	}
-}, [["__scopeId", "data-v-9775803a"]]), _a = ["value"], va = /*#__PURE__*/ q({
+}, [["__scopeId", "data-v-9775803a"]]), xa = ["value"], Sa = /*#__PURE__*/ q({
 	__name: "FormSelect",
 	props: {
 		value: { default: "" },
@@ -5648,14 +5677,14 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			class: "form-select",
 			value: e.value,
 			onChange: o
-		}, [j(t.$slots, "default", {}, void 0, !0)], 40, _a));
+		}, [j(t.$slots, "default", {}, void 0, !0)], 40, xa));
 	}
-}, [["__scopeId", "data-v-cf13b596"]]), ya = [
+}, [["__scopeId", "data-v-cf13b596"]]), Ca = [
 	"value",
 	"placeholder",
 	"rows",
 	"maxlength"
-], ba = /*#__PURE__*/ q({
+], wa = /*#__PURE__*/ q({
 	__name: "FormTextarea",
 	props: {
 		value: { default: "" },
@@ -5678,20 +5707,20 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			rows: e.rows,
 			maxlength: e.maxlength,
 			onInput: n[0] ||= (e) => t.$emit("update:value", e.target.value)
-		}, null, 40, ya));
+		}, null, 40, Ca));
 	}
-}, [["__scopeId", "data-v-89c3847b"]]), xa = {
+}, [["__scopeId", "data-v-89c3847b"]]), Ta = {
 	class: "share-inline-edit__measure",
 	"aria-hidden": "true"
-}, Sa = {
+}, Ea = {
 	key: 0,
 	class: "share-inline-edit__view"
-}, Ca = { class: "share-inline-edit__value" }, wa = ["aria-label", "disabled"], Ta = ["onKeydown"], Ea = [
+}, Da = { class: "share-inline-edit__value" }, Oa = ["aria-label", "disabled"], ka = ["onKeydown"], Aa = [
 	"value",
 	"aria-label",
 	"disabled",
 	"aria-invalid"
-], Da = ["value", "disabled"], Oa = [
+], ja = ["value", "disabled"], Ma = [
 	"value",
 	"aria-label",
 	"placeholder",
@@ -5699,14 +5728,14 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 	"required",
 	"disabled",
 	"aria-invalid"
-], ka = {
+], Na = {
 	key: 2,
 	class: "share-inline-edit__actions"
-}, Aa = ["aria-label", "disabled"], ja = ["aria-label", "disabled"], Ma = {
+}, Pa = ["aria-label", "disabled"], Fa = ["aria-label", "disabled"], Ia = {
 	key: 2,
 	class: "share-inline-edit__error",
 	role: "alert"
-}, Na = /*#__PURE__*/ q({
+}, La = /*#__PURE__*/ q({
 	__name: "InlineEdit",
 	props: {
 		modelValue: { default: "" },
@@ -5796,7 +5825,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			}
 		}
 		return (n, r) => (E(), s("span", { class: b(["share-inline-edit", { "share-inline-edit--open": g.value }]) }, [
-			c("span", xa, P(x.value), 1),
+			c("span", Ta, P(x.value), 1),
 			g.value ? (E(), s("span", {
 				key: 1,
 				class: "share-inline-edit__editor",
@@ -5814,7 +5843,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 				key: String(e.value),
 				value: e.value,
 				disabled: e.disabled
-			}, P(e.label), 9, Da))), 128))], 40, Ea)) : (E(), s("input", {
+			}, P(e.label), 9, ja))), 128))], 40, Aa)) : (E(), s("input", {
 				key: 1,
 				ref_key: "input",
 				ref: m,
@@ -5826,7 +5855,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 				disabled: t.disabled || u.value,
 				"aria-invalid": !!f.value,
 				onInput: r[1] ||= (e) => C(e.target.value)
-			}, null, 40, Oa)), t.forceOpen ? o("", !0) : (E(), s("span", ka, [c("button", {
+			}, null, 40, Ma)), t.forceOpen ? o("", !0) : (E(), s("span", Na, [c("button", {
 				type: "button",
 				"aria-label": t.confirmLabel,
 				disabled: t.disabled || u.value || t.required && !String(p.value ?? "").trim(),
@@ -5841,7 +5870,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 				d: "m4 10 4 4 8-8",
 				stroke: "currentColor",
 				"stroke-width": "1.8"
-			})], -1)]], 8, Aa), c("button", {
+			})], -1)]], 8, Pa), c("button", {
 				type: "button",
 				"aria-label": t.cancelLabel,
 				disabled: u.value,
@@ -5856,7 +5885,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 				d: "m5 5 10 10M15 5 5 15",
 				stroke: "currentColor",
 				"stroke-width": "1.8"
-			})], -1)]], 8, ja)]))], 40, Ta)) : (E(), s("span", Sa, [c("span", Ca, [j(n.$slots, "default", { value: t.modelValue }, () => [d(P(v.value), 1)], !0)]), t.editable ? (E(), s("button", {
+			})], -1)]], 8, Fa)]))], 40, ka)) : (E(), s("span", Ea, [c("span", Da, [j(n.$slots, "default", { value: t.modelValue }, () => [d(P(v.value), 1)], !0)]), t.editable ? (E(), s("button", {
 				key: 0,
 				ref_key: "editButton",
 				ref: h,
@@ -5875,11 +5904,11 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 				stroke: "currentColor",
 				"stroke-width": "1.7",
 				"stroke-linejoin": "round"
-			})], -1)]], 8, wa)) : o("", !0)])),
-			f.value ? (E(), s("span", Ma, P(f.value), 1)) : o("", !0)
+			})], -1)]], 8, Oa)) : o("", !0)])),
+			f.value ? (E(), s("span", Ia, P(f.value), 1)) : o("", !0)
 		], 2));
 	}
-}, [["__scopeId", "data-v-c8e5a3a1"]]), Pa = /*#__PURE__*/ q({
+}, [["__scopeId", "data-v-c8e5a3a1"]]), Ra = /*#__PURE__*/ q({
 	__name: "SkeletonBlock",
 	props: {
 		width: {
@@ -5905,7 +5934,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			"aria-hidden": "true"
 		}, null, 6));
 	}
-}, [["__scopeId", "data-v-a3d65c09"]]), Fa = /*#__PURE__*/ q({
+}, [["__scopeId", "data-v-a3d65c09"]]), za = /*#__PURE__*/ q({
 	__name: "LoadingState",
 	props: {
 		label: {
@@ -5928,7 +5957,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 				"share-loading-state--fill": e.fill
 			}]),
 			"aria-busy": "true"
-		}, [f(Vi, {
+		}, [f(Gi, {
 			label: e.label,
 			size: e.compact ? "sm" : "md",
 			inline: e.compact,
@@ -5939,11 +5968,11 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			"inline"
 		])], 2));
 	}
-}, [["__scopeId", "data-v-eab73cf4"]]), Ia = [
+}, [["__scopeId", "data-v-eab73cf4"]]), Ba = [
 	"type",
 	"disabled",
 	"aria-busy"
-], La = /*#__PURE__*/ q({
+], Va = /*#__PURE__*/ q({
 	__name: "ActionButton",
 	props: {
 		variant: {
@@ -5982,17 +6011,17 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			type: e.type,
 			disabled: e.disabled || e.loading,
 			"aria-busy": e.loading || void 0
-		}, [e.loading ? (E(), a(Vi, {
+		}, [e.loading ? (E(), a(Gi, {
 			key: 0,
 			label: e.loadingLabel,
 			size: "xs",
 			"aria-hidden": "true"
-		}, null, 8, ["label"])) : j(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [j(t.$slots, "default", {}, void 0, !0)])], 10, Ia));
+		}, null, 8, ["label"])) : j(t.$slots, "icon", {}, void 0, !0, 1), c("span", null, [j(t.$slots, "default", {}, void 0, !0)])], 10, Ba));
 	}
-}, [["__scopeId", "data-v-03274259"]]), Ra = {
+}, [["__scopeId", "data-v-ee3ca35c"]]), Ha = {
 	class: "share-icon-toggle__icon",
 	"aria-hidden": "true"
-}, za = /*#__PURE__*/ q({
+}, Ua = /*#__PURE__*/ q({
 	__name: "IconToggleButton",
 	props: {
 		modelValue: Boolean,
@@ -6012,7 +6041,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 		function i() {
 			n.disabled || r("update:modelValue", !n.modelValue);
 		}
-		return (t, n) => (E(), a(La, {
+		return (t, n) => (E(), a(Va, {
 			class: b(["share-icon-toggle", { "share-icon-toggle--on": e.modelValue }]),
 			style: S({ "--icon-toggle-color": e.color || "var(--accent)" }),
 			variant: "secondary",
@@ -6023,7 +6052,7 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			"aria-pressed": e.modelValue,
 			onClick: i
 		}, {
-			icon: U(() => [c("span", Ra, [j(t.$slots, "icon", {}, void 0, !0)]), n[0] ||= c("svg", {
+			icon: U(() => [c("span", Ha, [j(t.$slots, "icon", {}, void 0, !0)]), n[0] ||= c("svg", {
 				class: "share-icon-toggle__slash",
 				viewBox: "0 0 24 24",
 				fill: "none",
@@ -6042,16 +6071,16 @@ var Yi = ["aria-label"], Xi = { class: "ms-head-content" }, Zi = ["aria-label"],
 			"aria-pressed"
 		]));
 	}
-}, [["__scopeId", "data-v-28796e03"]]), Ba = (e) => `${Math.round(e)}px`, Va = (e, t, n, r) => ({
-	left: Ba(e),
-	top: Ba(t),
-	width: Ba(Math.max(0, n)),
-	height: Ba(Math.max(0, r))
-}), Ha = (e, t, n) => Math.max(t, Math.min(e, n));
-function Ua(e, t, n, r = !1) {
+}, [["__scopeId", "data-v-28796e03"]]), Wa = (e) => `${Math.round(e)}px`, Ga = (e, t, n, r) => ({
+	left: Wa(e),
+	top: Wa(t),
+	width: Wa(Math.max(0, n)),
+	height: Wa(Math.max(0, r))
+}), Ka = (e, t, n) => Math.max(t, Math.min(e, n));
+function qa(e, t, n, r = !1) {
 	let { width: i, height: a, left: o = 0, top: s = 0 } = t, c = o + i, l = s + a, u = Math.min(n.width, i - 24), d = Math.min(n.height, a - 24), f = null;
 	if (e && e.width > 0 && e.height > 0) {
-		let t = Ha(e.left - 5, o, c), n = Ha(e.top - 5, s, l), r = Ha(e.right + 5, o, c), i = Ha(e.bottom + 5, s, l);
+		let t = Ka(e.left - 5, o, c), n = Ka(e.top - 5, s, l), r = Ka(e.right + 5, o, c), i = Ka(e.bottom + 5, s, l);
 		r > t && i > n && (f = {
 			left: t,
 			top: n,
@@ -6062,31 +6091,31 @@ function Ua(e, t, n, r = !1) {
 		});
 	}
 	let p = f ? [
-		Va(o, s, i, f.top - s),
-		Va(o, f.bottom, i, l - f.bottom),
-		Va(o, f.top, f.left - o, f.height),
-		Va(f.right, f.top, c - f.right, f.height)
-	] : [Va(o, s, i, a)], m = o + (i - u) / 2, h = s + (a - d) / 2;
-	return f && (m = Ha(f.left, o + 12, c - u - 12), h = f.bottom + 14 + d <= l - 12 ? f.bottom + 14 : f.top - d - 14, h < s + 12 && f.right + u + 14 <= c - 12 && (m = f.right + 14, h = f.top), h = Ha(h, s + 12, l - d - 12)), r && (m = o + (i - u) / 2, h = f && f.top > s + a / 2 ? s + 12 : l - d - 12), {
+		Ga(o, s, i, f.top - s),
+		Ga(o, f.bottom, i, l - f.bottom),
+		Ga(o, f.top, f.left - o, f.height),
+		Ga(f.right, f.top, c - f.right, f.height)
+	] : [Ga(o, s, i, a)], m = o + (i - u) / 2, h = s + (a - d) / 2;
+	return f && (m = Ka(f.left, o + 12, c - u - 12), h = f.bottom + 14 + d <= l - 12 ? f.bottom + 14 : f.top - d - 14, h < s + 12 && f.right + u + 14 <= c - 12 && (m = f.right + 14, h = f.top), h = Ka(h, s + 12, l - d - 12)), r && (m = o + (i - u) / 2, h = f && f.top > s + a / 2 ? s + 12 : l - d - 12), {
 		rect: f,
 		masks: p,
-		spotlight: f ? Va(f.left, f.top, f.width, f.height) : {},
+		spotlight: f ? Ga(f.left, f.top, f.width, f.height) : {},
 		card: {
-			left: Ba(m),
-			top: Ba(h),
-			maxHeight: Ba(a - 24)
+			left: Wa(m),
+			top: Wa(h),
+			maxHeight: Wa(a - 24)
 		}
 	};
 }
 //#endregion
 //#region src/components/tutorial/GuidedTour.vue
-var Wa = ["aria-label"], Ga = {
+var Ja = ["aria-label"], Ya = {
 	"aria-live": "polite",
 	"aria-atomic": "true"
-}, Ka = {
+}, Xa = {
 	key: 0,
 	role: "alert"
-}, qa = /*#__PURE__*/ q({
+}, Za = /*#__PURE__*/ q({
 	__name: "GuidedTour",
 	props: {
 		tour: {
@@ -6114,7 +6143,7 @@ var Wa = ["aria-label"], Ga = {
 		}
 	},
 	setup(n) {
-		let r = n, l = k(null), u = k(Ua(null, {
+		let r = n, l = k(null), u = k(qa(null, {
 			width: 1,
 			height: 1
 		}, {
@@ -6124,7 +6153,7 @@ var Wa = ["aria-label"], Ga = {
 		function w() {
 			if (!r.tour.active) return;
 			let e = window.visualViewport;
-			u.value = Ua(r.tour.target?.getBoundingClientRect(), {
+			u.value = qa(r.tour.target?.getBoundingClientRect(), {
 				width: e?.width || window.innerWidth,
 				height: e?.height || window.innerHeight,
 				left: e?.offsetLeft || 0,
@@ -6179,21 +6208,21 @@ var Wa = ["aria-label"], Ga = {
 				"aria-label": n.tour.step?.title,
 				tabindex: "-1"
 			}, [
-				c("div", Ga, [
+				c("div", Ya, [
 					c("small", null, P(n.labels.progress(n.tour.index + 1, n.tour.steps.length)), 1),
 					c("h2", null, P(n.tour.step?.title), 1),
 					c("p", null, P(n.tour.step?.body), 1)
 				]),
-				n.tour.error ? (E(), s("p", Ka, P(n.labels.error), 1)) : o("", !0),
+				n.tour.error ? (E(), s("p", Xa, P(n.labels.error), 1)) : o("", !0),
 				c("footer", null, [
-					f(La, {
+					f(Va, {
 						variant: "quiet",
 						onClick: i[0] ||= (e) => n.tour.error ? n.tour.stop() : n.tour.dismiss()
 					}, {
 						default: U(() => [d(P(n.tour.error ? n.labels.close : n.labels.dismiss), 1)]),
 						_: 1
 					}),
-					n.tour.index > 0 ? (E(), a(La, {
+					n.tour.index > 0 ? (E(), a(Va, {
 						key: 0,
 						variant: "secondary",
 						disabled: n.tour.busy,
@@ -6202,14 +6231,14 @@ var Wa = ["aria-label"], Ga = {
 						default: U(() => [d(P(n.labels.previous), 1)]),
 						_: 1
 					}, 8, ["disabled", "onClick"])) : o("", !0),
-					n.tour.error ? (E(), a(La, {
+					n.tour.error ? (E(), a(Va, {
 						key: 1,
 						disabled: n.tour.busy,
 						onClick: n.tour.retry
 					}, {
 						default: U(() => [d(P(n.labels.retry), 1)]),
 						_: 1
-					}, 8, ["disabled", "onClick"])) : (E(), a(La, {
+					}, 8, ["disabled", "onClick"])) : (E(), a(Va, {
 						key: 2,
 						loading: n.tour.busy,
 						"loading-label": n.labels.loading,
@@ -6223,13 +6252,13 @@ var Wa = ["aria-label"], Ga = {
 						"onClick"
 					]))
 				])
-			], 12, Wa)
+			], 12, Ja)
 		], 36)) : o("", !0)]));
 	}
 }, [["__scopeId", "data-v-e912449f"]]);
 //#endregion
 //#region src/composables/useGuidedTour.js
-function Ja({ onFinish: e = async () => {} } = {}) {
+function Qa({ onFinish: e = async () => {} } = {}) {
 	let t = k(!1), n = k(!1), r = N(null), a = k(0), o = N([]), s = N(null), c = i(() => o.value[a.value] || null), l = null, u = [], d = null, f = !1, p = 0;
 	function m() {
 		l?.abort(), l = null;
@@ -6321,10 +6350,10 @@ function Ja({ onFinish: e = async () => {} } = {}) {
 }
 //#endregion
 //#region src/components/StatBar.vue
-var Ya = ["aria-label", "aria-valuenow"], Xa = {
+var $a = ["aria-label", "aria-valuenow"], eo = {
 	key: 1,
 	class: "stat-bar-shine"
-}, Za = /*#__PURE__*/ q({
+}, to = /*#__PURE__*/ q({
 	__name: "StatBar",
 	props: {
 		label: {
@@ -6383,16 +6412,16 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 					"--temp-color": t.tempColor
 				})
 			}, null, 4)) : o("", !0),
-			t.decorated ? (E(), s("span", Xa)) : o("", !0)
-		], 14, Ya));
+			t.decorated ? (E(), s("span", eo)) : o("", !0)
+		], 14, $a));
 	}
-}, [["__scopeId", "data-v-4a3b34fc"]]), Qa = ["aria-label"], $a = [
+}, [["__scopeId", "data-v-4a3b34fc"]]), no = ["aria-label"], ro = [
 	"aria-label",
 	"aria-pressed",
 	"title",
 	"disabled",
 	"onClick"
-], eo = /*#__PURE__*/ q({
+], io = /*#__PURE__*/ q({
 	__name: "IconPicker",
 	props: {
 		modelValue: {
@@ -6430,24 +6459,24 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 		}, [j(n.$slots, "icon", { option: e }, () => [(E(), a(M(e.icon), {
 			size: 18,
 			"aria-hidden": "true"
-		}))], !0)], 10, $a))), 128))], 8, Qa));
+		}))], !0)], 10, ro))), 128))], 8, no));
 	}
-}, [["__scopeId", "data-v-8e855500"]]), to = {
+}, [["__scopeId", "data-v-8e855500"]]), ao = {
 	key: 0,
 	class: "detail-section-icon",
 	"aria-hidden": "true"
-}, no = { class: "detail-section-label" }, ro = {
+}, oo = { class: "detail-section-label" }, so = {
 	key: 1,
 	class: "detail-section-rule",
 	"aria-hidden": "true"
-}, io = {
+}, co = {
 	key: 2,
 	class: "detail-section-chevron",
 	viewBox: "0 0 16 16",
 	fill: "none",
 	width: "14",
 	height: "14"
-}, ao = ["id"], oo = /*#__PURE__*/ q({
+}, lo = ["id"], uo = /*#__PURE__*/ q({
 	__name: "DetailSection",
 	props: {
 		label: {
@@ -6492,10 +6521,10 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 			onClick: n[0] ||= (t) => e.collapsible && (d.value = !d.value)
 		}, {
 			default: U(() => [
-				t.$slots.icon ? (E(), s("span", to, [j(t.$slots, "icon", {}, void 0, !0)])) : o("", !0),
-				c("span", no, P(e.label), 1),
-				t.$slots.icon ? (E(), s("span", ro)) : o("", !0),
-				e.collapsible ? (E(), s("svg", io, [...n[1] ||= [c("path", {
+				t.$slots.icon ? (E(), s("span", ao, [j(t.$slots, "icon", {}, void 0, !0)])) : o("", !0),
+				c("span", oo, P(e.label), 1),
+				t.$slots.icon ? (E(), s("span", so)) : o("", !0),
+				e.collapsible ? (E(), s("svg", co, [...n[1] ||= [c("path", {
 					d: "M4 6L8 10L12 6",
 					stroke: "currentColor",
 					"stroke-width": "1.8",
@@ -6512,29 +6541,29 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 		])), W(c("div", {
 			id: F(l),
 			class: "detail-section-body"
-		}, [j(t.$slots, "default", {}, void 0, !0)], 8, ao), [[V, !e.collapsible || d.value]])], 2));
+		}, [j(t.$slots, "default", {}, void 0, !0)], 8, lo), [[V, !e.collapsible || d.value]])], 2));
 	}
-}, [["__scopeId", "data-v-6a2f0c96"]]), so = [
+}, [["__scopeId", "data-v-6a2f0c96"]]), fo = [
 	"role",
 	"tabindex",
 	"aria-current"
-], co = { class: "oli-icon" }, lo = {
+], po = { class: "oli-icon" }, mo = {
 	key: 0,
 	class: "oli-metric"
-}, uo = { class: "oli-main" }, fo = { class: "oli-name" }, po = {
+}, ho = { class: "oli-main" }, go = { class: "oli-name" }, _o = {
 	key: 0,
 	class: "oli-name-en"
-}, mo = ["title"], ho = {
+}, vo = ["title"], yo = {
 	key: 0,
 	class: "oli-sub"
-}, go = { class: "oli-right" }, _o = {
+}, bo = { class: "oli-right" }, xo = {
 	key: 0,
 	class: "oli-chevron",
 	viewBox: "0 0 16 16",
 	fill: "none",
 	width: "14",
 	height: "14"
-}, vo = /*#__PURE__*/ q({
+}, So = /*#__PURE__*/ q({
 	__name: "ContentRow",
 	props: {
 		title: {
@@ -6591,37 +6620,37 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 			onClick: n[0] ||= (n) => e.interactive && t.$emit("activate", n),
 			onKeydown: i
 		}, [
-			c("div", co, [j(t.$slots, "icon", {}, void 0, !0)]),
-			t.$slots.metric ? (E(), s("div", lo, [j(t.$slots, "metric", {}, void 0, !0)])) : o("", !0),
-			c("div", uo, [c("div", { class: b(["oli-name-row", { "oli-name-row--center": e.nameCenter }]) }, [
-				c("span", fo, P(e.title), 1),
-				e.alternateLabel ? (E(), s("span", po, P(e.alternateLabel), 1)) : o("", !0),
+			c("div", po, [j(t.$slots, "icon", {}, void 0, !0)]),
+			t.$slots.metric ? (E(), s("div", mo, [j(t.$slots, "metric", {}, void 0, !0)])) : o("", !0),
+			c("div", ho, [c("div", { class: b(["oli-name-row", { "oli-name-row--center": e.nameCenter }]) }, [
+				c("span", go, P(e.title), 1),
+				e.alternateLabel ? (E(), s("span", _o, P(e.alternateLabel), 1)) : o("", !0),
 				e.marker ? (E(), s("span", {
 					key: 1,
 					class: "oli-custom",
 					title: e.markerLabel
-				}, P(e.marker), 9, mo)) : o("", !0),
+				}, P(e.marker), 9, vo)) : o("", !0),
 				j(t.$slots, "name-extras", {}, void 0, !0)
-			], 2), t.$slots.subtitle || e.subtitle ? (E(), s("div", ho, [j(t.$slots, "subtitle", {}, () => [d(P(e.subtitle), 1)], !0)])) : o("", !0)]),
-			c("div", go, [j(t.$slots, "trailing", {}, void 0, !0), e.showChevron ? (E(), s("svg", _o, [...n[1] ||= [c("path", {
+			], 2), t.$slots.subtitle || e.subtitle ? (E(), s("div", yo, [j(t.$slots, "subtitle", {}, () => [d(P(e.subtitle), 1)], !0)])) : o("", !0)]),
+			c("div", bo, [j(t.$slots, "trailing", {}, void 0, !0), e.showChevron ? (E(), s("svg", xo, [...n[1] ||= [c("path", {
 				d: "M6 12L10 8L6 4",
 				stroke: "currentColor",
 				"stroke-width": "1.6",
 				"stroke-linecap": "round",
 				"stroke-linejoin": "round"
 			}, null, -1)]])) : o("", !0)])
-		], 42, so));
+		], 42, fo));
 	}
-}, [["__scopeId", "data-v-bd72ecfc"]]), yo = ["id", "aria-label"], bo = [
+}, [["__scopeId", "data-v-bd72ecfc"]]), Co = ["id", "aria-label"], wo = [
 	"id",
 	"aria-selected",
 	"aria-disabled",
-	"onMouseenter",
+	"onPointerenter",
 	"onClick"
-], xo = {
+], To = {
 	key: 0,
 	class: "share-option-list__empty"
-}, So = /*#__PURE__*/ q({
+}, Eo = /*#__PURE__*/ q({
 	__name: "OptionList",
 	props: {
 		id: {
@@ -6651,38 +6680,40 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 		"hover",
 		"leave"
 	],
-	setup(t) {
-		return (n, r) => (E(), s("div", {
+	setup(t, { emit: n }) {
+		let r = n;
+		function i(e, t, n) {
+			Mn(e) && (r("active", n), r("hover", {
+				option: t,
+				event: e
+			}));
+		}
+		return (n, a) => (E(), s("div", {
 			id: t.id,
 			class: "share-option-list",
 			role: "listbox",
 			"aria-label": t.label
 		}, [
-			(E(!0), s(e, null, A(t.options, (e, i) => (E(), s("div", {
-				id: `${t.id}-${i}`,
+			(E(!0), s(e, null, A(t.options, (e, o) => (E(), s("div", {
+				id: `${t.id}-${o}`,
 				key: e.value,
-				class: b(["share-option-list__option", { "share-option-list__option--active": i === t.activeIndex }]),
+				class: b(["share-option-list__option", { "share-option-list__option--active": o === t.activeIndex }]),
 				role: "option",
-				"aria-selected": i === t.activeIndex,
+				"aria-selected": o === t.activeIndex,
 				"aria-disabled": e.disabled || void 0,
-				onMouseenter: (t) => {
-					n.$emit("active", i), n.$emit("hover", {
-						option: e,
-						event: t
-					});
-				},
-				onMouseleave: r[0] ||= (e) => n.$emit("leave"),
-				onMousedown: r[1] ||= K(() => {}, ["prevent", "stop"]),
+				onPointerenter: (t) => i(t, e, o),
+				onPointerleave: a[0] ||= (e) => F(Mn)(e) && r("leave"),
+				onMousedown: a[1] ||= K(() => {}, ["prevent", "stop"]),
 				onClick: K((t) => !e.disabled && n.$emit("select", e), ["stop"])
-			}, [j(n.$slots, "option", { option: e }, () => [d(P(e.label), 1)], !0)], 42, bo))), 128)),
-			t.options.length ? o("", !0) : (E(), s("div", xo, [j(n.$slots, "empty", {}, () => [d(P(t.emptyLabel), 1)], !0)])),
+			}, [j(n.$slots, "option", { option: e }, () => [d(P(e.label), 1)], !0)], 42, wo))), 128)),
+			t.options.length ? o("", !0) : (E(), s("div", To, [j(n.$slots, "empty", {}, () => [d(P(t.emptyLabel), 1)], !0)])),
 			j(n.$slots, "footer", {}, void 0, !0)
-		], 8, yo));
+		], 8, Co));
 	}
-}, [["__scopeId", "data-v-6b7f7faa"]]), Co = { class: "share-search-multi-select" }, wo = {
+}, [["__scopeId", "data-v-e3d44d18"]]), Do = { class: "share-search-multi-select" }, Oo = {
 	key: 0,
 	class: "share-search-multi-select__tags"
-}, To = /*#__PURE__*/ q({
+}, ko = /*#__PURE__*/ q({
 	__name: "SearchMultiSelect",
 	props: {
 		modelValue: {
@@ -6755,8 +6786,8 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 				h.value = t ? (h.value + (e.key === "ArrowDown" ? 1 : -1) + t) % t : -1, y(() => document.getElementById(`${g}-${h.value}`)?.scrollIntoView({ block: "nearest" }));
 			} else e.key === "Enter" && p.value && S.value[h.value] ? (e.preventDefault(), w(S.value[h.value])) : e.key === "Escape" ? (e.preventDefault(), p.value = !1) : e.key === "Tab" && (p.value = !1);
 		}
-		return (n, r) => (E(), s("div", Co, [
-			b.value.length ? (E(), s("div", wo, [(E(!0), s(e, null, A(b.value, (e) => (E(), s("span", {
+		return (n, r) => (E(), s("div", Do, [
+			b.value.length ? (E(), s("div", Oo, [(E(!0), s(e, null, A(b.value, (e) => (E(), s("span", {
 				key: e.value,
 				class: "share-search-multi-select__tag"
 			}, [d(P(e.label) + " ", 1), f(Be, {
@@ -6768,7 +6799,7 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 				"disabled",
 				"onClick"
 			])]))), 128))])) : o("", !0),
-			x.value ? o("", !0) : (E(), a(sa, {
+			x.value ? o("", !0) : (E(), a(da, {
 				key: 1,
 				ref_key: "input",
 				ref: u,
@@ -6803,7 +6834,7 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 				"z-index": t.zIndex,
 				related: ""
 			}, {
-				default: U(() => [f(So, {
+				default: U(() => [f(Eo, {
 					id: F(g),
 					label: t.label,
 					options: S.value,
@@ -6813,7 +6844,7 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 					onSelect: w
 				}, l({ _: 2 }, [t.allowCreate && m.value.trim() && !C.value && !S.value.length ? {
 					name: "footer",
-					fn: U(() => [f(La, {
+					fn: U(() => [f(Va, {
 						loading: t.creating,
 						disabled: t.creating,
 						variant: "quiet",
@@ -6839,7 +6870,7 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 			])
 		]));
 	}
-}, [["__scopeId", "data-v-d6731ef9"]]), Eo = ["id"], Do = /*#__PURE__*/ q({
+}, [["__scopeId", "data-v-d6731ef9"]]), Ao = ["id"], jo = /*#__PURE__*/ q({
 	__name: "FloatingTooltip",
 	props: {
 		anchor: {
@@ -6939,42 +6970,42 @@ var Ya = ["aria-label", "aria-valuenow"], Xa = {
 				class: b(["share-tooltip", e.tooltipClass]),
 				style: S(s.value),
 				role: "tooltip"
-			}, [j(r.$slots, "default", {}, void 0, !0)], 14, Eo)]),
+			}, [j(r.$slots, "default", {}, void 0, !0)], 14, Ao)]),
 			_: 3
 		})]));
 	}
 }, [["__scopeId", "data-v-b3d3bcb1"]]);
 //#endregion
 //#region src/lib/calendar.js
-function Oo(e) {
+function Mo(e) {
 	if (!/^\d{4}-\d{2}-\d{2}$/.test(e || "")) return null;
 	let [t, n, r] = e.split("-").map(Number), i = /* @__PURE__ */ new Date(0);
 	return i.setFullYear(t, n - 1, r), i.setHours(12, 0, 0, 0), t > 0 && i.getFullYear() === t && i.getMonth() === n - 1 && i.getDate() === r ? i : null;
 }
-function ko(e) {
+function No(e) {
 	return `${String(e.getFullYear()).padStart(4, "0")}-${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")}`;
 }
-function Ao(e, t = "", n = "") {
-	return !!(!Oo(e) || t && e < t || n && e > n);
+function Po(e, t = "", n = "") {
+	return !!(!Mo(e) || t && e < t || n && e > n);
 }
-function jo(e, t = 0, n = 0) {
-	let r = Oo(e);
+function Fo(e, t = 0, n = 0) {
+	let r = Mo(e);
 	if (!r) return e;
 	let i = r.getDate();
 	r.setDate(1), r.setMonth(r.getMonth() + n);
 	let a = new Date(r);
 	a.setMonth(a.getMonth() + 1, 0);
 	let o = a.getDate();
-	return r.setDate(Math.min(i, o) + t), ko(r);
+	return r.setDate(Math.min(i, o) + t), No(r);
 }
-function Mo(e, t, n = 1) {
+function Io(e, t, n = 1) {
 	let r = /* @__PURE__ */ new Date(0);
 	r.setFullYear(e, t, 1), r.setHours(12, 0, 0, 0);
 	let i = (r.getDay() - n + 7) % 7;
 	return Array.from({ length: 42 }, (e, n) => {
 		let a = new Date(r);
 		return a.setDate(n - i + 1), {
-			value: ko(a),
+			value: No(a),
 			day: a.getDate(),
 			outside: a.getMonth() !== t
 		};
@@ -6982,14 +7013,14 @@ function Mo(e, t, n = 1) {
 }
 //#endregion
 //#region src/components/form/DatePicker.vue
-var No = { class: "share-date-picker" }, Po = [
+var Lo = { class: "share-date-picker" }, Ro = [
 	"disabled",
 	"aria-label",
 	"aria-expanded"
-], Fo = { class: "share-date-picker__heading" }, Io = ["aria-label"], Lo = ["value"], Ro = ["value"], zo = ["aria-label"], Bo = ["aria-label"], Vo = {
+], zo = { class: "share-date-picker__heading" }, Bo = ["aria-label"], Vo = ["value"], Ho = ["value"], Uo = ["aria-label"], Wo = ["aria-label"], Go = {
 	class: "share-date-picker__week",
 	role: "row"
-}, Ho = ["aria-selected"], Uo = [
+}, Ko = ["aria-selected"], qo = [
 	"data-date",
 	"tabindex",
 	"disabled",
@@ -6997,7 +7028,7 @@ var No = { class: "share-date-picker" }, Po = [
 	"aria-current",
 	"onClick",
 	"onKeydown"
-], Wo = { class: "share-date-picker__footer" }, Go = ["disabled"], Ko = /*#__PURE__*/ q({
+], Jo = { class: "share-date-picker__footer" }, Yo = ["disabled"], Xo = /*#__PURE__*/ q({
 	__name: "DatePicker",
 	props: {
 		modelValue: {
@@ -7061,8 +7092,8 @@ var No = { class: "share-date-picker" }, Po = [
 	},
 	emits: ["update:modelValue"],
 	setup(t, { emit: n }) {
-		let r = t, a = n, l = k(null), u = k(null), d = k(!1), p = ko(/* @__PURE__ */ new Date()), m = i(() => Oo(r.modelValue)), h = k(r.modelValue || p), g = k((/* @__PURE__ */ new Date()).getFullYear()), _ = k((/* @__PURE__ */ new Date()).getMonth()), v = i(() => Array.from({ length: 12 }, (e, t) => new Intl.DateTimeFormat(r.locale, { month: "long" }).format(new Date(2024, t, 1)))), x = i(() => Array.from({ length: 201 }, (e, t) => g.value - 100 + t).filter((e) => e >= 1 && e <= 9999)), S = i(() => Array.from({ length: 7 }, (e, t) => new Intl.DateTimeFormat(r.locale, { weekday: "short" }).format(new Date(2024, 0, 7 + (r.weekStartsOn + t) % 7)))), C = i(() => {
-			let e = Mo(g.value, _.value, r.weekStartsOn);
+		let r = t, a = n, l = k(null), u = k(null), d = k(!1), p = No(/* @__PURE__ */ new Date()), m = i(() => Mo(r.modelValue)), h = k(r.modelValue || p), g = k((/* @__PURE__ */ new Date()).getFullYear()), _ = k((/* @__PURE__ */ new Date()).getMonth()), v = i(() => Array.from({ length: 12 }, (e, t) => new Intl.DateTimeFormat(r.locale, { month: "long" }).format(new Date(2024, t, 1)))), x = i(() => Array.from({ length: 201 }, (e, t) => g.value - 100 + t).filter((e) => e >= 1 && e <= 9999)), S = i(() => Array.from({ length: 7 }, (e, t) => new Intl.DateTimeFormat(r.locale, { weekday: "short" }).format(new Date(2024, 0, 7 + (r.weekStartsOn + t) % 7)))), C = i(() => {
+			let e = Io(g.value, _.value, r.weekStartsOn);
 			return Array.from({ length: 6 }, (t, n) => e.slice(n * 7, n * 7 + 7));
 		});
 		function w(e, t = !1) {
@@ -7074,11 +7105,11 @@ var No = { class: "share-date-picker" }, Po = [
 			}).format(e);
 		}
 		function T(e) {
-			return Ao(e, r.min, r.max);
+			return Po(e, r.min, r.max);
 		}
 		function D(e) {
-			let t = Oo(e) || /* @__PURE__ */ new Date();
-			g.value = t.getFullYear(), _.value = t.getMonth(), h.value = ko(t);
+			let t = Mo(e) || /* @__PURE__ */ new Date();
+			g.value = t.getFullYear(), _.value = t.getMonth(), h.value = No(t);
 		}
 		async function O() {
 			await y(), u.value?.querySelector(`[data-date="${h.value}"]`)?.focus({ preventScroll: !0 });
@@ -7099,8 +7130,8 @@ var No = { class: "share-date-picker" }, Po = [
 			r.disabled || e && T(e) || (a("update:modelValue", e), j(!1));
 		}
 		function I(e) {
-			let t = jo(h.value, 0, e);
-			Oo(t) && D(t);
+			let t = Fo(h.value, 0, e);
+			Mo(t) && D(t);
 		}
 		function L(e) {
 			I(e - _.value);
@@ -7115,11 +7146,11 @@ var No = { class: "share-date-picker" }, Po = [
 				ArrowUp: -7,
 				ArrowDown: 7
 			}, i;
-			if (e.key in n) i = jo(t, n[e.key]);
-			else if (e.key === "PageUp" || e.key === "PageDown") i = jo(t, 0, (e.key === "PageUp" ? -1 : 1) * (e.shiftKey ? 12 : 1));
+			if (e.key in n) i = Fo(t, n[e.key]);
+			else if (e.key === "PageUp" || e.key === "PageDown") i = Fo(t, 0, (e.key === "PageUp" ? -1 : 1) * (e.shiftKey ? 12 : 1));
 			else if (e.key === "Home" || e.key === "End") {
-				let n = (Oo(t).getDay() - r.weekStartsOn + 7) % 7;
-				i = jo(t, e.key === "Home" ? -n : 6 - n);
+				let n = (Mo(t).getDay() - r.weekStartsOn + 7) % 7;
+				i = Fo(t, e.key === "Home" ? -n : 6 - n);
 			} else return;
 			e.preventDefault(), T(i) || (D(i), O());
 		}
@@ -7135,7 +7166,7 @@ var No = { class: "share-date-picker" }, Po = [
 			e && (d.value = !1);
 		}), H(() => r.modelValue, (e) => {
 			d.value && D(e);
-		}), (n, r) => (E(), s("span", No, [c("button", {
+		}), (n, r) => (E(), s("span", Lo, [c("button", {
 			ref_key: "anchor",
 			ref: l,
 			type: "button",
@@ -7159,7 +7190,7 @@ var No = { class: "share-date-picker" }, Po = [
 			width: "18",
 			height: "16",
 			rx: "3"
-		}), c("path", { d: "M7 3v4m10-4v4M3 11h18m-13 4h3m3 0h2" })], -1), c("span", { class: b({ "share-date-picker__placeholder": !m.value }) }, P(m.value ? w(m.value) : t.placeholder), 3)], 8, Po), f(pn, {
+		}), c("path", { d: "M7 3v4m10-4v4M3 11h18m-13 4h3m3 0h2" })], -1), c("span", { class: b({ "share-date-picker__placeholder": !m.value }) }, P(m.value ? w(m.value) : t.placeholder), 3)], 8, Ro), f(pn, {
 			open: d.value,
 			anchor: l.value,
 			"min-width": 0,
@@ -7176,13 +7207,13 @@ var No = { class: "share-date-picker" }, Po = [
 				class: "share-date-picker__calendar",
 				onKeydown: V
 			}, [
-				c("div", Fo, [
+				c("div", zo, [
 					c("button", {
 						type: "button",
 						"aria-label": t.previousLabel,
 						onClick: r[0] ||= (e) => I(-1)
-					}, "‹", 8, Io),
-					f(va, {
+					}, "‹", 8, Bo),
+					f(Sa, {
 						value: _.value,
 						"aria-label": t.monthLabel,
 						"onUpdate:value": r[1] ||= (e) => L(Number(e))
@@ -7190,10 +7221,10 @@ var No = { class: "share-date-picker" }, Po = [
 						default: U(() => [(E(!0), s(e, null, A(v.value, (e, t) => (E(), s("option", {
 							key: t,
 							value: t
-						}, P(e), 9, Lo))), 128))]),
+						}, P(e), 9, Vo))), 128))]),
 						_: 1
 					}, 8, ["value", "aria-label"]),
-					f(va, {
+					f(Sa, {
 						value: g.value,
 						"aria-label": t.yearLabel,
 						"onUpdate:value": r[2] ||= (e) => R(Number(e))
@@ -7201,19 +7232,19 @@ var No = { class: "share-date-picker" }, Po = [
 						default: U(() => [(E(!0), s(e, null, A(x.value, (e) => (E(), s("option", {
 							key: e,
 							value: e
-						}, P(e), 9, Ro))), 128))]),
+						}, P(e), 9, Ho))), 128))]),
 						_: 1
 					}, 8, ["value", "aria-label"]),
 					c("button", {
 						type: "button",
 						"aria-label": t.nextLabel,
 						onClick: r[3] ||= (e) => I(1)
-					}, "›", 8, zo)
+					}, "›", 8, Uo)
 				]),
 				c("div", {
 					role: "grid",
 					"aria-label": `${v.value[_.value]} ${g.value}`
-				}, [c("div", Vo, [(E(!0), s(e, null, A(S.value, (e) => (E(), s("span", {
+				}, [c("div", Go, [(E(!0), s(e, null, A(S.value, (e) => (E(), s("span", {
 					key: e,
 					role: "columnheader"
 				}, P(e), 1))), 128))]), (E(!0), s(e, null, A(C.value, (n, r) => (E(), s("div", {
@@ -7229,7 +7260,7 @@ var No = { class: "share-date-picker" }, Po = [
 					"data-date": e.value,
 					tabindex: e.value === h.value ? 0 : -1,
 					disabled: T(e.value),
-					"aria-label": w(F(Oo)(e.value), !0),
+					"aria-label": w(F(Mo)(e.value), !0),
 					"aria-current": e.value === F(p) ? "date" : void 0,
 					class: b({
 						outside: e.outside,
@@ -7238,12 +7269,12 @@ var No = { class: "share-date-picker" }, Po = [
 					}),
 					onClick: (t) => N(e.value),
 					onKeydown: (t) => z(t, e.value)
-				}, P(e.day), 43, Uo)], 8, Ho))), 128))]))), 128))], 8, Bo),
-				c("div", Wo, [c("button", {
+				}, P(e.day), 43, qo)], 8, Ko))), 128))]))), 128))], 8, Wo),
+				c("div", Jo, [c("button", {
 					type: "button",
 					disabled: T(F(p)),
 					onClick: r[4] ||= (e) => N(F(p))
-				}, P(t.todayLabel), 9, Go), t.allowClear ? (E(), s("button", {
+				}, P(t.todayLabel), 9, Yo), t.allowClear ? (E(), s("button", {
 					key: 0,
 					type: "button",
 					onClick: r[5] ||= (e) => N("")
@@ -7257,10 +7288,10 @@ var No = { class: "share-date-picker" }, Po = [
 			"aria-label"
 		])]));
 	}
-}, [["__scopeId", "data-v-a7b69f68"]]), qo = { class: "share-timeline-group__rail" }, Jo = { class: "share-timeline-group__identity" }, Yo = { class: "share-timeline-group__content" }, Xo = {
+}, [["__scopeId", "data-v-a7b69f68"]]), Zo = { class: "share-timeline-group__rail" }, Qo = { class: "share-timeline-group__identity" }, $o = { class: "share-timeline-group__content" }, es = {
 	key: 0,
 	class: "share-timeline-group__footer"
-}, Zo = /*#__PURE__*/ q({
+}, ts = /*#__PURE__*/ q({
 	__name: "TimelineGroup",
 	props: {
 		color: {
@@ -7309,19 +7340,19 @@ var No = { class: "share-date-picker" }, Po = [
 			}]),
 			style: S(n.value)
 		}, [
-			c("div", qo, [c("div", Jo, [j(t.$slots, "identity", {}, void 0, !0)])]),
-			c("div", Yo, [j(t.$slots, "default", {}, void 0, !0)]),
-			t.$slots.footer ? (E(), s("div", Xo, [j(t.$slots, "footer", {}, void 0, !0)])) : o("", !0)
+			c("div", Zo, [c("div", Qo, [j(t.$slots, "identity", {}, void 0, !0)])]),
+			c("div", $o, [j(t.$slots, "default", {}, void 0, !0)]),
+			t.$slots.footer ? (E(), s("div", es, [j(t.$slots, "footer", {}, void 0, !0)])) : o("", !0)
 		], 6));
 	}
-}, [["__scopeId", "data-v-d27f0f76"]]), Qo = [
+}, [["__scopeId", "data-v-d27f0f76"]]), ns = [
 	"role",
 	"aria-label",
 	"aria-disabled"
-], $o = {
+], rs = {
 	class: "share-star-rating__star",
 	"aria-hidden": "true"
-}, es = "m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2 2 9.3l6.9-1Z", ts = /*#__PURE__*/ q({
+}, is = "m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2 2 9.3l6.9-1Z", as = /*#__PURE__*/ q({
 	__name: "StarRating",
 	props: {
 		modelValue: {
@@ -7348,10 +7379,13 @@ var No = { class: "share-date-picker" }, Po = [
 	emits: ["update:modelValue"],
 	setup(t, { emit: n }) {
 		let r = t, o = n, l = k(0), u = [], d = i(() => Math.max(1, Math.min(r.max, Math.round(r.modelValue)))), f = (e) => Math.max(0, Math.min(1, (r.readonly ? r.modelValue : l.value || r.modelValue) - e + 1)) * 100;
-		function p(e) {
+		function p(e, t) {
+			!r.readonly && !r.disabled && Nn(e) && (l.value = t);
+		}
+		function m(e) {
 			!r.readonly && !r.disabled && o("update:modelValue", e);
 		}
-		function m(e, t) {
+		function h(e, t) {
 			if (r.readonly || r.disabled) return;
 			let n = {
 				ArrowRight: Math.min(r.max, t + 1),
@@ -7359,14 +7393,15 @@ var No = { class: "share-date-picker" }, Po = [
 				Home: 1,
 				End: r.max
 			}[e.key];
-			n !== void 0 && (e.preventDefault(), p(n), u[n - 1]?.focus());
+			n !== void 0 && (e.preventDefault(), m(n), u[n - 1]?.focus());
 		}
 		return (n, r) => (E(), s("div", {
 			class: b(["share-star-rating", { "share-star-rating--readonly": t.readonly }]),
 			role: t.readonly ? "img" : "radiogroup",
 			"aria-label": t.readonly && t.valueLabel || t.label,
 			"aria-disabled": !t.readonly && t.disabled || void 0,
-			onMouseleave: r[1] ||= (e) => l.value = 0
+			onPointerleave: r[1] ||= (e) => F(Mn)(e) && (l.value = 0),
+			onPointerdown: r[2] ||= (e) => !F(Mn)(e) && (l.value = 0)
 		}, [(E(!0), s(e, null, A(t.max, (e) => (E(), a(M(t.readonly ? "span" : "button"), {
 			key: e,
 			ref_for: !0,
@@ -7378,19 +7413,19 @@ var No = { class: "share-date-picker" }, Po = [
 			"aria-checked": t.readonly ? void 0 : t.modelValue === e,
 			disabled: !t.readonly && t.disabled || void 0,
 			tabindex: t.readonly ? void 0 : d.value === e ? 0 : -1,
-			onMouseenter: (n) => !t.readonly && (l.value = e),
-			onFocus: (n) => !t.readonly && (l.value = e),
+			onPointerenter: (t) => p(t, e),
+			onFocus: (t) => p(t, e),
 			onBlur: r[0] ||= (e) => l.value = 0,
-			onClick: (t) => p(e),
-			onKeydown: (t) => m(t, e)
+			onClick: (t) => m(e),
+			onKeydown: (t) => h(t, e)
 		}, {
-			default: U(() => [c("span", $o, [c("svg", {
+			default: U(() => [c("span", rs, [c("svg", {
 				viewBox: "0 0 24 24",
 				fill: "none"
-			}, [c("path", { d: es })]), c("span", {
+			}, [c("path", { d: is })]), c("span", {
 				class: "share-star-rating__fill",
 				style: S({ width: `${f(e)}%` })
-			}, [c("svg", { viewBox: "0 0 24 24" }, [c("path", { d: es })])], 4)])]),
+			}, [c("svg", { viewBox: "0 0 24 24" }, [c("path", { d: is })])], 4)])]),
 			_: 2
 		}, 1064, [
 			"type",
@@ -7399,13 +7434,13 @@ var No = { class: "share-date-picker" }, Po = [
 			"aria-checked",
 			"disabled",
 			"tabindex",
-			"onMouseenter",
+			"onPointerenter",
 			"onFocus",
 			"onClick",
 			"onKeydown"
-		]))), 128))], 42, Qo));
+		]))), 128))], 42, ns));
 	}
-}, [["__scopeId", "data-v-9950b486"]]), ns = /* @__PURE__ */ new Set([
+}, [["__scopeId", "data-v-3d337161"]]), os = /* @__PURE__ */ new Set([
 	"article",
 	"aside",
 	"dialog",
@@ -7417,14 +7452,14 @@ var No = { class: "share-date-picker" }, Po = [
 	"nav",
 	"section"
 ]);
-function rs(e) {
+function ss(e) {
 	let t = [e], n = e.parentElement;
 	for (; n && n !== document.body && n !== document.documentElement && t.length < 4;) t.push(n), n = n.parentElement;
 	return t;
 }
-function is(e, t, n) {
+function cs(e, t, n) {
 	let r = e.getBoundingClientRect(), i = {
-		selector: ss(e, n),
+		selector: ds(e, n),
 		tagName: e.tagName.toLowerCase(),
 		rect: {
 			x: Math.round(r.x),
@@ -7440,8 +7475,8 @@ function is(e, t, n) {
 		client: document.documentElement.dataset.platform === "android" ? "android" : "web"
 	};
 	if (n) return i;
-	let a = ps(e.innerText || e.textContent || ""), o = (e.getAttribute("class") || "").split(/\s+/).map((e) => e.trim()).filter(Boolean).slice(0, 12);
-	return ms({
+	let a = _s(e.innerText || e.textContent || ""), o = (e.getAttribute("class") || "").split(/\s+/).map((e) => e.trim()).filter(Boolean).slice(0, 12);
+	return vs({
 		...i,
 		id: e.id || void 0,
 		classNames: o.length ? o : void 0,
@@ -7450,78 +7485,78 @@ function is(e, t, n) {
 		title: e.getAttribute("title") || void 0,
 		name: e.getAttribute("name") || void 0,
 		type: e.getAttribute("type") || void 0,
-		ancestorContext: as(e)
+		ancestorContext: ls(e)
 	});
 }
-function as(e) {
+function ls(e) {
 	let t = [], n = e.parentElement;
 	for (; n && n !== document.body && n !== document.documentElement && t.length < 5;) {
-		let e = os(n);
+		let e = us(n);
 		e && t.push(e), n = n.parentElement;
 	}
 	return t.reverse();
 }
-function os(e) {
+function us(e) {
 	let t = e.tagName.toLowerCase();
-	return e.id || e.getAttribute("class")?.trim() || e.hasAttribute("data-testid") || e.hasAttribute("data-test") || e.getAttribute("role") || e.getAttribute("aria-label") || ns.has(t) ? ms({
-		selectorPart: ls(e),
+	return e.id || e.getAttribute("class")?.trim() || e.hasAttribute("data-testid") || e.hasAttribute("data-test") || e.getAttribute("role") || e.getAttribute("aria-label") || os.has(t) ? vs({
+		selectorPart: ps(e),
 		role: e.getAttribute("role") || void 0,
 		ariaLabel: e.getAttribute("aria-label") || void 0,
 		title: e.getAttribute("title") || void 0
 	}) : null;
 }
-function ss(e, t = !1) {
+function ds(e, t = !1) {
 	if (!t && e.id) {
-		let t = `#${ds(e.id)}`;
-		if (us(t)) return t;
+		let t = `#${hs(e.id)}`;
+		if (ms(t)) return t;
 	}
 	let n = [], r = e;
 	for (; r && r !== document.documentElement && n.length < 8;) {
-		n.unshift(t ? cs(r) : ls(r));
+		n.unshift(t ? fs(r) : ps(r));
 		let e = n.join(" > ");
-		if (us(e)) return e;
+		if (ms(e)) return e;
 		r = r.parentElement;
 	}
 	return n.join(" > ") || e.tagName.toLowerCase();
 }
-function cs(e) {
+function fs(e) {
 	let t = e.tagName.toLowerCase(), n = 1;
 	for (let t = e.previousElementSibling; t; t = t.previousElementSibling) t.tagName === e.tagName && n++;
 	return `${t}:nth-of-type(${n})`;
 }
-function ls(e) {
-	if (e.id) return `#${ds(e.id)}`;
+function ps(e) {
+	if (e.id) return `#${hs(e.id)}`;
 	let t = e.tagName.toLowerCase(), n = e.hasAttribute("data-testid") ? "data-testid" : e.hasAttribute("data-test") ? "data-test" : "";
-	if (n) return `${t}[${n}="${fs(e.getAttribute(n))}"]`;
+	if (n) return `${t}[${n}="${gs(e.getAttribute(n))}"]`;
 	let r = (e.getAttribute("class") || "").split(/\s+/).map((e) => e.trim()).filter(Boolean).slice(0, 6);
-	return r.length ? `${t}${r.map((e) => `.${ds(e)}`).join("")}` : t;
+	return r.length ? `${t}${r.map((e) => `.${hs(e)}`).join("")}` : t;
 }
-function us(e) {
+function ms(e) {
 	try {
 		return document.querySelectorAll(e).length === 1;
 	} catch {
 		return !1;
 	}
 }
-function ds(e) {
+function hs(e) {
 	return window.CSS?.escape ? window.CSS.escape(e) : e.replace(/[^a-zA-Z0-9_-]/g, (e) => `\\${e}`);
 }
-function fs(e) {
+function gs(e) {
 	return e.replace(/\\/g, "\\\\").replace(/"/g, "\\\"");
 }
-function ps(e) {
+function _s(e) {
 	return e.replace(/\s+/g, " ").trim().slice(0, 240);
 }
-function ms(e) {
+function vs(e) {
 	return Object.fromEntries(Object.entries(e).filter(([, e]) => e !== void 0));
 }
 //#endregion
 //#region src/internal/page-report/screenshotGeometry.js
-function hs(e, t, n) {
+function ys(e, t, n) {
 	return Math.min(Math.max(e, t), n);
 }
-function gs(e, t) {
-	let n = Math.max(1, t.width), r = Math.max(1, t.height), i = hs(e.left - t.left, 0, n), a = hs(e.top - t.top, 0, r), o = hs(e.left + e.width - t.left, i, n), s = hs(e.top + e.height - t.top, a, r);
+function bs(e, t) {
+	let n = Math.max(1, t.width), r = Math.max(1, t.height), i = ys(e.left - t.left, 0, n), a = ys(e.top - t.top, 0, r), o = ys(e.left + e.width - t.left, i, n), s = ys(e.top + e.height - t.top, a, r);
 	return {
 		render: {
 			width: n,
@@ -7535,7 +7570,7 @@ function gs(e, t) {
 		}
 	};
 }
-function _s(e, t) {
+function xs(e, t) {
 	if (e === t) return {
 		left: 0,
 		top: 0
@@ -7549,68 +7584,68 @@ function _s(e, t) {
 }
 //#endregion
 //#region src/internal/page-report/errorReportScreenshot.js
-async function vs(e, t) {
+async function Ss(e, t) {
 	let n = e.getBoundingClientRect();
 	if (n.width <= 0 || n.height <= 0) throw Error("empty screenshot context");
-	let r = xs(e), i = _s(e, r), a = i.left || i.top ? e : r, o = gs(n, a.getBoundingClientRect());
+	let r = Ts(e), i = xs(e, r), a = i.left || i.top ? e : r, o = bs(n, a.getBoundingClientRect());
 	if (o.crop.width <= 0 || o.crop.height <= 0) throw Error("empty screenshot crop");
 	let s = Math.max(.1, Math.min(window.devicePixelRatio || 1, 2, 2400 / o.render.width, 1600 / o.render.height));
-	return bs(await ys(a, o.render, s, t), o, .82);
+	return ws(await Cs(a, o.render, s, t), o, .82);
 }
-function ys(e, t, n, r) {
+function Cs(e, t, n, r) {
 	return r(e, {
-		backgroundColor: Ts(e),
+		backgroundColor: ks(e),
 		cacheBust: !1,
 		width: t.width,
 		height: t.height,
 		pixelRatio: n,
-		filter: ws,
+		filter: Os,
 		style: { margin: "0" }
 	});
 }
-function bs(e, t, n) {
+function ws(e, t, n) {
 	let r = e.width / t.render.width, i = e.height / t.render.height, a = document.createElement("canvas");
 	a.width = Math.max(1, Math.round(t.crop.width * r)), a.height = Math.max(1, Math.round(t.crop.height * i));
 	let o = a.getContext("2d");
 	if (!o) throw Error("screenshot canvas unavailable");
 	return o.drawImage(e, t.crop.left * r, t.crop.top * i, t.crop.width * r, t.crop.height * i, 0, 0, a.width, a.height), {
-		dataURL: Es(a.toDataURL("image/jpeg", n)),
+		dataURL: As(a.toDataURL("image/jpeg", n)),
 		width: t.crop.width,
 		height: t.crop.height
 	};
 }
-function xs(e) {
+function Ts(e) {
 	let t = e;
 	for (; t && t !== document.body;) {
-		if (Ss(t)) return t;
+		if (Es(t)) return t;
 		t = t.parentElement;
 	}
 	return document.body;
 }
-function Ss(e) {
+function Es(e) {
 	let t = getComputedStyle(e);
-	return t.backgroundImage !== "none" || !Cs(t.backgroundColor);
+	return t.backgroundImage !== "none" || !Ds(t.backgroundColor);
 }
-function Cs(e) {
+function Ds(e) {
 	return !e || e === "transparent" || /rgba?\([^)]*[, /]0(?:\.0+)?\s*\)$/.test(e);
 }
-function ws(e) {
+function Os(e) {
 	return !(e instanceof Element && (e.matches("noscript, .am-overlay, .selection-highlight, .selection-hint, .report-toast") || e.closest("[data-error-report-ignore]")));
 }
-function Ts(e = document.body) {
+function ks(e = document.body) {
 	let t = e;
 	for (; t;) {
 		let e = getComputedStyle(t).backgroundColor;
-		if (!Cs(e)) return e;
+		if (!Ds(e)) return e;
 		t = t.parentElement;
 	}
 	return getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
 }
-function Es(e) {
-	if (Os(e) > 2097152) throw Error("large screenshot");
+function As(e) {
+	if (Ms(e) > 2097152) throw Error("large screenshot");
 	return e;
 }
-async function Ds(e, t) {
+async function js(e, t) {
 	let n;
 	try {
 		return await Promise.race([e, new Promise((e, r) => {
@@ -7620,13 +7655,13 @@ async function Ds(e, t) {
 		clearTimeout(n);
 	}
 }
-function Os(e) {
+function Ms(e) {
 	let t = e.indexOf(",");
 	return t < 0 ? Infinity : Math.ceil((e.length - t - 1) * 3 / 4);
 }
 //#endregion
 //#region src/internal/page-report/errorReportTouchGesture.js
-function ks(e, { canActivate: t = () => !0, target: n = document, view: r = window } = {}) {
+function Ns(e, { canActivate: t = () => !0, target: n = document, view: r = window } = {}) {
 	let i = !1, a = !1, o = {
 		capture: !0,
 		passive: !1
@@ -7664,7 +7699,7 @@ function ks(e, { canActivate: t = () => !0, target: n = document, view: r = wind
 }
 //#endregion
 //#region src/internal/page-report/usePageReport.js
-function As(e, t) {
+function Ps(e, t) {
 	let n = k(!e.requireAttachmentConsent), r = k(!e.requireAttachmentConsent), a = k(!1), o = k(!1), s = k(!1), c = k(""), l = k(""), u = k(null), d = k(""), f = k(null), p = k(""), m = k(""), h = k(!1), g = k(""), _ = k(""), v = k(""), b = k(!1), x = k(0), S = O({
 		width: 0,
 		height: 0
@@ -7716,16 +7751,16 @@ function As(e, t) {
 		if (!a.value) return;
 		let r = U(n);
 		if (!r) return;
-		n.preventDefault(), n.stopPropagation(), n.stopImmediatePropagation(), u.value = is(r, e.viewportPlatform, e.privateDetails), d.value = z(), V();
+		n.preventDefault(), n.stopPropagation(), n.stopImmediatePropagation(), u.value = cs(r, e.viewportPlatform, e.privateDetails), d.value = z(), V();
 		let i = ++j;
-		if (e.captureArea !== !1 && (P.value = rs(r), x.value = 0, Y(), M = {
+		if (e.captureArea !== !1 && (P.value = ss(r), x.value = 0, Y(), M = {
 			element: r,
 			session: i
 		}, m.value = "", g.value = "", h.value = !0), e.captureViewport) {
 			b.value = !0;
 			try {
 				if (await y(), await new Promise((e) => requestAnimationFrame(() => requestAnimationFrame(e))), i !== j) return;
-				let t = await Ds(e.captureViewport(), 5e3);
+				let t = await js(e.captureViewport(), 5e3);
 				if (i !== j) return;
 				_.value = t;
 			} catch {
@@ -7757,7 +7792,7 @@ function As(e, t) {
 		try {
 			let t = n.getBoundingClientRect();
 			if (t.width <= 0 || t.height <= 0) throw Error("empty element");
-			let i = await Ds(vs(n, e.renderCanvas), 1e4);
+			let i = await js(Ss(n, e.renderCanvas), 1e4);
 			if (r !== A) return;
 			te(i);
 		} catch {
@@ -7779,7 +7814,7 @@ function As(e, t) {
 		try {
 			let t = P.value[r];
 			if (!t?.isConnected) throw Error("context element detached");
-			let n = await Ds(vs(t, e.renderCanvas), 7e3);
+			let n = await js(Ss(t, e.renderCanvas), 7e3);
 			if (s !== A) return;
 			te(n);
 		} catch {
@@ -7794,7 +7829,7 @@ function As(e, t) {
 		u.value = {
 			...u.value,
 			screenshotContextLevel: x.value,
-			screenshotContextSelector: t ? ss(t, e.privateDetails) : u.value.selector
+			screenshotContextSelector: t ? ds(t, e.privateDetails) : u.value.selector
 		};
 	}
 	function re() {
@@ -7841,7 +7876,7 @@ function As(e, t) {
 		!a.value && !b.value && !o.value || (e.preventDefault(), e.stopImmediatePropagation(), o.value ? re() : H());
 	}
 	return w(() => {
-		e.globalShortcuts !== !1 && (N = ks(B, { canActivate: () => !a.value && !o.value && !b.value })), document.addEventListener("keydown", Z), window.addEventListener(e.requestEvent, B), e.nativeBackEvent && window.addEventListener(e.nativeBackEvent, se, !0);
+		e.globalShortcuts !== !1 && (N = Ns(B, { canActivate: () => !a.value && !o.value && !b.value })), document.addEventListener("keydown", Z), window.addEventListener(e.requestEvent, B), e.nativeBackEvent && window.addEventListener(e.nativeBackEvent, se, !0);
 	}), C(() => {
 		N?.(), V(), oe(), clearTimeout(D), document.removeEventListener("keydown", Z), window.removeEventListener(e.requestEvent, B), e.nativeBackEvent && window.removeEventListener(e.nativeBackEvent, se, !0);
 	}), {
@@ -7875,7 +7910,7 @@ function As(e, t) {
 }
 //#endregion
 //#region src/components/feedback/pageReportLabels.js
-var js = {
+var Fs = {
 	selectTitle: "Choose the element with a problem",
 	selectHint: "Point and select it",
 	cancelSelection: "Cancel · Esc",
@@ -7907,53 +7942,53 @@ var js = {
 	submitted: "Your report was sent.",
 	submitError: "Unable to send. Try again.",
 	optionalScreenshot: "You can send the report without a screenshot."
-}, Ms = {
+}, Is = {
 	class: "selection-hint",
 	role: "status",
 	"data-error-report-ignore": ""
-}, Ns = { class: "selected-element" }, Ps = { class: "selected-label" }, Fs = {
+}, Ls = { class: "selected-element" }, Rs = { class: "selected-label" }, zs = {
 	key: 0,
 	class: "selected-text"
-}, Is = { class: "screenshot-field" }, Ls = {
+}, Bs = { class: "screenshot-field" }, Vs = {
 	key: 0,
 	class: "selected-label"
-}, Rs = { class: "screenshot-previews" }, zs = {
+}, Hs = { class: "screenshot-previews" }, Us = {
 	key: 0,
 	class: "screenshot-preview-card screenshot-preview-card-element"
-}, Bs = {
+}, Ws = {
 	key: 0,
 	class: "screenshot-state screenshot-state-inside"
-}, Vs = ["src"], Hs = [
+}, Gs = ["src"], Ks = [
 	"title",
 	"aria-label",
 	"disabled"
-], Us = { class: "screenshot-context-label" }, Ws = [
+], qs = { class: "screenshot-context-label" }, Js = [
 	"title",
 	"aria-label",
 	"disabled"
-], Gs = {
+], Ys = {
 	key: 2,
 	class: "screenshot-state screenshot-state-error screenshot-state-inside"
-}, Ks = {
+}, Xs = {
 	key: 3,
 	class: "report-attachment"
-}, qs = ["disabled"], Js = {
+}, Zs = ["disabled"], Qs = {
 	key: 1,
 	class: "screenshot-preview-card"
-}, Ys = ["src"], Xs = {
+}, $s = ["src"], ec = {
 	key: 1,
 	class: "screenshot-state screenshot-state-error screenshot-state-inside"
-}, Zs = {
+}, tc = {
 	key: 2,
 	class: "report-attachment"
-}, Qs = ["disabled"], $s = { class: "description-meta" }, ec = {
+}, nc = ["disabled"], rc = { class: "description-meta" }, ic = {
 	key: 0,
 	class: "submit-error"
-}, tc = { class: "char-count" }, nc = {
+}, ac = { class: "char-count" }, oc = {
 	class: "report-toast",
 	role: "status",
 	"data-error-report-ignore": ""
-}, rc = /*#__PURE__*/ q({
+}, sc = /*#__PURE__*/ q({
 	__name: "PageReport",
 	props: {
 		options: {
@@ -7967,9 +8002,9 @@ var js = {
 	},
 	setup(n) {
 		let r = n, l = i(() => ({
-			...js,
+			...Fs,
 			...r.messages
-		})), { selecting: u, formOpen: p, submitting: m, description: h, submitError: g, selectedElement: v, reportForm: y, toast: b, screenshotDataURL: x, screenshotCapturing: C, screenshotError: w, screenshotContextLevel: T, viewportScreenshotDataURL: D, viewportScreenshotError: O, highlight: k, highlightStyle: A, maxScreenshotContextLevel: j, screenshotContextLabel: M, screenshotFrameStyle: N, cancelSelection: I, closeForm: L, submitReport: R, changeScreenshotContext: B, onReportModalOpened: H, includeArea: G, includeViewport: q } = As(r.options, l);
+		})), { selecting: u, formOpen: p, submitting: m, description: h, submitError: g, selectedElement: v, reportForm: y, toast: b, screenshotDataURL: x, screenshotCapturing: C, screenshotError: w, screenshotContextLevel: T, viewportScreenshotDataURL: D, viewportScreenshotError: O, highlight: k, highlightStyle: A, maxScreenshotContextLevel: j, screenshotContextLabel: M, screenshotFrameStyle: N, cancelSelection: I, closeForm: L, submitReport: R, changeScreenshotContext: B, onReportModalOpened: H, includeArea: G, includeViewport: q } = Ps(r.options, l);
 		return (r, i) => (E(), s(e, null, [
 			F(u) ? (E(), a(t, {
 				key: 0,
@@ -7978,11 +8013,11 @@ var js = {
 				class: "selection-highlight",
 				style: S(F(A)),
 				"aria-hidden": "true"
-			}, null, 4), [[V, F(k).visible]]), c("div", Ms, [c("div", null, [c("strong", null, P(l.value.selectTitle), 1), c("span", null, P(l.value.selectHint), 1)]), c("button", {
+			}, null, 4), [[V, F(k).visible]]), c("div", Is, [c("div", null, [c("strong", null, P(l.value.selectTitle), 1), c("span", null, P(l.value.selectHint), 1)]), c("button", {
 				type: "button",
 				onClick: i[0] ||= (...e) => F(I) && F(I)(...e)
 			}, P(l.value.cancelSelection), 1)])])) : o("", !0),
-			F(p) ? (E(), a(Ri, {
+			F(p) ? (E(), a(Hi, {
 				key: 1,
 				title: l.value.title,
 				"close-label": l.value.close,
@@ -7992,7 +8027,7 @@ var js = {
 				onOpened: F(H),
 				onClose: F(L)
 			}, {
-				footer: U(() => [f(aa, {
+				footer: U(() => [f(la, {
 					"submit-text": l.value.send,
 					"loading-text": l.value.sending,
 					"cancel-text": l.value.cancel,
@@ -8017,10 +8052,10 @@ var js = {
 					"data-error-report-ignore": "",
 					onSubmit: i[6] ||= K((...e) => F(R) && F(R)(...e), ["prevent"])
 				}, [
-					c("div", Ns, [c("span", Ps, P(l.value.element), 1), F(v)?.text ? (E(), s("span", Fs, P(F(v).text), 1)) : o("", !0)]),
-					c("div", Is, [n.options.captureArea === !1 ? o("", !0) : (E(), s("span", Ls, P(l.value.area), 1)), c("div", Rs, [n.options.captureArea === !1 ? o("", !0) : (E(), s("figure", zs, [
+					c("div", Ls, [c("span", Rs, P(l.value.element), 1), F(v)?.text ? (E(), s("span", zs, P(F(v).text), 1)) : o("", !0)]),
+					c("div", Bs, [n.options.captureArea === !1 ? o("", !0) : (E(), s("span", Vs, P(l.value.area), 1)), c("div", Hs, [n.options.captureArea === !1 ? o("", !0) : (E(), s("figure", Us, [
 						c("figcaption", null, [c("strong", null, P(l.value.elementPhoto), 1), c("span", null, P(l.value.elementHelp), 1)]),
-						F(C) && !F(x) ? (E(), s("div", Bs, P(l.value.capturing), 1)) : F(x) ? (E(), s("div", {
+						F(C) && !F(x) ? (E(), s("div", Ws, P(l.value.capturing), 1)) : F(x) ? (E(), s("div", {
 							key: 1,
 							class: "screenshot-preview-frame",
 							style: S(F(N))
@@ -8029,7 +8064,7 @@ var js = {
 								class: "screenshot-preview",
 								src: F(x),
 								alt: "Скриншот выбранного элемента"
-							}, null, 8, Vs),
+							}, null, 8, Gs),
 							c("button", {
 								class: "screenshot-context-button screenshot-context-button-less",
 								type: "button",
@@ -8037,8 +8072,8 @@ var js = {
 								"aria-label": l.value.lessTitle,
 								disabled: F(C) || F(T) === 0,
 								onClick: i[1] ||= (e) => F(B)(-1)
-							}, [i[7] ||= c("span", { "aria-hidden": "true" }, "‹", -1), d(" " + P(l.value.less), 1)], 8, Hs),
-							c("span", Us, P(F(M)), 1),
+							}, [i[7] ||= c("span", { "aria-hidden": "true" }, "‹", -1), d(" " + P(l.value.less), 1)], 8, Ks),
+							c("span", qs, P(F(M)), 1),
 							c("button", {
 								class: "screenshot-context-button screenshot-context-button-more",
 								type: "button",
@@ -8046,33 +8081,33 @@ var js = {
 								"aria-label": l.value.moreTitle,
 								disabled: F(C) || F(T) >= F(j),
 								onClick: i[2] ||= (e) => F(B)(1)
-							}, [d(P(l.value.more) + " ", 1), i[8] ||= c("span", { "aria-hidden": "true" }, "›", -1)], 8, Ws)
+							}, [d(P(l.value.more) + " ", 1), i[8] ||= c("span", { "aria-hidden": "true" }, "›", -1)], 8, Js)
 						], 4)) : o("", !0),
-						!F(C) && F(w) ? (E(), s("div", Gs, P(F(w)) + " " + P(l.value.optionalScreenshot), 1)) : o("", !0),
-						n.options.requireAttachmentConsent && F(x) ? (E(), s("label", Ks, [W(c("input", {
+						!F(C) && F(w) ? (E(), s("div", Ys, P(F(w)) + " " + P(l.value.optionalScreenshot), 1)) : o("", !0),
+						n.options.requireAttachmentConsent && F(x) ? (E(), s("label", Xs, [W(c("input", {
 							"onUpdate:modelValue": i[3] ||= (e) => _(G) ? G.value = e : null,
 							type: "checkbox",
 							disabled: F(m)
-						}, null, 8, qs), [[z, F(G)]]), d(" " + P(l.value.addArea), 1)])) : o("", !0)
-					])), F(D) || F(O) ? (E(), s("figure", Js, [
+						}, null, 8, Zs), [[z, F(G)]]), d(" " + P(l.value.addArea), 1)])) : o("", !0)
+					])), F(D) || F(O) ? (E(), s("figure", Qs, [
 						c("figcaption", null, [c("strong", null, P(l.value.viewport), 1), c("span", null, P(l.value.viewportHelp), 1)]),
 						F(D) ? (E(), s("img", {
 							key: 0,
 							class: "screenshot-viewport-preview",
 							src: F(D),
 							alt: "Скриншот экрана приложения"
-						}, null, 8, Ys)) : (E(), s("div", Xs, P(F(O)), 1)),
-						n.options.requireAttachmentConsent && F(D) ? (E(), s("label", Zs, [W(c("input", {
+						}, null, 8, $s)) : (E(), s("div", ec, P(F(O)), 1)),
+						n.options.requireAttachmentConsent && F(D) ? (E(), s("label", tc, [W(c("input", {
 							"onUpdate:modelValue": i[4] ||= (e) => _(q) ? q.value = e : null,
 							type: "checkbox",
 							disabled: F(m)
-						}, null, 8, Qs), [[z, F(q)]]), d(" " + P(l.value.addViewport), 1)])) : o("", !0)
+						}, null, 8, nc), [[z, F(q)]]), d(" " + P(l.value.addViewport), 1)])) : o("", !0)
 					])) : o("", !0)])]),
-					f(pa, {
+					f(_a, {
 						label: l.value.description,
 						vertical: ""
 					}, {
-						default: U(() => [f(ba, {
+						default: U(() => [f(wa, {
 							id: "error-report-description",
 							value: F(h),
 							"onUpdate:value": i[5] ||= (e) => _(h) ? h.value = e : null,
@@ -8087,7 +8122,7 @@ var js = {
 						])]),
 						_: 1
 					}, 8, ["label"]),
-					c("div", $s, [F(g) ? (E(), s("span", ec, P(F(g)), 1)) : o("", !0), c("span", tc, P(F(h).length) + " / 4000", 1)])
+					c("div", rc, [F(g) ? (E(), s("span", ic, P(F(g)), 1)) : o("", !0), c("span", ac, P(F(h).length) + " / 4000", 1)])
 				], 544)]),
 				_: 1
 			}, 8, [
@@ -8100,9 +8135,9 @@ var js = {
 			F(b) ? (E(), a(t, {
 				key: 2,
 				to: "body"
-			}, [c("div", nc, P(F(b)), 1)])) : o("", !0)
+			}, [c("div", oc, P(F(b)), 1)])) : o("", !0)
 		], 64));
 	}
 }, [["__scopeId", "data-v-dbd59e0d"]]);
 //#endregion
-export { Gn as $, Vi as A, Ne as At, $r as B, se as Bt, ua as C, gt as Ct, Ji as D, We as Dt, ta as E, Ze as Et, yi as F, ve as Ft, zr as G, q as Gt, qr as H, X as Ht, di as I, $ as It, Tr as J, Pr as K, fi as L, he as Lt, Ai as M, De as Mt, ki as N, we as Nt, qi as O, Be as Ot, bi as P, ye as Pt, Kn as Q, ai as R, me as Rt, pa as S, Xt as St, aa as T, ct as Tt, Wr as U, oe as Ut, Yr as V, Z as Vt, Hr as W, ae as Wt, tr as X, br as Y, qn as Z, Pa as _, Wt as _t, Do as a, Un as at, va as b, Jt as bt, vo as c, bn as ct, Za as d, yn as dt, Hn as et, Ja as f, pn as ft, Fa as g, nn as gt, La as h, ln as ht, Ko as i, Wn as it, Ri as j, ke as jt, Ki as k, Ie as kt, oo as l, xn as lt, za as m, un as mt, ts as n, Jn as nt, To as o, In as ot, qa as p, dn as pt, Dr as q, Zo as r, Zn as rt, So as s, An as st, rc as t, Qn as tt, eo as u, Sn as ut, Na as v, Ut as vt, sa as w, pt as wt, ga as x, qt as xt, ba as y, Yt as yt, ti as z, de as zt };
+export { Yn as $, Gi as A, We as At, ri as B, he as Bt, ma as C, Jt as Ct, Qi as D, pt as Dt, aa as E, gt as Et, Ci as F, De as Ft, Ur as G, X as Gt, Zr as H, de as Ht, hi as I, we as It, kr as J, q as Jt, Rr as K, oe as Kt, gi as L, ye as Lt, Pi as M, Ie as Mt, Ni as N, Ne as Nt, Zi as O, ct as Ot, wi as P, ke as Pt, Xn as Q, li as R, ve as Rt, _a as S, Yt as St, la as T, Xt as Tt, Jr as U, se as Ut, $r as V, me as Vt, Kr as W, Z as Wt, ar as X, wr as Y, Zn as Z, Ra as _, un as _t, jo as a, qn as at, Sa as b, Wt as bt, So as c, Pn as ct, to as d, bn as dt, Kn as et, Qa as f, xn as ft, za as g, dn as gt, Va as h, pn as ht, Xo as i, Jn as it, Hi as j, Be as jt, Xi as k, Ze as kt, uo as l, Mn as lt, Ua as m, yn as mt, as as n, Qn as nt, ko as o, Bn as ot, Za as p, Sn as pt, jr as q, ae as qt, ts as r, tr as rt, Eo as s, Nn as st, sc as t, nr as tt, io as u, An as ut, La as v, ln as vt, da as w, qt as wt, ba as x, Ut as xt, wa as y, nn as yt, ai as z, $ as zt };

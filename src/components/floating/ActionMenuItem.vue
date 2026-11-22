@@ -74,7 +74,7 @@ defineProps({
   transition: color 100ms ease, background-color 100ms ease, transform 80ms cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
-.ram-item:not(:disabled):hover { background: color-mix(in srgb, var(--text-on-accent) 6%, transparent); }
+.ram-item:not(:disabled):is(:hover, :active, [aria-expanded="true"]) { background: color-mix(in srgb, var(--text-on-accent) 6%, transparent); }
 .ram-item:disabled { cursor: default; opacity: 0.5; }
 .ram-item__icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; flex: 0 0 18px; transition: transform 90ms cubic-bezier(0.2, 0.8, 0.3, 1); }
 .ram-item__content { flex: 1 1 auto; min-width: 0; }

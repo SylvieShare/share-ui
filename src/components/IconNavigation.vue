@@ -99,7 +99,7 @@ defineExpose({ element, updateIndicator: measure, revealActive })
 .share-icon-navigation__icon { display: flex; align-items: center; justify-content: center; width: var(--icon-navigation-icon-size); height: var(--icon-navigation-icon-size); flex: none; }
 .share-icon-navigation__icon > :deep(svg) { width: 100%; height: 100%; }
 .share-icon-navigation__label { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: var(--icon-navigation-label-line-height, 13px); }
-@media (hover: hover) and (pointer: fine) {
+@media (any-hover: hover) and (any-pointer: fine) {
   .share-icon-navigation__item:hover:not(:disabled):not(.share-icon-navigation__item--selected) { color: var(--text-1); border-color: var(--border-strong); }
 }
 .share-icon-navigation__item--selected { color: var(--text-on-accent); border-color: transparent; }

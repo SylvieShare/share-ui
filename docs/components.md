@@ -740,3 +740,26 @@ strings, route metadata, network submission and optional native viewport capture
 accepts independently optional element and viewport screenshots.
 
 With `captureArea: false` the form uses the optional viewport capture alone.
+
+## Реакция на фактическое касание
+
+Приложение вызывает `installPointerInput()` до монтирования Vue. Состояние
+вводится в корневой DOM и действует также на компоненты, перенесённые в body.
+Свойства `pointerType` и `:focus-visible` доступны обработчикам через
+`isMousePointer(event)` и `canShowHoverHint(event)`. Поэтому подсказка по
+наведению остаётся доступна мышью, а подсказка по фокусу — с клавиатуры.
+
+Общий CSS библиотеки уже учитывает это состояние. Для собственных стилей
+consumer добавляет `pointerHoverCss(selectorParser)` в PostCSS. Функция
+доступна в `@sylvieshare/share-ui/hover-css`, парсер передаёт сборочное
+окружение. Преобразование сохраняет специфичность, состояния нажатия, фокуса и
+открытого меню. Повторная обработка подключённого CSS сохраняет один фильтр.
+
+```js
+import selectorParser from 'postcss-selector-parser'
+import { pointerHoverCss } from '@sylvieshare/share-ui/hover-css'
+
+export default {
+  css: { postcss: { plugins: [pointerHoverCss(selectorParser)] } },
+}
+```

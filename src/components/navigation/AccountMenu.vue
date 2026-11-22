@@ -79,7 +79,7 @@ const resolvedAvatarText = computed(() => (
   padding-right: 8px;
 }
 
-.share-account-trigger:hover:not(:disabled),
+.share-account-trigger:is(:hover, :active):not(:disabled),
 .share-account-trigger--open {
   background: var(--surface-raised);
 }

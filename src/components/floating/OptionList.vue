@@ -9,8 +9,8 @@
       role="option"
       :aria-selected="index === activeIndex"
       :aria-disabled="option.disabled || undefined"
-      @mouseenter="$emit('active', index); $emit('hover', { option, event: $event })"
-      @mouseleave="$emit('leave')"
+      @pointerenter="hover($event, option, index)"
+      @pointerleave="isMousePointer($event) && emit('leave')"
       @mousedown.prevent.stop
       @click.stop="!option.disabled && $emit('select', option)"
     ><slot name="option" :option="option">{{ option.label }}</slot></div>
@@ -20,6 +20,7 @@
 </template>
 <script setup>
 import { useId } from 'vue'
+import { isMousePointer } from '../../lib/pointerInput.js'
 defineProps({
   id: { type: String, default: () => useId() },
   label: { type: String, default: '' },
@@ -27,7 +28,12 @@ defineProps({
   activeIndex: { type: Number, default: -1 },
   emptyLabel: { type: String, default: 'No options found' },
 })
-defineEmits(['select', 'active', 'hover', 'leave'])
+const emit = defineEmits(['select', 'active', 'hover', 'leave'])
+function hover(event, option, index) {
+  if (!isMousePointer(event)) return
+  emit('active', index)
+  emit('hover', { option, event })
+}
 </script>
 <style scoped>
 .share-option-list { min-width: 0; max-height: 260px; overflow-y: auto; }

@@ -60,7 +60,7 @@ defineProps({
   transition: opacity 0.15s ease;
 }
 
-.share-sidebar-link:hover { color: var(--text-1); background: var(--surface-raised); }
+.share-sidebar-link:is(:hover, :active):not(:disabled) { color: var(--text-1); background: var(--surface-raised); }
 .share-sidebar-link.active { color: var(--text-1); background: color-mix(in srgb, var(--accent) 12%, transparent); }
 .share-sidebar-link.active::before { opacity: 1; }
 .share-sidebar-link.active .share-sidebar-icon { color: var(--accent-soft); }

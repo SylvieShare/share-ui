@@ -1,7 +1,7 @@
-import { $ as e, A as t, At as n, B as r, Bt as i, C as a, Ct as o, D as s, Dt as c, E as l, Et as u, F as d, Ft as f, G as p, H as m, Ht as h, I as g, It as _, J as v, K as y, L as b, Lt as x, M as S, Mt as C, N as w, Nt as T, O as E, Ot as D, P as O, Pt as k, Q as A, R as j, Rt as M, S as N, St as P, T as F, Tt as ee, U as te, Ut as ne, V as re, Vt as ie, W as ae, Wt as oe, X as se, Y as ce, Z as le, _ as I, _t as L, a as R, at as z, b as B, bt as V, c as H, ct as U, d as W, dt as G, et as ue, f as de, ft as fe, g as pe, gt as K, h as me, ht as q, i as he, it as ge, j as _e, jt as ve, k as ye, kt as be, l as xe, lt as Se, m as Ce, mt as we, n as Te, nt as Ee, o as De, ot as Oe, p as ke, pt as Ae, q as je, r as Me, rt as Ne, s as Pe, st as Fe, t as Ie, tt as Le, u as Re, ut as ze, v as Be, vt as Ve, w as He, wt as Ue, x as We, xt as Ge, y as Ke, yt as qe, z as Je, zt as Ye } from "./PageReport-D0t50kYX.js";
-import { computed as J, nextTick as Y, onBeforeUnmount as Xe, onScopeDispose as Ze, ref as X, shallowRef as Qe, toValue as $e, watch as Z } from "vue";
+import { $ as e, A as t, At as n, B as r, Bt as i, C as a, Ct as o, D as s, Dt as c, E as l, Et as u, F as d, Ft as f, G as p, Gt as m, H as h, Ht as g, I as _, It as v, J as y, K as b, Kt as x, L as S, Lt as C, M as w, Mt as T, N as E, Nt as D, O, Ot as k, P as A, Pt as j, Q as M, R as N, Rt as P, S as F, St as ee, T as te, Tt as ne, U as re, Ut as ie, V as ae, Vt as oe, W as se, Wt as ce, X as le, Y as I, Z as L, _ as R, _t as z, a as B, at as V, b as H, bt as U, c as W, ct as ue, d as de, dt as fe, et as pe, f as me, ft as he, g as ge, gt as _e, h as ve, ht as ye, i as be, it as xe, j as Se, jt as Ce, k as we, kt as Te, l as Ee, lt as De, m as Oe, mt as G, n as ke, nt as Ae, o as je, ot as Me, p as Ne, pt as Pe, q as Fe, qt as Ie, r as Le, rt as Re, s as ze, st as Be, t as Ve, tt as He, u as Ue, ut as We, v as Ge, vt as K, w as Ke, wt as qe, x as Je, xt as Ye, y as Xe, yt as q, z as Ze, zt as Qe } from "./PageReport-DdXSBfON.js";
+import { computed as J, nextTick as Y, onBeforeUnmount as $e, onScopeDispose as et, ref as X, shallowRef as tt, toValue as nt, watch as Z } from "vue";
 //#region src/internal/sortableGhost.js
-var et = 0;
+var rt = 0;
 function Q(e, t) {
 	let n = getComputedStyle(e);
 	for (let e of n) e.startsWith("--") && t.style.setProperty(e, n.getPropertyValue(e));
@@ -18,7 +18,7 @@ function Q(e, t) {
 		"direction"
 	]) t.style.setProperty(e, n.getPropertyValue(e));
 }
-var tt = /* @__PURE__ */ new Set([
+var it = /* @__PURE__ */ new Set([
 	"for",
 	"list",
 	"headers",
@@ -31,29 +31,29 @@ var tt = /* @__PURE__ */ new Set([
 	"aria-details",
 	"aria-errormessage"
 ]);
-function nt(e, t, n) {
-	return (t === "href" || t === "xlink:href") && e.startsWith("#") ? n.has(e.slice(1)) ? `#${n.get(e.slice(1))}` : e : tt.has(t) ? e.replace(/\S+/g, (e) => n.get(e) || e) : e.replace(/url\(\s*(['"]?)#([^\s'"\)]+)\1\s*\)/g, (e, t, r) => n.has(r) ? `url(${t}#${n.get(r)}${t})` : e);
+function $(e, t, n) {
+	return (t === "href" || t === "xlink:href") && e.startsWith("#") ? n.has(e.slice(1)) ? `#${n.get(e.slice(1))}` : e : it.has(t) ? e.replace(/\S+/g, (e) => n.get(e) || e) : e.replace(/url\(\s*(['"]?)#([^\s'"\)]+)\1\s*\)/g, (e, t, r) => n.has(r) ? `url(${t}#${n.get(r)}${t})` : e);
 }
-function rt(e) {
+function at(e) {
 	let t = e.cloneNode(!0), n = [t, ...t.querySelectorAll("*")], r = /* @__PURE__ */ new Map();
 	for (let e of n) {
 		if (!e.id) continue;
 		let t;
 		do
-			t = `share-sortable-ghost-${++et}`;
+			t = `share-sortable-ghost-${++rt}`;
 		while (document.getElementById(t));
 		r.set(e.id, t), e.id = t;
 	}
 	for (let e of n) for (let t of Array.from(e.attributes)) {
 		if (t.name === "id") continue;
-		let n = nt(t.value, t.name, r);
+		let n = $(t.value, t.name, r);
 		n !== t.value && e.setAttributeNS(t.namespaceURI, t.name, n);
 	}
 	return Q(e, t), t;
 }
 //#endregion
 //#region src/internal/sortableListPreview.js
-function it(e, { getKey: t, sourceItem: n, removeSource: r, insertAt: i }) {
+function ot(e, { getKey: t, sourceItem: n, removeSource: r, insertAt: i }) {
 	if (!n || !r && i == null) return e;
 	let a = t(n), o = e.filter((e) => t(e) !== a);
 	if (i == null) return o;
@@ -66,11 +66,11 @@ function it(e, { getKey: t, sourceItem: n, removeSource: r, insertAt: i }) {
 }
 //#endregion
 //#region src/composables/useSortable.js
-var $ = 4, at = 8;
-function ot(e, t = null) {
+var st = 4, ct = 8;
+function lt(e, t = null) {
 	return Array.from(e.querySelectorAll("[data-sortable-key]")).filter((t) => t.closest("[data-sortable-container]") === e).filter((e) => e.getAttribute("data-sortable-key") !== t);
 }
-function st(e, t, n, r, i = "list", a = "exact") {
+function ut(e, t, n, r, i = "list", a = "exact") {
 	if (i === "grid") {
 		if (a === "nearest") {
 			let r = e.getBoundingClientRect();
@@ -93,20 +93,20 @@ function st(e, t, n, r, i = "list", a = "exact") {
 		let s = Number(o.getAttribute("data-sortable-slot"));
 		return Number.isInteger(s) && s >= 0 ? s : -1;
 	}
-	let o = ot(e, r), s = o.findIndex((e) => n < e.getBoundingClientRect().top + e.getBoundingClientRect().height / 2);
+	let o = lt(e, r), s = o.findIndex((e) => n < e.getBoundingClientRect().top + e.getBoundingClientRect().height / 2);
 	return s < 0 ? o.length : s;
 }
-function ct(e, t, n) {
+function dt(e, t, n) {
 	if (t < 0) return e.slice();
 	let r = e.slice(), [i] = r.splice(t, 1);
 	return r.splice(Math.min(n, r.length), 0, i), r;
 }
-function lt(e) {
-	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = Number.isFinite(e.activationDelay) ? Math.max(0, e.activationDelay) : 0, o = X(!1), s = X(null), c = X(null), l = X(-1), u = X(null), d = X(-1), f = X(!1), p = null, m = 0, h = 0, _ = null, v = null, y = 0, b = null, x = null;
+function ft(e) {
+	let { groups: t, getKey: n, onDrop: r, canDropAt: i } = e, a = Number.isFinite(e.activationDelay) ? Math.max(0, e.activationDelay) : 0, o = X(!1), s = X(null), c = X(null), l = X(-1), u = X(null), d = X(-1), f = X(!1), p = null, m = 0, h = 0, g = null, v = null, y = 0, b = null, x = null;
 	function S(e, t, n, r) {
-		if (e.button !== void 0 && e.button !== 0 || _ || o.value) return;
+		if (e.button !== void 0 && e.button !== 0 || g || o.value) return;
 		let i = e.currentTarget.closest("[data-sortable-key]");
-		i && (_ = {
+		i && (g = {
 			x: e.clientX,
 			y: e.clientY,
 			pointerId: e.pointerId,
@@ -115,24 +115,24 @@ function lt(e) {
 			group: n,
 			index: r,
 			sourceEl: i
-		}, v?.(), a || (v = g()), document.addEventListener("pointermove", C), document.addEventListener("pointerup", A), document.addEventListener("pointercancel", A), window.addEventListener("keydown", j, !0), window.addEventListener("blur", E), a ? (document.addEventListener("touchmove", w, { passive: !1 }), document.addEventListener("contextmenu", T, !0), x = setTimeout(() => {
-			if (x = null, !_?.sourceEl.isConnected) {
+		}, v?.(), a || (v = _()), document.addEventListener("pointermove", C), document.addEventListener("pointerup", A), document.addEventListener("pointercancel", A), window.addEventListener("keydown", j, !0), window.addEventListener("blur", E), a ? (document.addEventListener("touchmove", w, { passive: !1 }), document.addEventListener("contextmenu", T, !0), x = setTimeout(() => {
+			if (x = null, !g?.sourceEl.isConnected) {
 				M();
 				return;
 			}
-			v = g(), D();
+			v = _(), D();
 		}, a)) : e.preventDefault());
 	}
 	function C(e) {
-		if (!(_?.pointerId && e.pointerId && _.pointerId !== e.pointerId)) {
+		if (!(g?.pointerId && e.pointerId && g.pointerId !== e.pointerId)) {
 			if (!o.value) {
-				if (!_) return;
-				let t = e.clientX - _.x, n = e.clientY - _.y;
+				if (!g) return;
+				let t = e.clientX - g.x, n = e.clientY - g.y;
 				if (a) {
-					Math.hypot(t, n) > at && M(!0);
+					Math.hypot(t, n) > ct && M(!0);
 					return;
 				}
-				if (Math.hypot(t, n) < $) return;
+				if (Math.hypot(t, n) < st) return;
 				D();
 			}
 			O(e.clientX, e.clientY), k(e.clientX, e.clientY);
@@ -143,25 +143,25 @@ function lt(e) {
 			M();
 			return;
 		}
-		o.value && _?.pointerType === "touch" && e.cancelable && e.preventDefault();
+		o.value && g?.pointerType === "touch" && e.cancelable && e.preventDefault();
 	}
 	function T(e) {
-		(_ || o.value) && e.preventDefault();
+		(g || o.value) && e.preventDefault();
 	}
 	function E() {
 		M();
 	}
 	function D() {
-		let { sourceEl: e, x: t, y: n, item: r, group: i, index: a } = _, f = e.getBoundingClientRect();
+		let { sourceEl: e, x: t, y: n, item: r, group: i, index: a } = g, f = e.getBoundingClientRect();
 		m = t - f.left, h = n - f.top;
-		let g = rt(e), v = g;
+		let _ = at(e), v = _;
 		if (e.tagName === "TR") {
 			let t = Array.from(e.children).map((e) => e.getBoundingClientRect().width);
-			Array.from(g.children).forEach((e, n) => {
+			Array.from(_.children).forEach((e, n) => {
 				e.style.width = t[n] + "px", e.style.minWidth = t[n] + "px", e.style.maxWidth = t[n] + "px";
 			});
 			let n = document.createElement("table"), r = document.createElement("tbody");
-			r.appendChild(g), n.appendChild(r), n.style.borderCollapse = "separate", n.style.tableLayout = "fixed", v = n, Q(e, v);
+			r.appendChild(_), n.appendChild(r), n.style.borderCollapse = "separate", n.style.tableLayout = "fixed", v = n, Q(e, v);
 		}
 		Object.assign(v.style, {
 			position: "fixed",
@@ -194,7 +194,7 @@ function lt(e) {
 			}
 		}
 		if (u.value = null, d.value = -1, !l) return;
-		let f = c.value ? String(n(c.value)) : null, p = st(o, e, r, f, t[l].layout, t[l].hitTest);
+		let f = c.value ? String(n(c.value)) : null, p = ut(o, e, r, f, t[l].layout, t[l].hitTest);
 		p < 0 || i && !i({
 			item: c.value,
 			fromGroup: s.value,
@@ -203,7 +203,7 @@ function lt(e) {
 		}) || (u.value = l, d.value = p);
 	}
 	function A(e) {
-		if (_?.pointerId && e?.pointerId && _.pointerId !== e.pointerId) return;
+		if (g?.pointerId && e?.pointerId && g.pointerId !== e.pointerId) return;
 		if (e?.type === "pointercancel") {
 			M();
 			return;
@@ -226,7 +226,7 @@ function lt(e) {
 	}
 	function M(e = !1) {
 		let t = o.value || e;
-		clearTimeout(x), x = null, document.removeEventListener("pointermove", C), document.removeEventListener("pointerup", A), document.removeEventListener("pointercancel", A), window.removeEventListener("keydown", j, !0), window.removeEventListener("blur", E), document.removeEventListener("touchmove", w), document.removeEventListener("contextmenu", T, !0), p &&= (p.remove(), null), document.body.classList.remove("sortable-dragging"), o.value = !1, s.value = null, c.value = null, l.value = -1, u.value = null, d.value = -1, _ = null, v?.(), v = null, t && (y = Date.now() + 250, f.value = !0, clearTimeout(b), b = setTimeout(() => {
+		clearTimeout(x), x = null, document.removeEventListener("pointermove", C), document.removeEventListener("pointerup", A), document.removeEventListener("pointercancel", A), window.removeEventListener("keydown", j, !0), window.removeEventListener("blur", E), document.removeEventListener("touchmove", w), document.removeEventListener("contextmenu", T, !0), p &&= (p.remove(), null), document.body.classList.remove("sortable-dragging"), o.value = !1, s.value = null, c.value = null, l.value = -1, u.value = null, d.value = -1, g = null, v?.(), v = null, t && (y = Date.now() + 250, f.value = !0, clearTimeout(b), b = setTimeout(() => {
 			f.value = !1, b = null;
 		}, 250));
 	}
@@ -240,14 +240,14 @@ function lt(e) {
 		let r = t[e];
 		if (!r) return [];
 		let i = r.items.value;
-		return r.layout === "grid" || !o.value ? i : it(i, {
+		return r.layout === "grid" || !o.value ? i : ot(i, {
 			getKey: n,
 			sourceItem: c.value,
 			removeSource: s.value === e,
 			insertAt: u.value === e ? d.value : null
 		});
 	}
-	return Xe(() => {
+	return $e(() => {
 		M(), clearTimeout(b), f.value = !1;
 	}), {
 		dragging: o,
@@ -264,9 +264,9 @@ function lt(e) {
 }
 //#endregion
 //#region src/composables/useSheetSubpages.js
-var ut = "cubic-bezier(.2, 0, 0, 1)", dt = 320;
-function ft() {
-	let e = X("detail"), t = X(0), n = X(!1), r = 1, i = null, a = J(() => n.value ? `transform ${dt}ms ${ut}` : "none"), o = J(() => ({
+var pt = "cubic-bezier(.2, 0, 0, 1)", mt = 320;
+function ht() {
+	let e = X("detail"), t = X(0), n = X(!1), r = 1, i = null, a = J(() => n.value ? `transform ${mt}ms ${pt}` : "none"), o = J(() => ({
 		transform: `translateX(${(-t.value * 100).toFixed(3)}%)`,
 		transition: a.value
 	})), s = J(() => ({
@@ -316,12 +316,12 @@ function ft() {
 }
 //#endregion
 //#region src/lib/virtualListLayout.js
-function pt(e, t, n, r) {
+function gt(e, t, n, r) {
 	let i = [0];
 	for (let a of e) i.push(i.at(-1) + (r.get(t(a)) || Math.max(1, n(a))));
 	return i;
 }
-function mt(e, t, n, r = 6) {
+function _t(e, t, n, r = 6) {
 	let i = e.length - 1;
 	if (!i) return {
 		start: 0,
@@ -342,8 +342,8 @@ function mt(e, t, n, r = 6) {
 }
 //#endregion
 //#region src/composables/useVirtualList.js
-function ht(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overscan: a = 6 } = {}) {
-	let o = Qe(/* @__PURE__ */ new Map()), s = X(0), c = X(0), l = X(null), u = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new WeakMap(), f = J(() => $e(e) || []), p = J(() => pt(f.value, n, r, o.value)), m = J(() => new Map(f.value.map((e, t) => [n(e), t]))), h = J(() => f.value.length > i), g = J(() => h.value ? mt(p.value, s.value, c.value || 600, a) : {
+function vt(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overscan: a = 6 } = {}) {
+	let o = tt(/* @__PURE__ */ new Map()), s = X(0), c = X(0), l = X(null), u = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new WeakMap(), f = J(() => nt(e) || []), p = J(() => gt(f.value, n, r, o.value)), m = J(() => new Map(f.value.map((e, t) => [n(e), t]))), h = J(() => f.value.length > i), g = J(() => h.value ? _t(p.value, s.value, c.value || 600, a) : {
 		start: 0,
 		end: f.value.length
 	}), _ = J(() => {
@@ -404,7 +404,7 @@ function ht(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overs
 		flush: "post"
 	}), Z(m, (e) => {
 		o.value = new Map([...o.value].filter(([t]) => e.has(t))), e.has(l.value) || (l.value = null), Y(w);
-	}), Ze(() => {
+	}), et(() => {
 		k(), y?.disconnect(), S != null && cancelAnimationFrame(S);
 	}), {
 		visibleItems: _,
@@ -414,4 +414,4 @@ function ht(e, t, { key: n, estimateSize: r = () => 70, threshold: i = 80, overs
 	};
 }
 //#endregion
-export { L as ACTION_MENU_GAP, Ve as ACTION_MENU_MARGIN, v as AccountMenu, me as ActionButton, K as ActionMenu, K as RowActionMenu, q as ActionMenuItem, q as RowActionItem, G as ActionMenuSubmenu, G as RowActionSubmenu, C as AddButton, d as AppDrawer, S as AppModal, _e as AppModalFrame, je as AppShell, p as AppSidebar, ve as AppSlider, Ye as AvatarFrame, fe as BasePopover, x as BaseTile, i as BlurBackdrop, oe as ChoiceCard, Fe as ColorPresetPicker, n as CompactCheckbox, ye as ConfirmDialog, H as ContentRow, he as DatePicker, xe as DetailSection, re as EditorPanel, Je as EditorSection, r as EditorSectionTitle, j as EditorTotal, M as FitContent, R as FloatingTooltip, F as FormActionButtons, N as FormField, We as FormNumberInput, B as FormSelect, He as FormTextInput, Ke as FormTextarea, ke as GuidedTour, ee as IconNavigation, Re as IconPicker, Ce as IconToggleButton, Be as InlineEdit, t as LoadingIndicator, pe as LoadingState, E as ModalShell, l as MorphSheet, f as MorphTile, _ as MorphTileHeader, be as MultiToggle, Pe as OptionList, U as PRESET_COLORS, Ie as PageReport, a as PromptDialog, a as TextPromptDialog, qe as ROW_ACTION_GAP, V as ROW_ACTION_MARGIN, D as RemoveButton, se as RichContent, ce as RichTextEditor, De as SearchMultiSelect, c as SectionLabel, T as SectionList, u as SegmentDonutChart, ae as SidebarBrand, te as SidebarGroup, m as SidebarNavItem, y as SidebarToggle, I as SkeletonBlock, Ue as SlidingTabs, Te as StarRating, W as StatBar, k as TileAccentStrip, Me as TimelineGroup, o as ToggleSwitch, Oe as ValueSelect, ie as applyBackdropBlur, h as backdropBlurStyle, ne as blurFilter, Ge as computeActionMenuPlacement, P as computeRowActionPlacement, le as createRichNodeHtml, A as decodeRichNodePayload, e as encodeRichNodePayload, ue as escapeHtml, b as isSortableGestureActive, Se as isValidHexColor, Le as plainTextToRichHtml, ze as randomPreset, Ee as readRichNode, ct as reorderByDrop, w as restoreFocus, Ne as sanitizeRichHtml, ge as sanitizeRichTextColor, z as sanitizeRichTextUrl, s as useContainerMorph, O as useFullscreenViewportHeight, de as useGuidedTour, Ae as useIsMobile, we as useMediaQuery, ft as useSheetSubpages, lt as useSortable, ht as useVirtualList };
+export { U as ACTION_MENU_GAP, Ye as ACTION_MENU_MARGIN, y as AccountMenu, ve as ActionButton, q as ActionMenu, q as RowActionMenu, K as ActionMenuItem, K as RowActionItem, G as ActionMenuSubmenu, G as RowActionSubmenu, f as AddButton, d as AppDrawer, w as AppModal, Se as AppModalFrame, Fe as AppShell, p as AppSidebar, j as AppSlider, g as AvatarFrame, ye as BasePopover, i as BaseTile, ie as BlurBackdrop, Ie as ChoiceCard, We as ColorPresetPicker, D as CompactCheckbox, we as ConfirmDialog, W as ContentRow, be as DatePicker, Ee as DetailSection, ae as EditorPanel, Ze as EditorSection, r as EditorSectionTitle, N as EditorTotal, oe as FitContent, B as FloatingTooltip, te as FormActionButtons, F as FormField, Je as FormNumberInput, H as FormSelect, Ke as FormTextInput, Xe as FormTextarea, Ne as GuidedTour, k as IconNavigation, Ue as IconPicker, Oe as IconToggleButton, Ge as InlineEdit, t as LoadingIndicator, ge as LoadingState, O as ModalShell, l as MorphSheet, P as MorphTile, Qe as MorphTileHeader, T as MultiToggle, ze as OptionList, fe as PRESET_COLORS, Ve as PageReport, a as PromptDialog, a as TextPromptDialog, ee as ROW_ACTION_GAP, o as ROW_ACTION_MARGIN, Ce as RemoveButton, le as RichContent, I as RichTextEditor, je as SearchMultiSelect, n as SectionLabel, v as SectionList, Te as SegmentDonutChart, se as SidebarBrand, re as SidebarGroup, h as SidebarNavItem, b as SidebarToggle, R as SkeletonBlock, c as SlidingTabs, ke as StarRating, de as StatBar, C as TileAccentStrip, Le as TimelineGroup, u as ToggleSwitch, Me as ValueSelect, ce as applyBackdropBlur, m as backdropBlurStyle, x as blurFilter, Be as canShowHoverHint, qe as computeActionMenuPlacement, ne as computeRowActionPlacement, L as createRichNodeHtml, M as decodeRichNodePayload, e as encodeRichNodePayload, pe as escapeHtml, ue as installPointerInput, De as isMousePointer, S as isSortableGestureActive, he as isValidHexColor, He as plainTextToRichHtml, Pe as randomPreset, Ae as readRichNode, dt as reorderByDrop, E as restoreFocus, Re as sanitizeRichHtml, xe as sanitizeRichTextColor, V as sanitizeRichTextUrl, s as useContainerMorph, A as useFullscreenViewportHeight, me as useGuidedTour, _e as useIsMobile, z as useMediaQuery, ht as useSheetSubpages, ft as useSortable, vt as useVirtualList };

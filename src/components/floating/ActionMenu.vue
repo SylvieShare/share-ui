@@ -284,7 +284,7 @@ defineExpose({ open, close, toggle })
   transition: color 100ms ease, background-color 100ms ease, transform 90ms cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
-.ram-trigger:hover { color: var(--text-1); background: color-mix(in srgb, var(--text-on-accent) 6%, transparent); }
+.ram-trigger:is(:hover, :active, [aria-expanded="true"]):not(:disabled) { color: var(--text-1); background: color-mix(in srgb, var(--text-on-accent) 6%, transparent); }
 .ram-trigger:active { transform: scale(0.88); }
 .ram-trigger:disabled { cursor: default; opacity: 0.5; }
 

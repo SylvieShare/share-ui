@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Ct as a, Dt as o, E as s, Et as c, F as l, Ft as u, G as ee, Gt as d, H as f, It as te, J as ne, Lt as p, M as re, Mt as ie, Nt as ae, O as oe, Ot as m, Pt as se, R as ce, Rt as le, S as h, T as ue, Tt as g, U as de, V as fe, W as pe, Wt as _, X as me, Y as he, _ as ge, a as _e, b as ve, c as v, d as y, dt as ye, f as be, ft as xe, g as Se, gt as Ce, h as b, ht as x, i as we, j as Te, jt as Ee, k as De, kt as Oe, l as S, m as ke, n as Ae, o as C, ot as je, p as w, pt as T, q as Me, r as Ne, s as E, st as Pe, t as D, u as O, v as Fe, w as Ie, wt as Le, x as Re, y as ze, z as Be, zt as k } from "./PageReport-D0t50kYX.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Dt as a, E as o, Et as s, F as c, Ft as l, G as ee, H as u, Ht as d, It as te, J as ne, Jt as f, Lt as re, M as ie, Mt as ae, Nt as oe, O as se, Ot as p, Pt as ce, R as le, Rt as m, S as h, T as ue, U as de, Ut as fe, V as pe, Vt as me, W as he, X as ge, Y as _e, _ as ve, a as ye, b as be, c as g, d as _, f as xe, g as Se, gt as v, h as y, ht as Ce, i as we, j as Te, jt as b, k as Ee, kt as De, l as x, m as Oe, mt as ke, n as Ae, o as S, ot as je, p as C, q as Me, qt as w, r as Ne, s as T, t as E, u as D, ut as Pe, v as Fe, vt as O, w as Ie, x as Le, y as Re, yt as k, z as ze, zt as Be } from "./PageReport-DdXSBfON.js";
 import { Fragment as A, createBlock as j, createCommentVNode as M, createElementBlock as N, createElementVNode as P, createTextVNode as F, createVNode as I, h as L, normalizeClass as Ve, normalizeStyle as He, openBlock as R, reactive as Ue, ref as z, renderList as B, toDisplayString as V, unref as We, vModelText as H, withCtx as U, withDirectives as Ge, withModifiers as Ke } from "vue";
 //#region src/gallery/PageReportExample.vue
 var W = "gallery:page-report", qe = {
@@ -20,20 +20,20 @@ var W = "gallery:page-report", qe = {
 			window.dispatchEvent(new Event(W));
 		}
 		return (e, r) => (R(), N(A, null, [
-			I(b, { onClick: n }, {
+			I(y, { onClick: n }, {
 				default: U(() => [...r[0] ||= [F("Report an issue", -1)]]),
 				_: 1
 			}),
 			r[1] ||= P("p", null, "Choose this paragraph to see the report form.", -1),
-			I(D, { options: t })
+			I(E, { options: t })
 		], 64));
 	}
-}, Je = { class: "choice-gallery-options" }, Ye = /*#__PURE__*/ d({
+}, Je = { class: "choice-gallery-options" }, Ye = /*#__PURE__*/ f({
 	__name: "ChoiceCardGalleryExample",
 	setup(e) {
 		let t = z("First option"), n = z(!0), r = z(!0), i = z(!1), a = ["Centered icon", "Long caption wraps below the icon"], o = z(a[0]), s = ["First option", "Second option"];
 		return (e, c) => (R(), N("article", null, [c[10] ||= P("h2", null, "ChoiceCard", -1), P("div", Je, [
-			(R(), N(A, null, B(s, (e) => I(_, {
+			(R(), N(A, null, B(s, (e) => I(w, {
 				key: e,
 				label: e,
 				description: "Exclusive, optional selection",
@@ -52,12 +52,12 @@ var W = "gallery:page-report", qe = {
 				"model-value",
 				"onUpdate:modelValue"
 			])), 64)),
-			I(_, {
+			I(w, {
 				label: "Unavailable",
 				description: "Disabled option",
 				disabled: ""
 			}),
-			I(_, {
+			I(w, {
 				label: "Compact",
 				layout: "inline",
 				description: "Inline choice",
@@ -72,7 +72,7 @@ var W = "gallery:page-report", qe = {
 				}, [P("path", { d: "M5 12h14m-6-6 6 6-6 6" })], -1)]]),
 				_: 1
 			}, 8, ["modelValue"]),
-			(R(), N(A, null, B(a, (e) => I(_, {
+			(R(), N(A, null, B(a, (e) => I(w, {
 				key: e,
 				label: e,
 				layout: "icon",
@@ -91,12 +91,12 @@ var W = "gallery:page-report", qe = {
 				"model-value",
 				"onUpdate:modelValue"
 			])), 64)),
-			I(_, {
+			I(w, {
 				label: "Unavailable icon choice",
 				layout: "icon",
 				disabled: ""
 			}),
-			I(_, {
+			I(w, {
 				label: "Centered inline choice",
 				layout: "inline",
 				centered: "",
@@ -112,7 +112,7 @@ var W = "gallery:page-report", qe = {
 				}, [P("path", { d: "M5 12h14m-6-6 6 6-6 6" })], -1)]]),
 				_: 1
 			}, 8, ["modelValue"]),
-			I(_, {
+			I(w, {
 				label: "Compact icon choice",
 				layout: "icon",
 				centered: "",
@@ -132,7 +132,7 @@ var W = "gallery:page-report", qe = {
 				}, [P("path", { d: "m12 3 9 5v8l-9 5-9-5V8z" })], -1)]]),
 				_: 1
 			}, 8, ["modelValue"]),
-			I(_, {
+			I(w, {
 				label: "Outlined selection",
 				layout: "icon",
 				tinted: "",
@@ -153,7 +153,7 @@ var W = "gallery:page-report", qe = {
 			}, 8, ["modelValue"])
 		])]));
 	}
-}, [["__scopeId", "data-v-0276b94d"]]), G = { class: "blur-gallery-scene" }, K = { class: "blur-gallery-label" }, Xe = /*#__PURE__*/ d({
+}, [["__scopeId", "data-v-0276b94d"]]), G = { class: "blur-gallery-scene" }, K = { class: "blur-gallery-label" }, Xe = /*#__PURE__*/ f({
 	__name: "BlurGalleryExample",
 	setup(e) {
 		let t = z(8);
@@ -163,7 +163,7 @@ var W = "gallery:page-report", qe = {
 				label: "Blur radius",
 				vertical: ""
 			}, {
-				default: U(() => [I(Re, {
+				default: U(() => [I(Le, {
 					modelValue: t.value,
 					"onUpdate:modelValue": n[0] ||= (e) => t.value = e,
 					min: 0,
@@ -173,7 +173,7 @@ var W = "gallery:page-report", qe = {
 			}),
 			P("div", G, [
 				n[1] ||= P("p", null, "Content behind the surface · 0123456789 · content behind the surface", -1),
-				I(r, { radius: Number(t.value) }, null, 8, ["radius"]),
+				I(fe, { radius: Number(t.value) }, null, 8, ["radius"]),
 				P("strong", K, "Sharp foreground · " + V(t.value) + "px", 1)
 			])
 		]));
@@ -181,7 +181,7 @@ var W = "gallery:page-report", qe = {
 }, [["__scopeId", "data-v-34aec14d"]]), Ze = {
 	__name: "TourGalleryExample",
 	setup(e) {
-		let t = z(null), n = T(640), r = Ue(be());
+		let t = z(null), n = v(640), r = Ue(xe());
 		function i() {
 			r.start([
 				{
@@ -203,83 +203,83 @@ var W = "gallery:page-report", qe = {
 				}
 			]);
 		}
-		return (e, a) => (R(), N(A, null, [I(b, {
+		return (e, a) => (R(), N(A, null, [I(y, {
 			ref_key: "button",
 			ref: t,
 			onClick: i
 		}, {
 			default: U(() => [...a[0] ||= [F("Показать обучение", -1)]]),
 			_: 1
-		}, 512), I(w, {
+		}, 512), I(C, {
 			tour: r,
 			mobile: We(n)
 		}, null, 8, ["tour", "mobile"])], 64));
 	}
-}, q = { class: "drawer-gallery" }, J = { class: "drawer-gallery__actions" }, Y = { class: "drawer-gallery__content" }, X = ["onClick"], Qe = /*#__PURE__*/ d({
+}, q = { class: "drawer-gallery" }, J = { class: "drawer-gallery__actions" }, Y = { class: "drawer-gallery__content" }, Qe = ["onClick"], $e = /*#__PURE__*/ f({
 	__name: "DrawerGalleryExample",
 	setup(e) {
-		let t = z(!1), n = z(!1), r = z(!1), i = z(!1), o = z(!1);
-		return (e, s) => (R(), N("div", q, [
-			s[17] ||= P("p", null, "AppDrawer: slide слева, scrim, Tab/Escape, возврат фокуса и optional swipe влево.", -1),
+		let t = z(!1), n = z(!1), r = z(!1), i = z(!1), a = z(!1);
+		return (e, o) => (R(), N("div", q, [
+			o[17] ||= P("p", null, "AppDrawer: slide слева, scrim, Tab/Escape, возврат фокуса и optional swipe влево.", -1),
 			P("div", J, [
 				P("button", {
 					type: "button",
-					onClick: s[0] ||= (e) => t.value = !0
+					onClick: o[0] ||= (e) => t.value = !0
 				}, "Header / body / footer"),
 				P("button", {
 					type: "button",
-					onClick: s[1] ||= (e) => r.value = !0
+					onClick: o[1] ||= (e) => r.value = !0
 				}, "Embedded AppSidebar"),
-				I(a, {
+				I(s, {
 					modelValue: i.value,
-					"onUpdate:modelValue": s[2] ||= (e) => i.value = e,
+					"onUpdate:modelValue": o[2] ||= (e) => i.value = e,
 					label: "Swipe from edge to open navigation"
 				}, null, 8, ["modelValue"]),
-				I(a, {
-					modelValue: o.value,
-					"onUpdate:modelValue": s[3] ||= (e) => o.value = e,
+				I(s, {
+					modelValue: a.value,
+					"onUpdate:modelValue": o[3] ||= (e) => a.value = e,
 					label: "Swipe to close"
 				}, null, 8, ["modelValue"])
 			]),
-			I(l, {
+			I(c, {
 				modelValue: t.value,
-				"onUpdate:modelValue": s[5] ||= (e) => t.value = e,
+				"onUpdate:modelValue": o[5] ||= (e) => t.value = e,
 				"aria-label": "Drawer example",
-				"swipe-to-close": o.value
+				"swipe-to-close": a.value
 			}, {
-				title: U(() => [...s[11] ||= [P("strong", null, "AppDrawer", -1)]]),
+				title: U(() => [...o[11] ||= [P("strong", null, "AppDrawer", -1)]]),
 				footer: U(({ close: e }) => [P("button", {
 					type: "button",
 					onClick: e
-				}, "Close drawer", 8, X)]),
+				}, "Close drawer", 8, Qe)]),
 				default: U(() => [P("div", Y, [
-					s[12] ||= P("p", null, "Тело прокручивается между фиксированными header и footer.", -1),
+					o[12] ||= P("p", null, "Тело прокручивается между фиксированными header и footer.", -1),
 					P("button", {
 						type: "button",
-						onClick: s[4] ||= (e) => n.value = !0
+						onClick: o[4] ||= (e) => n.value = !0
 					}, "Nested drawer"),
 					(R(), N(A, null, B(24, (e) => P("p", { key: e }, "Example row " + V(e), 1)), 64))
 				])]),
 				_: 1
 			}, 8, ["modelValue", "swipe-to-close"]),
-			I(l, {
+			I(c, {
 				modelValue: n.value,
-				"onUpdate:modelValue": s[6] ||= (e) => n.value = e,
+				"onUpdate:modelValue": o[6] ||= (e) => n.value = e,
 				"aria-label": "Nested drawer",
 				width: "min(360px, 90vw)",
 				"z-index": 3100
 			}, {
-				title: U(() => [...s[13] ||= [P("strong", null, "Nested drawer", -1)]]),
-				default: U(() => [s[14] ||= P("p", { class: "drawer-gallery__content" }, "Escape закрывает только верхний drawer; scroll остаётся заблокирован.", -1)]),
+				title: U(() => [...o[13] ||= [P("strong", null, "Nested drawer", -1)]]),
+				default: U(() => [o[14] ||= P("p", { class: "drawer-gallery__content" }, "Escape закрывает только верхний drawer; scroll остаётся заблокирован.", -1)]),
 				_: 1
 			}, 8, ["modelValue"]),
-			I(l, {
+			I(c, {
 				modelValue: r.value,
-				"onUpdate:modelValue": s[10] ||= (e) => r.value = e,
+				"onUpdate:modelValue": o[10] ||= (e) => r.value = e,
 				"aria-label": "Example navigation",
 				"show-close": !1,
 				"swipe-to-open": i.value,
-				"swipe-to-close": o.value
+				"swipe-to-close": a.value
 			}, {
 				default: U(() => [I(ee, {
 					"model-value": !0,
@@ -288,40 +288,40 @@ var W = "gallery:page-report", qe = {
 					"mobile-breakpoint": 1200,
 					"show-toggle": !1
 				}, {
-					brand: U(() => [I(pe, {
+					brand: U(() => [I(he, {
 						as: "div",
 						label: "share-ui"
 					}, {
-						icon: U(() => [...s[15] ||= [F("◆", -1)]]),
+						icon: U(() => [...o[15] ||= [F("◆", -1)]]),
 						_: 1
 					}), P("button", {
 						type: "button",
 						"aria-label": "Close navigation",
-						onClick: s[7] ||= (e) => r.value = !1
+						onClick: o[7] ||= (e) => r.value = !1
 					}, "×")]),
-					account: U(() => [I(Ce, { title: "Account actions" }, {
+					account: U(() => [I(k, { title: "Account actions" }, {
 						trigger: U(() => [I(ne, {
 							label: "Example account",
 							expanded: ""
 						})]),
-						default: U(() => [I(x, null, {
-							default: U(() => [...s[16] ||= [F("Account action", -1)]]),
+						default: U(() => [I(O, null, {
+							default: U(() => [...o[16] ||= [F("Account action", -1)]]),
 							_: 1
 						})]),
 						_: 1
 					})]),
 					default: U(() => [
 						I(de, { label: "Navigation" }),
-						I(f, {
+						I(u, {
 							as: "button",
 							label: "Overview",
 							active: "",
-							onClick: s[8] ||= (e) => r.value = !1
+							onClick: o[8] ||= (e) => r.value = !1
 						}),
-						I(f, {
+						I(u, {
 							as: "button",
 							label: "Components",
-							onClick: s[9] ||= (e) => r.value = !1
+							onClick: o[9] ||= (e) => r.value = !1
 						})
 					]),
 					_: 1
@@ -334,7 +334,7 @@ var W = "gallery:page-report", qe = {
 			])
 		]));
 	}
-}, [["__scopeId", "data-v-d3b27ea5"]]), $e = {
+}, [["__scopeId", "data-v-d3b27ea5"]]), et = {
 	__name: "PerformanceGalleryExample",
 	setup(e) {
 		let t = z("star"), n = z(!1), r = z([]), i = z(null), a = z(!1), o = [{
@@ -359,45 +359,45 @@ var W = "gallery:page-report", qe = {
 				label: e
 			}), r.value = [...r.value, t];
 		}
-		return (e, l) => (R(), N(A, null, [I(S, {
+		return (e, l) => (R(), N(A, null, [I(x, {
 			label: "Переиспользуемые представления",
 			collapsible: ""
 		}, {
 			default: U(() => [
-				I(y, {
+				I(_, {
 					percent: 65,
 					"temp-percent": 15,
 					label: "Значение",
 					decorated: "",
 					size: "large"
 				}),
-				I(y, {
+				I(_, {
 					percent: 0,
 					label: "Пустое значение",
 					size: "small"
 				}),
-				I(y, {
+				I(_, {
 					percent: 65,
 					"temp-percent": 15,
 					label: "Компактное значение",
 					size: "compact"
 				}),
-				I(y, {
+				I(_, {
 					percent: 100,
 					label: "Полное значение"
 				}),
-				I(O, {
+				I(D, {
 					modelValue: t.value,
 					"onUpdate:modelValue": l[0] ||= (e) => t.value = e,
 					options: o,
 					label: "Иконка"
 				}, null, 8, ["modelValue"]),
-				I(O, {
+				I(D, {
 					options: o,
 					label: "Недоступный выбор",
 					disabled: ""
 				}),
-				I(v, {
+				I(g, {
 					title: "Выбираемая строка",
 					subtitle: "Дополнительная информация",
 					interactive: "",
@@ -408,11 +408,11 @@ var W = "gallery:page-report", qe = {
 					trailing: U(() => [...l[9] ||= [F("42", -1)]]),
 					_: 1
 				}, 8, ["selected"]),
-				I(v, {
+				I(g, {
 					title: "Строка просмотра",
 					"show-chevron": !1
 				}),
-				I(C, {
+				I(S, {
 					modelValue: r.value,
 					"onUpdate:modelValue": l[2] ||= (e) => r.value = e,
 					options: s.value,
@@ -423,12 +423,12 @@ var W = "gallery:page-report", qe = {
 					"create-label": "Добавить",
 					onCreate: c
 				}, null, 8, ["modelValue", "options"]),
-				I(E, {
+				I(T, {
 					options: s.value,
 					label: "Варианты",
 					onSelect: l[3] ||= (e) => r.value = [e.value]
 				}, null, 8, ["options"]),
-				I(E, {
+				I(T, {
 					options: [],
 					label: "Пустой список"
 				}),
@@ -441,7 +441,7 @@ var W = "gallery:page-report", qe = {
 					onFocus: l[6] ||= (e) => a.value = !0,
 					onBlur: l[7] ||= (e) => a.value = !1
 				}, "Подсказка", 544),
-				a.value ? (R(), j(_e, {
+				a.value ? (R(), j(ye, {
 					key: 0,
 					anchor: i.value
 				}, {
@@ -450,7 +450,7 @@ var W = "gallery:page-report", qe = {
 				}, 8, ["anchor"])) : M("", !0)
 			]),
 			_: 1
-		}), I(S, {
+		}), I(x, {
 			label: "Скрытая секция",
 			collapsible: "",
 			"default-open": !1
@@ -459,31 +459,31 @@ var W = "gallery:page-report", qe = {
 			_: 1
 		})], 64));
 	}
-}, et = { class: "avatar-examples" }, tt = /*#__PURE__*/ d({
+}, X = { class: "avatar-examples" }, tt = /*#__PURE__*/ f({
 	__name: "AvatarGalleryExample",
 	setup(e) {
 		let t = "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2280%22%20height%3D%22160%22%3E%3Crect%20width%3D%2280%22%20height%3D%22160%22%20fill%3D%22slateblue%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2235%22%20r%3D%2224%22%20fill%3D%22lavender%22%2F%3E%3C%2Fsvg%3E";
-		return (e, n) => (R(), N(A, null, [n[2] ||= P("h2", null, "AvatarFrame", -1), P("div", et, [
-			I(k, {
+		return (e, n) => (R(), N(A, null, [n[2] ||= P("h2", null, "AvatarFrame", -1), P("div", X, [
+			I(d, {
 				src: t,
 				size: 64,
 				label: "Cropped portrait",
 				position: "center top"
 			}),
-			I(k, {
+			I(d, {
 				src: t,
 				size: 48,
 				fit: "contain",
 				label: "Contained artwork"
 			}),
-			I(k, {
+			I(d, {
 				size: 40,
 				label: "Initial"
 			}, {
 				default: U(() => [...n[0] ||= [F("A", -1)]]),
 				_: 1
 			}),
-			I(k, {
+			I(d, {
 				src: "/unavailable-avatar.png",
 				size: 32,
 				label: "Unavailable image"
@@ -493,7 +493,7 @@ var W = "gallery:page-report", qe = {
 			})
 		])], 64));
 	}
-}, [["__scopeId", "data-v-b8f96491"]]), Z = { class: "fit-example" }, Q = { class: "fit-example__row" }, nt = /*#__PURE__*/ d({
+}, [["__scopeId", "data-v-b8f96491"]]), Z = { class: "fit-example" }, Q = { class: "fit-example__row" }, nt = /*#__PURE__*/ f({
 	__name: "FitContentGalleryExample",
 	setup(e) {
 		let t = z(210);
@@ -512,7 +512,7 @@ var W = "gallery:page-report", qe = {
 			P("div", {
 				style: He({ width: `${t.value}px` }),
 				class: "fit-example__frame"
-			}, [I(le, null, {
+			}, [I(me, null, {
 				default: U(() => [P("div", Q, [(R(), N(A, null, B(6, (e) => P("strong", { key: e }, V(e), 1)), 64))])]),
 				_: 1
 			})], 4),
@@ -639,7 +639,7 @@ var W = "gallery:page-report", qe = {
 }, Cn = {
 	class: "share-component-gallery__card",
 	"data-share-gallery": "AppModal AppModalFrame ModalShell ConfirmDialog TextPromptDialog MorphSheet"
-}, wn = { class: "share-component-gallery__row" }, Tn = /*#__PURE__*/ d({
+}, wn = { class: "share-component-gallery__row" }, Tn = /*#__PURE__*/ f({
 	__name: "ComponentGallery",
 	props: {
 		title: {
@@ -651,8 +651,8 @@ var W = "gallery:page-report", qe = {
 			default: "Единая интерактивная витрина публичных визуальных компонентов в теме текущего приложения."
 		}
 	},
-	setup(r) {
-		let l = rt.length, d = z(3), le = z(!0), _ = z(!0), _e = z(!1), v = z(!1), y = z(!0), be = z("md"), S = z("preview"), C = z("build"), w = [
+	setup(c) {
+		let d = rt.length, f = z(3), fe = z(!0), me = z(!0), ye = z(!1), g = z(!1), _ = z(!0), xe = z("md"), v = z("preview"), x = z("build"), S = [
 			{
 				key: "build",
 				label: "Build"
@@ -668,7 +668,7 @@ var W = "gallery:page-report", qe = {
 				divider: !0,
 				dividerLabel: "Tools"
 			}
-		], T = z(62), E = z("rare"), D = z("#7c5ce2"), O = z("<p><strong>RichContent</strong> показывает очищенный результат и <span data-rich-node=\"mention\" data-rich-payload=\"%7B%22id%22%3A42%7D\" contenteditable=\"false\">@example</span>.</p>"), k = z(!0), L = z(!0), H = z(!1), Ge = z(null), W = z(null), Je = z(null), G = z(!1), K = z(!1), q = z(!0), J = z(!1), Y = z(!1), X = z(!1), et = z(!1), Z = z(0), Q = z(!1), it = z(null), Tn = [
+		], C = z(62), w = z("rare"), T = z("#7c5ce2"), E = z("<p><strong>RichContent</strong> показывает очищенный результат и <span data-rich-node=\"mention\" data-rich-payload=\"%7B%22id%22%3A42%7D\" contenteditable=\"false\">@example</span>.</p>"), D = z(!0), L = z(!0), H = z(!1), Ge = z(null), W = z(null), Je = z(null), G = z(!1), K = z(!1), q = z(!0), J = z(!1), Y = z(!1), Qe = z(!1), X = z(!1), Z = z(0), Q = z(!1), it = z(null), Tn = [
 			{
 				value: "sm",
 				label: "S"
@@ -735,9 +735,9 @@ var W = "gallery:page-report", qe = {
 		}
 		return (Ue, z) => (R(), N("div", at, [
 			P("header", ot, [P("div", null, [
-				P("p", st, "share-ui · " + V(We(l)) + " компонентов", 1),
-				P("h1", null, V(r.title), 1),
-				P("p", null, V(r.description), 1)
+				P("p", st, "share-ui · " + V(We(d)) + " компонентов", 1),
+				P("h1", null, V(c.title), 1),
+				P("p", null, V(c.description), 1)
 			]), z[52] ||= P("span", {
 				class: "share-component-gallery__accent",
 				"aria-label": "Текущий акцент"
@@ -749,8 +749,8 @@ var W = "gallery:page-report", qe = {
 			P("section", ft, [I(Ye)]),
 			P("section", pt, [
 				I(Ae, {
-					modelValue: d.value,
-					"onUpdate:modelValue": z[0] ||= (e) => d.value = e,
+					modelValue: f.value,
+					"onUpdate:modelValue": z[0] ||= (e) => f.value = e,
 					label: "Оценка"
 				}, null, 8, ["modelValue"]),
 				I(Ae, {
@@ -765,22 +765,22 @@ var W = "gallery:page-report", qe = {
 					disabled: ""
 				})
 			]),
-			P("section", mt, [I($e)]),
+			P("section", mt, [I(et)]),
 			P("section", ht, [z[54] ||= P("h2", null, "GuidedTour", -1), I(Ze)]),
-			P("section", gt, [I(o, {
+			P("section", gt, [I(t, {
 				title: "Поверхности и действия",
 				border: ""
 			}), P("div", _t, [
 				P("article", vt, [
 					z[74] ||= P("h2", null, "BaseTile", -1),
-					P("div", yt, [I(p, {
+					P("div", yt, [I(r, {
 						surface: "glass",
 						framed: "",
 						class: "share-component-gallery__tile"
 					}, {
 						default: U(() => [...z[55] ||= [F("Glass frame", -1)]]),
 						_: 1
-					}), I(p, {
+					}), I(r, {
 						surface: "glass",
 						tint: "",
 						interactive: "",
@@ -789,7 +789,7 @@ var W = "gallery:page-report", qe = {
 						default: U(() => [...z[56] ||= [F("Glass interactive", -1)]]),
 						_: 1
 					})]),
-					I(b, {
+					I(y, {
 						"icon-only": "",
 						variant: "quiet",
 						"aria-label": "Действие без рамки"
@@ -797,7 +797,7 @@ var W = "gallery:page-report", qe = {
 						icon: U(() => [...z[57] ||= [F("✦", -1)]]),
 						_: 1
 					}),
-					I(b, {
+					I(y, {
 						"icon-only": "",
 						variant: "quiet",
 						style: { "--action-button-icon-size": "36px" },
@@ -807,26 +807,26 @@ var W = "gallery:page-report", qe = {
 						_: 1
 					}),
 					P("div", bt, [
-						I(p, {
+						I(r, {
 							tint: "",
 							interactive: "",
 							class: "share-component-gallery__tile"
 						}, {
 							default: U(() => [
-								I(se),
+								I(re),
 								z[59] ||= P("strong", null, "Акцентная плитка", -1),
 								z[60] ||= P("span", null, "TileAccentStrip · tint · interactive", -1)
 							]),
 							_: 1
 						}),
-						I(p, {
+						I(r, {
 							framed: "",
 							class: "share-component-gallery__tile"
 						}, {
 							default: U(() => [...z[61] ||= [P("strong", null, "Рамка", -1), P("span", null, "framed", -1)]]),
 							_: 1
 						}),
-						I(p, {
+						I(r, {
 							framed: "",
 							"frame-width": 2,
 							class: "share-component-gallery__tile"
@@ -834,7 +834,7 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [...z[62] ||= [P("strong", null, "Усиленная рамка", -1), P("span", null, "frameWidth=2", -1)]]),
 							_: 1
 						}),
-						I(p, {
+						I(r, {
 							elevated: "",
 							outlined: !1,
 							class: "share-component-gallery__tile"
@@ -842,7 +842,7 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [...z[63] ||= [P("strong", null, "Приподнятая поверхность", -1), P("span", null, "elevated", -1)]]),
 							_: 1
 						}),
-						I(p, {
+						I(r, {
 							surface: "popover",
 							elevated: "",
 							outlined: !1,
@@ -851,7 +851,7 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [...z[64] ||= [P("strong", null, "Поверхность меню", -1), P("span", null, "surface=popover · elevated", -1)]]),
 							_: 1
 						}),
-						I(p, {
+						I(r, {
 							elevated: "",
 							interactive: "",
 							class: "share-component-gallery__tile"
@@ -859,7 +859,7 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [...z[65] ||= [P("strong", null, "Тень с обводкой", -1), P("span", null, "elevated · outlined · interactive", -1)]]),
 							_: 1
 						}),
-						I(p, {
+						I(r, {
 							elevated: "",
 							framed: "",
 							interactive: "",
@@ -868,7 +868,7 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [...z[66] ||= [P("strong", null, "Тень с рамкой", -1), P("span", null, "elevated · framed · interactive", -1)]]),
 							_: 1
 						}),
-						I(u, {
+						I(m, {
 							title: "Редактируемая плитка",
 							"show-edit": "",
 							"edit-label": "Редактировать",
@@ -878,7 +878,7 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [z[67] ||= P("span", null, "Единый заголовок и действие справа", -1)]),
 							_: 1
 						}),
-						I(u, {
+						I(m, {
 							style: { width: "100px" },
 							"compact-header": "",
 							title: "Компактный заголовок",
@@ -888,11 +888,11 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [...z[68] ||= [P("span", null, "Малая плитка", -1)]]),
 							_: 1
 						}),
-						I(u, { title: "Только просмотр" }, {
+						I(m, { title: "Только просмотр" }, {
 							default: U(() => [...z[69] ||= [P("span", null, "Без карандаша", -1)]]),
 							_: 1
 						}),
-						I(u, {
+						I(m, {
 							title: "Редактирование по заголовку",
 							"show-edit": "",
 							"show-edit-icon": !1,
@@ -903,18 +903,18 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [z[70] ||= P("span", null, "Нажмите название", -1)]),
 							_: 1
 						}),
-						I(u, {
+						I(m, {
 							outlined: !1,
 							title: "Мягкая поверхность"
 						}, {
 							default: U(() => [...z[71] ||= [P("span", null, "Подложка без обводки", -1)]]),
 							_: 1
 						}),
-						I(u, null, {
+						I(m, null, {
 							default: U(() => [...z[72] ||= [P("span", null, "Без заголовка", -1)]]),
 							_: 1
 						}),
-						I(u, {
+						I(m, {
 							embedded: "",
 							title: "Раскрытая грань",
 							"show-edit": "",
@@ -924,7 +924,7 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [...z[73] ||= [P("span", null, "Без второй поверхности", -1)]]),
 							_: 1
 						}),
-						I(te, { title: "Общий заголовок" })
+						I(Be, { title: "Общий заголовок" })
 					])
 				]),
 				P("article", xt, [
@@ -955,11 +955,11 @@ var W = "gallery:page-report", qe = {
 							"show-label": ""
 						})
 					]),
-					P("div", Ct, [I(ge, {
+					P("div", Ct, [I(ve, {
 						width: "36px",
 						height: "36px",
 						round: ""
-					}), I(ge, { width: "60%" })])
+					}), I(ve, { width: "60%" })])
 				]),
 				P("article", wt, [
 					z[76] ||= P("h2", null, "InlineEdit", -1),
@@ -990,7 +990,7 @@ var W = "gallery:page-report", qe = {
 				]),
 				P("article", Tt, [
 					z[84] ||= P("h2", null, "TimelineGroup", -1),
-					I(o, {
+					I(t, {
 						title: "История",
 						line: ""
 					}, {
@@ -1023,12 +1023,12 @@ var W = "gallery:page-report", qe = {
 				]),
 				P("article", Et, [
 					z[88] ||= P("h2", null, "SectionList", -1),
-					I(ae, { title: "Записи" }, {
-						footer: U(() => [I(ie, { label: "Добавить запись" })]),
+					I(te, { title: "Записи" }, {
+						footer: U(() => [I(l, { label: "Добавить запись" })]),
 						default: U(() => [z[85] ||= P("div", { style: { padding: "12px 0" } }, "Первая запись", -1), z[86] ||= P("div", { style: { padding: "12px 0" } }, "Вторая запись", -1)]),
 						_: 1
 					}),
-					I(ae, {
+					I(te, {
 						title: "Встроенная группа",
 						embedded: "",
 						compact: ""
@@ -1040,9 +1040,9 @@ var W = "gallery:page-report", qe = {
 				P("article", Dt, [
 					z[103] ||= P("h2", null, "Кнопки элементов", -1),
 					P("div", Ot, [
-						I(ke, {
-							modelValue: le.value,
-							"onUpdate:modelValue": z[3] ||= (e) => le.value = e,
+						I(Oe, {
+							modelValue: fe.value,
+							"onUpdate:modelValue": z[3] ||= (e) => fe.value = e,
 							label: "Переключить действие",
 							color: "var(--success)"
 						}, {
@@ -1058,7 +1058,7 @@ var W = "gallery:page-report", qe = {
 							})], -1)]]),
 							_: 1
 						}, 8, ["modelValue"]),
-						I(ke, {
+						I(Oe, {
 							"model-value": !1,
 							label: "Выключенное действие"
 						}, {
@@ -1074,7 +1074,7 @@ var W = "gallery:page-report", qe = {
 							})], -1)]]),
 							_: 1
 						}),
-						I(ke, {
+						I(Oe, {
 							"model-value": !0,
 							label: "Недоступное действие",
 							disabled: ""
@@ -1092,27 +1092,27 @@ var W = "gallery:page-report", qe = {
 							_: 1
 						})
 					]),
-					I(o, {
+					I(t, {
 						title: "Заголовок под разделителем",
 						border: "",
 						"border-position": "before",
 						inset: 8
 					}),
-					I(o, {
+					I(t, {
 						title: "Увеличенный заголовок с отступом 12px",
 						size: "medium",
 						"space-after": 12
 					}),
 					P("div", kt, [
-						I(b, null, {
+						I(y, null, {
 							default: U(() => [...z[92] ||= [F("Основное действие", -1)]]),
 							_: 1
 						}),
-						I(b, { variant: "secondary" }, {
+						I(y, { variant: "secondary" }, {
 							default: U(() => [...z[93] ||= [F("Вторичное", -1)]]),
 							_: 1
 						}),
-						I(b, {
+						I(y, {
 							"icon-only": "",
 							variant: "secondary",
 							"aria-label": "Цветное действие",
@@ -1126,15 +1126,15 @@ var W = "gallery:page-report", qe = {
 							icon: U(() => [...z[94] ||= [F("✦", -1)]]),
 							_: 1
 						}),
-						I(b, { variant: "quiet" }, {
+						I(y, { variant: "quiet" }, {
 							default: U(() => [...z[95] ||= [F("Тихое", -1)]]),
 							_: 1
 						}),
-						I(b, { variant: "dashed" }, {
+						I(y, { variant: "dashed" }, {
 							default: U(() => [...z[96] ||= [F("Пунктирная рамка", -1)]]),
 							_: 1
 						}),
-						I(b, {
+						I(y, {
 							layout: "stacked",
 							variant: "quiet"
 						}, {
@@ -1142,7 +1142,7 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [z[98] ||= F("Действие", -1)]),
 							_: 1
 						}),
-						I(b, {
+						I(y, {
 							layout: "stacked",
 							variant: "dashed",
 							style: { "--action-button-height": "96px" }
@@ -1151,68 +1151,68 @@ var W = "gallery:page-report", qe = {
 							default: U(() => [z[100] ||= F("Добавить превью", -1)]),
 							_: 1
 						}),
-						I(b, { disabled: "" }, {
+						I(y, { disabled: "" }, {
 							default: U(() => [...z[101] ||= [F("Недоступно", -1)]]),
 							_: 1
 						}),
-						I(b, {
+						I(y, {
 							loading: "",
 							"loading-label": "Загрузка"
 						}, {
 							default: U(() => [...z[102] ||= [F("Загрузка", -1)]]),
 							_: 1
 						}),
-						I(ie, { label: "Добавить элемент" }),
-						I(ie, {
+						I(l, { label: "Добавить элемент" }),
+						I(l, {
 							label: "Добавить",
 							variant: "icon"
 						}),
-						I(m, { label: "Удалить" }),
-						I(m, {
+						I(b, { label: "Удалить" }),
+						I(b, {
 							label: "Удалить",
 							variant: "boxed"
 						}),
-						I(m, {
+						I(b, {
 							label: "Удалить запись",
 							icon: "trash"
 						}),
-						I(m, {
+						I(b, {
 							label: "Удалить запись",
 							icon: "trash",
 							variant: "boxed"
 						}),
-						I(m, {
+						I(b, {
 							label: "Удаление недоступно",
 							icon: "trash",
 							disabled: ""
 						})
 					])
 				]),
-				P("article", At, [z[104] ||= P("h2", null, "SegmentDonutChart", -1), I(c, {
+				P("article", At, [z[104] ||= P("h2", null, "SegmentDonutChart", -1), I(De, {
 					segments: On,
 					"total-label": "Всего",
 					"aria-label": "Распределение места",
 					"format-value": kn
 				})])
 			])]),
-			P("section", jt, [I(o, {
+			P("section", jt, [I(t, {
 				title: "Переключатели",
 				border: ""
 			}), P("div", Mt, [
 				P("article", Nt, [z[109] ||= P("h2", null, "Boolean controls", -1), P("div", Pt, [
-					I(a, {
-						modelValue: _.value,
-						"onUpdate:modelValue": z[4] ||= (e) => _.value = e,
+					I(s, {
+						modelValue: me.value,
+						"onUpdate:modelValue": z[4] ||= (e) => me.value = e,
 						label: "Включить механику"
 					}, null, 8, ["modelValue"]),
-					I(a, {
-						modelValue: _e.value,
-						"onUpdate:modelValue": z[5] ||= (e) => _e.value = e,
+					I(s, {
+						modelValue: ye.value,
+						"onUpdate:modelValue": z[5] ||= (e) => ye.value = e,
 						label: "Обычная поверхность"
 					}, null, 8, ["modelValue"]),
-					P("div", Ft, [I(a, {
-						modelValue: v.value,
-						"onUpdate:modelValue": z[6] ||= (e) => v.value = e,
+					P("div", Ft, [I(s, {
+						modelValue: g.value,
+						"onUpdate:modelValue": z[6] ||= (e) => g.value = e,
 						surface: "raised",
 						block: "",
 						"track-placement": "end",
@@ -1221,18 +1221,18 @@ var W = "gallery:page-report", qe = {
 						default: U(() => [...z[105] ||= [F(" Приподнятая поверхность — вся строка переключает значение ", -1)]]),
 						_: 1
 					}, 8, ["modelValue"])]),
-					P("label", It, [I(t, {
-						modelValue: y.value,
-						"onUpdate:modelValue": z[7] ||= (e) => y.value = e,
+					P("label", It, [I(oe, {
+						modelValue: _.value,
+						"onUpdate:modelValue": z[7] ||= (e) => _.value = e,
 						label: "Выбрать элемент"
 					}, null, 8, ["modelValue"]), z[106] ||= F(" Выбрать элемент ", -1)]),
-					P("label", Lt, [I(t, {
-						modelValue: y.value,
-						"onUpdate:modelValue": z[8] ||= (e) => y.value = e,
+					P("label", Lt, [I(oe, {
+						modelValue: _.value,
+						"onUpdate:modelValue": z[8] ||= (e) => _.value = e,
 						size: 24,
 						label: "Крупный выбор"
 					}, null, 8, ["modelValue"]), z[107] ||= F(" Крупный выбор (24px) ", -1)]),
-					P("label", Rt, [I(t, {
+					P("label", Rt, [I(oe, {
 						"model-value": !1,
 						indeterminate: "",
 						size: 22,
@@ -1241,21 +1241,21 @@ var W = "gallery:page-report", qe = {
 					}), z[108] ||= F("Частичный выбор · touch 48", -1)])
 				])]),
 				P("article", zt, [z[112] ||= P("h2", null, "Segmented controls", -1), P("div", Bt, [
-					I(Oe, {
-						modelValue: be.value,
-						"onUpdate:modelValue": z[9] ||= (e) => be.value = e,
+					I(ae, {
+						modelValue: xe.value,
+						"onUpdate:modelValue": z[9] ||= (e) => xe.value = e,
 						options: Tn,
 						"aria-label": "Размер"
 					}, null, 8, ["modelValue"]),
-					I(Le, {
-						modelValue: S.value,
-						"onUpdate:modelValue": z[10] ||= (e) => S.value = e,
+					I(a, {
+						modelValue: v.value,
+						"onUpdate:modelValue": z[10] ||= (e) => v.value = e,
 						variant: "chips",
 						tabs: En,
 						"max-tab-width": 160,
 						"aria-label": "Режим просмотра чипами"
 					}, {
-						"tab-actions": U(({ tab: e }) => [I(b, {
+						"tab-actions": U(({ tab: e }) => [I(y, {
 							"icon-only": "",
 							variant: "quiet",
 							"aria-label": `Изменить ${e.title}`
@@ -1265,9 +1265,9 @@ var W = "gallery:page-report", qe = {
 						}, 8, ["aria-label"])]),
 						_: 1
 					}, 8, ["modelValue"]),
-					I(Le, {
-						modelValue: S.value,
-						"onUpdate:modelValue": z[11] ||= (e) => S.value = e,
+					I(a, {
+						modelValue: v.value,
+						"onUpdate:modelValue": z[11] ||= (e) => v.value = e,
 						variant: "plain",
 						tabs: En,
 						"aria-label": "Режим с собственной подложкой"
@@ -1285,14 +1285,14 @@ var W = "gallery:page-report", qe = {
 						}, null, 4)]),
 						_: 1
 					}, 8, ["modelValue"]),
-					I(Le, {
-						modelValue: S.value,
-						"onUpdate:modelValue": z[12] ||= (e) => S.value = e,
+					I(a, {
+						modelValue: v.value,
+						"onUpdate:modelValue": z[12] ||= (e) => v.value = e,
 						tabs: En,
 						"max-tab-width": 160,
 						"aria-label": "Режим просмотра"
 					}, {
-						"tab-actions": U(({ tab: e }) => [I(b, {
+						"tab-actions": U(({ tab: e }) => [I(y, {
 							"icon-only": "",
 							variant: "quiet",
 							"aria-label": `Изменить ${e.title}`
@@ -1304,19 +1304,19 @@ var W = "gallery:page-report", qe = {
 					}, 8, ["modelValue"])
 				])]),
 				P("article", Vt, [z[115] ||= P("h2", null, "IconNavigation", -1), P("div", Ht, [
-					I(g, {
-						modelValue: C.value,
-						"onUpdate:modelValue": z[13] ||= (e) => C.value = e,
-						items: w,
+					I(p, {
+						modelValue: x.value,
+						"onUpdate:modelValue": z[13] ||= (e) => x.value = e,
+						items: S,
 						label: "Horizontal sections"
 					}, {
 						icon: U(({ item: e }) => [(R(), N("svg", Ut, [P("path", { d: e.key === "build" ? "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" : "M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6" }, null, 8, Wt)]))]),
 						_: 1
 					}, 8, ["modelValue"]),
-					I(g, {
-						modelValue: C.value,
-						"onUpdate:modelValue": z[14] ||= (e) => C.value = e,
-						items: w,
+					I(p, {
+						modelValue: x.value,
+						"onUpdate:modelValue": z[14] ||= (e) => x.value = e,
+						items: S,
 						pill: "",
 						"content-sized": "",
 						"label-size": 12,
@@ -1327,10 +1327,10 @@ var W = "gallery:page-report", qe = {
 						icon: U(({ item: e }) => [(R(), N("svg", Gt, [P("path", { d: e.key === "build" ? "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" : "M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6" }, null, 8, Kt)]))]),
 						_: 1
 					}, 8, ["modelValue"]),
-					I(g, {
-						modelValue: C.value,
-						"onUpdate:modelValue": z[15] ||= (e) => C.value = e,
-						items: w,
+					I(p, {
+						modelValue: x.value,
+						"onUpdate:modelValue": z[15] ||= (e) => x.value = e,
+						items: S,
 						pill: "",
 						layout: "inline",
 						"icon-size": 28,
@@ -1346,10 +1346,10 @@ var W = "gallery:page-report", qe = {
 						}, [P("path", { d: "M4 6h16M4 12h16M4 18h16" })], -1)]]),
 						_: 1
 					}, 8, ["modelValue"]),
-					I(g, {
-						modelValue: C.value,
-						"onUpdate:modelValue": z[16] ||= (e) => C.value = e,
-						items: w,
+					I(p, {
+						modelValue: x.value,
+						"onUpdate:modelValue": z[16] ||= (e) => x.value = e,
+						items: S,
 						pill: "",
 						layout: "compact",
 						size: 44,
@@ -1366,10 +1366,10 @@ var W = "gallery:page-report", qe = {
 						}, [P("path", { d: "M4 6h16M4 12h16M4 18h16" })], -1)]]),
 						_: 1
 					}, 8, ["modelValue"]),
-					I(g, {
-						modelValue: C.value,
-						"onUpdate:modelValue": z[17] ||= (e) => C.value = e,
-						items: w,
+					I(p, {
+						modelValue: x.value,
+						"onUpdate:modelValue": z[17] ||= (e) => x.value = e,
+						items: S,
 						orientation: "vertical",
 						size: 64,
 						label: "Vertical sections"
@@ -1378,16 +1378,16 @@ var W = "gallery:page-report", qe = {
 						_: 1
 					}, 8, ["modelValue"])
 				])]),
-				P("article", Yt, [z[116] ||= P("h2", null, "AppSlider", -1), P("div", Xt, [I(Ee, {
-					modelValue: T.value,
-					"onUpdate:modelValue": z[18] ||= (e) => T.value = e,
+				P("article", Yt, [z[116] ||= P("h2", null, "AppSlider", -1), P("div", Xt, [I(ce, {
+					modelValue: C.value,
+					"onUpdate:modelValue": z[18] ||= (e) => C.value = e,
 					min: 0,
 					max: 100,
 					step: 1,
 					label: "Значение"
-				}, null, 8, ["modelValue"]), P("strong", null, V(T.value), 1)])])
+				}, null, 8, ["modelValue"]), P("strong", null, V(C.value), 1)])])
 			])]),
-			P("section", Zt, [I(o, {
+			P("section", Zt, [I(t, {
 				title: "Формы",
 				border: ""
 			}), P("div", Qt, [P("article", $t, [
@@ -1433,7 +1433,7 @@ var W = "gallery:page-report", qe = {
 						label: "Количество",
 						vertical: ""
 					}, {
-						default: U(() => [I(Re, {
+						default: U(() => [I(Le, {
 							value: $.count,
 							min: 0,
 							max: 20,
@@ -1445,7 +1445,7 @@ var W = "gallery:page-report", qe = {
 						label: "Дробное значение",
 						vertical: ""
 					}, {
-						default: U(() => [I(Re, {
+						default: U(() => [I(Le, {
 							value: $.fraction,
 							min: -10,
 							max: 10,
@@ -1458,7 +1458,7 @@ var W = "gallery:page-report", qe = {
 						label: "Тип",
 						vertical: ""
 					}, {
-						default: U(() => [I(ve, {
+						default: U(() => [I(be, {
 							value: $.type,
 							"onUpdate:value": z[23] ||= (e) => $.type = e
 						}, {
@@ -1471,7 +1471,7 @@ var W = "gallery:page-report", qe = {
 						label: "Описание",
 						vertical: ""
 					}, {
-						default: U(() => [I(ze, {
+						default: U(() => [I(Re, {
 							value: $.description,
 							"onUpdate:value": z[24] ||= (e) => $.description = e,
 							placeholder: "Короткое описание"
@@ -1484,21 +1484,21 @@ var W = "gallery:page-report", qe = {
 					onCancel: An
 				})
 			])])]),
-			P("section", tn, [I(o, {
+			P("section", tn, [I(t, {
 				title: "Выбор значений и floating UI",
 				border: ""
 			}), P("div", nn, [
 				P("article", rn, [z[120] ||= P("h2", null, "Selectors", -1), P("div", an, [
 					I(je, {
-						modelValue: E.value,
-						"onUpdate:modelValue": z[25] ||= (e) => E.value = e,
+						modelValue: w.value,
+						"onUpdate:modelValue": z[25] ||= (e) => w.value = e,
 						options: Dn,
 						"aria-label": "Выбрать редкость",
 						searchable: ""
 					}, null, 8, ["modelValue"]),
 					I(je, {
-						modelValue: E.value,
-						"onUpdate:modelValue": z[26] ||= (e) => E.value = e,
+						modelValue: w.value,
+						"onUpdate:modelValue": z[26] ||= (e) => w.value = e,
 						options: Dn,
 						"aria-label": "Выбор с рамкой списка",
 						style: {
@@ -1508,15 +1508,15 @@ var W = "gallery:page-report", qe = {
 						searchable: ""
 					}, null, 8, ["modelValue"]),
 					I(Pe, {
-						modelValue: D.value,
-						"onUpdate:modelValue": z[27] ||= (e) => D.value = e,
+						modelValue: T.value,
+						"onUpdate:modelValue": z[27] ||= (e) => T.value = e,
 						variant: "button",
 						"aria-label": "Цвет кнопкой",
 						"allow-custom": ""
 					}, null, 8, ["modelValue"]),
 					I(Pe, {
-						modelValue: D.value,
-						"onUpdate:modelValue": z[28] ||= (e) => D.value = e,
+						modelValue: T.value,
+						"onUpdate:modelValue": z[28] ||= (e) => T.value = e,
 						inline: "",
 						"allow-custom": "",
 						"allow-clear": ""
@@ -1531,7 +1531,7 @@ var W = "gallery:page-report", qe = {
 						class: "share-component-gallery__button",
 						onClick: z[29] ||= (e) => H.value = !H.value
 					}, " Открыть popover ", 512),
-					I(xe, {
+					I(Ce, {
 						open: H.value,
 						anchor: Ge.value,
 						"transition-preset": "action-menu",
@@ -1544,12 +1544,12 @@ var W = "gallery:page-report", qe = {
 				]),
 				P("article", sn, [
 					z[130] ||= P("h2", null, "ActionMenu", -1),
-					I(Ce, { title: "Компактные действия" }, {
+					I(k, { title: "Компактные действия" }, {
 						default: U(({ close: e }) => [P("div", cn, [(R(), N(A, null, B([
 							"Открыть",
 							"Изменить",
 							"Удалить"
-						], (t) => I(b, {
+						], (t) => I(y, {
 							key: t,
 							layout: "stacked",
 							variant: "secondary",
@@ -1561,7 +1561,7 @@ var W = "gallery:page-report", qe = {
 						}, 1032, ["onClick"])), 64))])]),
 						_: 1
 					}),
-					I(Ce, {
+					I(k, {
 						title: "Действия",
 						heading: "Выбранная запись",
 						width: 340,
@@ -1569,28 +1569,28 @@ var W = "gallery:page-report", qe = {
 						related: ""
 					}, {
 						default: U(() => [
-							I(x, { tone: "accent" }, {
+							I(O, { tone: "accent" }, {
 								default: U(() => [...z[124] ||= [F("Редактировать", -1)]]),
 								_: 1
 							}),
-							I(ye, { label: "Перемещение" }, {
-								trigger: U(({ open: e }) => [I(x, {
+							I(ke, { label: "Перемещение" }, {
+								trigger: U(({ open: e }) => [I(O, {
 									submenu: "",
 									"submenu-open": e
 								}, {
 									default: U(() => [...z[125] ||= [F("Переместить", -1)]]),
 									_: 1
 								}, 8, ["submenu-open"])]),
-								default: U(() => [I(x, null, {
+								default: U(() => [I(O, null, {
 									default: U(() => [...z[126] ||= [F("В начало", -1)]]),
 									_: 1
-								}), I(x, null, {
+								}), I(O, null, {
 									default: U(() => [...z[127] ||= [F("В конец", -1)]]),
 									_: 1
 								})]),
 								_: 1
 							}),
-							I(x, { tone: "danger" }, {
+							I(O, { tone: "danger" }, {
 								default: U(() => [...z[128] ||= [F("Удалить", -1)]]),
 								_: 1
 							})
@@ -1604,14 +1604,14 @@ var W = "gallery:page-report", qe = {
 						class: "share-component-gallery__button",
 						onClick: z[31] ||= (e) => Je.value?.toggle(e)
 					}, " Меню внешнего элемента ", 512),
-					I(Ce, {
+					I(k, {
 						ref_key: "anchoredActionMenu",
 						ref: Je,
 						anchor: W.value,
 						title: "Действия внешнего элемента",
 						"trigger-attrs": { style: { display: "none" } }
 					}, {
-						default: U(({ close: e }) => [I(x, { onClick: e }, {
+						default: U(({ close: e }) => [I(O, { onClick: e }, {
 							default: U(() => [...z[129] ||= [F("Закрыть меню", -1)]]),
 							_: 1
 						}, 8, ["onClick"])]),
@@ -1623,10 +1623,10 @@ var W = "gallery:page-report", qe = {
 					"avatar-text": "S",
 					expanded: ""
 				}, {
-					default: U(({ close: e }) => [I(x, { onClick: e }, {
+					default: U(({ close: e }) => [I(O, { onClick: e }, {
 						default: U(() => [...z[131] ||= [F("Настройки", -1)]]),
 						_: 1
-					}, 8, ["onClick"]), I(x, {
+					}, 8, ["onClick"]), I(O, {
 						tone: "danger",
 						onClick: e
 					}, {
@@ -1636,15 +1636,15 @@ var W = "gallery:page-report", qe = {
 					_: 1
 				})])
 			])]),
-			P("section", un, [I(o, {
+			P("section", un, [I(t, {
 				title: "Редакторы и rich text",
 				border: ""
 			}), P("div", dn, [P("article", fn, [
 				z[134] ||= P("h2", null, "Rich text", -1),
-				I(he, {
+				I(_e, {
 					ref: "richEditor",
-					modelValue: O.value,
-					"onUpdate:modelValue": z[32] ||= (e) => O.value = e,
+					modelValue: E.value,
+					"onUpdate:modelValue": z[32] ||= (e) => E.value = e,
 					placeholder: "Введите текст…",
 					"show-link-button": !1
 				}, {
@@ -1663,56 +1663,56 @@ var W = "gallery:page-report", qe = {
 					}, "@", 40, mn)]),
 					_: 1
 				}, 8, ["modelValue"]),
-				P("div", hn, [I(me, { html: O.value }, {
+				P("div", hn, [I(ge, { html: E.value }, {
 					node: U(({ node: e }) => [P("strong", gn, V(e.label), 1)]),
 					_: 1
 				}, 8, ["html"])])
-			]), P("article", _n, [z[137] ||= P("h2", null, "Editor composition", -1), I(p, null, {
-				default: U(() => [I(fe, { title: "Параметры" }, {
-					default: U(() => [I(Be, { title: "Основное" }, {
+			]), P("article", _n, [z[137] ||= P("h2", null, "Editor composition", -1), I(r, null, {
+				default: U(() => [I(pe, { title: "Параметры" }, {
+					default: U(() => [I(ze, { title: "Основное" }, {
 						default: U(() => [I(n, { title: "Значение" }, {
 							actions: U(() => [...z[135] ||= [P("span", null, "12", -1)]]),
 							_: 1
-						}), I(Ee, {
-							modelValue: T.value,
-							"onUpdate:modelValue": z[33] ||= (e) => T.value = e,
+						}), I(ce, {
+							modelValue: C.value,
+							"onUpdate:modelValue": z[33] ||= (e) => C.value = e,
 							min: 0,
 							max: 100,
 							step: 1
 						}, null, 8, ["modelValue"])]),
 						_: 1
-					}), I(ce, null, {
-						default: U(() => [z[136] ||= F("Итого: ", -1), P("strong", null, V(T.value), 1)]),
+					}), I(le, null, {
+						default: U(() => [z[136] ||= F("Итого: ", -1), P("strong", null, V(C.value), 1)]),
 						_: 1
 					})]),
 					_: 1
 				})]),
 				_: 1
 			})])])]),
-			P("section", vn, [I(o, {
+			P("section", vn, [I(t, {
 				title: "Каркас приложения",
 				border: ""
 			}), P("article", yn, [
 				z[143] ||= P("h2", null, "Navigation composition", -1),
-				I(a, {
+				I(s, {
 					modelValue: L.value,
 					"onUpdate:modelValue": z[34] ||= (e) => L.value = e,
 					label: "Приподнятая панель"
 				}, null, 8, ["modelValue"]),
 				P("div", bn, [I(Me, {
-					class: Ve(["share-component-gallery__chrome-shell", { "share-component-gallery__chrome-shell--expanded": k.value }]),
+					class: Ve(["share-component-gallery__chrome-shell", { "share-component-gallery__chrome-shell--expanded": D.value }]),
 					"content-tag": "div",
 					"rail-width": 88
 				}, {
 					sidebar: U(() => [I(ee, {
-						modelValue: k.value,
-						"onUpdate:modelValue": z[35] ||= (e) => k.value = e,
+						modelValue: D.value,
+						"onUpdate:modelValue": z[35] ||= (e) => D.value = e,
 						elevated: L.value,
 						position: "sticky",
 						"default-expanded": !0,
 						"storage-key": ""
 					}, {
-						brand: U(() => [I(pe, {
+						brand: U(() => [I(he, {
 							as: "div",
 							label: "share-ui"
 						}, {
@@ -1720,7 +1720,7 @@ var W = "gallery:page-report", qe = {
 							_: 1
 						})]),
 						default: U(() => [
-							I(f, {
+							I(u, {
 								as: "button",
 								label: "Главная",
 								active: ""
@@ -1729,7 +1729,7 @@ var W = "gallery:page-report", qe = {
 								_: 1
 							}),
 							I(de, { label: "Примеры" }),
-							I(f, {
+							I(u, {
 								as: "button",
 								label: "Компоненты"
 							}, {
@@ -1749,11 +1749,11 @@ var W = "gallery:page-report", qe = {
 				}, 8, ["class"])])
 			])]),
 			P("section", xn, [
-				I(o, {
+				I(t, {
 					title: "Оверлеи и morph",
 					border: ""
 				}),
-				P("article", Sn, [z[144] ||= P("h2", null, "AppDrawer + embedded navigation", -1), I(Qe)]),
+				P("article", Sn, [z[144] ||= P("h2", null, "AppDrawer + embedded navigation", -1), I($e)]),
 				P("article", Cn, [z[145] ||= P("h2", null, "Интерактивные примеры", -1), P("div", wn, [
 					P("button", {
 						type: "button",
@@ -1789,12 +1789,12 @@ var W = "gallery:page-report", qe = {
 					P("button", {
 						type: "button",
 						class: "share-component-gallery__button",
-						onClick: z[41] ||= (e) => X.value = !0
+						onClick: z[41] ||= (e) => Qe.value = !0
 					}, "ConfirmDialog"),
 					P("button", {
 						type: "button",
 						class: "share-component-gallery__button",
-						onClick: z[42] ||= (e) => et.value = !0
+						onClick: z[42] ||= (e) => X.value = !0
 					}, "TextPromptDialog"),
 					P("button", {
 						ref_key: "morphOrigin",
@@ -1805,7 +1805,7 @@ var W = "gallery:page-report", qe = {
 					}, "MorphSheet", 512)
 				])])
 			]),
-			G.value ? (R(), j(re, {
+			G.value ? (R(), j(ie, {
 				key: 0,
 				"aria-label": "Пример AppModal",
 				onClose: z[44] ||= (e) => G.value = !1
@@ -1833,7 +1833,7 @@ var W = "gallery:page-report", qe = {
 				"width",
 				"outlined"
 			])) : M("", !0),
-			I(oe, {
+			I(se, {
 				open: Y.value,
 				"aria-label": "Пример ModalShell",
 				onClose: z[48] ||= (e) => Y.value = !1
@@ -1841,20 +1841,20 @@ var W = "gallery:page-report", qe = {
 				default: U(() => [...z[148] ||= [P("div", { class: "share-component-gallery__overlay-content" }, [P("h2", null, "ModalShell"), P("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
 				_: 1
 			}, 8, ["open"]),
-			I(De, {
-				open: X.value,
-				"onUpdate:open": z[49] ||= (e) => X.value = e,
+			I(Ee, {
+				open: Qe.value,
+				"onUpdate:open": z[49] ||= (e) => Qe.value = e,
 				title: "Подтвердить действие?",
 				message: "Проверка визуального состояния опасного действия."
 			}, null, 8, ["open"]),
 			I(i, {
-				open: et.value,
-				"onUpdate:open": z[50] ||= (e) => et.value = e,
+				open: X.value,
+				"onUpdate:open": z[50] ||= (e) => X.value = e,
 				title: "Новое название",
 				label: "Название",
 				initial: "Пример"
 			}, null, 8, ["open"]),
-			Q.value ? (R(), j(s, {
+			Q.value ? (R(), j(o, {
 				key: 2,
 				"origin-el": it.value,
 				"aria-label": "Пример MorphSheet",

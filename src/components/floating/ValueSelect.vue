@@ -52,7 +52,7 @@
           role="option"
           :aria-selected="isSelected(option.value)"
           :disabled="option.disabled"
-          @mouseenter="setActive(index)"
+          @pointerenter="isMousePointer($event) && setActive(index)"
           @click="pick(option)"
         >
           {{ option.label }}
@@ -65,6 +65,7 @@
 </template>
 
 <script setup>
+import { isMousePointer } from '../../lib/pointerInput.js'
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { setFloatingInteractive } from '../../internal/floatingState.js'
 

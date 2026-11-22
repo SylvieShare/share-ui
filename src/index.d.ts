@@ -835,3 +835,6 @@ export const PageReport: DefineComponent<{
   }
   messages?: Record<string, string>
 }>
+export function installPointerInput(target?: Window): () => void
+export function isMousePointer(event: Event): event is PointerEvent
+export function canShowHoverHint(event: Event): boolean

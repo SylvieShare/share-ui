@@ -1,7 +1,7 @@
 <template>
-  <div class="share-star-rating" :class="{'share-star-rating--readonly':readonly}" :role="readonly ? 'img' : 'radiogroup'" :aria-label="readonly ? valueLabel || label : label" :aria-disabled="!readonly && disabled || undefined" @mouseleave="preview=0">
+  <div class="share-star-rating" :class="{'share-star-rating--readonly':readonly}" :role="readonly ? 'img' : 'radiogroup'" :aria-label="readonly ? valueLabel || label : label" :aria-disabled="!readonly && disabled || undefined" @pointerleave="isMousePointer($event) && (preview=0)" @pointerdown="!isMousePointer($event) && (preview=0)">
     <template v-for="star in max" :key="star">
-      <component :is="readonly ? 'span' : 'button'" :ref="el=>buttons[star-1]=el" class="share-star-rating__item" :type="readonly ? undefined : 'button'" :role="readonly ? undefined : 'radio'" :aria-label="readonly ? undefined : optionLabels[star-1] || String(star)" :aria-checked="readonly ? undefined : modelValue===star" :disabled="!readonly && disabled || undefined" :tabindex="readonly ? undefined : active===star ? 0 : -1" @mouseenter="!readonly && (preview=star)" @focus="!readonly && (preview=star)" @blur="preview=0" @click="pick(star)" @keydown="navigate($event,star)">
+      <component :is="readonly ? 'span' : 'button'" :ref="el=>buttons[star-1]=el" class="share-star-rating__item" :type="readonly ? undefined : 'button'" :role="readonly ? undefined : 'radio'" :aria-label="readonly ? undefined : optionLabels[star-1] || String(star)" :aria-checked="readonly ? undefined : modelValue===star" :disabled="!readonly && disabled || undefined" :tabindex="readonly ? undefined : active===star ? 0 : -1" @pointerenter="showPreview($event, star)" @focus="showPreview($event, star)" @blur="preview=0" @click="pick(star)" @keydown="navigate($event,star)">
         <span class="share-star-rating__star" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path :d="path" /></svg><span class="share-star-rating__fill" :style="{width:`${fill(star)}%`}"><svg viewBox="0 0 24 24"><path :d="path" /></svg></span></span>
       </component>
     </template>
@@ -9,11 +9,15 @@
 </template>
 <script setup>
 import { computed,ref } from 'vue'
+import { canShowHoverHint, isMousePointer } from '../lib/pointerInput.js'
 const props=defineProps({modelValue:{type:Number,default:0},max:{type:Number,default:5,validator:v=>Number.isInteger(v)&&v>=1&&v<=10},label:{type:String,required:true},valueLabel:String,optionLabels:{type:Array,default:()=>[]},readonly:Boolean,disabled:Boolean})
 const emit=defineEmits(['update:modelValue']),preview=ref(0),buttons=[]
 const path='m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2 2 9.3l6.9-1Z'
 const active=computed(()=>Math.max(1,Math.min(props.max,Math.round(props.modelValue))))
 const fill=star=>Math.max(0,Math.min(1,(props.readonly ? props.modelValue : preview.value || props.modelValue)-star+1))*100
+function showPreview(event, star) {
+  if (!props.readonly && !props.disabled && canShowHoverHint(event)) preview.value = star
+}
 function pick(value){if(!props.readonly&&!props.disabled)emit('update:modelValue',value)}
 function navigate(event,star){
   if(props.readonly||props.disabled)return
