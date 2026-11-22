@@ -1,4 +1,4 @@
-import { A as e, At as t, B as n, Bt as r, C as i, Dt as a, E as o, Et as s, F as c, Ft as l, G as ee, H as u, Ht as d, It as te, J as ne, Jt as f, Lt as re, M as ie, Mt as ae, Nt as oe, O as se, Ot as p, Pt as ce, R as le, Rt as m, S as h, T as ue, U as de, Ut as fe, V as pe, Vt as me, W as he, X as ge, Y as _e, _ as ve, a as ye, b as be, c as g, d as _, f as xe, g as Se, gt as v, h as y, ht as Ce, i as we, j as Te, jt as b, k as Ee, kt as De, l as x, m as Oe, mt as ke, n as Ae, o as S, ot as je, p as C, q as Me, qt as w, r as Ne, s as T, t as E, u as D, ut as Pe, v as Fe, vt as O, w as Ie, x as Le, y as Re, yt as k, z as ze, zt as Be } from "./PageReport-DdXSBfON.js";
+import { A as e, At as t, B as n, Bt as r, C as i, Dt as a, E as o, Et as s, F as c, Ft as l, G as ee, H as u, Ht as d, It as te, J as ne, Jt as f, Lt as re, M as ie, Mt as ae, Nt as oe, O as se, Ot as p, Pt as ce, R as le, Rt as m, S as h, T as ue, U as de, Ut as fe, V as pe, Vt as me, W as he, X as ge, Y as _e, _ as ve, a as ye, b as be, c as g, d as _, f as xe, g as Se, gt as v, h as y, ht as Ce, i as we, j as Te, jt as b, k as Ee, kt as De, l as x, m as Oe, mt as ke, n as Ae, o as S, ot as je, p as C, q as Me, qt as w, r as Ne, s as T, t as E, u as D, ut as Pe, v as Fe, vt as O, w as Ie, x as Le, y as Re, yt as k, z as ze, zt as Be } from "./PageReport-BrfEKeiQ.js";
 import { Fragment as A, createBlock as j, createCommentVNode as M, createElementBlock as N, createElementVNode as P, createTextVNode as F, createVNode as I, h as L, normalizeClass as Ve, normalizeStyle as He, openBlock as R, reactive as Ue, ref as z, renderList as B, toDisplayString as V, unref as We, vModelText as H, withCtx as U, withDirectives as Ge, withModifiers as Ke } from "vue";
 //#region src/gallery/PageReportExample.vue
 var W = "gallery:page-report", qe = {
@@ -1543,7 +1543,7 @@ var W = "gallery:page-report", qe = {
 					}, 8, ["open", "anchor"])
 				]),
 				P("article", sn, [
-					z[130] ||= P("h2", null, "ActionMenu", -1),
+					z[132] ||= P("h2", null, "ActionMenu", -1),
 					I(k, { title: "Компактные действия" }, {
 						default: U(({ close: e }) => [P("div", cn, [(R(), N(A, null, B([
 							"Открыть",
@@ -1569,8 +1569,13 @@ var W = "gallery:page-report", qe = {
 						related: ""
 					}, {
 						default: U(() => [
+							I(O, { size: "large" }, {
+								suffix: U(() => [...z[124] ||= [F("↵", -1)]]),
+								default: U(() => [z[125] ||= F(" Открыть ", -1)]),
+								_: 1
+							}),
 							I(O, { tone: "accent" }, {
-								default: U(() => [...z[124] ||= [F("Редактировать", -1)]]),
+								default: U(() => [...z[126] ||= [F("Редактировать", -1)]]),
 								_: 1
 							}),
 							I(ke, { label: "Перемещение" }, {
@@ -1578,20 +1583,20 @@ var W = "gallery:page-report", qe = {
 									submenu: "",
 									"submenu-open": e
 								}, {
-									default: U(() => [...z[125] ||= [F("Переместить", -1)]]),
+									default: U(() => [...z[127] ||= [F("Переместить", -1)]]),
 									_: 1
 								}, 8, ["submenu-open"])]),
 								default: U(() => [I(O, null, {
-									default: U(() => [...z[126] ||= [F("В начало", -1)]]),
+									default: U(() => [...z[128] ||= [F("В начало", -1)]]),
 									_: 1
 								}), I(O, null, {
-									default: U(() => [...z[127] ||= [F("В конец", -1)]]),
+									default: U(() => [...z[129] ||= [F("В конец", -1)]]),
 									_: 1
 								})]),
 								_: 1
 							}),
 							I(O, { tone: "danger" }, {
-								default: U(() => [...z[128] ||= [F("Удалить", -1)]]),
+								default: U(() => [...z[130] ||= [F("Удалить", -1)]]),
 								_: 1
 							})
 						]),
@@ -1612,25 +1617,25 @@ var W = "gallery:page-report", qe = {
 						"trigger-attrs": { style: { display: "none" } }
 					}, {
 						default: U(({ close: e }) => [I(O, { onClick: e }, {
-							default: U(() => [...z[129] ||= [F("Закрыть меню", -1)]]),
+							default: U(() => [...z[131] ||= [F("Закрыть меню", -1)]]),
 							_: 1
 						}, 8, ["onClick"])]),
 						_: 1
 					}, 8, ["anchor"])
 				]),
-				P("article", ln, [z[133] ||= P("h2", null, "AccountMenu", -1), I(ne, {
+				P("article", ln, [z[135] ||= P("h2", null, "AccountMenu", -1), I(ne, {
 					label: "Sylvie",
 					"avatar-text": "S",
 					expanded: ""
 				}, {
 					default: U(({ close: e }) => [I(O, { onClick: e }, {
-						default: U(() => [...z[131] ||= [F("Настройки", -1)]]),
+						default: U(() => [...z[133] ||= [F("Настройки", -1)]]),
 						_: 1
 					}, 8, ["onClick"]), I(O, {
 						tone: "danger",
 						onClick: e
 					}, {
-						default: U(() => [...z[132] ||= [F("Выйти", -1)]]),
+						default: U(() => [...z[134] ||= [F("Выйти", -1)]]),
 						_: 1
 					}, 8, ["onClick"])]),
 					_: 1
@@ -1640,7 +1645,7 @@ var W = "gallery:page-report", qe = {
 				title: "Редакторы и rich text",
 				border: ""
 			}), P("div", dn, [P("article", fn, [
-				z[134] ||= P("h2", null, "Rich text", -1),
+				z[136] ||= P("h2", null, "Rich text", -1),
 				I(_e, {
 					ref: "richEditor",
 					modelValue: E.value,
@@ -1667,11 +1672,11 @@ var W = "gallery:page-report", qe = {
 					node: U(({ node: e }) => [P("strong", gn, V(e.label), 1)]),
 					_: 1
 				}, 8, ["html"])])
-			]), P("article", _n, [z[137] ||= P("h2", null, "Editor composition", -1), I(r, null, {
+			]), P("article", _n, [z[139] ||= P("h2", null, "Editor composition", -1), I(r, null, {
 				default: U(() => [I(pe, { title: "Параметры" }, {
 					default: U(() => [I(ze, { title: "Основное" }, {
 						default: U(() => [I(n, { title: "Значение" }, {
-							actions: U(() => [...z[135] ||= [P("span", null, "12", -1)]]),
+							actions: U(() => [...z[137] ||= [P("span", null, "12", -1)]]),
 							_: 1
 						}), I(ce, {
 							modelValue: C.value,
@@ -1682,7 +1687,7 @@ var W = "gallery:page-report", qe = {
 						}, null, 8, ["modelValue"])]),
 						_: 1
 					}), I(le, null, {
-						default: U(() => [z[136] ||= F("Итого: ", -1), P("strong", null, V(C.value), 1)]),
+						default: U(() => [z[138] ||= F("Итого: ", -1), P("strong", null, V(C.value), 1)]),
 						_: 1
 					})]),
 					_: 1
@@ -1693,7 +1698,7 @@ var W = "gallery:page-report", qe = {
 				title: "Каркас приложения",
 				border: ""
 			}), P("article", yn, [
-				z[143] ||= P("h2", null, "Navigation composition", -1),
+				z[145] ||= P("h2", null, "Navigation composition", -1),
 				I(s, {
 					modelValue: L.value,
 					"onUpdate:modelValue": z[34] ||= (e) => L.value = e,
@@ -1716,7 +1721,7 @@ var W = "gallery:page-report", qe = {
 							as: "div",
 							label: "share-ui"
 						}, {
-							icon: U(() => [...z[138] ||= [P("span", null, "◆", -1)]]),
+							icon: U(() => [...z[140] ||= [P("span", null, "◆", -1)]]),
 							_: 1
 						})]),
 						default: U(() => [
@@ -1725,7 +1730,7 @@ var W = "gallery:page-report", qe = {
 								label: "Главная",
 								active: ""
 							}, {
-								icon: U(() => [...z[139] ||= [P("span", null, "⌂", -1)]]),
+								icon: U(() => [...z[141] ||= [P("span", null, "⌂", -1)]]),
 								_: 1
 							}),
 							I(de, { label: "Примеры" }),
@@ -1733,14 +1738,14 @@ var W = "gallery:page-report", qe = {
 								as: "button",
 								label: "Компоненты"
 							}, {
-								icon: U(() => [...z[140] ||= [P("span", null, "◇", -1)]]),
+								icon: U(() => [...z[142] ||= [P("span", null, "◇", -1)]]),
 								_: 1
 							})
 						]),
 						_: 1
 					}, 8, ["modelValue", "elevated"])]),
-					rail: U(() => [...z[141] ||= [P("div", { class: "share-component-gallery__rail" }, "rail", -1)]]),
-					default: U(() => [z[142] ||= P("div", { class: "share-component-gallery__chrome-content" }, [
+					rail: U(() => [...z[143] ||= [P("div", { class: "share-component-gallery__rail" }, "rail", -1)]]),
+					default: U(() => [z[144] ||= P("div", { class: "share-component-gallery__chrome-content" }, [
 						P("span", { class: "share-component-gallery__chrome-kicker" }, "content"),
 						P("strong", null, "AppShell + AppSidebar"),
 						P("span", null, "Фон, точки, раскрываемая навигация и rail образуют общий каркас.")
@@ -1753,8 +1758,8 @@ var W = "gallery:page-report", qe = {
 					title: "Оверлеи и morph",
 					border: ""
 				}),
-				P("article", Sn, [z[144] ||= P("h2", null, "AppDrawer + embedded navigation", -1), I($e)]),
-				P("article", Cn, [z[145] ||= P("h2", null, "Интерактивные примеры", -1), P("div", wn, [
+				P("article", Sn, [z[146] ||= P("h2", null, "AppDrawer + embedded navigation", -1), I($e)]),
+				P("article", Cn, [z[147] ||= P("h2", null, "Интерактивные примеры", -1), P("div", wn, [
 					P("button", {
 						type: "button",
 						class: "share-component-gallery__button",
@@ -1810,7 +1815,7 @@ var W = "gallery:page-report", qe = {
 				"aria-label": "Пример AppModal",
 				onClose: z[44] ||= (e) => G.value = !1
 			}, {
-				default: U(() => [...z[146] ||= [P("div", { class: "share-component-gallery__overlay-content" }, [P("h2", null, "AppModal"), P("p", null, "Низкоуровневый адаптивный overlay.")], -1)]]),
+				default: U(() => [...z[148] ||= [P("div", { class: "share-component-gallery__overlay-content" }, [P("h2", null, "AppModal"), P("p", null, "Низкоуровневый адаптивный overlay.")], -1)]]),
 				_: 1
 			})) : M("", !0),
 			K.value ? (R(), j(Te, {
@@ -1826,7 +1831,7 @@ var W = "gallery:page-report", qe = {
 					onCancel: z[45] ||= (e) => K.value = !1,
 					onSubmit: z[46] ||= (e) => K.value = !1
 				})]),
-				default: U(() => [z[147] ||= P("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
+				default: U(() => [z[149] ||= P("p", null, "Готовая структура редактора поверх AppModal.", -1)]),
 				_: 1
 			}, 8, [
 				"compact",
@@ -1838,7 +1843,7 @@ var W = "gallery:page-report", qe = {
 				"aria-label": "Пример ModalShell",
 				onClose: z[48] ||= (e) => Y.value = !1
 			}, {
-				default: U(() => [...z[148] ||= [P("div", { class: "share-component-gallery__overlay-content" }, [P("h2", null, "ModalShell"), P("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
+				default: U(() => [...z[150] ||= [P("div", { class: "share-component-gallery__overlay-content" }, [P("h2", null, "ModalShell"), P("p", null, "Минимальная оболочка для собственного содержимого.")], -1)]]),
 				_: 1
 			}, 8, ["open"]),
 			I(Ee, {
@@ -1863,12 +1868,12 @@ var W = "gallery:page-report", qe = {
 				"show-close": "",
 				onClose: z[51] ||= (e) => Q.value = !1
 			}, {
-				head: U(() => [...z[149] ||= [P("div", { class: "share-component-gallery__morph-head" }, [P("strong", null, "MorphSheet")], -1)]]),
-				default: U(() => [z[150] ||= P("div", { class: "share-component-gallery__overlay-content" }, [P("p", null, "Контейнер раскрывается из исходной кнопки и возвращается обратно.")], -1)]),
+				head: U(() => [...z[151] ||= [P("div", { class: "share-component-gallery__morph-head" }, [P("strong", null, "MorphSheet")], -1)]]),
+				default: U(() => [z[152] ||= P("div", { class: "share-component-gallery__overlay-content" }, [P("p", null, "Контейнер раскрывается из исходной кнопки и возвращается обратно.")], -1)]),
 				_: 1
 			}, 8, ["origin-el"])) : M("", !0)
 		]));
 	}
-}, [["__scopeId", "data-v-e3e251d3"]]);
+}, [["__scopeId", "data-v-0194f8b0"]]);
 //#endregion
 export { it as COMPONENT_GALLERY_ALIASES, rt as COMPONENT_GALLERY_COMPONENTS, Tn as ComponentGallery };

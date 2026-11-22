@@ -2040,6 +2040,11 @@ var $t = [
 			type: Boolean,
 			default: !1
 		},
+		size: {
+			type: String,
+			default: "default",
+			validator: (e) => ["default", "large"].includes(e)
+		},
 		tone: {
 			type: String,
 			default: "default",
@@ -2056,16 +2061,16 @@ var $t = [
 	setup(e) {
 		return (t, n) => (E(), s("button", {
 			type: "button",
-			class: b(["ram-item", e.tone === "default" ? null : `ram-item--${e.tone}`]),
+			class: b(["ram-item", [{ "ram-item--large": e.size === "large" }, e.tone === "default" ? null : `ram-item--${e.tone}`]]),
 			role: "menuitem",
 			"aria-haspopup": e.submenu ? "menu" : void 0,
 			"aria-expanded": e.submenu ? e.submenuOpen : void 0
 		}, [
 			c("span", an, [j(t.$slots, "icon", {}, () => [e.icon ? (E(), a(M(e.icon), {
 				key: 0,
-				size: 17,
+				size: e.size === "large" ? 22 : 17,
 				"stroke-width": 1.9
-			})) : (E(), s("svg", on, [...n[0] ||= [
+			}, null, 8, ["size"])) : (E(), s("svg", on, [...n[0] ||= [
 				c("circle", {
 					cx: "4",
 					cy: "8.5",
@@ -2103,7 +2108,7 @@ var $t = [
 			}, null, -1)]], 2)) : o("", !0)])) : o("", !0)
 		], 10, rn));
 	}
-}, [["__scopeId", "data-v-bff8b9a5"]]);
+}, [["__scopeId", "data-v-a9f0da23"]]);
 //#endregion
 //#region src/composables/useMediaQuery.js
 function un(e) {

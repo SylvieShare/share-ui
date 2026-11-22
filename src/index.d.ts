@@ -226,6 +226,7 @@ export const ActionMenuItem: DefineComponent<{
   icon?: Component | null
   submenu?: boolean
   submenuOpen?: boolean
+  size?: 'default' | 'large'
   tone?: 'default' | 'accent' | 'warning' | 'success' | 'info' | 'danger'
 }>
 export const RowActionItem: typeof ActionMenuItem

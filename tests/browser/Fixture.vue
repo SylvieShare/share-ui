@@ -7,6 +7,10 @@
     </BasePopover>
     <ActionMenu title="Standard actions">
       <ActionMenuItem>Standard action</ActionMenuItem>
+      <ActionMenuItem size="large" aria-label="Large action">
+        Large action
+        <template #suffix><span>Preview</span></template>
+      </ActionMenuItem>
       <ActionMenuSubmenu>
         <template #trigger><button>More actions</button></template>
         <button>Nested action</button>

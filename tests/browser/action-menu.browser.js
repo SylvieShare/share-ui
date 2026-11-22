@@ -2,6 +2,18 @@ import { expect, test } from '@playwright/test'
 
 test.use({ hasTouch: true, viewport: { width: 390, height: 844 } })
 
+test('the large action has a taller target and keeps its suffix on the right', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/tests/browser/?action-motion')
+  await page.getByRole('button', { name: 'Standard actions' }).tap()
+  const large = page.getByRole('menuitem', { name: 'Large action' })
+  await expect(page.getByRole('menuitem', { name: 'Standard action' })).toHaveCSS('min-height', '48px')
+  await expect(large).toHaveCSS('min-height', '64px')
+  const label = await large.getByText('Large action', { exact: true }).boundingBox()
+  const suffix = await large.getByText('Preview', { exact: true }).boundingBox()
+  expect(suffix.x).toBeGreaterThanOrEqual(label.x + label.width)
+})
+
 test('touch release closes menu highlighting and real mouse motion restores hover', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/tests/browser/?action-motion')
@@ -73,7 +85,7 @@ for (const reducedMotion of ['no-preference', 'reduce']) {
     await page.keyboard.press('Escape')
     await expect(standard.getByRole('button', { name: 'Nested action' })).toHaveCount(0)
     await expect(standardTrigger).toHaveCSS('-webkit-tap-highlight-color', 'rgba(0, 0, 0, 0)')
-    await expect(standard.getByRole('menuitem')).toHaveCSS('-webkit-tap-highlight-color', 'rgba(0, 0, 0, 0)')
+    await expect(standard.getByRole('menuitem', { name: 'Standard action' })).toHaveCSS('-webkit-tap-highlight-color', 'rgba(0, 0, 0, 0)')
     await page.keyboard.press('Escape')
     await expect(standard).toHaveCount(0)
 

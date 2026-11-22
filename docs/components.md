@@ -345,8 +345,10 @@ scroll lock. Floating surfaces тоже регистрируются в stack, �
   режим; summary оставляют без маркера. Явно заданный `width` всегда имеет приоритет. Изменение состава меню
   или маркера обновляет ширину и привязку без повторного открытия.
 - `ActionMenuItem` (`RowActionItem` alias) — нейтральная строка меню с icon
-  component/slot, suffix, submenu state и semantic tone. При coarse pointer или
-  ширине до 1199 px строка имеет минимальную высоту 48 px.
+  component/slot, suffix, submenu state и semantic tone. `size="large"` задаёт
+  минимальную высоту 64 px и увеличивает подпись и слот иконки. Суффикс остаётся
+  справа и может сжиматься в пределах строки. Стандартный размер имеет высоту
+  от 36 px, при coarse pointer или ширине до 1199 px — от 48 px.
 - `ActionMenuSubmenu` (`RowActionSubmenu` alias) — соседний popover на desktop и
   inline-раскрытие на mobile. Оба используют общий переход action-menu.
 - `AccountMenu` — общий trigger профиля для sidebar: avatar, подпись и chevron;

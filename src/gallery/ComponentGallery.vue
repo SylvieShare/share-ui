@@ -305,6 +305,10 @@
             </template>
           </ActionMenu>
           <ActionMenu title="Действия" heading="Выбранная запись" :width="340" follow-anchor related>
+            <ActionMenuItem size="large">
+              Открыть
+              <template #suffix>↵</template>
+            </ActionMenuItem>
             <ActionMenuItem tone="accent">Редактировать</ActionMenuItem>
             <ActionMenuSubmenu label="Перемещение">
               <template #trigger="{ open }">

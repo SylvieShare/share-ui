@@ -2,14 +2,14 @@
   <button
     type="button"
     class="ram-item"
-    :class="tone !== 'default' ? `ram-item--${tone}` : null"
+    :class="[{ 'ram-item--large': size === 'large' }, tone !== 'default' ? `ram-item--${tone}` : null]"
     role="menuitem"
     :aria-haspopup="submenu ? 'menu' : undefined"
     :aria-expanded="submenu ? submenuOpen : undefined"
   >
     <span class="ram-item__icon" aria-hidden="true">
       <slot name="icon">
-        <component v-if="icon" :is="icon" :size="17" :stroke-width="1.9" />
+        <component v-if="icon" :is="icon" :size="size === 'large' ? 22 : 17" :stroke-width="1.9" />
         <svg v-else width="17" height="17" viewBox="0 0 17 17" fill="none">
           <circle cx="4" cy="8.5" r="1.2" fill="currentColor" />
           <circle cx="8.5" cy="8.5" r="1.2" fill="currentColor" />
@@ -41,6 +41,7 @@ defineProps({
   icon: { type: [Object, Function], default: null },
   submenu: { type: Boolean, default: false },
   submenuOpen: { type: Boolean, default: false },
+  size: { type: String, default: 'default', validator: value => ['default', 'large'].includes(value) },
   tone: {
     type: String,
     default: 'default',
@@ -96,6 +97,10 @@ defineProps({
 @media (max-width: 1199px), (pointer: coarse) {
   .ram-item { min-height: 48px; }
 }
+
+.ram-item--large { min-height: 64px; padding: 10px 12px; font-size: 16px; }
+.ram-item--large .ram-item__icon { width: 24px; height: 24px; flex-basis: 24px; }
+.ram-item--large .ram-item__suffix { flex-shrink: 1; min-width: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   .ram-item, .ram-item__icon { transition: none; }
