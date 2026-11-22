@@ -46,10 +46,10 @@ describe('pointer input', () => {
 
   it('guards only hover, including nested selectors, without repeating the gate', () => {
     const plugin = pointerHoverCss(selectorParser)
-    const rule = { selector: '.card:hover > .item:is(:hover,:active),.card:not(:hover),[title=":hover"],.item:focus-visible' }
+    const rule = { selector: '.card:hover > .item:is(:hover,:active),.card:not(:hover),[title=":hover"],.item:focus-visible,::-webkit-scrollbar-thumb:vertical:hover' }
     const gate = ':where(:not(:root[data-share-no-hover], :root[data-share-no-hover] *))'
     plugin.Rule(rule)
-    const result = `.card:hover${gate} > .item:is(:hover${gate},:active),.card:not(:hover${gate}),[title=":hover"],.item:focus-visible`
+    const result = `.card:hover${gate} > .item:is(:hover${gate},:active),.card:not(:hover${gate}),[title=":hover"],.item:focus-visible,${gate}::-webkit-scrollbar-thumb:vertical:hover`
     expect(rule.selector).toBe(result)
     plugin.Rule(rule)
     expect(rule.selector).toBe(result)

@@ -39,9 +39,14 @@ export function pointerHoverCss(selectorParser) {
   const transform = selectorParser(selectors => {
     selectors.walkPseudos(pseudo => {
       if (pseudo.value !== ':hover') return
-      const next = pseudo.next()
-      if (next?.value === ':where' && next.toString().includes(noHover)) return
-      pseudo.parent.insertAfter(pseudo, gate.clone())
+      let pseudoElement
+      for (let node = pseudo.prev(); node && node.type !== 'combinator'; node = node.prev()) {
+        if (selectorParser.isPseudoElement(node)) pseudoElement = node
+      }
+      const existingGate = pseudoElement ? pseudoElement.prev() : pseudo.next()
+      if (existingGate?.value === ':where' && existingGate.toString().includes(noHover)) return
+      if (pseudoElement) pseudo.parent.insertBefore(pseudoElement, gate.clone())
+      else pseudo.parent.insertAfter(pseudo, gate.clone())
     })
   })
   return {
