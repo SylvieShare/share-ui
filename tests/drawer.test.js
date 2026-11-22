@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 import AppDrawer from '../src/components/overlay/AppDrawer.vue'
 import AppSidebar from '../src/components/navigation/AppSidebar.vue'
 import AppShell from '../src/components/navigation/AppShell.vue'
-import { createDrawerSwipe } from '../src/internal/drawerSwipe.js'
+import { createDrawerSwipe } from '../src/index.js'
 
 it('keeps drawer and existing navigation defaults', () => {
   expect(AppDrawer.props.modelValue.default).toBe(false)

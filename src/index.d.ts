@@ -386,6 +386,20 @@ export const AppDrawer: DefineComponent<{
   swipeToOpen?: boolean
 }>
 
+export function createDrawerSwipe(options: {
+  enabled: () => boolean
+  width: () => number
+  update: (reveal: number | null) => void
+  commit: () => void
+  opening?: boolean
+}): {
+  start: (event: TouchEvent) => void
+  move: (event: TouchEvent) => void
+  end: (event: TouchEvent) => void
+  cancel: () => void
+  reset: () => void
+}
+
 export const AppModal: DefineComponent<{
   outlined?: boolean
   compact?: boolean

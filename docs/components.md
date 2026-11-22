@@ -267,9 +267,18 @@ permissions или конкретном домене приложения.
   уверенный свайп завершает открытие. До завершения жеста панель не забирает фокус.
   `swipeToClose` позволяет так же стащить панель влево. Распознаётся
   горизонтальное движение с порогом `max(64px, 25% ширины)` и преимуществом
-  горизонтали 1.5×; вертикальная прокрутка, taps, правый swipe и multi-touch
+  горизонтали 1.15×; вертикальная прокрутка, taps, правый swipe и multi-touch
   не закрывают panel. Inputs/contenteditable и `[data-share-drawer-no-swipe]`
   исключены. Открытие жестом от края и навигация принадлежат consumer.
+- `createDrawerSwipe({ enabled, width, update, commit, opening })` — тот же
+  обработчик касаний для панелей со своим размещением. `width()` возвращает
+  полную ширину в CSS px. `update(reveal)` передаёт видимую ширину во время жеста
+  или `null` при отмене. `commit()` завершает жест, а consumer управляет
+  видимостью, анимацией и сбросом видимой ширины. Подключайте `start`, `move`,
+  `end` и `cancel` к touch-событиям панели. `move` требует non-passive listener.
+  `cancel()` восстанавливает раскрытие после незавершённого жеста, `reset()`
+  очищает отслеживание касания. По умолчанию `opening=false`: работает только
+  закрытие открытой панели.
 - `AppModal` — низкоуровневое DnD-style окно с Teleport, focus trap,
   topmost Escape, mobile swipe-down и анимацией.
 - `AppModalFrame` — header/body/footer shell поверх `AppModal`.
